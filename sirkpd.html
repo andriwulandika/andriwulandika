@@ -616,20 +616,21 @@ Jawab dengan singkat, padat, dan langsung bisa digunakan dalam konteks pemerinta
         headers: {
           'Content-Type': 'application/json',
           'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
+          'anthropic-version': '2023-06-01'
         },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-5',
+          model: 'claude-3-5-sonnet-20241022',
           max_tokens: 1500,
           system: SYSTEM_PROMPT,
           messages: conversationHistory
         })
       });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        if (res.status === 401) throw new Error('API Key tidak valid. Periksa kembali konfigurasi.');
-        throw new Error(err?.error?.message || `Error ${res.status}`);
+        const errData = await res.json().catch(() => ({}));
+        if (res.status === 401) throw new Error('API Key tidak valid atau kedaluwarsa. Klik badge "API Aktif" untuk memperbarui.');
+        if (res.status === 400) throw new Error('Permintaan tidak valid: ' + (errData?.error?.message || 'Bad Request'));
+        if (res.status === 429) throw new Error('Batas rate tercapai. Tunggu sebentar lalu coba lagi.');
+        throw new Error((errData?.error?.message || `Error HTTP ${res.status}`));
       }
       const data = await res.json();
       const reply = data.content?.[0]?.text || 'Maaf, terjadi kesalahan. Coba lagi.';
@@ -641,8 +642,11 @@ Jawab dengan singkat, padat, dan langsung bisa digunakan dalam konteks pemerinta
       if (credits <= 0) document.getElementById('sendBtn').disabled = true;
     } catch (err) {
       typing.remove();
-      const msg = err.message.includes('API Key') ? err.message : 'Koneksi bermasalah. Pastikan internet aktif dan API Key valid, lalu coba lagi.';
-      appendMessage('ai', msg);
+      const isCors = err.message === 'Failed to fetch' || err.message.includes('NetworkError');
+      const msg = isCors
+        ? 'Gagal terhubung ke server AI (CORS/jaringan). Pastikan browser tidak memblokir request lintas domain, lalu coba lagi.'
+        : err.message || 'Terjadi kesalahan tidak diketahui.';
+      appendMessage('ai', '⚠️ ' + msg);
     }
     isLoading = false;
     if (credits > 0) document.getElementById('sendBtn').disabled = false;
