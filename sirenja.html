@@ -301,6 +301,64 @@
       .sidebar { display: none; }
       .bubble { max-width: 90%; }
     }
+
+    /* ── API KEY MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--bg); border-radius: var(--radius);
+      padding: 32px 28px; width: 100%; max-width: 420px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+      margin: 0 16px;
+    }
+    .modal-title {
+      font-size: 1.1rem; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--text);
+      margin-bottom: 6px;
+    }
+    .modal-sub {
+      font-size: 0.82rem; color: var(--text2);
+      line-height: 1.55; margin-bottom: 20px;
+    }
+    .modal-sub a { color: var(--accent); text-decoration: none; }
+    .modal-label {
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--text); margin-bottom: 6px; display: block;
+    }
+    .modal-input {
+      width: 100%; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 10px 14px; font-family: monospace; font-size: 0.82rem;
+      color: var(--text); outline: none; margin-bottom: 8px;
+    }
+    .modal-input:focus { border-color: var(--accent); }
+    .modal-hint {
+      font-size: 0.72rem; color: var(--text2); margin-bottom: 20px;
+    }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .btn-modal-cancel {
+      font-size: 0.82rem; padding: 9px 18px; border-radius: 980px;
+      background: var(--bg2); border: 1px solid var(--border);
+      color: var(--text2); cursor: pointer; font-family: inherit;
+    }
+    .btn-modal-save {
+      font-size: 0.82rem; padding: 9px 18px; border-radius: 980px;
+      background: var(--accent); border: none;
+      color: #fff; cursor: pointer; font-family: inherit; font-weight: 500;
+    }
+    .btn-modal-save:hover { background: #0077ed; }
+    .api-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.7rem; padding: 2px 9px; border-radius: 980px;
+      border: 1px solid; cursor: pointer;
+    }
+    .api-status.set { background: #e8f8ee; border-color: #a3d9b4; color: #1a7a3e; }
+    .api-status.unset { background: #fff3cd; border-color: #ffc107; color: #856404; }
+    .api-status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
   </style>
 </head>
 <body>
@@ -308,7 +366,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-left">
-    <a href="andriwulandika.html" class="nav-back">← Kembali</a>
+    <a href="index.html" class="nav-back">← Beranda</a>
     <span class="nav-sep">|</span>
     <div class="nav-title">
       <div class="nav-icon">📝</div>
@@ -318,9 +376,27 @@
   </div>
   <div class="nav-right">
     <span class="nav-credit">by Andri Wulandika</span>
+    <span class="api-status unset" id="apiStatusBtn" onclick="openApiModal()" title="Konfigurasi API Key">
+      <span class="api-status-dot"></span><span id="apiStatusText">API Key</span>
+    </span>
     <button class="btn-new" onclick="newChat()">+ Baru</button>
   </div>
 </nav>
+
+<!-- API KEY MODAL -->
+<div class="modal-overlay" id="apiModal">
+  <div class="modal-box">
+    <div class="modal-title">🔑 Konfigurasi API Key</div>
+    <p class="modal-sub">Masukkan Anthropic API Key Anda untuk mengaktifkan AI. Key disimpan lokal di browser dan tidak dikirim ke server mana pun.<br><a href="https://console.anthropic.com/" target="_blank">Dapatkan API Key →</a></p>
+    <label class="modal-label">Anthropic API Key</label>
+    <input class="modal-input" id="apiKeyInput" type="password" placeholder="sk-ant-api03-..." autocomplete="off"/>
+    <div class="modal-hint">Format: sk-ant-api... • Disimpan di localStorage browser Anda</div>
+    <div class="modal-actions">
+      <button class="btn-modal-cancel" onclick="closeApiModal()">Batal</button>
+      <button class="btn-modal-save" onclick="saveApiKey()">Simpan & Aktifkan</button>
+    </div>
+  </div>
+</div>
 
 <!-- APP BODY -->
 <div class="app-body">
@@ -414,6 +490,34 @@
 <script>
   let credits = 5;
   let isLoading = false;
+
+  function getApiKey() { return localStorage.getItem('anthropic_api_key') || ''; }
+  function openApiModal() {
+    document.getElementById('apiKeyInput').value = getApiKey();
+    document.getElementById('apiModal').classList.add('open');
+  }
+  function closeApiModal() { document.getElementById('apiModal').classList.remove('open'); }
+  function saveApiKey() {
+    const key = document.getElementById('apiKeyInput').value.trim();
+    if (key) { localStorage.setItem('anthropic_api_key', key); } else { localStorage.removeItem('anthropic_api_key'); }
+    closeApiModal();
+    updateApiStatus();
+  }
+  function updateApiStatus() {
+    const btn = document.getElementById('apiStatusBtn');
+    const txt = document.getElementById('apiStatusText');
+    if (getApiKey()) {
+      btn.className = 'api-status set';
+      txt.textContent = 'API Aktif';
+    } else {
+      btn.className = 'api-status unset';
+      txt.textContent = 'API Key';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', updateApiStatus);
+  document.getElementById('apiModal').addEventListener('click', function(e) {
+    if (e.target === this) closeApiModal();
+  });
 
   const SYSTEM_PROMPT = `Kamu adalah Sirenja, asisten AI ahli penyusunan Rencana Kerja (Renja) OPD (Organisasi Perangkat Daerah) pemerintah daerah Indonesia.
 
@@ -542,8 +646,13 @@ Jawab dengan singkat, padat, dan langsung bisa digunakan. Maksimal 400 kata kecu
     const input = document.getElementById('userInput');
     const text = input.value.trim();
     if (!text) return;
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      openApiModal();
+      return;
+    }
     if (credits <= 0) {
-      alert('Kuota harian habis. Upgrade ke versi Pro untuk akses unlimited.');
+      alert('Kuota harian habis. Muat ulang halaman untuk sesi baru.');
       return;
     }
 
@@ -562,14 +671,25 @@ Jawab dengan singkat, padat, dan langsung bisa digunakan. Maksimal 400 kata kecu
     try {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
+          model: 'claude-sonnet-4-5',
+          max_tokens: 1500,
           system: SYSTEM_PROMPT,
           messages: conversationHistory
         })
       });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        if (res.status === 401) throw new Error('API Key tidak valid. Periksa kembali konfigurasi.');
+        throw new Error(err?.error?.message || `Error ${res.status}`);
+      }
 
       const data = await res.json();
       const reply = data.content?.[0]?.text || 'Maaf, terjadi kesalahan. Coba lagi.';
@@ -584,7 +704,8 @@ Jawab dengan singkat, padat, dan langsung bisa digunakan. Maksimal 400 kata kecu
 
     } catch (err) {
       typing.remove();
-      appendMessage('ai', 'Koneksi bermasalah. Pastikan internet aktif dan coba lagi.');
+      const msg = err.message.includes('API Key') ? err.message : 'Koneksi bermasalah. Pastikan internet aktif dan API Key valid, lalu coba lagi.';
+      appendMessage('ai', msg);
     }
 
     isLoading = false;
