@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://andriwulandika.github.io/Perencana-Ahli-Pertama/sitemap.xml
