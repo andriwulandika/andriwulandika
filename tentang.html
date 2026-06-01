@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tentang Saya — Andri Wulandika</title>
+  <meta name="description" content="Tentang Andri Wulandika, Perencana Ahli Pertama Bappeda Kabupaten Aceh Tenggara. Latar belakang, pendidikan, keahlian, dan pengalaman profesional."/>
+  <meta name="keywords" content="Andri Wulandika, Perencana Ahli Pertama, Bappeda Aceh Tenggara, Teknik Sipil, perencanaan pembangunan daerah"/>
+  <meta property="og:title" content="Tentang Andri Wulandika — Perencana Ahli Pertama"/>
+  <meta property="og:description" content="Perencana Ahli Pertama Bappeda Kabupaten Aceh Tenggara. S1 Teknik Sipil Universitas Gunung Leuser Aceh."/>
+  <meta property="og:url" content="https://andriwulandika.github.io/andriwulandika/tentang.html"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff;
+      --bg2: #f5f5f7;
+      --bg3: #1d1d1f;
+      --text: #1d1d1f;
+      --text2: #6e6e73;
+      --accent: #0071e3;
+      --border: #d2d2d7;
+      --radius: 18px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      height: 52px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* HERO */
+    .hero {
+      padding: 120px 24px 80px;
+      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .hero-left { }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700; letter-spacing: -0.04em;
+      line-height: 1.05; color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+    .hero-desc {
+      font-size: 1rem; color: var(--text2);
+      line-height: 1.7; margin-bottom: 2rem;
+    }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--text); color: #fff;
+      padding: 12px 22px; border-radius: 980px;
+      font-size: 0.85rem; font-weight: 500;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-dark:hover { background: #333; }
+    .btn-light {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg2); color: var(--text);
+      padding: 12px 22px; border-radius: 980px;
+      font-size: 0.85rem; font-weight: 500;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-light:hover { background: #e5e5ea; }
+
+    /* PROFILE CARD */
+    .profile-card {
+      background: var(--bg2); border-radius: var(--radius);
+      padding: 32px; text-align: center;
+      border: 1px solid var(--border);
+    }
+    .avatar {
+      width: 96px; height: 96px; border-radius: 50%;
+      background: linear-gradient(135deg, #0071e3, #34aadc);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 700; color: #fff;
+      margin: 0 auto 16px; letter-spacing: -0.02em;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .card-name { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .card-role { font-size: 0.8rem; color: var(--text2); margin-bottom: 20px; line-height: 1.5; }
+    .card-divider { height: 1px; background: var(--border); margin: 16px 0; }
+    .card-info { display: flex; flex-direction: column; gap: 10px; text-align: left; }
+    .card-info-item { display: flex; align-items: flex-start; gap: 10px; }
+    .info-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+    .info-text { font-size: 0.8rem; color: var(--text2); line-height: 1.5; }
+    .info-text strong { color: var(--text); font-weight: 600; display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1px; }
+    .status-dot {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; font-weight: 500;
+      color: #1a7a3e; background: #e8f8ee;
+      padding: 4px 10px; border-radius: 980px;
+      border: 1px solid #a3d9b4; margin-top: 12px;
+    }
+    .status-dot::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: #34c759;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 90px; }
+      .profile-card { order: -1; max-width: 320px; margin: 0 auto; }
+    }
+
+    /* SECTION */
+    .section { padding: 80px 24px; }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text2); margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.1; color: var(--text); margin-bottom: 1.2rem;
+    }
+    .section-body {
+      font-size: 0.98rem; color: var(--text2); line-height: 1.75;
+    }
+
+    /* PERJALANAN KARIR */
+    .timeline { margin-top: 48px; position: relative; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 15px; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .tl-item {
+      display: flex; gap: 28px; margin-bottom: 40px;
+      padding-left: 8px; position: relative;
+    }
+    .tl-dot {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      margin-top: 4px; position: relative; z-index: 1;
+      box-shadow: 0 0 0 4px #e8f1fb;
+    }
+    .tl-dot.current {
+      background: #34c759;
+      box-shadow: 0 0 0 4px #e8f8ee;
+      animation: pulse 2s ease infinite;
+    }
+    .tl-content { flex: 1; }
+    .tl-year {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 4px;
+    }
+    .tl-year.current { color: #34c759; }
+    .tl-title {
+      font-size: 1rem; font-weight: 700;
+      color: var(--text); margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .tl-org {
+      font-size: 0.85rem; color: var(--text2);
+      margin-bottom: 8px;
+    }
+    .tl-desc {
+      font-size: 0.85rem; color: var(--text2);
+      line-height: 1.65;
+    }
+
+    /* PENDIDIKAN */
+    .edu-card {
+      background: var(--bg2); border-radius: var(--radius);
+      padding: 28px 32px; border: 1px solid var(--border);
+      display: flex; gap: 20px; align-items: flex-start;
+      margin-top: 32px; transition: border-color 0.2s;
+    }
+    .edu-card:hover { border-color: var(--accent); }
+    .edu-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg, #0071e3, #34aadc);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .edu-info { flex: 1; }
+    .edu-degree { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .edu-major { font-size: 0.9rem; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+    .edu-univ { font-size: 0.85rem; color: var(--text2); }
+
+    /* KEAHLIAN */
+    .skills-bg { background: var(--bg2); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 40px;
+    }
+    .skill-card {
+      background: var(--bg); border-radius: 14px;
+      padding: 24px 20px; border: 1px solid var(--border);
+      transition: all 0.25s;
+    }
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,113,227,0.08);
+    }
+    .skill-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
+    .skill-title { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .skill-tag {
+      font-size: 0.68rem; padding: 3px 9px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 980px; color: var(--text2);
+    }
+    @media (max-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .skills-grid { grid-template-columns: 1fr; } }
+
+    /* NILAI & FILOSOFI */
+    .values-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; background: var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      margin-top: 40px;
+    }
+    .value-card {
+      background: var(--bg); padding: 32px 28px;
+    }
+    .value-num {
+      font-size: 2.5rem; font-weight: 700;
+      letter-spacing: -0.05em; color: var(--bg2);
+      margin-bottom: 10px; line-height: 1;
+    }
+    .value-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .value-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.65; }
+    @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr; } }
+
+    /* APLIKASI */
+    .apps-bg { background: var(--bg3); }
+    .apps-header .section-title { color: #f5f5f7; }
+    .apps-header .eyebrow { color: #86868b; }
+    .apps-header .section-body { color: #86868b; }
+    .apps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-top: 40px;
+    }
+    .app-card {
+      background: #2c2c2e; border-radius: 14px;
+      padding: 20px 16px; text-align: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.25s;
+    }
+    .app-card:hover {
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+    .app-icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+    .app-name { font-size: 0.82rem; font-weight: 600; color: #f5f5f7; margin-bottom: 3px; }
+    .app-desc { font-size: 0.7rem; color: #86868b; line-height: 1.4; }
+    @media (max-width: 600px) { .apps-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* CTA */
+    .cta-section { padding: 80px 24px; text-align: center; background: var(--bg2); }
+    .cta-inner { max-width: 520px; margin: 0 auto; }
+    .cta-inner .section-title { margin-bottom: 1rem; }
+    .cta-inner .section-body { margin-bottom: 2rem; }
+    .cta-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .btn-blue {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent); color: #fff;
+      padding: 14px 26px; border-radius: 980px;
+      font-size: 0.88rem; font-weight: 500;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-blue:hover { background: #0077ed; }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .footer-left { font-size: 0.78rem; color: var(--text2); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">← Beranda</a>
+  <span class="nav-title">Tentang Saya</span>
+  <ul class="nav-links">
+    <li><a href="index.html#layanan">Layanan</a></li>
+    <li><a href="sirenja.html">Sirenja</a></li>
+    <li><a href="sirkpd.html">SirKPD</a></li>
+    <li><a href="index.html#kontak">Kontak</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Perencana Ahli Pertama · P3K</p>
+    <h1 class="hero-name">Andri<br/>Wulandika</h1>
+    <p class="hero-desc">
+      Praktisi perencanaan pembangunan daerah yang terlibat langsung dalam siklus perencanaan, penganggaran, dan evaluasi pembangunan di Kabupaten Aceh Tenggara.
+    </p>
+    <div class="hero-actions">
+      <a href="index.html#kontak" class="btn-dark">💬 Hubungi Saya</a>
+      <a href="index.html#layanan" class="btn-light">Lihat Layanan</a>
+    </div>
+  </div>
+  <div class="profile-card reveal reveal-d1">
+    <div class="avatar">AW</div>
+    <p class="card-name">Andri Wulandika, S.T.</p>
+    <p class="card-role">Perencana Ahli Pertama<br/>Bappeda Kabupaten Aceh Tenggara</p>
+    <div class="card-divider"></div>
+    <div class="card-info">
+      <div class="card-info-item">
+        <span class="info-icon">🏛️</span>
+        <div class="info-text">
+          <strong>Instansi</strong>
+          Bappeda Kab. Aceh Tenggara
+        </div>
+      </div>
+      <div class="card-info-item">
+        <span class="info-icon">📍</span>
+        <div class="info-text">
+          <strong>Lokasi</strong>
+          Kutacane, Aceh Tenggara
+        </div>
+      </div>
+      <div class="card-info-item">
+        <span class="info-icon">🎓</span>
+        <div class="info-text">
+          <strong>Pendidikan</strong>
+          S1 Teknik Sipil — Univ. Gunung Leuser Aceh
+        </div>
+      </div>
+      <div class="card-info-item">
+        <span class="info-icon">📅</span>
+        <div class="info-text">
+          <strong>Mulai Bertugas</strong>
+          2025 · P3K Fungsional Perencana
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px;">
+      <span class="status-dot">Aktif Bertugas</span>
+    </div>
+  </div>
+</div>
+
+<!-- TENTANG -->
+<section class="section" style="background:var(--bg2);padding-top:0;">
+  <div class="section-inner reveal">
+    <p class="eyebrow">Latar Belakang</p>
+    <h2 class="section-title">Dari Teknik Sipil<br/>ke Perencanaan Daerah.</h2>
+    <p class="section-body">
+      Berawal dari latar belakang Teknik Sipil di Universitas Gunung Leuser Aceh, saya membangun pemahaman mendalam tentang infrastruktur dan pembangunan fisik. Ketertarikan pada perencanaan yang lebih luas — bagaimana pembangunan daerah direncanakan, dianggarkan, dan dievaluasi secara sistematis — membawa saya ke jalur fungsional Perencana.
+    </p>
+    <br/>
+    <p class="section-body">
+      Sejak 2025, saya bertugas sebagai Perencana Ahli Pertama (P3K) di Bappeda Kabupaten Aceh Tenggara. Dalam peran ini, saya terlibat langsung dalam penyusunan dokumen perencanaan strategis daerah, koordinasi lintas 51 OPD, serta menjadi bagian dari Tim Anggaran Pemerintah Daerah (TAPD).
+    </p>
+    <br/>
+    <p class="section-body">
+      Saya juga aktif mengembangkan tools berbasis teknologi — termasuk <strong>Sirenja</strong> dan <strong>SirKPD</strong> — untuk membantu ASN perencana di seluruh Indonesia bekerja lebih efisien dan efektif.
+    </p>
+  </div>
+</section>
+
+<!-- PERJALANAN KARIR -->
+<section class="section">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Perjalanan</p>
+    <h2 class="section-title reveal">Karir & Pengalaman.</h2>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-dot current"></div>
+        <div class="tl-content">
+          <p class="tl-year current">2025 — Sekarang</p>
+          <p class="tl-title">Perencana Ahli Pertama (P3K)</p>
+          <p class="tl-org">Bappeda Kabupaten Aceh Tenggara</p>
+          <p class="tl-desc">Bertanggung jawab dalam penyusunan RKPK, koordinasi Renja OPD, review teknis dokumen anggaran, keanggotaan TAPD, pelaporan Pro-SN, serta pengolahan data SSH/SBU/HSPK untuk SIPD-RI. Aktif dalam pengembangan inovasi digital perencanaan daerah.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <p class="tl-year">Sebelum 2025</p>
+          <p class="tl-title">Studi & Pengembangan Keahlian</p>
+          <p class="tl-org">Universitas Gunung Leuser Aceh</p>
+          <p class="tl-desc">Menyelesaikan studi S1 Teknik Sipil dengan fokus pada perencanaan infrastruktur dan pembangunan. Membangun fondasi teknis yang kuat sebagai dasar pengembangan karir di bidang perencanaan pembangunan daerah.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PENDIDIKAN -->
+<section class="section" style="background:var(--bg2);padding-top:20px;">
+  <div class="section-inner reveal">
+    <p class="eyebrow">Pendidikan</p>
+    <h2 class="section-title">Latar Belakang<br/>Akademik.</h2>
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-info">
+        <p class="edu-degree">Sarjana Teknik (S.T.)</p>
+        <p class="edu-major">Teknik Sipil</p>
+        <p class="edu-univ">Universitas Gunung Leuser Aceh · Aceh Tenggara</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEAHLIAN -->
+<section class="section skills-bg">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Keahlian</p>
+    <h2 class="section-title reveal">Bidang yang<br/>Saya Kuasai.</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <span class="skill-icon">📋</span>
+        <p class="skill-title">Dokumen Perencanaan</p>
+        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Penyusunan dan review dokumen perencanaan strategis daerah dari jangka panjang hingga operasional.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">RPJMK</span>
+          <span class="skill-tag">RKPD</span>
+          <span class="skill-tag">Renstra</span>
+          <span class="skill-tag">Renja</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d1">
+        <span class="skill-icon">💰</span>
+        <p class="skill-title">Penganggaran Daerah</p>
+        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Penyusunan dan review RAB, SSH, HSPK, serta koordinasi dalam Tim Anggaran Pemerintah Daerah.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">APBD</span>
+          <span class="skill-tag">RAB</span>
+          <span class="skill-tag">SSH/HSPK</span>
+          <span class="skill-tag">TAPD</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d2">
+        <span class="skill-icon">📊</span>
+        <p class="skill-title">Monitoring & Evaluasi</p>
+        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Pelaporan kinerja, evaluasi capaian program, dan monitoring pelaksanaan pembangunan daerah.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">SAKIP</span>
+          <span class="skill-tag">LKjIP</span>
+          <span class="skill-tag">LPPD</span>
+          <span class="skill-tag">e-Monev</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">🎯</span>
+        <p class="skill-title">Indikator Kinerja</p>
+        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Penyusunan IKU, IKD, IKK, cascading pohon kinerja dari level Bupati hingga sub kegiatan OPD.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">IKU</span>
+          <span class="skill-tag">IKD</span>
+          <span class="skill-tag">IKK</span>
+          <span class="skill-tag">Cascading</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d1">
+        <span class="skill-icon">🤝</span>
+        <p class="skill-title">Koordinasi OPD</p>
+        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Koordinasi dan fasilitasi teknis lintas 51 OPD dalam proses perencanaan dan penganggaran daerah.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">51 OPD</span>
+          <span class="skill-tag">Musrenbang</span>
+          <span class="skill-tag">Forum OPD</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d2">
+        <span class="skill-icon">🤖</span>
+        <p class="skill-title">Inovasi Digital</p>
+        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Pengembangan tools berbasis AI untuk perencanaan daerah — Sirenja & SirKPD — asisten digital ASN.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Sirenja</span>
+          <span class="skill-tag">SirKPD</span>
+          <span class="skill-tag">AI Tools</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NILAI -->
+<section class="section">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Prinsip Kerja</p>
+    <h2 class="section-title reveal">Nilai yang Saya<br/>Pegang Teguh.</h2>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <p class="value-num">01</p>
+        <p class="value-title">Berbasis Regulasi</p>
+        <p class="value-desc">Setiap dokumen dan rekomendasi yang saya hasilkan selalu berlandaskan regulasi yang berlaku — Permendagri, PMK, dan peraturan teknis terkini.</p>
+      </div>
+      <div class="value-card reveal reveal-d1">
+        <p class="value-num">02</p>
+        <p class="value-title">Praktis & Aplikatif</p>
+        <p class="value-desc">Saya percaya ilmu perencanaan harus bisa langsung digunakan di lapangan, bukan sekadar teori di atas kertas.</p>
+      </div>
+      <div class="value-card reveal reveal-d2">
+        <p class="value-num">03</p>
+        <p class="value-title">Inovatif</p>
+        <p class="value-desc">Terus mengembangkan cara kerja baru yang lebih efisien — termasuk pemanfaatan teknologi AI untuk mempercepat proses perencanaan daerah.</p>
+      </div>
+      <div class="value-card reveal reveal-d3">
+        <p class="value-num">04</p>
+        <p class="value-title">Kolaboratif</p>
+        <p class="value-desc">Perencanaan yang baik lahir dari kolaborasi lintas OPD, lintas sektor, dan lintas level pemerintahan yang saling mendukung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APLIKASI -->
+<section class="section apps-bg">
+  <div class="section-inner">
+    <div class="apps-header reveal">
+      <p class="eyebrow">Penguasaan Aplikasi</p>
+      <h2 class="section-title">Tools & Aplikasi<br/>yang Dikuasai.</h2>
+      <p class="section-body">Berpengalaman mengoperasikan berbagai aplikasi pemerintahan pusat dan daerah.</p>
+    </div>
+    <div class="apps-grid">
+      <div class="app-card reveal">
+        <span class="app-icon">🖥️</span>
+        <p class="app-name">SIPD-RI</p>
+        <p class="app-desc">Sistem Informasi Pemerintahan Daerah</p>
+      </div>
+      <div class="app-card reveal reveal-d1">
+        <span class="app-icon">📡</span>
+        <p class="app-name">e-Monev</p>
+        <p class="app-desc">Bappenas — monitoring Pro-SN</p>
+      </div>
+      <div class="app-card reveal reveal-d2">
+        <span class="app-icon">🔷</span>
+        <p class="app-name">KRISNA</p>
+        <p class="app-desc">Kolaborasi Perencanaan Anggaran</p>
+      </div>
+      <div class="app-card reveal reveal-d3">
+        <span class="app-icon">⭐</span>
+        <p class="app-name">SAKIP</p>
+        <p class="app-desc">Sistem Akuntabilitas Kinerja</p>
+      </div>
+      <div class="app-card reveal">
+        <span class="app-icon">📊</span>
+        <p class="app-name">Microsoft Excel</p>
+        <p class="app-desc">Analisis data & rekapitulasi</p>
+      </div>
+      <div class="app-card reveal reveal-d1">
+        <span class="app-icon">📝</span>
+        <p class="app-name">Microsoft Word</p>
+        <p class="app-desc">Penyusunan dokumen resmi</p>
+      </div>
+      <div class="app-card reveal reveal-d2">
+        <span class="app-icon">📑</span>
+        <p class="app-name">PowerPoint</p>
+        <p class="app-desc">Presentasi & paparan teknis</p>
+      </div>
+      <div class="app-card reveal reveal-d3">
+        <span class="app-icon">🤖</span>
+        <p class="app-name">AI Tools</p>
+        <p class="app-desc">Sirenja & SirKPD — buatan sendiri</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <p class="eyebrow">Mari Berkolaborasi</p>
+    <h2 class="section-title">Siap membantu<br/>perencanaan Anda.</h2>
+    <p class="section-body">Butuh konsultasi perencanaan daerah, template dokumen, atau pelatihan untuk tim OPD Anda? Hubungi saya sekarang.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/62811660568" class="btn-blue">💬 WhatsApp</a>
+      <a href="mailto:wulandikaandri@gmail.com" class="btn-light">✉ Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-left">© 2025 Andri Wulandika · Kutacane, Aceh Tenggara</p>
+  <div class="footer-links">
+    <a href="index.html">Beranda</a>
+    <a href="sirenja.html">Sirenja</a>
+    <a href="sirkpd.html">SirKPD</a>
+    <a href="index.html#kontak">Kontak</a>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
