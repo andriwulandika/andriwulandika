@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO Primary -->
+  <title>Andri Wulandika — Perencana Ahli Pertama Bappeda Aceh Tenggara</title>
+  <meta name="description" content="Andri Wulandika, Perencana Ahli Pertama Bappeda Kabupaten Aceh Tenggara. Konsultansi perencanaan daerah, template dokumen Renstra Renja RAB, dan AI tools khusus ASN Indonesia."/>
+  <meta name="keywords" content="Andri Wulandika, Perencana Ahli Pertama, Bappeda Aceh Tenggara, konsultansi perencanaan daerah, Sirenja, SirKPD, RKPD, Renstra, Renja OPD, SIPD-RI, ASN perencana, template dokumen pemerintah, perencanaan pembangunan daerah"/>
+  <meta name="author" content="Andri Wulandika"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://andriwulandika.github.io/Perencana-Ahli-Pertama/"/>
+
+  <!-- Open Graph (tampilan saat dibagikan di WhatsApp/Facebook) -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Andri Wulandika — Perencana Ahli Pertama Bappeda Aceh Tenggara"/>
+  <meta property="og:description" content="Konsultansi perencanaan daerah, template dokumen, dan AI tools khusus ASN Indonesia. Sirenja & SirKPD — asisten AI untuk Renja OPD dan RKPD."/>
+  <meta property="og:url" content="https://andriwulandika.github.io/Perencana-Ahli-Pertama/"/>
+  <meta property="og:site_name" content="Andri Wulandika"/>
+  <meta property="og:locale" content="id_ID"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Andri Wulandika — Perencana Ahli Pertama"/>
+  <meta name="twitter:description" content="Konsultansi perencanaan daerah, template dokumen, dan AI tools untuk ASN Indonesia."/>
+
+  <!-- Schema Markup (Google tahu ini profil profesional) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Andri Wulandika",
+    "jobTitle": "Perencana Ahli Pertama",
+    "worksFor": {
+      "@type": "GovernmentOrganization",
+      "name": "Bappeda Kabupaten Aceh Tenggara"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kutacane",
+      "addressRegion": "Aceh Tenggara",
+      "addressCountry": "ID"
+    },
+    "email": "wulandikaandri@gmail.com",
+    "telephone": "+628116605680",
+    "url": "https://andriwulandika.github.io/Perencana-Ahli-Pertama/",
+    "description": "Praktisi perencanaan pembangunan daerah, konsultan Renstra Renja RKPD, dan pengembang AI tools untuk ASN Indonesia.",
+    "knowsAbout": ["Perencanaan Pembangunan Daerah", "RPJMD", "RKPD", "Renstra OPD", "Renja OPD", "SIPD-RI", "SAKIP", "Penganggaran Daerah", "Indikator Kinerja"]
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --bg: #ffffff;
+      --bg2: #f5f5f7;
+      --bg3: #000000;
+      --text: #1d1d1f;
+      --text2: #6e6e73;
+      --text3: #ffffff;
+      --accent: #0071e3;
+      --border: #d2d2d7;
+      --radius: 18px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      height: 52px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 22px;
+    }
+    .nav-logo {
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--text); text-decoration: none; letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; color: var(--text2);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--accent) !important;
+    }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 24px 120px;
+      text-align: center;
+      background: var(--bg);
+      max-width: 900px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+      opacity: 0; animation: up 0.7s ease 0.1s forwards;
+    }
+    .hero-name {
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-weight: 700; letter-spacing: -0.04em;
+      line-height: 1.02; color: var(--text);
+      margin-bottom: 1.4rem;
+      opacity: 0; animation: up 0.7s ease 0.25s forwards;
+    }
+    .hero-sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 300; color: var(--text2);
+      line-height: 1.5; max-width: 580px; margin: 0 auto 2.8rem;
+      letter-spacing: -0.01em;
+      opacity: 0; animation: up 0.7s ease 0.4s forwards;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+    .hero-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: up 0.7s ease 0.55s forwards;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--text); color: #fff;
+      padding: 14px 26px; border-radius: 980px;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: -0.01em;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-dark:hover { background: #333; transform: scale(1.02); }
+    .btn-light {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg2); color: var(--text);
+      padding: 14px 26px; border-radius: 980px;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: -0.01em;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-light:hover { background: #e5e5ea; transform: scale(1.02); }
+
+    /* ── STAT BAR ── */
+    .stat-bar {
+      background: var(--bg2); padding: 48px 24px;
+    }
+    .stat-bar-inner {
+      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border); border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .stat-item {
+      background: var(--bg2); padding: 32px 24px; text-align: center;
+    }
+    .stat-num {
+      font-size: 2.4rem; font-weight: 700;
+      letter-spacing: -0.04em; color: var(--text);
+      display: block; margin-bottom: 4px;
+    }
+    .stat-lbl {
+      font-size: 0.78rem; color: var(--text2); line-height: 1.4;
+    }
+    @media (max-width: 600px) {
+      .stat-bar-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── SECTION BASE ── */
+    .section {
+      padding: 100px 24px;
+    }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+    .section-inner.wide { max-width: 1080px; }
+
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text2); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.1; color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+    .section-body {
+      font-size: 1.05rem; color: var(--text2);
+      line-height: 1.7; max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    .about-bg { background: var(--bg); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: start;
+    }
+    .about-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .about-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 0.92rem; color: var(--text2); line-height: 1.55;
+    }
+    .about-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent); margin-top: 8px; flex-shrink: 0;
+    }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
+    .chip {
+      font-size: 0.78rem; font-weight: 500;
+      padding: 7px 16px; border-radius: 980px;
+      background: var(--bg2); color: var(--text2);
+      border: 1px solid var(--border);
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ── SERVICES ── */
+    .services-bg { background: var(--bg2); }
+    .services-header { margin-bottom: 48px; }
+    .service-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .service-card {
+      background: var(--bg); padding: 36px 28px;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: #fafafa; }
+    .svc-icon {
+      font-size: 1.6rem; margin-bottom: 1.2rem; display: block;
+    }
+    .svc-num {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--text2); text-transform: uppercase; margin-bottom: 0.7rem;
+    }
+    .svc-title {
+      font-size: 1.05rem; font-weight: 600;
+      letter-spacing: -0.02em; color: var(--text);
+      margin-bottom: 0.7rem;
+    }
+    .svc-body {
+      font-size: 0.85rem; color: var(--text2); line-height: 1.65;
+    }
+    @media (max-width: 768px) { .service-grid { grid-template-columns: 1fr; } }
+
+    /* ── TOOLS (DARK) ── */
+    .tools-bg { background: var(--bg3); }
+    .tools-header { text-align: center; margin-bottom: 64px; }
+    .tools-header .section-title { color: #f5f5f7; }
+    .tools-header .section-body { color: #86868b; margin: 0 auto; }
+    .tools-header .eyebrow { color: #86868b; }
+    .tools-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .tool-card {
+      background: #1d1d1f; border-radius: var(--radius);
+      padding: 44px 36px; position: relative; overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .tool-card:hover { transform: translateY(-4px); }
+    .tool-card-eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #86868b; margin-bottom: 0.8rem;
+    }
+    .tool-card-name {
+      font-size: 2.2rem; font-weight: 700;
+      letter-spacing: -0.04em; color: #f5f5f7;
+      margin-bottom: 0.5rem;
+    }
+    .tool-card-tagline {
+      font-size: 1rem; color: #86868b;
+      margin-bottom: 1.8rem; line-height: 1.5;
+    }
+    .tool-features {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 2rem;
+    }
+    .tool-feat {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.85rem; color: #ebebf0;
+    }
+    .feat-check {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.62rem; color: #86efac; flex-shrink: 0;
+    }
+    .tool-badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 980px;
+      border: 1px solid rgba(255,255,255,0.15); color: #86868b;
+    }
+    .tool-glow {
+      position: absolute; bottom: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      filter: blur(60px); opacity: 0.15;
+    }
+    .glow-blue { background: #0071e3; }
+    .glow-green { background: #34c759; }
+    @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } }
+
+    /* ── TEMPLATE ── */
+    .template-bg { background: var(--bg); }
+    .template-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      margin-top: 48px;
+    }
+    .tmpl-card {
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .tmpl-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+    .tmpl-thumb {
+      height: 110px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .tmpl-thumb.t1 { background: linear-gradient(135deg, #0071e3, #00c6fb); }
+    .tmpl-thumb.t2 { background: linear-gradient(135deg, #1d1d1f, #3a3a3c); }
+    .tmpl-thumb.t3 { background: linear-gradient(135deg, #34c759, #30d158); }
+    .tmpl-thumb.t4 { background: linear-gradient(135deg, #ff9f0a, #ff6b00); }
+    .tmpl-body { padding: 16px; }
+    .tmpl-title { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .tmpl-sub { font-size: 0.75rem; color: var(--text2); }
+    .tmpl-price { font-size: 0.78rem; color: var(--accent); font-weight: 500; margin-top: 6px; }
+    @media (max-width: 700px) { .template-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--bg2); padding: 100px 24px; text-align: center;
+    }
+    .cta-inner { max-width: 600px; margin: 0 auto; }
+    .cta-inner .section-title { margin-bottom: 1rem; }
+    .cta-inner .section-body { margin: 0 auto 2.4rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-blue {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent); color: #fff;
+      padding: 14px 28px; border-radius: 980px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-blue:hover { background: #0077ed; transform: scale(1.02); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 24px 24px;
+    }
+    .footer-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-left { font-size: 0.78rem; color: var(--text2); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.on { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+
+    @keyframes up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* divider */
+    .divider { height: 1px; background: var(--border); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Andri Wulandika</a>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#layanan">Layanan</a></li>
+    <li><a href="#tools">AI Tools</a></li>
+    <li><a href="#template">Template</a></li>
+    <li><a href="#kontak" class="nav-cta">Konsultasi</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Perencana Ahli Pertama · Bappeda Aceh Tenggara</p>
+  <h1 class="hero-name">Andri Wulandika</h1>
+  <p class="hero-sub">
+    Praktisi <strong>Perencanaan Pembangunan Daerah</strong> yang menyediakan konsultansi, template dokumen, dan AI tools khusus untuk ASN Indonesia.
+  </p>
+  <div class="hero-actions">
+    <a href="#layanan" class="btn-dark">Lihat Layanan</a>
+    <a href="#tools" class="btn-light">Coba AI Tools</a>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat-item reveal">
+      <span class="stat-num">7+</span>
+      <span class="stat-lbl">Tahun<br/>Pengalaman</span>
+    </div>
+    <div class="stat-item reveal reveal-d1">
+      <span class="stat-num">51</span>
+      <span class="stat-lbl">OPD<br/>Dikoordinasi</span>
+    </div>
+    <div class="stat-item reveal reveal-d2">
+      <span class="stat-num">TAPD</span>
+      <span class="stat-lbl">Anggota<br/>Tim Anggaran</span>
+    </div>
+    <div class="stat-item reveal reveal-d3">
+      <span class="stat-num">SIPD</span>
+      <span class="stat-lbl">Expert<br/>SIPD-RI</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section about-bg" id="tentang">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="eyebrow">Tentang Saya</p>
+        <h2 class="section-title">Praktisi aktif,<br/>bukan sekadar teori.</h2>
+        <p class="section-body">
+          Saya terlibat langsung dalam siklus perencanaan daerah — dari penyusunan RPJMK, RKPD, review teknis dokumen OPD, hingga koordinasi lintas 51 OPD sebagai bagian dari TAPD Aceh Tenggara.
+        </p>
+        <div class="about-list">
+          <div class="about-item"><span class="about-dot"></span><span>Anggota aktif Tim Anggaran Pemerintah Daerah (TAPD)</span></div>
+          <div class="about-item"><span class="about-dot"></span><span>Review teknis DOKA, KAK, RAB seluruh OPD</span></div>
+          <div class="about-item"><span class="about-dot"></span><span>Menguasai SIPD-RI, e-Monev Bappenas, KRISNA, SAKIP</span></div>
+          <div class="about-item"><span class="about-dot"></span><span>Terlibat dalam pelaporan Pro-SN dan kebijakan DBH Sawit</span></div>
+        </div>
+      </div>
+      <div class="reveal reveal-d2">
+        <p class="eyebrow">Bidang Keahlian</p>
+        <h3 class="section-title" style="font-size:1.6rem;">Menguasai seluruh siklus perencanaan daerah.</h3>
+        <p class="section-body" style="font-size:0.92rem;">Dari dokumen strategis jangka panjang hingga sub kegiatan operasional harian OPD.</p>
+        <div class="skill-chips">
+          <span class="chip">RPJMK</span>
+          <span class="chip">RKPD</span>
+          <span class="chip">Renstra</span>
+          <span class="chip">Renja</span>
+          <span class="chip">SAKIP</span>
+          <span class="chip">LKjIP</span>
+          <span class="chip">SIPD-RI</span>
+          <span class="chip">RAB & SSH</span>
+          <span class="chip">IKU / IKK</span>
+          <span class="chip">Cascading</span>
+          <span class="chip">Musrenbang</span>
+          <span class="chip">DBH Sawit</span>
+          <span class="chip">Pro-SN</span>
+          <span class="chip">e-Monev</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section class="section services-bg" id="layanan">
+  <div class="section-inner wide">
+    <div class="services-header reveal">
+      <p class="eyebrow">Layanan</p>
+      <h2 class="section-title">Apa yang bisa saya bantu.</h2>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <span class="svc-icon">📋</span>
+        <p class="svc-num">01</p>
+        <h3 class="svc-title">Konsultansi Perencanaan</h3>
+        <p class="svc-body">Pendampingan teknis penyusunan RPJMK, RKPD, Renstra, dan dokumen perencanaan daerah sesuai regulasi terkini.</p>
+      </div>
+      <div class="service-card reveal reveal-d1">
+        <span class="svc-icon">🔍</span>
+        <p class="svc-num">02</p>
+        <h3 class="svc-title">Review Teknis Dokumen</h3>
+        <p class="svc-body">Telaah Renja, DOKA, KAK, RAB OPD untuk memastikan konsistensi, kelengkapan, dan kepatuhan regulasi.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <span class="svc-icon">📁</span>
+        <p class="svc-num">03</p>
+        <h3 class="svc-title">Template Dokumen</h3>
+        <p class="svc-body">Koleksi template Renstra, Renja, KAK, RAB, Berita Acara dalam format Word & Excel siap pakai.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="svc-icon">🎓</span>
+        <p class="svc-num">04</p>
+        <h3 class="svc-title">Pelatihan ASN</h3>
+        <p class="svc-body">Workshop praktis penyusunan dokumen perencanaan, SIPD-RI, dan pengembangan indikator kinerja.</p>
+      </div>
+      <div class="service-card reveal reveal-d1">
+        <span class="svc-icon">📊</span>
+        <p class="svc-num">05</p>
+        <h3 class="svc-title">Penyusunan Indikator</h3>
+        <p class="svc-body">Formulasi IKU, IKD, IKK, dan cascading pohon kinerja dari level Bupati hingga sub kegiatan OPD.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <span class="svc-icon">✍️</span>
+        <p class="svc-num">06</p>
+        <h3 class="svc-title">Artikel & Opini</h3>
+        <p class="svc-body">Analisis kebijakan publik daerah, ulasan regulasi perencanaan terbaru, dan panduan teknis untuk ASN.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TOOLS (DARK) -->
+<section class="section tools-bg" id="tools">
+  <div class="section-inner wide">
+    <div class="tools-header reveal">
+      <p class="eyebrow">AI Tools Eksklusif</p>
+      <h2 class="section-title">Asisten AI untuk<br/>perencanaan daerah.</h2>
+      <p class="section-body">Dua tools berbasis kecerdasan buatan yang dirancang khusus membantu ASN perencana bekerja lebih cepat dan lebih tepat.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card reveal">
+        <div class="tool-glow glow-blue"></div>
+        <p class="tool-card-eyebrow">AI Asisten · Renja OPD</p>
+        <h3 class="tool-card-name">Sirenja</h3>
+        <p class="tool-card-tagline">Susun Renja OPD lebih cepat dengan bantuan AI.</p>
+        <div class="tool-features">
+          <div class="tool-feat"><span class="feat-check">✓</span>Rumuskan program & kegiatan otomatis</div>
+          <div class="tool-feat"><span class="feat-check">✓</span>Generate indikator output & outcome</div>
+          <div class="tool-feat"><span class="feat-check">✓</span>Cascading Renstra → Renja → Sub Kegiatan</div>
+          <div class="tool-feat"><span class="feat-check">✓</span>Berbasis nomenklatur & regulasi terbaru</div>
+        </div>
+        <a href="sirenja.html" style="display:inline-flex;align-items:center;gap:6px;background:#0071e3;color:#fff;padding:10px 22px;border-radius:980px;font-size:0.82rem;font-weight:500;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#0077ed'" onmouseout="this.style.background='#0071e3'">Coba Sirenja →</a>
+      </div>
+      <div class="tool-card reveal reveal-d2">
+        <div class="tool-glow glow-green"></div>
+        <p class="tool-card-eyebrow">AI Asisten · RKPD</p>
+        <h3 class="tool-card-name">SirKPD</h3>
+        <p class="tool-card-tagline">Bantu penyusunan RKPD dari isu strategis hingga program prioritas.</p>
+        <div class="tool-features">
+          <div class="tool-feat"><span class="feat-check">✓</span>Analisis isu strategis daerah berbasis data</div>
+          <div class="tool-feat"><span class="feat-check">✓</span>Rumuskan prioritas pembangunan tahunan</div>
+          <div class="tool-feat"><span class="feat-check">✓</span>Sinkronisasi RPJMN, RPJMD → RKPD</div>
+          <div class="tool-feat"><span class="feat-check">✓</span>Matriks program prioritas otomatis</div>
+        </div>
+        <a href="sirkpd.html" style="display:inline-flex;align-items:center;gap:6px;background:#1d1d1f;color:#fff;padding:10px 22px;border-radius:980px;font-size:0.82rem;font-weight:500;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#333'" onmouseout="this.style.background='#1d1d1f'">Coba SirKPD →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATE -->
+<section class="section template-bg" id="template">
+  <div class="section-inner wide">
+    <div class="reveal">
+      <p class="eyebrow">Template Dokumen</p>
+      <h2 class="section-title">Dokumen siap pakai<br/>untuk ASN.</h2>
+      <p class="section-body">Format Word & Excel profesional, langsung bisa digunakan dan disesuaikan dengan kebutuhan OPD Anda.</p>
+    </div>
+    <div class="template-grid">
+      <div class="tmpl-card reveal">
+        <div class="tmpl-thumb t1">📋</div>
+        <div class="tmpl-body">
+          <p class="tmpl-title">Template Renstra OPD</p>
+          <p class="tmpl-sub">Format Word lengkap + contoh isi</p>
+          <p class="tmpl-price">Segera tersedia</p>
+        </div>
+      </div>
+      <div class="tmpl-card reveal reveal-d1">
+        <div class="tmpl-thumb t2">📄</div>
+        <div class="tmpl-body">
+          <p class="tmpl-title">Template Renja OPD</p>
+          <p class="tmpl-sub">Excel + Word, cascading lengkap</p>
+          <p class="tmpl-price">Segera tersedia</p>
+        </div>
+      </div>
+      <div class="tmpl-card reveal reveal-d2">
+        <div class="tmpl-thumb t3">💼</div>
+        <div class="tmpl-body">
+          <p class="tmpl-title">Template KAK & RAB</p>
+          <p class="tmpl-sub">Format resmi kegiatan OPD</p>
+          <p class="tmpl-price">Segera tersedia</p>
+        </div>
+      </div>
+      <div class="tmpl-card reveal reveal-d3">
+        <div class="tmpl-thumb t4">📊</div>
+        <div class="tmpl-body">
+          <p class="tmpl-title">Matriks IKU/IKD/IKK</p>
+          <p class="tmpl-sub">Excel pohon kinerja lengkap</p>
+          <p class="tmpl-price">Segera tersedia</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="kontak">
+  <div class="cta-inner reveal">
+    <p class="eyebrow">Konsultasi</p>
+    <h2 class="section-title">Butuh bantuan<br/>perencanaan daerah?</h2>
+    <p class="section-body">Hubungi saya untuk konsultasi pertama. Saya siap membantu Anda menyusun dokumen yang tepat, efisien, dan sesuai regulasi.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/628116605680" class="btn-blue">💬 WhatsApp</a>
+      <a href="mailto:wulandikaandri@gmail.com" class="btn-light">✉ Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p class="footer-left">© 2025 Andri Wulandika · Kutacane, Aceh Tenggara</p>
+    <div class="footer-links">
+      <a href="#tentang">Tentang</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#tools">AI Tools</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.borderBottomColor =
+      window.scrollY > 10 ? 'rgba(0,0,0,0.1)' : 'rgba(0,0,0,0.06)';
+  });
+</script>
+</body>
+</html>
