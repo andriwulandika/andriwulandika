@@ -24,8 +24,22 @@ export default {
       return new Response(null, { headers: corsHeaders });
     }
 
+    // GET: konfirmasi Worker aktif (buka di browser untuk verifikasi URL)
+    if (request.method === 'GET') {
+      return new Response(JSON.stringify({
+        status: 'ok',
+        service: 'SiRENJA / SiRKPD — Anthropic CORS Proxy',
+        usage: 'Kirim POST request dengan header x-api-key ke URL ini',
+      }), {
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
+
     if (request.method !== 'POST') {
-      return new Response('Method not allowed', { status: 405 });
+      return new Response(JSON.stringify({ error: { message: 'Gunakan metode POST' } }), {
+        status: 405,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
     }
 
     try {
