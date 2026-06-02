@@ -345,6 +345,59 @@
     .tmpl-price { font-size: 0.78rem; color: var(--accent); font-weight: 500; margin-top: 6px; }
     @media (max-width: 700px) { .template-grid { grid-template-columns: 1fr 1fr; } }
 
+    /* ── BLOG ── */
+    .blog-bg { background: var(--bg); }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px; margin-top: 3rem;
+    }
+    .blog-card {
+      background: var(--bg2);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      display: flex; flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      border: 1px solid transparent;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      border-color: var(--border);
+    }
+    .blog-card-cat {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,113,227,0.08);
+      padding: 3px 9px; border-radius: 980px;
+      margin-bottom: 1rem; width: fit-content;
+    }
+    .blog-card-title {
+      font-size: 1.05rem; font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.35;
+      color: var(--text); margin-bottom: 0.75rem;
+    }
+    .blog-card-excerpt {
+      font-size: 0.85rem; color: var(--text2);
+      line-height: 1.6; flex: 1; margin-bottom: 1.2rem;
+    }
+    .blog-card-meta {
+      font-size: 0.75rem; color: var(--text2);
+      display: flex; gap: 0.8rem; align-items: center;
+    }
+    .blog-card-meta span { display: flex; align-items: center; gap: 3px; }
+    .blog-card-link {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--accent); margin-top: 1rem;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .blog-card:hover .blog-card-link { gap: 8px; }
+    @media (max-width: 700px) { .blog-grid { grid-template-columns: 1fr; } }
+
     /* ── CTA ── */
     .cta-section {
       background: var(--bg2); padding: 100px 24px; text-align: center;
@@ -413,6 +466,7 @@
     <li><a href="#tools">AI Tools</a></li>
     <li><a href="#template">Template</a></li>
     <li><a href="regulasi.html">Regulasi</a></li>
+    <li><a href="#blog">Blog</a></li>
     <li><a href="#kontak" class="nav-cta">Konsultasi</a></li>
   </ul>
 </nav>
@@ -645,6 +699,30 @@
   </div>
 </section>
 
+<!-- BLOG -->
+<section class="section blog-bg" id="blog">
+  <div class="section-inner wide">
+    <div class="reveal">
+      <p class="eyebrow">Blog & Artikel</p>
+      <h2 class="section-title">Insight perencanaan<br/>daerah yang praktis.</h2>
+      <p class="section-body">Tulisan berbasis pengalaman lapangan — tentang regulasi, metode, dan praktik terbaik perencanaan pembangunan daerah Indonesia.</p>
+    </div>
+    <div class="blog-grid">
+      <a href="cascading-perencanaan-daerah.html" class="blog-card reveal">
+        <span class="blog-card-cat">Perencanaan Daerah</span>
+        <div class="blog-card-title">Memahami Cascading Dokumen Perencanaan Daerah: Dari RPJMN hingga Sub Kegiatan OPD</div>
+        <div class="blog-card-excerpt">Cascading bukan sekadar hierarki dokumen — ini benang merah yang menghubungkan visi nasional dengan satu baris anggaran di SIPD-RI. Panduan lengkap beserta kesalahan umum yang sering terjadi.</div>
+        <div class="blog-card-meta">
+          <span>📅 2 Juni 2026</span>
+          <span>·</span>
+          <span>⏱ 10 menit baca</span>
+        </div>
+        <div class="blog-card-link">Baca artikel →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section" id="kontak">
   <div class="cta-inner reveal">
@@ -666,6 +744,7 @@
       <a href="#tentang">Tentang</a>
       <a href="#layanan">Layanan</a>
       <a href="#tools">AI Tools</a>
+      <a href="#blog">Blog</a>
       <a href="#kontak">Kontak</a>
     </div>
   </div>
