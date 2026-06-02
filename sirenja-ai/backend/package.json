@@ -1,0 +1,22 @@
+{
+  "name": "sirenja-ai",
+  "version": "1.0.0",
+  "description": "Sistem Auto-Generate Dokumen Renja OPD berbasis AI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "multer": "^1.4.5-lts.1",
+    "xlsx": "^0.18.5",
+    "docx": "^8.5.0",
+    "axios": "^1.6.0",
+    "@anthropic-ai/sdk": "^0.24.0",
+    "express-fileupload": "^1.4.3",
+    "express-rate-limit": "^7.1.5"
+  }
+}
