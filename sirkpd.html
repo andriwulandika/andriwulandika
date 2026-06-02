@@ -362,13 +362,10 @@
 <div class="modal-overlay" id="apiModal">
   <div class="modal-box">
     <div class="modal-title">🔑 Konfigurasi API Key</div>
-    <p class="modal-sub">Masukkan Anthropic API Key Anda untuk mengaktifkan AI. Key disimpan lokal di browser dan tidak dikirim ke server mana pun.<br><a href="https://console.anthropic.com/" target="_blank">Dapatkan API Key →</a></p>
-    <label class="modal-label">Anthropic API Key</label>
-    <input class="modal-input" id="apiKeyInput" type="password" placeholder="sk-ant-api03-..." autocomplete="off"/>
-    <div class="modal-hint" style="margin-bottom:16px">Format: sk-ant-api... • Disimpan lokal di browser Anda</div>
-    <label class="modal-label">Proxy URL <span style="font-weight:400;color:#86868b">(wajib untuk GitHub Pages)</span></label>
-    <input class="modal-input" id="proxyUrlInput" type="url" placeholder="https://nama-worker.namakamu.workers.dev" autocomplete="off"/>
-    <div class="modal-hint">Deploy Cloudflare Worker dari file <code style="font-size:0.75rem;background:#f5f5f7;padding:1px 5px;border-radius:4px">cloudflare-worker.js</code> di repo ini. <a href="https://dash.cloudflare.com/" target="_blank" style="color:#1a7a3e">Buka Cloudflare →</a></div>
+    <p class="modal-sub">Masukkan Google Gemini API Key Anda untuk mengaktifkan AI. Key disimpan lokal di browser dan tidak dikirim ke server mana pun.<br><a href="https://aistudio.google.com/app/apikey" target="_blank">Dapatkan API Key Gemini gratis →</a></p>
+    <label class="modal-label">Google Gemini API Key</label>
+    <input class="modal-input" id="apiKeyInput" type="password" placeholder="Masukkan API Key Gemini Anda..." autocomplete="off"/>
+    <div class="modal-hint" style="margin-bottom:16px">Salin key dari Google AI Studio → Dapatkan API Key • Disimpan lokal di browser Anda</div>
     <div id="testResult" style="font-size:0.78rem;margin-bottom:12px;display:none;padding:8px 12px;border-radius:8px;"></div>
     <div class="modal-actions">
       <button class="btn-modal-cancel" onclick="testProxyConnection()" style="color:#1a7a3e;border-color:#1a7a3e">🔌 Test Koneksi</button>
@@ -468,45 +465,39 @@
   let credits = 5;
   let isLoading = false;
 
-  function getApiKey() { return localStorage.getItem('anthropic_api_key') || ''; }
-  function getProxyUrl() { return localStorage.getItem('proxy_url') || ''; }
+  function getApiKey() { return localStorage.getItem('gemini_api_key') || ''; }
   function openApiModal() {
     document.getElementById('apiKeyInput').value = getApiKey();
-    document.getElementById('proxyUrlInput').value = getProxyUrl();
     document.getElementById('apiModal').classList.add('open');
   }
   function closeApiModal() { document.getElementById('apiModal').classList.remove('open'); }
-  function normalizeUrl(url) {
-    if (!url) return '';
-    url = url.trim();
-    if (url && !url.startsWith('http://') && !url.startsWith('https://')) url = 'https://' + url;
-    return url.replace(/\/$/, '');
-  }
   async function testProxyConnection() {
     const box = document.getElementById('testResult');
-    const rawUrl = normalizeUrl(document.getElementById('proxyUrlInput').value);
-    if (!rawUrl) { box.style.display='block'; box.style.background='#fff3cd'; box.style.color='#856404'; box.textContent='⚠️ Isi Proxy URL dulu sebelum test.'; return; }
-    box.style.display='block'; box.style.background='#f5f5f7'; box.style.color='#6e6e73'; box.textContent='⏳ Menguji koneksi...';
+    const key = document.getElementById('apiKeyInput').value.trim();
+    if (!key) { box.style.display='block'; box.style.background='#fff3cd'; box.style.color='#856404'; box.textContent='⚠️ Isi API Key dulu sebelum test.'; return; }
+    box.style.display='block'; box.style.background='#f5f5f7'; box.style.color='#6e6e73'; box.textContent='⏳ Menguji koneksi ke Gemini...';
     try {
-      const res = await fetch(rawUrl, { method: 'GET' });
-      const data = await res.json().catch(() => ({}));
-      if (data.status === 'ok') {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(key)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Halo' }] }], generationConfig: { maxOutputTokens: 5 } })
+      });
+      if (res.ok) {
         box.style.background='#e8f8ee'; box.style.color='#1a7a3e';
-        box.textContent='✅ Worker aktif! URL valid. Klik Simpan & Aktifkan.';
+        box.textContent='✅ API Key valid! Gemini terhubung. Klik Simpan & Aktifkan.';
       } else {
-        box.style.background='#fff3cd'; box.style.color='#856404';
-        box.textContent='⚠️ URL merespons tapi bukan Worker proxy. Periksa kembali.';
+        const d = await res.json().catch(()=>({}));
+        box.style.background='#ffeef0'; box.style.color='#cc0000';
+        box.textContent='❌ ' + (d?.error?.message || `HTTP ${res.status} — periksa API Key Anda.`);
       }
     } catch(e) {
       box.style.background='#ffeef0'; box.style.color='#cc0000';
-      box.textContent='❌ Gagal terhubung: ' + (e.message || 'network error') + '. Coba pada browser desktop.';
+      box.textContent='❌ Gagal terhubung: ' + (e.message || 'network error');
     }
   }
   function saveApiKey() {
     const key = document.getElementById('apiKeyInput').value.trim();
-    const proxy = normalizeUrl(document.getElementById('proxyUrlInput').value);
-    if (key) { localStorage.setItem('anthropic_api_key', key); } else { localStorage.removeItem('anthropic_api_key'); }
-    if (proxy) { localStorage.setItem('proxy_url', proxy); document.getElementById('proxyUrlInput').value = proxy; } else { localStorage.removeItem('proxy_url'); }
+    if (key) { localStorage.setItem('gemini_api_key', key); } else { localStorage.removeItem('gemini_api_key'); }
     closeApiModal();
     updateApiStatus();
   }
@@ -655,30 +646,28 @@ Jawab dengan singkat, padat, dan langsung bisa digunakan dalam konteks pemerinta
     conversationHistory.push({ role: 'user', content: text });
 
     try {
-      const endpoint = getProxyUrl() || 'https://api.anthropic.com/v1/messages';
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+      const contents = conversationHistory.map(m => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }]
+      }));
       const res = await fetch(endpoint, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-3-5-sonnet-20241022',
-          max_tokens: 1500,
-          system: SYSTEM_PROMPT,
-          messages: conversationHistory
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents,
+          generationConfig: { maxOutputTokens: 1500 }
         })
       });
       if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
-        if (res.status === 401) throw new Error('API Key tidak valid atau kedaluwarsa. Klik badge "API Aktif" untuk memperbarui.');
-        if (res.status === 400) throw new Error('Permintaan tidak valid: ' + (errData?.error?.message || 'Bad Request'));
+        if (res.status === 400) throw new Error('API Key tidak valid atau kedaluwarsa. Klik badge "API Aktif" untuk memperbarui.');
         if (res.status === 429) throw new Error('Batas rate tercapai. Tunggu sebentar lalu coba lagi.');
-        throw new Error((errData?.error?.message || `Error HTTP ${res.status}`));
+        throw new Error(errData?.error?.message || `Error HTTP ${res.status}`);
       }
       const data = await res.json();
-      const reply = data.content?.[0]?.text || 'Maaf, terjadi kesalahan. Coba lagi.';
+      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Maaf, terjadi kesalahan. Coba lagi.';
       typing.remove();
       appendMessage('ai', reply);
       conversationHistory.push({ role: 'assistant', content: reply });
