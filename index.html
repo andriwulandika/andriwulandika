@@ -307,6 +307,11 @@
     }
     .glow-blue { background: #0071e3; }
     .glow-green { background: #34c759; }
+    .glow-teal { background: #14b8a6; }
+    .chip-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+    .tool-card .desc { font-size: 0.9rem; color: var(--text2); line-height: 1.6; margin: 12px 0; }
+    .tool-link { display: inline-flex; align-items: center; gap: 6px; background: #14b8a6; color: #fff; padding: 10px 22px; border-radius: 980px; font-size: 0.82rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+    .tool-link:hover { background: #0d9488; }
     @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } }
 
     /* ── TEMPLATE ── */
@@ -573,6 +578,23 @@
           <div class="tool-feat"><span class="feat-check">✓</span>Matriks program prioritas otomatis</div>
         </div>
         <a href="sirkpd.html" style="display:inline-flex;align-items:center;gap:6px;background:#34c759;color:#fff;padding:10px 22px;border-radius:980px;font-size:0.82rem;font-weight:500;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#30d158'" onmouseout="this.style.background='#34c759'">Coba SiRKPD →</a>
+      </div>
+
+      <!-- SiPerda -->
+      <div class="tool-card reveal reveal-d3">
+        <div class="tool-glow glow-teal"></div>
+        <span class="tool-badge" style="background:rgba(20,184,166,.15);color:#14b8a6;border-color:rgba(20,184,166,.25)">
+          AI Chat · Konsultasi
+        </span>
+        <h3 class="tool-card-name">SiPerda</h3>
+        <p class="desc">Tanya langsung ke AI ahli perencanaan daerah — RKPD, Renja, Renstra, indikator, RAB, SAKIP, regulasi terbaru.</p>
+        <div class="chip-list">
+          <span class="chip">Chat AI</span>
+          <span class="chip">Multi-topik</span>
+          <span class="chip">Regulasi terkini</span>
+          <span class="chip">Permendagri 3/2026</span>
+        </div>
+        <a href="siperda.html" class="tool-link">Buka SiPerda →</a>
       </div>
     </div>
   </div>
