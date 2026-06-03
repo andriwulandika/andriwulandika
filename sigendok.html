@@ -40,7 +40,8 @@
     .doc-select-inner{max-width:900px;margin:0 auto;}
     .doc-select-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1.2rem;text-align:center;}
     .doc-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-    @media(max-width:700px){.doc-type-grid{grid-template-columns:1fr;}}
+    @media(max-width:900px){.doc-type-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:560px){.doc-type-grid{grid-template-columns:1fr;}}
     .doc-type-card{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:24px 20px;cursor:pointer;transition:all .22s;text-align:left;}
     .doc-type-card:hover{border-color:var(--accent);background:#f5f0ff;}
     .doc-type-card.active{border-color:var(--accent);background:#ede9fe;}
@@ -157,6 +158,16 @@
       .preview-toolbar{display:none;}
     }
 
+    /* PK LEVEL SELECTOR */
+    .pk-level-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}
+    @media(max-width:650px){.pk-level-grid{grid-template-columns:repeat(2,1fr);}}
+    .pk-level-card{border:2px solid var(--border);border-radius:10px;padding:12px 10px;cursor:pointer;text-align:center;transition:all .2s;background:var(--bg2);}
+    .pk-level-card:hover{border-color:var(--accent);background:#f5f0ff;}
+    .pk-level-card.active{border-color:var(--accent);background:#ede9fe;}
+    .pk-level-icon{font-size:1.3rem;margin-bottom:4px;}
+    .pk-level-name{font-size:.78rem;font-weight:700;color:var(--text);}
+    .pk-level-desc{font-size:.68rem;color:var(--text2);margin-top:2px;}
+
     /* VISI MISI PANEL */
     .vimis-panel{max-width:900px;margin:0 auto 0;padding:0 24px;}
     .vimis-box{background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(109,40,217,.04));border:1.5px solid rgba(124,58,237,.25);border-radius:var(--radius);overflow:hidden;}
@@ -260,7 +271,19 @@
         <div class="doc-type-icon">🤝</div>
         <div class="doc-type-name">Perjanjian Kinerja</div>
         <div class="doc-type-reg">PermenPANRB 53/2014</div>
-        <div class="doc-type-desc">Formulir Perjanjian Kinerja Kepala OPD dengan Kepala Daerah — tabel sasaran strategis, indikator, target, dan rencana anggaran program.</div>
+        <div class="doc-type-desc">PK bertingkat 4 level: Kepala OPD, Kepala Bidang, Kepala Seksi, hingga Pelaksana — masing-masing dengan sasaran dan indikator kinerja.</div>
+      </div>
+      <div class="doc-type-card" onclick="selectDoc('renstra')">
+        <div class="doc-type-icon">📐</div>
+        <div class="doc-type-name">Renstra OPD</div>
+        <div class="doc-type-reg">Inmendagri 2/2025</div>
+        <div class="doc-type-desc">Rencana Strategis Perangkat Daerah 5 tahunan — BAB I hingga VIII, tujuan, sasaran, strategi, arah kebijakan, dan rencana program jangka menengah.</div>
+      </div>
+      <div class="doc-type-card" onclick="selectDoc('renjap')">
+        <div class="doc-type-icon">🔄</div>
+        <div class="doc-type-name">Renja Perubahan</div>
+        <div class="doc-type-reg">Permendagri 81/2022</div>
+        <div class="doc-type-desc">Renja Perubahan dengan tabel perbandingan sebelum dan sesudah perubahan — program, kegiatan, sub kegiatan, pagu, dan alasan perubahan.</div>
       </div>
     </div>
   </div>
@@ -730,50 +753,86 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════ WIZARD PK ══════════════════════════════ -->
+<!-- ══════════════════════════════ WIZARD PK BERTINGKAT ══════════════════════════════ -->
 <div class="wizard-wrap" id="wizard-pk">
   <div class="wizard-layout">
     <div class="steps-sidebar">
       <p class="steps-title">Langkah Pengisian</p>
-      <div class="step-item active" id="ps1"><div class="step-num active" id="psn1">1</div><div class="step-label">Identitas & Para Pihak</div></div>
-      <div class="step-item" id="ps2"><div class="step-num" id="psn2">2</div><div class="step-label">Sasaran & Indikator Kinerja</div></div>
-      <div class="step-item" id="ps3"><div class="step-num" id="psn3">3</div><div class="step-label">Rencana Anggaran Program</div></div>
-      <div class="step-item" id="ps4"><div class="step-num" id="psn4">4</div><div class="step-label">Generate PK</div></div>
+      <div class="step-item active" id="ps1"><div class="step-num active" id="psn1">1</div><div class="step-label">Level & Identitas</div></div>
+      <div class="step-item" id="ps2"><div class="step-num" id="psn2">2</div><div class="step-label">Para Pihak</div></div>
+      <div class="step-item" id="ps3"><div class="step-num" id="psn3">3</div><div class="step-label">Sasaran & Indikator</div></div>
+      <div class="step-item" id="ps4"><div class="step-num" id="psn4">4</div><div class="step-label">Anggaran Program</div></div>
+      <div class="step-item" id="ps5"><div class="step-num" id="psn5">5</div><div class="step-label">Generate PK</div></div>
     </div>
     <div class="form-card">
-      <!-- P STEP 1 -->
+      <!-- PK STEP 1 -->
       <div class="form-section active" id="pk-s1">
-        <div class="form-card-header"><span class="form-card-step-badge">Langkah 1 / 4</span><span class="form-card-title">Identitas & Para Pihak</span></div>
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 1 / 5</span><span class="form-card-title">Pilih Level PK & Identitas</span></div>
         <div class="form-card-body">
+          <label style="font-size:.78rem;font-weight:600;color:var(--text);display:block;margin-bottom:10px;">Level Perjanjian Kinerja *</label>
+          <div class="pk-level-grid">
+            <div class="pk-level-card active" id="pkl1" onclick="setPKLevel(1)">
+              <div class="pk-level-icon">👔</div>
+              <div class="pk-level-name">Eselon II</div>
+              <div class="pk-level-desc">Kepala OPD ↔ Kepala Daerah</div>
+            </div>
+            <div class="pk-level-card" id="pkl2" onclick="setPKLevel(2)">
+              <div class="pk-level-icon">📋</div>
+              <div class="pk-level-name">Eselon III</div>
+              <div class="pk-level-desc">Kepala Bidang ↔ Kepala OPD</div>
+            </div>
+            <div class="pk-level-card" id="pkl3" onclick="setPKLevel(3)">
+              <div class="pk-level-icon">📝</div>
+              <div class="pk-level-name">Eselon IV</div>
+              <div class="pk-level-desc">Kepala Seksi ↔ Kepala Bidang</div>
+            </div>
+            <div class="pk-level-card" id="pkl4" onclick="setPKLevel(4)">
+              <div class="pk-level-icon">👤</div>
+              <div class="pk-level-name">Pelaksana</div>
+              <div class="pk-level-desc">Staf/Fungsional ↔ Kepala Seksi</div>
+            </div>
+          </div>
           <div class="form-row">
             <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="p_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
             <div class="field"><label>Tahun *</label><input type="number" id="p_tahun" placeholder="2026" min="2020" max="2035"/></div>
           </div>
-          <p style="font-size:.78rem;font-weight:700;color:var(--text2);margin:12px 0 8px;text-transform:uppercase;letter-spacing:.06em;">Pihak Pertama (Kepala OPD)</p>
-          <div class="form-row triple">
-            <div class="field"><label>Nama *</label><input type="text" id="p_kadis" placeholder="Nama Kepala OPD"/></div>
-            <div class="field"><label>NIP</label><input type="text" id="p_kadis_nip" placeholder="19xxxxxxxxxxxxxxx"/></div>
-            <div class="field"><label>Jabatan *</label><input type="text" id="p_kadis_jabatan" placeholder="Kepala Dinas Kesehatan"/></div>
-          </div>
-          <div class="form-row single">
+          <div class="form-row">
             <div class="field"><label>Nama OPD *</label><input type="text" id="p_opd" placeholder="Dinas Kesehatan Kabupaten Aceh Tenggara"/></div>
-          </div>
-          <p style="font-size:.78rem;font-weight:700;color:var(--text2);margin:12px 0 8px;text-transform:uppercase;letter-spacing:.06em;">Pihak Kedua (Kepala Daerah / Atasan Langsung)</p>
-          <div class="form-row triple">
-            <div class="field"><label>Nama Kepala Daerah *</label><input type="text" id="p_kd" placeholder="Nama Bupati/Walikota"/></div>
-            <div class="field"><label>Jabatan</label><input type="text" id="p_kd_jabatan" placeholder="Bupati Aceh Tenggara"/></div>
-            <div class="field"><label>Tempat, Tanggal</label><input type="text" id="p_ttd" placeholder="Kutacane, Januari 2026"/></div>
+            <div class="field"><label>Nama Bidang / Unit (jika Eselon III/IV/Pelaksana)</label><input type="text" id="p_bidang" placeholder="Bidang Kesehatan Masyarakat"/></div>
           </div>
         </div>
         <div class="form-nav"><div></div><button class="btn-next" onclick="pkStep(2)">Lanjut →</button></div>
       </div>
-      <!-- P STEP 2 -->
+      <!-- PK STEP 2 -->
       <div class="form-section" id="pk-s2">
-        <div class="form-card-header"><span class="form-card-step-badge">Langkah 2 / 4</span><span class="form-card-title">Sasaran Strategis & Indikator Kinerja</span></div>
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 2 / 5</span><span class="form-card-title">Identitas Para Pihak</span></div>
         <div class="form-card-body">
+          <p style="font-size:.78rem;font-weight:700;color:var(--accent);margin:0 0 10px;text-transform:uppercase;letter-spacing:.06em;" id="pk_pihak1_label">Pihak Pertama (Kepala OPD)</p>
+          <div class="form-row triple">
+            <div class="field"><label>Nama *</label><input type="text" id="p_p1_nama" placeholder="Nama Pejabat"/></div>
+            <div class="field"><label>NIP</label><input type="text" id="p_p1_nip" placeholder="19xxxxxxxxxxxxxxx"/></div>
+            <div class="field"><label>Jabatan *</label><input type="text" id="p_p1_jabatan" placeholder="Kepala Dinas Kesehatan"/></div>
+          </div>
+          <p style="font-size:.78rem;font-weight:700;color:var(--accent);margin:14px 0 10px;text-transform:uppercase;letter-spacing:.06em;" id="pk_pihak2_label">Pihak Kedua (Kepala Daerah)</p>
+          <div class="form-row triple">
+            <div class="field"><label>Nama *</label><input type="text" id="p_p2_nama" placeholder="Nama Atasan Langsung"/></div>
+            <div class="field"><label>NIP</label><input type="text" id="p_p2_nip" placeholder="19xxxxxxxxxxxxxxx"/></div>
+            <div class="field"><label>Jabatan *</label><input type="text" id="p_p2_jabatan" placeholder="Bupati Aceh Tenggara"/></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Tempat, Tanggal Penandatanganan</label><input type="text" id="p_ttd" placeholder="Kutacane, Januari 2026"/></div>
+          </div>
+        </div>
+        <div class="form-nav"><button class="btn-prev" onclick="pkStep(1)">← Kembali</button><button class="btn-next" onclick="pkStep(3)">Lanjut →</button></div>
+      </div>
+      <!-- PK STEP 3 -->
+      <div class="form-section" id="pk-s3">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 3 / 5</span><span class="form-card-title">Sasaran Strategis & Indikator Kinerja</span></div>
+        <div class="form-card-body">
+          <p style="font-size:.8rem;color:var(--text2);margin-bottom:12px;">Isi sasaran dan indikator kinerja sesuai level yang dipilih. Untuk Pelaksana, gunakan Output kegiatan sebagai sasaran.</p>
           <div class="dyn-table-wrap">
             <table class="dyn-table">
-              <thead><tr><th style="width:4%">No</th><th style="width:28%">Sasaran Strategis</th><th style="width:28%">Indikator Kinerja</th><th style="width:14%">Satuan</th><th style="width:14%">Target</th><th style="width:8%">Kondisi Awal</th><th style="width:4%"></th></tr></thead>
+              <thead><tr><th style="width:4%">No</th><th style="width:30%">Sasaran Kinerja</th><th style="width:28%">Indikator Kinerja</th><th style="width:12%">Satuan</th><th style="width:12%">Target</th><th style="width:10%">Kondisi Awal</th><th style="width:4%"></th></tr></thead>
               <tbody id="tbody-pk2">
                 <tr>
                   <td class="center">1</td>
@@ -789,15 +848,16 @@
           </div>
           <button class="btn-add-row" onclick="addPK2()">+ Tambah Sasaran</button>
         </div>
-        <div class="form-nav"><button class="btn-prev" onclick="pkStep(1)">← Kembali</button><button class="btn-next" onclick="pkStep(3)">Lanjut →</button></div>
+        <div class="form-nav"><button class="btn-prev" onclick="pkStep(2)">← Kembali</button><button class="btn-next" onclick="pkStep(4)">Lanjut →</button></div>
       </div>
-      <!-- P STEP 3 -->
-      <div class="form-section" id="pk-s3">
-        <div class="form-card-header"><span class="form-card-step-badge">Langkah 3 / 4</span><span class="form-card-title">Rencana Anggaran Program</span></div>
+      <!-- PK STEP 4 -->
+      <div class="form-section" id="pk-s4">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 4 / 5</span><span class="form-card-title">Rencana Anggaran Program</span></div>
         <div class="form-card-body">
+          <p style="font-size:.8rem;color:var(--text2);margin-bottom:12px;">Untuk Eselon III/IV/Pelaksana, isi program/kegiatan/sub kegiatan yang menjadi tanggung jawab langsung.</p>
           <div class="dyn-table-wrap">
             <table class="dyn-table">
-              <thead><tr><th style="width:4%">No</th><th style="width:40%">Program</th><th style="width:28%">Kegiatan Utama</th><th style="width:20%">Anggaran (Rp)</th><th style="width:4%"></th></tr></thead>
+              <thead><tr><th style="width:4%">No</th><th style="width:38%">Program / Kegiatan</th><th style="width:26%">Sub Kegiatan / Output</th><th style="width:24%">Anggaran (Rp)</th><th style="width:4%"></th></tr></thead>
               <tbody id="tbody-ang2">
                 <tr>
                   <td class="center">1</td>
@@ -809,7 +869,7 @@
               </tbody>
             </table>
           </div>
-          <button class="btn-add-row" onclick="addAng2()">+ Tambah Program</button>
+          <button class="btn-add-row" onclick="addAng2()">+ Tambah Baris</button>
           <div style="margin-top:16px;">
             <div class="form-row">
               <div class="field"><label>Total Anggaran (Rp)</label><input type="text" id="p_total" placeholder="5.000.000.000"/></div>
@@ -817,18 +877,289 @@
             </div>
           </div>
         </div>
-        <div class="form-nav"><button class="btn-prev" onclick="pkStep(2)">← Kembali</button><button class="btn-next" onclick="pkStep(4)">Lanjut →</button></div>
+        <div class="form-nav"><button class="btn-prev" onclick="pkStep(3)">← Kembali</button><button class="btn-next" onclick="pkStep(5)">Lanjut →</button></div>
       </div>
-      <!-- P STEP 4 -->
-      <div class="form-section" id="pk-s4">
-        <div class="form-card-header"><span class="form-card-step-badge">Langkah 4 / 4</span><span class="form-card-title">Generate Perjanjian Kinerja</span></div>
+      <!-- PK STEP 5 -->
+      <div class="form-section" id="pk-s5">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 5 / 5</span><span class="form-card-title">Generate Perjanjian Kinerja</span></div>
         <div class="form-card-body">
           <div style="background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;">
             <p style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.5rem;">Siap dibuat</p>
-            <p style="font-size:.85rem;color:var(--text2);line-height:1.6;">Formulir PK akan dibuat sesuai format PermenPANRB 53/2014, lengkap dengan pernyataan perjanjian, tabel indikator kinerja, rencana anggaran, dan kolom tanda tangan para pihak.</p>
+            <p style="font-size:.85rem;color:var(--text2);line-height:1.6;">Formulir PK akan dibuat sesuai format PermenPANRB 53/2014, lengkap dengan pernyataan perjanjian, tabel indikator kinerja, rencana anggaran, dan kolom tanda tangan para pihak — disesuaikan dengan level yang dipilih.</p>
+          </div>
+          <div style="background:var(--bg2);border-radius:var(--radius);padding:16px 18px;">
+            <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:8px;">Struktur output</p>
+            <ul style="font-size:.82rem;color:var(--text2);line-height:1.8;padding-left:16px;">
+              <li>Halaman sampul dengan level PK</li>
+              <li>Pernyataan perjanjian para pihak</li>
+              <li>Lampiran: Tabel sasaran & indikator kinerja</li>
+              <li>Tabel program/kegiatan & anggaran</li>
+              <li>Kolom tanda tangan dua pihak</li>
+            </ul>
           </div>
         </div>
-        <div class="form-nav"><button class="btn-prev" onclick="pkStep(3)">← Kembali</button><button class="btn-generate" onclick="generatePK()">⚡ Generate Perjanjian Kinerja</button></div>
+        <div class="form-nav"><button class="btn-prev" onclick="pkStep(4)">← Kembali</button><button class="btn-generate" onclick="generatePK()">⚡ Generate Perjanjian Kinerja</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ WIZARD RENSTRA ══════════════════════════════ -->
+<div class="wizard-wrap" id="wizard-renstra">
+  <div class="wizard-layout">
+    <div class="steps-sidebar">
+      <p class="steps-title">Langkah Pengisian</p>
+      <div class="step-item active" id="rts1"><div class="step-num active" id="rtsn1">1</div><div class="step-label">Identitas OPD</div></div>
+      <div class="step-item" id="rts2"><div class="step-num" id="rtsn2">2</div><div class="step-label">Gambaran & Isu Strategis</div></div>
+      <div class="step-item" id="rts3"><div class="step-num" id="rtsn3">3</div><div class="step-label">Tujuan & Sasaran 5 Tahun</div></div>
+      <div class="step-item" id="rts4"><div class="step-num" id="rtsn4">4</div><div class="step-label">Strategi & Kebijakan</div></div>
+      <div class="step-item" id="rts5"><div class="step-num" id="rtsn5">5</div><div class="step-label">Program & Pendanaan</div></div>
+      <div class="step-item" id="rts6"><div class="step-num" id="rtsn6">6</div><div class="step-label">Generate Renstra</div></div>
+    </div>
+    <div class="form-card">
+      <!-- RT STEP 1 -->
+      <div class="form-section active" id="renstra-s1">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 1 / 6</span><span class="form-card-title">Identitas OPD & Dokumen</span></div>
+        <div class="form-card-body">
+          <div class="form-row">
+            <div class="field"><label>Nama OPD *</label><input type="text" id="rt_opd" placeholder="Dinas Pendidikan dan Kebudayaan"/></div>
+            <div class="field"><label>Singkatan OPD</label><input type="text" id="rt_singkat" placeholder="DISDIKBUD"/></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="rt_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
+            <div class="field"><label>Provinsi</label><input type="text" id="rt_provinsi" placeholder="Aceh"/></div>
+          </div>
+          <div class="form-row triple">
+            <div class="field"><label>Periode Renstra *</label><input type="text" id="rt_periode" placeholder="2025–2029"/></div>
+            <div class="field"><label>Urusan Pemerintahan</label><input type="text" id="rt_urusan" placeholder="Pendidikan"/></div>
+            <div class="field"><label>Tahun Dokumen</label><input type="text" id="rt_tahun_dok" placeholder="2025"/></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Nama Kepala OPD *</label><input type="text" id="rt_kadis" placeholder="Nama Kepala Dinas"/></div>
+            <div class="field"><label>NIP Kepala OPD</label><input type="text" id="rt_kadis_nip" placeholder="19xxxxxxxxxxxxxxx"/></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Pangkat / Golongan</label><input type="text" id="rt_gol" placeholder="Pembina Utama Muda / IV.c"/></div>
+            <div class="field"><label>Tempat, Tanggal Penetapan</label><input type="text" id="rt_ttd" placeholder="Kutacane, Januari 2025"/></div>
+          </div>
+        </div>
+        <div class="form-nav"><div></div><button class="btn-next" onclick="renstraStep(2)">Lanjut →</button></div>
+      </div>
+      <!-- RT STEP 2 -->
+      <div class="form-section" id="renstra-s2">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 2 / 6</span><span class="form-card-title">Gambaran Pelayanan & Isu Strategis</span></div>
+        <div class="form-card-body">
+          <div class="form-row single">
+            <div class="field"><label>Tugas Pokok OPD</label><textarea id="rt_tupoksi" placeholder="Berdasarkan Peraturan Bupati No. ... Tahun ..., OPD ini menyelenggarakan urusan pemerintahan bidang ... dengan tugas pokok..."></textarea></div>
+          </div>
+          <div class="form-row single">
+            <div class="field"><label>Gambaran Kinerja Pelayanan (kondisi saat ini)</label><textarea id="rt_kinerja" placeholder="Dalam kurun waktu 5 tahun terakhir, OPD telah melaksanakan... dengan capaian utama antara lain..."></textarea></div>
+          </div>
+          <div class="form-row single">
+            <div class="field"><label>Permasalahan & Isu Strategis OPD *</label><span class="field-hint">Identifikasi isu utama yang akan menjadi landasan penentuan tujuan dan sasaran Renstra.</span><textarea id="rt_isu" placeholder="1. Masih rendahnya ...; 2. Keterbatasan ...; 3. Belum optimalnya ..."></textarea></div>
+          </div>
+          <div class="form-row single">
+            <div class="field"><label>Telaahan RPJMD (keterkaitan dengan misi kepala daerah)</label><textarea id="rt_rpjmd_telaah" placeholder="Renstra OPD ini mendukung misi ke-... RPJMD yaitu... dengan program prioritas..."></textarea></div>
+          </div>
+        </div>
+        <div class="form-nav"><button class="btn-prev" onclick="renstraStep(1)">← Kembali</button><button class="btn-next" onclick="renstraStep(3)">Lanjut →</button></div>
+      </div>
+      <!-- RT STEP 3 -->
+      <div class="form-section" id="renstra-s3">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 3 / 6</span><span class="form-card-title">Tujuan & Sasaran Jangka Menengah</span></div>
+        <div class="form-card-body">
+          <div class="form-row">
+            <div class="field"><label>Tujuan OPD (Jangka Menengah) *</label><input type="text" id="rt_tujuan" placeholder="Meningkatkan akses dan kualitas layanan pendidikan yang merata dan bermutu"/></div>
+            <div class="field"><label>Indikator Tujuan (IKU)</label><input type="text" id="rt_iku" placeholder="Indeks Pendidikan / Rata-rata Lama Sekolah"/></div>
+          </div>
+          <p style="font-size:.82rem;font-weight:700;color:var(--text);margin:10px 0 10px;">Sasaran Strategis & Target per Tahun</p>
+          <div class="dyn-table-wrap">
+            <table class="dyn-table">
+              <thead><tr><th style="width:22%">Sasaran Strategis</th><th style="width:18%">Indikator (IKD)</th><th style="width:8%">Satuan</th><th style="width:8%">Awal</th><th style="width:8%">2025</th><th style="width:8%">2026</th><th style="width:8%">2027</th><th style="width:8%">2028</th><th style="width:8%">2029</th><th style="width:4%"></th></tr></thead>
+              <tbody id="tbody-rt-sasaran">
+                <tr>
+                  <td><input type="text" placeholder="Meningkatnya APM SD/SMP"/></td>
+                  <td><input type="text" placeholder="Angka Partisipasi Murni"/></td>
+                  <td><input type="text" placeholder="%"/></td>
+                  <td><input type="text" placeholder="95.0"/></td>
+                  <td><input type="text" placeholder="95.5"/></td>
+                  <td><input type="text" placeholder="96.0"/></td>
+                  <td><input type="text" placeholder="96.5"/></td>
+                  <td><input type="text" placeholder="97.0"/></td>
+                  <td><input type="text" placeholder="97.5"/></td>
+                  <td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn-add-row" onclick="addRtSasaran()">+ Tambah Sasaran</button>
+        </div>
+        <div class="form-nav"><button class="btn-prev" onclick="renstraStep(2)">← Kembali</button><button class="btn-next" onclick="renstraStep(4)">Lanjut →</button></div>
+      </div>
+      <!-- RT STEP 4 -->
+      <div class="form-section" id="renstra-s4">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 4 / 6</span><span class="form-card-title">Strategi & Arah Kebijakan</span></div>
+        <div class="form-card-body">
+          <div class="form-row single">
+            <div class="field"><label>Strategi OPD *</label><span class="field-hint">Cara mencapai tujuan — pisahkan tiap strategi dengan enter baru atau titik koma.</span><textarea id="rt_strategi" placeholder="1. Peningkatan akses layanan pendidikan melalui pembangunan sarana prasarana; 2. Penguatan kualitas tenaga pendidik melalui pelatihan bersertifikat; 3. Pengembangan sistem informasi manajemen pendidikan..."></textarea></div>
+          </div>
+          <div class="form-row single">
+            <div class="field"><label>Arah Kebijakan</label><span class="field-hint">Pedoman dalam penyusunan program dan kegiatan prioritas.</span><textarea id="rt_kebijakan" placeholder="Kebijakan OPD diarahkan pada: 1. Pemerataan akses pendidikan dengan prioritas daerah terpencil; 2. Peningkatan mutu melalui akreditasi sekolah..."></textarea></div>
+          </div>
+        </div>
+        <div class="form-nav"><button class="btn-prev" onclick="renstraStep(3)">← Kembali</button><button class="btn-next" onclick="renstraStep(5)">Lanjut →</button></div>
+      </div>
+      <!-- RT STEP 5 -->
+      <div class="form-section" id="renstra-s5">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 5 / 6</span><span class="form-card-title">Rencana Program & Pendanaan 5 Tahun</span></div>
+        <div class="form-card-body">
+          <p style="font-size:.8rem;color:var(--text2);margin-bottom:12px;">Isi program beserta total pagu per tahun selama periode Renstra.</p>
+          <div class="dyn-table-wrap">
+            <table class="dyn-table">
+              <thead><tr><th style="width:22%">Program</th><th style="width:12%">Pagu 2025</th><th style="width:12%">Pagu 2026</th><th style="width:12%">Pagu 2027</th><th style="width:12%">Pagu 2028</th><th style="width:12%">Pagu 2029</th><th style="width:14%">OPD Penanggungjawab</th><th style="width:4%"></th></tr></thead>
+              <tbody id="tbody-rt-program">
+                <tr>
+                  <td><input type="text" placeholder="Program Pengelolaan Pendidikan"/></td>
+                  <td><input type="text" placeholder="5.000.000.000"/></td>
+                  <td><input type="text" placeholder="5.500.000.000"/></td>
+                  <td><input type="text" placeholder="6.000.000.000"/></td>
+                  <td><input type="text" placeholder="6.500.000.000"/></td>
+                  <td><input type="text" placeholder="7.000.000.000"/></td>
+                  <td><input type="text" placeholder="Dinas Pendidikan"/></td>
+                  <td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn-add-row" onclick="addRtProgram()">+ Tambah Program</button>
+        </div>
+        <div class="form-nav"><button class="btn-prev" onclick="renstraStep(4)">← Kembali</button><button class="btn-next" onclick="renstraStep(6)">Lanjut →</button></div>
+      </div>
+      <!-- RT STEP 6 -->
+      <div class="form-section" id="renstra-s6">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 6 / 6</span><span class="form-card-title">Generate Renstra OPD</span></div>
+        <div class="form-card-body">
+          <div style="background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;">
+            <p style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.5rem;">Siap dibuat</p>
+            <p style="font-size:.85rem;color:var(--text2);line-height:1.6;">Renstra OPD akan disusun sesuai sistematika Inmendagri 2 Tahun 2025 — BAB I hingga BAB VIII, siap cetak dan diajukan sebagai dokumen resmi.</p>
+          </div>
+          <div style="background:var(--bg2);border-radius:var(--radius);padding:16px 18px;">
+            <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:8px;">Struktur dokumen (Inmendagri 2/2025)</p>
+            <ul style="font-size:.82rem;color:var(--text2);line-height:1.8;padding-left:16px;">
+              <li>BAB I — Pendahuluan</li>
+              <li>BAB II — Gambaran Pelayanan Perangkat Daerah</li>
+              <li>BAB III — Permasalahan dan Isu-Isu Strategis OPD</li>
+              <li>BAB IV — Tujuan dan Sasaran</li>
+              <li>BAB V — Strategi dan Arah Kebijakan</li>
+              <li>BAB VI — Rencana Program, Kegiatan dan Pendanaan</li>
+              <li>BAB VII — Kinerja Penyelenggaraan Bidang Urusan</li>
+              <li>BAB VIII — Penutup</li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-nav"><button class="btn-prev" onclick="renstraStep(5)">← Kembali</button><button class="btn-generate" onclick="generateRenstra()">⚡ Generate Renstra OPD</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ WIZARD RENJA PERUBAHAN ══════════════════════════════ -->
+<div class="wizard-wrap" id="wizard-renjap">
+  <div class="wizard-layout">
+    <div class="steps-sidebar">
+      <p class="steps-title">Langkah Pengisian</p>
+      <div class="step-item active" id="rps1"><div class="step-num active" id="rpsn1">1</div><div class="step-label">Identitas & Alasan Perubahan</div></div>
+      <div class="step-item" id="rps2"><div class="step-num" id="rpsn2">2</div><div class="step-label">Tabel Perubahan Program</div></div>
+      <div class="step-item" id="rps3"><div class="step-num" id="rpsn3">3</div><div class="step-label">Generate Renja Perubahan</div></div>
+    </div>
+    <div class="form-card">
+      <!-- RP STEP 1 -->
+      <div class="form-section active" id="renjap-s1">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 1 / 3</span><span class="form-card-title">Identitas & Alasan Perubahan</span></div>
+        <div class="form-card-body">
+          <div class="form-row">
+            <div class="field"><label>Nama OPD *</label><input type="text" id="rp_opd" placeholder="Dinas Pendidikan dan Kebudayaan"/></div>
+            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="rp_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
+          </div>
+          <div class="form-row triple">
+            <div class="field"><label>Tahun Renja *</label><input type="number" id="rp_tahun" placeholder="2026"/></div>
+            <div class="field"><label>Nama Kepala OPD *</label><input type="text" id="rp_kadis" placeholder="Nama Kepala Dinas"/></div>
+            <div class="field"><label>NIP</label><input type="text" id="rp_nip" placeholder="19xxxxxxxxxxxxxxx"/></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Pangkat / Golongan</label><input type="text" id="rp_gol" placeholder="Pembina / IV.a"/></div>
+            <div class="field"><label>Tempat, Tanggal Penetapan</label><input type="text" id="rp_ttd" placeholder="Kutacane, Juli 2026"/></div>
+          </div>
+          <div class="form-row single">
+            <div class="field"><label>Dasar / Alasan Perubahan Renja *</label><span class="field-hint">Jelaskan mengapa Renja perlu diubah — perubahan RKPD, kebijakan baru, refocusing anggaran, dll.</span><textarea id="rp_alasan" placeholder="Berdasarkan Peraturan Bupati No. ... Tahun ... tentang Perubahan RKPD Tahun ..., dan adanya refocusing anggaran sesuai Surat Edaran ..., maka diperlukan penyesuaian program dan pagu anggaran OPD sebagai berikut..."></textarea></div>
+          </div>
+        </div>
+        <div class="form-nav"><div></div><button class="btn-next" onclick="renjapStep(2)">Lanjut →</button></div>
+      </div>
+      <!-- RP STEP 2 -->
+      <div class="form-section" id="renjap-s2">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 2 / 3</span><span class="form-card-title">Tabel Perbandingan Sebelum & Sesudah Perubahan</span></div>
+        <div class="form-card-body">
+          <p style="font-size:.8rem;color:var(--text2);margin-bottom:12px;">Isi kolom sebelum dan sesudah perubahan untuk setiap program/kegiatan/sub kegiatan yang berubah.</p>
+          <div class="dyn-table-wrap">
+            <table class="dyn-table">
+              <thead>
+                <tr>
+                  <th rowspan="2" style="width:16%;vertical-align:middle;">Program / Sub Kegiatan</th>
+                  <th colspan="2" style="text-align:center;background:#fff3cd;">Sebelum Perubahan</th>
+                  <th colspan="2" style="text-align:center;background:#d4edda;">Sesudah Perubahan</th>
+                  <th rowspan="2" style="width:14%;vertical-align:middle;">Alasan Perubahan</th>
+                  <th rowspan="2" style="width:4%;vertical-align:middle;"></th>
+                </tr>
+                <tr>
+                  <th style="width:12%;background:#fff8e1;">Target</th>
+                  <th style="width:14%;background:#fff8e1;">Pagu (Rp)</th>
+                  <th style="width:12%;background:#f0fff4;">Target</th>
+                  <th style="width:14%;background:#f0fff4;">Pagu (Rp)</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-rp">
+                <tr>
+                  <td><input type="text" placeholder="Program Pengelolaan Pendidikan / Sub Keg. A"/></td>
+                  <td><input type="text" placeholder="10 unit"/></td>
+                  <td><input type="text" placeholder="500.000.000"/></td>
+                  <td><input type="text" placeholder="8 unit"/></td>
+                  <td><input type="text" placeholder="400.000.000"/></td>
+                  <td><input type="text" placeholder="Refocusing anggaran"/></td>
+                  <td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn-add-row" onclick="addRpRow()">+ Tambah Baris</button>
+          <div style="margin-top:16px;">
+            <div class="form-row triple">
+              <div class="field"><label>Total Pagu Sebelum (Rp)</label><input type="text" id="rp_total_sebelum" placeholder="5.000.000.000"/></div>
+              <div class="field"><label>Total Pagu Sesudah (Rp)</label><input type="text" id="rp_total_sesudah" placeholder="4.500.000.000"/></div>
+              <div class="field"><label>Selisih (Rp)</label><input type="text" id="rp_selisih" placeholder="-500.000.000" style="color:#cc0000;"/></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-nav"><button class="btn-prev" onclick="renjapStep(1)">← Kembali</button><button class="btn-next" onclick="renjapStep(3)">Lanjut →</button></div>
+      </div>
+      <!-- RP STEP 3 -->
+      <div class="form-section" id="renjap-s3">
+        <div class="form-card-header"><span class="form-card-step-badge">Langkah 3 / 3</span><span class="form-card-title">Generate Renja Perubahan</span></div>
+        <div class="form-card-body">
+          <div style="background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;">
+            <p style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.5rem;">Siap dibuat</p>
+            <p style="font-size:.85rem;color:var(--text2);line-height:1.6;">Renja Perubahan akan disusun dengan format standar sesuai Permendagri 81/2022, menampilkan tabel perbandingan program sebelum dan sesudah perubahan beserta lembar pengesahan.</p>
+          </div>
+          <div style="background:var(--bg2);border-radius:var(--radius);padding:16px 18px;">
+            <ul style="font-size:.82rem;color:var(--text2);line-height:1.8;padding-left:16px;">
+              <li>Halaman sampul Renja Perubahan</li>
+              <li>BAB I — Pendahuluan & dasar perubahan</li>
+              <li>BAB II — Tabel perbandingan sebelum/sesudah perubahan</li>
+              <li>BAB III — Penutup & lembar pengesahan</li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-nav"><button class="btn-prev" onclick="renjapStep(2)">← Kembali</button><button class="btn-generate" onclick="generateRenjaP()">⚡ Generate Renja Perubahan</button></div>
       </div>
     </div>
   </div>
@@ -1174,9 +1505,9 @@ function autoFillProgram() {
 function selectDoc(type) {
   document.querySelectorAll('.doc-type-card').forEach(c => c.classList.remove('active'));
   event.currentTarget.classList.add('active');
-  document.querySelectorAll('.wizard-wrap').forEach(w => { w.classList.remove('show'); });
-  document.getElementById('wizard-' + type).classList.add('show');
-  document.getElementById('wizard-' + type).scrollIntoView({behavior:'smooth', block:'start'});
+  document.querySelectorAll('.wizard-wrap').forEach(w => w.classList.remove('show'));
+  const el = document.getElementById('wizard-' + type);
+  if (el) { el.classList.add('show'); el.scrollIntoView({behavior:'smooth', block:'start'}); }
 }
 
 // ── STEP NAVIGATION ──────────────────────────────────────────────────────
@@ -1192,9 +1523,11 @@ function goStep(prefix, n, total) {
     }
   }
 }
-function renjaStep(n) { goStep('renja', n, 5); }
-function lkjipStep(n) { goStep('lkjip', n, 5); }
-function pkStep(n)    { goStep('pk', n, 4); }
+function renjaStep(n)   { goStep('renja',   n, 5); }
+function lkjipStep(n)   { goStep('lkjip',   n, 5); }
+function pkStep(n)      { goStep('pk',       n, 5); }
+function renstraStep(n) { goStep('renstra',  n, 6); }
+function renjapStep(n)  { goStep('renjap',   n, 3); }
 
 // ── DYNAMIC ROWS ──────────────────────────────────────────────────────────
 function delRow(btn) { btn.closest('tr').remove(); }
@@ -1241,6 +1574,34 @@ function renoSasaran() {
 }
 function renoAngPK() {
   document.querySelectorAll('#tbody-ang2 tr').forEach((r,i) => { const c = r.cells[0]; if(c) c.textContent = i+1; });
+}
+function addRtSasaran() {
+  const r = document.getElementById('tbody-rt-sasaran').insertRow();
+  r.innerHTML = `<td><input type="text" placeholder="Sasaran"/></td><td><input type="text" placeholder="Indikator"/></td><td><input type="text" placeholder="Sat."/></td><td><input type="text" placeholder="0"/></td><td><input type="text" placeholder=""/></td><td><input type="text" placeholder=""/></td><td><input type="text" placeholder=""/></td><td><input type="text" placeholder=""/></td><td><input type="text" placeholder=""/></td><td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>`;
+}
+function addRtProgram() {
+  const r = document.getElementById('tbody-rt-program').insertRow();
+  r.innerHTML = `<td><input type="text" placeholder="Nama program"/></td><td><input type="text" placeholder="0"/></td><td><input type="text" placeholder="0"/></td><td><input type="text" placeholder="0"/></td><td><input type="text" placeholder="0"/></td><td><input type="text" placeholder="0"/></td><td><input type="text" placeholder="OPD"/></td><td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>`;
+}
+function addRpRow() {
+  const r = document.getElementById('tbody-rp').insertRow();
+  r.innerHTML = `<td><input type="text" placeholder="Program / Sub Kegiatan"/></td><td><input type="text" placeholder="Target lama"/></td><td><input type="text" placeholder="Pagu lama"/></td><td><input type="text" placeholder="Target baru"/></td><td><input type="text" placeholder="Pagu baru"/></td><td><input type="text" placeholder="Alasan"/></td><td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>`;
+}
+
+// PK Level selector
+let pkLevel = 1;
+const PK_LEVEL_LABELS = {
+  1: { p1: 'Pihak Pertama (Kepala OPD — Eselon II)', p2: 'Pihak Kedua (Kepala Daerah / Bupati / Walikota)' },
+  2: { p1: 'Pihak Pertama (Kepala Bidang — Eselon III)', p2: 'Pihak Kedua (Kepala OPD)' },
+  3: { p1: 'Pihak Pertama (Kepala Seksi / Kasubbag — Eselon IV)', p2: 'Pihak Kedua (Kepala Bidang)' },
+  4: { p1: 'Pihak Pertama (Pelaksana / Fungsional)', p2: 'Pihak Kedua (Kepala Seksi / Atasan Langsung)' },
+};
+const PK_LEVEL_NAMES = ['', 'Eselon II', 'Eselon III', 'Eselon IV', 'Pelaksana'];
+function setPKLevel(n) {
+  pkLevel = n;
+  [1,2,3,4].forEach(i => document.getElementById('pkl'+i)?.classList.toggle('active', i===n));
+  document.getElementById('pk_pihak1_label').textContent = PK_LEVEL_LABELS[n].p1;
+  document.getElementById('pk_pihak2_label').textContent = PK_LEVEL_LABELS[n].p2;
 }
 
 // ── HELPERS ──────────────────────────────────────────────────────────────
@@ -1541,108 +1902,328 @@ function generateLKjIP() {
   showPreview(`LKjIP — ${opd} Tahun ${tahun}`, html);
 }
 
-// ── GENERATE PK ───────────────────────────────────────────────────────────
+// ── GENERATE PK BERTINGKAT ────────────────────────────────────────────────
 function generatePK() {
-  const daerah = v('p_daerah') || '[Nama Daerah]';
-  const tahun  = v('p_tahun')  || '[Tahun]';
-  const kadis  = v('p_kadis')  || '[Nama Kepala OPD]';
-  const nip    = v('p_kadis_nip');
-  const jabKadis = v('p_kadis_jabatan') || 'Kepala OPD';
-  const opd    = v('p_opd')    || '[Nama OPD]';
-  const kd     = v('p_kd')     || '[Nama Kepala Daerah]';
-  const jabKD  = v('p_kd_jabatan') || 'Kepala Daerah';
-  const ttd    = v('p_ttd')    || daerah + ', ' + tahun;
-  const total  = fmt(v('p_total'));
-  const sumber = v('p_sumber') || 'APBD';
+  const daerah   = v('p_daerah')    || '[Nama Daerah]';
+  const tahun    = v('p_tahun')     || '[Tahun]';
+  const opd      = v('p_opd')       || '[Nama OPD]';
+  const bidang   = v('p_bidang');
+  const p1nama   = v('p_p1_nama')   || '[Pihak Pertama]';
+  const p1nip    = v('p_p1_nip');
+  const p1jab    = v('p_p1_jabatan')|| 'Pejabat';
+  const p2nama   = v('p_p2_nama')   || '[Pihak Kedua]';
+  const p2nip    = v('p_p2_nip');
+  const p2jab    = v('p_p2_jabatan')|| 'Atasan Langsung';
+  const ttd      = v('p_ttd')       || daerah + ', ' + tahun;
+  const total    = fmt(v('p_total'));
+  const sumber   = v('p_sumber')    || 'APBD';
+  const levelName = PK_LEVEL_NAMES[pkLevel] || 'Eselon II';
+
+  const unitKerja = bidang ? `${opd} — ${bidang}` : opd;
 
   const sasRows = tblRows('tbody-pk2');
-  const sasTbl = sasRows.length ? sasRows.map((r,i) => `
-    <tr><td class="center">${i+1}</td><td>${r[1]||r[0]||'-'}</td><td>${r[2]||'-'}</td><td class="center">${r[3]||'-'}</td><td class="center">${r[4]||'-'}</td></tr>`).join('') :
+  const sasTbl = sasRows.length ? sasRows.map((r,i) =>
+    `<tr><td class="center">${i+1}</td><td>${r[1]||r[0]||'-'}</td><td>${r[2]||'-'}</td><td class="center">${r[3]||'-'}</td><td class="center">${r[4]||'-'}</td></tr>`).join('') :
     '<tr><td colspan="5" class="center">-</td></tr>';
 
   const angRows = tblRows('tbody-ang2');
-  const angTbl = angRows.length ? angRows.map((r,i) => `
-    <tr><td class="center">${i+1}</td><td>${r[1]||r[0]||'-'}</td><td>${r[2]||'-'}</td><td class="center">${fmt(r[3])}</td></tr>`).join('') :
+  const angTbl = angRows.length ? angRows.map((r,i) =>
+    `<tr><td class="center">${i+1}</td><td>${r[1]||r[0]||'-'}</td><td>${r[2]||'-'}</td><td class="center">${fmt(r[3])}</td></tr>`).join('') :
     '<tr><td colspan="4" class="center">-</td></tr>';
 
   const html = `
 <div class="cover-wrap">
   <div class="cover-logo">🤝</div>
   <div class="cover-title">PERJANJIAN KINERJA<br/>TAHUN ${tahun}</div>
-  <div class="cover-instansi">${opd.toUpperCase()}</div>
+  <div style="font-size:11pt;margin-bottom:8pt;">Tingkat: <strong>${levelName}</strong></div>
+  <div class="cover-instansi">${unitKerja.toUpperCase()}</div>
   <div class="cover-tahun">${daerah.toUpperCase()}</div>
 </div>
-
 <div class="page-break"></div>
 
 <p class="bab-title">PERJANJIAN KINERJA TAHUN ${tahun}</p>
+<p style="font-size:10pt;color:#555;margin-bottom:12pt;">Tingkat: <em>${levelName}</em> &nbsp;|&nbsp; ${unitKerja}</p>
 <p>Dalam rangka mewujudkan manajemen pemerintahan yang efektif, transparan, dan akuntabel serta berorientasi pada hasil, yang bertanda tangan di bawah ini:</p>
-
-<table style="margin:16pt 0;">
+<table style="margin:14pt 0;">
   <tbody>
-    <tr><td style="width:30%;font-weight:bold;border:none;padding:4pt 0;">Nama</td><td style="border:none;padding:4pt 0;">: ${kadis}</td></tr>
-    ${nip ? `<tr><td style="font-weight:bold;border:none;padding:4pt 0;">NIP</td><td style="border:none;padding:4pt 0;">: ${nip}</td></tr>` : ''}
-    <tr><td style="font-weight:bold;border:none;padding:4pt 0;">Jabatan</td><td style="border:none;padding:4pt 0;">: ${jabKadis}</td></tr>
+    <tr><td style="width:30%;font-weight:bold;border:none;padding:4pt 0;">Nama</td><td style="border:none;padding:4pt 0;">: ${p1nama}</td></tr>
+    ${p1nip?`<tr><td style="font-weight:bold;border:none;padding:4pt 0;">NIP</td><td style="border:none;padding:4pt 0;">: ${p1nip}</td></tr>`:''}
+    <tr><td style="font-weight:bold;border:none;padding:4pt 0;">Jabatan</td><td style="border:none;padding:4pt 0;">: ${p1jab}</td></tr>
   </tbody>
 </table>
-
 <p>Selanjutnya disebut <strong>Pihak Pertama</strong></p>
-
-<table style="margin:16pt 0;">
+<table style="margin:14pt 0;">
   <tbody>
-    <tr><td style="width:30%;font-weight:bold;border:none;padding:4pt 0;">Nama</td><td style="border:none;padding:4pt 0;">: ${kd}</td></tr>
-    <tr><td style="font-weight:bold;border:none;padding:4pt 0;">Jabatan</td><td style="border:none;padding:4pt 0;">: ${jabKD}</td></tr>
+    <tr><td style="width:30%;font-weight:bold;border:none;padding:4pt 0;">Nama</td><td style="border:none;padding:4pt 0;">: ${p2nama}</td></tr>
+    ${p2nip?`<tr><td style="font-weight:bold;border:none;padding:4pt 0;">NIP</td><td style="border:none;padding:4pt 0;">: ${p2nip}</td></tr>`:''}
+    <tr><td style="font-weight:bold;border:none;padding:4pt 0;">Jabatan</td><td style="border:none;padding:4pt 0;">: ${p2jab}</td></tr>
   </tbody>
 </table>
-
 <p>Selanjutnya disebut <strong>Pihak Kedua</strong></p>
-
-<p>Pihak pertama berjanji akan mewujudkan target kinerja yang seharusnya sesuai lampiran perjanjian ini, dalam rangka mencapai target kinerja jangka menengah seperti yang telah ditetapkan dalam dokumen perencanaan. Keberhasilan dan kegagalan pencapaian target kinerja tersebut menjadi tanggung jawab Pihak Pertama.</p>
-<p>Pihak kedua akan melakukan supervisi yang diperlukan serta akan melakukan evaluasi terhadap capaian kinerja dari perjanjian ini dan mengambil tindakan yang diperlukan dalam rangka pemberian penghargaan dan sanksi.</p>
-
+<p>Pihak Pertama berjanji akan mewujudkan target kinerja sesuai lampiran perjanjian ini. Keberhasilan dan kegagalan pencapaian target kinerja menjadi tanggung jawab Pihak Pertama. Pihak Kedua akan melakukan supervisi dan evaluasi terhadap capaian kinerja serta mengambil tindakan yang diperlukan.</p>
 <div style="display:flex;justify-content:space-between;margin-top:24pt;">
   <div style="text-align:center;width:45%;">
-    <p>${ttd}</p>
-    <p>Pihak Kedua,</p>
-    <p>${jabKD}</p>
+    <p>${ttd}</p><p>Pihak Kedua,</p><p>${p2jab}</p>
     <div class="ttd-space"></div>
-    <p class="ttd-nama">${kd}</p>
+    <p class="ttd-nama">${p2nama}</p>
+    ${p2nip?`<p class="ttd-nip">NIP. ${p2nip}</p>`:''}
   </div>
   <div style="text-align:center;width:45%;">
-    <p>&nbsp;</p>
-    <p>Pihak Pertama,</p>
-    <p>${jabKadis}</p>
+    <p>&nbsp;</p><p>Pihak Pertama,</p><p>${p1jab}</p>
     <div class="ttd-space"></div>
-    <p class="ttd-nama">${kadis}</p>
-    ${nip ? `<p class="ttd-nip">NIP. ${nip}</p>` : ''}
+    <p class="ttd-nama">${p1nama}</p>
+    ${p1nip?`<p class="ttd-nip">NIP. ${p1nip}</p>`:''}
   </div>
 </div>
-
 <div class="page-break"></div>
 
-<p class="bab-title">LAMPIRAN PERJANJIAN KINERJA<br/>TAHUN ${tahun}</p>
-<p style="text-align:right;"><strong>Instansi:</strong> ${opd} &nbsp;&nbsp; <strong>Tahun Anggaran:</strong> ${tahun}</p>
-
+<p class="bab-title">LAMPIRAN PERJANJIAN KINERJA TAHUN ${tahun}</p>
+<p style="text-align:right;font-size:10pt;"><strong>Instansi:</strong> ${unitKerja} &nbsp;&nbsp; <strong>Tahun:</strong> ${tahun} &nbsp;&nbsp; <strong>Level:</strong> ${levelName}</p>
 <table>
-  <thead>
-    <tr><th>No</th><th>Sasaran Strategis</th><th>Indikator Kinerja</th><th>Satuan</th><th>Target</th></tr>
-  </thead>
+  <thead><tr><th>No</th><th>Sasaran Kinerja</th><th>Indikator Kinerja</th><th>Satuan</th><th>Target</th></tr></thead>
   <tbody>${sasTbl}</tbody>
 </table>
-
-<p style="margin-top:16pt;font-weight:bold;">Kegiatan/Program yang Mendukung:</p>
+<p style="margin-top:14pt;font-weight:bold;">Program / Kegiatan Pendukung:</p>
 <table>
-  <thead>
-    <tr><th>No</th><th>Program</th><th>Kegiatan Utama</th><th>Anggaran (Rp)</th></tr>
-  </thead>
+  <thead><tr><th>No</th><th>Program / Kegiatan</th><th>Sub Kegiatan / Output</th><th>Anggaran (Rp)</th></tr></thead>
   <tbody>${angTbl}</tbody>
-  <tfoot>
-    <tr><td colspan="3" style="font-weight:bold;text-align:right;">Total Anggaran</td><td style="text-align:center;font-weight:bold;">${total}</td></tr>
-  </tfoot>
+  <tfoot><tr><td colspan="3" style="font-weight:bold;text-align:right;">Total</td><td style="text-align:center;font-weight:bold;">${total}</td></tr></tfoot>
 </table>
 <p style="font-size:10pt;">Sumber Dana: ${sumber}</p>`;
 
-  showPreview(`Perjanjian Kinerja — ${opd} Tahun ${tahun}`, html);
+  showPreview(`PK ${levelName} — ${p1nama} Tahun ${tahun}`, html);
+}
+
+// ── GENERATE RENSTRA OPD ──────────────────────────────────────────────────
+function generateRenstra() {
+  const opd      = v('rt_opd')       || '[Nama OPD]';
+  const daerah   = v('rt_daerah')    || '[Nama Daerah]';
+  const periode  = v('rt_periode')   || '2025–2029';
+  const urusan   = v('rt_urusan')    || '...';
+  const kadis    = v('rt_kadis')     || '[Kepala OPD]';
+  const nip      = v('rt_kadis_nip');
+  const gol      = v('rt_gol');
+  const ttd      = v('rt_ttd')       || daerah + ', ' + (periode.split('–')[0]||'2025');
+  const tupoksi  = v('rt_tupoksi')   || '...';
+  const kinerja  = v('rt_kinerja')   || '...';
+  const isu      = v('rt_isu')       || '...';
+  const telaah   = v('rt_rpjmd_telaah') || '...';
+  const tujuan   = v('rt_tujuan')    || '...';
+  const iku      = v('rt_iku')       || '...';
+  const strategi = v('rt_strategi')  || '...';
+  const kebijakan= v('rt_kebijakan') || '...';
+
+  const vm = getVisiMisi();
+  const vmBlock = vm && vm.visi ? `
+<h2>1.3 Visi dan Misi Kepala Daerah</h2>
+<p><strong>Visi:</strong> ${vm.visi}</p>
+${vm.misi&&vm.misi.length?'<ol>'+vm.misi.map(m=>`<li>${m}</li>`).join('')+'</ol>':''}` : '';
+
+  const sasRows = tblRows('tbody-rt-sasaran');
+  const sasTbl = sasRows.length ? sasRows.map((r,i)=>`
+    <tr><td class="center">${i+1}</td><td>${r[0]||'-'}</td><td>${r[1]||'-'}</td><td class="center">${r[2]||'-'}</td><td class="center">${r[3]||'-'}</td><td class="center">${r[4]||'-'}</td><td class="center">${r[5]||'-'}</td><td class="center">${r[6]||'-'}</td><td class="center">${r[7]||'-'}</td><td class="center">${r[8]||'-'}</td></tr>`).join('') :
+    '<tr><td colspan="10" class="center">-</td></tr>';
+
+  const progRows = tblRows('tbody-rt-program');
+  const progTbl = progRows.length ? progRows.map((r,i)=>`
+    <tr><td class="center">${i+1}</td><td>${r[0]||'-'}</td><td class="center">${fmt(r[1])}</td><td class="center">${fmt(r[2])}</td><td class="center">${fmt(r[3])}</td><td class="center">${fmt(r[4])}</td><td class="center">${fmt(r[5])}</td><td>${r[6]||'-'}</td></tr>`).join('') :
+    '<tr><td colspan="8" class="center">-</td></tr>';
+
+  const html = `
+<div class="cover-wrap">
+  <div class="cover-logo">📐</div>
+  <div class="cover-title">RENCANA STRATEGIS<br/>${opd}<br/>${daerah}</div>
+  <div class="cover-sub">Periode ${periode}</div>
+  <div class="cover-instansi">${opd.toUpperCase()}<br/>${daerah.toUpperCase()}</div>
+  <div class="cover-tahun">${periode}</div>
+</div>
+<div class="page-break"></div>
+
+<p class="bab-title">KATA PENGANTAR</p>
+<p>Puji syukur kami panjatkan kehadirat Allah SWT atas selesainya penyusunan Rencana Strategis (Renstra) ${opd} ${daerah} Periode ${periode}.</p>
+<p>Renstra ini disusun berpedoman pada Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025 dan merupakan penjabaran dari RPJMD ${daerah} sebagai pedoman penyelenggaraan pembangunan di bidang ${urusan} selama 5 tahun ke depan.</p>
+<div class="kata-pengantar-ttd">
+  <div style="text-align:center;width:200pt;">
+    <p>${ttd}</p><p>Kepala ${opd}</p>
+    <div class="ttd-space"></div>
+    <p class="ttd-nama">${kadis}</p>
+    ${gol?`<p class="ttd-nip">${gol}</p>`:''}
+    ${nip?`<p class="ttd-nip">NIP. ${nip}</p>`:''}
+  </div>
+</div>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB I<br/>PENDAHULUAN</p>
+<h2>1.1 Latar Belakang</h2>
+<p>Rencana Strategis Perangkat Daerah adalah dokumen perencanaan untuk periode 5 tahun yang memuat tujuan, sasaran, strategi, arah kebijakan, program, dan kegiatan sesuai dengan tugas dan fungsi Perangkat Daerah. Renstra ${opd} ${daerah} Periode ${periode} disusun berpedoman pada RPJMD ${daerah} dan mengacu pada RPJMN.</p>
+<h2>1.2 Landasan Hukum</h2>
+<ul>
+  <li>Undang-Undang Nomor 25 Tahun 2004 tentang Sistem Perencanaan Pembangunan Nasional;</li>
+  <li>Undang-Undang Nomor 23 Tahun 2014 tentang Pemerintahan Daerah;</li>
+  <li>Peraturan Menteri Dalam Negeri Nomor 86 Tahun 2017 tentang Tata Cara Perencanaan, Pengendalian dan Evaluasi Pembangunan Daerah;</li>
+  <li>Peraturan Menteri Dalam Negeri Nomor 90 Tahun 2019 tentang Klasifikasi, Kodefikasi, dan Nomenklatur Perencanaan Pembangunan dan Keuangan Daerah;</li>
+  <li>Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025 tentang Pedoman Penyusunan Renstra Perangkat Daerah;</li>
+</ul>
+${vmBlock}
+<h2>1.4 Maksud dan Tujuan</h2>
+<p>Renstra ${opd} ${daerah} Periode ${periode} dimaksudkan sebagai pedoman bagi ${opd} dalam menyusun Renja OPD tahunan dan sebagai acuan dalam penyelenggaraan program kegiatan bidang ${urusan}. Tujuannya adalah menjamin konsistensi antara perencanaan, penganggaran, pelaksanaan, dan evaluasi kinerja OPD.</p>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB II<br/>GAMBARAN PELAYANAN PERANGKAT DAERAH</p>
+<h2>2.1 Tugas, Fungsi, dan Struktur Organisasi</h2>
+<p>${tupoksi}</p>
+<h2>2.2 Kinerja Pelayanan Perangkat Daerah</h2>
+<p>${kinerja}</p>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB III<br/>PERMASALAHAN DAN ISU-ISU STRATEGIS</p>
+<h2>3.1 Identifikasi Permasalahan</h2>
+<p>${isu}</p>
+<h2>3.2 Telaahan RPJMD dan Kebijakan Nasional</h2>
+<p>${telaah}</p>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB IV<br/>TUJUAN DAN SASARAN</p>
+<h2>4.1 Tujuan Jangka Menengah OPD</h2>
+<p>Tujuan ${opd}: <strong>${tujuan}</strong></p>
+<p>Indikator Kinerja Utama (IKU): ${iku}</p>
+<h2>4.2 Sasaran Strategis dan Target Kinerja</h2>
+<table>
+  <thead><tr><th>No</th><th>Sasaran Strategis</th><th>Indikator (IKD)</th><th>Sat.</th><th>Awal</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr></thead>
+  <tbody>${sasTbl}</tbody>
+</table>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB V<br/>STRATEGI DAN ARAH KEBIJAKAN</p>
+<h2>5.1 Strategi</h2>
+<p>${strategi}</p>
+<h2>5.2 Arah Kebijakan</h2>
+<p>${kebijakan}</p>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB VI<br/>RENCANA PROGRAM, KEGIATAN DAN PENDANAAN</p>
+<table>
+  <thead><tr><th>No</th><th>Program</th><th>Pagu 2025</th><th>Pagu 2026</th><th>Pagu 2027</th><th>Pagu 2028</th><th>Pagu 2029</th><th>OPD</th></tr></thead>
+  <tbody>${progTbl}</tbody>
+</table>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB VII<br/>KINERJA PENYELENGGARAAN BIDANG URUSAN</p>
+<p>Indikator kinerja ${opd} yang mengacu pada tujuan dan sasaran RPJMD ${daerah} Periode ${periode} disajikan pada tabel sasaran strategis BAB IV di atas. Pencapaian target tersebut menjadi tolok ukur keberhasilan penyelenggaraan urusan ${urusan} selama periode Renstra.</p>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB VIII<br/>PENUTUP</p>
+<p>Renstra ${opd} ${daerah} Periode ${periode} merupakan pedoman bagi seluruh aparatur ${opd} dalam merencanakan, melaksanakan, dan mengevaluasi kinerja organisasi. Komitmen dan konsistensi dalam pelaksanaan program-program yang telah ditetapkan menjadi kunci keberhasilan pencapaian tujuan dan sasaran strategis.</p>
+<div class="ttd-wrap">
+  <div class="ttd-box">
+    <p>${ttd}</p><p>Kepala ${opd}</p>
+    <div class="ttd-space"></div>
+    <p class="ttd-nama">${kadis}</p>
+    ${gol?`<p class="ttd-nip">${gol}</p>`:''}
+    ${nip?`<p class="ttd-nip">NIP. ${nip}</p>`:''}
+  </div>
+</div>`;
+
+  showPreview(`Renstra OPD — ${opd} ${periode}`, html);
+}
+
+// ── GENERATE RENJA PERUBAHAN ──────────────────────────────────────────────
+function generateRenjaP() {
+  const opd     = v('rp_opd')    || '[Nama OPD]';
+  const daerah  = v('rp_daerah') || '[Nama Daerah]';
+  const tahun   = v('rp_tahun')  || '[Tahun]';
+  const kadis   = v('rp_kadis')  || '[Kepala OPD]';
+  const nip     = v('rp_nip');
+  const gol     = v('rp_gol');
+  const ttd     = v('rp_ttd')    || daerah + ', ' + tahun;
+  const alasan  = v('rp_alasan') || '...';
+  const totSebelum = fmt(v('rp_total_sebelum'));
+  const totSesudah = fmt(v('rp_total_sesudah'));
+  const selisih    = v('rp_selisih') || '-';
+
+  const rpRows = tblRows('tbody-rp');
+  const rpTbl = rpRows.length ? rpRows.map((r,i)=>`
+    <tr><td class="center">${i+1}</td><td>${r[0]||'-'}</td><td class="center">${r[1]||'-'}</td><td class="center">${fmt(r[2])}</td><td class="center">${r[3]||'-'}</td><td class="center">${fmt(r[4])}</td><td>${r[5]||'-'}</td></tr>`).join('') :
+    '<tr><td colspan="7" class="center">-</td></tr>';
+
+  const html = `
+<div class="cover-wrap">
+  <div class="cover-logo">🔄</div>
+  <div class="cover-title">RENCANA KERJA PERUBAHAN<br/>${opd}<br/>${daerah}</div>
+  <div class="cover-sub">Tahun Anggaran ${tahun}</div>
+  <div class="cover-instansi">${opd.toUpperCase()}<br/>${daerah.toUpperCase()}</div>
+  <div class="cover-tahun">${tahun}</div>
+</div>
+<div class="page-break"></div>
+
+<p class="bab-title">KATA PENGANTAR</p>
+<p>Rencana Kerja Perubahan (Renja Perubahan) ${opd} ${daerah} Tahun Anggaran ${tahun} disusun dalam rangka penyesuaian program, kegiatan, dan pagu anggaran OPD sesuai perubahan kebijakan yang telah ditetapkan.</p>
+<div class="kata-pengantar-ttd">
+  <div style="text-align:center;width:200pt;">
+    <p>${ttd}</p><p>Kepala ${opd}</p>
+    <div class="ttd-space"></div>
+    <p class="ttd-nama">${kadis}</p>
+    ${gol?`<p class="ttd-nip">${gol}</p>`:''}
+    ${nip?`<p class="ttd-nip">NIP. ${nip}</p>`:''}
+  </div>
+</div>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB I<br/>PENDAHULUAN</p>
+<h2>1.1 Dasar dan Alasan Perubahan Renja</h2>
+<p>${alasan}</p>
+<h2>1.2 Landasan Hukum</h2>
+<ul>
+  <li>Undang-Undang Nomor 25 Tahun 2004 tentang Sistem Perencanaan Pembangunan Nasional;</li>
+  <li>Peraturan Menteri Dalam Negeri Nomor 81 Tahun 2022 tentang Pedoman Penyusunan RKPD;</li>
+  <li>Peraturan Kepala Daerah tentang Perubahan RKPD ${daerah} Tahun ${tahun};</li>
+</ul>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB II<br/>PERUBAHAN RENCANA KERJA DAN PENDANAAN</p>
+<h2>2.1 Tabel Perbandingan Sebelum dan Sesudah Perubahan</h2>
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle;width:4%">No</th>
+      <th rowspan="2" style="vertical-align:middle;width:20%">Program / Sub Kegiatan</th>
+      <th colspan="2" style="text-align:center;background:#fff8e1;">Sebelum Perubahan</th>
+      <th colspan="2" style="text-align:center;background:#f0fff4;">Sesudah Perubahan</th>
+      <th rowspan="2" style="vertical-align:middle;width:16%">Alasan Perubahan</th>
+    </tr>
+    <tr>
+      <th style="background:#fffde7;width:12%">Target</th>
+      <th style="background:#fffde7;width:14%">Pagu (Rp)</th>
+      <th style="background:#f1f8e9;width:12%">Target</th>
+      <th style="background:#f1f8e9;width:14%">Pagu (Rp)</th>
+    </tr>
+  </thead>
+  <tbody>${rpTbl}</tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3" style="font-weight:bold;text-align:right;background:#fff8e1;">Total Sebelum</td>
+      <td style="text-align:center;font-weight:bold;background:#fff8e1;">${totSebelum}</td>
+      <td style="font-weight:bold;text-align:right;background:#f1f8e9;"></td>
+      <td style="text-align:center;font-weight:bold;background:#f1f8e9;">${totSesudah}</td>
+      <td style="font-size:10pt;">Selisih: ${selisih}</td>
+    </tr>
+  </tfoot>
+</table>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB III<br/>PENUTUP</p>
+<p>Rencana Kerja Perubahan ${opd} ${daerah} Tahun ${tahun} ini merupakan penyesuaian dari Renja ${opd} yang telah ditetapkan sebelumnya. Perubahan ini dilakukan sesuai ketentuan yang berlaku dan menjadi pedoman pelaksanaan program kegiatan OPD pada sisa tahun anggaran ${tahun}.</p>
+<div class="ttd-wrap">
+  <div class="ttd-box">
+    <p>${ttd}</p><p>Kepala ${opd}</p>
+    <div class="ttd-space"></div>
+    <p class="ttd-nama">${kadis}</p>
+    ${gol?`<p class="ttd-nip">${gol}</p>`:''}
+    ${nip?`<p class="ttd-nip">NIP. ${nip}</p>`:''}
+  </div>
+</div>`;
+
+  showPreview(`Renja Perubahan — ${opd} Tahun ${tahun}`, html);
 }
 </script>
 </body>
