@@ -156,6 +156,32 @@
       .doc-page{position:fixed;inset:0;margin:0;padding:40pt 60pt;box-shadow:none;font-size:11pt;}
       .preview-toolbar{display:none;}
     }
+
+    /* VISI MISI PANEL */
+    .vimis-panel{max-width:900px;margin:0 auto 0;padding:0 24px;}
+    .vimis-box{background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(109,40,217,.04));border:1.5px solid rgba(124,58,237,.25);border-radius:var(--radius);overflow:hidden;}
+    .vimis-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;cursor:pointer;user-select:none;gap:12px;}
+    .vimis-header:hover{background:rgba(124,58,237,.04);}
+    .vimis-left{display:flex;align-items:center;gap:12px;}
+    .vimis-icon{font-size:1.3rem;}
+    .vimis-title{font-size:.88rem;font-weight:700;color:var(--text);}
+    .vimis-sub{font-size:.75rem;color:var(--text2);margin-top:1px;}
+    .vimis-badge{display:inline-block;background:rgba(124,58,237,.12);color:var(--accent);border-radius:980px;padding:1px 9px;font-size:.7rem;font-weight:700;margin-left:8px;}
+    .vimis-toggle{font-size:.75rem;color:var(--text2);transition:transform .2s;flex-shrink:0;}
+    .vimis-toggle.open{transform:rotate(180deg);}
+    .vimis-body{padding:0 20px 20px;border-top:1px solid rgba(124,58,237,.15);}
+    .vimis-body .form-row{margin-top:14px;}
+    .misi-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+    .misi-num{font-size:.75rem;font-weight:700;color:var(--accent);min-width:24px;text-align:center;background:rgba(124,58,237,.1);border-radius:980px;padding:2px 8px;flex-shrink:0;}
+    .misi-row input{flex:1;}
+    .btn-save-vm{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;padding:9px 20px;border-radius:980px;font-size:.83rem;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
+    .btn-save-vm:hover{background:var(--accent2);}
+    .vm-saved-note{font-size:.75rem;color:#28a745;font-weight:600;display:none;margin-left:10px;}
+
+    /* AUTO-FILL BUTTON */
+    .btn-autofill{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.1);color:var(--accent);border:1.5px solid rgba(124,58,237,.3);border-radius:8px;padding:8px 14px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;margin-bottom:12px;}
+    .btn-autofill:hover{background:rgba(124,58,237,.18);}
+    .autofill-note{font-size:.75rem;color:var(--text2);margin-bottom:10px;padding:8px 12px;background:rgba(124,58,237,.05);border-radius:8px;border-left:3px solid var(--accent);}
   </style>
 </head>
 <body>
@@ -176,6 +202,41 @@
   <p class="hero-eyebrow">Generator Dokumen Perencanaan Daerah</p>
   <h1 class="hero-title">SiGenDok</h1>
   <p class="hero-sub">Isi data OPD Anda, sistem akan menyusun dokumen resmi sesuai format dan sistematika yang ditetapkan regulasi — siap cetak.</p>
+</div>
+
+<!-- VISI MISI BUPATI PANEL -->
+<div class="vimis-panel" id="vimisPanel" style="padding-top:16px;padding-bottom:8px;">
+  <div class="vimis-box">
+    <div class="vimis-header" onclick="toggleVimis()">
+      <div class="vimis-left">
+        <span class="vimis-icon">🏛️</span>
+        <div>
+          <div class="vimis-title">Visi &amp; Misi Kepala Daerah <span class="vimis-badge" id="vimisBadge" style="display:none;">✓ Tersimpan</span></div>
+          <div class="vimis-sub" id="vimisSub">Isi sekali, otomatis digunakan di semua dokumen — klik untuk mengatur</div>
+        </div>
+      </div>
+      <span class="vimis-toggle" id="vimisToggle">▼</span>
+    </div>
+    <div class="vimis-body" id="vimisBody" style="display:none;">
+      <div class="form-row triple" style="margin-top:14px;">
+        <div class="field"><label>Nama Daerah</label><input type="text" id="vm_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
+        <div class="field"><label>Nama Kepala Daerah</label><input type="text" id="vm_kd" placeholder="Nama Bupati/Walikota"/></div>
+        <div class="field"><label>Periode Jabatan</label><input type="text" id="vm_periode" placeholder="2025–2029"/></div>
+      </div>
+      <div class="form-row single">
+        <div class="field"><label>Visi Kepala Daerah</label><input type="text" id="vm_visi" placeholder="Terwujudnya Kabupaten ... yang Maju, Sejahtera, dan Bermartabat"/></div>
+      </div>
+      <div style="margin-top:4px;">
+        <label style="font-size:.78rem;font-weight:600;color:var(--text);display:block;margin-bottom:8px;">Misi Kepala Daerah</label>
+        <div id="vm_misi_wrap"></div>
+        <button class="btn-add-row" onclick="addMisi()" style="margin-top:4px;">+ Tambah Misi</button>
+      </div>
+      <div style="margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <button class="btn-save-vm" onclick="saveVisiMisi()">💾 Simpan Visi Misi</button>
+        <span class="vm-saved-note" id="vmSavedNote">✓ Berhasil disimpan!</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- DOCUMENT TYPE SELECTOR -->
@@ -428,19 +489,21 @@
           <span class="form-card-title">Program, Kegiatan & Sub Kegiatan</span>
         </div>
         <div class="form-card-body">
-          <p style="font-size:.8rem;color:var(--text2);margin-bottom:14px;">Isi sesuai nomenklatur Permendagri 90/2019. Satu baris = satu Sub Kegiatan.</p>
+          <div class="autofill-note">Pilih urusan di Langkah 1, lalu klik tombol di bawah untuk mengisi program secara otomatis sesuai Kepmendagri 050-5889/2021.</div>
+          <button class="btn-autofill" onclick="autoFillProgram()">⚡ Auto-isi Program dari Urusan</button>
+          <p style="font-size:.8rem;color:var(--text2);margin-bottom:14px;">Atau isi manual sesuai nomenklatur Permendagri 90/2019. Satu baris = satu Sub Kegiatan.</p>
           <div class="dyn-table-wrap">
             <table class="dyn-table" id="tbl-program">
               <thead>
                 <tr>
-                  <th style="width:22%">Program</th>
-                  <th style="width:22%">Kegiatan</th>
-                  <th style="width:22%">Sub Kegiatan</th>
-                  <th style="width:18%">Indikator Output</th>
-                  <th style="width:7%">Target</th>
-                  <th style="width:5%">Sat.</th>
-                  <th style="width:12%">Pagu (Rp)</th>
-                  <th style="width:6%">Lokasi</th>
+                  <th style="width:20%">Program</th>
+                  <th style="width:18%">Kegiatan</th>
+                  <th style="width:18%">Sub Kegiatan</th>
+                  <th style="width:14%">Indikator Output</th>
+                  <th style="width:6%">Target</th>
+                  <th style="width:4%">Sat.</th>
+                  <th style="width:10%">Pagu (Rp)</th>
+                  <th style="width:8%">Misi</th>
                   <th style="width:4%"></th>
                 </tr>
               </thead>
@@ -453,7 +516,7 @@
                   <td><input type="text" placeholder="10"/></td>
                   <td><input type="text" placeholder="Unit"/></td>
                   <td><input type="text" placeholder="500.000.000"/></td>
-                  <td><input type="text" placeholder="Kec. A"/></td>
+                  <td><input type="text" placeholder="Misi 1"/></td>
                   <td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>
                 </tr>
               </tbody>
@@ -794,6 +857,319 @@
 </footer>
 
 <script>
+// ── NOMENKLATUR PROGRAM per URUSAN (Kepmendagri 050-5889/2021) ──────────────
+const NOMENKLATUR = {
+  'Pendidikan': [
+    'Program Pengelolaan Pendidikan',
+    'Program Pengembangan Kurikulum',
+    'Program Pendidik dan Tenaga Kependidikan',
+    'Program Pengendalian Perizinan Pendidikan',
+    'Program Pengembangan Bahasa dan Sastra',
+  ],
+  'Kesehatan': [
+    'Program Pemenuhan Upaya Kesehatan Perseorangan dan Upaya Kesehatan Masyarakat',
+    'Program Peningkatan Kapasitas Sumber Daya Manusia Kesehatan',
+    'Program Sediaan Farmasi, Alat Kesehatan dan Makanan Minuman',
+    'Program Pemberdayaan Masyarakat Bidang Kesehatan',
+  ],
+  'Pekerjaan Umum & Penataan Ruang': [
+    'Program Pengelolaan Sumber Daya Air (SDA)',
+    'Program Pengelolaan dan Pengembangan Sistem Penyediaan Air Minum',
+    'Program Pengelolaan dan Pengembangan Sistem Air Limbah',
+    'Program Pengelolaan dan Pengembangan Sistem Drainase',
+    'Program Pengembangan Permukiman',
+    'Program Penataan Bangunan Gedung',
+    'Program Penyelenggaraan Jalan',
+    'Program Pengembangan Jasa Konstruksi',
+    'Program Penyelenggaraan Penataan Ruang',
+  ],
+  'Perumahan Rakyat & Kawasan Permukiman': [
+    'Program Pengembangan Perumahan',
+    'Program Kawasan Permukiman',
+    'Program Perumahan dan Kawasan Permukiman Kumuh',
+    'Program Peningkatan Prasarana, Sarana dan Utilitas Umum (PSU)',
+  ],
+  'Ketentraman, Ketertiban Umum & Perlindungan Masyarakat': [
+    'Program Peningkatan Ketentraman dan Ketertiban Umum',
+    'Program Pencegahan, Penanggulangan, Penyelamatan Kebakaran dan Penyelamatan Non Kebakaran',
+  ],
+  'Sosial': [
+    'Program Pemberdayaan Sosial',
+    'Program Rehabilitasi Sosial',
+    'Program Perlindungan dan Jaminan Sosial',
+    'Program Penanganan Bencana',
+    'Program Taman Makam Pahlawan',
+  ],
+  'Tenaga Kerja': [
+    'Program Perencanaan Tenaga Kerja',
+    'Program Pelatihan Kerja dan Produktivitas Tenaga Kerja',
+    'Program Penempatan Tenaga Kerja',
+    'Program Hubungan Industrial',
+  ],
+  'Pemberdayaan Perempuan & Perlindungan Anak': [
+    'Program Pengarusutamaan Gender dan Pemberdayaan Perempuan',
+    'Program Perlindungan Perempuan',
+    'Program Peningkatan Kualitas Keluarga',
+    'Program Pengelolaan Sistem Data Gender dan Anak',
+    'Program Pemenuhan Hak Anak (PHA)',
+    'Program Perlindungan Khusus Anak',
+  ],
+  'Pangan': [
+    'Program Pengelolaan Sumber Daya Ekonomi untuk Kedaulatan dan Kemandirian Pangan',
+    'Program Peningkatan Diversifikasi dan Ketahanan Pangan Masyarakat',
+    'Program Penanganan Kerawanan Pangan',
+    'Program Pengawasan Keamanan Pangan',
+  ],
+  'Pertanahan': [
+    'Program Pengelolaan Izin Lokasi',
+    'Program Pengadaan Tanah untuk Kepentingan Umum',
+    'Program Pengelolaan Tanah Kosong',
+    'Program Penatagunaan Tanah',
+  ],
+  'Lingkungan Hidup': [
+    'Program Perencanaan Lingkungan Hidup',
+    'Program Pengendalian Pencemaran dan/atau Kerusakan Lingkungan Hidup',
+    'Program Pengelolaan Keanekaragaman Hayati (Kehati)',
+    'Program Pengendalian Bahan Berbahaya dan Beracun (B3) dan Limbah B3',
+    'Program Pembinaan dan Pengawasan terhadap Izin Lingkungan dan PPLH',
+    'Program Peningkatan Pendidikan, Pelatihan dan Penyuluhan Lingkungan Hidup',
+    'Program Penanganan Pengaduan Lingkungan Hidup',
+    'Program Pengelolaan Persampahan',
+  ],
+  'Administrasi Kependudukan & Pencatatan Sipil': [
+    'Program Pendaftaran Penduduk',
+    'Program Pencatatan Sipil',
+    'Program Pengelolaan Informasi Administrasi Kependudukan',
+    'Program Pengelolaan Profil Kependudukan',
+  ],
+  'Pemberdayaan Masyarakat & Desa': [
+    'Program Penataan Desa',
+    'Program Peningkatan Kerjasama Desa',
+    'Program Administrasi Pemerintahan Desa',
+    'Program Pemberdayaan Lembaga Kemasyarakatan, Lembaga Adat dan Masyarakat Hukum Adat',
+  ],
+  'Pengendalian Penduduk & Keluarga Berencana': [
+    'Program Pengendalian Penduduk',
+    'Program Pembinaan Keluarga Berencana (KB)',
+    'Program Pemberdayaan dan Peningkatan Keluarga Sejahtera (KS)',
+  ],
+  'Perhubungan': [
+    'Program Penyelenggaraan Lalu Lintas dan Angkutan Jalan (LLAJ)',
+    'Program Pengelolaan Pelayaran',
+  ],
+  'Komunikasi & Informatika': [
+    'Program Pengelolaan Informasi dan Komunikasi Publik',
+    'Program Pengelolaan Aplikasi Informatika',
+  ],
+  'Koperasi, Usaha Kecil & Menengah': [
+    'Program Pendidikan dan Latihan Perkoperasian',
+    'Program Pemberdayaan dan Perlindungan Koperasi',
+    'Program Pemberdayaan Usaha Menengah, Usaha Kecil, dan Usaha Mikro (UMKM)',
+    'Program Pengembangan UMKM',
+  ],
+  'Penanaman Modal': [
+    'Program Pengembangan Iklim Penanaman Modal',
+    'Program Promosi Penanaman Modal',
+    'Program Pelayanan Penanaman Modal',
+    'Program Pengendalian Pelaksanaan Penanaman Modal',
+    'Program Pengelolaan Data dan Sistem Informasi Penanaman Modal',
+  ],
+  'Kepemudaan & Olahraga': [
+    'Program Pengembangan Kapasitas Daya Saing Kepemudaan',
+    'Program Pengembangan Kapasitas Kepramukaan',
+    'Program Pengembangan Kapasitas Daya Saing Keolahragaan',
+  ],
+  'Statistik': ['Program Penyelenggaraan Statistik Sektoral'],
+  'Persandian': ['Program Penyelenggaraan Persandian untuk Pengamanan Informasi'],
+  'Kebudayaan': [
+    'Program Pengembangan Kebudayaan',
+    'Program Pengembangan Kesenian Tradisional',
+    'Program Pembinaan Sejarah',
+    'Program Pelestarian dan Pengelolaan Cagar Budaya',
+    'Program Pengelolaan Permuseuman',
+  ],
+  'Perpustakaan': [
+    'Program Pembinaan Perpustakaan',
+    'Program Pelestarian Koleksi Nasional dan Naskah Kuno',
+  ],
+  'Kearsipan': [
+    'Program Pengelolaan Arsip',
+    'Program Perlindungan dan Penyelamatan Arsip',
+    'Program Perizinan Penggunaan Arsip',
+  ],
+  'Perikanan': [
+    'Program Pengelolaan Kelautan, Pesisir dan Pulau-Pulau Kecil',
+    'Program Pengelolaan Perikanan Tangkap',
+    'Program Pengelolaan Perikanan Budidaya',
+    'Program Pengolahan dan Pemasaran Hasil Perikanan',
+  ],
+  'Pariwisata': [
+    'Program Peningkatan Daya Tarik Destinasi Pariwisata',
+    'Program Pemasaran Pariwisata',
+    'Program Pengembangan Sumber Daya Pariwisata dan Ekonomi Kreatif',
+  ],
+  'Pertanian': [
+    'Program Penyediaan dan Pengembangan Sarana Pertanian',
+    'Program Penyediaan dan Pengembangan Prasarana Pertanian',
+    'Program Pengendalian Kesehatan Hewan dan Kesehatan Masyarakat Veteriner',
+    'Program Pengendalian dan Penanggulangan Bencana Pertanian',
+    'Program Perizinan Usaha Pertanian',
+    'Program Penyuluhan Pertanian',
+  ],
+  'Kehutanan': [
+    'Program Pengelolaan Hutan',
+    'Program Konservasi Sumber Daya Alam Hayati dan Ekosistemnya',
+    'Program Pendidikan, Pelatihan dan Penyuluhan di Bidang Kehutanan',
+    'Program Pengelolaan Daerah Aliran Sungai (DAS)',
+  ],
+  'Energi & Sumber Daya Mineral': [
+    'Program Pengelolaan Energi Terbarukan',
+    'Program Pengelolaan Mineral dan Batubara',
+    'Program Pengelolaan Air Tanah dan Air Baku',
+  ],
+  'Perdagangan': [
+    'Program Perizinan dan Pendaftaran Perusahaan',
+    'Program Peningkatan Sarana Distribusi Perdagangan',
+    'Program Stabilisasi Harga Barang Kebutuhan Pokok dan Barang Penting',
+    'Program Pengembangan Ekspor',
+    'Program Standardisasi dan Perlindungan Konsumen',
+    'Program Penggunaan dan Pemasaran Produk Dalam Negeri',
+  ],
+  'Perindustrian': [
+    'Program Perencanaan dan Pembangunan Industri',
+    'Program Pengendalian Izin Usaha Industri',
+    'Program Pengelolaan Sistem Informasi Industri Nasional',
+  ],
+  'Transmigrasi': [
+    'Program Perencanaan Kawasan Transmigrasi',
+    'Program Pembangunan Kawasan Transmigrasi',
+    'Program Pengembangan Kawasan Transmigrasi',
+  ],
+  'Penunjang Pemerintahan': [
+    'Program Perencanaan, Pengendalian dan Evaluasi Pembangunan Daerah',
+    'Program Koordinasi dan Sinkronisasi Perencanaan Pembangunan Daerah',
+    'Program Penelitian dan Pengembangan Daerah',
+    'Program Pengelolaan Keuangan Daerah',
+    'Program Pengelolaan Barang Milik Daerah',
+    'Program Pengelolaan Pendapatan Daerah',
+    'Program Kepegawaian Daerah',
+    'Program Pengembangan Sumber Daya Manusia',
+    'Program Penyelenggaraan Pengawasan',
+    'Program Perumusan Kebijakan, Pendampingan dan Asistensi',
+    'Program Pemerintahan dan Kesejahteraan Rakyat',
+    'Program Perekonomian dan Pembangunan',
+    'Program Dukungan Pelaksanaan Tugas dan Fungsi DPRD',
+  ],
+};
+
+// ── VISI MISI FUNCTIONS ──────────────────────────────────────────────────────
+function toggleVimis() {
+  const body = document.getElementById('vimisBody');
+  const toggle = document.getElementById('vimisToggle');
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  toggle.classList.toggle('open', !isOpen);
+}
+
+function addMisi(text) {
+  const wrap = document.getElementById('vm_misi_wrap');
+  const n = wrap.children.length + 1;
+  const div = document.createElement('div');
+  div.className = 'misi-row';
+  div.innerHTML = `<span class="misi-num">M${n}</span><input type="text" placeholder="Misi ke-${n}: ..." value="${text||''}"/><button class="btn-del-row" onclick="delMisi(this)" title="Hapus misi ini">✕</button>`;
+  wrap.appendChild(div);
+}
+
+function delMisi(btn) {
+  btn.closest('.misi-row').remove();
+  // renumber
+  document.querySelectorAll('#vm_misi_wrap .misi-row').forEach((r,i) => {
+    r.querySelector('.misi-num').textContent = 'M'+(i+1);
+  });
+}
+
+function saveVisiMisi() {
+  const data = {
+    daerah:  document.getElementById('vm_daerah').value.trim(),
+    kd:      document.getElementById('vm_kd').value.trim(),
+    periode: document.getElementById('vm_periode').value.trim(),
+    visi:    document.getElementById('vm_visi').value.trim(),
+    misi:    Array.from(document.querySelectorAll('#vm_misi_wrap input')).map(i=>i.value.trim()).filter(Boolean),
+  };
+  localStorage.setItem('sigendok_vimis', JSON.stringify(data));
+  updateVimisBadge(data);
+  const note = document.getElementById('vmSavedNote');
+  note.style.display = 'inline';
+  setTimeout(() => { note.style.display = 'none'; }, 2500);
+}
+
+function loadVisiMisi() {
+  const raw = localStorage.getItem('sigendok_vimis');
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    document.getElementById('vm_daerah').value  = data.daerah  || '';
+    document.getElementById('vm_kd').value      = data.kd      || '';
+    document.getElementById('vm_periode').value = data.periode || '';
+    document.getElementById('vm_visi').value    = data.visi    || '';
+    document.getElementById('vm_misi_wrap').innerHTML = '';
+    (data.misi||[]).forEach(m => addMisi(m));
+    updateVimisBadge(data);
+  } catch(e){}
+}
+
+function getVisiMisi() {
+  const raw = localStorage.getItem('sigendok_vimis');
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch(e){ return null; }
+}
+
+function updateVimisBadge(data) {
+  const badge = document.getElementById('vimisBadge');
+  const sub   = document.getElementById('vimisSub');
+  if (data && data.visi) {
+    badge.style.display = 'inline';
+    sub.textContent = (data.kd || 'Kepala Daerah') + ' · ' + (data.periode || '') + ' · ' + (data.misi||[]).length + ' misi';
+  }
+}
+
+// ── AUTO-FILL PROGRAM ─────────────────────────────────────────────────────────
+function autoFillProgram() {
+  const urusan = document.getElementById('r_urusan').value;
+  if (!urusan) {
+    alert('Pilih Urusan Pemerintahan di Langkah 1 terlebih dahulu.');
+    return;
+  }
+  const programs = NOMENKLATUR[urusan];
+  if (!programs) {
+    alert('Data nomenklatur untuk urusan "' + urusan + '" belum tersedia. Isi manual.');
+    return;
+  }
+  const tbody = document.getElementById('tbody-program');
+  const existing = Array.from(tbody.querySelectorAll('input')).some(i => i.value.trim());
+  if (existing && !confirm('Tabel program sudah ada isi. Timpa dengan data nomenklatur ' + urusan + '?')) return;
+
+  tbody.innerHTML = '';
+  const vm = getVisiMisi();
+  const misiOptions = vm && vm.misi && vm.misi.length
+    ? vm.misi.map((m,i) => `<option value="Misi ${i+1}">Misi ${i+1}: ${m.substring(0,40)}...</option>`).join('')
+    : '<option value="">-</option>';
+
+  programs.forEach(prog => {
+    const r = tbody.insertRow();
+    r.innerHTML = `
+      <td><input type="text" value="${prog}"/></td>
+      <td><input type="text" placeholder="Nama kegiatan"/></td>
+      <td><input type="text" placeholder="Nama sub kegiatan"/></td>
+      <td><input type="text" placeholder="Indikator output"/></td>
+      <td><input type="text" placeholder="Target"/></td>
+      <td><input type="text" placeholder="Sat."/></td>
+      <td><input type="text" placeholder="Pagu Rp"/></td>
+      <td><select title="Keselarasan Misi">${misiOptions}</select></td>
+      <td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>`;
+  });
+}
+
 // ── DOCUMENT SELECTOR ──────────────────────────────────────────────────────
 function selectDoc(type) {
   document.querySelectorAll('.doc-type-card').forEach(c => c.classList.remove('active'));
@@ -831,7 +1207,7 @@ function addSasaran() {
 function addProgram() {
   const tb = document.getElementById('tbody-program');
   const r = tb.insertRow();
-  r.innerHTML = `<td><input type="text" placeholder="Nama program"/></td><td><input type="text" placeholder="Nama kegiatan"/></td><td><input type="text" placeholder="Nama sub kegiatan"/></td><td><input type="text" placeholder="Indikator output"/></td><td><input type="text" placeholder="Target"/></td><td><input type="text" placeholder="Sat."/></td><td><input type="text" placeholder="Pagu Rp"/></td><td><input type="text" placeholder="Lokasi"/></td><td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>`;
+  r.innerHTML = `<td><input type="text" placeholder="Nama program"/></td><td><input type="text" placeholder="Nama kegiatan"/></td><td><input type="text" placeholder="Nama sub kegiatan"/></td><td><input type="text" placeholder="Indikator output"/></td><td><input type="text" placeholder="Target"/></td><td><input type="text" placeholder="Sat."/></td><td><input type="text" placeholder="Pagu Rp"/></td><td><input type="text" placeholder="Misi 1"/></td><td><button class="btn-del-row" onclick="delRow(this)">✕</button></td>`;
 }
 function addPK() {
   const tb = document.getElementById('tbody-pk');
@@ -881,6 +1257,13 @@ function tblRows(tbodyId) {
   return rows;
 }
 
+// ── INIT ──────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  loadVisiMisi();
+  // jika belum ada misi sama sekali, tambahkan 1 baris kosong
+  if (document.getElementById('vm_misi_wrap').children.length === 0) addMisi('');
+});
+
 // ── CLOSE PREVIEW ─────────────────────────────────────────────────────────
 function closePreview() { document.getElementById('previewOverlay').classList.remove('show'); }
 function showPreview(title, html) {
@@ -913,11 +1296,18 @@ function generateRenja() {
     <tr><td class="center">${i+1}</td><td>${r[0]||'-'}</td><td>${r[1]||'-'}</td><td class="center">${r[2]||'-'}</td><td class="center">${r[4]||'-'}</td><td class="center">${r[3]||'-'}</td></tr>`).join('') :
     '<tr><td colspan="6" class="center">-</td></tr>';
 
-  // Program rows
+  // Program rows (kolom: program,kegiatan,sub kegiatan,indikator,target,sat,pagu,misi)
   const progRows = tblRows('tbody-program');
   const progTbl = progRows.length ? progRows.map((r,i) => `
-    <tr><td class="center">${i+1}</td><td>${r[0]||'-'}</td><td>${r[1]||'-'}</td><td>${r[2]||'-'}</td><td>${r[3]||'-'}</td><td class="center">${r[4]||'-'}</td><td class="center">${r[5]||'-'}</td><td class="center">${fmt(r[6])}</td><td>${r[7]||'-'}</td></tr>`).join('') :
+    <tr><td class="center">${i+1}</td><td>${r[0]||'-'}</td><td>${r[1]||'-'}</td><td>${r[2]||'-'}</td><td>${r[3]||'-'}</td><td class="center">${r[4]||'-'}</td><td class="center">${r[5]||'-'}</td><td class="center">${fmt(r[6])}</td><td class="center">${r[7]||'-'}</td></tr>`).join('') :
     '<tr><td colspan="9" class="center">-</td></tr>';
+
+  // Visi Misi Bupati
+  const vm = getVisiMisi();
+  const vmBlock = vm && vm.visi ? `
+<h2>1.5 Visi dan Misi Kepala Daerah</h2>
+<p><strong>Visi:</strong> ${vm.visi}</p>
+${vm.misi && vm.misi.length ? '<ol>' + vm.misi.map(m=>`<li>${m}</li>`).join('') + '</ol>' : ''}` : '';
 
   const hukumTambahan = v('r_hukum') ? v('r_hukum').split(',').map(h => `<li>${h.trim()};</li>`).join('') : '';
 
@@ -964,6 +1354,8 @@ function generateRenja() {
   ${hukumTambahan}
 </ul>
 
+${vmBlock}
+
 <h2>1.3 Maksud dan Tujuan</h2>
 <p>Maksud penyusunan Renja ${opd} Tahun ${tahun} adalah tersedianya dokumen perencanaan OPD yang memuat program dan kegiatan sebagai penjabaran kebijakan jangka menengah. Tujuannya adalah memberikan arah dan pedoman pelaksanaan kegiatan OPD dalam rangka pencapaian sasaran pembangunan daerah.</p>
 
@@ -1004,7 +1396,7 @@ function generateRenja() {
 <table>
   <thead>
     <tr>
-      <th>No</th><th>Program</th><th>Kegiatan</th><th>Sub Kegiatan</th><th>Indikator Output</th><th>Target</th><th>Satuan</th><th>Pagu (Rp)</th><th>Lokasi</th>
+      <th>No</th><th>Program</th><th>Kegiatan</th><th>Sub Kegiatan</th><th>Indikator Output</th><th>Target</th><th>Satuan</th><th>Pagu (Rp)</th><th>Keselarasan Misi</th>
     </tr>
   </thead>
   <tbody>${progTbl}</tbody>
