@@ -119,6 +119,8 @@
     .preview-actions{display:flex;gap:8px;flex-wrap:wrap;}
     .btn-print{display:inline-flex;align-items:center;gap:6px;background:#1d1d1f;color:#fff;padding:8px 18px;border-radius:980px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:inherit;}
     .btn-print:hover{background:#333;}
+    .btn-word{display:inline-flex;align-items:center;gap:6px;background:#2b5eb3;color:#fff;padding:8px 18px;border-radius:980px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;font-family:inherit;}
+    .btn-word:hover{background:#1e4a99;}
     .btn-close-preview{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);color:var(--text);padding:8px 16px;border-radius:980px;font-size:.8rem;font-weight:500;cursor:pointer;border:1px solid var(--border);font-family:inherit;}
     .btn-close-preview:hover{background:#e5e5ea;}
     .preview-body{padding:24px;overflow-y:auto;max-height:80vh;}
@@ -1171,6 +1173,7 @@
     <div class="preview-toolbar">
       <span class="preview-toolbar-title" id="previewTitle">Pratinjau Dokumen</span>
       <div class="preview-actions">
+        <button class="btn-word" onclick="downloadWord()">📄 Download Word</button>
         <button class="btn-print" onclick="window.print()">🖨 Cetak / PDF</button>
         <button class="btn-close-preview" onclick="closePreview()">✕ Tutup</button>
       </div>
@@ -1627,6 +1630,58 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // ── CLOSE PREVIEW ─────────────────────────────────────────────────────────
 function closePreview() { document.getElementById('previewOverlay').classList.remove('show'); }
+
+function downloadWord() {
+  const title = document.getElementById('previewTitle').textContent || 'Dokumen';
+  const content = document.getElementById('docOutput').innerHTML;
+  const filename = title.replace(/[^a-zA-Z0-9\s\-_]/g, '').trim().replace(/\s+/g, '_') || 'Dokumen';
+
+  const wordHtml = `
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+      xmlns:w='urn:schemas-microsoft-com:office:word'
+      xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+  <meta charset='utf-8'/>
+  <title>${title}</title>
+  <!--[if gte mso 9]>
+  <xml><w:WordDocument><w:View>Print</w:View><w:Zoom>90</w:Zoom>
+  <w:DoNotOptimizeForBrowser/></w:WordDocument></xml>
+  <![endif]-->
+  <style>
+    @page { size: A4; margin: 2.5cm 3cm 2.5cm 3cm; }
+    body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; color: #000; line-height: 1.5; }
+    h1 { font-size: 14pt; font-weight: bold; text-align: center; margin: 12pt 0 6pt; }
+    h2 { font-size: 13pt; font-weight: bold; margin: 10pt 0 4pt; }
+    h3 { font-size: 12pt; font-weight: bold; margin: 8pt 0 4pt; }
+    p  { margin: 6pt 0; text-align: justify; }
+    table { width: 100%; border-collapse: collapse; margin: 8pt 0; font-size: 11pt; }
+    th { background: #dce6f1; border: 1pt solid #000; padding: 4pt 6pt; font-weight: bold; text-align: center; }
+    td { border: 1pt solid #000; padding: 4pt 6pt; vertical-align: top; }
+    .doc-cover { text-align: center; margin-bottom: 24pt; }
+    .doc-cover h1 { font-size: 16pt; }
+    .section-title { font-weight: bold; margin: 12pt 0 4pt; }
+    strong { font-weight: bold; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+${content}
+</body>
+</html>`;
+
+  const blob = new Blob(['﻿' + wordHtml], {
+    type: 'application/msword;charset=utf-8'
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename + '.doc';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 function showPreview(title, html) {
   document.getElementById('previewTitle').textContent = title;
   document.getElementById('docOutput').innerHTML = html;
