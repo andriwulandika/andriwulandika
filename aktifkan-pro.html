@@ -283,11 +283,17 @@
    */
 
   const CODE_PATTERNS = [
-    { regex: /^PRO26A?-[A-Z0-9]{4,8}$/, tier: 'Pro', months: (code) => code.includes('26A') ? 12 : 1 },
-    { regex: /^PRO27A?-[A-Z0-9]{4,8}$/, tier: 'Pro', months: (code) => code.includes('27A') ? 12 : 1 },
-    { regex: /^OPD26A?-[A-Z0-9]{4,8}$/, tier: 'OPD/Instansi', months: (code) => code.includes('26A') ? 12 : 1 },
-    { regex: /^OPD27A?-[A-Z0-9]{4,8}$/, tier: 'OPD/Instansi', months: (code) => code.includes('27A') ? 12 : 1 },
-    /* Kode demo untuk testing — hapus di produksi jika perlu */
+    { regex: /^PRO26A-[A-Z0-9]{4,8}$/, tier: 'Pro', months: () => 12 },
+    { regex: /^PRO26B-[A-Z0-9]{4,8}$/, tier: 'Pro', months: () => 3 },
+    { regex: /^PRO26-[A-Z0-9]{4,8}$/,  tier: 'Pro', months: () => 1 },
+    { regex: /^PRO27A-[A-Z0-9]{4,8}$/, tier: 'Pro', months: () => 12 },
+    { regex: /^PRO27B-[A-Z0-9]{4,8}$/, tier: 'Pro', months: () => 3 },
+    { regex: /^PRO27-[A-Z0-9]{4,8}$/,  tier: 'Pro', months: () => 1 },
+    { regex: /^OPD26A-[A-Z0-9]{4,8}$/, tier: 'OPD/Instansi', months: () => 12 },
+    { regex: /^OPD26B-[A-Z0-9]{4,8}$/, tier: 'OPD/Instansi', months: () => 3 },
+    { regex: /^OPD26-[A-Z0-9]{4,8}$/,  tier: 'OPD/Instansi', months: () => 1 },
+    { regex: /^OPD27A-[A-Z0-9]{4,8}$/, tier: 'OPD/Instansi', months: () => 12 },
+    /* Kode demo untuk testing */
     { regex: /^DEMO-PRO2026$/, tier: 'Pro (Demo)', months: () => 1 },
   ];
 
