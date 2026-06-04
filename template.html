@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Dokumen Perencanaan Daerah — Andri Wulandika</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      background: #ffffff;
+      color: #1d1d1f;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+    }
+    .nav-logo {
+      font-size: 17px; font-weight: 600; color: #1d1d1f;
+      text-decoration: none; letter-spacing: -0.3px;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 14px; color: #6e6e73; text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #1d1d1f; }
+    .nav-links a.active { color: #0071e3; font-weight: 500; }
+
+    /* HERO */
+    .hero {
+      margin-top: 52px;
+      background: linear-gradient(160deg, #f5f5f7 0%, #ffffff 60%);
+      padding: 80px 5% 64px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700; letter-spacing: -1px;
+      color: #1d1d1f; margin-bottom: 16px;
+      line-height: 1.1;
+    }
+    .hero p {
+      font-size: clamp(15px, 2vw, 19px);
+      color: #6e6e73; max-width: 520px; margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* FILTER TABS */
+    .filter-wrap {
+      padding: 40px 5% 0;
+      display: flex; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border: 1.5px solid #d2d2d7;
+      border-radius: 100px;
+      background: transparent;
+      font-size: 14px; font-weight: 500;
+      color: #6e6e73; cursor: pointer;
+      transition: all .2s;
+    }
+    .filter-btn:hover { border-color: #0071e3; color: #0071e3; }
+    .filter-btn.active {
+      background: #0071e3; border-color: #0071e3;
+      color: #fff;
+    }
+
+    /* GRID */
+    .grid-section { padding: 40px 5% 80px; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    /* CARD */
+    .card {
+      background: #f5f5f7;
+      border-radius: 18px;
+      padding: 28px 24px 24px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: transform .25s, box-shadow .25s;
+      opacity: 0; transform: translateY(24px);
+    }
+    .card.revealed { opacity: 1; transform: translateY(0); }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.10);
+    }
+    .card.hidden { display: none; }
+
+    .card-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+    .icon-renstra { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .icon-renja   { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .icon-sakip   { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+
+    .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 11px; font-weight: 600; padding: 3px 9px;
+      border-radius: 100px; letter-spacing: .3px;
+    }
+    .badge-word   { background: #dbeafe; color: #1e40af; }
+    .badge-excel  { background: #dcfce7; color: #15803d; }
+    .badge-free   { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .badge-new    { background: #0071e3; color: #fff; }
+    .badge-popular { background: #ff6b35; color: #fff; }
+
+    .card h3 {
+      font-size: 15px; font-weight: 600; color: #1d1d1f;
+      line-height: 1.35; letter-spacing: -.2px;
+    }
+    .card p {
+      font-size: 13px; color: #6e6e73; line-height: 1.55; flex: 1;
+    }
+    .card-regulasi {
+      font-size: 12px; color: #0071e3; font-weight: 500;
+    }
+    .btn-download {
+      margin-top: 4px;
+      background: #0071e3; color: #fff;
+      border: none; border-radius: 10px;
+      padding: 11px 0; width: 100%;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-download:hover { background: #0077ed; transform: scale(1.01); }
+    .btn-download:active { transform: scale(.98); }
+
+    /* HOW TO USE */
+    .how-section {
+      background: #f5f5f7;
+      padding: 72px 5%;
+      text-align: center;
+    }
+    .how-section h2 {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 700; letter-spacing: -.5px;
+      margin-bottom: 48px;
+    }
+    .steps {
+      display: flex; justify-content: center;
+      gap: 32px; flex-wrap: wrap;
+      max-width: 900px; margin: 0 auto;
+    }
+    .step {
+      flex: 1; min-width: 180px; max-width: 200px;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .step-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #0071e3; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700;
+    }
+    .step h4 { font-size: 15px; font-weight: 600; color: #1d1d1f; }
+    .step p  { font-size: 13px; color: #6e6e73; line-height: 1.5; }
+    .step a  { color: #0071e3; text-decoration: none; font-weight: 500; }
+    .step a:hover { text-decoration: underline; }
+
+    /* CTA */
+    .cta-section {
+      padding: 72px 5%;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 700; letter-spacing: -.4px;
+      margin-bottom: 12px;
+    }
+    .cta-section p { font-size: 16px; color: #6e6e73; margin-bottom: 28px; }
+    .btn-cta {
+      display: inline-block;
+      background: #1d1d1f; color: #fff;
+      border-radius: 100px;
+      padding: 14px 32px;
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-cta:hover { background: #3a3a3c; transform: scale(1.02); }
+
+    /* FOOTER */
+    footer {
+      background: #f5f5f7;
+      border-top: 1px solid #d2d2d7;
+      padding: 32px 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer p { font-size: 13px; color: #6e6e73; }
+    footer a { color: #0071e3; text-decoration: none; font-size: 13px; }
+    footer a:hover { text-decoration: underline; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 18px;
+      padding: 40px 36px 32px;
+      max-width: 400px; width: 90%;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+      animation: popIn .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes popIn {
+      from { transform: scale(.88); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+    .modal-icon { font-size: 40px; margin-bottom: 12px; }
+    .modal h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .modal p  { font-size: 14px; color: #6e6e73; line-height: 1.6; margin-bottom: 24px; }
+    .modal-actions { display: flex; flex-direction: column; gap: 10px; }
+    .btn-wa {
+      background: #25d366; color: #fff;
+      border: none; border-radius: 10px;
+      padding: 13px; font-size: 14px; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      display: block; transition: background .2s;
+    }
+    .btn-wa:hover { background: #1ebe5d; }
+    .btn-close-modal {
+      background: #f5f5f7; color: #6e6e73;
+      border: none; border-radius: 10px;
+      padding: 13px; font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-close-modal:hover { background: #e8e8ed; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .steps { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Andri Wulandika</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="template.html" class="active">Template</a></li>
+    <li><a href="harga.html">Harga</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Template Dokumen<br>Perencanaan Daerah</h1>
+  <p>Format resmi, siap pakai, sesuai regulasi terbaru. Gratis untuk semua ASN Indonesia.</p>
+</section>
+
+<!-- FILTER TABS -->
+<div class="filter-wrap">
+  <button class="filter-btn active" data-filter="all">Semua</button>
+  <button class="filter-btn" data-filter="renstra">Renstra</button>
+  <button class="filter-btn" data-filter="renja">Renja</button>
+  <button class="filter-btn" data-filter="sakip">SAKIP</button>
+  <button class="filter-btn" data-filter="anggaran">Anggaran</button>
+  <button class="filter-btn" data-filter="rkpd">RKPD</button>
+</div>
+
+<!-- CARD GRID -->
+<section class="grid-section">
+  <div class="card-grid">
+
+    <!-- RENSTRA 1 -->
+    <div class="card" data-category="renstra"
+         data-name="Template%20Renstra%20OPD%202025-2029">
+      <div class="card-icon icon-renstra">📋</div>
+      <div class="card-badges">
+        <span class="badge badge-word">Word</span>
+        <span class="badge badge-free">Gratis</span>
+        <span class="badge badge-new">Terbaru</span>
+      </div>
+      <h3>Template Renstra OPD 2025–2029</h3>
+      <p>Dokumen Rencana Strategis OPD lengkap dengan sistematika terbaru, analisis lingkungan, dan matriks kinerja.</p>
+      <span class="card-regulasi">Berdasarkan Inmendagri 2/2025</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+    <!-- RENSTRA 2 -->
+    <div class="card" data-category="renstra"
+         data-name="Matriks%20Tujuan%20%26%20Sasaran%20Renstra">
+      <div class="card-icon icon-renstra">📊</div>
+      <div class="card-badges">
+        <span class="badge badge-excel">Excel</span>
+        <span class="badge badge-free">Gratis</span>
+      </div>
+      <h3>Matriks Tujuan &amp; Sasaran Renstra</h3>
+      <p>Spreadsheet terstruktur untuk menyusun tujuan, sasaran, indikator, target tahunan, dan sumber data OPD.</p>
+      <span class="card-regulasi">Berdasarkan Permendagri 86/2017</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+    <!-- RENSTRA 3 -->
+    <div class="card" data-category="renstra"
+         data-name="Template%20Review%20Renstra%20Triwulanan">
+      <div class="card-icon icon-renstra">🔍</div>
+      <div class="card-badges">
+        <span class="badge badge-word">Word</span>
+        <span class="badge badge-free">Gratis</span>
+      </div>
+      <h3>Template Review Renstra Triwulanan</h3>
+      <p>Format laporan monitoring dan evaluasi capaian Renstra per triwulan, siap ditandatangani pimpinan OPD.</p>
+      <span class="card-regulasi">Berdasarkan Permendagri 86/2017</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+    <!-- RENJA 1 -->
+    <div class="card" data-category="renja"
+         data-name="Template%20Renja%20OPD%202025">
+      <div class="card-icon icon-renja">📝</div>
+      <div class="card-badges">
+        <span class="badge badge-word">Word</span>
+        <span class="badge badge-excel">Excel</span>
+        <span class="badge badge-free">Gratis</span>
+        <span class="badge badge-popular">Populer</span>
+      </div>
+      <h3>Template Renja OPD 2025</h3>
+      <p>Dokumen Rencana Kerja OPD tahunan lengkap dengan rumusan program, kegiatan, sub kegiatan, dan indikator kinerja.</p>
+      <span class="card-regulasi">Berdasarkan Permendagri 81/2022</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+    <!-- RENJA 2 -->
+    <div class="card" data-category="renja"
+         data-name="Template%20Renja%20Perubahan">
+      <div class="card-icon icon-renja">🔄</div>
+      <div class="card-badges">
+        <span class="badge badge-word">Word</span>
+        <span class="badge badge-free">Gratis</span>
+      </div>
+      <h3>Template Renja Perubahan</h3>
+      <p>Format dokumen perubahan Renja OPD tengah tahun, mencakup pergeseran program dan justifikasi perubahan anggaran.</p>
+      <span class="card-regulasi">Berdasarkan Permendagri 81/2022</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+    <!-- RENJA 3 -->
+    <div class="card" data-category="renja"
+         data-name="Matriks%20Program%20Kegiatan%20Sub%20Kegiatan">
+      <div class="card-icon icon-renja">📑</div>
+      <div class="card-badges">
+        <span class="badge badge-excel">Excel</span>
+        <span class="badge badge-free">Gratis</span>
+      </div>
+      <h3>Matriks Program Kegiatan Sub Kegiatan</h3>
+      <p>Tabel lengkap pemetaan Program–Kegiatan–Sub Kegiatan sesuai nomenklatur SIPD, dilengkapi kolom pagu anggaran.</p>
+      <span class="card-regulasi">Berdasarkan Permendagri 90/2019 &amp; Pemutakhiran</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+    <!-- SAKIP 1 -->
+    <div class="card" data-category="sakip"
+         data-name="Template%20Perjanjian%20Kinerja%20(PK)%20Eselon%20II-IV">
+      <div class="card-icon icon-sakip">🤝</div>
+      <div class="card-badges">
+        <span class="badge badge-word">Word</span>
+        <span class="badge badge-free">Gratis</span>
+        <span class="badge badge-popular">Populer</span>
+      </div>
+      <h3>Template Perjanjian Kinerja (PK) Eselon II–IV</h3>
+      <p>Dokumen PK siap pakai untuk Kepala OPD (Es. II), Kabid (Es. III), dan Kasubbid/Kasie (Es. IV) beserta format cascading.</p>
+      <span class="card-regulasi">Berdasarkan PermenPANRB 53/2014</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+    <!-- SAKIP 2 -->
+    <div class="card" data-category="sakip"
+         data-name="Template%20LKjIP%20OPD">
+      <div class="card-icon icon-sakip">📄</div>
+      <div class="card-badges">
+        <span class="badge badge-word">Word</span>
+        <span class="badge badge-free">Gratis</span>
+      </div>
+      <h3>Template LKjIP OPD</h3>
+      <p>Format Laporan Kinerja Instansi Pemerintah OPD lengkap: pendahuluan, perencanaan kinerja, akuntabilitas, dan penutup.</p>
+      <span class="card-regulasi">Berdasarkan PermenPANRB 53/2014</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+    <!-- SAKIP 3 -->
+    <div class="card" data-category="sakip"
+         data-name="Matriks%20Cascading%20IKU%2FIKD%2FIKK">
+      <div class="card-icon icon-sakip">🎯</div>
+      <div class="card-badges">
+        <span class="badge badge-excel">Excel</span>
+        <span class="badge badge-free">Gratis</span>
+      </div>
+      <h3>Matriks Cascading IKU/IKD/IKK</h3>
+      <p>Spreadsheet penurunan indikator kinerja dari level OPD hingga individu ASN, siap digunakan untuk SKP dan evaluasi SAKIP.</p>
+      <span class="card-regulasi">Berdasarkan PermenPANRB 6/2022</span>
+      <button class="btn-download">⬇ Unduh Template</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section class="how-section">
+  <h2>Cara Menggunakan Template</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Unduh Template</h4>
+      <p>Pilih template yang sesuai kebutuhan dan klik tombol unduh.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Sesuaikan Identitas OPD</h4>
+      <p>Ganti nama OPD, logo daerah, dan informasi pejabat yang berwenang.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Isi Data Daerah</h4>
+      <p>Masukkan data kondisi daerah, indikator, target, dan anggaran sesuai APBD.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Generate dengan SiGenDok</h4>
+      <p>Gunakan <a href="sigendok.html">SiGenDok</a> untuk mempercepat pengisian dan menyempurnakan narasi dokumen secara otomatis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Butuh template custom sesuai daerah Anda?</h2>
+  <p>Kami siap membantu menyusun template dokumen perencanaan yang disesuaikan dengan peraturan daerah dan kebutuhan spesifik OPD Anda.</p>
+  <a href="https://wa.me/62811660568?text=Halo%2C%20saya%20ingin%20konsultasi%20template%20custom%20dokumen%20perencanaan"
+     class="btn-cta" target="_blank" rel="noopener">Hubungi Kami →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Andri Wulandika. Seluruh template untuk keperluan non-komersial ASN.</p>
+  <div style="display:flex;gap:20px;">
+    <a href="index.html">Beranda</a>
+    <a href="tools.html">Tools</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-icon">🚀</div>
+    <h3>Segera Tersedia</h3>
+    <p>Template ini sedang dalam proses finalisasi. Kirim pesan WhatsApp untuk mendapatkan notifikasi saat template siap diunduh — atau minta langsung sekarang.</p>
+    <div class="modal-actions">
+      <a id="modalWaLink" href="#" class="btn-wa" target="_blank" rel="noopener">
+        💬 Beritahu Saya via WhatsApp
+      </a>
+      <button class="btn-close-modal" id="modalClose">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── FILTER ── */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  /* ── MODAL ── */
+  const overlay   = document.getElementById('modalOverlay');
+  const waLink    = document.getElementById('modalWaLink');
+  const closeBtn  = document.getElementById('modalClose');
+
+  document.querySelectorAll('.btn-download').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card     = btn.closest('.card');
+      const name     = card.dataset.name || 'Template%20Dokumen';
+      waLink.href    = `https://wa.me/62811660568?text=Halo%2C%20saya%20ingin%20mengunduh%20template%20${name}`;
+      overlay.classList.add('open');
+    });
+  });
+
+  closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') overlay.classList.remove('open');
+  });
+
+  /* ── REVEAL ANIMATION ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  cards.forEach(card => observer.observe(card));
+</script>
+</body>
+</html>
