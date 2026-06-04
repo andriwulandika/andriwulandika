@@ -230,7 +230,7 @@
     </div>
     <div class="vimis-body" id="vimisBody" style="display:none;">
       <div class="form-row triple" style="margin-top:14px;">
-        <div class="field"><label>Nama Daerah</label><input type="text" id="vm_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
+        <div class="field"><label>Nama Daerah</label><input type="text" id="vm_daerah" placeholder="Nama Kabupaten / Kota Anda"/></div>
         <div class="field"><label>Nama Kepala Daerah</label><input type="text" id="vm_kd" placeholder="Nama Bupati/Walikota"/></div>
         <div class="field"><label>Periode Jabatan</label><input type="text" id="vm_periode" placeholder="2025–2029"/></div>
       </div>
@@ -337,7 +337,7 @@
           <div class="form-row">
             <div class="field">
               <label>Kabupaten / Kota *</label>
-              <input type="text" id="r_daerah" placeholder="Kabupaten Aceh Tenggara"/>
+              <input type="text" id="r_daerah" placeholder="Nama Kabupaten / Kota Anda"/>
             </div>
             <div class="field">
               <label>Provinsi *</label>
@@ -410,7 +410,7 @@
             </div>
             <div class="field">
               <label>Tempat, Tanggal Penetapan</label>
-              <input type="text" id="r_ttd_tempat" placeholder="Kutacane, Januari 2026"/>
+              <input type="text" id="r_ttd_tempat" placeholder="Nama Kota, Januari 2026"/>
             </div>
           </div>
         </div>
@@ -621,7 +621,7 @@
         <div class="form-card-body">
           <div class="form-row">
             <div class="field"><label>Nama OPD *</label><input type="text" id="l_opd_nama" placeholder="Dinas Kesehatan"/></div>
-            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="l_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
+            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="l_daerah" placeholder="Nama Kabupaten / Kota Anda"/></div>
           </div>
           <div class="form-row triple">
             <div class="field"><label>Tahun LKjIP *</label><input type="number" id="l_tahun" placeholder="2025" min="2020" max="2035"/></div>
@@ -793,11 +793,11 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="p_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
+            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="p_daerah" placeholder="Nama Kabupaten / Kota Anda"/></div>
             <div class="field"><label>Tahun *</label><input type="number" id="p_tahun" placeholder="2026" min="2020" max="2035"/></div>
           </div>
           <div class="form-row">
-            <div class="field"><label>Nama OPD *</label><input type="text" id="p_opd" placeholder="Dinas Kesehatan Kabupaten Aceh Tenggara"/></div>
+            <div class="field"><label>Nama OPD *</label><input type="text" id="p_opd" placeholder="Nama OPD Anda"/></div>
             <div class="field"><label>Nama Bidang / Unit (jika Eselon III/IV/Pelaksana)</label><input type="text" id="p_bidang" placeholder="Bidang Kesehatan Masyarakat"/></div>
           </div>
         </div>
@@ -817,10 +817,10 @@
           <div class="form-row triple">
             <div class="field"><label>Nama *</label><input type="text" id="p_p2_nama" placeholder="Nama Atasan Langsung"/></div>
             <div class="field"><label>NIP</label><input type="text" id="p_p2_nip" placeholder="19xxxxxxxxxxxxxxx"/></div>
-            <div class="field"><label>Jabatan *</label><input type="text" id="p_p2_jabatan" placeholder="Bupati Aceh Tenggara"/></div>
+            <div class="field"><label>Jabatan *</label><input type="text" id="p_p2_jabatan" placeholder="Jabatan Kepala Daerah"/></div>
           </div>
           <div class="form-row">
-            <div class="field"><label>Tempat, Tanggal Penandatanganan</label><input type="text" id="p_ttd" placeholder="Kutacane, Januari 2026"/></div>
+            <div class="field"><label>Tempat, Tanggal Penandatanganan</label><input type="text" id="p_ttd" placeholder="Nama Kota, Januari 2026"/></div>
           </div>
         </div>
         <div class="form-nav"><button class="btn-prev" onclick="pkStep(1)">← Kembali</button><button class="btn-next" onclick="pkStep(3)">Lanjut →</button></div>
@@ -926,7 +926,7 @@
             <div class="field"><label>Singkatan OPD</label><input type="text" id="rt_singkat" placeholder="DISDIKBUD"/></div>
           </div>
           <div class="form-row">
-            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="rt_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
+            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="rt_daerah" placeholder="Nama Kabupaten / Kota Anda"/></div>
             <div class="field"><label>Provinsi</label><input type="text" id="rt_provinsi" placeholder="Aceh"/></div>
           </div>
           <div class="form-row triple">
@@ -940,7 +940,7 @@
           </div>
           <div class="form-row">
             <div class="field"><label>Pangkat / Golongan</label><input type="text" id="rt_gol" placeholder="Pembina Utama Muda / IV.c"/></div>
-            <div class="field"><label>Tempat, Tanggal Penetapan</label><input type="text" id="rt_ttd" placeholder="Kutacane, Januari 2025"/></div>
+            <div class="field"><label>Tempat, Tanggal Penetapan</label><input type="text" id="rt_ttd" placeholder="Nama Kota, Januari 2025"/></div>
           </div>
         </div>
         <div class="form-nav"><div></div><button class="btn-next" onclick="renstraStep(2)">Lanjut →</button></div>
@@ -1079,7 +1079,7 @@
         <div class="form-card-body">
           <div class="form-row">
             <div class="field"><label>Nama OPD *</label><input type="text" id="rp_opd" placeholder="Dinas Pendidikan dan Kebudayaan"/></div>
-            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="rp_daerah" placeholder="Kabupaten Aceh Tenggara"/></div>
+            <div class="field"><label>Kabupaten / Kota *</label><input type="text" id="rp_daerah" placeholder="Nama Kabupaten / Kota Anda"/></div>
           </div>
           <div class="form-row triple">
             <div class="field"><label>Tahun Renja *</label><input type="number" id="rp_tahun" placeholder="2026"/></div>
@@ -1088,7 +1088,7 @@
           </div>
           <div class="form-row">
             <div class="field"><label>Pangkat / Golongan</label><input type="text" id="rp_gol" placeholder="Pembina / IV.a"/></div>
-            <div class="field"><label>Tempat, Tanggal Penetapan</label><input type="text" id="rp_ttd" placeholder="Kutacane, Juli 2026"/></div>
+            <div class="field"><label>Tempat, Tanggal Penetapan</label><input type="text" id="rp_ttd" placeholder="Nama Kota, Juli 2026"/></div>
           </div>
           <div class="form-row single">
             <div class="field"><label>Dasar / Alasan Perubahan Renja *</label><span class="field-hint">Jelaskan mengapa Renja perlu diubah — perubahan RKPD, kebijakan baru, refocusing anggaran, dll.</span><textarea id="rp_alasan" placeholder="Berdasarkan Peraturan Bupati No. ... Tahun ... tentang Perubahan RKPD Tahun ..., dan adanya refocusing anggaran sesuai Surat Edaran ..., maka diperlukan penyesuaian program dan pagu anggaran OPD sebagai berikut..."></textarea></div>
@@ -1182,7 +1182,7 @@
 </div>
 
 <footer style="background:#f5f5f7;border-top:1px solid var(--border);padding:20px 24px;text-align:center;font-size:.78rem;color:var(--text2);margin-top:60px;">
-  © 2026 Andri Wulandika · Kutacane, Aceh Tenggara &nbsp;·&nbsp;
+  © 2026 Andri Wulandika &nbsp;·&nbsp;
   <a href="index.html" style="color:var(--text2);text-decoration:none;">Beranda</a> &nbsp;·&nbsp;
   <a href="regulasi.html" style="color:var(--text2);text-decoration:none;">Regulasi</a>
 </footer>
