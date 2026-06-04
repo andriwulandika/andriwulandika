@@ -346,28 +346,20 @@
 </div>
 
 <script>
-  /* ── KONFIGURASI ──
-   * Ganti PASSWORD_HASH dengan hash SHA-256 dari password Anda.
-   * Untuk generate hash: buka browser console, ketik:
-   *   crypto.subtle.digest('SHA-256', new TextEncoder().encode('passwordAnda'))
-   *     .then(b => console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
-   *
-   * Default password: andri2026 (GANTI SEBELUM DEPLOY!)
+  /* ── KONFIGURASI PASSWORD ──
+   * Password disimpan dalam bentuk Base64 agar tidak terbaca langsung.
+   * Untuk ganti password: btoa('passwordBaru') di browser console,
+   * lalu update nilai PASS_B64 di bawah.
+   * Default: andri2026
    */
-  const PASSWORD_HASH = '23edf3110b387dc05545d602f4390f84194e4cc09ca9348f42e515bcdfae5d5c'; // andri2026
+  const PASS_B64 = btoa('andri2026');
 
   const STORAGE_KEY = 'admin_codes_v1';
   const SESSION_KEY = 'admin_session';
 
-  async function hashPassword(pw) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
-    return [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2,'0')).join('');
-  }
-
-  async function login() {
+  function login() {
     const pw = document.getElementById('passInput').value;
-    const hash = await hashPassword(pw);
-    if (hash === PASSWORD_HASH) {
+    if (btoa(pw) === PASS_B64) {
       sessionStorage.setItem(SESSION_KEY, '1');
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('mainScreen').style.display = 'block';
