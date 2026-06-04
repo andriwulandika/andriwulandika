@@ -1963,88 +1963,197 @@ function generatePK() {
   const tahun    = v('p_tahun')     || '[Tahun]';
   const opd      = v('p_opd')       || '[Nama OPD]';
   const bidang   = v('p_bidang');
-  const p1nama   = v('p_p1_nama')   || '[Pihak Pertama]';
+  const p1nama   = v('p_p1_nama')   || '[Nama Pejabat]';
   const p1nip    = v('p_p1_nip');
-  const p1jab    = v('p_p1_jabatan')|| 'Pejabat';
-  const p2nama   = v('p_p2_nama')   || '[Pihak Kedua]';
+  const p1jab    = v('p_p1_jabatan')|| 'Kepala OPD';
+  const p2nama   = v('p_p2_nama')   || '[Nama Atasan]';
   const p2nip    = v('p_p2_nip');
-  const p2jab    = v('p_p2_jabatan')|| 'Atasan Langsung';
-  const ttd      = v('p_ttd')       || daerah + ', ' + tahun;
+  const p2jab    = v('p_p2_jabatan')|| 'Kepala Daerah';
+  const ttd      = v('p_ttd')       || daerah + ', Januari ' + tahun;
   const total    = fmt(v('p_total'));
   const sumber   = v('p_sumber')    || 'APBD';
   const levelName = PK_LEVEL_NAMES[pkLevel] || 'Eselon II';
 
-  const unitKerja = bidang ? `${opd} — ${bidang}` : opd;
+  /* Label sasaran & anggaran berbeda per level (PermenPANRB 53/2014) */
+  const isKepDaerah = pkLevel === 1; // Eselon II / Kepala OPD (ttd dgn Bupati)
+  const isBidang    = pkLevel === 2; // Eselon III
+  const isSasLabel  = (pkLevel <= 2) ? 'Sasaran Strategis' : (pkLevel === 3 ? 'Sasaran Program/Kegiatan' : 'Sasaran');
+  const isAngLabel  = (pkLevel <= 2) ? 'Program' : 'Kegiatan';
+  const unitKerja   = bidang ? `${opd} — ${bidang}` : opd;
 
   const sasRows = tblRows('tbody-pk2');
   const sasTbl = sasRows.length ? sasRows.map((r,i) =>
-    `<tr><td class="center">${i+1}</td><td>${r[1]||r[0]||'-'}</td><td>${r[2]||'-'}</td><td class="center">${r[3]||'-'}</td><td class="center">${r[4]||'-'}</td></tr>`).join('') :
-    '<tr><td colspan="5" class="center">-</td></tr>';
+    `<tr>
+      <td class="center" style="width:5%">${i+1}</td>
+      <td style="width:35%">${r[1]||r[0]||'-'}</td>
+      <td style="width:35%">${r[2]||'-'}</td>
+      <td class="center" style="width:10%">${r[3]||'-'}</td>
+      <td class="center" style="width:15%">${r[4]||'-'}</td>
+    </tr>`).join('') :
+    '<tr><td colspan="5" class="center" style="color:#aaa;font-style:italic;">Belum ada data sasaran</td></tr>';
 
   const angRows = tblRows('tbody-ang2');
-  const angTbl = angRows.length ? angRows.map((r,i) =>
-    `<tr><td class="center">${i+1}</td><td>${r[1]||r[0]||'-'}</td><td>${r[2]||'-'}</td><td class="center">${fmt(r[3])}</td></tr>`).join('') :
-    '<tr><td colspan="4" class="center">-</td></tr>';
+  const angTbl  = angRows.length ? angRows.map((r,i) =>
+    `<tr>
+      <td class="center" style="width:5%">${i+1}</td>
+      <td style="width:55%">${r[1]||r[0]||'-'}</td>
+      <td class="center" style="width:${pkLevel<=2?'25%':'40%'}">${fmt(r[3])||fmt(r[2])||'-'}</td>
+      ${pkLevel<=2 ? `<td style="width:15%">${r[2]||'-'}</td>` : ''}
+    </tr>`).join('') :
+    `<tr><td colspan="${pkLevel<=2?4:3}" class="center" style="color:#aaa;font-style:italic;">Belum ada data anggaran</td></tr>`;
+
+  /* ── HALAMAN 1: PERNYATAAN PK ── */
+  const pernyataanHtml = pkLevel === 1 ?
+  /* Level Eselon II (Kepala OPD ↔ Bupati/Walikota) — 2 pihak, Lampiran I/2-6 */
+  `<p style="text-align:justify;">Dalam rangka mewujudkan manajemen pemerintahan yang efektif, transparan dan akuntabel serta berorientasi pada hasil, kami yang bertanda tangan di bawah ini:</p>
+<table style="margin:16pt 0;width:100%;">
+  <tbody>
+    <tr><td style="width:4%;border:none;padding:3pt 0;vertical-align:top;">1.</td><td style="border:none;padding:3pt 0;" colspan="3"><strong>Nama</strong></td><td style="border:none;padding:3pt 0;width:2%;">:</td><td style="border:none;padding:3pt 0;">${p1nama}</td></tr>
+    ${p1nip?`<tr><td style="border:none;padding:3pt 0;"></td><td style="border:none;padding:3pt 0;" colspan="3"><strong>NIP</strong></td><td style="border:none;padding:3pt 0;">:</td><td style="border:none;padding:3pt 0;">${p1nip}</td></tr>`:''}
+    <tr><td style="border:none;padding:3pt 0;"></td><td style="border:none;padding:3pt 0;" colspan="3"><strong>Jabatan</strong></td><td style="border:none;padding:3pt 0;">:</td><td style="border:none;padding:3pt 0;">${p1jab}</td></tr>
+  </tbody>
+</table>
+<p style="text-align:justify;">selanjutnya disebut <strong>pihak pertama</strong></p>
+<table style="margin:16pt 0;width:100%;">
+  <tbody>
+    <tr><td style="width:4%;border:none;padding:3pt 0;vertical-align:top;">2.</td><td style="border:none;padding:3pt 0;" colspan="3"><strong>Nama</strong></td><td style="border:none;padding:3pt 0;width:2%;">:</td><td style="border:none;padding:3pt 0;">${p2nama}</td></tr>
+    ${p2nip?`<tr><td style="border:none;padding:3pt 0;"></td><td style="border:none;padding:3pt 0;" colspan="3"><strong>NIP</strong></td><td style="border:none;padding:3pt 0;">:</td><td style="border:none;padding:3pt 0;">${p2nip}</td></tr>`:''}
+    <tr><td style="border:none;padding:3pt 0;"></td><td style="border:none;padding:3pt 0;" colspan="3"><strong>Jabatan</strong></td><td style="border:none;padding:3pt 0;">:</td><td style="border:none;padding:3pt 0;">${p2jab}</td></tr>
+  </tbody>
+</table>
+<p style="text-align:justify;">selaku atasan pihak pertama, selanjutnya disebut <strong>pihak kedua</strong></p>
+<p style="text-align:justify;margin-top:14pt;">Pihak pertama berjanji akan mewujudkan target kinerja yang seharusnya sesuai lampiran perjanjian ini, dalam rangka mencapai target kinerja jangka menengah seperti yang telah ditetapkan dalam dokumen perencanaan. Keberhasilan dan kegagalan pencapaian target kinerja tersebut menjadi tanggung jawab kami.</p>
+<p style="text-align:justify;margin-top:8pt;">Pihak kedua akan melakukan supervisi yang diperlukan serta akan melakukan evaluasi terhadap capaian kinerja dari perjanjian ini dan mengambil tindakan yang diperlukan dalam rangka pemberian penghargaan dan sanksi.</p>`
+  :
+  /* Level Eselon III/IV/Pelaksana — format sama 2 pihak */
+  `<p style="text-align:justify;">Dalam rangka mewujudkan manajemen pemerintahan yang efektif, transparan dan akuntabel serta berorientasi pada hasil, kami yang bertanda tangan di bawah ini:</p>
+<table style="margin:16pt 0;width:100%;">
+  <tbody>
+    <tr><td style="width:4%;border:none;padding:3pt 0;vertical-align:top;">1.</td><td style="border:none;padding:3pt 0;" colspan="3"><strong>Nama</strong></td><td style="border:none;padding:3pt 0;width:2%;">:</td><td style="border:none;padding:3pt 0;">${p1nama}</td></tr>
+    ${p1nip?`<tr><td style="border:none;padding:3pt 0;"></td><td style="border:none;padding:3pt 0;" colspan="3"><strong>NIP</strong></td><td style="border:none;padding:3pt 0;">:</td><td style="border:none;padding:3pt 0;">${p1nip}</td></tr>`:''}
+    <tr><td style="border:none;padding:3pt 0;"></td><td style="border:none;padding:3pt 0;" colspan="3"><strong>Jabatan</strong></td><td style="border:none;padding:3pt 0;">:</td><td style="border:none;padding:3pt 0;">${p1jab}</td></tr>
+  </tbody>
+</table>
+<p style="text-align:justify;">selanjutnya disebut <strong>pihak pertama</strong></p>
+<table style="margin:16pt 0;width:100%;">
+  <tbody>
+    <tr><td style="width:4%;border:none;padding:3pt 0;vertical-align:top;">2.</td><td style="border:none;padding:3pt 0;" colspan="3"><strong>Nama</strong></td><td style="border:none;padding:3pt 0;width:2%;">:</td><td style="border:none;padding:3pt 0;">${p2nama}</td></tr>
+    ${p2nip?`<tr><td style="border:none;padding:3pt 0;"></td><td style="border:none;padding:3pt 0;" colspan="3"><strong>NIP</strong></td><td style="border:none;padding:3pt 0;">:</td><td style="border:none;padding:3pt 0;">${p2nip}</td></tr>`:''}
+    <tr><td style="border:none;padding:3pt 0;"></td><td style="border:none;padding:3pt 0;" colspan="3"><strong>Jabatan</strong></td><td style="border:none;padding:3pt 0;">:</td><td style="border:none;padding:3pt 0;">${p2jab}</td></tr>
+  </tbody>
+</table>
+<p style="text-align:justify;">selaku atasan pihak pertama, selanjutnya disebut <strong>pihak kedua</strong></p>
+<p style="text-align:justify;margin-top:14pt;">Pihak pertama berjanji akan mewujudkan target kinerja yang seharusnya sesuai lampiran perjanjian ini, dalam rangka mencapai target kinerja jangka menengah seperti yang telah ditetapkan dalam dokumen perencanaan. Keberhasilan dan kegagalan pencapaian target kinerja tersebut menjadi tanggung jawab kami.</p>
+<p style="text-align:justify;margin-top:8pt;">Pihak kedua akan melakukan supervisi yang diperlukan serta akan melakukan evaluasi terhadap capaian kinerja dari perjanjian ini dan mengambil tindakan yang diperlukan dalam rangka pemberian penghargaan dan sanksi.</p>`;
 
   const html = `
 <div class="cover-wrap">
-  <div class="cover-logo">🤝</div>
-  <div class="cover-title">PERJANJIAN KINERJA<br/>TAHUN ${tahun}</div>
-  <div style="font-size:11pt;margin-bottom:8pt;">Tingkat: <strong>${levelName}</strong></div>
+  <div style="font-size:28pt;margin-bottom:16pt;">🤝</div>
+  <div class="cover-title" style="font-size:15pt;">PERJANJIAN KINERJA<br/>TAHUN ${tahun}</div>
+  <div style="font-size:11pt;margin:8pt 0;color:#555;">Tingkat: <strong>${levelName}</strong></div>
   <div class="cover-instansi">${unitKerja.toUpperCase()}</div>
   <div class="cover-tahun">${daerah.toUpperCase()}</div>
 </div>
 <div class="page-break"></div>
 
-<p class="bab-title">PERJANJIAN KINERJA TAHUN ${tahun}</p>
-<p style="font-size:10pt;color:#555;margin-bottom:12pt;">Tingkat: <em>${levelName}</em> &nbsp;|&nbsp; ${unitKerja}</p>
-<p>Dalam rangka mewujudkan manajemen pemerintahan yang efektif, transparan, dan akuntabel serta berorientasi pada hasil, yang bertanda tangan di bawah ini:</p>
-<table style="margin:14pt 0;">
-  <tbody>
-    <tr><td style="width:30%;font-weight:bold;border:none;padding:4pt 0;">Nama</td><td style="border:none;padding:4pt 0;">: ${p1nama}</td></tr>
-    ${p1nip?`<tr><td style="font-weight:bold;border:none;padding:4pt 0;">NIP</td><td style="border:none;padding:4pt 0;">: ${p1nip}</td></tr>`:''}
-    <tr><td style="font-weight:bold;border:none;padding:4pt 0;">Jabatan</td><td style="border:none;padding:4pt 0;">: ${p1jab}</td></tr>
-  </tbody>
-</table>
-<p>Selanjutnya disebut <strong>Pihak Pertama</strong></p>
-<table style="margin:14pt 0;">
-  <tbody>
-    <tr><td style="width:30%;font-weight:bold;border:none;padding:4pt 0;">Nama</td><td style="border:none;padding:4pt 0;">: ${p2nama}</td></tr>
-    ${p2nip?`<tr><td style="font-weight:bold;border:none;padding:4pt 0;">NIP</td><td style="border:none;padding:4pt 0;">: ${p2nip}</td></tr>`:''}
-    <tr><td style="font-weight:bold;border:none;padding:4pt 0;">Jabatan</td><td style="border:none;padding:4pt 0;">: ${p2jab}</td></tr>
-  </tbody>
-</table>
-<p>Selanjutnya disebut <strong>Pihak Kedua</strong></p>
-<p>Pihak Pertama berjanji akan mewujudkan target kinerja sesuai lampiran perjanjian ini. Keberhasilan dan kegagalan pencapaian target kinerja menjadi tanggung jawab Pihak Pertama. Pihak Kedua akan melakukan supervisi dan evaluasi terhadap capaian kinerja serta mengambil tindakan yang diperlukan.</p>
-<div style="display:flex;justify-content:space-between;margin-top:24pt;">
-  <div style="text-align:center;width:45%;">
-    <p>${ttd}</p><p>Pihak Kedua,</p><p>${p2jab}</p>
-    <div class="ttd-space"></div>
-    <p class="ttd-nama">${p2nama}</p>
-    ${p2nip?`<p class="ttd-nip">NIP. ${p2nip}</p>`:''}
-  </div>
-  <div style="text-align:center;width:45%;">
-    <p>&nbsp;</p><p>Pihak Pertama,</p><p>${p1jab}</p>
-    <div class="ttd-space"></div>
-    <p class="ttd-nama">${p1nama}</p>
-    ${p1nip?`<p class="ttd-nip">NIP. ${p1nip}</p>`:''}
-  </div>
+<!-- ══ HALAMAN PERNYATAAN PK ══ -->
+<div style="text-align:center;margin-bottom:24pt;">
+  <p style="font-size:12pt;font-weight:bold;text-decoration:underline;letter-spacing:1pt;">PERJANJIAN KINERJA TAHUN ${tahun}</p>
+  <p style="font-size:10pt;color:#555;margin-top:4pt;">${unitKerja}</p>
 </div>
+
+${pernyataanHtml}
+
+<!-- Tanda Tangan Halaman Pernyataan -->
+<table style="margin-top:32pt;width:100%;border:none;">
+  <tbody>
+    <tr>
+      <td style="border:none;text-align:center;width:50%;vertical-align:top;padding:0 12pt;">
+        <p style="margin-bottom:4pt;">${ttd}</p>
+        <p style="font-weight:bold;">Pihak Kedua,</p>
+        <p style="font-style:italic;font-size:10pt;">${p2jab}</p>
+        <div style="height:60pt;"></div>
+        <p style="font-weight:bold;text-decoration:underline;">${p2nama}</p>
+        ${p2nip?`<p style="font-size:10pt;">NIP. ${p2nip}</p>`:''}
+      </td>
+      <td style="border:none;text-align:center;width:50%;vertical-align:top;padding:0 12pt;">
+        <p style="margin-bottom:4pt;">&nbsp;</p>
+        <p style="font-weight:bold;">Pihak Pertama,</p>
+        <p style="font-style:italic;font-size:10pt;">${p1jab}</p>
+        <div style="height:60pt;"></div>
+        <p style="font-weight:bold;text-decoration:underline;">${p1nama}</p>
+        ${p1nip?`<p style="font-size:10pt;">NIP. ${p1nip}</p>`:''}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <div class="page-break"></div>
 
-<p class="bab-title">LAMPIRAN PERJANJIAN KINERJA TAHUN ${tahun}</p>
-<p style="text-align:right;font-size:10pt;"><strong>Instansi:</strong> ${unitKerja} &nbsp;&nbsp; <strong>Tahun:</strong> ${tahun} &nbsp;&nbsp; <strong>Level:</strong> ${levelName}</p>
-<table>
-  <thead><tr><th>No</th><th>Sasaran Kinerja</th><th>Indikator Kinerja</th><th>Satuan</th><th>Target</th></tr></thead>
+<!-- ══ HALAMAN LAMPIRAN PK ══ -->
+<div style="text-align:center;margin-bottom:20pt;">
+  <p style="font-size:12pt;font-weight:bold;text-decoration:underline;letter-spacing:1pt;">LAMPIRAN PERJANJIAN KINERJA TAHUN ${tahun}</p>
+  <p style="font-size:10pt;color:#555;margin-top:4pt;">${unitKerja}</p>
+</div>
+
+<!-- Tabel Sasaran & Indikator -->
+<table style="width:100%;font-size:10.5pt;">
+  <thead>
+    <tr>
+      <th style="width:5%;text-align:center;">No</th>
+      <th style="width:35%;text-align:center;">${isSasLabel}</th>
+      <th style="width:35%;text-align:center;">Indikator Kinerja</th>
+      <th style="width:10%;text-align:center;">Satuan</th>
+      <th style="width:15%;text-align:center;">Target</th>
+    </tr>
+  </thead>
   <tbody>${sasTbl}</tbody>
 </table>
-<p style="margin-top:14pt;font-weight:bold;">Program / Kegiatan Pendukung:</p>
-<table>
-  <thead><tr><th>No</th><th>Program / Kegiatan</th><th>Sub Kegiatan / Output</th><th>Anggaran (Rp)</th></tr></thead>
+
+<!-- Tabel Anggaran -->
+<table style="margin-top:16pt;width:100%;font-size:10.5pt;">
+  <thead>
+    <tr>
+      <th style="width:5%;text-align:center;">No</th>
+      <th style="text-align:center;">${isAngLabel}</th>
+      <th style="width:${pkLevel<=2?'25%':'40%'};text-align:center;">Anggaran (Rp)</th>
+      ${pkLevel<=2 ? `<th style="width:15%;text-align:center;">Keterangan</th>` : ''}
+    </tr>
+  </thead>
   <tbody>${angTbl}</tbody>
-  <tfoot><tr><td colspan="3" style="font-weight:bold;text-align:right;">Total</td><td style="text-align:center;font-weight:bold;">${total}</td></tr></tfoot>
+  <tfoot>
+    <tr>
+      <td colspan="${pkLevel<=2?3:2}" style="font-weight:bold;text-align:right;border-top:2px solid #000;">JUMLAH</td>
+      <td style="text-align:center;font-weight:bold;border-top:2px solid #000;">${total}</td>
+      ${pkLevel<=2 ? '<td style="border-top:2px solid #000;"></td>' : ''}
+    </tr>
+  </tfoot>
 </table>
-<p style="font-size:10pt;">Sumber Dana: ${sumber}</p>`;
+<p style="font-size:9.5pt;margin-top:6pt;color:#555;">Sumber Dana: ${sumber}</p>
+
+<!-- Tanda Tangan Lampiran -->
+<table style="margin-top:32pt;width:100%;border:none;">
+  <tbody>
+    <tr>
+      <td style="border:none;text-align:center;width:50%;vertical-align:top;padding:0 12pt;">
+        <p style="margin-bottom:4pt;">${ttd}</p>
+        <p style="font-weight:bold;">Pihak Kedua,</p>
+        <p style="font-style:italic;font-size:10pt;">${p2jab}</p>
+        <div style="height:60pt;"></div>
+        <p style="font-weight:bold;text-decoration:underline;">${p2nama}</p>
+        ${p2nip?`<p style="font-size:10pt;">NIP. ${p2nip}</p>`:''}
+      </td>
+      <td style="border:none;text-align:center;width:50%;vertical-align:top;padding:0 12pt;">
+        <p style="margin-bottom:4pt;">&nbsp;</p>
+        <p style="font-weight:bold;">Pihak Pertama,</p>
+        <p style="font-style:italic;font-size:10pt;">${p1jab}</p>
+        <div style="height:60pt;"></div>
+        <p style="font-weight:bold;text-decoration:underline;">${p1nama}</p>
+        ${p1nip?`<p style="font-size:10pt;">NIP. ${p1nip}</p>`:''}
+      </td>
+    </tr>
+  </tbody>
+</table>`;
 
   showPreview(`PK ${levelName} — ${p1nama} Tahun ${tahun}`, html);
 }
