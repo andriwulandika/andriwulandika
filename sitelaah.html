@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SiTelaah — AI Writer Nota Dinas & Telaahan Staf | Andri Wulandika</title>
+<meta name="description" content="Buat Nota Dinas, Telaahan Staf, atau Memorandum otomatis dengan AI. Isi pokok masalah dan opsi, AI narasi analisis dan rekomendasi secara formal. Export Word & PDF. Gratis untuk ASN Indonesia."/>
+<meta name="keywords" content="nota dinas otomatis, telaahan staf AI, memorandum pemerintah, generator nota dinas, AI writer dokumen administrasi, surat dinas ASN, analisis kebijakan"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://andriwulandika.github.io/andriwulandika/sitelaah.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="SiTelaah — AI Writer Nota Dinas & Telaahan Staf"/>
+<meta property="og:description" content="Generator Nota Dinas dan Telaahan Staf berbasis AI. Analisis formal dan rekomendasi otomatis. Gratis untuk ASN se-Indonesia."/>
+<meta property="og:url" content="https://andriwulandika.github.io/andriwulandika/sitelaah.html"/>
+<meta property="og:site_name" content="Andri Wulandika — AI Tools Perencanaan Daerah"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SiTelaah — AI Writer Nota Dinas & Telaahan Staf"/>
+<meta name="twitter:description" content="Generator Nota Dinas dan Telaahan Staf berbasis AI. Gratis untuk ASN Indonesia."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SiTelaah",
+  "description": "AI Writer otomatis untuk Nota Dinas, Telaahan Staf, dan Memorandum ASN pemerintah daerah.",
+  "url": "https://andriwulandika.github.io/andriwulandika/sitelaah.html",
+  "applicationCategory": "GovernmentApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "IDR" },
+  "author": {
+    "@type": "Person",
+    "name": "Andri Wulandika",
+    "url": "https://andriwulandika.github.io/andriwulandika/"
+  },
+  "inLanguage": "id"
+}
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<style>
+:root{--bg:#F5F5F7;--surface:#fff;--text:#1D1D1F;--sub:#6e6e73;--teal:#0d9488;--teal-h:#0f766e;--border:#d2d2d7;--radius:12px;--shadow:0 2px 16px rgba(0,0,0,.08);--danger:#dc2626;--success:#16a34a;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:24px;}
+nav .logo{font-weight:700;font-size:17px;color:var(--teal);text-decoration:none;flex:none;}
+nav .logo span{font-weight:300;color:var(--sub);font-size:13px;margin-left:8px;}
+nav a{color:var(--sub);text-decoration:none;font-size:14px;}
+nav a:hover{color:var(--text);}
+nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;}
+.btn-outline{background:none;border:1.5px solid var(--border);color:var(--text);}
+.btn-outline:hover{border-color:var(--teal);color:var(--teal);}
+.hero{text-align:center;padding:48px 24px 32px;}
+.hero-badge{display:inline-block;background:#ccfbf1;color:var(--teal);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
+.hero h1{font-size:clamp(26px,5vw,40px);font-weight:700;line-height:1.2;margin-bottom:10px;}
+.hero h1 span{color:var(--teal);}
+.hero p{color:var(--sub);font-size:16px;max-width:540px;margin:0 auto 20px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.tag{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--sub);}
+.main{max-width:860px;margin:0 auto;padding:0 20px 80px;}
+.card{background:var(--surface);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.card h2{font-size:18px;font-weight:700;margin-bottom:6px;}
+.card-sub{color:var(--sub);font-size:13px;margin-bottom:20px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.form-group label{font-size:13px;font-weight:600;}
+.form-group .hint{font-size:12px;color:var(--sub);}
+input[type=text],input[type=date],select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--text);background:#fafafa;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);background:#fff;}
+textarea{resize:vertical;min-height:80px;}
+.btn{padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-teal{background:var(--teal);color:#fff;}
+.btn-teal:hover:not(:disabled){background:var(--teal-h);}
+.btn-ai{background:linear-gradient(135deg,#0d9488,#0071e3);color:#fff;display:flex;align-items:center;gap:8px;}
+.btn-ai:hover:not(:disabled){opacity:.9;}
+.btn-grey{background:var(--bg);border:1.5px solid var(--border);color:var(--text);}
+.btn-export{background:var(--success);color:#fff;}
+.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;}
+.ai-status.loading{background:#ccfbf1;color:var(--teal);}
+.ai-status.error{background:#fee2e2;color:var(--danger);}
+.ai-status.success{background:#dcfce7;color:var(--success);}
+.spinner{width:16px;height:16px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;flex:none;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.doc-preview{background:#fff;border:1px solid var(--border);border-radius:8px;padding:40px 52px;max-width:760px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.7;color:#000;}
+@media(max-width:600px){.doc-preview{padding:20px 14px;}}
+.doc-preview p{margin:6px 0;text-align:justify;}
+.doc-preview h3{font-size:12pt;font-weight:bold;margin:14px 0 6px;}
+.doc-preview table{width:100%;border-collapse:collapse;margin:10px 0;font-size:11pt;}
+.doc-preview th,.doc-preview td{border:1px solid #000;padding:4px 7px;}
+.doc-preview th{background:#f0f0f0;text-align:center;}
+.preview-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+.preview-toolbar h2{flex:1;font-size:18px;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:16px;padding:32px;max-width:440px;width:90%;}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:8px;}
+.modal p{color:var(--sub);font-size:14px;margin-bottom:20px;}
+.modal-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;margin-bottom:8px;}
+.modal-actions{display:flex;gap:10px;margin-top:16px;}
+.compliance{background:#1D1D1F;color:#f5f5f7;padding:32px 24px;text-align:center;margin-top:64px;font-size:13px;line-height:1.8;}
+.compliance a{color:#5eead4;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Andri Wulandika <span>AI Tools</span></a>
+  <a href="index.html">Beranda</a>
+  <a href="sigendok.html">SiGenDok</a>
+  <div class="nav-right">
+    <button class="btn-sm btn-outline" onclick="openApiModal()">⚙ API Key</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">✦ AI Writer Dokumen Administrasi</div>
+  <h1>SiTelaah<br/><span>AI Writer Telaahan Staf / Nota Dinas</span></h1>
+  <p>Buat Nota Dinas atau Telaahan Staf yang lengkap — isi pokok masalah dan opsi, AI tulis analisis dan rekomendasinya secara formal.</p>
+  <div class="hero-tags">
+    <span class="tag">Nota Dinas</span>
+    <span class="tag">Telaahan Staf</span>
+    <span class="tag">Memorandum</span>
+    <span class="tag">Export Word + PDF</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- FORM INPUT -->
+  <div class="card" id="formSection">
+    <h2>Data Telaahan Staf / Nota Dinas</h2>
+    <p class="card-sub">Lengkapi form berikut. AI akan menyusun narasi analisis dan rekomendasi.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Jenis Dokumen</label>
+        <select id="jenisDok">
+          <option value="Nota Dinas">Nota Dinas</option>
+          <option value="Telaahan Staf">Telaahan Staf</option>
+          <option value="Memorandum">Memorandum</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Nomor Surat</label>
+        <input type="text" id="nomorSurat" placeholder="contoh: 900/ND-01/2025"/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nama OPD / Instansi *</label>
+        <input type="text" id="namaOpd" placeholder="contoh: Bappeda Kabupaten Aceh Tenggara"/>
+      </div>
+      <div class="form-group">
+        <label>Tanggal</label>
+        <input type="date" id="tanggal"/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Kepada (Jabatan) *</label>
+        <input type="text" id="kepada" placeholder="contoh: Bupati Aceh Tenggara / Kepala Bappeda"/>
+      </div>
+      <div class="form-group">
+        <label>Dari (Jabatan Pengirim) *</label>
+        <input type="text" id="dari" placeholder="contoh: Kepala Bidang Perencanaan / Plt. Sekretaris"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Nama Pengirim</label>
+      <input type="text" id="namaPengirim" placeholder="contoh: Andri Wulandika, S.STP., M.Si"/>
+    </div>
+
+    <div class="form-group">
+      <label>Perihal / Pokok Surat *</label>
+      <input type="text" id="perihal" placeholder="contoh: Permohonan Izin Pelaksanaan Rapat Koordinasi Perencanaan / Telaahan atas Permasalahan..."/>
+    </div>
+
+    <div class="form-group">
+      <label>Latar Belakang / Dasar Masalah *</label>
+      <textarea id="latarBelakang" rows="5" placeholder="Jelaskan kondisi/fakta yang melatarbelakangi Nota Dinas atau Telaahan ini. Cukup poin-poin kunci — AI akan mengembangkan menjadi narasi formal..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Permasalahan yang Dianalisis</label>
+      <textarea id="permasalahan" rows="4" placeholder="Masalah 1: ...&#10;Masalah 2: ...&#10;Masalah 3: ..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Opsi / Alternatif Penyelesaian (opsional)</label>
+      <textarea id="opsi" rows="4" placeholder="Opsi A: ...&#10;Opsi B: ...&#10;Opsi C: ...&#10;(Kosongkan jika hanya satu rekomendasi)"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Rekomendasi / Saran Tindak</label>
+      <textarea id="rekomendasi" rows="3" placeholder="Rekomendasi yang akan diusulkan kepada pimpinan..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Dasar Hukum / Referensi (pisahkan Enter)</label>
+      <textarea id="dasarHukum" rows="3" placeholder="UU Nomor 25 Tahun 2004&#10;PP Nomor 17 Tahun 2017&#10;..."></textarea>
+    </div>
+
+    <div id="aiStatusBox"></div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+      <button class="btn btn-ai" id="btnGenAi" onclick="generateTelaahan()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Generate dengan AI
+      </button>
+      <button class="btn btn-grey" onclick="buildDocument(false)">Buat Tanpa AI</button>
+    </div>
+  </div>
+
+  <!-- EDIT NARASI -->
+  <div class="card" id="narasiSection" style="display:none;">
+    <h2>Edit Narasi AI (opsional)</h2>
+    <p class="card-sub">Periksa dan edit narasi sebelum membuat dokumen final.</p>
+    <textarea id="aiNarasi" style="min-height:280px;width:100%;font-size:13px;line-height:1.7;padding:16px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;resize:vertical;"></textarea>
+    <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+      <button class="btn btn-teal" onclick="buildDocument(true)">Buat Dokumen →</button>
+      <button class="btn btn-grey" onclick="document.getElementById('narasiSection').style.display='none'">← Kembali Edit Data</button>
+    </div>
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="card" id="previewSection" style="display:none;">
+    <div class="preview-toolbar">
+      <h2>Preview Dokumen</h2>
+      <button class="btn btn-export" onclick="exportWord()">⬇ Word (.doc)</button>
+      <button class="btn" style="background:#e11d48;color:#fff" onclick="exportPdf()">⬇ PDF</button>
+      <button class="btn btn-grey" onclick="document.getElementById('previewSection').style.display='none';document.getElementById('formSection').style.display='block'">← Edit</button>
+    </div>
+    <div class="doc-preview" id="docOutput"></div>
+  </div>
+
+</div>
+
+<!-- API MODAL -->
+<div class="modal-overlay" id="apiModal">
+  <div class="modal">
+    <h3>⚙ API Key Gemini</h3>
+    <p>Masukkan Google Gemini API Key Anda.<br/>
+    <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:#0d9488;font-size:13px;">Dapatkan gratis →</a></p>
+    <input type="password" class="modal-input" id="apiKeyInput" placeholder="AIza..."/>
+    <div style="display:flex;gap:8px;margin-top:4px;">
+      <button class="btn-sm btn-outline" onclick="testApiKey()">Test</button>
+      <span id="testResult" style="font-size:12px;align-self:center;"></span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-teal" onclick="saveApiKey()" style="flex:1;">Simpan</button>
+      <button class="btn btn-grey" onclick="closeApiModal()" style="flex:1;">Batal</button>
+    </div>
+  </div>
+</div>
+
+<div class="compliance">
+  <div style="max-width:600px;margin:0 auto;">
+    <strong>SiTelaah</strong> — AI Writer Telaahan Staf & Nota Dinas<br/>
+    AI menarasikan analisis — semua data berasal dari input pengguna.<br/><br/>
+    <a href="index.html">Beranda</a> · <a href="sigendok.html">SiGenDok</a> · <a href="harga.html">Harga</a><br/>
+    © 2026 <a href="tentang.html">Andri Wulandika</a> · AI Tools Perencanaan Daerah Indonesia
+  </div>
+</div>
+
+<script>
+async function generateTelaahan() {
+  const key = getApiKey();
+  if (!key) { openApiModal(); return; }
+  if (!v('namaOpd')||!v('kepada')||!v('dari')||!v('perihal')||!v('latarBelakang'))
+    { alert('Lengkapi field yang wajib terlebih dahulu.'); return; }
+
+  const jenis  = v('jenisDok');
+  const opd    = v('namaOpd');
+  const kepada = v('kepada');
+  const dari   = v('dari');
+  const perihal= v('perihal');
+  const latar  = v('latarBelakang');
+  const masalah= v('permasalahan');
+  const opsiTx = v('opsi');
+  const rekomen= v('rekomendasi');
+  const dasHk  = v('dasarHukum');
+
+  const prompt = `Anda adalah seorang ASN senior yang berpengalaman menyusun dokumen administrasi pemerintahan.
+
+Tugas: Tulis isi/narasi formal untuk ${jenis} berikut.
+
+PENTING:
+- Bahasa Indonesia formal dan baku sesuai standar administrasi pemerintahan
+- Jangan mengarang fakta atau data baru — kembangkan dari data yang diberikan
+
+DATA DOKUMEN:
+OPD: ${opd}
+Kepada: ${kepada}
+Dari: ${dari}
+Perihal: ${perihal}
+${dasHk ? 'Dasar Hukum:\n' + dasHk : ''}
+
+LATAR BELAKANG / FAKTA:
+${latar}
+
+PERMASALAHAN:
+${masalah || '-'}
+
+OPSI PENYELESAIAN:
+${opsiTx || '-'}
+
+REKOMENDASI:
+${rekomen || '-'}
+
+Tulis narasi ${jenis} yang terdiri dari:
+1. **PENDAHULUAN** — 1-2 paragraf formal: dasar dan tujuan ${jenis} ini dibuat
+2. **PERMASALAHAN** — Uraikan permasalahan/isu secara sistematis dan formal (bernomor)
+3. **ANALISIS** — Analisis tiap permasalahan dengan mengaitkan pada dasar hukum dan kondisi faktual${opsiTx ? '\n4. **ALTERNATIF PENYELESAIAN** — Uraikan opsi-opsi beserta kelebihan/kekurangannya' : ''}
+${opsiTx ? '5.' : '4.'} **KESIMPULAN DAN SARAN** — Simpulkan dan sampaikan rekomendasi/saran tindak secara tegas
+
+Format: narasi paragraf formal. Total 300-500 kata.`;
+
+  setAiStatus('loading', 'Sedang menyusun narasi...');
+  document.getElementById('btnGenAi').disabled = true;
+
+  try {
+    const result = await callGemini(prompt, { temperature: 0.5, maxTokens: 1500 });
+    document.getElementById('aiNarasi').value = result;
+    document.getElementById('formSection').style.display = 'none';
+    document.getElementById('narasiSection').style.display = 'block';
+    setAiStatus('success', 'Narasi selesai!');
+  } catch(err) {
+    setAiStatus('error', formatApiError(err));
+  }
+  document.getElementById('btnGenAi').disabled = false;
+}
+
+function buildDocument(withAi) {
+  const jenis   = v('jenisDok');
+  const nomor   = v('nomorSurat');
+  const opd     = v('namaOpd');
+  const tgl     = v('tanggal');
+  const kepada  = v('kepada');
+  const dari    = v('dari');
+  const pengirim= v('namaPengirim');
+  const perihal = v('perihal');
+  const latar   = v('latarBelakang');
+  const rekomen = v('rekomendasi');
+  const dasHk   = v('dasarHukum');
+  const narasi  = withAi ? (document.getElementById('aiNarasi')?.value || '') : '';
+
+  const dasHkList = dasHk ? dasHk.split('\n').filter(Boolean).map((d,i) => `<li>${d}</li>`).join('') : '';
+
+  const narasiHtml = narasi
+    ? narasi.split('\n').filter(Boolean).map(p => {
+        if (p.startsWith('**') && p.endsWith('**')) return `<h3>${p.replace(/\*\*/g,'')}</h3>`;
+        return `<p>${p}</p>`;
+      }).join('\n')
+    : latar.split('\n').filter(Boolean).map(p=>`<p>${p}</p>`).join('') + (rekomen ? `<h3>SARAN/REKOMENDASI</h3><p>${rekomen}</p>` : '');
+
+  const tglFmt = tgl ? fmtTgl(tgl) : '...........';
+
+  const doc = `
+<div style="text-align:center;margin-bottom:20px;border-bottom:2px solid #000;padding-bottom:12px;">
+  <div style="font-weight:bold;font-size:13pt;text-transform:uppercase;">${opd.toUpperCase()}</div>
+</div>
+
+<div style="margin-bottom:20px;">
+  <table style="width:100%;border:none;">
+    <tr>
+      <td style="border:none;width:18%;font-weight:bold;padding:3px 0;">Kepada</td>
+      <td style="border:none;width:2%;padding:3px 0;">:</td>
+      <td style="border:none;padding:3px 0;">${kepada}</td>
+    </tr>
+    <tr>
+      <td style="border:none;font-weight:bold;padding:3px 0;">Dari</td>
+      <td style="border:none;padding:3px 0;">:</td>
+      <td style="border:none;padding:3px 0;">${dari}</td>
+    </tr>
+    <tr>
+      <td style="border:none;font-weight:bold;padding:3px 0;">Nomor</td>
+      <td style="border:none;padding:3px 0;">:</td>
+      <td style="border:none;padding:3px 0;">${nomor || '...........'}</td>
+    </tr>
+    <tr>
+      <td style="border:none;font-weight:bold;padding:3px 0;">Tanggal</td>
+      <td style="border:none;padding:3px 0;">:</td>
+      <td style="border:none;padding:3px 0;">${tglFmt}</td>
+    </tr>
+    <tr>
+      <td style="border:none;font-weight:bold;padding:3px 0;">Perihal</td>
+      <td style="border:none;padding:3px 0;">:</td>
+      <td style="border:none;padding:3px 0;font-weight:bold;">${perihal}</td>
+    </tr>
+  </table>
+</div>
+
+<div style="border-top:1.5px solid #000;border-bottom:1.5px solid #000;padding:4px 0;margin-bottom:16px;text-align:center;font-weight:bold;font-size:13pt;letter-spacing:1px;text-transform:uppercase;">${jenis.toUpperCase()}</div>
+
+${dasHkList ? `<h3>I. DASAR / LANDASAN HUKUM</h3><ol>${dasHkList}</ol>` : ''}
+
+${narasiHtml}
+
+<div style="margin-top:40px;display:flex;justify-content:flex-end;">
+  <div style="text-align:center;min-width:220px;">
+    <p>${tglFmt}</p>
+    <p>${dari},</p>
+    <br/><br/><br/>
+    <p style="text-decoration:underline;font-weight:bold;">${pengirim || '........................................'}</p>
+  </div>
+</div>
+
+<div style="margin-top:24px;border-top:1px solid #ccc;padding-top:8px;font-size:9pt;color:#666;text-align:center;">
+  Dokumen dibuat dengan SiTelaah — AI Writer | andriwulandika.github.io
+</div>`;
+
+  document.getElementById('docOutput').innerHTML = doc;
+  document.getElementById('narasiSection').style.display = 'none';
+  document.getElementById('formSection').style.display = 'none';
+  document.getElementById('previewSection').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function exportWord() {
+  const content = document.getElementById('docOutput').innerHTML;
+  const jenis = v('jenisDok') || 'NotaDinas';
+  const fname = `${jenis.replace(/ /g,'_')}_${v('perihal').substring(0,30) || 'dokumen'}`;
+  const w = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/><style>body{font-family:'Times New Roman',Times,serif;font-size:12pt;margin:2.54cm;line-height:1.7;}
+h3{font-size:12pt;font-weight:bold;margin:12pt 0 4pt;}
+table{border-collapse:collapse;width:100%;}td{border:none;padding:2pt 4pt;vertical-align:top;}
+p{margin:5pt 0;text-align:justify;}ol{margin:4pt 0 4pt 16pt;}li{margin-bottom:3pt;}
+@page{size:A4;margin:2.54cm;}</style></head>
+<body>${content}</body></html>`;
+  const blob = new Blob(['﻿' + w], { type: 'application/msword;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fname.replace(/[^a-zA-Z0-9_\- ]/g,'_').substring(0,60) + '.doc';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function exportPdf() {
+  const el = document.getElementById('docOutput');
+  if (typeof html2pdf==='undefined'){alert('Library PDF belum dimuat.');return;}
+  const jenis = v('jenisDok') || 'Telaahan';
+  html2pdf().set({margin:[2,2,2,2.5],filename:jenis+'_Dokumen.pdf',
+    image:{type:'jpeg',quality:.95},html2canvas:{scale:2},
+    jsPDF:{unit:'cm',format:'a4',orientation:'portrait'}}).from(el).save();
+}
+
+function setAiStatus(type, msg) {
+  const icons = { loading:'<div class="spinner"></div>', error:'⚠', success:'✓' };
+  document.getElementById('aiStatusBox').innerHTML =
+    `<div class="ai-status ${type}">${icons[type]} ${msg}</div>`;
+}
+
+function getApiKey(){return localStorage.getItem('gemini_api_key')||'';}
+function saveApiKey(){const k=document.getElementById('apiKeyInput').value.trim();if(k)localStorage.setItem('gemini_api_key',k);else localStorage.removeItem('gemini_api_key');closeApiModal();}
+function openApiModal(){document.getElementById('apiKeyInput').value=getApiKey();document.getElementById('testResult').textContent='';document.getElementById('apiModal').classList.add('open');}
+function closeApiModal(){document.getElementById('apiModal').classList.remove('open');}
+async function testApiKey(){const key=document.getElementById('apiKeyInput').value.trim();if(!key){document.getElementById('testResult').textContent='⚠ Masukkan key.';return;}document.getElementById('testResult').textContent='⏳...';try{const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:'hi'}]}]})});document.getElementById('testResult').textContent=res.ok?'✓ Valid!':'✗ Error '+res.status;}catch{document.getElementById('testResult').textContent='✗ Gagal.';}}
+
+async function callGemini(prompt,{temperature=0.7,maxTokens=2048}={}){const key=getApiKey();if(!key)throw new Error('NO_KEY');const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature,maxOutputTokens:maxTokens}})});if(!res.ok){if(res.status===401||res.status===403)throw new Error('API_KEY_INVALID');if(res.status===429)throw new Error('API_QUOTA');throw new Error('API_ERROR: '+res.status);}const data=await res.json();const text=data?.candidates?.[0]?.content?.parts?.[0]?.text;if(!text)throw new Error('API_EMPTY_RESPONSE');return text;}
+function formatApiError(err){const m=err.message||'';if(m==='NO_KEY')return 'Masukkan API Key terlebih dahulu.';if(m==='API_KEY_INVALID')return 'API Key tidak valid.';if(m==='API_QUOTA')return 'Kuota habis.';return 'Error: '+m;}
+function v(id){return document.getElementById(id)?.value?.trim()||'';}
+function fmtTgl(d){if(!d)return '';const dt=new Date(d);const B=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];return `${dt.getDate()} ${B[dt.getMonth()]} ${dt.getFullYear()}`;}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('tanggal').value=new Date().toISOString().slice(0,10);
+  document.getElementById('apiModal').addEventListener('click',e=>{if(e.target===document.getElementById('apiModal'))closeApiModal();});
+});
+</script>
+</body>
+</html>

@@ -1,755 +1,808 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SiRENJA — AI Asisten Renja OPD | Andri Wulandika</title>
-  <meta name="description" content="SiRENJA — Asisten AI untuk penyusunan Rencana Kerja (Renja) OPD. Bantu rumuskan program, kegiatan, sub kegiatan, dan indikator kinerja. Oleh Andri Wulandika."/>
-  <meta name="keywords" content="SiRENJA, AI Renja OPD, asisten AI perencanaan daerah, Renja OPD 2026, indikator kinerja OPD, Andri Wulandika"/>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
-  <link rel="canonical" href="https://andriwulandika.github.io/andriwulandika/sirenja.html"/>
-  <meta property="og:title" content="SiRENJA — AI Asisten Renja OPD"/>
-  <meta property="og:description" content="Asisten AI untuk penyusunan Renja OPD, indikator kinerja, dan cascading Renstra."/>
-  <meta property="og:url" content="https://andriwulandika.github.io/andriwulandika/sirenja.html"/>
-  <meta property="og:type" content="website"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SiRENJA — AI Writer Renja OPD | Andri Wulandika</title>
+<meta name="description" content="Buat Rencana Kerja (Renja) OPD otomatis dengan AI. Sesuai Permendagri 81/2022 dan Inmendagri 2/2025."/>
+<meta name="keywords" content="SiRENJA, AI Renja OPD, Renja 2026, indikator kinerja OPD, penyusunan Renja, Andri Wulandika"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="canonical" href="https://andriwulandika.github.io/andriwulandika/sirenja.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<style>
+:root {
+  --bg:#F5F5F7;--surface:#fff;--text:#1D1D1F;--sub:#6e6e73;
+  --blue:#0071e3;--blue-h:#0077ed;
+  --border:#d2d2d7;--radius:12px;--shadow:0 2px 16px rgba(0,0,0,.08);
+  --danger:#dc2626;--success:#16a34a;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;}
 
-    :root {
-      --bg: #ffffff;
-      --bg2: #f5f5f7;
-      --bg3: #1c1c1e;
-      --text: #1d1d1f;
-      --text2: #6e6e73;
-      --text3: #ffffff;
-      --accent: #0071e3;
-      --accent2: #34aadc;
-      --border: #d2d2d7;
-      --border2: rgba(255,255,255,0.1);
-      --bubble-user: #0071e3;
-      --bubble-ai: #f5f5f7;
-      --radius: 18px;
-      --radius-sm: 10px;
-    }
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:24px;}
+nav .logo{font-weight:700;font-size:17px;color:var(--blue);text-decoration:none;flex:none;}
+nav .logo span{font-weight:300;color:var(--sub);font-size:13px;margin-left:8px;}
+nav a{color:var(--sub);text-decoration:none;font-size:14px;transition:color .2s;}
+nav a:hover{color:var(--text);}
+nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;}
+.btn-outline{background:none;border:1.5px solid var(--border);color:var(--text);}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+.btn-primary-sm{background:var(--blue);color:#fff;}
+.btn-primary-sm:hover{background:var(--blue-h);}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+.hero{text-align:center;padding:48px 24px 36px;}
+.hero-badge{display:inline-block;background:#dbeafe;color:var(--blue);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px;}
+.hero h1{font-size:clamp(26px,5vw,42px);font-weight:700;line-height:1.15;margin-bottom:12px;}
+.hero h1 span{color:var(--blue);}
+.hero p{color:var(--sub);font-size:16px;max-width:560px;margin:0 auto 20px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.tag{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--sub);}
 
-    /* ── NAV ── */
-    nav {
-      flex-shrink: 0;
-      height: 52px;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 20px; z-index: 100;
-    }
-    .nav-left { display: flex; align-items: center; gap: 10px; }
-    .nav-back {
-      font-size: 0.82rem; color: var(--accent);
-      text-decoration: none; display: flex; align-items: center; gap: 4px;
-    }
-    .nav-back:hover { opacity: 0.7; }
-    .nav-sep { color: var(--border); font-size: 0.9rem; }
-    .nav-title { display: flex; align-items: center; gap: 8px; }
-    .nav-icon {
-      width: 28px; height: 28px; border-radius: 7px;
-      background: linear-gradient(135deg, #0071e3, #34aadc);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem;
-    }
-    .nav-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
-    .nav-badge {
-      font-size: 0.65rem; font-weight: 600; padding: 2px 8px;
-      border-radius: 980px; background: var(--bg2);
-      color: var(--text2); border: 1px solid var(--border);
-    }
-    .nav-right { display: flex; align-items: center; gap: 10px; }
-    .nav-credit {
-      font-size: 0.75rem; color: var(--text2);
-    }
-    .btn-new {
-      font-size: 0.78rem; font-weight: 500; color: var(--accent);
-      background: none; border: none; cursor: pointer; padding: 6px 10px;
-      border-radius: 8px; transition: background 0.2s;
-    }
-    .btn-new:hover { background: var(--bg2); }
+.main{max-width:1000px;margin:0 auto;padding:0 20px 80px;}
 
-    /* ── MAIN LAYOUT ── */
-    .app-body {
-      flex: 1;
-      display: flex;
-      overflow: hidden;
-    }
+.steps{display:flex;align-items:center;justify-content:center;margin-bottom:28px;flex-wrap:wrap;gap:0;}
+.step{display:flex;align-items:center;gap:8px;}
+.step-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:none;transition:all .3s;}
+.step.active .step-num{background:var(--blue);color:#fff;}
+.step.done .step-num{background:var(--success);color:#fff;}
+.step.pending .step-num{background:var(--border);color:var(--sub);}
+.step-label{font-size:11px;font-weight:500;white-space:nowrap;}
+.step.active .step-label{color:var(--blue);}
+.step.done .step-label{color:var(--success);}
+.step.pending .step-label{color:var(--sub);}
+.step-line{width:28px;height:2px;background:var(--border);flex:none;}
+.step-line.done{background:var(--success);}
 
-    /* ── SIDEBAR ── */
-    .sidebar {
-      width: 260px; flex-shrink: 0;
-      background: var(--bg2);
-      border-right: 1px solid var(--border);
-      display: flex; flex-direction: column;
-      overflow: hidden;
-    }
-    .sidebar-head {
-      padding: 16px 16px 10px;
-      border-bottom: 1px solid var(--border);
-    }
-    .sidebar-head h3 {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--text2); margin-bottom: 10px;
-    }
-    .template-list { display: flex; flex-direction: column; gap: 4px; }
-    .tmpl-btn {
-      width: 100%; text-align: left;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 10px 12px;
-      cursor: pointer; transition: all 0.2s;
-      display: flex; align-items: flex-start; gap: 8px;
-    }
-    .tmpl-btn:hover { border-color: var(--accent); background: #fff; }
-    .tmpl-btn.active { border-color: var(--accent); background: #e8f1fb; }
-    .tmpl-emoji { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-    .tmpl-info { flex: 1; }
-    .tmpl-info strong { font-size: 0.82rem; font-weight: 600; color: var(--text); display: block; }
-    .tmpl-info span { font-size: 0.72rem; color: var(--text2); line-height: 1.4; display: block; margin-top: 1px; }
+.card{background:var(--surface);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.card h2{font-size:18px;font-weight:700;margin-bottom:6px;}
+.card .card-sub{color:var(--sub);font-size:13px;margin-bottom:20px;}
 
-    .sidebar-tips {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .sidebar-tips h3 {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--text2); margin-bottom: 10px;
-    }
-    .tip-item {
-      display: flex; gap: 8px; margin-bottom: 8px;
-      font-size: 0.78rem; color: var(--text2); line-height: 1.5;
-    }
-    .tip-dot { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.form-group label{font-size:13px;font-weight:600;}
+.form-group .hint{font-size:12px;color:var(--sub);}
+input[type=text],input[type=number],select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--text);background:#fafafa;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);background:#fff;}
+textarea{resize:vertical;min-height:80px;}
 
-    .sidebar-history { flex: 1; overflow-y: auto; padding: 12px 16px; }
-    .sidebar-history h3 {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--text2); margin-bottom: 10px;
-    }
-    .history-empty {
-      font-size: 0.78rem; color: var(--text2);
-      text-align: center; padding: 20px 0; opacity: 0.7;
-    }
+/* Program-Kegiatan Table */
+.prog-table-wrap{overflow-x:auto;margin-bottom:16px;}
+table.prog-tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:700px;}
+table.prog-tbl th{background:#dbeafe;font-weight:600;padding:8px 10px;border:1px solid var(--border);white-space:nowrap;}
+table.prog-tbl td{border:1px solid var(--border);padding:6px 8px;vertical-align:top;}
+table.prog-tbl input,table.prog-tbl select,table.prog-tbl textarea{border:none;background:transparent;width:100%;font-size:13px;padding:0;min-height:unset;resize:none;}
+table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:focus{outline:1px solid var(--blue);border-radius:3px;}
+.tbl-add-btn{font-size:13px;color:var(--blue);cursor:pointer;background:none;border:1.5px dashed var(--blue);border-radius:8px;padding:6px 14px;transition:all .2s;margin-bottom:8px;}
+.tbl-add-btn:hover{background:#dbeafe;}
+.tbl-del{color:var(--danger);cursor:pointer;font-size:16px;font-weight:700;background:none;border:none;padding:0 4px;}
+.tbl-group-btn{font-size:11px;color:#fff;background:var(--blue);border:none;border-radius:4px;padding:2px 8px;cursor:pointer;margin-left:4px;}
 
-    /* ── CHAT AREA ── */
-    .chat-area {
-      flex: 1; display: flex; flex-direction: column; overflow: hidden;
-      background: var(--bg);
-    }
+.nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px;}
+.btn{padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-prev{background:var(--bg);border:1.5px solid var(--border);color:var(--text);}
+.btn-prev:hover:not(:disabled){border-color:var(--text);}
+.btn-next{background:var(--blue);color:#fff;}
+.btn-next:hover:not(:disabled){background:var(--blue-h);}
+.btn-ai{background:linear-gradient(135deg,#0071e3,#34aadc);color:#fff;display:flex;align-items:center;gap:8px;}
+.btn-ai:hover:not(:disabled){opacity:.9;}
+.btn-export{background:var(--success);color:#fff;}
 
-    /* Welcome screen */
-    .welcome {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 40px 24px; text-align: center;
-    }
-    .welcome-icon {
-      width: 72px; height: 72px; border-radius: 18px;
-      background: linear-gradient(135deg, #0071e3, #34aadc);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; margin-bottom: 20px;
-      box-shadow: 0 8px 32px rgba(0,113,227,0.25);
-    }
-    .welcome h1 {
-      font-size: 1.8rem; font-weight: 700;
-      letter-spacing: -0.03em; color: var(--text);
-      margin-bottom: 8px;
-    }
-    .welcome p {
-      font-size: 0.95rem; color: var(--text2);
-      max-width: 420px; line-height: 1.6; margin-bottom: 32px;
-    }
-    .starter-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-      max-width: 520px; width: 100%;
-    }
-    .starter-btn {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 14px 16px;
-      text-align: left; cursor: pointer;
-      transition: all 0.2s; font-family: inherit;
-    }
-    .starter-btn:hover { border-color: var(--accent); background: #f0f6ff; transform: translateY(-1px); }
-    .starter-btn strong { font-size: 0.85rem; font-weight: 600; color: var(--text); display: block; margin-bottom: 3px; }
-    .starter-btn span { font-size: 0.78rem; color: var(--text2); line-height: 1.4; display: block; }
+.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;}
+.ai-status.loading{background:#dbeafe;color:var(--blue);}
+.ai-status.error{background:#fee2e2;color:var(--danger);}
+.ai-status.success{background:#dcfce7;color:var(--success);}
+.spinner{width:16px;height:16px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;flex:none;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
-    /* Messages */
-    .messages {
-      flex: 1; overflow-y: auto; padding: 24px 0;
-      display: none; flex-direction: column; gap: 4px;
-      scroll-behavior: smooth;
-    }
-    .messages.active { display: flex; }
+.doc-preview{background:#fff;border:1px solid var(--border);border-radius:8px;padding:40px 48px;max-width:820px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.6;color:#000;}
+@media(max-width:600px){.doc-preview{padding:20px 14px;}}
+.doc-preview h1{font-size:14pt;text-align:center;font-weight:bold;margin-bottom:8px;}
+.doc-preview h2{font-size:13pt;font-weight:bold;margin:20px 0 8px;text-transform:uppercase;}
+.doc-preview h3{font-size:12pt;font-weight:bold;margin:14px 0 6px;}
+.doc-preview p{margin:6px 0;text-align:justify;}
+.doc-preview table{width:100%;border-collapse:collapse;margin:12px 0;font-size:10pt;}
+.doc-preview th,.doc-preview td{border:1px solid #000;padding:4px 7px;}
+.doc-preview th{background:#f0f0f0;text-align:center;font-weight:bold;}
+.doc-preview ul,.doc-preview ol{margin:6px 0 6px 18px;}
+.doc-preview li{margin-bottom:3px;}
 
-    .msg-group { padding: 0 24px; display: flex; flex-direction: column; }
-    .msg-group.user { align-items: flex-end; }
-    .msg-group.ai { align-items: flex-start; }
+.preview-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+.preview-toolbar h2{flex:1;font-size:18px;text-transform:none;}
 
-    .msg-sender {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
-      text-transform: uppercase; color: var(--text2);
-      margin-bottom: 5px; padding: 0 4px;
-    }
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:16px;padding:32px;max-width:440px;width:90%;}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:8px;}
+.modal p{color:var(--sub);font-size:14px;margin-bottom:20px;}
+.modal-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;margin-bottom:8px;}
+.modal-input:focus{outline:none;border-color:var(--blue);}
+.modal-actions{display:flex;gap:10px;margin-top:16px;}
 
-    .bubble {
-      max-width: 72%; padding: 12px 16px;
-      border-radius: 18px; font-size: 0.9rem; line-height: 1.65;
-      word-break: break-word;
-    }
-    .bubble.user {
-      background: var(--bubble-user); color: #fff;
-      border-bottom-right-radius: 5px;
-    }
-    .bubble.ai {
-      background: var(--bubble-ai); color: var(--text);
-      border-bottom-left-radius: 5px; border: 1px solid var(--border);
-    }
-    .bubble.ai h3 {
-      font-size: 0.92rem; font-weight: 700; margin: 10px 0 6px;
-      color: var(--text);
-    }
-    .bubble.ai h3:first-child { margin-top: 0; }
-    .bubble.ai ul { padding-left: 18px; margin: 6px 0; }
-    .bubble.ai li { margin-bottom: 4px; }
-    .bubble.ai p { margin-bottom: 8px; }
-    .bubble.ai p:last-child { margin-bottom: 0; }
-    .bubble.ai strong { font-weight: 600; }
-    .bubble.ai .tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-    .bubble.ai .tag {
-      font-size: 0.72rem; padding: 3px 10px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 980px; color: var(--text2);
-    }
+.wizard-step{display:none;}
+.wizard-step.active{display:block;}
 
-    .typing-bubble {
-      background: var(--bubble-ai); border: 1px solid var(--border);
-      padding: 12px 16px; border-radius: 18px; border-bottom-left-radius: 5px;
-      display: flex; gap: 5px; align-items: center;
-    }
-    .typing-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--text2); animation: bounce 1.2s ease infinite;
-    }
-    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes bounce {
-      0%, 60%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-6px); }
-    }
-
-    /* Input bar */
-    .input-bar {
-      flex-shrink: 0;
-      padding: 14px 20px 18px;
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-    }
-    .input-wrap {
-      max-width: 720px; margin: 0 auto;
-      display: flex; align-items: flex-end; gap: 10px;
-    }
-    .input-box {
-      flex: 1;
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 14px; padding: 12px 16px;
-      font-family: inherit; font-size: 0.9rem; color: var(--text);
-      resize: none; outline: none; min-height: 46px; max-height: 140px;
-      line-height: 1.5; transition: border-color 0.2s;
-    }
-    .input-box:focus { border-color: var(--accent); }
-    .input-box::placeholder { color: var(--text2); }
-    .send-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--accent); border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.15s; flex-shrink: 0;
-    }
-    .send-btn:hover { background: #0077ed; transform: scale(1.05); }
-    .send-btn:disabled { background: var(--border); cursor: not-allowed; transform: none; }
-    .send-btn svg { width: 16px; height: 16px; fill: white; }
-
-    .input-footer {
-      max-width: 720px; margin: 6px auto 0;
-      font-size: 0.7rem; color: var(--text2); text-align: center;
-    }
-    .credit-bar {
-      display: flex; align-items: center; justify-content: center; gap: 6px;
-      margin-bottom: 4px;
-    }
-    .credit-pill {
-      display: flex; align-items: center; gap: 5px;
-      font-size: 0.7rem; padding: 3px 10px;
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 980px; color: var(--text2);
-    }
-    .credit-free { background: #e8f8ee; border-color: #a3d9b4; color: #1a7a3e; }
-    .credit-num { font-weight: 700; color: var(--accent); }
-
-    @media (max-width: 768px) {
-      .sidebar { display: none; }
-      .bubble { max-width: 90%; }
-    }
-
-    /* ── API KEY MODAL ── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
-      align-items: center; justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: var(--bg); border-radius: var(--radius);
-      padding: 32px 28px; width: 100%; max-width: 420px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.2);
-      margin: 0 16px;
-    }
-    .modal-title {
-      font-size: 1.1rem; font-weight: 700;
-      letter-spacing: -0.02em; color: var(--text);
-      margin-bottom: 6px;
-    }
-    .modal-sub {
-      font-size: 0.82rem; color: var(--text2);
-      line-height: 1.55; margin-bottom: 20px;
-    }
-    .modal-sub a { color: var(--accent); text-decoration: none; }
-    .modal-label {
-      font-size: 0.78rem; font-weight: 600;
-      color: var(--text); margin-bottom: 6px; display: block;
-    }
-    .modal-input {
-      width: 100%; background: var(--bg2);
-      border: 1px solid var(--border); border-radius: 10px;
-      padding: 10px 14px; font-family: monospace; font-size: 0.82rem;
-      color: var(--text); outline: none; margin-bottom: 8px;
-    }
-    .modal-input:focus { border-color: var(--accent); }
-    .modal-hint {
-      font-size: 0.72rem; color: var(--text2); margin-bottom: 20px;
-    }
-    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
-    .btn-modal-cancel {
-      font-size: 0.82rem; padding: 9px 18px; border-radius: 980px;
-      background: var(--bg2); border: 1px solid var(--border);
-      color: var(--text2); cursor: pointer; font-family: inherit;
-    }
-    .btn-modal-save {
-      font-size: 0.82rem; padding: 9px 18px; border-radius: 980px;
-      background: var(--accent); border: none;
-      color: #fff; cursor: pointer; font-family: inherit; font-weight: 500;
-    }
-    .btn-modal-save:hover { background: #0077ed; }
-    .api-status {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.7rem; padding: 2px 9px; border-radius: 980px;
-      border: 1px solid; cursor: pointer;
-    }
-    .api-status.set { background: #e8f8ee; border-color: #a3d9b4; color: #1a7a3e; }
-    .api-status.unset { background: #fff3cd; border-color: #ffc107; color: #856404; }
-    .api-status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-  </style>
+.compliance{background:#1D1D1F;color:#f5f5f7;padding:32px 24px;text-align:center;margin-top:64px;font-size:13px;line-height:1.8;}
+.compliance a{color:#93c5fd;text-decoration:none;}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-left">
-    <a href="index.html" class="nav-back">← Beranda</a>
-    <span class="nav-sep">|</span>
-    <div class="nav-title">
-      <div class="nav-icon">📝</div>
-      <span class="nav-name">Sirenja</span>
-      <span class="nav-badge">Beta</span>
-    </div>
-  </div>
+  <a href="index.html" class="logo">Andri Wulandika <span>AI Tools</span></a>
+  <a href="index.html">Beranda</a>
+  <a href="silkjip.html">SiLKjIP</a>
+  <a href="siktor.html">SiKTOR</a>
   <div class="nav-right">
-    <span class="nav-credit">by Andri Wulandika</span>
-    <span class="api-status unset" id="apiStatusBtn" onclick="openApiModal()" title="Konfigurasi API Key">
-      <span class="api-status-dot"></span><span id="apiStatusText">API Key</span>
-    </span>
-    <button class="btn-new" onclick="newChat()">+ Baru</button>
+    <button class="btn-sm btn-outline" onclick="openApiModal()">⚙ API Key</button>
+    <a href="harga.html" class="btn-sm btn-primary-sm">Upgrade Pro</a>
   </div>
 </nav>
 
-<!-- API KEY MODAL -->
+<div class="hero">
+  <div class="hero-badge">✦ AI Writer Dokumen Perencanaan</div>
+  <h1>SiRENJA<br/><span>AI Writer Renja OPD Otomatis</span></h1>
+  <p>Susun Rencana Kerja OPD lengkap dengan wizard — masukkan program, kegiatan, dan indikator, AI narasikan analisis situasinya.</p>
+  <div class="hero-tags">
+    <span class="tag">Permendagri 81/2022</span>
+    <span class="tag">Inmendagri 2/2025</span>
+    <span class="tag">Kepmendagri 050-5889/2021</span>
+    <span class="tag">Export Word + PDF</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- STEPS -->
+  <div class="steps" id="stepIndicator">
+    <div class="step active" id="si-0"><div class="step-num">1</div><div class="step-label">Data OPD</div></div>
+    <div class="step-line" id="sl-0"></div>
+    <div class="step pending" id="si-1"><div class="step-num">2</div><div class="step-label">Program & Kegiatan</div></div>
+    <div class="step-line" id="sl-1"></div>
+    <div class="step pending" id="si-2"><div class="step-num">3</div><div class="step-label">Isu & Prioritas</div></div>
+    <div class="step-line" id="sl-2"></div>
+    <div class="step pending" id="si-3"><div class="step-num">4</div><div class="step-label">Narasi AI</div></div>
+    <div class="step-line" id="sl-3"></div>
+    <div class="step pending" id="si-4"><div class="step-num">5</div><div class="step-label">Preview & Ekspor</div></div>
+  </div>
+
+  <!-- STEP 1: DATA OPD -->
+  <div class="wizard-step active" id="step-0">
+    <div class="card">
+      <h2>1. Data Organisasi Perangkat Daerah</h2>
+      <p class="card-sub">Informasi dasar OPD dan periode Renja yang akan disusun.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama OPD *</label>
+          <input type="text" id="namaOpd" placeholder="contoh: Bappeda Kabupaten Aceh Tenggara"/>
+        </div>
+        <div class="form-group">
+          <label>Nama Pemerintah Daerah *</label>
+          <input type="text" id="namaPemda" placeholder="contoh: Kabupaten Aceh Tenggara"/>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tahun Renja *</label>
+          <input type="number" id="tahunRenja" placeholder="2026" min="2020" max="2040"/>
+        </div>
+        <div class="form-group">
+          <label>Urusan Pemerintahan</label>
+          <select id="urusan">
+            <option value="">-- Pilih Urusan --</option>
+            <option value="1.01 Pendidikan">1.01 Pendidikan</option>
+            <option value="1.02 Kesehatan">1.02 Kesehatan</option>
+            <option value="1.03 Pekerjaan Umum dan Penataan Ruang">1.03 Pekerjaan Umum dan Penataan Ruang</option>
+            <option value="1.04 Perumahan Rakyat dan Kawasan Permukiman">1.04 Perumahan Rakyat</option>
+            <option value="1.05 Ketentraman dan Ketertiban Umum">1.05 Ketentraman dan Ketertiban</option>
+            <option value="1.06 Sosial">1.06 Sosial</option>
+            <option value="2.01 Tenaga Kerja">2.01 Tenaga Kerja</option>
+            <option value="2.02 Pemberdayaan Perempuan">2.02 Pemberdayaan Perempuan</option>
+            <option value="2.03 Pangan">2.03 Pangan</option>
+            <option value="2.05 Lingkungan Hidup">2.05 Lingkungan Hidup</option>
+            <option value="2.06 Administrasi Kependudukan">2.06 Administrasi Kependudukan</option>
+            <option value="2.09 Perhubungan">2.09 Perhubungan</option>
+            <option value="2.10 Komunikasi dan Informatika">2.10 Komunikasi dan Informatika</option>
+            <option value="2.11 Koperasi dan UKM">2.11 Koperasi dan UKM</option>
+            <option value="2.13 Kepemudaan dan Olahraga">2.13 Kepemudaan dan Olahraga</option>
+            <option value="3.01 Kelautan dan Perikanan">3.01 Kelautan dan Perikanan</option>
+            <option value="3.02 Pariwisata">3.02 Pariwisata</option>
+            <option value="3.03 Pertanian">3.03 Pertanian</option>
+            <option value="4.01 Administrasi Pemerintahan">4.01 Administrasi Pemerintahan (Penunjang)</option>
+            <option value="4.02 Pengawasan">4.02 Pengawasan (Penunjang)</option>
+            <option value="4.03 Perencanaan">4.03 Perencanaan (Penunjang)</option>
+            <option value="4.04 Keuangan">4.04 Keuangan (Penunjang)</option>
+            <option value="4.05 Kepegawaian">4.05 Kepegawaian (Penunjang)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Kepala OPD</label>
+          <input type="text" id="namaKepala" placeholder="contoh: Ir. Ahmad Yani, M.Si"/>
+        </div>
+        <div class="form-group">
+          <label>Periode Renstra OPD</label>
+          <input type="text" id="periodeRenstra" placeholder="contoh: 2021-2026"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Tugas Pokok dan Fungsi OPD</label>
+        <textarea id="tupoksi" rows="3" placeholder="Tugas pokok OPD sesuai peraturan pembentukan perangkat daerah..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Visi dan Misi Kepala Daerah yang Relevan</label>
+        <textarea id="visiMisi" rows="3" placeholder="Visi: ...&#10;Misi yang relevan: ..."></textarea>
+      </div>
+
+      <div class="nav-btns">
+        <div></div>
+        <button class="btn btn-next" onclick="goStep(1)">Lanjut: Program & Kegiatan →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: PROGRAM & KEGIATAN -->
+  <div class="wizard-step" id="step-1">
+    <div class="card">
+      <h2>2. Program, Kegiatan, dan Sub Kegiatan</h2>
+      <p class="card-sub">Masukkan struktur program sesuai nomenklatur Kepmendagri 050-5889/2021. Klik "+ Tambah Kegiatan" untuk menambah baris.</p>
+
+      <div class="prog-table-wrap">
+        <table class="prog-tbl" id="progTable">
+          <thead>
+            <tr>
+              <th style="width:30px">No</th>
+              <th style="min-width:200px">Program / Kegiatan / Sub Kegiatan</th>
+              <th style="min-width:150px">Indikator Kinerja</th>
+              <th style="min-width:80px">Target</th>
+              <th style="min-width:70px">Satuan</th>
+              <th style="min-width:110px">Pagu (Rp)</th>
+              <th style="width:36px"></th>
+            </tr>
+          </thead>
+          <tbody id="progBody"></tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="tbl-add-btn" onclick="addProgRow('program')">+ Program</button>
+        <button class="tbl-add-btn" onclick="addProgRow('kegiatan')">+ Kegiatan</button>
+        <button class="tbl-add-btn" onclick="addProgRow('subkegiatan')">+ Sub Kegiatan</button>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-prev" onclick="goStep(0)">← Kembali</button>
+        <button class="btn btn-next" onclick="goStep(2)">Lanjut: Isu & Prioritas →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: ISU & PRIORITAS -->
+  <div class="wizard-step" id="step-2">
+    <div class="card">
+      <h2>3. Isu Strategis & Prioritas Pembangunan</h2>
+      <p class="card-sub">Data konteks untuk AI menyusun narasi analisis situasi dan gambaran pelayanan OPD.</p>
+
+      <div class="form-group">
+        <label>Isu Strategis OPD (pisahkan dengan Enter) *</label>
+        <textarea id="isuStrategis" rows="5" placeholder="Isu 1: Masih rendahnya kualitas perencanaan OPD&#10;Isu 2: Belum optimalnya koordinasi antar OPD&#10;Isu 3: Terbatasnya kapasitas SDM perencana..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Prioritas Pembangunan Daerah Tahun <span id="tahunLabel">Renja</span></label>
+        <textarea id="prioritasDaerah" rows="4" placeholder="Prioritas 1: ...&#10;Prioritas 2: ...&#10;Prioritas 3: ..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Capaian Kinerja Tahun Sebelumnya (ringkasan)</label>
+        <textarea id="capaianSebelumnya" rows="4" placeholder="Misal: Tahun 2025 capaian program A mencapai 85%, program B baru 70% akibat keterlambatan pengadaan..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Total Pagu Anggaran Renja (Rp)</label>
+        <input type="number" id="totalPagu" placeholder="contoh: 8500000000"/>
+        <span class="hint">Jika berbeda dari total pagu per program di langkah 2</span>
+      </div>
+
+      <div class="form-group">
+        <label>Konteks Tambahan untuk AI (opsional)</label>
+        <textarea id="konteksAi" rows="3" placeholder="Misal: ada bencana alam, kebijakan efisiensi anggaran, refocusing, instruksi bupati..."></textarea>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-prev" onclick="goStep(1)">← Kembali</button>
+        <button class="btn btn-next" onclick="goStep(3)">Lanjut: Narasi AI →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: NARASI AI -->
+  <div class="wizard-step" id="step-3">
+    <div class="card">
+      <h2>4. Narasi Analisis Situasi oleh AI</h2>
+      <p class="card-sub">AI akan menyusun narasi gambaran pelayanan OPD, analisis isu strategis, dan tujuan/sasaran Renja berdasarkan data Anda.</p>
+
+      <div id="aiStatusBox"></div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-ai" id="btnGenAi" onclick="generateNarasi()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Generate Narasi AI
+        </button>
+        <button class="btn btn-prev" onclick="goStep(2)">← Kembali</button>
+      </div>
+
+      <div id="narasiBox" style="margin-top:24px;display:none;">
+        <h3 style="font-size:15px;margin-bottom:12px;">Narasi AI (dapat diedit):</h3>
+        <textarea id="aiNarasi" style="min-height:320px;width:100%;font-size:13px;line-height:1.7;padding:16px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;resize:vertical;"></textarea>
+        <p style="font-size:12px;color:var(--sub);margin-top:8px;">💡 Periksa dan edit narasi sebelum membuat dokumen final.</p>
+        <div class="nav-btns" style="margin-top:16px;">
+          <div></div>
+          <button class="btn btn-next" onclick="goStep(4)">Buat Dokumen Renja →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: PREVIEW & EXPORT -->
+  <div class="wizard-step" id="step-4">
+    <div class="card">
+      <div class="preview-toolbar">
+        <h2>5. Preview & Ekspor Renja OPD</h2>
+        <button class="btn btn-export" onclick="exportWord()">⬇ Word (.doc)</button>
+        <button class="btn" style="background:#e11d48;color:#fff" onclick="exportPdf()">⬇ PDF</button>
+        <button class="btn btn-prev" onclick="goStep(3)">← Edit</button>
+      </div>
+      <div class="doc-preview" id="docOutput"></div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- API MODAL -->
 <div class="modal-overlay" id="apiModal">
-  <div class="modal-box">
-    <div class="modal-title">🔑 Konfigurasi API Key</div>
-    <p class="modal-sub">Masukkan Google Gemini API Key Anda untuk mengaktifkan AI. Key disimpan lokal di browser dan tidak dikirim ke server mana pun.<br><a href="https://aistudio.google.com/app/apikey" target="_blank">Dapatkan API Key Gemini gratis →</a></p>
-    <label class="modal-label">Google Gemini API Key</label>
-    <input class="modal-input" id="apiKeyInput" type="password" placeholder="Masukkan API Key Gemini Anda..." autocomplete="off"/>
-    <div class="modal-hint" style="margin-bottom:16px">Salin key dari Google AI Studio → Dapatkan API Key • Disimpan lokal di browser Anda</div>
-    <div id="testResult" style="font-size:0.78rem;margin-bottom:12px;display:none;padding:8px 12px;border-radius:8px;"></div>
+  <div class="modal">
+    <h3>⚙ API Key Gemini</h3>
+    <p>Masukkan Google Gemini API Key Anda. Key disimpan di perangkat ini saja.<br/>
+    <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--blue);font-size:13px;">Dapatkan API Key gratis →</a></p>
+    <input type="password" class="modal-input" id="apiKeyInput" placeholder="AIza..."/>
+    <div style="display:flex;gap:8px;margin-top:4px;">
+      <button class="btn-sm btn-outline" onclick="testApiKey()">Test Koneksi</button>
+      <span id="testResult" style="font-size:12px;align-self:center;"></span>
+    </div>
     <div class="modal-actions">
-      <button class="btn-modal-cancel" onclick="testProxyConnection()" style="color:var(--accent);border-color:var(--accent)">🔌 Test Koneksi</button>
-      <button class="btn-modal-cancel" onclick="closeApiModal()">Batal</button>
-      <button class="btn-modal-save" onclick="saveApiKey()">Simpan & Aktifkan</button>
+      <button class="btn btn-next" onclick="saveApiKey()" style="flex:1;">Simpan</button>
+      <button class="btn btn-prev" onclick="closeApiModal()" style="flex:1;">Batal</button>
     </div>
   </div>
 </div>
 
-<!-- APP BODY -->
-<div class="app-body">
-
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sidebar-head">
-      <h3>Template Pertanyaan</h3>
-      <div class="template-list">
-        <button class="tmpl-btn" onclick="useTemplate(this, 'Saya dari Dinas Pendidikan. Bantu saya menyusun program dan kegiatan Renja untuk tahun 2026 yang sesuai dengan prioritas pendidikan daerah.')">
-          <span class="tmpl-emoji">🏫</span>
-          <div class="tmpl-info"><strong>Dinas Pendidikan</strong><span>Program & kegiatan Renja 2026</span></div>
-        </button>
-        <button class="tmpl-btn" onclick="useTemplate(this, 'Bantu saya merumuskan indikator output dan outcome untuk kegiatan pelatihan ASN di Dinas Kesehatan.')">
-          <span class="tmpl-emoji">🏥</span>
-          <div class="tmpl-info"><strong>Dinas Kesehatan</strong><span>Indikator output & outcome</span></div>
-        </button>
-        <button class="tmpl-btn" onclick="useTemplate(this, 'Tolong buatkan cascading dari Renstra ke Renja untuk Bappeda, mulai dari tujuan, sasaran, program, hingga sub kegiatan.')">
-          <span class="tmpl-emoji">🏗️</span>
-          <div class="tmpl-info"><strong>Bappeda</strong><span>Cascading Renstra → Renja</span></div>
-        </button>
-        <button class="tmpl-btn" onclick="useTemplate(this, 'Saya perlu menyusun sub kegiatan untuk kegiatan koordinasi perencanaan pembangunan. Bantu rumuskan nama sub kegiatan beserta indikatornya.')">
-          <span class="tmpl-emoji">📊</span>
-          <div class="tmpl-info"><strong>Sub Kegiatan</strong><span>Nama & indikator sub kegiatan</span></div>
-        </button>
-      </div>
-    </div>
-
-    <div class="sidebar-tips">
-      <h3>Tips Penggunaan</h3>
-      <div class="tip-item"><span class="tip-dot">•</span><span>Sebutkan nama OPD dan tahun anggaran</span></div>
-      <div class="tip-item"><span class="tip-dot">•</span><span>Jelaskan isu atau prioritas daerah Anda</span></div>
-      <div class="tip-item"><span class="tip-dot">•</span><span>Minta format tabel jika perlu dipindahkan ke Excel</span></div>
-      <div class="tip-item"><span class="tip-dot">•</span><span>Tanyakan dasar hukum yang relevan</span></div>
-    </div>
-
-    <div class="sidebar-history">
-      <h3>Riwayat</h3>
-      <p class="history-empty">Belum ada percakapan</p>
-    </div>
-  </div>
-
-  <!-- CHAT -->
-  <div class="chat-area">
-
-    <!-- Welcome -->
-    <div class="welcome" id="welcomeScreen">
-      <div class="welcome-icon">📝</div>
-      <h1>Sirenja</h1>
-      <p>Asisten AI untuk penyusunan <strong>Rencana Kerja (Renja) OPD</strong>. Bantu rumuskan program, kegiatan, sub kegiatan, dan indikator kinerja sesuai regulasi.</p>
-      <div class="starter-grid">
-        <button class="starter-btn" onclick="sendStarter('Bantu saya menyusun program dan kegiatan Renja OPD untuk Dinas Pekerjaan Umum tahun 2026.')">
-          <strong>📋 Susun Program & Kegiatan</strong>
-          <span>Rumuskan struktur Renja OPD dari awal</span>
-        </button>
-        <button class="starter-btn" onclick="sendStarter('Tolong buatkan contoh indikator output dan outcome untuk program peningkatan kualitas jalan daerah.')">
-          <strong>📊 Buat Indikator Kinerja</strong>
-          <span>Output, outcome, target capaian</span>
-        </button>
-        <button class="starter-btn" onclick="sendStarter('Jelaskan cara menyusun cascading kinerja dari Renstra ke Renja OPD beserta contohnya.')">
-          <strong>🔗 Cascading Renstra → Renja</strong>
-          <span>Pohon kinerja lengkap</span>
-        </button>
-        <button class="starter-btn" onclick="sendStarter('Apa saja regulasi terbaru yang harus menjadi dasar penyusunan Renja OPD 2026?')">
-          <strong>⚖️ Dasar Hukum & Regulasi</strong>
-          <span>Permendagri & peraturan terbaru</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Messages -->
-    <div class="messages" id="chatMessages"></div>
-
-    <!-- Input -->
-    <div class="input-bar">
-      <div class="credit-bar">
-        <span class="credit-pill credit-free">✦ Gratis</span>
-        <span class="credit-pill">Sisa: <span class="credit-num" id="creditCount">5</span> pertanyaan hari ini</span>
-      </div>
-      <div class="input-wrap">
-        <textarea class="input-box" id="userInput" placeholder="Tanyakan tentang Renja OPD, program, kegiatan, atau indikator kinerja…" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
-          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-        </button>
-      </div>
-      <div class="input-footer">Sirenja menggunakan AI. Selalu verifikasi dengan regulasi resmi yang berlaku.</div>
-    </div>
+<div class="compliance">
+  <div style="max-width:700px;margin:0 auto;">
+    <strong>SiRENJA</strong> — AI Writer Rencana Kerja OPD<br/>
+    Sesuai: <strong>Permendagri 81/2022</strong> · <strong>Inmendagri 2/2025</strong> · <strong>Kepmendagri 050-5889/2021</strong><br/>
+    AI hanya menarasikan analisis — <strong>semua data dan program berasal dari input pengguna.</strong><br/><br/>
+    <a href="index.html">Beranda</a> · <a href="harga.html">Harga</a> · <a href="regulasi.html">Regulasi</a> ·
+    <a href="tentang.html">Tentang</a><br/>
+    © 2026 <a href="tentang.html">Andri Wulandika</a> · AI Tools Perencanaan Daerah Indonesia
   </div>
 </div>
 
 <script>
-  // ── Ganti URL ini setelah deploy Cloudflare Worker ──
-  let credits = 5;
-  let isLoading = false;
+// ============================================================
+// STATE
+// ============================================================
+let currentStep = 0;
+const TOTAL_STEPS = 5;
 
-  function getApiKey() { return localStorage.getItem('gemini_api_key') || ''; }
-  function openApiModal() {
-    document.getElementById('apiKeyInput').value = getApiKey();
-    document.getElementById('apiModal').classList.add('open');
+// ============================================================
+// STEP NAVIGATION
+// ============================================================
+function goStep(n) {
+  if (n < 0 || n >= TOTAL_STEPS) return;
+  if (n > currentStep) {
+    const err = validateStep(currentStep);
+    if (err) { alert(err); return; }
   }
-  function closeApiModal() { document.getElementById('apiModal').classList.remove('open'); }
-  async function testProxyConnection() {
-    const box = document.getElementById('testResult');
-    const key = document.getElementById('apiKeyInput').value.trim();
-    if (!key) { box.style.display='block'; box.style.background='#fff3cd'; box.style.color='#856404'; box.textContent='⚠️ Isi API Key dulu sebelum test.'; return; }
-    box.style.display='block'; box.style.background='#f5f5f7'; box.style.color='#6e6e73'; box.textContent='⏳ Menguji koneksi ke Gemini...';
-    try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Halo' }] }], generationConfig: { maxOutputTokens: 5 } })
-      });
-      if (res.ok) {
-        box.style.background='#e8f8ee'; box.style.color='#1a7a3e';
-        box.textContent='✅ API Key valid! Gemini terhubung. Klik Simpan & Aktifkan.';
-      } else {
-        const d = await res.json().catch(()=>({}));
-        box.style.background='#ffeef0'; box.style.color='#cc0000';
-        box.textContent='❌ ' + (d?.error?.message || `HTTP ${res.status} — periksa API Key Anda.`);
-      }
-    } catch(e) {
-      box.style.background='#ffeef0'; box.style.color='#cc0000';
-      box.textContent='❌ Gagal terhubung: ' + (e.message || 'network error');
-    }
+  if (n === 2) document.getElementById('tahunLabel').textContent = v('tahunRenja') || 'Renja';
+  if (n === 4) buildDocument();
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  document.getElementById('step-' + n).classList.add('active');
+  currentStep = n;
+  updateStepUI();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateStepUI() {
+  for (let i = 0; i < TOTAL_STEPS; i++) {
+    const el = document.getElementById('si-' + i);
+    if (!el) continue;
+    el.className = 'step ' + (i < currentStep ? 'done' : i === currentStep ? 'active' : 'pending');
+    const line = document.getElementById('sl-' + i);
+    if (line) line.className = 'step-line ' + (i < currentStep ? 'done' : '');
   }
-  function saveApiKey() {
-    const key = document.getElementById('apiKeyInput').value.trim();
-    if (key) { localStorage.setItem('gemini_api_key', key); } else { localStorage.removeItem('gemini_api_key'); }
-    closeApiModal();
-    updateApiStatus();
+}
+
+function validateStep(step) {
+  if (step === 0) {
+    if (!v('namaOpd') || !v('namaPemda') || !v('tahunRenja'))
+      return 'Harap lengkapi Nama OPD, Pemerintah Daerah, dan Tahun Renja.';
   }
-  function updateApiStatus() {
-    const btn = document.getElementById('apiStatusBtn');
-    const txt = document.getElementById('apiStatusText');
-    if (getApiKey()) {
-      btn.className = 'api-status set';
-      txt.textContent = 'API Aktif';
-    } else {
-      btn.className = 'api-status unset';
-      txt.textContent = 'API Key';
-    }
+  if (step === 1) {
+    if (document.querySelectorAll('#progBody tr').length === 0)
+      return 'Masukkan minimal 1 program atau kegiatan.';
   }
-  document.addEventListener('DOMContentLoaded', updateApiStatus);
-  document.getElementById('apiModal').addEventListener('click', function(e) {
-    if (e.target === this) closeApiModal();
+  if (step === 2) {
+    if (!v('isuStrategis')) return 'Masukkan minimal 1 isu strategis.';
+  }
+  return null;
+}
+
+// ============================================================
+// PROGRAM TABLE
+// ============================================================
+const SATUAN_LIST = ['%','Dokumen','Kegiatan','Orang','Unit','Paket','km','Ha','Ton','Nilai','Skor','Rp','Lainnya'];
+
+function addProgRow(tipe = 'kegiatan', data = {}) {
+  const rowNum = document.querySelectorAll('#progBody tr').length + 1;
+  const tr = document.createElement('tr');
+  tr.dataset.tipe = tipe;
+
+  const bgMap = { program: '#eff6ff', kegiatan: '#f8fafc', subkegiatan: '#fff' };
+  const labelMap = { program: 'PROGRAM', kegiatan: '  Kegiatan', subkegiatan: '    Sub Kegiatan' };
+  const boldMap = { program: 'font-weight:700;', kegiatan: '', subkegiatan: '' };
+  const indentMap = { program: 0, kegiatan: 16, subkegiatan: 32 };
+
+  tr.style.background = bgMap[tipe] || '#fff';
+  tr.innerHTML = `
+    <td style="text-align:center;font-size:12px;color:var(--sub)">${rowNum}</td>
+    <td>
+      <div style="display:flex;align-items:flex-start;gap:4px;">
+        <span style="font-size:10px;color:var(--sub);white-space:nowrap;padding-top:2px;min-width:${40+indentMap[tipe]}px;${boldMap[tipe]}">${labelMap[tipe]}</span>
+        <input type="text" data-field="nama" placeholder="${tipe === 'program' ? 'Nama program...' : tipe === 'kegiatan' ? 'Nama kegiatan...' : 'Nama sub kegiatan...'}" value="${esc(data.nama||'')}" style="flex:1;"/>
+      </div>
+    </td>
+    <td><input type="text" data-field="indikator" placeholder="Indikator kinerja..." value="${esc(data.indikator||'')}"/></td>
+    <td><input type="number" data-field="target" placeholder="Target" value="${data.target||''}" step="any"/></td>
+    <td>
+      <select data-field="satuan">${SATUAN_LIST.map(s=>`<option ${s===(data.satuan||'%')?'selected':''}>${s}</option>`).join('')}</select>
+    </td>
+    <td><input type="number" data-field="pagu" placeholder="Pagu Rp" value="${data.pagu||''}"/></td>
+    <td><button class="tbl-del" onclick="this.closest('tr').remove();renumberProg()" title="Hapus">×</button></td>`;
+  document.getElementById('progBody').appendChild(tr);
+}
+
+function renumberProg() {
+  document.querySelectorAll('#progBody tr td:first-child').forEach((td, i) => {
+    td.textContent = i + 1;
   });
+}
 
-  const SYSTEM_PROMPT = `Kamu adalah Sirenja, asisten AI ahli penyusunan Rencana Kerja (Renja) OPD (Organisasi Perangkat Daerah) pemerintah daerah Indonesia.
+function getProgData() {
+  return Array.from(document.querySelectorAll('#progBody tr')).map(tr => ({
+    tipe: tr.dataset.tipe,
+    nama: tr.querySelector('[data-field="nama"]')?.value?.trim() || '',
+    indikator: tr.querySelector('[data-field="indikator"]')?.value?.trim() || '',
+    target: tr.querySelector('[data-field="target"]')?.value?.trim() || '',
+    satuan: tr.querySelector('[data-field="satuan"]')?.value || '%',
+    pagu: tr.querySelector('[data-field="pagu"]')?.value?.trim() || '',
+  }));
+}
 
-Kamu dibuat oleh Andri Wulandika, Perencana Ahli Pertama Bappeda, untuk membantu ASN se-Indonesia.
+// ============================================================
+// AI NARASI
+// ============================================================
+async function generateNarasi() {
+  const key = getApiKey();
+  if (!key) { openApiModal(); return; }
 
-KEAHLIANMU:
-- Penyusunan Renja OPD sesuai Permendagri No. 81 Tahun 2022 dan regulasi terkait
-- Perumusan program, kegiatan, dan sub kegiatan OPD
-- Penyusunan indikator kinerja: output, outcome, target
-- Cascading kinerja dari Renstra → Renja → Sub Kegiatan
-- Pohon kinerja: Tujuan → Sasaran → Program → Kegiatan → Sub Kegiatan
-- Nomenklatur program dan kegiatan sesuai Permendagri
-- Sinkronisasi RKPD dengan Renja OPD
-- Input data ke SIPD-RI
+  const opd    = v('namaOpd');
+  const pemda  = v('namaPemda');
+  const tahun  = v('tahunRenja');
+  const urusan = v('urusan');
+  const tupok  = v('tupoksi');
+  const vismis = v('visiMisi');
+  const isu    = v('isuStrategis');
+  const prior  = v('prioritasDaerah');
+  const capaian= v('capaianSebelumnya');
+  const konteks= v('konteksAi');
+  const progs  = getProgData();
 
-PANDUAN MENJAWAB:
-1. Gunakan bahasa formal pemerintahan Indonesia yang tepat
-2. Sertakan dasar hukum yang relevan jika ditanya
-3. Jika membuat struktur/tabel, gunakan format yang rapi dan mudah disalin ke Excel
-4. Bedakan dengan jelas: indikator output vs outcome, program vs kegiatan vs sub kegiatan
-5. Berikan contoh konkret yang realistis untuk pemerintah daerah
-6. Jika ada pertanyaan di luar konteks Renja/perencanaan daerah, arahkan kembali dengan sopan
+  const progSummary = progs.slice(0, 10).map((p, i) =>
+    `${i+1}. [${p.tipe.toUpperCase()}] ${p.nama}${p.indikator?' | IK: '+p.indikator:''}`
+  ).join('\n');
 
-FORMAT TABEL (jika diperlukan):
-Gunakan format markdown tabel yang rapi dengan header yang jelas.
+  const totalPagu = progs.reduce((s, p) => s + (parseFloat(p.pagu)||0), 0);
 
-Jawab dengan singkat, padat, dan langsung bisa digunakan. Maksimal 400 kata kecuali diminta detail.`;
+  const prompt = `Anda adalah perencana pemerintah daerah berpengalaman. Tugas Anda adalah menulis narasi untuk Rencana Kerja (Renja) OPD.
 
-  function autoResize(el) {
-    el.style.height = 'auto';
-    el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+PENTING:
+- Tulis dalam Bahasa Indonesia formal dan baku
+- Jangan mengarang data atau angka baru
+- Sesuai Permendagri 81/2022 tentang Renja OPD
+
+DATA OPD:
+OPD: ${opd}
+Pemerintah Daerah: ${pemda}
+Tahun Renja: ${tahun}
+${urusan ? 'Urusan: ' + urusan : ''}
+${tupok ? 'Tupoksi: ' + tupok : ''}
+${vismis ? 'Visi-Misi terkait: ' + vismis : ''}
+Total Pagu Anggaran: ${totalPagu > 0 ? fmtRp(totalPagu) : '-'}
+
+PROGRAM DAN KEGIATAN:
+${progSummary || '-'}
+
+ISU STRATEGIS:
+${isu}
+
+PRIORITAS PEMBANGUNAN:
+${prior || '-'}
+
+CAPAIAN SEBELUMNYA:
+${capaian || '-'}
+
+KONTEKS TAMBAHAN: ${konteks || '-'}
+
+Tulis narasi Renja OPD yang terdiri dari:
+1. **BAB I: PENDAHULUAN** — Sub-bab: Latar Belakang (2-3 paragraf formal tentang urgensi Renja dan dasar kebijakan), Landasan Hukum (daftarkan UU/PP/Permendagri yang relevan)
+2. **GAMBARAN PELAYANAN OPD** — Uraikan tugas, fungsi, dan kapasitas OPD dalam memberikan pelayanan (2-3 paragraf berdasarkan tupoksi yang diberikan)
+3. **PERMASALAHAN DAN ISU STRATEGIS** — Uraikan tiap isu strategis secara formal, kaitkan dengan program yang direncanakan
+4. **TUJUAN DAN SASARAN** — Rumuskan tujuan dan sasaran Renja berdasarkan program yang direncanakan
+
+Format: narasi paragraf formal + poin-poin bernomor. Total sekitar 600-800 kata.`;
+
+  setAiStatus('loading', 'Sedang menyusun narasi Renja... (estimasi 15-30 detik)');
+  document.getElementById('btnGenAi').disabled = true;
+
+  try {
+    const result = await callGemini(prompt, { temperature: 0.5, maxTokens: 2048 });
+    document.getElementById('aiNarasi').value = result;
+    document.getElementById('narasiBox').style.display = 'block';
+    setAiStatus('success', 'Narasi berhasil dibuat! Periksa dan edit jika perlu.');
+  } catch (err) {
+    setAiStatus('error', formatApiError(err));
   }
+  document.getElementById('btnGenAi').disabled = false;
+}
 
-  function handleKey(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+function setAiStatus(type, msg) {
+  const icons = { loading:'<div class="spinner"></div>', error:'⚠', success:'✓' };
+  document.getElementById('aiStatusBox').innerHTML =
+    `<div class="ai-status ${type}">${icons[type]} ${msg}</div>`;
+}
+
+// ============================================================
+// BUILD DOCUMENT
+// ============================================================
+function buildDocument() {
+  const opd     = v('namaOpd');
+  const pemda   = v('namaPemda');
+  const tahun   = v('tahunRenja');
+  const urusan  = v('urusan');
+  const kepala  = v('namaKepala');
+  const renstra = v('periodeRenstra');
+  const narasi  = document.getElementById('aiNarasi')?.value || '';
+  const progs   = getProgData();
+  const totalPagu = progs.reduce((s, p) => s + (parseFloat(p.pagu)||0), 0);
+  const customPagu = v('totalPagu');
+  const paguFinal = customPagu ? parseFloat(customPagu) : totalPagu;
+
+  // Program table
+  let progTbl = `<table>
+    <thead><tr>
+      <th>No</th><th>Program/Kegiatan/Sub Kegiatan</th>
+      <th>Indikator Kinerja</th><th>Target</th><th>Satuan</th><th>Pagu (Rp)</th>
+    </tr></thead><tbody>`;
+  progs.forEach((p, i) => {
+    const bold   = p.tipe === 'program' ? 'font-weight:bold;' : '';
+    const indent = p.tipe === 'subkegiatan' ? 'padding-left:24px;' : p.tipe === 'kegiatan' ? 'padding-left:12px;' : '';
+    const label  = p.tipe === 'program' ? 'PROGRAM' : p.tipe === 'kegiatan' ? 'Kegiatan' : 'Sub Kegiatan';
+    progTbl += `<tr>
+      <td style="text-align:center">${i+1}</td>
+      <td style="${bold}${indent}">${label}: ${p.nama}</td>
+      <td>${p.indikator||'-'}</td>
+      <td style="text-align:center">${p.target||'-'}</td>
+      <td style="text-align:center">${p.satuan}</td>
+      <td style="text-align:right">${p.pagu ? fmtRp(parseFloat(p.pagu)) : '-'}</td>
+    </tr>`;
+  });
+  progTbl += `<tr><td colspan="5" style="text-align:right;font-weight:bold">Total Pagu</td>
+    <td style="text-align:right;font-weight:bold">${fmtRp(paguFinal)}</td></tr>`;
+  progTbl += '</tbody></table>';
+
+  const narasiHtml = narasi
+    ? narasi.split('\n').filter(Boolean).map(p => {
+        if (p.startsWith('**') && p.endsWith('**')) return `<h2>${p.replace(/\*\*/g,'')}</h2>`;
+        if (/^#{1,3}\s/.test(p)) return `<h3>${p.replace(/^#{1,3}\s/,'')}</h3>`;
+        return `<p>${p}</p>`;
+      }).join('\n')
+    : '<p><em>Narasi belum dibuat. Kembali ke langkah sebelumnya.</em></p>';
+
+  const doc = `
+<div style="text-align:center;margin-bottom:28px;border-bottom:3px double #000;padding-bottom:16px;">
+  <div style="font-size:11pt;font-weight:bold;text-transform:uppercase;">PEMERINTAH ${pemda.toUpperCase()}</div>
+  <div style="font-size:11pt;font-weight:bold;text-transform:uppercase;">${opd.toUpperCase()}</div>
+  <div style="margin:12px 0 8px;">
+    <div style="font-size:16pt;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">RENCANA KERJA</div>
+    <div style="font-size:13pt;font-weight:bold;">(RENJA OPD)</div>
+    <div style="font-size:12pt;font-weight:bold;">TAHUN ${tahun}</div>
+  </div>
+  ${urusan ? `<div style="font-size:11pt;">Urusan: ${urusan}</div>` : ''}
+  ${renstra ? `<div style="font-size:10pt;color:#444;">Mengacu Renstra Periode ${renstra}</div>` : ''}
+</div>
+
+${narasiHtml}
+
+<div style="page-break-before:always;"></div>
+
+<h2>BAB II — RENCANA KERJA DAN PENDANAAN</h2>
+<p>Rencana kerja ${opd} Tahun ${tahun} mencakup program, kegiatan, dan sub kegiatan dengan total pagu anggaran sebesar <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja dan alokasi anggarannya:</p>
+
+${progTbl}
+
+<div style="page-break-before:always;"></div>
+
+<h2>BAB III — PENUTUP</h2>
+<p>Rencana Kerja ${opd} Tahun ${tahun} ini merupakan dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan program dan kegiatan selama satu tahun anggaran. Dokumen ini disusun mengacu pada Renstra ${opd} Periode ${renstra||'...'} dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah.</p>
+<p>Dengan ditetapkannya Renja ini, diharapkan seluruh pelaksana kegiatan dapat menjalankan program sesuai target kinerja yang telah ditetapkan, efisien dalam penggunaan anggaran, dan akuntabel dalam pertanggungjawabannya.</p>
+
+<div style="margin-top:40px;display:flex;justify-content:flex-end;">
+  <div style="text-align:center;min-width:250px;">
+    <p>${pemda}, .......... ${tahun}</p>
+    <p>Kepala ${opd},</p>
+    <br/><br/><br/>
+    <p style="text-decoration:underline;font-weight:bold;">${kepala || '........................................'}</p>
+  </div>
+</div>
+
+<div style="margin-top:32px;border-top:1px solid #ccc;padding-top:10px;font-size:9pt;color:#666;text-align:center;">
+  Dokumen dibuat dengan SiRENJA — AI Writer Renja OPD | andriwulandika.github.io<br/>
+  Sesuai Permendagri 81/2022 dan Inmendagri 2/2025
+</div>`;
+
+  document.getElementById('docOutput').innerHTML = doc;
+}
+
+// ============================================================
+// EXPORT
+// ============================================================
+function exportWord() {
+  const content = document.getElementById('docOutput').innerHTML;
+  const opd   = v('namaOpd') || 'OPD';
+  const tahun = v('tahunRenja') || '';
+  const fname = `Renja_${opd}_${tahun}`;
+  const wordHtml = `<html xmlns:o='urn:schemas-microsoft-com:office:office'
+    xmlns:w='urn:schemas-microsoft-com:office:word'
+    xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/><title>${fname}</title>
+<style>body{font-family:'Times New Roman',Times,serif;font-size:12pt;margin:2.54cm;line-height:1.5;}
+h2{font-size:13pt;font-weight:bold;margin:16pt 0 6pt;} h3{font-size:12pt;font-weight:bold;margin:10pt 0 4pt;}
+table{border-collapse:collapse;width:100%;font-size:10pt;}
+td,th{border:1px solid #000;padding:4pt 6pt;vertical-align:top;}
+th{background:#f0f0f0;font-weight:bold;text-align:center;}
+p{margin:5pt 0;text-align:justify;} ol,ul{margin:4pt 0 4pt 16pt;}li{margin-bottom:3pt;}
+@page{size:A4;margin:2.54cm;}</style></head>
+<body>${content}</body></html>`;
+  const blob = new Blob(['﻿' + wordHtml], { type: 'application/msword;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fname.replace(/[^a-zA-Z0-9_\- ]/g,'_') + '.doc';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function exportPdf() {
+  const el = document.getElementById('docOutput');
+  if (typeof html2pdf === 'undefined') { alert('Library PDF sedang dimuat. Coba sesaat lagi.'); return; }
+  const opd   = v('namaOpd') || 'OPD';
+  const tahun = v('tahunRenja') || '';
+  html2pdf().set({
+    margin:[1.5,1.5,1.5,2], filename:`Renja_${opd}_${tahun}.pdf`,
+    image:{type:'jpeg',quality:.95}, html2canvas:{scale:2},
+    jsPDF:{unit:'cm',format:'a4',orientation:'portrait'}
+  }).from(el).save();
+}
+
+// ============================================================
+// API KEY
+// ============================================================
+function getApiKey() { return localStorage.getItem('gemini_api_key') || ''; }
+function saveApiKey() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  if (key) localStorage.setItem('gemini_api_key', key);
+  else localStorage.removeItem('gemini_api_key');
+  closeApiModal();
+}
+function openApiModal() {
+  document.getElementById('apiKeyInput').value = getApiKey();
+  document.getElementById('testResult').textContent = '';
+  document.getElementById('apiModal').classList.add('open');
+}
+function closeApiModal() { document.getElementById('apiModal').classList.remove('open'); }
+async function testApiKey() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  if (!key) { document.getElementById('testResult').textContent = '⚠ Masukkan API key.'; return; }
+  document.getElementById('testResult').textContent = '⏳ Testing...';
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({contents:[{parts:[{text:'Halo'}]}]})
+    });
+    document.getElementById('testResult').textContent = res.ok ? '✓ Valid!' : `✗ Error ${res.status}`;
+  } catch { document.getElementById('testResult').textContent = '✗ Gagal terhubung.'; }
+}
+
+async function callGemini(prompt, { temperature=0.7, maxTokens=2048 }={}) {
+  const key = getApiKey();
+  if (!key) throw new Error('NO_KEY');
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature,maxOutputTokens:maxTokens}})
+  });
+  if (!res.ok) {
+    if (res.status===401||res.status===403) throw new Error('API_KEY_INVALID');
+    if (res.status===429) throw new Error('API_QUOTA');
+    throw new Error('API_ERROR: '+res.status);
   }
+  const data = await res.json();
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!text) throw new Error('API_EMPTY_RESPONSE');
+  return text;
+}
 
-  function useTemplate(btn, text) {
-    document.querySelectorAll('.tmpl-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('userInput').value = text;
-    autoResize(document.getElementById('userInput'));
-    document.getElementById('userInput').focus();
-  }
+function formatApiError(err) {
+  const m = err.message||'';
+  if (m==='NO_KEY') return 'Masukkan API Key Gemini terlebih dahulu.';
+  if (m==='API_KEY_INVALID') return 'API Key tidak valid. Cek di <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>.';
+  if (m==='API_QUOTA') return 'Kuota API habis. Coba lagi nanti.';
+  if (m.includes('fetch')||m.includes('Network')) return 'Gagal terhubung ke server AI.';
+  return 'Error: '+m;
+}
 
-  function sendStarter(text) {
-    document.getElementById('userInput').value = text;
-    sendMessage();
-  }
+// ============================================================
+// HELPERS
+// ============================================================
+function v(id) { return document.getElementById(id)?.value?.trim()||''; }
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function fmtRp(n) { return 'Rp ' + Math.round(n||0).toLocaleString('id-ID'); }
 
-  function newChat() {
-    document.getElementById('chatMessages').innerHTML = '';
-    document.getElementById('chatMessages').classList.remove('active');
-    document.getElementById('welcomeScreen').style.display = 'flex';
-    document.querySelectorAll('.tmpl-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('userInput').value = '';
-    credits = 5;
-    document.getElementById('creditCount').textContent = credits;
-    document.getElementById('sendBtn').disabled = false;
-  }
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('tahunRenja').value = new Date().getFullYear() + 1;
 
-  function showWelcome(show) {
-    document.getElementById('welcomeScreen').style.display = show ? 'flex' : 'none';
-    const msgs = document.getElementById('chatMessages');
-    if (!show) msgs.classList.add('active'); else msgs.classList.remove('active');
-  }
-
-  function appendMessage(role, content, isTyping = false) {
-    const msgs = document.getElementById('chatMessages');
-    const group = document.createElement('div');
-    group.className = `msg-group ${role}`;
-
-    if (isTyping) {
-      group.id = 'typingIndicator';
-      const sender = document.createElement('div');
-      sender.className = 'msg-sender';
-      sender.textContent = 'Sirenja';
-      const bubble = document.createElement('div');
-      bubble.className = 'typing-bubble';
-      bubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-      group.appendChild(sender);
-      group.appendChild(bubble);
-    } else {
-      const sender = document.createElement('div');
-      sender.className = 'msg-sender';
-      sender.textContent = role === 'user' ? 'Anda' : 'Sirenja';
-      const bubble = document.createElement('div');
-      bubble.className = `bubble ${role}`;
-      bubble.innerHTML = role === 'ai' ? formatAI(content) : escHtml(content);
-      group.appendChild(sender);
-      group.appendChild(bubble);
+  // Pre-load vismis dari SiGenDok/SiLKjIP
+  try {
+    const raw = localStorage.getItem('sigendok_vimis');
+    if (raw) {
+      const d = JSON.parse(raw);
+      if (d.visi && !document.getElementById('visiMisi').value)
+        document.getElementById('visiMisi').value = (d.visi ? 'Visi: ' + d.visi : '') + (d.misi ? '\nMisi: ' + d.misi : '');
     }
+  } catch {}
 
-    msgs.appendChild(group);
-    msgs.scrollTop = msgs.scrollHeight;
-    return group;
-  }
+  // Default rows
+  addProgRow('program', { nama: '', indikator: '', target: '', satuan: '%', pagu: '' });
+  addProgRow('kegiatan');
+  addProgRow('subkegiatan');
 
-  function escHtml(t) {
-    return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  function formatAI(text) {
-    return text
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-      .replace(/^## (.+)$/gm, '<h3>$1</h3>')
-      .replace(/^# (.+)$/gm, '<h3>$1</h3>')
-      .replace(/^\| (.+)/gm, (m) => {
-        const cells = m.split('|').filter(c => c.trim() !== '');
-        if (cells.every(c => /^[-\s]+$/.test(c.trim()))) return '';
-        return '<div style="overflow-x:auto;margin:8px 0"><table style="width:100%;border-collapse:collapse;font-size:0.82rem">' +
-          '<tr>' + cells.map(c => `<td style="padding:6px 10px;border:1px solid #d2d2d7;vertical-align:top">${c.trim()}</td>`).join('') + '</tr></table></div>';
-      })
-      .replace(/^- (.+)$/gm, '<li>$1</li>')
-      .replace(/(<li>.*<\/li>\n?)+/g, m => `<ul>${m}</ul>`)
-      .replace(/\n\n/g, '</p><p>')
-      .replace(/^(?!<[hultd])(.+)$/gm, (m) => m ? m : '')
-      .replace(/\n/g, '<br>');
-  }
-
-  let conversationHistory = [];
-
-  async function sendMessage() {
-    if (isLoading) return;
-    const input = document.getElementById('userInput');
-    const text = input.value.trim();
-    if (!text) return;
-    const apiKey = getApiKey();
-    if (!apiKey) {
-      openApiModal();
-      return;
-    }
-    if (credits <= 0) {
-      alert('Kuota harian habis. Muat ulang halaman untuk sesi baru.');
-      return;
-    }
-
-    showWelcome(false);
-    isLoading = true;
-    document.getElementById('sendBtn').disabled = true;
-
-    input.value = '';
-    input.style.height = 'auto';
-
-    appendMessage('user', text);
-    const typing = appendMessage('ai', '', true);
-
-    conversationHistory.push({ role: 'user', content: text });
-
-    try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
-      const contents = conversationHistory.map(m => ({
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }]
-      }));
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-          contents,
-          generationConfig: { maxOutputTokens: 1500 }
-        })
-      });
-
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        if (res.status === 400) throw new Error('API Key tidak valid atau kedaluwarsa. Klik badge "API Aktif" untuk memperbarui.');
-        if (res.status === 429) throw new Error('Batas rate tercapai. Tunggu sebentar lalu coba lagi.');
-        throw new Error(errData?.error?.message || `Error HTTP ${res.status}`);
-      }
-
-      const data = await res.json();
-      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Maaf, terjadi kesalahan. Coba lagi.';
-
-      typing.remove();
-      appendMessage('ai', reply);
-      conversationHistory.push({ role: 'assistant', content: reply });
-
-      credits--;
-      document.getElementById('creditCount').textContent = credits;
-      if (credits <= 0) document.getElementById('sendBtn').disabled = true;
-
-    } catch (err) {
-      typing.remove();
-      const isCors = err.message === 'Failed to fetch' || err.message.includes('NetworkError');
-      const msg = isCors
-        ? 'Gagal terhubung ke server AI (CORS/jaringan). Pastikan browser tidak memblokir request lintas domain, lalu coba lagi.'
-        : err.message || 'Terjadi kesalahan tidak diketahui.';
-      appendMessage('ai', '⚠️ ' + msg);
-    }
-
-    isLoading = false;
-    if (credits > 0) document.getElementById('sendBtn').disabled = false;
-  }
+  document.getElementById('apiModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('apiModal')) closeApiModal();
+  });
+});
 </script>
 </body>
 </html>
