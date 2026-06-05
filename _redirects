@@ -1,0 +1,7 @@
+# Cloudflare Pages — _redirects
+
+# Redirect tanpa trailing slash ke dengan slash (opsional)
+/index  /  301
+
+# Halaman 404 custom
+/*  /404.html  404
