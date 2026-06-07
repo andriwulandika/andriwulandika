@@ -308,7 +308,8 @@
 
     <!-- RENSTRA 1 -->
     <div class="card" data-category="renstra"
-         data-name="Template%20Renstra%20OPD%202025-2029">
+         data-name="Template%20Renstra%20OPD%202025-2029"
+         data-file="assets/templates/template-renstra-opd.doc">
       <div class="card-icon icon-renstra">📋</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -323,7 +324,8 @@
 
     <!-- RENSTRA 2 -->
     <div class="card" data-category="renstra"
-         data-name="Matriks%20Tujuan%20%26%20Sasaran%20Renstra">
+         data-name="Matriks%20Tujuan%20%26%20Sasaran%20Renstra"
+         data-file="assets/templates/matriks-tujuan-sasaran-renstra.xls">
       <div class="card-icon icon-renstra">📊</div>
       <div class="card-badges">
         <span class="badge badge-excel">Excel</span>
@@ -337,7 +339,8 @@
 
     <!-- RENSTRA 3 -->
     <div class="card" data-category="renstra"
-         data-name="Template%20Review%20Renstra%20Triwulanan">
+         data-name="Template%20Review%20Renstra%20Triwulanan"
+         data-file="assets/templates/template-review-renstra-triwulanan.doc">
       <div class="card-icon icon-renstra">🔍</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -351,7 +354,8 @@
 
     <!-- RENJA 1 -->
     <div class="card" data-category="renja"
-         data-name="Template%20Renja%20OPD%202025">
+         data-name="Template%20Renja%20OPD%202025"
+         data-file="assets/templates/template-renja-opd.doc">
       <div class="card-icon icon-renja">📝</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -367,7 +371,8 @@
 
     <!-- RENJA 2 -->
     <div class="card" data-category="renja"
-         data-name="Template%20Renja%20Perubahan">
+         data-name="Template%20Renja%20Perubahan"
+         data-file="assets/templates/template-renja-perubahan.doc">
       <div class="card-icon icon-renja">🔄</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -381,7 +386,8 @@
 
     <!-- RENJA 3 -->
     <div class="card" data-category="renja"
-         data-name="Matriks%20Program%20Kegiatan%20Sub%20Kegiatan">
+         data-name="Matriks%20Program%20Kegiatan%20Sub%20Kegiatan"
+         data-file="assets/templates/matriks-program-kegiatan-subkegiatan.xls">
       <div class="card-icon icon-renja">📑</div>
       <div class="card-badges">
         <span class="badge badge-excel">Excel</span>
@@ -395,7 +401,8 @@
 
     <!-- SAKIP 1 -->
     <div class="card" data-category="sakip"
-         data-name="Template%20Perjanjian%20Kinerja%20(PK)%20Eselon%20II-IV">
+         data-name="Template%20Perjanjian%20Kinerja%20(PK)%20Eselon%20II-IV"
+         data-file="assets/templates/template-perjanjian-kinerja.doc">
       <div class="card-icon icon-sakip">🤝</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -410,7 +417,8 @@
 
     <!-- SAKIP 2 -->
     <div class="card" data-category="sakip"
-         data-name="Template%20LKjIP%20OPD">
+         data-name="Template%20LKjIP%20OPD"
+         data-file="assets/templates/template-lkjip-opd.doc">
       <div class="card-icon icon-sakip">📄</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -424,7 +432,8 @@
 
     <!-- SAKIP 3 -->
     <div class="card" data-category="sakip"
-         data-name="Matriks%20Cascading%20IKU%2FIKD%2FIKK">
+         data-name="Matriks%20Cascading%20IKU%2FIKD%2FIKK"
+         data-file="assets/templates/matriks-cascading-iku-ikd-ikk.xls">
       <div class="card-icon icon-sakip">🎯</div>
       <div class="card-badges">
         <span class="badge badge-excel">Excel</span>
@@ -526,9 +535,19 @@
 
   document.querySelectorAll('.btn-download').forEach(btn => {
     btn.addEventListener('click', () => {
-      const card     = btn.closest('.card');
-      const name     = card.dataset.name || 'Template%20Dokumen';
-      waLink.href    = `https://wa.me/62811660568?text=Halo%2C%20saya%20ingin%20mengunduh%20template%20${name}`;
+      const card = btn.closest('.card');
+      const file = card.dataset.file;
+      if (file) {
+        const a = document.createElement('a');
+        a.href = file;
+        a.download = file.split('/').pop();
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        return;
+      }
+      const name  = card.dataset.name || 'Template%20Dokumen';
+      waLink.href = `https://wa.me/62811660568?text=Halo%2C%20saya%20ingin%20mengunduh%20template%20${name}`;
       overlay.classList.add('open');
     });
   });

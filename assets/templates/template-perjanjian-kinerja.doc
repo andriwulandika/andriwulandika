@@ -1,0 +1,96 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+xmlns:w='urn:schemas-microsoft-com:office:word'
+xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/><title>Template Perjanjian Kinerja Eselon II-IV</title>
+<style>
+body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;}
+h1{font-size:14pt;text-align:center;font-weight:bold;text-transform:uppercase;}
+h2{font-size:12pt;font-weight:bold;text-transform:uppercase;margin-top:18px;}
+h3{font-size:12pt;font-weight:bold;margin-top:12px;}
+table{border-collapse:collapse;width:100%;margin:10px 0;}
+td,th{border:1px solid #000;padding:6px;font-size:11pt;vertical-align:top;}
+th{background:#d9d9d9;font-weight:bold;text-align:center;}
+.ph{color:#1155cc;}
+.note{color:#666;font-style:italic;font-size:10pt;}
+.ttd{width:48%;display:inline-block;vertical-align:top;}
+</style>
+</head>
+<body>
+
+<h1>PERJANJIAN KINERJA<br/>TAHUN [20XX]</h1>
+
+<p class="note">Template berdasarkan Peraturan Menteri PANRB Nomor 53 Tahun 2014 tentang Petunjuk Teknis Perjanjian Kinerja, Pelaporan Kinerja dan Tata Cara Reviu atas Laporan Kinerja Instansi Pemerintah. Tersedia 3 (tiga) bagian: PK Eselon II (Kepala OPD), Eselon III (Kepala Bidang), dan Eselon IV (Kepala Sub Bidang/Seksi) — sesuaikan dengan struktur organisasi OPD Anda dan susun secara berjenjang (cascading).</p>
+
+<h2>BAGIAN A — PERJANJIAN KINERJA ESELON II (KEPALA OPD)</h2>
+<p>Dalam rangka mewujudkan manajemen pemerintahan yang efektif, transparan, dan akuntabel serta berorientasi pada hasil, yang bertanda tangan di bawah ini:</p>
+<table>
+<tr><td style="width:30%">Nama</td><td>: <span class="ph">[NAMA KEPALA OPD]</span></td></tr>
+<tr><td>Jabatan</td><td>: Kepala <span class="ph">[NAMA OPD]</span></td></tr>
+</table>
+<p>Selanjutnya disebut <b>Pihak Pertama</b>, berjanji akan mewujudkan target kinerja yang seharusnya sesuai lampiran perjanjian ini, dalam rangka mencapai target kinerja jangka menengah seperti yang telah ditetapkan dalam dokumen perencanaan. Keberhasilan dan kegagalan pencapaian target kinerja tersebut menjadi tanggung jawab kami.</p>
+<table>
+<tr><td style="width:30%">Nama</td><td>: <span class="ph">[NAMA BUPATI/WALI KOTA/GUBERNUR]</span></td></tr>
+<tr><td>Jabatan</td><td>: <span class="ph">[Bupati/Wali Kota/Gubernur NAMA DAERAH]</span></td></tr>
+</table>
+<p>Selaku atasan langsung pihak pertama, selanjutnya disebut <b>Pihak Kedua</b>, akan melakukan supervisi yang diperlukan serta akan melakukan evaluasi akuntabilitas kinerja terhadap capaian kinerja dari perjanjian ini sebagai dasar penilaian keberhasilan/kegagalan pencapaian target kinerja Pihak Pertama dan akan memberikan penghargaan dan sanksi sesuai dengan peraturan perundang-undangan yang berlaku.</p>
+
+<table>
+<tr><th>No</th><th>Sasaran Strategis</th><th>Indikator Kinerja</th><th>Target</th></tr>
+<tr><td>1</td><td class="ph">[isi sasaran strategis OPD sesuai Renstra]</td><td class="ph">[isi indikator kinerja utama / IKU]</td><td class="ph">[isi target tahun berjalan]</td></tr>
+</table>
+<table>
+<tr><th colspan="2">Program</th><th>Anggaran (Rp)</th></tr>
+<tr><td colspan="2" class="ph">[nama program]</td><td class="ph">[Rp pagu program]</td></tr>
+</table>
+<p>[Nama Kota], [Tanggal Bulan Tahun]</p>
+<p>
+<span class="ttd">PIHAK KEDUA<br/><span class="ph">[Bupati/Wali Kota/Gubernur]</span><br/><br/><br/><br/><span class="ph">[NAMA PEJABAT]</span></span>
+<span class="ttd">PIHAK PERTAMA<br/>Kepala <span class="ph">[NAMA OPD]</span><br/><br/><br/><br/><span class="ph">[NAMA PEJABAT]</span><br/>NIP. <span class="ph">[NIP]</span></span>
+</p>
+
+<h2>BAGIAN B — PERJANJIAN KINERJA ESELON III (KEPALA BIDANG)</h2>
+<p>Merupakan turunan (cascading) dari PK Eselon II — sasaran dan indikator Eselon III mendukung pencapaian sasaran dan IKU Eselon II di atasnya.</p>
+<table>
+<tr><td style="width:30%">Nama</td><td>: <span class="ph">[NAMA KEPALA BIDANG]</span></td></tr>
+<tr><td>Jabatan</td><td>: Kepala Bidang <span class="ph">[NAMA BIDANG]</span>, <span class="ph">[NAMA OPD]</span></td></tr>
+<tr><td>Atasan Langsung</td><td>: Kepala <span class="ph">[NAMA OPD]</span></td></tr>
+</table>
+<table>
+<tr><th>No</th><th>Sasaran Kegiatan / Program</th><th>Indikator Kinerja Individu (IKI)</th><th>Target</th></tr>
+<tr><td>1</td><td class="ph">[sasaran bidang, mendukung sasaran OPD ke-..]</td><td class="ph">[indikator turunan dari IKU OPD]</td><td class="ph">[target]</td></tr>
+</table>
+<table>
+<tr><th colspan="2">Kegiatan</th><th>Anggaran (Rp)</th></tr>
+<tr><td colspan="2" class="ph">[nama kegiatan yang menjadi tanggung jawab bidang]</td><td class="ph">[Rp pagu kegiatan]</td></tr>
+</table>
+<p>[Nama Kota], [Tanggal Bulan Tahun]</p>
+<p>
+<span class="ttd">ATASAN LANGSUNG<br/>Kepala <span class="ph">[NAMA OPD]</span><br/><br/><br/><br/><span class="ph">[NAMA PEJABAT]</span><br/>NIP. <span class="ph">[NIP]</span></span>
+<span class="ttd">PIHAK PERTAMA<br/>Kepala Bidang <span class="ph">[NAMA BIDANG]</span><br/><br/><br/><br/><span class="ph">[NAMA PEJABAT]</span><br/>NIP. <span class="ph">[NIP]</span></span>
+</p>
+
+<h2>BAGIAN C — PERJANJIAN KINERJA ESELON IV (KEPALA SUB BIDANG / SEKSI)</h2>
+<p>Merupakan turunan (cascading) dari PK Eselon III — sasaran dan indikator Eselon IV mendukung pencapaian sasaran dan indikator Eselon III di atasnya, hingga ke level operasional teknis.</p>
+<table>
+<tr><td style="width:30%">Nama</td><td>: <span class="ph">[NAMA KEPALA SUB BIDANG/SEKSI]</span></td></tr>
+<tr><td>Jabatan</td><td>: Kepala Sub Bidang/Seksi <span class="ph">[NAMA UNIT]</span>, <span class="ph">[NAMA OPD]</span></td></tr>
+<tr><td>Atasan Langsung</td><td>: Kepala Bidang <span class="ph">[NAMA BIDANG]</span></td></tr>
+</table>
+<table>
+<tr><th>No</th><th>Sasaran Sub Kegiatan</th><th>Indikator Kinerja Individu (IKI)</th><th>Target</th></tr>
+<tr><td>1</td><td class="ph">[sasaran operasional, mendukung sasaran bidang ke-..]</td><td class="ph">[indikator turunan dari IKI Eselon III]</td><td class="ph">[target]</td></tr>
+</table>
+<table>
+<tr><th colspan="2">Sub Kegiatan</th><th>Anggaran (Rp)</th></tr>
+<tr><td colspan="2" class="ph">[nama sub kegiatan yang menjadi tanggung jawab unit]</td><td class="ph">[Rp pagu sub kegiatan]</td></tr>
+</table>
+<p>[Nama Kota], [Tanggal Bulan Tahun]</p>
+<p>
+<span class="ttd">ATASAN LANGSUNG<br/>Kepala Bidang <span class="ph">[NAMA BIDANG]</span><br/><br/><br/><br/><span class="ph">[NAMA PEJABAT]</span><br/>NIP. <span class="ph">[NIP]</span></span>
+<span class="ttd">PIHAK PERTAMA<br/>Kepala Sub Bidang/Seksi <span class="ph">[NAMA UNIT]</span><br/><br/><br/><br/><span class="ph">[NAMA PEJABAT]</span><br/>NIP. <span class="ph">[NIP]</span></span>
+</p>
+
+<p class="note">Catatan: Susunan IKI pada setiap level harus saling mendukung secara berjenjang (cascading) — IKI Eselon IV mendukung IKI Eselon III, IKI Eselon III mendukung IKU Eselon II, dan IKU Eselon II mendukung sasaran strategis dalam Renstra/RPJMD. Gunakan SiKTOR (andriwulandika.pages.dev/siktor.html) untuk menyusun cascading target kinerja secara otomatis dengan AI.</p>
+<p class="note">— Template oleh Andri Wulandika · andriwulandika.pages.dev —</p>
+</body>
+</html>
