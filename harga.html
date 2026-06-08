@@ -50,11 +50,11 @@
       {
         "@type": "Offer",
         "name": "Paket OPD / Instansi",
-        "price": "299000",
+        "price": "349000",
         "priceCurrency": "IDR",
         "priceSpecification": {
           "@type": "UnitPriceSpecification",
-          "price": "299000",
+          "price": "349000",
           "priceCurrency": "IDR",
           "unitText": "MONTH"
         },
@@ -483,10 +483,10 @@
       <hr class="card-divider"/>
       <p class="features-label">Yang didapat</p>
       <ul class="features-list">
-        <li class="feat-item"><span class="feat-icon">✓</span>Akses semua 4 AI tools (SiRENJA, SiRKPD, SiPerda, SiGenDok)</li>
+        <li class="feat-item"><span class="feat-icon">✓</span>Akses semua 8 AI tools (SiRENJA, SiRKPD, SiPerda, SiGenDok, SiLKjIP, SiKTOR, SiTelaah, SiBACARA)</li>
         <li class="feat-item"><span class="feat-icon">✓</span>Bawa API key Gemini sendiri (gratis dari Google)</li>
         <li class="feat-item"><span class="feat-icon">✓</span>Generate dokumen perencanaan tanpa batas</li>
-        <li class="feat-item"><span class="feat-icon">✓</span>Baca semua artikel & panduan</li>
+        <li class="feat-item"><span class="feat-icon">✓</span>Baca semua artikel & panduan regulasi</li>
         <li class="feat-item"><span class="feat-icon">✓</span>Tidak perlu kartu kredit</li>
       </ul>
     </div>
@@ -523,7 +523,7 @@
       <p class="plan-name">OPD / Instansi</p>
       <p class="plan-desc">Untuk seluruh tim OPD dalam satu instansi dengan kebutuhan kolektif dan pelatihan.</p>
       <div class="price-main">
-        <span class="price-amount" id="opd-price">Rp 299.000</span>
+        <span class="price-amount" id="opd-price">Rp 349.000</span>
       </div>
       <p class="price-period" id="opd-period">/bulan</p>
       <p class="price-annual-note" id="opd-annual-note">&nbsp;</p>
@@ -582,6 +582,30 @@
           </tr>
           <tr>
             <td>Akses SiGenDok (Generator Dokumen)</td>
+            <td><span class="check">✓</span></td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Akses SiLKjIP (LKjIP AI Writer)</td>
+            <td><span class="check">✓</span></td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Akses SiKTOR (KAK/TOR AI Writer)</td>
+            <td><span class="check">✓</span></td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Akses SiTelaah (Nota Dinas & Telaahan)</td>
+            <td><span class="check">✓</span></td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Akses SiBACARA (Berita Acara)</td>
             <td><span class="check">✓</span></td>
             <td class="highlight"><span class="check">✓</span></td>
             <td><span class="check">✓</span></td>
@@ -828,15 +852,15 @@
       proPeriod.textContent = '/tahun';
       proNote.textContent   = '≈ Rp 79.000/bulan · hemat Rp 238.000';
 
-      opdPrice.textContent  = 'Rp 2.870.000';
+      opdPrice.textContent  = 'Rp 3.350.000';
       opdPeriod.textContent = '/tahun';
-      opdNote.textContent   = '≈ Rp 239.000/bulan · hemat Rp 718.000';
+      opdNote.textContent   = '≈ Rp 279.000/bulan · hemat Rp 838.000';
     } else {
       proPrice.textContent  = 'Rp 99.000';
       proPeriod.textContent = '/bulan';
       proNote.innerHTML     = '&nbsp;';
 
-      opdPrice.textContent  = 'Rp 299.000';
+      opdPrice.textContent  = 'Rp 349.000';
       opdPeriod.textContent = '/bulan';
       opdNote.innerHTML     = '&nbsp;';
     }
