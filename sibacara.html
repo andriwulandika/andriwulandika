@@ -290,6 +290,7 @@ textarea{resize:vertical;min-height:80px;}
   <div style="margin-top:6px;font-size:12px;color:#0369a1;">✓ Gratis &middot; ✓ 1.500 generate/hari &middot; ✓ Tidak perlu kartu kredit</div>
 </div>
 <input type="password" class="modal-input" id="apiKeyInput" placeholder="AIza..."/>
+<div style="margin-top:6px;"><button type="button" onclick="resetApiKey()" style="background:none;border:none;color:#dc2626;font-size:12px;text-decoration:underline;cursor:pointer;padding:2px 0;">🗑 Hapus API key tersimpan &amp; mulai ulang</button></div>
     <div style="display:flex;gap:8px;margin-top:4px;">
       <button class="btn-sm btn-outline" onclick="testApiKey()">Test</button>
       <span id="testResult" style="font-size:12px;align-self:center;"></span>
@@ -507,6 +508,7 @@ function exportPdf(){
 
 function setAiStatus(type,msg){const icons={loading:'<div class="spinner"></div>',error:'⚠',success:'✓'};document.getElementById('aiStatusBox').innerHTML=`<div class="ai-status ${type}">${icons[type]} ${msg}</div>`;}
 function getApiKey(){return localStorage.getItem('gemini_api_key')||'';}
+function resetApiKey(){localStorage.removeItem('gemini_api_key');const inp=document.getElementById('apiKeyInput');if(inp)inp.value='';const tr=document.getElementById('testResult');if(tr){tr.style.display='';tr.textContent='✓ API key dihapus. Masukkan key baru lalu klik Simpan.';}}
 function saveApiKey(){const k=document.getElementById('apiKeyInput').value.trim();if(k)localStorage.setItem('gemini_api_key',k);else localStorage.removeItem('gemini_api_key');closeApiModal();}
 function openApiModal(){document.getElementById('apiKeyInput').value=getApiKey();document.getElementById('testResult').textContent='';document.getElementById('apiModal').classList.add('open');}
 function closeApiModal(){document.getElementById('apiModal').classList.remove('open');}
@@ -534,7 +536,7 @@ async function callGemini(prompt, { temperature=0.7, maxTokens=2048 }={}) {
     throw new Error('API_ERROR: '+res.status);
   }
   throw new Error('API_QUOTA');
-}={}){const key=getApiKey();if(!key)throw new Error('NO_KEY');const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature,maxOutputTokens:maxTokens}})});if(!res.ok){if(res.status===401||res.status===403)throw new Error('API_KEY_INVALID');if(res.status===429)throw new Error('API_QUOTA');throw new Error('API_ERROR: '+res.status);}const data=await res.json();const text=data?.candidates?.[0]?.content?.parts?.[0]?.text;if(!text)throw new Error('API_EMPTY_RESPONSE');return text;}
+}
 function formatApiError(err){const m=err.message||'';if(m==='NO_KEY')return 'Masukkan API Key terlebih dahulu.';if(m==='API_KEY_INVALID')return 'API Key tidak valid.';if(m==='API_QUOTA')return 'Kuota habis.';return 'Error: '+m;}
 function v(id){return document.getElementById(id)?.value?.trim()||'';}
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}

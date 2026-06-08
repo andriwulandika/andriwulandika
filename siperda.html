@@ -388,6 +388,7 @@
   <div style="margin-top:6px;font-size:12px;color:#0369a1;">✓ Gratis &middot; ✓ 1.500 generate/hari &middot; ✓ Tidak perlu kartu kredit</div>
 </div>
 <input class="modal-input" id="apiKeyInput" type="password" placeholder="Masukkan API Key Gemini Anda..." autocomplete="off"/>
+<div style="margin-top:6px;"><button type="button" onclick="resetApiKey()" style="background:none;border:none;color:#dc2626;font-size:12px;text-decoration:underline;cursor:pointer;padding:2px 0;">🗑 Hapus API key tersimpan &amp; mulai ulang</button></div>
     <div class="modal-hint" style="margin-bottom:16px">Salin key dari Google AI Studio → Dapatkan API Key • Disimpan lokal di browser Anda</div>
     <div id="testResult" style="font-size:0.78rem;margin-bottom:12px;display:none;padding:8px 12px;border-radius:8px;"></div>
     <div class="modal-actions">
@@ -531,6 +532,14 @@
     }
   }
 
+  function resetApiKey() {
+    localStorage.removeItem('gemini_api_key');
+    const inp = document.getElementById('apiKeyInput');
+    if (inp) inp.value = '';
+    const tr = document.getElementById('testResult');
+    if (tr) { tr.style.display=''; tr.textContent = '✓ API key dihapus. Masukkan key baru lalu klik Simpan.'; }
+    updateApiStatus();
+  }
   function saveApiKey() {
     const key = document.getElementById('apiKeyInput').value.trim();
     if (key) localStorage.setItem('gemini_api_key', key); else localStorage.removeItem('gemini_api_key');
