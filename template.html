@@ -166,8 +166,10 @@
     .card-regulasi {
       font-size: 12px; color: #0071e3; font-weight: 500;
     }
+    .card-actions {
+      display: flex; gap: 8px; margin-top: 4px;
+    }
     .btn-download {
-      margin-top: 4px;
       background: #0071e3; color: #fff;
       border: none; border-radius: 10px;
       padding: 11px 0; width: 100%;
@@ -177,6 +179,16 @@
     }
     .btn-download:hover { background: #0077ed; transform: scale(1.01); }
     .btn-download:active { transform: scale(.98); }
+    .btn-example {
+      background: #fff; color: #0071e3;
+      border: 1.5px solid #0071e3; border-radius: 10px;
+      padding: 10px 0; width: 100%;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-example:hover { background: #f0f7ff; transform: scale(1.01); }
+    .btn-example:active { transform: scale(.98); }
 
     /* HOW TO USE */
     .how-section {
@@ -333,7 +345,8 @@
     <!-- RENSTRA 1 -->
     <div class="card" data-category="renstra"
          data-name="Template%20Renstra%20OPD%202025-2029"
-         data-file="assets/templates/template-renstra-opd.doc">
+         data-file="assets/templates/template-renstra-opd.doc"
+         data-example="assets/templates/contoh-renstra-opd.html">
       <div class="card-icon icon-renstra">📋</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -343,13 +356,17 @@
       <h3>Template Renstra OPD 2025–2029</h3>
       <p>Dokumen Rencana Strategis OPD lengkap dengan sistematika terbaru, analisis lingkungan, dan matriks kinerja.</p>
       <span class="card-regulasi">Berdasarkan Inmendagri 2/2025</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
     <!-- RENSTRA 2 -->
     <div class="card" data-category="renstra"
          data-name="Matriks%20Tujuan%20%26%20Sasaran%20Renstra"
-         data-file="assets/templates/matriks-tujuan-sasaran-renstra.xls">
+         data-file="assets/templates/matriks-tujuan-sasaran-renstra.xls"
+         data-example="assets/templates/contoh-matriks-tujuan-sasaran-renstra.html">
       <div class="card-icon icon-renstra">📊</div>
       <div class="card-badges">
         <span class="badge badge-excel">Excel</span>
@@ -358,13 +375,17 @@
       <h3>Matriks Tujuan &amp; Sasaran Renstra</h3>
       <p>Spreadsheet terstruktur untuk menyusun tujuan, sasaran, indikator, target tahunan, dan sumber data OPD.</p>
       <span class="card-regulasi">Berdasarkan Permendagri 86/2017</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
     <!-- RENSTRA 3 -->
     <div class="card" data-category="renstra"
          data-name="Template%20Review%20Renstra%20Triwulanan"
-         data-file="assets/templates/template-review-renstra-triwulanan.doc">
+         data-file="assets/templates/template-review-renstra-triwulanan.doc"
+         data-example="assets/templates/contoh-review-renstra-triwulanan.html">
       <div class="card-icon icon-renstra">🔍</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -373,13 +394,17 @@
       <h3>Template Review Renstra Triwulanan</h3>
       <p>Format laporan monitoring dan evaluasi capaian Renstra per triwulan, siap ditandatangani pimpinan OPD.</p>
       <span class="card-regulasi">Berdasarkan Permendagri 86/2017</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
     <!-- RENJA 1 -->
     <div class="card" data-category="renja"
          data-name="Template%20Renja%20OPD%202025"
-         data-file="assets/templates/template-renja-opd.doc">
+         data-file="assets/templates/template-renja-opd.doc"
+         data-example="assets/templates/contoh-renja-opd.html">
       <div class="card-icon icon-renja">📝</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -390,13 +415,17 @@
       <h3>Template Renja OPD 2025</h3>
       <p>Dokumen Rencana Kerja OPD tahunan lengkap dengan rumusan program, kegiatan, sub kegiatan, dan indikator kinerja.</p>
       <span class="card-regulasi">Berdasarkan Permendagri 81/2022</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
     <!-- RENJA 2 -->
     <div class="card" data-category="renja"
          data-name="Template%20Renja%20Perubahan"
-         data-file="assets/templates/template-renja-perubahan.doc">
+         data-file="assets/templates/template-renja-perubahan.doc"
+         data-example="assets/templates/contoh-renja-perubahan.html">
       <div class="card-icon icon-renja">🔄</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -405,13 +434,17 @@
       <h3>Template Renja Perubahan</h3>
       <p>Format dokumen perubahan Renja OPD tengah tahun, mencakup pergeseran program dan justifikasi perubahan anggaran.</p>
       <span class="card-regulasi">Berdasarkan Permendagri 81/2022</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
     <!-- RENJA 3 -->
     <div class="card" data-category="renja"
          data-name="Matriks%20Program%20Kegiatan%20Sub%20Kegiatan"
-         data-file="assets/templates/matriks-program-kegiatan-subkegiatan.xls">
+         data-file="assets/templates/matriks-program-kegiatan-subkegiatan.xls"
+         data-example="assets/templates/contoh-matriks-program-kegiatan-subkegiatan.html">
       <div class="card-icon icon-renja">📑</div>
       <div class="card-badges">
         <span class="badge badge-excel">Excel</span>
@@ -420,13 +453,17 @@
       <h3>Matriks Program Kegiatan Sub Kegiatan</h3>
       <p>Tabel lengkap pemetaan Program–Kegiatan–Sub Kegiatan sesuai nomenklatur SIPD, dilengkapi kolom pagu anggaran.</p>
       <span class="card-regulasi">Berdasarkan Permendagri 90/2019 &amp; Pemutakhiran</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
     <!-- SAKIP 1 -->
     <div class="card" data-category="sakip"
          data-name="Template%20Perjanjian%20Kinerja%20(PK)%20Eselon%20II-IV"
-         data-file="assets/templates/template-perjanjian-kinerja.doc">
+         data-file="assets/templates/template-perjanjian-kinerja.doc"
+         data-example="assets/templates/contoh-perjanjian-kinerja.html">
       <div class="card-icon icon-sakip">🤝</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -436,13 +473,17 @@
       <h3>Template Perjanjian Kinerja (PK) Eselon II–IV</h3>
       <p>Dokumen PK siap pakai untuk Kepala OPD (Es. II), Kabid (Es. III), dan Kasubbid/Kasie (Es. IV) beserta format cascading.</p>
       <span class="card-regulasi">Berdasarkan PermenPANRB 53/2014</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
     <!-- SAKIP 2 -->
     <div class="card" data-category="sakip"
          data-name="Template%20LKjIP%20OPD"
-         data-file="assets/templates/template-lkjip-opd.doc">
+         data-file="assets/templates/template-lkjip-opd.doc"
+         data-example="assets/templates/contoh-lkjip-opd.html">
       <div class="card-icon icon-sakip">📄</div>
       <div class="card-badges">
         <span class="badge badge-word">Word</span>
@@ -451,13 +492,17 @@
       <h3>Template LKjIP OPD</h3>
       <p>Format Laporan Kinerja Instansi Pemerintah OPD lengkap: pendahuluan, perencanaan kinerja, akuntabilitas, dan penutup.</p>
       <span class="card-regulasi">Berdasarkan PermenPANRB 53/2014</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
     <!-- SAKIP 3 -->
     <div class="card" data-category="sakip"
          data-name="Matriks%20Cascading%20IKU%2FIKD%2FIKK"
-         data-file="assets/templates/matriks-cascading-iku-ikd-ikk.xls">
+         data-file="assets/templates/matriks-cascading-iku-ikd-ikk.xls"
+         data-example="assets/templates/contoh-matriks-cascading-iku-ikd-ikk.html">
       <div class="card-icon icon-sakip">🎯</div>
       <div class="card-badges">
         <span class="badge badge-excel">Excel</span>
@@ -466,7 +511,10 @@
       <h3>Matriks Cascading IKU/IKD/IKK</h3>
       <p>Spreadsheet penurunan indikator kinerja dari level OPD hingga individu ASN, siap digunakan untuk SKP dan evaluasi SAKIP.</p>
       <span class="card-regulasi">Berdasarkan PermenPANRB 6/2022</span>
-      <button class="btn-download">⬇ Unduh Template</button>
+      <div class="card-actions">
+        <button class="btn-download">⬇ Unduh Template</button>
+        <button class="btn-example">👁 Lihat Contoh</button>
+      </div>
     </div>
 
   </div>
@@ -573,6 +621,14 @@
       const name  = card.dataset.name || 'Template%20Dokumen';
       waLink.href = `https://wa.me/62811660568?text=Halo%2C%20saya%20ingin%20mengunduh%20template%20${name}`;
       overlay.classList.add('open');
+    });
+  });
+
+  document.querySelectorAll('.btn-example').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card    = btn.closest('.card');
+      const example = card.dataset.example;
+      if (example) window.open(example, '_blank', 'noopener');
     });
   });
 
