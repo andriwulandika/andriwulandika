@@ -8,23 +8,23 @@
   <!-- SEO Primary -->
   <title>Andri Wulandika — Perencana Ahli Pertama Bappeda Aceh Tenggara</title>
   <meta name="description" content="Andri Wulandika, Perencana Ahli Pertama Bappeda Kabupaten Aceh Tenggara. Konsultansi perencanaan daerah, template dokumen Renstra Renja RAB, dan AI tools khusus ASN Indonesia."/>
-  <meta name="keywords" content="Andri Wulandika, Perencana Ahli Pertama, Bappeda Aceh Tenggara, konsultansi perencanaan daerah, SiRENJA, SiRKPD, RKPD, Renstra, Renja OPD, SIPD-RI, ASN perencana, template dokumen pemerintah, perencanaan pembangunan daerah"/>
+  <meta name="keywords" content="Andri Wulandika, Perencana Ahli Pertama, Bappeda Aceh Tenggara, konsultansi perencanaan daerah, SiRENJA, SiRKPD, SiPerda, RKPD, Renstra, Renja OPD, SIPD-RI, ASN perencana, template dokumen pemerintah, perencanaan pembangunan daerah"/>
   <meta name="author" content="Andri Wulandika"/>
   <meta name="robots" content="index, follow"/>
-  <link rel="canonical" href="https://andriwulandika.github.io/Perencana-Ahli-Pertama/"/>
+  <link rel="canonical" href="https://andriwulandika.github.io/andriwulandika/"/>
 
   <!-- Open Graph (tampilan saat dibagikan di WhatsApp/Facebook) -->
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Andri Wulandika — Perencana Ahli Pertama Bappeda Aceh Tenggara"/>
-  <meta property="og:description" content="Konsultansi perencanaan daerah, template dokumen, dan AI tools khusus ASN Indonesia. SiRENJA & SiRKPD — asisten AI untuk Renja OPD dan RKPD."/>
-  <meta property="og:url" content="https://andriwulandika.github.io/Perencana-Ahli-Pertama/"/>
+  <meta property="og:description" content="Konsultansi perencanaan daerah, template dokumen, dan AI tools khusus ASN Indonesia. SiRENJA, SiRKPD &amp; SiPerda — asisten AI untuk Renja OPD, RKPD, dan konsultasi perencanaan daerah."/>
+  <meta property="og:url" content="https://andriwulandika.github.io/andriwulandika/"/>
   <meta property="og:site_name" content="Andri Wulandika"/>
   <meta property="og:locale" content="id_ID"/>
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary"/>
   <meta name="twitter:title" content="Andri Wulandika — Perencana Ahli Pertama"/>
-  <meta name="twitter:description" content="Konsultansi perencanaan daerah, template dokumen, dan AI tools untuk ASN Indonesia."/>
+  <meta name="twitter:description" content="Konsultansi perencanaan daerah, template dokumen, dan AI tools untuk ASN Indonesia. SiRENJA, SiRKPD &amp; SiPerda."/>
 
   <!-- Schema Markup (Google tahu ini profil profesional) -->
   <script type="application/ld+json">
@@ -45,7 +45,7 @@
     },
     "email": "wulandikaandri@gmail.com",
     "telephone": "+62811660568",
-    "url": "https://andriwulandika.github.io/Perencana-Ahli-Pertama/",
+    "url": "https://andriwulandika.github.io/andriwulandika/",
     "description": "Praktisi perencanaan pembangunan daerah, konsultan Renstra Renja RKPD, dan pengembang AI tools untuk ASN Indonesia.",
     "knowsAbout": ["Perencanaan Pembangunan Daerah", "RPJMD", "RKPD", "Renstra OPD", "Renja OPD", "SIPD-RI", "SAKIP", "Penganggaran Daerah", "Indikator Kinerja"]
   }
@@ -307,6 +307,11 @@
     }
     .glow-blue { background: #0071e3; }
     .glow-green { background: #34c759; }
+    .glow-teal { background: #14b8a6; }
+    .chip-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+    .tool-card .desc { font-size: 0.9rem; color: var(--text2); line-height: 1.6; margin: 12px 0; }
+    .tool-link { display: inline-flex; align-items: center; gap: 6px; background: #14b8a6; color: #fff; padding: 10px 22px; border-radius: 980px; font-size: 0.82rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+    .tool-link:hover { background: #0d9488; }
     @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } }
 
     /* ── TEMPLATE ── */
@@ -339,6 +344,59 @@
     .tmpl-sub { font-size: 0.75rem; color: var(--text2); }
     .tmpl-price { font-size: 0.78rem; color: var(--accent); font-weight: 500; margin-top: 6px; }
     @media (max-width: 700px) { .template-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ── BLOG ── */
+    .blog-bg { background: var(--bg); }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px; margin-top: 3rem;
+    }
+    .blog-card {
+      background: var(--bg2);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      display: flex; flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      border: 1px solid transparent;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      border-color: var(--border);
+    }
+    .blog-card-cat {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,113,227,0.08);
+      padding: 3px 9px; border-radius: 980px;
+      margin-bottom: 1rem; width: fit-content;
+    }
+    .blog-card-title {
+      font-size: 1.05rem; font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.35;
+      color: var(--text); margin-bottom: 0.75rem;
+    }
+    .blog-card-excerpt {
+      font-size: 0.85rem; color: var(--text2);
+      line-height: 1.6; flex: 1; margin-bottom: 1.2rem;
+    }
+    .blog-card-meta {
+      font-size: 0.75rem; color: var(--text2);
+      display: flex; gap: 0.8rem; align-items: center;
+    }
+    .blog-card-meta span { display: flex; align-items: center; gap: 3px; }
+    .blog-card-link {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--accent); margin-top: 1rem;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .blog-card:hover .blog-card-link { gap: 8px; }
+    @media (max-width: 700px) { .blog-grid { grid-template-columns: 1fr; } }
 
     /* ── CTA ── */
     .cta-section {
@@ -393,8 +451,8 @@
     .divider { height: 1px; background: var(--border); }
   </style>
   <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="apple-touch-icon.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
 </head>
 <body>
@@ -408,6 +466,7 @@
     <li><a href="#tools">AI Tools</a></li>
     <li><a href="#template">Template</a></li>
     <li><a href="regulasi.html">Regulasi</a></li>
+    <li><a href="#blog">Blog</a></li>
     <li><a href="#kontak" class="nav-cta">Konsultasi</a></li>
   </ul>
 </nav>
@@ -437,8 +496,8 @@
       <span class="stat-lbl">OPD<br/>Dikoordinasi</span>
     </div>
     <div class="stat-item reveal reveal-d2">
-      <span class="stat-num">TAPD</span>
-      <span class="stat-lbl">Anggota<br/>Tim Anggaran</span>
+      <span class="stat-num" style="font-size:1.1rem;letter-spacing:-0.02em">Tim<br/>Perencana</span>
+      <span class="stat-lbl">Anggota Tim<br/>Perencanaan Pembangunan Daerah</span>
     </div>
     <div class="stat-item reveal reveal-d3">
       <span class="stat-num">SIPD</span>
@@ -574,6 +633,40 @@
         </div>
         <a href="sirkpd.html" style="display:inline-flex;align-items:center;gap:6px;background:#34c759;color:#fff;padding:10px 22px;border-radius:980px;font-size:0.82rem;font-weight:500;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#30d158'" onmouseout="this.style.background='#34c759'">Coba SiRKPD →</a>
       </div>
+
+      <!-- SiPerda -->
+      <div class="tool-card reveal reveal-d3">
+        <div class="tool-glow glow-teal"></div>
+        <span class="tool-badge" style="background:rgba(20,184,166,.15);color:#14b8a6;border-color:rgba(20,184,166,.25)">
+          AI Chat · Konsultasi
+        </span>
+        <h3 class="tool-card-name">SiPerda</h3>
+        <p class="desc">Tanya langsung ke AI ahli perencanaan daerah — RKPD, Renja, Renstra, indikator, RAB, SAKIP, regulasi terbaru.</p>
+        <div class="chip-list">
+          <span class="chip">Chat AI</span>
+          <span class="chip">Multi-topik</span>
+          <span class="chip">Regulasi terkini</span>
+          <span class="chip">Permendagri 3/2026</span>
+        </div>
+        <a href="siperda.html" class="tool-link">Buka SiPerda →</a>
+      </div>
+
+      <!-- SiGenDok -->
+      <div class="tool-card reveal reveal-d4">
+        <div class="tool-glow" style="background:radial-gradient(ellipse at top,rgba(124,58,237,.3),transparent 70%)"></div>
+        <span class="tool-badge" style="background:rgba(124,58,237,.15);color:#7c3aed;border-color:rgba(124,58,237,.25)">
+          Generator Dokumen
+        </span>
+        <h3 class="tool-card-name">SiGenDok</h3>
+        <p class="desc">Isi formulir, langsung dapat dokumen resmi — Renja OPD, LKjIP, dan Perjanjian Kinerja sesuai sistematika regulasi, siap cetak.</p>
+        <div class="chip-list">
+          <span class="chip">Renja OPD</span>
+          <span class="chip">LKjIP</span>
+          <span class="chip">Perjanjian Kinerja</span>
+          <span class="chip">Format Regulasi</span>
+        </div>
+        <a href="sigendok.html" class="tool-link" style="background:#7c3aed;" onmouseover="this.style.background='#6d28d9'" onmouseout="this.style.background='#7c3aed'">Buka SiGenDok →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -623,6 +716,30 @@
   </div>
 </section>
 
+<!-- BLOG -->
+<section class="section blog-bg" id="blog">
+  <div class="section-inner wide">
+    <div class="reveal">
+      <p class="eyebrow">Blog & Artikel</p>
+      <h2 class="section-title">Insight perencanaan<br/>daerah yang praktis.</h2>
+      <p class="section-body">Tulisan berbasis pengalaman lapangan — tentang regulasi, metode, dan praktik terbaik perencanaan pembangunan daerah Indonesia.</p>
+    </div>
+    <div class="blog-grid">
+      <a href="cascading-perencanaan-daerah.html" class="blog-card reveal">
+        <span class="blog-card-cat">Perencanaan Daerah</span>
+        <div class="blog-card-title">Memahami Cascading Dokumen Perencanaan Daerah: Dari RPJMN hingga Sub Kegiatan OPD</div>
+        <div class="blog-card-excerpt">Cascading bukan sekadar hierarki dokumen — ini benang merah yang menghubungkan visi nasional dengan satu baris anggaran di SIPD-RI. Panduan lengkap beserta kesalahan umum yang sering terjadi.</div>
+        <div class="blog-card-meta">
+          <span>📅 2 Juni 2026</span>
+          <span>·</span>
+          <span>⏱ 10 menit baca</span>
+        </div>
+        <div class="blog-card-link">Baca artikel →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section" id="kontak">
   <div class="cta-inner reveal">
@@ -644,6 +761,7 @@
       <a href="#tentang">Tentang</a>
       <a href="#layanan">Layanan</a>
       <a href="#tools">AI Tools</a>
+      <a href="#blog">Blog</a>
       <a href="#kontak">Kontak</a>
     </div>
   </div>

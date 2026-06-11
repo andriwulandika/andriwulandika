@@ -4,9 +4,16 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Regulasi Terupdate — Andri Wulandika</title>
-  <meta name="description" content="Kumpulan regulasi perencanaan pembangunan daerah terbaru — Permendagri, PMK, Inmendagri untuk ASN perencana Indonesia."/>
-  <meta name="keywords" content="regulasi perencanaan daerah, Permendagri, PMK, RKPD, Renstra, Renja, APBD, DBH Sawit, SAKIP, terbaru 2025 2026"/>
+  <meta name="description" content="Kumpulan regulasi perencanaan pembangunan daerah terbaru — Permendagri, PMK, PermenPANRB, PP untuk ASN perencana Indonesia. Lengkap: RKPD, Renstra, Renja, SAKIP, LKjIP, LAKIP, LPPD, LKPJ."/>
+  <meta name="keywords" content="regulasi perencanaan daerah, Permendagri, PMK, RKPD, Renstra, Renja, APBD, DBH Sawit, SAKIP, LKjIP, LAKIP, LPPD, LKPJ, Perjanjian Kinerja, PermenPANRB 53 2014, Perpres 29 2014, terbaru 2025 2026"/>
+  <link rel="canonical" href="https://andriwulandika.github.io/andriwulandika/regulasi.html"/>
+  <meta property="og:title" content="Regulasi Perencanaan Daerah Terupdate — Andri Wulandika"/>
+  <meta property="og:description" content="Kumpulan regulasi perencanaan pembangunan daerah terbaru — Permendagri, PMK, Inmendagri untuk ASN perencana Indonesia."/>
+  <meta property="og:url" content="https://andriwulandika.github.io/andriwulandika/regulasi.html"/>
+  <meta property="og:type" content="website"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -166,6 +173,9 @@
     .badge-pp { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
     .badge-uu { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
     .badge-perbup { background: #f5f5f7; color: #6e6e73; border: 1px solid #d2d2d7; }
+    .badge-panrb { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+    .badge-inpres { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+    .badge-perpres { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
 
     .reg-info { flex: 1; }
     .reg-title { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
@@ -188,6 +198,98 @@
       color: var(--accent); display: flex; align-items: center; gap: 4px;
       white-space: nowrap;
     }
+
+    /* TEMPLATE DOKUMEN CARDS */
+    .tmpl-doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .tmpl-doc-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: box-shadow 0.22s, border-color 0.22s;
+    }
+    .tmpl-doc-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+    }
+    .tmpl-doc-header {
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .tmpl-doc-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .tmpl-doc-meta { flex: 1; }
+    .tmpl-doc-label {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text2); margin-bottom: 3px;
+    }
+    .tmpl-doc-name {
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--text); line-height: 1.25;
+    }
+    .tmpl-doc-reg {
+      font-size: 0.72rem; color: var(--text2); margin-top: 2px;
+    }
+    .tmpl-doc-body { padding: 16px 20px 20px; flex: 1; }
+    .tmpl-doc-sistematika {
+      font-size: 0.78rem; color: var(--text2);
+      margin-bottom: 12px;
+    }
+    .tmpl-doc-sistematika strong {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text2);
+      display: block; margin-bottom: 6px;
+    }
+    .tmpl-doc-ol {
+      list-style: none; display: flex; flex-direction: column; gap: 4px;
+      counter-reset: bab-counter;
+    }
+    .tmpl-doc-ol li {
+      counter-increment: bab-counter;
+      display: flex; gap: 8px; align-items: baseline;
+      font-size: 0.78rem; color: var(--text);
+      line-height: 1.4;
+    }
+    .tmpl-doc-ol li::before {
+      content: "BAB " counter(bab-counter);
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.04em; color: var(--text2);
+      white-space: nowrap; flex-shrink: 0;
+      min-width: 40px;
+    }
+    .tmpl-doc-ol.roman-num {
+      counter-reset: roman-counter;
+    }
+    .tmpl-doc-ol.roman-num li {
+      counter-increment: roman-counter;
+    }
+    .tmpl-doc-ol.roman-num li::before {
+      content: counter(roman-counter, upper-roman) ".";
+      min-width: 24px;
+    }
+    .tmpl-doc-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .tmpl-doc-badge {
+      font-size: 0.65rem; font-weight: 600;
+      padding: 3px 9px; border-radius: 980px;
+    }
+    .tmpl-doc-link {
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--accent); text-decoration: none;
+    }
+    .tmpl-doc-link:hover { opacity: 0.7; }
+    @media (max-width: 700px) { .tmpl-doc-grid { grid-template-columns: 1fr; } }
 
     /* FOOTER */
     footer {
@@ -227,7 +329,7 @@
 <div class="hero">
   <p class="hero-eyebrow">Referensi Hukum</p>
   <h1 class="hero-title">Regulasi Perencanaan<br/>Daerah Terupdate.</h1>
-  <p class="hero-sub">Kumpulan peraturan perundang-undangan terbaru untuk ASN perencana — Permendagri, PMK, Inmendagri, dan regulasi teknis lainnya.</p>
+  <p class="hero-sub">Kumpulan peraturan perundang-undangan terbaru untuk ASN perencana — Permendagri, PMK, PermenPANRB, PP — mencakup perencanaan, penganggaran, SAKIP, LKjIP, LPPD, dan regulasi teknis lainnya.</p>
   <span class="hero-update">Diperbarui Juni 2026</span>
 </div>
 
@@ -241,6 +343,8 @@
       <button class="filter-btn" onclick="setFilter('penganggaran', this)">Penganggaran</button>
       <button class="filter-btn" onclick="setFilter('evaluasi', this)">Evaluasi</button>
       <button class="filter-btn" onclick="setFilter('khusus', this)">Dana Khusus</button>
+      <button class="filter-btn" onclick="setFilter('akuntabilitas', this)">LAKIP & LPPD</button>
+      <button class="filter-btn" onclick="setFilter('template', this)">Template Dokumen</button>
     </div>
   </div>
 </div>
@@ -434,35 +538,50 @@
     <div class="cat-header">
       <div class="cat-icon" style="background:#e8f8ee;">📊</div>
       <span class="cat-title">Evaluasi, Pelaporan & SAKIP</span>
-      <span class="cat-count">4 regulasi</span>
+      <span class="cat-count">6 regulasi</span>
     </div>
     <div class="reg-grid">
 
       <a class="reg-card" href="https://peraturan.bpk.go.id/" target="_blank">
-        <span class="reg-badge badge-permendagri">Permendagri</span>
+        <span class="reg-badge badge-perpres">Perpres</span>
         <div class="reg-info">
-          <p class="reg-title">Permendagri No. 18 Tahun 2020 — LPPD (Laporan Penyelenggaraan Pemerintahan Daerah)</p>
-          <p class="reg-desc">Pedoman penyusunan LPPD tahunan, LKPJ Kepala Daerah, dan ringkasan LPPD. Wajib disusun oleh seluruh pemerintah kabupaten/kota setiap tahun.</p>
+          <p class="reg-title">Perpres No. 29 Tahun 2014 — SAKIP (Sistem Akuntabilitas Kinerja Instansi Pemerintah)</p>
+          <p class="reg-desc">Dasar hukum utama penerapan SAKIP. Mengatur kewajiban menyusun Renstra, Perjanjian Kinerja (PK), pengukuran kinerja, pengelolaan data kinerja, dan Laporan Kinerja (LKjIP/LAKIP).</p>
           <div class="reg-meta">
-            <span class="reg-year">2020</span>
-            <span class="reg-tag">LPPD</span>
-            <span class="reg-tag">LKPJ</span>
-            <span class="reg-tag">Pelaporan</span>
+            <span class="reg-year">2014</span>
+            <span class="reg-tag">SAKIP</span>
+            <span class="reg-tag">LKjIP</span>
+            <span class="reg-tag">LAKIP</span>
           </div>
         </div>
         <span class="reg-action">Unduh →</span>
       </a>
 
-      <a class="reg-card" href="https://peraturan.bpk.go.id/" target="_blank">
-        <span class="reg-badge badge-pp">Perpres</span>
+      <a class="reg-card" href="https://peraturan.bpk.go.id/Details/175057/permen-panrb-no-88-tahun-2021" target="_blank">
+        <span class="reg-badge badge-panrb">PermenPANRB</span>
         <div class="reg-info">
-          <p class="reg-title">Perpres No. 29 Tahun 2014 — SAKIP (Sistem Akuntabilitas Kinerja Instansi Pemerintah)</p>
-          <p class="reg-desc">Dasar hukum penerapan SAKIP di seluruh instansi pemerintah. Mengatur penyusunan Renstra, Perjanjian Kinerja, pengukuran kinerja, pengelolaan data kinerja, dan LKjIP.</p>
+          <p class="reg-title">PermenPANRB No. 88 Tahun 2021 — Evaluasi Akuntabilitas Kinerja Instansi Pemerintah</p>
+          <p class="reg-desc">Pedoman terbaru evaluasi AKIP yang menggantikan PermenPANRB No. 12 Tahun 2015. Mengatur mekanisme penilaian komponen SAKIP meliputi perencanaan kinerja, pengukuran, pelaporan, evaluasi internal, dan capaian kinerja organisasi.</p>
+          <div class="reg-meta">
+            <span class="reg-year new">2021 · Terbaru</span>
+            <span class="reg-tag">Evaluasi AKIP</span>
+            <span class="reg-tag">SAKIP</span>
+            <span class="reg-tag">Penilaian</span>
+          </div>
+        </div>
+        <span class="reg-action">Unduh →</span>
+      </a>
+
+      <a class="reg-card" href="https://peraturan.bpk.go.id/Details/59044/permen-panrb-no-53-tahun-2014" target="_blank">
+        <span class="reg-badge badge-panrb">PermenPANRB</span>
+        <div class="reg-info">
+          <p class="reg-title">PermenPANRB No. 53 Tahun 2014 — Petunjuk Teknis Perjanjian Kinerja, Pelaporan Kinerja & Reviu LKjIP</p>
+          <p class="reg-desc">Petunjuk teknis operasional SAKIP: format Perjanjian Kinerja (PK), format Laporan Kinerja Instansi Pemerintah (LKjIP), dan tata cara reviu LKjIP oleh APIP. Lampiran memuat contoh format lengkap yang masih dijadikan acuan.</p>
           <div class="reg-meta">
             <span class="reg-year">2014</span>
-            <span class="reg-tag">SAKIP</span>
+            <span class="reg-tag">Perjanjian Kinerja</span>
             <span class="reg-tag">LKjIP</span>
-            <span class="reg-tag">Kinerja</span>
+            <span class="reg-tag">Format</span>
           </div>
         </div>
         <span class="reg-action">Unduh →</span>
@@ -491,6 +610,108 @@
             <span class="reg-year">2020</span>
             <span class="reg-tag">Sinkronisasi</span>
             <span class="reg-tag">Penganggaran</span>
+          </div>
+        </div>
+        <span class="reg-action">Unduh →</span>
+      </a>
+
+      <a class="reg-card" href="https://peraturan.bpk.go.id/" target="_blank">
+        <span class="reg-badge badge-inpres">Inpres</span>
+        <div class="reg-info">
+          <p class="reg-title">Inpres No. 7 Tahun 1999 — Akuntabilitas Kinerja Instansi Pemerintah (Cikal Bakal LAKIP)</p>
+          <p class="reg-desc">Instruksi Presiden yang pertama kali mewajibkan instansi pemerintah menyusun LAKIP. Meski telah digantikan Perpres 29/2014, masih relevan sebagai referensi sejarah dan dasar filosofi akuntabilitas kinerja pemerintah.</p>
+          <div class="reg-meta">
+            <span class="reg-year">1999</span>
+            <span class="reg-tag">LAKIP</span>
+            <span class="reg-tag">Historis</span>
+          </div>
+        </div>
+        <span class="reg-action">Unduh →</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- LAKIP & LPPD -->
+  <div class="cat-section reveal" data-cat="akuntabilitas">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#fef3c7;">📝</div>
+      <span class="cat-title">LAKIP / LKjIP & LPPD</span>
+      <span class="cat-count">5 regulasi</span>
+    </div>
+    <div class="reg-grid">
+
+      <a class="reg-card" href="https://peraturan.bpk.go.id/Details/175057/permen-panrb-no-88-tahun-2021" target="_blank">
+        <span class="reg-badge badge-panrb">PermenPANRB</span>
+        <div class="reg-info">
+          <p class="reg-title">PermenPANRB No. 88 Tahun 2021 — Evaluasi Akuntabilitas Kinerja Instansi Pemerintah</p>
+          <p class="reg-desc">Pedoman evaluasi AKIP yang menggantikan PermenPANRB 12/2015. Memuat komponen penilaian: perencanaan kinerja (30%), pengukuran kinerja (25%), pelaporan kinerja (15%), evaluasi internal (10%), dan capaian kinerja (20%).</p>
+          <div class="reg-meta">
+            <span class="reg-year new">2021 · Terbaru</span>
+            <span class="reg-tag">AKIP</span>
+            <span class="reg-tag">LKjIP</span>
+            <span class="reg-tag">Penilaian Nilai B/BB</span>
+          </div>
+        </div>
+        <span class="reg-action">Unduh →</span>
+      </a>
+
+      <a class="reg-card" href="https://peraturan.bpk.go.id/Details/59044/permen-panrb-no-53-tahun-2014" target="_blank">
+        <span class="reg-badge badge-panrb">PermenPANRB</span>
+        <div class="reg-info">
+          <p class="reg-title">PermenPANRB No. 53 Tahun 2014 — Juknis PK, Pelaporan Kinerja & Reviu LKjIP</p>
+          <p class="reg-desc">Petunjuk teknis utama penyusunan LKjIP: sistematika laporan (Ikhtisar Eksekutif → BAB I Pendahuluan → BAB II Perencanaan Kinerja → BAB III Akuntabilitas Kinerja → BAB IV Penutup), format PK, dan prosedur reviu APIP.</p>
+          <div class="reg-meta">
+            <span class="reg-year">2014</span>
+            <span class="reg-tag">Format LKjIP</span>
+            <span class="reg-tag">Perjanjian Kinerja</span>
+            <span class="reg-tag">Reviu APIP</span>
+          </div>
+        </div>
+        <span class="reg-action">Unduh →</span>
+      </a>
+
+      <a class="reg-card" href="https://peraturan.bpk.go.id/" target="_blank">
+        <span class="reg-badge badge-perpres">Perpres</span>
+        <div class="reg-info">
+          <p class="reg-title">Perpres No. 29 Tahun 2014 — Sistem Akuntabilitas Kinerja Instansi Pemerintah (SAKIP)</p>
+          <p class="reg-desc">Dasar hukum SAKIP yang mengintegrasikan perencanaan strategis, pengukuran kinerja, pelaporan kinerja, dan evaluasi kinerja. Mewajibkan seluruh OPD menyusun LKjIP setiap tahun.</p>
+          <div class="reg-meta">
+            <span class="reg-year">2014</span>
+            <span class="reg-tag">SAKIP</span>
+            <span class="reg-tag">LKjIP</span>
+            <span class="reg-tag">Dasar Hukum</span>
+          </div>
+        </div>
+        <span class="reg-action">Unduh →</span>
+      </a>
+
+      <a class="reg-card" href="https://peraturan.bpk.go.id/Details/130929/pp-no-13-tahun-2019" target="_blank">
+        <span class="reg-badge badge-pp">PP</span>
+        <div class="reg-info">
+          <p class="reg-title">PP No. 13 Tahun 2019 — Laporan dan Evaluasi Penyelenggaraan Pemerintahan Daerah</p>
+          <p class="reg-desc">Pengganti PP No. 3 Tahun 2007. Mengatur jenis laporan kepala daerah: LPPD (kepada Presiden/Mendagri), LKPJ (kepada DPRD), dan Ringkasan LPPD (kepada masyarakat). Memuat format, jadwal penyampaian, dan mekanisme evaluasi.</p>
+          <div class="reg-meta">
+            <span class="reg-year new">2019 · Berlaku</span>
+            <span class="reg-tag">LPPD</span>
+            <span class="reg-tag">LKPJ</span>
+            <span class="reg-tag">Dasar Hukum</span>
+          </div>
+        </div>
+        <span class="reg-action">Unduh →</span>
+      </a>
+
+      <a class="reg-card" href="https://peraturan.bpk.go.id/Details/134892/permendagri-no-18-tahun-2020" target="_blank">
+        <span class="reg-badge badge-permendagri">Permendagri</span>
+        <div class="reg-info">
+          <p class="reg-title">Permendagri No. 18 Tahun 2020 — Peraturan Pelaksanaan PP No. 13 Tahun 2019 tentang LPPD</p>
+          <p class="reg-desc">Petunjuk teknis penyusunan LPPD Tahunan, LPPD Akhir Masa Jabatan, LKPJ, dan Ringkasan LPPD kepada masyarakat. Memuat format baku, indikator pengukuran kinerja penyelenggaraan urusan pemerintahan (IKK LPPD), dan tatacara evaluasi.</p>
+          <div class="reg-meta">
+            <span class="reg-year new">2020 · Berlaku</span>
+            <span class="reg-tag">LPPD Tahunan</span>
+            <span class="reg-tag">LKPJ</span>
+            <span class="reg-tag">IKK LPPD</span>
+            <span class="reg-tag">Format</span>
           </div>
         </div>
         <span class="reg-action">Unduh →</span>
@@ -594,6 +815,146 @@
     </div>
   </div>
 
+  <!-- TEMPLATE DOKUMEN -->
+  <div class="cat-section reveal" data-cat="template">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#e8f1fb;">📂</div>
+      <span class="cat-title">Format & Sistematika Dokumen Pelaporan</span>
+      <span class="cat-count">4 format</span>
+    </div>
+    <div class="tmpl-doc-grid">
+
+      <!-- LKjIP -->
+      <div class="tmpl-doc-card">
+        <div class="tmpl-doc-header">
+          <div class="tmpl-doc-icon" style="background:#fef3c7;">📋</div>
+          <div class="tmpl-doc-meta">
+            <div class="tmpl-doc-label">LKjIP / LAKIP</div>
+            <div class="tmpl-doc-name">Laporan Kinerja Instansi Pemerintah</div>
+            <div class="tmpl-doc-reg">PermenPANRB No. 53 Tahun 2014</div>
+          </div>
+        </div>
+        <div class="tmpl-doc-body">
+          <div class="tmpl-doc-sistematika">
+            <strong>Sistematika Dokumen</strong>
+            <ol class="tmpl-doc-ol roman-num">
+              <li>Ikhtisar Eksekutif</li>
+              <li>Pendahuluan — gambaran umum organisasi, isu strategis</li>
+              <li>Perencanaan Kinerja — Renstra, Perjanjian Kinerja tahun berjalan</li>
+              <li>Akuntabilitas Kinerja — analisis capaian per sasaran, realisasi anggaran, efisiensi</li>
+              <li>Penutup — simpulan &amp; langkah perbaikan</li>
+            </ol>
+          </div>
+          <div style="font-size:0.75rem;color:var(--text2);line-height:1.5;">
+            <strong style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Komponen Penilaian AKIP (PermenPANRB 88/2021)</strong>
+            Perencanaan kinerja 30% · Pengukuran 25% · Pelaporan 15% · Evaluasi internal 10% · Capaian kinerja 20%
+          </div>
+        </div>
+        <div class="tmpl-doc-footer">
+          <span class="tmpl-doc-badge badge-panrb">PermenPANRB 53/2014</span>
+          <a href="https://peraturan.bpk.go.id/Details/59044/permen-panrb-no-53-tahun-2014" class="tmpl-doc-link" target="_blank">Lihat Regulasi →</a>
+        </div>
+      </div>
+
+      <!-- LPPD -->
+      <div class="tmpl-doc-card">
+        <div class="tmpl-doc-header">
+          <div class="tmpl-doc-icon" style="background:#e8f8ee;">🏛️</div>
+          <div class="tmpl-doc-meta">
+            <div class="tmpl-doc-label">LPPD Tahunan</div>
+            <div class="tmpl-doc-name">Laporan Penyelenggaraan Pemerintahan Daerah</div>
+            <div class="tmpl-doc-reg">Permendagri No. 18 Tahun 2020</div>
+          </div>
+        </div>
+        <div class="tmpl-doc-body">
+          <div class="tmpl-doc-sistematika">
+            <strong>Sistematika Dokumen</strong>
+            <ol class="tmpl-doc-ol">
+              <li>Pendahuluan — dasar hukum, gambaran umum daerah</li>
+              <li>Urusan Wajib Pelayanan Dasar — IKK per OPD</li>
+              <li>Urusan Wajib Non Pelayanan Dasar — IKK per OPD</li>
+              <li>Urusan Pilihan — IKK per OPD terkait</li>
+              <li>Urusan Penunjang — Bappeda, BPKAD, BKD, dll</li>
+              <li>Penyelenggaraan Tugas Pembantuan</li>
+              <li>Penutup</li>
+            </ol>
+          </div>
+          <div style="font-size:0.75rem;color:var(--text2);line-height:1.5;">
+            <strong style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Disampaikan kepada</strong>
+            Presiden melalui Mendagri paling lambat 3 bulan setelah tahun anggaran berakhir (31 Maret)
+          </div>
+        </div>
+        <div class="tmpl-doc-footer">
+          <span class="tmpl-doc-badge badge-permendagri">Permendagri 18/2020</span>
+          <a href="https://peraturan.bpk.go.id/Details/134892/permendagri-no-18-tahun-2020" class="tmpl-doc-link" target="_blank">Lihat Regulasi →</a>
+        </div>
+      </div>
+
+      <!-- LKPJ -->
+      <div class="tmpl-doc-card">
+        <div class="tmpl-doc-header">
+          <div class="tmpl-doc-icon" style="background:#ede9fe;">🗣️</div>
+          <div class="tmpl-doc-meta">
+            <div class="tmpl-doc-label">LKPJ</div>
+            <div class="tmpl-doc-name">Laporan Keterangan Pertanggungjawaban</div>
+            <div class="tmpl-doc-reg">Permendagri No. 18 Tahun 2020</div>
+          </div>
+        </div>
+        <div class="tmpl-doc-body">
+          <div class="tmpl-doc-sistematika">
+            <strong>Sistematika Dokumen</strong>
+            <ol class="tmpl-doc-ol">
+              <li>Pendahuluan — arah kebijakan, kondisi geografis, demografis</li>
+              <li>Kebijakan Pemerintahan Daerah — RPJMD, RKPD, KUA-PPAS, APBD</li>
+              <li>Penyelenggaraan Urusan Pemerintahan Daerah — capaian program per OPD</li>
+              <li>Penyelenggaraan Tugas Pembantuan</li>
+              <li>Penutup — simpulan &amp; rencana tindak lanjut</li>
+            </ol>
+          </div>
+          <div style="font-size:0.75rem;color:var(--text2);line-height:1.5;">
+            <strong style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Disampaikan kepada</strong>
+            DPRD paling lambat 3 bulan setelah tahun anggaran berakhir untuk dibahas bersama
+          </div>
+        </div>
+        <div class="tmpl-doc-footer">
+          <span class="tmpl-doc-badge badge-permendagri">Permendagri 18/2020</span>
+          <a href="https://peraturan.bpk.go.id/Details/134892/permendagri-no-18-tahun-2020" class="tmpl-doc-link" target="_blank">Lihat Regulasi →</a>
+        </div>
+      </div>
+
+      <!-- Perjanjian Kinerja -->
+      <div class="tmpl-doc-card">
+        <div class="tmpl-doc-header">
+          <div class="tmpl-doc-icon" style="background:#e8f1fb;">🤝</div>
+          <div class="tmpl-doc-meta">
+            <div class="tmpl-doc-label">Perjanjian Kinerja</div>
+            <div class="tmpl-doc-name">Perjanjian Kinerja (PK) Kepala Daerah & OPD</div>
+            <div class="tmpl-doc-reg">PermenPANRB No. 53 Tahun 2014</div>
+          </div>
+        </div>
+        <div class="tmpl-doc-body">
+          <div class="tmpl-doc-sistematika">
+            <strong>Komponen Dokumen PK</strong>
+            <ol class="tmpl-doc-ol roman-num">
+              <li>Pernyataan Perjanjian Kinerja (halaman penandatanganan)</li>
+              <li>Formulir PK — sasaran strategis, indikator kinerja, target, program/anggaran</li>
+              <li>Rencana Aksi (triwulanan) — opsional tapi sangat dianjurkan</li>
+            </ol>
+          </div>
+          <div style="font-size:0.75rem;color:var(--text2);line-height:1.5;margin-top:8px;">
+            <strong style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Prinsip Penyusunan</strong>
+            PK ditandatangani paling lambat 1 bulan setelah APBD ditetapkan. PK Kepala OPD ditandatangani bersama Kepala Daerah; PK Eselon III ditandatangani bersama Kepala OPD.
+          </div>
+        </div>
+        <div class="tmpl-doc-footer">
+          <span class="tmpl-doc-badge badge-panrb">PermenPANRB 53/2014</span>
+          <a href="https://peraturan.bpk.go.id/Details/59044/permen-panrb-no-53-tahun-2014" class="tmpl-doc-link" target="_blank">Lihat Regulasi →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- INFO BOX -->
   <div class="reveal" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;display:flex;gap:16px;align-items:flex-start;margin-top:8px;">
     <span style="font-size:1.4rem;flex-shrink:0;">💡</span>
@@ -612,7 +973,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-left">© 2025 Andri Wulandika · Kutacane, Aceh Tenggara</p>
+  <p class="footer-left">© 2026 Andri Wulandika · Kutacane, Aceh Tenggara</p>
   <div class="footer-links">
     <a href="index.html">Beranda</a>
     <a href="tentang.html">Tentang</a>
