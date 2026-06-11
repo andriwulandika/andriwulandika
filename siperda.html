@@ -278,44 +278,6 @@
       .starter-grid { grid-template-columns: 1fr; }
     }
 
-    /* ── API KEY MODAL ── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
-      align-items: center; justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: var(--bg); border-radius: var(--radius);
-      padding: 32px 28px; width: 100%; max-width: 420px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-      margin: 0 16px;
-    }
-    .modal-title { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 6px; }
-    .modal-sub { font-size: 0.82rem; color: var(--text2); line-height: 1.55; margin-bottom: 20px; }
-    .modal-sub a { color: var(--accent); text-decoration: none; }
-    .modal-label { font-size: 0.78rem; font-weight: 600; color: var(--text); margin-bottom: 6px; display: block; }
-    .modal-input {
-      width: 100%; background: var(--bg2);
-      border: 1px solid var(--border); border-radius: 10px;
-      padding: 10px 14px; font-family: monospace; font-size: 0.82rem;
-      color: var(--text); outline: none; margin-bottom: 8px;
-    }
-    .modal-input:focus { border-color: var(--accent); }
-    .modal-hint { font-size: 0.72rem; color: var(--text2); margin-bottom: 20px; }
-    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
-    .btn-modal-cancel {
-      font-size: 0.82rem; padding: 9px 18px; border-radius: 980px;
-      background: var(--bg2); border: 1px solid var(--border);
-      color: var(--text2); cursor: pointer; font-family: inherit;
-    }
-    .btn-modal-save {
-      font-size: 0.82rem; padding: 9px 18px; border-radius: 980px;
-      background: var(--accent-dark); border: none;
-      color: #fff; cursor: pointer; font-family: inherit; font-weight: 500;
-      transition: background 0.2s;
-    }
-    .btn-modal-save:hover { background: #0a7a6a; }
     .api-status {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 0.7rem; padding: 2px 9px; border-radius: 980px;
@@ -341,32 +303,12 @@
   </div>
   <div class="nav-right">
     <span class="nav-credit">by Andri Wulandika</span>
-    <span class="api-status unset" id="apiStatusBtn" onclick="openApiModal()" title="Konfigurasi API Key">
-      <span class="api-status-dot"></span><span id="apiStatusText">API Key</span>
+    <span class="api-status unset" id="apiStatusBtn" title="Status akses">
+      <span class="api-status-dot"></span><span id="apiStatusText">Mode Gratis</span>
     </span>
     <button class="btn-new" onclick="newChat()">+ Baru</button>
   </div>
 </nav>
-
-<!-- API KEY MODAL -->
-<div class="modal-overlay" id="apiModal">
-  <div class="modal-box">
-    <div class="modal-title">🔑 Konfigurasi API Key</div>
-    <p class="modal-sub">Masukkan Anthropic API Key Anda untuk mengaktifkan AI. Key disimpan lokal di browser dan tidak dikirim ke server mana pun.<br><a href="https://console.anthropic.com/" target="_blank">Dapatkan API Key →</a></p>
-    <label class="modal-label">Anthropic API Key</label>
-    <input class="modal-input" id="apiKeyInput" type="password" placeholder="sk-ant-api03-..." autocomplete="off"/>
-    <div class="modal-hint" style="margin-bottom:16px">Format: sk-ant-api... • Disimpan lokal di browser Anda</div>
-    <label class="modal-label">Proxy URL <span style="font-weight:400;color:#86868b">(wajib untuk GitHub Pages)</span></label>
-    <input class="modal-input" id="proxyUrlInput" type="url" placeholder="https://nama-worker.namakamu.workers.dev" autocomplete="off"/>
-    <div class="modal-hint">Deploy Cloudflare Worker dari file <code style="font-size:0.75rem;background:#f5f5f7;padding:1px 5px;border-radius:4px">cloudflare-worker.js</code> di repo ini. <a href="https://dash.cloudflare.com/" target="_blank" style="color:var(--accent-dark)">Buka Cloudflare →</a></div>
-    <div id="testResult" style="font-size:0.78rem;margin-bottom:12px;display:none;padding:8px 12px;border-radius:8px;"></div>
-    <div class="modal-actions">
-      <button class="btn-modal-cancel" onclick="testProxyConnection()" style="color:var(--accent-dark);border-color:var(--accent)">🔌 Test Koneksi</button>
-      <button class="btn-modal-cancel" onclick="closeApiModal()">Batal</button>
-      <button class="btn-modal-save" onclick="saveApiKey()">Simpan & Aktifkan</button>
-    </div>
-  </div>
-</div>
 
 <!-- APP BODY -->
 <div class="app-body">
@@ -448,10 +390,7 @@
 
     <!-- Input -->
     <div class="input-bar">
-      <div class="credit-bar">
-        <span class="credit-pill credit-free">✦ Gratis</span>
-        <span class="credit-pill">Sisa: <span class="credit-num" id="creditCount">5</span> pertanyaan hari ini</span>
-      </div>
+      <div class="credit-bar" id="creditBar"></div>
       <div class="input-wrap">
         <textarea class="input-box" id="userInput" placeholder="Tanyakan tentang RKPD, Renja, Renstra, SAKIP, RAB, atau regulasi perencanaan daerah…" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
         <button class="send-btn" id="sendBtn" onclick="sendMessage()">
@@ -464,77 +403,59 @@
 </div>
 
 <script>
-  let credits = 5;
+  const WORKER_URL = 'https://andriwulandika.wulandikaandri.workers.dev';
+  const TRIAL_LIMIT = 3;
   let isLoading = false;
   let conversationHistory = [];
 
-  function getApiKey() { return localStorage.getItem('anthropic_api_key') || ''; }
-  function getProxyUrl() { return localStorage.getItem('proxy_url') || ''; }
-
-  function openApiModal() {
-    document.getElementById('apiKeyInput').value = getApiKey();
-    document.getElementById('proxyUrlInput').value = getProxyUrl();
-    document.getElementById('apiModal').classList.add('open');
+  function getAccessCode() {
+    const code = localStorage.getItem('access_code');
+    const expiresAt = localStorage.getItem('access_expires');
+    if (code && expiresAt && new Date(expiresAt) > new Date()) return code;
+    return '';
   }
-  function closeApiModal() { document.getElementById('apiModal').classList.remove('open'); }
-
-  function normalizeUrl(url) {
-    if (!url) return '';
-    url = url.trim();
-    if (url && !url.startsWith('http://') && !url.startsWith('https://')) url = 'https://' + url;
-    return url.replace(/\/$/, '');
-  }
-
-  async function testProxyConnection() {
-    const box = document.getElementById('testResult');
-    const rawUrl = normalizeUrl(document.getElementById('proxyUrlInput').value);
-    if (!rawUrl) {
-      box.style.cssText = 'display:block;background:#fff3cd;color:#856404';
-      box.textContent = '⚠️ Isi Proxy URL dulu sebelum test.'; return;
+  function getTrialId() {
+    let id = localStorage.getItem('trial_id');
+    if (!id) {
+      id = (crypto.randomUUID ? crypto.randomUUID() : 'trial-' + Math.random().toString(36).slice(2));
+      localStorage.setItem('trial_id', id);
     }
-    box.style.cssText = 'display:block;background:#f5f5f7;color:#6e6e73';
-    box.textContent = '⏳ Menguji koneksi...';
-    try {
-      const res = await fetch(rawUrl, { method: 'GET' });
-      const data = await res.json().catch(() => ({}));
-      if (data.status === 'ok') {
-        box.style.cssText = 'display:block;background:#e6f7f5;color:#0d9488';
-        box.textContent = '✅ Worker aktif! URL valid. Klik Simpan & Aktifkan.';
-      } else {
-        box.style.cssText = 'display:block;background:#fff3cd;color:#856404';
-        box.textContent = '⚠️ URL merespons tapi bukan Worker proxy. Periksa kembali.';
-      }
-    } catch(e) {
-      box.style.cssText = 'display:block;background:#ffeef0;color:#cc0000';
-      box.textContent = '❌ Gagal terhubung: ' + (e.message || 'network error');
-    }
+    return id;
   }
-
-  function saveApiKey() {
-    const key = document.getElementById('apiKeyInput').value.trim();
-    const proxy = normalizeUrl(document.getElementById('proxyUrlInput').value);
-    if (key) localStorage.setItem('anthropic_api_key', key); else localStorage.removeItem('anthropic_api_key');
-    if (proxy) { localStorage.setItem('proxy_url', proxy); document.getElementById('proxyUrlInput').value = proxy; } else localStorage.removeItem('proxy_url');
-    closeApiModal();
-    updateApiStatus();
+  function todayKey() { return new Date().toISOString().slice(0,10); }
+  function getTrialUsed() {
+    const stored = localStorage.getItem('trial_used') || '';
+    const [date, count] = stored.split(':');
+    return date === todayKey() ? (parseInt(count,10) || 0) : 0;
   }
-
-  function updateApiStatus() {
+  function incTrialUsed() {
+    const used = getTrialUsed() + 1;
+    localStorage.setItem('trial_used', todayKey() + ':' + used);
+    return used;
+  }
+  function updateStatusBadge() {
     const btn = document.getElementById('apiStatusBtn');
     const txt = document.getElementById('apiStatusText');
-    if (getApiKey()) {
+    const bar = document.getElementById('creditBar');
+    const code = getAccessCode();
+    if (code) {
       btn.className = 'api-status set';
-      txt.textContent = 'API Aktif';
+      btn.onclick = null;
+      btn.style.cursor = 'default';
+      txt.textContent = '✓ Berlangganan Aktif';
+      bar.innerHTML = '<span class="credit-pill credit-free">✓ Akses tanpa batas</span>';
+      document.getElementById('sendBtn').disabled = false;
     } else {
+      const remaining = Math.max(0, TRIAL_LIMIT - getTrialUsed());
       btn.className = 'api-status unset';
-      txt.textContent = 'API Key';
+      btn.onclick = () => window.location.href = 'login.html';
+      btn.style.cursor = 'pointer';
+      txt.textContent = 'Mode Gratis';
+      bar.innerHTML = '<span class="credit-pill credit-free">✦ Gratis</span><span class="credit-pill">Sisa: <span class="credit-num">' + remaining + '</span>/' + TRIAL_LIMIT + ' pertanyaan hari ini</span>';
+      document.getElementById('sendBtn').disabled = remaining <= 0;
     }
   }
-
-  document.addEventListener('DOMContentLoaded', updateApiStatus);
-  document.getElementById('apiModal').addEventListener('click', function(e) {
-    if (e.target === this) closeApiModal();
-  });
+  document.addEventListener('DOMContentLoaded', updateStatusBadge);
 
   const SYSTEM_PROMPT = `Kamu adalah SiPerda, asisten AI ahli konsultasi perencanaan pembangunan daerah Indonesia.
 
@@ -591,9 +512,7 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
     document.getElementById('welcomeScreen').style.display = 'flex';
     document.querySelectorAll('.tmpl-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('userInput').value = '';
-    credits = 5;
-    document.getElementById('creditCount').textContent = credits;
-    document.getElementById('sendBtn').disabled = false;
+    updateStatusBadge();
   }
 
   function showWelcome(show) {
@@ -657,9 +576,12 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
     const input = document.getElementById('userInput');
     const text = input.value.trim();
     if (!text) return;
-    const apiKey = getApiKey();
-    if (!apiKey) { openApiModal(); return; }
-    if (credits <= 0) { alert('Kuota harian habis. Klik "+ Baru" untuk sesi baru.'); return; }
+
+    const code = getAccessCode();
+    if (!code && getTrialUsed() >= TRIAL_LIMIT) {
+      appendMessage('ai', '⚠️ Kuota gratis hari ini sudah habis (3 pertanyaan/hari). <a href="login.html" style="color:var(--accent-dark);font-weight:600;">Masuk dengan kode akses</a> untuk akses tanpa batas.');
+      return;
+    }
 
     showWelcome(false);
     isLoading = true;
@@ -671,26 +593,25 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
     conversationHistory.push({ role: 'user', content: text });
 
     try {
-      const endpoint = getProxyUrl() || 'https://api.anthropic.com/v1/messages';
-      const res = await fetch(endpoint, {
+      const body = {
+        messages: conversationHistory,
+        system: SYSTEM_PROMPT,
+        max_tokens: 1500
+      };
+      if (code) body.code = code; else body.trialId = getTrialId();
+
+      const res = await fetch(WORKER_URL + '/chat', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01'
-        },
-        body: JSON.stringify({
-          model: 'claude-3-5-sonnet-20241022',
-          max_tokens: 1500,
-          system: SYSTEM_PROMPT,
-          messages: conversationHistory
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
       });
 
       if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
-        if (res.status === 401) throw new Error('API Key tidak valid atau kedaluwarsa. Klik badge untuk memperbarui.');
-        if (res.status === 400) throw new Error('Permintaan tidak valid: ' + (errData?.error?.message || 'Bad Request'));
+        if (res.status === 429 && errData.trialLimitReached) {
+          throw new Error('Kuota gratis hari ini sudah habis (3 pertanyaan/hari). <a href="login.html" style="color:var(--accent-dark);font-weight:600;">Masuk dengan kode akses</a> untuk akses tanpa batas.');
+        }
+        if (res.status === 401) throw new Error('Kode akses tidak valid atau sudah kedaluwarsa. Silakan <a href="login.html" style="color:var(--accent-dark);font-weight:600;">masuk kembali</a>.');
         if (res.status === 429) throw new Error('Batas rate tercapai. Tunggu sebentar lalu coba lagi.');
         throw new Error(errData?.error?.message || `Error HTTP ${res.status}`);
       }
@@ -701,21 +622,22 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
       appendMessage('ai', reply);
       conversationHistory.push({ role: 'assistant', content: reply });
 
-      credits--;
-      document.getElementById('creditCount').textContent = credits;
-      if (credits <= 0) document.getElementById('sendBtn').disabled = true;
+      if (!code) {
+        incTrialUsed();
+        updateStatusBadge();
+      }
 
     } catch (err) {
       typing.remove();
       const isCors = err.message === 'Failed to fetch' || err.message.includes('NetworkError');
       const msg = isCors
-        ? 'Gagal terhubung ke server AI (CORS/jaringan). Pastikan Proxy URL sudah dikonfigurasi dengan benar.'
+        ? 'Gagal terhubung ke server AI (CORS/jaringan). Pastikan browser tidak memblokir request lintas domain, lalu coba lagi.'
         : err.message || 'Terjadi kesalahan tidak diketahui.';
       appendMessage('ai', '⚠️ ' + msg);
     }
 
     isLoading = false;
-    if (credits > 0) document.getElementById('sendBtn').disabled = false;
+    updateStatusBadge();
   }
 </script>
 </body>

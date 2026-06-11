@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Berlangganan | Andri Wulandika</title>
+  <meta name="robots" content="noindex, follow"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff; --bg2: #f5f5f7; --text: #1d1d1f; --text2: #6e6e73;
+      --accent: #0071e3; --border: #d2d2d7; --radius: 18px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg2); color: var(--text); -webkit-font-smoothing: antialiased;
+    }
+    /* NAV */
+    nav {
+      height: 56px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); display: flex; align-items: center;
+      justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-left { display: flex; align-items: center; gap: 10px; }
+    .nav-logo {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: linear-gradient(135deg, #0071e3, #34aadc);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; color: #fff;
+    }
+    .nav-name { font-size: 0.95rem; font-weight: 600; }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .member-badge {
+      font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 980px;
+      background: #e8f8ee; color: #1a7a3e; border: 1px solid #a3d9b4;
+    }
+    .logout-btn {
+      font-size: 0.78rem; color: var(--text2); background: none; border: none;
+      cursor: pointer; font-family: inherit;
+    }
+    .logout-btn:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      max-width: 1080px; margin: 0 auto; padding: 40px 24px 16px;
+    }
+    .hero h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .hero p { color: var(--text2); font-size: 0.95rem; }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px 60px; }
+    .section { margin-top: 36px; }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+    .section-head h2 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
+    .section-head a { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+
+    /* AI TOOLS GRID */
+    .apps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .app-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; text-decoration: none; color: var(--text); transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .app-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+    .app-icon {
+      width: 40px; height: 40px; border-radius: 10px; display: flex;
+      align-items: center; justify-content: center; font-size: 1.1rem; color: #fff;
+    }
+    .app-card h3 { font-size: 1rem; font-weight: 700; }
+    .app-card p { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+    .app-unlimited {
+      font-size: 0.68rem; font-weight: 600; color: #1a7a3e; background: #e8f8ee;
+      border: 1px solid #a3d9b4; border-radius: 980px; padding: 2px 9px; align-self: flex-start;
+    }
+
+    /* QUICK LINKS */
+    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .quick-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; text-decoration: none; color: var(--text); transition: transform 0.2s;
+    }
+    .quick-card:hover { transform: translateY(-2px); }
+    .quick-card .emoji { font-size: 1.4rem; margin-bottom: 8px; display: block; }
+    .quick-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+    .quick-card p { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+
+    /* GUIDE */
+    .guide-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px;
+    }
+    .guide-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--bg2); }
+    .guide-step:last-child { border-bottom: none; }
+    .guide-num {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--bg2); color: var(--text); font-size: 0.8rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .guide-step h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; }
+    .guide-step p { font-size: 0.82rem; color: var(--text2); line-height: 1.6; }
+
+    /* BEST PRACTICE / EXAMPLES */
+    .example-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; text-align: center;
+    }
+    .example-card .emoji { font-size: 2rem; margin-bottom: 10px; }
+    .example-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .example-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; max-width: 480px; margin: 0 auto; }
+
+    @media (max-width: 900px) {
+      .apps-grid { grid-template-columns: repeat(2, 1fr); }
+      .quick-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .apps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <div class="nav-logo">AW</div>
+      <span class="nav-name">Dashboard</span>
+    </div>
+    <div class="nav-right">
+      <span class="member-badge" id="memberBadge">Memuat...</span>
+      <button class="logout-btn" onclick="logout()">Keluar</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1 id="welcomeText">Selamat datang 👋</h1>
+    <p>Akses semua AI tools, regulasi, format dokumen, dan panduan penyusunan dalam satu tempat.</p>
+  </div>
+
+  <div class="container">
+
+    <!-- AI TOOLS -->
+    <div class="section">
+      <div class="section-head"><h2>AI Tools — Akses Tanpa Batas</h2></div>
+      <div class="apps-grid">
+        <a href="sirenja.html" class="app-card">
+          <div class="app-icon" style="background:linear-gradient(135deg,#0071e3,#34aadc)">📝</div>
+          <h3>SiRENJA</h3>
+          <p>Asisten AI penyusunan Renja OPD, indikator, dan cascading kinerja.</p>
+          <span class="app-unlimited">✓ Unlimited</span>
+        </a>
+        <a href="sirkpd.html" class="app-card">
+          <div class="app-icon" style="background:linear-gradient(135deg,#34c759,#30d158)">🗺️</div>
+          <h3>SiRKPD</h3>
+          <p>Asisten AI penyusunan RKPD, isu strategis, dan prioritas pembangunan.</p>
+          <span class="app-unlimited">✓ Unlimited</span>
+        </a>
+        <a href="siperda.html" class="app-card">
+          <div class="app-icon" style="background:linear-gradient(135deg,#14b8a6,#0d9488)">💬</div>
+          <h3>SiPerda</h3>
+          <p>Konsultasi AI multi-topik: RKPD, Renja, Renstra, SAKIP, RAB, regulasi.</p>
+          <span class="app-unlimited">✓ Unlimited</span>
+        </a>
+        <a href="sigendok.html" class="app-card">
+          <div class="app-icon" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">📄</div>
+          <h3>SiGenDok</h3>
+          <p>Generator dokumen Renja OPD, LKjIP, dan Perjanjian Kinerja siap cetak.</p>
+          <span class="app-unlimited">✓ Unlimited</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="section">
+      <div class="section-head"><h2>Regulasi & Format Dokumen</h2></div>
+      <div class="quick-grid">
+        <a href="regulasi.html" class="quick-card">
+          <span class="emoji">📜</span>
+          <h3>Pusat Regulasi</h3>
+          <p>Kumpulan peraturan terbaru: perencanaan, penganggaran, evaluasi, akuntabilitas kinerja.</p>
+        </a>
+        <a href="regulasi.html#format" class="quick-card">
+          <span class="emoji">📂</span>
+          <h3>Format & Sistematika Dokumen</h3>
+          <p>Sistematika resmi LKjIP, LPPD, LKPJ, dan dokumen pelaporan lain sesuai regulasi.</p>
+        </a>
+        <a href="index.html#template" class="quick-card">
+          <span class="emoji">🗂️</span>
+          <h3>Template Dokumen</h3>
+          <p>Template Word & Excel siap pakai untuk Renstra, Renja, KAK, RAB, Berita Acara.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- GUIDE -->
+    <div class="section">
+      <div class="section-head"><h2>Cara Penyusunan Dokumen yang Baik</h2></div>
+      <div class="guide-card">
+        <div class="guide-step">
+          <div class="guide-num">1</div>
+          <div>
+            <h4>Mulai dari dasar hukum yang berlaku</h4>
+            <p>Pastikan dokumen mengacu pada regulasi terbaru (cek Pusat Regulasi). Sebutkan dasar hukum di bagian pendahuluan agar dokumen mudah diverifikasi saat evaluasi.</p>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="guide-num">2</div>
+          <div>
+            <h4>Susun cascading kinerja yang konsisten</h4>
+            <p>Pastikan benang merah Tujuan → Sasaran → Program → Kegiatan → Sub Kegiatan jelas dan selaras dari RPJMD hingga Renja OPD. Gunakan SiPerda untuk cek konsistensi cascading.</p>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="guide-num">3</div>
+          <div>
+            <h4>Indikator harus SMART & terukur</h4>
+            <p>Setiap indikator (IKU/IKK/IKD) harus Specific, Measurable, Achievable, Relevant, Time-bound. Hindari indikator yang ambigu seperti "meningkatnya kualitas".</p>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="guide-num">4</div>
+          <div>
+            <h4>Gunakan format & sistematika resmi</h4>
+            <p>Ikuti sistematika dokumen sesuai regulasi (lihat Format & Sistematika Dokumen) — penilai/evaluator akan memeriksa kelengkapan struktur sebelum substansi.</p>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="guide-num">5</div>
+          <div>
+            <h4>Verifikasi data & sinkronisasi SIPD-RI</h4>
+            <p>Pastikan data program/kegiatan/anggaran di dokumen sinkron dengan input di SIPD-RI agar tidak terjadi perbedaan saat audit atau evaluasi kinerja.</p>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="guide-num">6</div>
+          <div>
+            <h4>Review internal sebelum finalisasi</h4>
+            <p>Lakukan review lintas bidang (perencanaan, keuangan, dan substansi teknis) untuk memastikan tidak ada inkonsistensi angka maupun narasi antar bagian dokumen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEST PRACTICE EXAMPLES -->
+    <div class="section">
+      <div class="section-head"><h2>Contoh Dokumen Bernilai Baik dari Daerah Lain</h2></div>
+      <div class="example-card">
+        <div class="emoji">🏆</div>
+        <h3>Segera Hadir</h3>
+        <p>Kumpulan contoh dokumen perencanaan (RKPD, Renstra, LKjIP) dari kabupaten/kota dengan predikat SAKIP "A" akan ditambahkan di sini sebagai referensi praktik terbaik.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const WORKER_URL = 'https://andriwulandika.wulandikaandri.workers.dev';
+
+    function logout() {
+      localStorage.removeItem('access_code');
+      localStorage.removeItem('access_expires');
+      localStorage.removeItem('access_name');
+      window.location.href = 'login.html';
+    }
+
+    async function init() {
+      const code = localStorage.getItem('access_code');
+      const expiresAt = localStorage.getItem('access_expires');
+      const name = localStorage.getItem('access_name');
+
+      if (!code || !expiresAt || new Date(expiresAt) <= new Date()) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Re-verify with server (in case revoked)
+      try {
+        const res = await fetch(WORKER_URL + '/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code }),
+        });
+        const data = await res.json();
+        if (!data.valid) {
+          localStorage.removeItem('access_code');
+          localStorage.removeItem('access_expires');
+          window.location.href = 'login.html';
+          return;
+        }
+        localStorage.setItem('access_expires', data.expiresAt);
+      } catch (e) {
+        // Jika offline, tetap izinkan akses berdasarkan data lokal
+      }
+
+      const expDate = new Date(expiresAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('memberBadge').textContent = '✓ Aktif hingga ' + expDate;
+      document.getElementById('welcomeText').textContent = name ? `Selamat datang, ${name} 👋` : 'Selamat datang 👋';
+    }
+
+    init();
+  </script>
+</body>
+</html>

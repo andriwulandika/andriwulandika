@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Berlangganan | Andri Wulandika</title>
+  <meta name="description" content="Masuk dengan kode akses berlangganan untuk membuka semua fitur AI tools, dashboard, regulasi, dan template dokumen perencanaan daerah."/>
+  <meta name="robots" content="noindex, follow"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff;
+      --bg2: #f5f5f7;
+      --text: #1d1d1f;
+      --text2: #6e6e73;
+      --accent: #0071e3;
+      --border: #d2d2d7;
+      --radius: 18px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(180deg, #f5f5f7 0%, #ffffff 60%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 40px 32px;
+      width: 100%; max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .logo {
+      width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 20px;
+      background: linear-gradient(135deg, #0071e3, #34aadc);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; color: #fff; font-weight: 700;
+    }
+    h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .sub { font-size: 0.9rem; color: var(--text2); line-height: 1.6; margin-bottom: 28px; }
+    .field-label { font-size: 0.78rem; font-weight: 600; text-align: left; display: block; margin-bottom: 6px; }
+    .code-input {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 16px; font-size: 1rem; letter-spacing: 0.05em;
+      text-align: center; font-family: 'SF Mono', monospace; color: var(--text);
+      outline: none; margin-bottom: 12px; text-transform: uppercase;
+    }
+    .code-input:focus { border-color: var(--accent); }
+    .btn-primary {
+      width: 100%; background: var(--accent); color: #fff; border: none;
+      border-radius: 980px; padding: 13px; font-size: 0.92rem; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: background 0.2s;
+      margin-bottom: 14px;
+    }
+    .btn-primary:hover { background: #0077ed; }
+    .btn-primary:disabled { background: var(--border); cursor: not-allowed; }
+    .msg {
+      font-size: 0.8rem; padding: 10px 14px; border-radius: 10px;
+      margin-bottom: 14px; display: none; text-align: left;
+    }
+    .msg.error { display: block; background: #ffeef0; color: #cc0000; }
+    .msg.success { display: block; background: #e8f8ee; color: #1a7a3e; }
+    .divider {
+      display: flex; align-items: center; gap: 10px; margin: 22px 0;
+      font-size: 0.75rem; color: var(--text2);
+    }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .free-box {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px; text-align: left;
+    }
+    .free-box strong { font-size: 0.88rem; display: block; margin-bottom: 6px; }
+    .free-box p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+    .free-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .free-link {
+      flex: 1; min-width: 100px; text-align: center;
+      background: #fff; border: 1px solid var(--border); border-radius: 980px;
+      padding: 8px 10px; font-size: 0.78rem; font-weight: 500;
+      color: var(--text); text-decoration: none; transition: border-color 0.2s;
+    }
+    .free-link:hover { border-color: var(--accent); }
+    .back-link {
+      display: inline-block; margin-top: 24px; font-size: 0.82rem;
+      color: var(--accent); text-decoration: none;
+    }
+    .back-link:hover { opacity: 0.7; }
+    .belum {
+      font-size: 0.8rem; color: var(--text2); margin-top: 18px; line-height: 1.6;
+    }
+    .belum a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">AW</div>
+    <h1>Masuk Berlangganan</h1>
+    <p class="sub">Masukkan kode akses yang diberikan oleh Andri Wulandika untuk membuka dashboard lengkap dan akses AI tools tanpa batas harian.</p>
+
+    <div id="msgBox" class="msg"></div>
+
+    <label class="field-label">Kode Akses</label>
+    <input class="code-input" id="codeInput" placeholder="AW-XXXX-XXXX" autocomplete="off" maxlength="14"/>
+    <button class="btn-primary" id="loginBtn" onclick="doLogin()">Masuk Dashboard</button>
+
+    <div class="divider">atau</div>
+
+    <div class="free-box">
+      <strong>Belum berlangganan?</strong>
+      <p>Anda tetap bisa mencoba SiRENJA, SiRKPD, SiPerda, dan SiGenDok secara gratis — 3 pertanyaan/hari per aplikasi.</p>
+      <div class="free-grid">
+        <a href="sirenja.html" class="free-link">SiRENJA</a>
+        <a href="sirkpd.html" class="free-link">SiRKPD</a>
+        <a href="siperda.html" class="free-link">SiPerda</a>
+        <a href="sigendok.html" class="free-link">SiGenDok</a>
+      </div>
+    </div>
+
+    <p class="belum">
+      Tertarik berlangganan untuk akses tanpa batas + dashboard lengkap?<br/>
+      <a href="https://wa.me/62811660568" target="_blank">Hubungi Andri Wulandika via WhatsApp →</a>
+    </p>
+
+    <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+  </div>
+
+  <script>
+    const WORKER_URL = 'https://andriwulandika.wulandikaandri.workers.dev';
+
+    document.getElementById('codeInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') doLogin();
+    });
+    document.getElementById('codeInput').addEventListener('input', function(e) {
+      e.target.value = e.target.value.toUpperCase();
+    });
+
+    // Jika sudah login & masih valid, langsung ke dashboard
+    (function checkExisting() {
+      const code = localStorage.getItem('access_code');
+      const expiresAt = localStorage.getItem('access_expires');
+      if (code && expiresAt && new Date(expiresAt) > new Date()) {
+        window.location.href = 'dashboard.html';
+      }
+    })();
+
+    async function doLogin() {
+      const input = document.getElementById('codeInput');
+      const btn = document.getElementById('loginBtn');
+      const box = document.getElementById('msgBox');
+      const code = input.value.trim().toUpperCase();
+
+      if (!code) {
+        box.className = 'msg error';
+        box.textContent = 'Masukkan kode akses terlebih dahulu.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Memeriksa...';
+      box.className = 'msg';
+      box.style.display = 'none';
+
+      try {
+        const res = await fetch(WORKER_URL + '/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code }),
+        });
+        const data = await res.json();
+
+        if (data.valid) {
+          localStorage.setItem('access_code', code);
+          localStorage.setItem('access_expires', data.expiresAt);
+          localStorage.setItem('access_name', data.customerName || '');
+          box.className = 'msg success';
+          box.textContent = '✅ Login berhasil! Mengalihkan ke dashboard...';
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+        } else {
+          box.className = 'msg error';
+          box.textContent = '❌ ' + (data.error || 'Kode akses tidak valid.');
+        }
+      } catch (e) {
+        box.className = 'msg error';
+        box.textContent = '⚠️ Gagal memeriksa kode. Periksa koneksi internet Anda.';
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Masuk Dashboard';
+    }
+  </script>
+</body>
+</html>
