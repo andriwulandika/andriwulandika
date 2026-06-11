@@ -102,20 +102,31 @@
     .guide-step p { font-size: 0.82rem; color: var(--text2); line-height: 1.6; }
 
     /* BEST PRACTICE / EXAMPLES */
-    .example-card {
+    .example-intro { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
+    .example-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .example-doc-card {
       background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 28px; text-align: center;
+      padding: 20px; text-decoration: none; color: var(--text); transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column; gap: 6px;
     }
-    .example-card .emoji { font-size: 2rem; margin-bottom: 10px; }
-    .example-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-    .example-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; max-width: 480px; margin: 0 auto; }
+    .example-doc-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+    .example-doc-card .emoji { font-size: 1.4rem; display: block; }
+    .example-doc-card h3 { font-size: 0.95rem; font-weight: 700; }
+    .example-doc-card p { font-size: 0.78rem; color: var(--text2); line-height: 1.5; flex-grow: 1; }
+    .example-doc-card .doc-link { font-size: 0.78rem; font-weight: 600; color: var(--accent); margin-top: 4px; }
+    .doc-badge {
+      align-self: flex-start; font-size: 0.68rem; font-weight: 700; color: #b8860b; background: #fff8e1;
+      border: 1px solid #f0d98c; border-radius: 980px; padding: 2px 9px;
+    }
 
     @media (max-width: 900px) {
       .apps-grid { grid-template-columns: repeat(2, 1fr); }
       .quick-grid { grid-template-columns: 1fr; }
+      .example-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 560px) {
       .apps-grid { grid-template-columns: 1fr; }
+      .example-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -243,10 +254,42 @@
     <!-- BEST PRACTICE EXAMPLES -->
     <div class="section">
       <div class="section-head"><h2>Contoh Dokumen Bernilai Baik dari Daerah Lain</h2></div>
-      <div class="example-card">
-        <div class="emoji">🏆</div>
-        <h3>Segera Hadir</h3>
-        <p>Kumpulan contoh dokumen perencanaan (RKPD, Renstra, LKjIP) dari kabupaten/kota dengan predikat SAKIP "A" akan ditambahkan di sini sebagai referensi praktik terbaik.</p>
+      <p class="example-intro">Referensi dokumen perencanaan dari daerah dengan predikat SAKIP tertinggi (AA) dan dokumen yang sistematikanya sesuai regulasi terbaru. Gunakan sebagai pembanding gaya penulisan, struktur bab, dan kedalaman analisis saat menyusun dokumen di daerah Anda.</p>
+      <div class="example-grid">
+        <a href="https://bappeda.banyuwangikab.go.id/bappeda/dokumen/" target="_blank" rel="noopener" class="example-doc-card">
+          <span class="doc-badge">SAKIP AA</span>
+          <div class="emoji">🥇</div>
+          <h3>RKPD Kabupaten Banyuwangi</h3>
+          <p>Kabupaten pertama di Indonesia yang meraih predikat SAKIP AA (2024). Portal Pustaka Bappeda memuat RKPD, RPJMD, dan dokumen perencanaan resmi tiap tahun.</p>
+          <span class="doc-link">Buka portal dokumen →</span>
+        </a>
+        <a href="https://e-sakip.banyuwangikab.go.id/storage/pelaporan/lakip/E2lcMsML4Wq6skUGfnU5GZIsbDJPG8JbjkZ61bx5.pdf" target="_blank" rel="noopener" class="example-doc-card">
+          <span class="doc-badge">SAKIP AA</span>
+          <div class="emoji">📊</div>
+          <h3>LKjIP Kabupaten Banyuwangi 2025</h3>
+          <p>Laporan Kinerja Instansi Pemerintah tingkat kabupaten — contoh penyajian capaian kinerja, analisis efisiensi anggaran, dan akuntabilitas yang lengkap dan terukur.</p>
+          <span class="doc-link">Unduh PDF →</span>
+        </a>
+        <a href="https://bappedalitbang.surabaya.go.id/dokumen/itemlist/category/9-rkpd" target="_blank" rel="noopener" class="example-doc-card">
+          <span class="doc-badge">SAKIP AA · 91,83</span>
+          <div class="emoji">🏙️</div>
+          <h3>RKPD Kota Surabaya</h3>
+          <p>Predikat SAKIP AA dengan nilai tertinggi nasional (91,83 pada SAKIP Award 2025). Portal Bappedalitbang menyediakan dokumen RKPD tahunan dan hasil evaluasinya.</p>
+          <span class="doc-link">Buka portal dokumen →</span>
+        </a>
+        <a href="https://bappeda.jogjakota.go.id/download/index/publikasi" target="_blank" rel="noopener" class="example-doc-card">
+          <span class="doc-badge">SAKIP AA · 6 tahun</span>
+          <div class="emoji">🏯</div>
+          <h3>RKPD Kota Yogyakarta</h3>
+          <p>DIY meraih predikat SAKIP AA selama 6 tahun berturut-turut sejak 2018. Halaman publikasi Bappeda Kota Yogyakarta memuat RKPD dan dokumen perencanaan terbaru.</p>
+          <span class="doc-link">Buka halaman publikasi →</span>
+        </a>
+        <a href="https://ppid.jemberkab.go.id/storage/dokumen-opd/1681741882-RENSTRA-32-2023.pdf" target="_blank" rel="noopener" class="example-doc-card">
+          <span class="emoji">📘</span>
+          <h3>Renstra OPD Kabupaten Jember</h3>
+          <p>Contoh Renstra Perangkat Daerah yang disusun sesuai sistematika Permendagri No. 86 Tahun 2017 — cocok sebagai acuan struktur bab dan tabel cascading kinerja.</p>
+          <span class="doc-link">Unduh PDF →</span>
+        </a>
       </div>
     </div>
 
