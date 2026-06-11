@@ -1,5 +1,8 @@
 # Cloudflare Pages — _redirects
 
+# Redirect domain pages.dev lama ke domain custom andriwulandika.uk
+https://andriwulandika.pages.dev/*  https://andriwulandika.uk/:splat  301
+
 # Redirect tanpa trailing slash ke dengan slash (opsional)
 /index  /  301
 
