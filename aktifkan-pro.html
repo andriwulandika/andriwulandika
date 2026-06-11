@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aktifkan Pro — Andri Wulandika</title>
-  <meta name="description" content="Masukkan kode akses Pro untuk mengaktifkan fitur premium AI Tools perencanaan daerah."/>
+  <title>Masuk — Andri Wulandika</title>
+  <meta name="description" content="Masuk dengan kode akses Berbayar untuk membuka akses penuh tanpa batas demo di semua AI Tools perencanaan daerah."/>
   <meta name="robots" content="noindex"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <style>
@@ -185,66 +185,66 @@
 <div class="page">
   <div class="main">
     <div class="card">
-      <div class="card-icon">⚡</div>
-      <h1 class="card-title">Aktifkan Pro</h1>
-      <p class="card-sub">Masukkan kode akses yang dikirim via WhatsApp setelah pembayaran dikonfirmasi.</p>
+      <div class="card-icon">🔑</div>
+      <h1 class="card-title">Masuk</h1>
+      <p class="card-sub">Masukkan kode akses Berbayar yang dikirim via WhatsApp setelah pembayaran dikonfirmasi.</p>
 
       <!-- Status card (jika sudah aktif) -->
       <div class="status-card" id="statusCard">
         <div class="status-icon">👑</div>
         <div class="status-info">
-          <div class="status-title">Pro Aktif</div>
-          <div class="status-detail" id="statusDetail">Paket Pro • Aktif hingga —</div>
+          <div class="status-title">Berbayar Aktif</div>
+          <div class="status-detail" id="statusDetail">Paket Berbayar • Aktif hingga —</div>
         </div>
       </div>
 
       <!-- Form aktivasi -->
       <div class="enter-form" id="enterForm">
-        <label class="input-label">Kode Akses Pro</label>
+        <label class="input-label">Kode Akses Berbayar</label>
         <div class="input-wrap">
           <input type="text" class="code-input" id="codeInput"
-            placeholder="CONTOH: PRO26-XXXX"
+            placeholder="CONTOH: AW-XXXXXXXX"
             maxlength="20" autocomplete="off" spellcheck="false"
             oninput="onCodeInput(this)" onkeydown="if(event.key==='Enter')activateCode()"/>
           <span class="input-eye" onclick="toggleVisibility()">👁</span>
         </div>
         <div class="error-msg" id="errorMsg">Kode tidak valid atau sudah kadaluarsa. Periksa kembali atau hubungi WhatsApp.</div>
 
-        <button class="activate-btn" id="activateBtn" onclick="activateCode()">Aktifkan Sekarang</button>
+        <button class="activate-btn" id="activateBtn" onclick="activateCode()">Masuk</button>
 
         <div class="divider">— atau —</div>
 
-        <a href="bayar.html" class="secondary-btn">Belum punya kode? Beli Pro</a>
+        <a href="harga.html" class="secondary-btn">Belum punya kode? Lihat Paket Berbayar</a>
 
         <p class="help-text">
-          Sudah bayar tapi belum dapat kode? <a href="https://wa.me/62811660568?text=Halo%2C%20saya%20sudah%20transfer%20tapi%20belum%20menerima%20kode%20akses%20Pro." target="_blank">Hubungi WhatsApp</a>
+          Sudah bayar tapi belum dapat kode? <a href="https://wa.me/62811660568?text=Halo%2C%20saya%20sudah%20transfer%20tapi%20belum%20menerima%20kode%20akses%20Berbayar." target="_blank">Hubungi WhatsApp</a>
         </p>
       </div>
 
       <!-- Tampilan sukses -->
       <div class="success-screen" id="successScreen">
         <div class="success-anim">✓</div>
-        <h2 class="success-title">Pro Berhasil Diaktifkan!</h2>
-        <p class="success-sub">Selamat! Anda kini memiliki akses penuh ke semua fitur Pro di perangkat ini.</p>
+        <h2 class="success-title">Berhasil Masuk!</h2>
+        <p class="success-sub">Selamat! Anda kini memiliki akses penuh (tanpa batas demo) ke semua AI Tools di perangkat ini.</p>
 
         <div class="features-unlocked">
           <div class="features-title">Fitur yang Terbuka</div>
           <div class="feature-row">
             <span class="feature-check">✓</span>
-            <div class="feature-text">API Key Gemini sudah termasuk
-              <span>Tidak perlu daftar AI Studio sendiri</span>
+            <div class="feature-text">Hasil dokumen lengkap, tanpa potongan
+              <span>Tidak ada lagi batasan demo/preview</span>
             </div>
           </div>
           <div class="feature-row">
             <span class="feature-check">✓</span>
-            <div class="feature-text">Semua AI Tools tanpa batas
-              <span>SiRENJA, SiRKPD, SiPerda, SiGenDok</span>
+            <div class="feature-text">Semua 8 AI Tools tanpa batas
+              <span>SiRENJA, SiRKPD, SiPerda, SiGenDok, SiLKjIP, SiKTOR, SiTelaah, SiBACARA</span>
             </div>
           </div>
           <div class="feature-row">
             <span class="feature-check">✓</span>
-            <div class="feature-text">Template Word/Excel premium
-              <span>Renstra, Renja, PK, LKjIP, Matriks IKU</span>
+            <div class="feature-text">API Key sudah disediakan
+              <span>Tidak perlu setup API key sendiri</span>
             </div>
           </div>
           <div class="feature-row">
@@ -255,9 +255,9 @@
           </div>
         </div>
 
-        <a href="sigendok.html" class="go-btn">Mulai Gunakan SiGenDok →</a>
+        <a href="index.html#tools" class="go-btn">Mulai Gunakan AI Tools →</a>
         <a href="index.html" class="go-btn" style="background:var(--bg2);color:var(--text);">Kembali ke Beranda</a>
-        <button class="deactivate-btn" onclick="deactivate()">Nonaktifkan Pro di perangkat ini</button>
+        <button class="deactivate-btn" onclick="deactivate()">Keluar dari akun ini</button>
       </div>
     </div>
   </div>
@@ -267,60 +267,11 @@
   </footer>
 </div>
 
-<script>
-  /* ── VALIDASI KODE ──
-   * Format kode: PRO26-XXXXXX  (Pro bulanan)
-   *              PRO26A-XXXXXX (Pro tahunan)
-   *              OPD26-XXXXXX  (OPD bulanan)
-   *              OPD26A-XXXXXX (OPD tahunan)
-   * Anda sebagai admin cukup ingat pola ini dan kirim kode via WA.
-   * Contoh kode valid yang bisa Anda kirim ke user:
-   *   PRO26-A1B2C3  → Pro 1 bulan
-   *   PRO26A-X9Y8Z7 → Pro 12 bulan (tahunan)
-   *   OPD26-D4E5F6  → OPD 1 bulan
-   *
-   * Durasi dihitung dari tanggal aktivasi berdasarkan prefix kode.
-   */
+<script type="module">
+  import { verifyAccessCode, getAccessStatus, clearAccess, formatApiError } from './assets/js/apiService.js';
 
-  const CODE_PATTERNS = [
-    { regex: /^PRO26A-[A-Z0-9]{4,8}$/, tier: 'Pro', months: () => 12 },
-    { regex: /^PRO26B-[A-Z0-9]{4,8}$/, tier: 'Pro', months: () => 3 },
-    { regex: /^PRO26-[A-Z0-9]{4,8}$/,  tier: 'Pro', months: () => 1 },
-    { regex: /^PRO27A-[A-Z0-9]{4,8}$/, tier: 'Pro', months: () => 12 },
-    { regex: /^PRO27B-[A-Z0-9]{4,8}$/, tier: 'Pro', months: () => 3 },
-    { regex: /^PRO27-[A-Z0-9]{4,8}$/,  tier: 'Pro', months: () => 1 },
-    { regex: /^OPD26A-[A-Z0-9]{4,8}$/, tier: 'OPD/Instansi', months: () => 12 },
-    { regex: /^OPD26B-[A-Z0-9]{4,8}$/, tier: 'OPD/Instansi', months: () => 3 },
-    { regex: /^OPD26-[A-Z0-9]{4,8}$/,  tier: 'OPD/Instansi', months: () => 1 },
-    { regex: /^OPD27A-[A-Z0-9]{4,8}$/, tier: 'OPD/Instansi', months: () => 12 },
-    /* Kode demo untuk testing */
-    { regex: /^DEMO-PRO2026$/, tier: 'Pro (Demo)', months: () => 1 },
-  ];
-
-  const USED_CODES_KEY = 'pro_used_codes';
-  const PRO_DATA_KEY   = 'pro_access';
-
-  function getProData() {
-    try { return JSON.parse(localStorage.getItem(PRO_DATA_KEY)) || null; } catch { return null; }
-  }
-  function saveProData(data) {
-    localStorage.setItem(PRO_DATA_KEY, JSON.stringify(data));
-  }
-
-  function validateCode(raw) {
-    const code = raw.trim().toUpperCase().replace(/\s+/g, '');
-    for (const pattern of CODE_PATTERNS) {
-      if (pattern.regex.test(code)) {
-        return { valid: true, code, tier: pattern.tier, months: pattern.months(code) };
-      }
-    }
-    return { valid: false };
-  }
-
-  function addMonths(date, months) {
-    const d = new Date(date);
-    d.setMonth(d.getMonth() + months);
-    return d;
+  function tierLabel(tier) {
+    return tier === 'tahunan' ? 'Berbayar (Tahunan)' : 'Berbayar (Bulanan)';
   }
 
   function formatDate(d) {
@@ -338,65 +289,71 @@
     inp.type = inp.type === 'password' ? 'text' : 'password';
   }
 
-  function activateCode() {
+  async function activateCode() {
     const raw = document.getElementById('codeInput').value;
-    const result = validateCode(raw);
     const inp = document.getElementById('codeInput');
     const btn = document.getElementById('activateBtn');
+    const errEl = document.getElementById('errorMsg');
 
-    if (!result.valid) {
+    if (!raw.trim()) {
       inp.classList.add('error');
-      document.getElementById('errorMsg').classList.add('show');
+      errEl.textContent = 'Masukkan kode akses terlebih dahulu.';
+      errEl.classList.add('show');
       return;
     }
 
-    inp.classList.add('success');
     btn.disabled = true;
-    btn.textContent = 'Mengaktifkan...';
+    btn.textContent = 'Memeriksa...';
 
-    setTimeout(() => {
-      const now = new Date();
-      const until = addMonths(now, result.months);
-      saveProData({
-        tier: result.tier,
-        code: result.code,
-        activated: now.toISOString(),
-        until: until.toISOString(),
-      });
-      showSuccess(result.tier, until);
-    }, 800);
+    try {
+      const data = await verifyAccessCode(raw);
+      if (!data.valid) {
+        inp.classList.add('error');
+        errEl.textContent = 'Kode tidak valid atau sudah kadaluarsa. Periksa kembali atau hubungi WhatsApp.';
+        errEl.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Masuk';
+        return;
+      }
+      inp.classList.add('success');
+      showSuccess(data.tier, data.expiresAt, data.name);
+    } catch (err) {
+      inp.classList.add('error');
+      errEl.textContent = formatApiError(err);
+      errEl.classList.add('show');
+      btn.disabled = false;
+      btn.textContent = 'Masuk';
+    }
   }
 
-  function showSuccess(tier, until) {
+  function showSuccess(tier, expiresAt, name) {
     document.getElementById('enterForm').classList.add('hide');
     document.getElementById('successScreen').classList.add('show');
     document.getElementById('statusCard').classList.add('show');
-    document.getElementById('statusDetail').textContent = `${tier} • Aktif hingga ${formatDate(until)}`;
+    document.getElementById('statusDetail').textContent =
+      `${tierLabel(tier)}${name ? ' • ' + name : ''} • Aktif hingga ${formatDate(expiresAt)}`;
   }
 
   function deactivate() {
-    if (!confirm('Nonaktifkan Pro di perangkat ini? Anda masih bisa mengaktifkan kembali dengan kode yang sama.')) return;
-    localStorage.removeItem(PRO_DATA_KEY);
+    if (!confirm('Keluar dari akun ini di perangkat ini? Anda masih bisa masuk kembali dengan kode yang sama.')) return;
+    clearAccess();
     location.reload();
   }
 
   function checkExisting() {
-    const data = getProData();
-    if (!data) return;
-
-    const until = new Date(data.until);
-    const now = new Date();
-
-    if (until > now) {
-      document.getElementById('statusCard').classList.add('show');
-      document.getElementById('statusDetail').textContent = `${data.tier} • Aktif hingga ${formatDate(until)}`;
-      document.getElementById('enterForm').classList.add('hide');
-      document.getElementById('successScreen').classList.add('show');
-    } else {
-      // expired — clear
-      localStorage.removeItem(PRO_DATA_KEY);
-    }
+    const status = getAccessStatus();
+    if (!status.active) return;
+    document.getElementById('statusCard').classList.add('show');
+    document.getElementById('statusDetail').textContent =
+      `${tierLabel(status.tier)}${status.name ? ' • ' + status.name : ''} • Aktif hingga ${formatDate(status.expiresAt)}`;
+    document.getElementById('enterForm').classList.add('hide');
+    document.getElementById('successScreen').classList.add('show');
   }
+
+  window.onCodeInput = onCodeInput;
+  window.toggleVisibility = toggleVisibility;
+  window.activateCode = activateCode;
+  window.deactivate = deactivate;
 
   checkExisting();
 </script>
