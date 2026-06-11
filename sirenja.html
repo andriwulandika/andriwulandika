@@ -157,20 +157,62 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
 
 .compliance{background:#1D1D1F;color:#f5f5f7;padding:32px 24px;text-align:center;margin-top:64px;font-size:13px;line-height:1.8;}
 .compliance a{color:#93c5fd;text-decoration:none;}
-</style>
+
+/* MOBILE NAV (hamburger) */
+.nav-burger{display:none;background:none;border:0;cursor:pointer;padding:0;width:34px;height:34px;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex:none;}
+.nav-burger span{display:block;width:18px;height:2px;border-radius:2px;background:var(--text,#1d1d1f);transition:transform .25s ease,opacity .2s ease;}
+nav.nav-open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+nav.nav-open .nav-burger span:nth-child(2){opacity:0;}
+nav.nav-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-up-mobile{display:none !important;}
+@media(max-width:700px){
+  nav{padding:0 14px;gap:14px;}
+  nav .logo span{display:none;}
+  .nav-burger{display:flex;}
+  nav .nav-right .btn-primary-sm,nav .nav-right a.btn-primary{display:none;}
+  .nav-links{display:none;position:fixed;top:52px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border,#d2d2d7);box-shadow:0 16px 32px rgba(0,0,0,.08);padding:6px 16px 14px;max-height:calc(100vh - 52px);overflow-y:auto;z-index:99;}
+  nav.nav-open .nav-links{display:flex;}
+  .nav-links a{display:block;width:100%;padding:13px 6px;font-size:15px;border-bottom:1px solid rgba(0,0,0,.05);}
+  .nav-links a:last-child{border-bottom:0;}
+  .nav-up-mobile{display:block !important;color:var(--blue,#0071e3);font-weight:600;}
+}
+  </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="logo">Andri Wulandika <span>AI Tools</span></a>
-  <a href="index.html">Beranda</a>
-  <a href="silkjip.html">SiLKjIP</a>
-  <a href="siktor.html">SiKTOR</a>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="silkjip.html">SiLKjIP</a>
+    <a href="siktor.html">SiKTOR</a>
+    <a href="harga.html" class="nav-up-mobile">Upgrade Pro →</a>
+  </div>
   <div class="nav-right">
     <button class="btn-sm btn-outline" onclick="openApiModal()">⚙ API Key</button>
     <a href="harga.html" class="btn-sm btn-primary-sm">Upgrade Pro</a>
   </div>
+  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
+<script>
+(function(){
+  var nav=document.querySelector('nav');if(!nav)return;
+  var btn=nav.querySelector('.nav-burger');if(!btn)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.addEventListener('click',function(e){
+    var t=e.target;
+    while(t&&t!==nav){
+      if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}
+      t=t.parentNode;
+    }
+  });
+})();
+</script>
+
 
 <div class="hero">
   <div class="hero-badge">✦ AI Writer Dokumen Perencanaan</div>
