@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://andriwulandika.github.io/andriwulandika/sitemap.xml
+Sitemap: https://andriwulandika.uk/sitemap.xml
