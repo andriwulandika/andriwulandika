@@ -107,6 +107,47 @@ textarea{resize:vertical;min-height:80px;}
 .modal-actions{display:flex;gap:10px;margin-top:16px;}
 .compliance{background:#1D1D1F;color:#f5f5f7;padding:32px 24px;text-align:center;margin-top:64px;font-size:13px;line-height:1.8;}
 .compliance a{color:#5eead4;text-decoration:none;}
+
+/* ============================================================
+   MODERN REFINEMENTS
+   ============================================================ */
+.card{border:1px solid rgba(0,0,0,.04);}
+.btn,.btn-sm{min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:6px;}
+.access-badge{display:inline-flex;align-items:center;}
+.nav-links{display:flex;align-items:center;gap:24px;flex:1;}
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+.nav-toggle{display:none;background:none;border:none;font-size:22px;line-height:1;color:var(--text);cursor:pointer;padding:6px 4px;margin-left:auto;}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+@media(max-width:760px){
+  nav{flex-wrap:wrap;height:auto;min-height:52px;padding:10px 16px;}
+  nav .logo{font-size:15px;}
+  nav .logo span{display:none;}
+  .nav-toggle{display:block;}
+  .nav-links{display:none;width:100%;flex-direction:column;align-items:stretch;gap:4px;padding:12px 0 4px;border-top:1px solid var(--border);margin-top:10px;}
+  .nav-links.open{display:flex;}
+  .nav-links > a{padding:10px 6px;font-size:15px;}
+  .nav-right{flex-direction:column;align-items:stretch;gap:8px;margin-left:0;width:100%;margin-top:6px;}
+  .nav-right .access-badge,.nav-right .btn-sm{width:100%;text-align:center;}
+
+  .hero{padding:32px 16px 24px;}
+  .hero-tags{gap:6px;}
+
+  .main{padding:0 14px 60px;}
+  .card{padding:18px;border-radius:14px;}
+
+  .nav-btns{flex-direction:column-reverse;align-items:stretch;}
+  .nav-btns .btn{width:100%;}
+  .preview-toolbar{flex-direction:column;align-items:stretch;}
+  .preview-toolbar h2{margin-bottom:4px;}
+
+  .modal{padding:22px;}
+}
 </style>
 </head>
 <body>
@@ -120,13 +161,16 @@ textarea{resize:vertical;min-height:80px;}
 
 <nav>
   <a href="index.html" class="logo">Andri Wulandika <span>AI Tools</span></a>
-  <a href="index.html">Beranda</a>
-  <a href="sigendok.html">SiGenDok</a>
-  <div class="nav-right">
-    <span class="access-badge" id="accessBadge"></span>
-    <a href="aktifkan-pro.html" class="btn-sm btn-outline">Masuk</a>
-    <a href="harga.html" class="btn-sm btn-outline">Upgrade Berbayar</a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Beranda</a>
+    <a href="sigendok.html">SiGenDok</a>
+    <div class="nav-right">
+      <span class="access-badge" id="accessBadge"></span>
+      <a href="aktifkan-pro.html" class="btn-sm btn-outline">Masuk</a>
+      <a href="harga.html" class="btn-sm btn-outline">Upgrade Berbayar</a>
+    </div>
   </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
 </nav>
 
 <div class="hero">
@@ -458,6 +502,7 @@ function v(id){return document.getElementById(id)?.value?.trim()||'';}
 function fmtTgl(d){if(!d)return '';const dt=new Date(d);const B=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];return `${dt.getDate()} ${B[dt.getMonth()]} ${dt.getFullYear()}`;}
 
 document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('navToggle')?.addEventListener('click',()=>{document.getElementById('navLinks')?.classList.toggle('open');});
   document.getElementById('tanggal').value=new Date().toISOString().slice(0,10);
   const access=getAccessStatus();const badge=document.getElementById('accessBadge');if(access.active){badge.textContent='👑 Berbayar';badge.classList.add('active');}else{badge.textContent='🔓 Demo';}
 });
