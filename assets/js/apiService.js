@@ -1,68 +1,83 @@
 /**
- * apiService.js — Shared Gemini API service (BYOK mode)
- * API key disimpan di localStorage, TIDAK pernah di source code.
+ * apiService.js — Shared AI service via Cloudflare Worker
+ * Worker menyimpan API key Gemini & memvalidasi kode akses berbayar.
+ * Tanpa kode aktif: hasil dipotong (demo/preview).
  */
 
-export function getApiKey() {
-  return localStorage.getItem('gemini_api_key') || '';
+export const WORKER_URL = 'https://andriwulandika.wulandikaandri.workers.dev';
+
+export function getAccessCode() {
+  return localStorage.getItem('access_code') || '';
 }
 
-export function saveApiKey(key) {
-  if (key && key.trim()) localStorage.setItem('gemini_api_key', key.trim());
-  else localStorage.removeItem('gemini_api_key');
+export function saveAccessCode(code) {
+  if (code && code.trim()) localStorage.setItem('access_code', code.trim().toUpperCase());
+  else localStorage.removeItem('access_code');
 }
 
-export function checkProAccess() {
-  try {
-    const raw = localStorage.getItem('pro_access');
-    if (!raw) return { active: false, tier: null };
-    const data = JSON.parse(raw);
-    if (!data.until) return { active: false, tier: null };
-    const until = new Date(data.until);
-    if (until < new Date()) return { active: false, tier: null, expired: true };
-    return { active: true, tier: data.tier, until };
-  } catch { return { active: false, tier: null }; }
+export function getAccessInfo() {
+  try { return JSON.parse(localStorage.getItem('access_info')) || null; } catch { return null; }
+}
+
+export function saveAccessInfo(info) {
+  if (info) localStorage.setItem('access_info', JSON.stringify(info));
+  else localStorage.removeItem('access_info');
+}
+
+export function clearAccess() {
+  localStorage.removeItem('access_code');
+  localStorage.removeItem('access_info');
+}
+
+/** Status akses dari cache lokal (tanpa request ke server). */
+export function getAccessStatus() {
+  const info = getAccessInfo();
+  if (!info || !info.expiresAt) return { active: false };
+  if (new Date(info.expiresAt) < new Date()) return { active: false, expired: true };
+  return { active: true, tier: info.tier, expiresAt: info.expiresAt, name: info.name || null };
+}
+
+/** Verifikasi kode akses ke server, simpan hasilnya jika valid. */
+export async function verifyAccessCode(code) {
+  const res = await fetch(`${WORKER_URL}/verify`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ code }),
+  });
+  const data = await res.json();
+  if (data.valid) {
+    saveAccessCode(code);
+    saveAccessInfo({ tier: data.tier, expiresAt: data.expiresAt, name: data.name });
+  }
+  return data;
 }
 
 /**
- * Panggil Gemini API dengan fallback otomatis ke gemini-1.5-flash jika 429.
+ * Panggil AI lewat Worker. Mengembalikan { text, isDemo }.
+ * isDemo = true berarti hasil dipotong (preview) karena tidak ada kode akses aktif.
  */
-export async function callGemini(prompt, { temperature = 0.7, maxTokens = 2048 } = {}) {
-  const key = getApiKey();
-  if (!key) throw new Error('NO_KEY');
-  for (const model of ['gemini-2.0-flash', 'gemini-1.5-flash']) {
-    let res;
-    try {
-      res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { temperature, maxOutputTokens: maxTokens }
-          })
-        }
-      );
-    } catch { throw new Error('NETWORK_ERROR'); }
-    if (res.ok) {
-      const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!text) throw new Error('API_EMPTY_RESPONSE');
-      return text;
-    }
-    if (res.status === 401 || res.status === 403) throw new Error('API_KEY_INVALID');
-    if (res.status === 429) continue;
-    throw new Error('API_ERROR: ' + res.status);
+export async function callAI(prompt, { temperature = 0.7, maxTokens = 4096 } = {}) {
+  const code = getAccessCode();
+  let res;
+  try {
+    res = await fetch(`${WORKER_URL}/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt, temperature, maxTokens, code }),
+    });
+  } catch {
+    throw new Error('NETWORK_ERROR');
   }
-  throw new Error('API_QUOTA');
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || `API_ERROR_${res.status}`);
+  }
+  return res.json();
 }
 
 export function formatApiError(err) {
   const msg = err.message || '';
-  if (msg === 'NO_KEY') return 'Silakan masukkan API Key Gemini Anda terlebih dahulu.';
-  if (msg === 'API_KEY_INVALID') return 'API Key tidak valid. Periksa di <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>.';
-  if (msg === 'API_QUOTA') return 'Kuota harian habis (sudah dicoba model cadangan). Tunggu reset pukul 07.00 WIB atau buat API key baru.';
-  if (msg === 'NETWORK_ERROR') return 'Gagal terhubung ke server AI. Periksa koneksi internet.';
+  if (msg === 'NETWORK_ERROR') return 'Gagal terhubung ke server AI. Periksa koneksi internet Anda.';
+  if (msg === 'API_QUOTA' || msg.startsWith('API_ERROR')) return 'Server AI sedang sibuk. Coba lagi dalam beberapa saat.';
   return 'Terjadi kesalahan: ' + msg;
 }

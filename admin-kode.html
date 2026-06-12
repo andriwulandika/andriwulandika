@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin — Generator Kode Pro</title>
+  <title>Admin — Generator Kode Akses</title>
   <meta name="robots" content="noindex, nofollow"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -147,8 +147,8 @@
     td { padding: 12px 12px; border-bottom: 1px solid rgba(0,0,0,0.05); vertical-align: top; }
     tr:last-child td { border-bottom: none; }
     tr:hover td { background: var(--bg); }
-    .badge-pro { background: #f3f0ff; color: var(--pro); font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 980px; }
-    .badge-opd { background: #e8f8ee; color: #1a7a3e; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 980px; }
+    .badge-bulanan { background: #f3f0ff; color: var(--pro); font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 980px; }
+    .badge-tahunan { background: #e8f8ee; color: #1a7a3e; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 980px; }
     .badge-active { background: #e8f8ee; color: #1a7a3e; font-size: 0.68rem; padding: 2px 8px; border-radius: 980px; }
     .badge-sent { background: #fff0d9; color: #7a4500; font-size: 0.68rem; padding: 2px 8px; border-radius: 980px; }
     .badge-new { background: #e8f1fb; color: var(--accent); font-size: 0.68rem; padding: 2px 8px; border-radius: 980px; }
@@ -198,13 +198,13 @@
   <div class="login-card">
     <div class="login-icon">🔐</div>
     <h1 class="login-title">Admin Panel</h1>
-    <p class="login-sub">Generator Kode Pro — Andri Wulandika</p>
+    <p class="login-sub">Generator Kode Akses Berbayar — Andri Wulandika</p>
     <label class="field-label">Password Admin</label>
     <input type="password" class="field-input" id="passInput"
       placeholder="Masukkan password"
       onkeydown="if(event.key==='Enter')login()"/>
-    <p class="login-err" id="loginErr">Password salah. Coba lagi.</p>
-    <button class="login-btn" onclick="login()">Masuk</button>
+    <p class="login-err" id="loginErr">Password salah atau gagal terhubung ke server. Coba lagi.</p>
+    <button class="login-btn" id="loginBtn" onclick="login()">Masuk</button>
   </div>
 </div>
 
@@ -213,7 +213,7 @@
   <header>
     <div class="header-title">
       ⚡ Admin Panel
-      <span class="header-badge">PRO</span>
+      <span class="header-badge">AW</span>
     </div>
     <button class="logout-btn" onclick="logout()">Keluar</button>
   </header>
@@ -236,7 +236,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-num" id="stat-pro" style="color:var(--pro)">0</div>
-        <div class="stat-label">Paket Pro</div>
+        <div class="stat-label">Paket Tahunan</div>
       </div>
     </div>
 
@@ -248,20 +248,15 @@
 
         <div class="gen-row">
           <select class="select-field" id="genTier">
-            <option value="PRO">Pro</option>
-            <option value="OPD">OPD / Instansi</option>
-          </select>
-          <select class="select-field" id="genDur">
-            <option value="1">1 Bulan</option>
-            <option value="3">3 Bulan</option>
-            <option value="12">12 Bulan (Tahunan)</option>
+            <option value="bulanan">Bulanan — Rp 99.000</option>
+            <option value="tahunan">Tahunan — Rp 950.000</option>
           </select>
         </div>
 
         <div class="gen-row">
           <input type="text" class="select-field" id="genName"
             placeholder="Nama penerima (opsional)" style="flex:2"/>
-          <button class="gen-btn" onclick="generateCode()">+ Generate</button>
+          <button class="gen-btn" id="genBtn" onclick="generateCode()">+ Generate</button>
         </div>
 
         <div class="code-result" id="codeResult">
@@ -271,7 +266,6 @@
           <div class="code-actions">
             <button class="copy-code-btn" id="copyCodeBtn" onclick="copyGeneratedCode()">Salin Kode</button>
             <a class="wa-send-btn" id="waSendBtn" href="#" target="_blank">💬 Kirim via WA</a>
-            <button class="save-btn" onclick="saveToList()">💾 Simpan ke Daftar</button>
           </div>
           <div class="wa-template" id="waTemplate">—</div>
         </div>
@@ -279,36 +273,24 @@
 
       <!-- PANDUAN -->
       <div class="card">
-        <div class="card-title">Format Kode &amp; Panduan</div>
+        <div class="card-title">Paket &amp; Panduan</div>
         <table style="font-size:0.8rem;">
           <tr>
-            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--pro);">PRO26-XXXXX</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Pro, 1 bulan</td>
+            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--pro);">Bulanan</td>
+            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 99.000 — aktif 1 bulan</td>
           </tr>
           <tr>
-            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--pro);">PRO26B-XXXXX</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Pro, 3 bulan</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--pro);">PRO26A-XXXXX</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Pro, 12 bulan</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:#1a7a3e;">OPD26-XXXXX</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">OPD, 1 bulan</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 0;font-weight:600;color:#1a7a3e;">OPD26A-XXXXX</td>
-            <td style="padding:8px 0 8px 12px;color:var(--text2);">OPD, 12 bulan</td>
+            <td style="padding:8px 0;font-weight:600;color:#1a7a3e;">Tahunan</td>
+            <td style="padding:8px 0 8px 12px;color:var(--text2);">Rp 950.000 — aktif 12 bulan</td>
           </tr>
         </table>
         <div style="margin-top:16px;padding:12px;background:var(--bg);border-radius:8px;font-size:0.78rem;color:var(--text2);line-height:1.6;">
           <strong style="color:var(--text);">Langkah kirim kode:</strong><br/>
-          1. Generate kode di sini<br/>
-          2. Klik "Kirim via WA" → pesan terisi otomatis<br/>
-          3. Kirim ke nomor WA pelanggan<br/>
-          4. Tandai "Sudah Terkirim" di daftar<br/><br/>
-          <strong style="color:var(--text);">Catatan:</strong> Kode disimpan di browser ini (localStorage). Jangan hapus cache browser.
+          1. Pilih paket &amp; isi nama (opsional), klik "+ Generate"<br/>
+          2. Kode dibuat otomatis oleh server (format AW-XXXXXXXX)<br/>
+          3. Klik "Kirim via WA" → pesan terisi otomatis<br/>
+          4. Kirim ke nomor WA pelanggan, lalu tandai "Sudah Terkirim" di daftar<br/><br/>
+          <strong style="color:var(--text);">Catatan:</strong> Kode disimpan di server (Cloudflare KV) via Worker, sehingga valid untuk validasi otomatis di semua AI Tools.
         </div>
       </div>
     </div>
@@ -316,18 +298,17 @@
     <!-- DAFTAR KODE -->
     <div class="card" style="margin-top:20px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-        <div class="card-title" style="margin-bottom:0;">Daftar Kode yang Dibuat</div>
-        <button onclick="clearAll()" style="font-size:0.75rem;color:var(--red);background:none;border:none;cursor:pointer;">Hapus Semua</button>
+        <div class="card-title" style="margin-bottom:0;">Daftar Kode Aktif</div>
+        <button onclick="refreshCodes()" style="font-size:0.75rem;color:var(--accent);background:none;border:none;cursor:pointer;">⟳ Muat Ulang</button>
       </div>
       <div class="table-wrap">
         <table id="codesTable">
           <thead>
             <tr>
               <th>Kode</th>
-              <th>Tier</th>
-              <th>Durasi</th>
+              <th>Paket</th>
               <th>Nama</th>
-              <th>Dibuat</th>
+              <th>Kadaluarsa</th>
               <th>Status</th>
               <th>Aksi</th>
             </tr>
@@ -345,33 +326,52 @@
   </div>
 </div>
 
-<script>
-  /* ── KONFIGURASI PASSWORD ──
-   * Password disimpan dalam bentuk Base64 agar tidak terbaca langsung.
-   * Untuk ganti password: btoa('passwordBaru') di browser console,
-   * lalu update nilai PASS_B64 di bawah.
-   * Default: andri2026
-   */
-  const PASS_B64 = btoa('andri2026');
+<script type="module">
+  import { WORKER_URL } from './assets/js/apiService.js';
 
-  const STORAGE_KEY = 'admin_codes_v1';
   const SESSION_KEY = 'admin_session';
+  const SENT_KEY = 'admin_sent_codes';
+  const PRICE = { bulanan: 99000, tahunan: 950000 };
 
-  function login() {
+  function tierLabel(t) { return t === 'tahunan' ? 'Tahunan' : 'Bulanan'; }
+  function fmtRupiah(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
+  function formatDate(d) { return new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); }
+
+  /* ── LOGIN ── */
+  async function login() {
     const pw = document.getElementById('passInput').value;
-    if (btoa(pw) === PASS_B64) {
-      sessionStorage.setItem(SESSION_KEY, '1');
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('mainScreen').style.display = 'block';
-      renderTable();
-    } else {
-      document.getElementById('passInput').classList.add('error');
-      document.getElementById('loginErr').classList.add('show');
-      setTimeout(() => {
-        document.getElementById('passInput').classList.remove('error');
-        document.getElementById('loginErr').classList.remove('show');
-      }, 3000);
+    const btn = document.getElementById('loginBtn');
+    btn.disabled = true;
+    btn.textContent = 'Memeriksa...';
+    try {
+      const res = await fetch(`${WORKER_URL}/admin/list`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw }),
+      });
+      const data = await res.json();
+      if (res.ok && data.codes) {
+        sessionStorage.setItem(SESSION_KEY, pw);
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('mainScreen').style.display = 'block';
+        renderTable(data.codes);
+      } else {
+        showLoginError();
+      }
+    } catch {
+      showLoginError();
     }
+    btn.disabled = false;
+    btn.textContent = 'Masuk';
+  }
+
+  function showLoginError() {
+    document.getElementById('passInput').classList.add('error');
+    document.getElementById('loginErr').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('passInput').classList.remove('error');
+      document.getElementById('loginErr').classList.remove('show');
+    }, 3000);
   }
 
   function logout() {
@@ -380,62 +380,51 @@
   }
 
   /* ── CODE GENERATION ── */
-  const CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no ambiguous chars (0/O, 1/I)
-  function randomSuffix(len = 6) {
-    return Array.from({length: len}, () => CHARS[Math.floor(Math.random() * CHARS.length)]).join('');
-  }
-
-  function buildCodePrefix(tier, dur) {
-    const t = tier; // PRO or OPD
-    const year = '26'; // update tiap tahun
-    if (dur === 1)  return `${t}${year}-`;
-    if (dur === 3)  return `${t}${year}B-`;
-    if (dur === 12) return `${t}${year}A-`;
-    return `${t}${year}-`;
-  }
-
-  function durMonths(dur) { return parseInt(dur); }
-  function durLabel(dur) {
-    if (dur === 1) return '1 Bulan';
-    if (dur === 3) return '3 Bulan';
-    if (dur === 12) return '12 Bulan (Tahunan)';
-    return dur + ' bulan';
-  }
-  function tierLabel(t) { return t === 'PRO' ? 'Pro' : 'OPD/Instansi'; }
-
   let lastGenerated = null;
 
-  function generateCode() {
+  function buildWaMessage(c) {
+    return `Halo${c.name ? ' ' + c.name : ''},\n\nTerima kasih atas pembayaran Anda! ✅\n\nBerikut kode akses Berbayar Anda:\n\n*${c.code}*\n\nPaket: ${tierLabel(c.tier)} (${fmtRupiah(PRICE[c.tier])})\nAktif hingga: ${formatDate(c.expiresAt)}\n\nCara masuk:\n1. Buka: https://andriwulandika.uk/aktifkan-pro.html\n2. Masukkan kode di atas\n3. Klik "Masuk"\n\nSelamat menggunakan! Jika ada kendala, balas pesan ini.\n\n— Andri Wulandika`;
+  }
+
+  async function generateCode() {
     const tier = document.getElementById('genTier').value;
-    const dur  = parseInt(document.getElementById('genDur').value);
     const name = document.getElementById('genName').value.trim();
+    const btn = document.getElementById('genBtn');
 
-    const prefix = buildCodePrefix(tier, dur);
-    const suffix = randomSuffix(6);
-    const code = prefix + suffix;
+    btn.disabled = true;
+    btn.textContent = '...';
+    try {
+      const res = await fetch(`${WORKER_URL}/admin/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: sessionStorage.getItem(SESSION_KEY), tier, name }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || 'Gagal membuat kode.');
+        return;
+      }
+      lastGenerated = data;
 
-    const harga = { PRO: {1:99000, 3:285000, 12:950400}, OPD: {1:299000, 3:855000, 12:2872800} };
-    const nominal = harga[tier][dur];
-    const fmtNominal = 'Rp ' + nominal.toLocaleString('id-ID');
-    const tLabel = tierLabel(tier);
-    const dLabel = durLabel(dur);
+      document.getElementById('codeDisplay').textContent = data.code;
+      document.getElementById('codeMeta').innerHTML =
+        `Paket: <strong>${tierLabel(data.tier)}</strong> (${fmtRupiah(PRICE[data.tier])}) &nbsp;·&nbsp; Aktif hingga: <strong>${formatDate(data.expiresAt)}</strong>` +
+        (data.name ? ` &nbsp;·&nbsp; Untuk: <strong>${data.name}</strong>` : '');
 
-    lastGenerated = { code, tier, dur, name, nominal, created: new Date().toISOString(), status: 'new' };
+      const waMsg = buildWaMessage(data);
+      document.getElementById('waTemplate').textContent = waMsg;
+      document.getElementById('waSendBtn').href = `https://wa.me/?text=${encodeURIComponent(waMsg)}`;
 
-    document.getElementById('codeDisplay').textContent = code;
-    document.getElementById('codeMeta').innerHTML =
-      `Tier: <strong>${tLabel}</strong> &nbsp;·&nbsp; Durasi: <strong>${dLabel}</strong>` +
-      (name ? ` &nbsp;·&nbsp; Untuk: <strong>${name}</strong>` : '');
+      document.getElementById('codeResult').classList.add('show');
+      document.getElementById('copyCodeBtn').textContent = 'Salin Kode';
+      document.getElementById('copyCodeBtn').classList.remove('copied');
 
-    const waMsg = `Halo${name ? ' ' + name : ''},\n\nTerima kasih atas pembayaran Anda! ✅\n\nBerikut adalah kode akses Pro Anda:\n\n*${code}*\n\nPaket: ${tLabel} | ${dLabel}\n\nCara aktivasi:\n1. Buka: https://andriwulandika.github.io/andriwulandika/aktifkan-pro.html\n2. Masukkan kode di atas\n3. Klik "Aktifkan Sekarang"\n\nSelamat menggunakan! Jika ada kendala, balas pesan ini.\n\n— Andri Wulandika`;
-
-    document.getElementById('waTemplate').textContent = waMsg;
-    const waEncoded = encodeURIComponent(waMsg);
-    document.getElementById('waSendBtn').href = `https://wa.me/?text=${waEncoded}`;
-
-    document.getElementById('codeResult').classList.add('show');
-    document.getElementById('copyCodeBtn').textContent = 'Salin Kode';
-    document.getElementById('copyCodeBtn').classList.remove('copied');
+      await refreshCodes();
+    } catch {
+      alert('Gagal terhubung ke server.');
+    }
+    btn.disabled = false;
+    btn.textContent = '+ Generate';
   }
 
   function copyGeneratedCode() {
@@ -448,31 +437,30 @@
     });
   }
 
-  function saveToList() {
-    if (!lastGenerated) return;
-    const codes = getCodes();
-    // Cek duplikat
-    if (codes.find(c => c.code === lastGenerated.code)) {
-      alert('Kode ini sudah ada di daftar.');
-      return;
-    }
-    codes.unshift({...lastGenerated});
-    saveCodes(codes);
-    renderTable();
-    const btn = document.querySelector('.save-btn');
-    btn.textContent = '✓ Tersimpan';
-    setTimeout(() => { btn.textContent = '💾 Simpan ke Daftar'; }, 1500);
+  /* ── SENT-STATUS TRACKING (lokal, untuk checklist pengiriman WA) ── */
+  function getSentCodes() {
+    try { return JSON.parse(localStorage.getItem(SENT_KEY)) || []; } catch { return []; }
+  }
+  function saveSentCodes(arr) { localStorage.setItem(SENT_KEY, JSON.stringify(arr)); }
+
+  /* ── DAFTAR KODE (dari server) ── */
+  let currentCodes = [];
+
+  async function refreshCodes() {
+    try {
+      const res = await fetch(`${WORKER_URL}/admin/list`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: sessionStorage.getItem(SESSION_KEY) }),
+      });
+      const data = await res.json();
+      if (res.ok && data.codes) renderTable(data.codes);
+    } catch {}
   }
 
-  /* ── STORAGE ── */
-  function getCodes() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; }
-  }
-  function saveCodes(arr) { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
-
-  /* ── TABLE ── */
-  function renderTable() {
-    const codes = getCodes();
+  function renderTable(codes) {
+    currentCodes = codes;
+    const sent = getSentCodes();
     const tbody = document.getElementById('codesBody');
     const empty = document.getElementById('emptyState');
 
@@ -481,82 +469,89 @@
       empty.style.display = 'block';
     } else {
       empty.style.display = 'none';
-      tbody.innerHTML = codes.map((c, i) => `
+      tbody.innerHTML = codes.map((c, i) => {
+        const isSent = sent.includes(c.code);
+        return `
         <tr>
           <td class="mono">${c.code}</td>
-          <td><span class="badge-${c.tier.toLowerCase()}">${tierLabel(c.tier)}</span></td>
-          <td>${durLabel(c.dur)}</td>
+          <td><span class="badge-${c.tier}">${tierLabel(c.tier)}</span></td>
           <td style="color:var(--text2)">${c.name || '—'}</td>
-          <td style="color:var(--text2);font-size:0.75rem;">${new Date(c.created).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}</td>
-          <td><span class="badge-${c.status}">${c.status === 'new' ? 'Baru' : c.status === 'sent' ? 'Terkirim' : c.status}</span></td>
+          <td style="color:var(--text2);font-size:0.75rem;">${formatDate(c.expiresAt)}</td>
+          <td><span class="badge-${isSent ? 'sent' : 'new'}">${isSent ? 'Terkirim' : 'Baru'}</span></td>
           <td style="display:flex;gap:6px;flex-wrap:wrap;">
             <button class="action-sm" onclick="copyCode(${i})" title="Salin kode">Salin</button>
             <button class="action-sm" onclick="sendWA(${i})" title="Kirim WA">WA</button>
-            ${c.status === 'new' ?
-              `<button class="action-sm" onclick="markSent(${i})" style="color:var(--green);border-color:rgba(52,199,89,0.3);">✓ Terkirim</button>` :
-              `<button class="action-sm" onclick="markNew(${i})">↩ Batal</button>`
+            ${isSent ?
+              `<button class="action-sm" onclick="markNew(${i})">↩ Batal</button>` :
+              `<button class="action-sm" onclick="markSent(${i})" style="color:var(--green);border-color:rgba(52,199,89,0.3);">✓ Terkirim</button>`
             }
             <button class="action-sm del-sm" onclick="deleteCode(${i})">✕</button>
           </td>
-        </tr>
-      `).join('');
+        </tr>`;
+      }).join('');
     }
 
-    // Stats
     const total = codes.length;
-    const newC  = codes.filter(c => c.status === 'new').length;
-    const sent  = codes.filter(c => c.status === 'sent').length;
-    const pro   = codes.filter(c => c.tier === 'PRO').length;
+    const sentCount = codes.filter(c => sent.includes(c.code)).length;
     document.getElementById('stat-total').textContent = total;
-    document.getElementById('stat-new').textContent   = newC;
-    document.getElementById('stat-sent').textContent  = sent;
-    document.getElementById('stat-pro').textContent   = pro;
+    document.getElementById('stat-new').textContent = total - sentCount;
+    document.getElementById('stat-sent').textContent = sentCount;
+    document.getElementById('stat-pro').textContent = codes.filter(c => c.tier === 'tahunan').length;
   }
 
   function copyCode(i) {
-    const c = getCodes()[i];
-    navigator.clipboard.writeText(c.code);
+    navigator.clipboard.writeText(currentCodes[i].code);
   }
 
   function sendWA(i) {
-    const c = getCodes()[i];
-    const waMsg = `Halo${c.name ? ' ' + c.name : ''},\n\nTerima kasih atas pembayaran Anda! ✅\n\nBerikut kode akses Pro Anda:\n\n*${c.code}*\n\nPaket: ${tierLabel(c.tier)} | ${durLabel(c.dur)}\n\nCara aktivasi:\n1. Buka: https://andriwulandika.github.io/andriwulandika/aktifkan-pro.html\n2. Masukkan kode di atas\n3. Klik "Aktifkan Sekarang"\n\nSelamat menggunakan!\n\n— Andri Wulandika`;
+    const waMsg = buildWaMessage(currentCodes[i]);
     window.open(`https://wa.me/?text=${encodeURIComponent(waMsg)}`, '_blank');
   }
 
   function markSent(i) {
-    const codes = getCodes();
-    codes[i].status = 'sent';
-    saveCodes(codes);
-    renderTable();
+    const code = currentCodes[i].code;
+    const sent = getSentCodes();
+    if (!sent.includes(code)) sent.push(code);
+    saveSentCodes(sent);
+    renderTable(currentCodes);
   }
 
   function markNew(i) {
-    const codes = getCodes();
-    codes[i].status = 'new';
-    saveCodes(codes);
-    renderTable();
+    const code = currentCodes[i].code;
+    saveSentCodes(getSentCodes().filter(c => c !== code));
+    renderTable(currentCodes);
   }
 
-  function deleteCode(i) {
-    if (!confirm('Hapus kode ini dari daftar?')) return;
-    const codes = getCodes();
-    codes.splice(i, 1);
-    saveCodes(codes);
-    renderTable();
+  async function deleteCode(i) {
+    const code = currentCodes[i].code;
+    if (!confirm(`Hapus kode ${code}? Kode ini akan langsung tidak valid dan tidak bisa dikembalikan.`)) return;
+    try {
+      await fetch(`${WORKER_URL}/admin/revoke`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: sessionStorage.getItem(SESSION_KEY), code }),
+      });
+    } catch {}
+    saveSentCodes(getSentCodes().filter(c => c !== code));
+    await refreshCodes();
   }
 
-  function clearAll() {
-    if (!confirm('Hapus SEMUA kode dari daftar? Tindakan ini tidak bisa dibatalkan.')) return;
-    localStorage.removeItem(STORAGE_KEY);
-    renderTable();
-  }
+  window.login = login;
+  window.logout = logout;
+  window.generateCode = generateCode;
+  window.copyGeneratedCode = copyGeneratedCode;
+  window.refreshCodes = refreshCodes;
+  window.copyCode = copyCode;
+  window.sendWA = sendWA;
+  window.markSent = markSent;
+  window.markNew = markNew;
+  window.deleteCode = deleteCode;
 
   /* ── INIT ── */
   if (sessionStorage.getItem(SESSION_KEY)) {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('mainScreen').style.display = 'block';
-    renderTable();
+    refreshCodes();
   }
 
   document.getElementById('passInput').addEventListener('keydown', e => {

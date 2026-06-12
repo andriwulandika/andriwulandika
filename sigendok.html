@@ -37,7 +37,14 @@
     .nav-links{display:flex;gap:1.5rem;list-style:none;}
     .nav-links a{font-size:.78rem;color:var(--text2);text-decoration:none;}
     .nav-links a:hover{color:var(--text);}
-    @media(max-width:600px){.nav-links{display:none;}}
+    .nav-toggle{display:none;background:none;border:none;font-size:20px;line-height:1;color:var(--text);cursor:pointer;padding:6px 4px;}
+    @media(max-width:600px){
+      .nav-toggle{display:block;}
+      .nav-links{display:none;position:fixed;top:52px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;gap:0;padding:8px 0;max-height:calc(100vh - 52px);overflow-y:auto;}
+      .nav-links.open{display:flex;}
+      .nav-links li{width:100%;}
+      .nav-links a{display:block;padding:12px 24px;font-size:.88rem;}
+    }
 
     /* HERO */
     .hero{padding:90px 24px 48px;text-align:center;background:var(--bg);}
@@ -231,7 +238,8 @@
 <nav>
   <a href="index.html" class="nav-back">← Beranda</a>
   <span class="nav-brand">Si<span>GenDok</span></span>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="sirenja.html">SiRENJA</a></li>
     <li><a href="sirkpd.html">SiRKPD</a></li>
     <li><a href="siperda.html">SiPerda</a></li>
@@ -240,6 +248,7 @@
     <li><a href="sitelaah.html">SiTelaah</a></li>
     <li><a href="sibacara.html">SiBACARA</a></li>
     <li><a href="regulasi.html">Regulasi</a></li>
+    <li><a href="aktifkan-pro.html">Masuk</a></li>
   </ul>
 </nav>
 
@@ -1733,6 +1742,10 @@ window.addEventListener('DOMContentLoaded', () => {
   loadVisiMisi();
   // jika belum ada misi sama sekali, tambahkan 1 baris kosong
   if (document.getElementById('vm_misi_wrap').children.length === 0) addMisi('');
+
+  document.getElementById('navToggle')?.addEventListener('click', () => {
+    document.getElementById('navLinks')?.classList.toggle('open');
+  });
 });
 
 // ── CLOSE PREVIEW ─────────────────────────────────────────────────────────

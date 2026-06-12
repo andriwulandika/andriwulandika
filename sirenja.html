@@ -56,11 +56,13 @@ nav .logo span{font-weight:300;color:var(--sub);font-size:13px;margin-left:8px;}
 nav a{color:var(--sub);text-decoration:none;font-size:14px;transition:color .2s;}
 nav a:hover{color:var(--text);}
 nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
-.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;}
+.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
 .btn-outline{background:none;border:1.5px solid var(--border);color:var(--text);}
 .btn-outline:hover{border-color:var(--blue);color:var(--blue);}
 .btn-primary-sm{background:var(--blue);color:#fff;}
 .btn-primary-sm:hover{background:var(--blue-h);}
+.access-badge{font-size:11px;font-weight:600;color:var(--sub);padding:4px 10px;border-radius:980px;background:var(--bg);border:1px solid var(--border);white-space:nowrap;}
+.access-badge.active{color:#7c3aed;background:#f3f0ff;border-color:#c4b5fd;}
 
 .hero{text-align:center;padding:48px 24px 36px;}
 .hero-badge{display:inline-block;background:#dbeafe;color:var(--blue);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px;}
@@ -157,19 +159,83 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
 
 .compliance{background:#1D1D1F;color:#f5f5f7;padding:32px 24px;text-align:center;margin-top:64px;font-size:13px;line-height:1.8;}
 .compliance a{color:#93c5fd;text-decoration:none;}
+
+/* ============================================================
+   MODERN REFINEMENTS
+   ============================================================ */
+.card{border:1px solid rgba(0,0,0,.04);}
+.btn,.btn-sm{min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:6px;}
+.access-badge{display:inline-flex;align-items:center;}
+.nav-links{display:flex;align-items:center;gap:24px;flex:1;}
+
+/* Renja Perubahan */
+.perubahan-fields{display:none;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:16px;margin-top:4px;margin-bottom:16px;}
+.perubahan-fields.show{display:block;}
+.col-perubahan{display:none;}
+#progTable.mode-perubahan .col-perubahan{display:table-cell;}
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+.nav-toggle{display:none;background:none;border:none;font-size:22px;line-height:1;color:var(--text);cursor:pointer;padding:6px 4px;margin-left:auto;}
+
+.step-current-label{display:none;text-align:center;font-size:13px;font-weight:600;color:var(--blue);margin:-12px 0 20px;}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+@media(max-width:760px){
+  nav{flex-wrap:wrap;height:auto;min-height:52px;padding:10px 16px;}
+  nav .logo{font-size:15px;}
+  nav .logo span{display:none;}
+  .nav-toggle{display:block;}
+  .nav-links{display:none;width:100%;flex-direction:column;align-items:stretch;gap:4px;padding:12px 0 4px;border-top:1px solid var(--border);margin-top:10px;}
+  .nav-links.open{display:flex;}
+  .nav-links > a{padding:10px 6px;font-size:15px;}
+  .nav-right{flex-direction:column;align-items:stretch;gap:8px;margin-left:0;width:100%;margin-top:6px;}
+  .nav-right .access-badge,.nav-right .btn-sm{width:100%;text-align:center;}
+
+  .hero{padding:32px 16px 24px;}
+  .hero-tags{gap:6px;}
+
+  .main{padding:0 14px 60px;}
+  .card{padding:18px;border-radius:14px;}
+
+  .step-label{display:none;}
+  .step-line{width:16px;}
+  .step-current-label{display:block;}
+
+  .nav-btns{flex-direction:column-reverse;align-items:stretch;}
+  .nav-btns .btn{width:100%;}
+  .preview-toolbar{flex-direction:column;align-items:stretch;}
+  .preview-toolbar h2{margin-bottom:4px;}
+
+  .modal{padding:22px;}
+}
 </style>
 </head>
 <body>
 
+<script type="module">
+  import { callAI, formatApiError, getAccessStatus } from './assets/js/apiService.js';
+  window.callAI = callAI;
+  window.formatApiError = formatApiError;
+  window.getAccessStatus = getAccessStatus;
+</script>
+
 <nav>
   <a href="index.html" class="logo">Andri Wulandika <span>AI Tools</span></a>
-  <a href="index.html">Beranda</a>
-  <a href="silkjip.html">SiLKjIP</a>
-  <a href="siktor.html">SiKTOR</a>
-  <div class="nav-right">
-    <button class="btn-sm btn-outline" onclick="openApiModal()">⚙ API Key</button>
-    <a href="harga.html" class="btn-sm btn-primary-sm">Upgrade Pro</a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Beranda</a>
+    <a href="silkjip.html">SiLKjIP</a>
+    <a href="siktor.html">SiKTOR</a>
+    <div class="nav-right">
+      <span class="access-badge" id="accessBadge"></span>
+      <a href="aktifkan-pro.html" class="btn-sm btn-outline">Masuk</a>
+      <a href="harga.html" class="btn-sm btn-primary-sm">Upgrade Berbayar</a>
+    </div>
   </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
 </nav>
 
 <div class="hero">
@@ -198,6 +264,7 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
     <div class="step-line" id="sl-3"></div>
     <div class="step pending" id="si-4"><div class="step-num">5</div><div class="step-label">Preview & Ekspor</div></div>
   </div>
+  <div class="step-current-label" id="stepCurrentLabel"></div>
 
   <!-- STEP 1: DATA OPD -->
   <div class="wizard-step active" id="step-0">
@@ -213,6 +280,28 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
         <div class="form-group">
           <label>Nama Pemerintah Daerah *</label>
           <input type="text" id="namaPemda" placeholder="contoh: Kabupaten Aceh Tenggara"/>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jenis Dokumen *</label>
+          <select id="jenisRenja" onchange="toggleJenisRenja()">
+            <option value="murni">Renja Murni (Reguler)</option>
+            <option value="perubahan">Renja Perubahan</option>
+          </select>
+        </div>
+        <div class="form-group" id="dasarPerubahanGroup" style="display:none;">
+          <label>Dasar Hukum Perubahan</label>
+          <input type="text" id="dasarPerubahan" placeholder="contoh: Perubahan RKPD Kab. ... Tahun 2026 (Perkada No. ...)"/>
+        </div>
+      </div>
+
+      <div class="perubahan-fields" id="perubahanFields">
+        <div class="form-group" style="margin-bottom:0;">
+          <label>Alasan/Latar Belakang Perubahan Renja *</label>
+          <textarea id="alasanPerubahan" rows="3" placeholder="contoh: Perubahan dilakukan karena perkembangan yang tidak sesuai dengan asumsi KUA-PPAS, adanya kebijakan refocusing anggaran daerah, dan pergeseran prioritas program/kegiatan..."></textarea>
+          <span class="hint">Sesuai Permendagri 86/2017 Pasal 78: perkembangan yang tidak sesuai asumsi KUA-PPAS, keadaan darurat, keadaan luar biasa, dan/atau pergeseran program-kegiatan antar SKPD.</span>
         </div>
       </div>
 
@@ -330,7 +419,9 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
               <th style="min-width:150px">Indikator Kinerja</th>
               <th style="min-width:80px">Target</th>
               <th style="min-width:70px">Satuan</th>
-              <th style="min-width:110px">Pagu (Rp)</th>
+              <th class="col-perubahan" style="min-width:110px">Pagu Semula (Rp)</th>
+              <th style="min-width:110px" id="thPagu">Pagu (Rp)</th>
+              <th class="col-perubahan" style="min-width:110px">Status</th>
               <th style="width:36px"></th>
             </tr>
           </thead>
@@ -433,35 +524,6 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
 
 </div><!-- /main -->
 
-<!-- API MODAL -->
-<div class="modal-overlay" id="apiModal">
-  <div class="modal">
-    <h3>⚙ API Key Gemini</h3>
-    <p>Masukkan Google Gemini API Key Anda. Key disimpan di perangkat ini saja.<br/>
-    <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--blue);font-size:13px;">Dapatkan API Key gratis →</a></p>
-    <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:12.5px;line-height:1.75;color:#0c4a6e;">
-  <strong>Cara mendapatkan API Key Gemini (gratis):</strong>
-  <ol style="margin:5px 0 0 16px;">
-    <li>Buka <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color:#0369a1;font-weight:600">aistudio.google.com/app/apikey</a></li>
-    <li>Login akun Google &rarr; klik <strong>Create API key</strong></li>
-    <li>Pilih project &rarr; klik <strong>Create API key in existing project</strong></li>
-    <li>Copy key yang muncul (diawali <code style="background:#e0f2fe;padding:1px 5px;border-radius:3px;font-size:12px">AIzaSy...</code> atau <code style="background:#e0f2fe;padding:1px 5px;border-radius:3px;font-size:12px">AQ.</code>)</li>
-    <li>Paste di kolom di bawah &rarr; klik <strong>Simpan</strong></li>
-  </ol>
-  <div style="margin-top:6px;font-size:12px;color:#0369a1;">✓ Gratis &middot; ✓ 1.500 generate/hari &middot; ✓ Tidak perlu kartu kredit</div>
-</div>
-<input type="password" class="modal-input" id="apiKeyInput" placeholder="Tempel API Key di sini"/>
-<div style="margin-top:6px;"><button type="button" onclick="resetApiKey()" style="background:none;border:none;color:#dc2626;font-size:12px;text-decoration:underline;cursor:pointer;padding:2px 0;">🗑 Hapus API key tersimpan &amp; mulai ulang</button></div>
-    <div style="display:flex;gap:8px;margin-top:4px;">
-      <button class="btn-sm btn-outline" onclick="testApiKey()">Test Koneksi</button>
-      <span id="testResult" style="font-size:12px;align-self:center;"></span>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-next" onclick="saveApiKey()" style="flex:1;">Simpan</button>
-      <button class="btn btn-prev" onclick="closeApiModal()" style="flex:1;">Batal</button>
-    </div>
-  </div>
-</div>
 
 <div class="compliance">
   <div style="max-width:700px;margin:0 auto;">
@@ -480,6 +542,7 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
 // ============================================================
 let currentStep = 0;
 const TOTAL_STEPS = 5;
+const STEP_LABELS = ['Data OPD','Program & Kegiatan','Isu & Prioritas','Narasi AI','Preview & Ekspor'];
 
 // ============================================================
 // STEP NAVIGATION
@@ -507,12 +570,27 @@ function updateStepUI() {
     const line = document.getElementById('sl-' + i);
     if (line) line.className = 'step-line ' + (i < currentStep ? 'done' : '');
   }
+  const lbl = document.getElementById('stepCurrentLabel');
+  if (lbl) lbl.textContent = `Langkah ${currentStep+1}/${TOTAL_STEPS} — ${STEP_LABELS[currentStep]}`;
+}
+
+// ============================================================
+// RENJA PERUBAHAN
+// ============================================================
+function toggleJenisRenja() {
+  const isPerubahan = v('jenisRenja') === 'perubahan';
+  document.getElementById('dasarPerubahanGroup').style.display = isPerubahan ? '' : 'none';
+  document.getElementById('perubahanFields').classList.toggle('show', isPerubahan);
+  document.getElementById('progTable').classList.toggle('mode-perubahan', isPerubahan);
+  document.getElementById('thPagu').textContent = isPerubahan ? 'Pagu Menjadi (Rp)' : 'Pagu (Rp)';
 }
 
 function validateStep(step) {
   if (step === 0) {
     if (!v('namaOpd') || !v('namaPemda') || !v('tahunRenja'))
       return 'Harap lengkapi Nama OPD, Pemerintah Daerah, dan Tahun Renja.';
+    if (v('jenisRenja') === 'perubahan' && !v('alasanPerubahan'))
+      return 'Harap isi Alasan/Latar Belakang Perubahan Renja.';
   }
   if (step === 1) {
     if (document.querySelectorAll('#progBody tr').length === 0)
@@ -528,6 +606,7 @@ function validateStep(step) {
 // PROGRAM TABLE
 // ============================================================
 const SATUAN_LIST = ['%','Dokumen','Kegiatan','Orang','Unit','Paket','km','Ha','Ton','Nilai','Skor','Rp','Lainnya'];
+const STATUS_LIST = ['Tetap','Bertambah/Baru','Berkurang/Berubah','Dihapus'];
 
 function addProgRow(tipe = 'kegiatan', data = {}) {
   const rowNum = document.querySelectorAll('#progBody tr').length + 1;
@@ -553,7 +632,11 @@ function addProgRow(tipe = 'kegiatan', data = {}) {
     <td>
       <select data-field="satuan">${SATUAN_LIST.map(s=>`<option ${s===(data.satuan||'%')?'selected':''}>${s}</option>`).join('')}</select>
     </td>
+    <td class="col-perubahan"><input type="number" data-field="paguSemula" placeholder="Pagu semula Rp" value="${data.paguSemula||''}"/></td>
     <td><input type="number" data-field="pagu" placeholder="Pagu Rp" value="${data.pagu||''}"/></td>
+    <td class="col-perubahan">
+      <select data-field="status">${STATUS_LIST.map(s=>`<option ${s===(data.status||'Tetap')?'selected':''}>${s}</option>`).join('')}</select>
+    </td>
     <td><button class="tbl-del" onclick="this.closest('tr').remove();renumberProg()" title="Hapus">×</button></td>`;
   document.getElementById('progBody').appendChild(tr);
 }
@@ -572,6 +655,8 @@ function getProgData() {
     target: tr.querySelector('[data-field="target"]')?.value?.trim() || '',
     satuan: tr.querySelector('[data-field="satuan"]')?.value || '%',
     pagu: tr.querySelector('[data-field="pagu"]')?.value?.trim() || '',
+    paguSemula: tr.querySelector('[data-field="paguSemula"]')?.value?.trim() || '',
+    status: tr.querySelector('[data-field="status"]')?.value || 'Tetap',
   }));
 }
 
@@ -579,9 +664,6 @@ function getProgData() {
 // AI NARASI
 // ============================================================
 async function generateNarasi() {
-  const key = getApiKey();
-  if (!key) { openApiModal(); return; }
-
   const opd    = v('namaOpd');
   const pemda  = v('namaPemda');
   const tahun  = v('tahunRenja');
@@ -592,6 +674,9 @@ async function generateNarasi() {
   const prior  = v('prioritasDaerah');
   const capaian= v('capaianSebelumnya');
   const konteks= v('konteksAi');
+  const isPerubahan = v('jenisRenja') === 'perubahan';
+  const dasarPerubahan = v('dasarPerubahan');
+  const alasanPerubahan = v('alasanPerubahan');
   const progs  = getProgData();
 
   const progSummary = progs.slice(0, 10).map((p, i) =>
@@ -600,21 +685,23 @@ async function generateNarasi() {
 
   const totalPagu = progs.reduce((s, p) => s + (parseFloat(p.pagu)||0), 0);
 
-  const prompt = `Anda adalah perencana pemerintah daerah berpengalaman. Tugas Anda adalah menulis narasi untuk Rencana Kerja (Renja) OPD.
+  const prompt = `Anda adalah perencana pemerintah daerah berpengalaman. Tugas Anda adalah menulis narasi untuk ${isPerubahan ? 'Perubahan Rencana Kerja (Renja Perubahan)' : 'Rencana Kerja (Renja)'} OPD.
 
 PENTING:
 - Tulis dalam Bahasa Indonesia formal dan baku
 - Jangan mengarang data atau angka baru
-- Sesuai Permendagri 81/2022 tentang Renja OPD
+- Sesuai Permendagri 81/2022 tentang Renja OPD${isPerubahan ? ' dan Permendagri 86/2017 Pasal 78 tentang Perubahan RKPD/Renja' : ''}
 
 DATA OPD:
 OPD: ${opd}
 Pemerintah Daerah: ${pemda}
 Tahun Renja: ${tahun}
+Jenis Dokumen: ${isPerubahan ? 'Renja Perubahan' : 'Renja Murni (Reguler)'}
 ${urusan ? 'Urusan: ' + urusan : ''}
 ${tupok ? 'Tupoksi: ' + tupok : ''}
 ${vismis ? 'Visi-Misi terkait: ' + vismis : ''}
 Total Pagu Anggaran: ${totalPagu > 0 ? fmtRp(totalPagu) : '-'}
+${isPerubahan ? `\nDASAR HUKUM PERUBAHAN: ${dasarPerubahan || '-'}\nALASAN/LATAR BELAKANG PERUBAHAN: ${alasanPerubahan}` : ''}
 
 PROGRAM DAN KEGIATAN:
 ${progSummary || '-'}
@@ -630,11 +717,12 @@ ${capaian || '-'}
 
 KONTEKS TAMBAHAN: ${konteks || '-'}
 
-Tulis narasi Renja OPD yang terdiri dari:
-1. **BAB I: PENDAHULUAN** — Sub-bab: Latar Belakang (2-3 paragraf formal tentang urgensi Renja dan dasar kebijakan), Landasan Hukum (daftarkan UU/PP/Permendagri yang relevan)
+Tulis narasi ${isPerubahan ? 'Renja Perubahan' : 'Renja'} OPD yang terdiri dari:
+1. **BAB I: PENDAHULUAN** — Sub-bab: Latar Belakang (2-3 paragraf formal tentang urgensi Renja${isPerubahan ? ' Perubahan' : ''} dan dasar kebijakan), Landasan Hukum (daftarkan UU/PP/Permendagri yang relevan)
 2. **GAMBARAN PELAYANAN OPD** — Uraikan tugas, fungsi, dan kapasitas OPD dalam memberikan pelayanan (2-3 paragraf berdasarkan tupoksi yang diberikan)
 3. **PERMASALAHAN DAN ISU STRATEGIS** — Uraikan tiap isu strategis secara formal, kaitkan dengan program yang direncanakan
-4. **TUJUAN DAN SASARAN** — Rumuskan tujuan dan sasaran Renja berdasarkan program yang direncanakan
+4. **TUJUAN DAN SASARAN** — Rumuskan tujuan dan sasaran Renja berdasarkan program yang direncanakan${isPerubahan ? `
+5. **DASAR DAN ALASAN PERUBAHAN** — Jelaskan secara formal dasar hukum dan alasan/latar belakang dilakukannya perubahan Renja berdasarkan informasi yang diberikan, kaitkan dengan ketentuan Permendagri 86/2017 Pasal 78` : ''}
 
 Format: narasi paragraf formal + poin-poin bernomor. Total sekitar 600-800 kata.`;
 
@@ -642,10 +730,14 @@ Format: narasi paragraf formal + poin-poin bernomor. Total sekitar 600-800 kata.
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callGemini(prompt, { temperature: 0.5, maxTokens: 2048 });
-    document.getElementById('aiNarasi').value = result;
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2048 });
+    document.getElementById('aiNarasi').value = result.text;
     document.getElementById('narasiBox').style.display = 'block';
-    setAiStatus('success', 'Narasi berhasil dibuat! Periksa dan edit jika perlu.');
+    if (result.isDemo) {
+      setAiStatus('success', 'Narasi demo berhasil dibuat (hasil dipotong). <a href="harga.html">Upgrade ke Berbayar</a> untuk hasil lengkap.');
+    } else {
+      setAiStatus('success', 'Narasi berhasil dibuat! Periksa dan edit jika perlu.');
+    }
   } catch (err) {
     setAiStatus('error', formatApiError(err));
   }
@@ -673,28 +765,55 @@ function buildDocument() {
   const totalPagu = progs.reduce((s, p) => s + (parseFloat(p.pagu)||0), 0);
   const customPagu = v('totalPagu');
   const paguFinal = customPagu ? parseFloat(customPagu) : totalPagu;
+  const isPerubahan = v('jenisRenja') === 'perubahan';
+  const dasarPerubahan = v('dasarPerubahan');
+  const alasanPerubahan = v('alasanPerubahan');
 
   // Program table
   let progTbl = `<table>
     <thead><tr>
       <th>No</th><th>Program/Kegiatan/Sub Kegiatan</th>
-      <th>Indikator Kinerja</th><th>Target</th><th>Satuan</th><th>Pagu (Rp)</th>
+      <th>Indikator Kinerja</th><th>Target</th><th>Satuan</th>
+      ${isPerubahan ? `<th>Pagu Semula (Rp)</th><th>Pagu Menjadi (Rp)</th><th>Selisih (Rp)</th><th>Status</th>` : `<th>Pagu (Rp)</th>`}
     </tr></thead><tbody>`;
+  let totalSemula = 0;
   progs.forEach((p, i) => {
     const bold   = p.tipe === 'program' ? 'font-weight:bold;' : '';
     const indent = p.tipe === 'subkegiatan' ? 'padding-left:24px;' : p.tipe === 'kegiatan' ? 'padding-left:12px;' : '';
     const label  = p.tipe === 'program' ? 'PROGRAM' : p.tipe === 'kegiatan' ? 'Kegiatan' : 'Sub Kegiatan';
+    const pagu = parseFloat(p.pagu)||0;
     progTbl += `<tr>
       <td style="text-align:center">${i+1}</td>
       <td style="${bold}${indent}">${label}: ${p.nama}</td>
       <td>${p.indikator||'-'}</td>
       <td style="text-align:center">${p.target||'-'}</td>
-      <td style="text-align:center">${p.satuan}</td>
-      <td style="text-align:right">${p.pagu ? fmtRp(parseFloat(p.pagu)) : '-'}</td>
-    </tr>`;
+      <td style="text-align:center">${p.satuan}</td>`;
+    if (isPerubahan) {
+      const semula = parseFloat(p.paguSemula)||0;
+      const selisih = pagu - semula;
+      totalSemula += semula;
+      progTbl += `
+      <td style="text-align:right">${p.paguSemula ? fmtRp(semula) : '-'}</td>
+      <td style="text-align:right">${p.pagu ? fmtRp(pagu) : '-'}</td>
+      <td style="text-align:right">${selisih !== 0 ? (selisih>0?'+':'') + fmtRp(selisih) : '-'}</td>
+      <td style="text-align:center">${p.status}</td>`;
+    } else {
+      progTbl += `
+      <td style="text-align:right">${p.pagu ? fmtRp(pagu) : '-'}</td>`;
+    }
+    progTbl += `</tr>`;
   });
-  progTbl += `<tr><td colspan="5" style="text-align:right;font-weight:bold">Total Pagu</td>
-    <td style="text-align:right;font-weight:bold">${fmtRp(paguFinal)}</td></tr>`;
+  if (isPerubahan) {
+    const totalSelisih = paguFinal - totalSemula;
+    progTbl += `<tr><td colspan="5" style="text-align:right;font-weight:bold">Total Pagu</td>
+      <td style="text-align:right;font-weight:bold">${fmtRp(totalSemula)}</td>
+      <td style="text-align:right;font-weight:bold">${fmtRp(paguFinal)}</td>
+      <td style="text-align:right;font-weight:bold">${(totalSelisih>=0?'+':'') + fmtRp(totalSelisih)}</td>
+      <td></td></tr>`;
+  } else {
+    progTbl += `<tr><td colspan="5" style="text-align:right;font-weight:bold">Total Pagu</td>
+      <td style="text-align:right;font-weight:bold">${fmtRp(paguFinal)}</td></tr>`;
+  }
   progTbl += '</tbody></table>';
 
   const narasiHtml = narasi
@@ -710,28 +829,39 @@ function buildDocument() {
   <div style="font-size:11pt;font-weight:bold;text-transform:uppercase;">PEMERINTAH ${pemda.toUpperCase()}</div>
   <div style="font-size:11pt;font-weight:bold;text-transform:uppercase;">${opd.toUpperCase()}</div>
   <div style="margin:12px 0 8px;">
-    <div style="font-size:16pt;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">RENCANA KERJA</div>
-    <div style="font-size:13pt;font-weight:bold;">(RENJA OPD)</div>
+    <div style="font-size:16pt;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">${isPerubahan ? 'PERUBAHAN RENCANA KERJA' : 'RENCANA KERJA'}</div>
+    <div style="font-size:13pt;font-weight:bold;">${isPerubahan ? '(RENJA PERUBAHAN OPD)' : '(RENJA OPD)'}</div>
     <div style="font-size:12pt;font-weight:bold;">TAHUN ${tahun}</div>
   </div>
   ${urusan ? `<div style="font-size:11pt;">Urusan: ${urusan}</div>` : ''}
   ${renstra ? `<div style="font-size:10pt;color:#444;">Mengacu Renstra Periode ${renstra}</div>` : ''}
+  ${isPerubahan && dasarPerubahan ? `<div style="font-size:10pt;color:#444;">Dasar Perubahan: ${dasarPerubahan}</div>` : ''}
 </div>
 
 ${narasiHtml}
 
+${isPerubahan ? `<h2>DASAR DAN ALASAN PERUBAHAN</h2>
+<p><strong>Dasar Hukum Perubahan:</strong> ${dasarPerubahan || '-'}</p>
+<p><strong>Alasan/Latar Belakang Perubahan:</strong></p>
+<p>${esc(alasanPerubahan).replace(/\n/g,'<br/>')}</p>
+<p>Perubahan Renja ini disusun dengan berpedoman pada ketentuan Pasal 78 Permendagri Nomor 86 Tahun 2017, yaitu apabila terjadi perkembangan yang tidak sesuai dengan asumsi KUA-PPAS, keadaan darurat, keadaan luar biasa, dan/atau pergeseran program dan kegiatan antar SKPD.</p>` : ''}
+
 <div style="page-break-before:always;"></div>
 
 <h2>BAB II — RENCANA KERJA DAN PENDANAAN</h2>
-<p>Rencana kerja ${opd} Tahun ${tahun} mencakup program, kegiatan, dan sub kegiatan dengan total pagu anggaran sebesar <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja dan alokasi anggarannya:</p>
+<p>${isPerubahan
+  ? `Perubahan rencana kerja ${opd} Tahun ${tahun} mencakup penyesuaian program, kegiatan, dan sub kegiatan dengan total pagu anggaran semula sebesar <strong>${fmtRp(progs.reduce((s,p)=>s+(parseFloat(p.paguSemula)||0),0))}</strong> menjadi <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja, alokasi anggaran semula dan menjadi, serta status perubahannya:`
+  : `Rencana kerja ${opd} Tahun ${tahun} mencakup program, kegiatan, dan sub kegiatan dengan total pagu anggaran sebesar <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja dan alokasi anggarannya:`}</p>
 
 ${progTbl}
 
 <div style="page-break-before:always;"></div>
 
 <h2>BAB III — PENUTUP</h2>
-<p>Rencana Kerja ${opd} Tahun ${tahun} ini merupakan dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan program dan kegiatan selama satu tahun anggaran. Dokumen ini disusun mengacu pada Renstra ${opd} Periode ${renstra||'...'} dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah.</p>
-<p>Dengan ditetapkannya Renja ini, diharapkan seluruh pelaksana kegiatan dapat menjalankan program sesuai target kinerja yang telah ditetapkan, efisien dalam penggunaan anggaran, dan akuntabel dalam pertanggungjawabannya.</p>
+<p>${isPerubahan
+  ? `Perubahan Rencana Kerja ${opd} Tahun ${tahun} ini disusun sebagai penyesuaian atas Renja ${opd} Tahun ${tahun} sebelumnya, sejalan dengan Perubahan RKPD Tahun ${tahun}, dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah serta Permendagri Nomor 86 Tahun 2017 tentang Tata Cara Perencanaan, Pengendalian dan Evaluasi Pembangunan Daerah.`
+  : `Rencana Kerja ${opd} Tahun ${tahun} ini merupakan dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan program dan kegiatan selama satu tahun anggaran. Dokumen ini disusun mengacu pada Renstra ${opd} Periode ${renstra||'...'} dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah.`}</p>
+<p>Dengan ditetapkannya ${isPerubahan ? 'Renja Perubahan' : 'Renja'} ini, diharapkan seluruh pelaksana kegiatan dapat menjalankan program sesuai target kinerja yang telah ditetapkan, efisien dalam penggunaan anggaran, dan akuntabel dalam pertanggungjawabannya.</p>
 
 <div style="margin-top:40px;display:flex;justify-content:flex-end;">
   <div style="text-align:center;min-width:250px;">
@@ -757,7 +887,8 @@ function exportWord() {
   const content = document.getElementById('docOutput').innerHTML;
   const opd   = v('namaOpd') || 'OPD';
   const tahun = v('tahunRenja') || '';
-  const fname = `Renja_${opd}_${tahun}`;
+  const prefix = v('jenisRenja') === 'perubahan' ? 'Renja_Perubahan_' : 'Renja_';
+  const fname = `${prefix}${opd}_${tahun}`;
   const wordHtml = `<html xmlns:o='urn:schemas-microsoft-com:office:office'
     xmlns:w='urn:schemas-microsoft-com:office:word'
     xmlns='http://www.w3.org/TR/REC-html40'>
@@ -783,81 +914,12 @@ function exportPdf() {
   if (typeof html2pdf === 'undefined') { alert('Library PDF sedang dimuat. Coba sesaat lagi.'); return; }
   const opd   = v('namaOpd') || 'OPD';
   const tahun = v('tahunRenja') || '';
+  const prefix = v('jenisRenja') === 'perubahan' ? 'Renja_Perubahan_' : 'Renja_';
   html2pdf().set({
-    margin:[1.5,1.5,1.5,2], filename:`Renja_${opd}_${tahun}.pdf`,
+    margin:[1.5,1.5,1.5,2], filename:`${prefix}${opd}_${tahun}.pdf`,
     image:{type:'jpeg',quality:.95}, html2canvas:{scale:2},
     jsPDF:{unit:'cm',format:'a4',orientation:'portrait'}
   }).from(el).save();
-}
-
-// ============================================================
-// API KEY
-// ============================================================
-function getApiKey() { return localStorage.getItem('gemini_api_key') || ''; }
-function resetApiKey() {
-  localStorage.removeItem('gemini_api_key');
-  const inp = document.getElementById('apiKeyInput');
-  if (inp) inp.value = '';
-  const tr = document.getElementById('testResult');
-  if (tr) { tr.style.display=''; tr.textContent = '✓ API key dihapus. Masukkan key baru lalu klik Simpan.'; }
-}
-function saveApiKey() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  if (key) localStorage.setItem('gemini_api_key', key);
-  else localStorage.removeItem('gemini_api_key');
-  closeApiModal();
-}
-function openApiModal() {
-  document.getElementById('apiKeyInput').value = getApiKey();
-  document.getElementById('testResult').textContent = '';
-  document.getElementById('apiModal').classList.add('open');
-}
-function closeApiModal() { document.getElementById('apiModal').classList.remove('open'); }
-async function testApiKey() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  if (!key) { document.getElementById('testResult').textContent = '⚠ Masukkan API key.'; return; }
-  document.getElementById('testResult').textContent = '⏳ Testing...';
-  try {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
-      method:'POST', headers:{'Content-Type':'application/json','x-goog-api-key':key},
-      body: JSON.stringify({contents:[{parts:[{text:'Halo'}]}]})
-    });
-    document.getElementById('testResult').textContent = res.ok ? '✓ Valid!' : `✗ Error ${res.status}`;
-  } catch { document.getElementById('testResult').textContent = '✗ Gagal terhubung.'; }
-}
-
-async function callGemini(prompt, { temperature=0.7, maxTokens=2048 }={}) {
-  const key = getApiKey();
-  if (!key) throw new Error('NO_KEY');
-  for (const model of ['gemini-2.5-flash','gemini-2.5-flash-lite']) {
-    let res;
-    try {
-      res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-        { method:'POST', headers:{'Content-Type':'application/json','x-goog-api-key':key},
-          body: JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature,maxOutputTokens:maxTokens}}) }
-      );
-    } catch { throw new Error('NETWORK_ERROR'); }
-    if (res.ok) {
-      const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!text) throw new Error('API_EMPTY_RESPONSE');
-      return text;
-    }
-    if (res.status===401||res.status===403) throw new Error('API_KEY_INVALID');
-    if (res.status===429) continue;
-    throw new Error('API_ERROR: '+res.status);
-  }
-  throw new Error('API_QUOTA');
-}
-
-function formatApiError(err) {
-  const m = err.message||'';
-  if (m==='NO_KEY') return 'Masukkan API Key Gemini terlebih dahulu.';
-  if (m==='API_KEY_INVALID') return 'API Key tidak valid. Cek di <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>.';
-  if (m==='API_QUOTA') return 'Kuota harian habis. Sudah dicoba otomatis dengan model cadangan. <strong>Solusi:</strong> tunggu reset pukul 07.00 WIB, atau <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:inherit;font-weight:600">buat API key baru →</a>';
-  if (m.includes('fetch')||m.includes('Network')) return 'Gagal terhubung ke server AI.';
-  return 'Error: '+m;
 }
 
 // ============================================================
@@ -872,6 +934,12 @@ function fmtRp(n) { return 'Rp ' + Math.round(n||0).toLocaleString('id-ID'); }
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('tahunRenja').value = new Date().getFullYear() + 1;
+  toggleJenisRenja();
+
+  // Mobile nav toggle
+  document.getElementById('navToggle')?.addEventListener('click', () => {
+    document.getElementById('navLinks')?.classList.toggle('open');
+  });
 
   // Pre-load vismis dari SiGenDok/SiLKjIP
   try {
@@ -888,9 +956,17 @@ document.addEventListener('DOMContentLoaded', () => {
   addProgRow('kegiatan');
   addProgRow('subkegiatan');
 
-  document.getElementById('apiModal').addEventListener('click', e => {
-    if (e.target === document.getElementById('apiModal')) closeApiModal();
-  });
+  updateStepUI();
+
+  // Access badge
+  const access = getAccessStatus();
+  const badge = document.getElementById('accessBadge');
+  if (access.active) {
+    badge.textContent = '👑 Berbayar';
+    badge.classList.add('active');
+  } else {
+    badge.textContent = '🔓 Demo';
+  }
 });
 </script>
 </body>
