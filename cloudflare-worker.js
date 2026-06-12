@@ -33,6 +33,10 @@ const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // tanpa 0/O dan 1/I
 const DEMO_CHAR_LIMIT = 700;
 const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
 
+// Rate limiting: max 100 requests per minute per IP
+const RATE_LIMIT_REQUESTS = 100;
+const RATE_LIMIT_WINDOW = 60; // seconds
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -52,6 +56,43 @@ function truncateDemo(text) {
   const lastBreak = Math.max(cut.lastIndexOf('\n\n'), cut.lastIndexOf('. '));
   if (lastBreak > DEMO_CHAR_LIMIT * 0.5) cut = cut.slice(0, lastBreak + 1);
   return cut.trim() + '\n\n---\n🔒 **Ini adalah preview demo (hasil dipotong).** Aktifkan paket Berbayar untuk mendapatkan dokumen lengkap — lihat halaman Harga.';
+}
+
+// Input validation
+function sanitizePrompt(prompt) {
+  if (!prompt || typeof prompt !== 'string') return null;
+  const trimmed = prompt.trim();
+  if (trimmed.length < 5 || trimmed.length > 5000) return null;
+  return trimmed;
+}
+
+function validateTemperature(temp) {
+  if (temp === undefined || temp === null) return 0.7;
+  const num = parseFloat(temp);
+  if (isNaN(num)) return 0.7;
+  return Math.max(0, Math.min(2, num)); // Clamp between 0 and 2
+}
+
+function validateMaxTokens(tokens) {
+  if (tokens === undefined || tokens === null) return 4096;
+  const num = parseInt(tokens, 10);
+  if (isNaN(num)) return 4096;
+  return Math.max(100, Math.min(8000, num)); // Clamp between 100 and 8000
+}
+
+// Rate limiting helper
+async function checkRateLimit(env, ip) {
+  const key = `ratelimit:${ip}`;
+  const current = await env.ACCESS_CODES?.get(key);
+  const count = current ? parseInt(current, 10) : 0;
+  
+  if (count >= RATE_LIMIT_REQUESTS) {
+    return false;
+  }
+  
+  // Increment and set expiry
+  await env.ACCESS_CODES?.put(key, String(count + 1), { expirationTtl: RATE_LIMIT_WINDOW });
+  return true;
 }
 
 async function callGeminiAPI(prompt, env, { temperature = 0.7, maxTokens = 4096 } = {}) {
@@ -98,11 +139,19 @@ function isAdmin(body, env) {
   return !!body.password && body.password === env.ADMIN_PASSWORD;
 }
 
-async function handleGenerate(body, env) {
-  const { prompt, temperature, maxTokens, code } = body;
-  if (!prompt || typeof prompt !== 'string') return json({ error: 'prompt diperlukan' }, 400);
+async function handleGenerate(body, env, clientIp) {
+  // Rate limiting check
+  if (!await checkRateLimit(env, clientIp)) {
+    return json({ error: 'Rate limit exceeded. Max 100 requests per minute.' }, 429);
+  }
 
-  const access = await checkCode(env, code);
+  const prompt = sanitizePrompt(body.prompt);
+  if (!prompt) return json({ error: 'Prompt harus antara 5-5000 karakter' }, 400);
+
+  const temperature = validateTemperature(body.temperature);
+  const maxTokens = validateMaxTokens(body.maxTokens);
+
+  const access = await checkCode(env, body.code);
   const text = await callGeminiAPI(prompt, env, { temperature, maxTokens });
 
   if (access) return json({ text, isDemo: false });
@@ -156,6 +205,7 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { headers: CORS_HEADERS });
 
     const url = new URL(request.url);
+    const clientIp = request.headers.get('CF-Connecting-IP') || 'unknown';
 
     if (request.method === 'GET' && url.pathname === '/') {
       return json({ status: 'ok', service: 'Andri Wulandika — AI Tools API' });
@@ -172,7 +222,7 @@ export default {
     try {
       switch (url.pathname) {
         case '/generate':
-          return await handleGenerate(body, env);
+          return await handleGenerate(body, env, clientIp);
         case '/verify':
           return await handleVerify(body, env);
         case '/admin/generate':

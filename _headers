@@ -1,32 +1,60 @@
 # Cloudflare Pages — _headers
 # Cache statis lama, HTML pendek agar update langsung live
+# Tambahan: Gzip compression, security headers, dan performa optimization
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
+  Content-Encoding: gzip
+  X-UA-Compatible: IE=edge
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+  Content-Encoding: gzip
 
 /*.js
   Cache-Control: public, max-age=86400
+  Content-Encoding: gzip
+  X-Content-Type-Options: nosniff
 
 /*.css
   Cache-Control: public, max-age=86400
+  Content-Encoding: gzip
 
 /*.svg
   Cache-Control: public, max-age=31536000, immutable
+  Content-Encoding: gzip
 
 /*.ico
   Cache-Control: public, max-age=31536000, immutable
 
 /*.png
   Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/png
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/jpeg
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/webp
 
 /sitemap.xml
   Cache-Control: public, max-age=86400
+  Content-Type: application/xml
+  Content-Encoding: gzip
 
 /robots.txt
   Cache-Control: public, max-age=86400
+  Content-Type: text/plain
+
+# Security headers
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
