@@ -1,83 +1,191 @@
 /**
- * Cloudflare Worker — CORS Proxy untuk Anthropic API
- * Deploy di: https://dash.cloudflare.com/workers
+ * Cloudflare Worker — Backend AI Tools Andri Wulandika
+ * Proxy ke Google Gemini API + sistem kode akses berbayar (Bulanan/Tahunan).
  *
- * Cara deploy:
- * 1. Buka https://dash.cloudflare.com/ → Workers & Pages → Create Worker
- * 2. Hapus semua kode default, paste kode ini
- * 3. Klik Deploy
- * 4. Salin URL worker (contoh: https://sirenja-proxy.namakamu.workers.dev)
- * 5. Update konstanta PROXY_URL di sirenja.html dan sirkpd.html
+ * Endpoint:
+ *  POST /generate      { prompt, temperature?, maxTokens?, code? }
+ *                       -> { text, isDemo }
+ *                       Tanpa kode (atau kode tidak valid/kadaluarsa): hasil dipotong (demo/preview).
+ *                       Dengan kode aktif: hasil lengkap.
+ *  POST /verify         { code } -> { valid, tier?, expiresAt?, name? }
+ *  POST /admin/generate { password, tier: 'bulanan'|'tahunan', name? } -> { code, tier, expiresAt, ... }
+ *  POST /admin/list     { password } -> { codes: [...] }
+ *  POST /admin/revoke   { password, code } -> { revoked: true }
+ *
+ * Setup:
+ * 1. wrangler kv namespace create ACCESS_CODES
+ *    -> salin "id" yang dihasilkan ke wrangler.jsonc
+ * 2. wrangler secret put GEMINI_API_KEY    (API key dari https://aistudio.google.com/app/apikey)
+ * 3. wrangler secret put ADMIN_PASSWORD
+ * 4. wrangler deploy
+ * 5. Salin URL worker (https://andriwulandika.<akun>.workers.dev) ke WORKER_URL
+ *    di assets/js/apiService.js
  */
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Max-Age': '86400',
+};
+
+const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // tanpa 0/O dan 1/I
+const DEMO_CHAR_LIMIT = 700;
+const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
+
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+  });
+}
+
+function randomCode(len = 8) {
+  let out = '';
+  for (let i = 0; i < len; i++) out += CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)];
+  return out;
+}
+
+function truncateDemo(text) {
+  if (text.length <= DEMO_CHAR_LIMIT) return text;
+  let cut = text.slice(0, DEMO_CHAR_LIMIT);
+  const lastBreak = Math.max(cut.lastIndexOf('\n\n'), cut.lastIndexOf('. '));
+  if (lastBreak > DEMO_CHAR_LIMIT * 0.5) cut = cut.slice(0, lastBreak + 1);
+  return cut.trim() + '\n\n---\n🔒 **Ini adalah preview demo (hasil dipotong).** Aktifkan paket Berbayar untuk mendapatkan dokumen lengkap — lihat halaman Harga.';
+}
+
+async function callGeminiAPI(prompt, env, { temperature = 0.7, maxTokens = 4096 } = {}) {
+  for (const model of GEMINI_MODELS) {
+    let res;
+    try {
+      res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { temperature, maxOutputTokens: maxTokens },
+          }),
+        }
+      );
+    } catch {
+      throw new Error('NETWORK_ERROR');
+    }
+    if (res.ok) {
+      const data = await res.json();
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!text) throw new Error('API_EMPTY_RESPONSE');
+      return text;
+    }
+    if (res.status === 429) continue; // coba model cadangan
+    throw new Error(`API_ERROR_${res.status}`);
+  }
+  throw new Error('API_QUOTA');
+}
+
+async function checkCode(env, rawCode) {
+  if (!rawCode) return null;
+  const code = String(rawCode).trim().toUpperCase();
+  const raw = await env.ACCESS_CODES.get(code);
+  if (!raw) return null;
+  const data = JSON.parse(raw);
+  if (new Date(data.expiresAt) < new Date()) return null;
+  return { code, ...data };
+}
+
+function isAdmin(body, env) {
+  return !!body.password && body.password === env.ADMIN_PASSWORD;
+}
+
+async function handleGenerate(body, env) {
+  const { prompt, temperature, maxTokens, code } = body;
+  if (!prompt || typeof prompt !== 'string') return json({ error: 'prompt diperlukan' }, 400);
+
+  const access = await checkCode(env, code);
+  const text = await callGeminiAPI(prompt, env, { temperature, maxTokens });
+
+  if (access) return json({ text, isDemo: false });
+  return json({ text: truncateDemo(text), isDemo: true });
+}
+
+async function handleVerify(body, env) {
+  const access = await checkCode(env, body.code);
+  if (!access) return json({ valid: false });
+  return json({ valid: true, tier: access.tier, expiresAt: access.expiresAt, name: access.name || null });
+}
+
+async function handleAdminGenerate(body, env) {
+  if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
+  const tier = body.tier === 'tahunan' ? 'tahunan' : 'bulanan';
+  const months = tier === 'tahunan' ? 12 : 1;
+  const name = (body.name || '').trim() || null;
+
+  const now = new Date();
+  const expires = new Date(now);
+  expires.setMonth(expires.getMonth() + months);
+
+  const code = 'AW-' + randomCode(8);
+  const data = { tier, name, createdAt: now.toISOString(), expiresAt: expires.toISOString() };
+  await env.ACCESS_CODES.put(code, JSON.stringify(data));
+  return json({ code, ...data });
+}
+
+async function handleAdminList(body, env) {
+  if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
+  const list = await env.ACCESS_CODES.list();
+  const codes = await Promise.all(
+    list.keys.map(async (k) => {
+      const raw = await env.ACCESS_CODES.get(k.name);
+      return { code: k.name, ...JSON.parse(raw) };
+    })
+  );
+  codes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return json({ codes });
+}
+
+async function handleAdminRevoke(body, env) {
+  if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
+  if (!body.code) return json({ error: 'code diperlukan' }, 400);
+  await env.ACCESS_CODES.delete(String(body.code).trim().toUpperCase());
+  return json({ revoked: true });
+}
+
 export default {
-  async fetch(request) {
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, x-api-key, anthropic-version',
-      'Access-Control-Max-Age': '86400',
-    };
+  async fetch(request, env) {
+    if (request.method === 'OPTIONS') return new Response(null, { headers: CORS_HEADERS });
 
-    // Handle CORS preflight
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
+    const url = new URL(request.url);
+
+    if (request.method === 'GET' && url.pathname === '/') {
+      return json({ status: 'ok', service: 'Andri Wulandika — AI Tools API' });
     }
+    if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
 
-    // GET: konfirmasi Worker aktif (buka di browser untuk verifikasi URL)
-    if (request.method === 'GET') {
-      return new Response(JSON.stringify({
-        status: 'ok',
-        service: 'SiRENJA / SiRKPD — Anthropic CORS Proxy',
-        usage: 'Kirim POST request dengan header x-api-key ke URL ini',
-      }), {
-        headers: { 'Content-Type': 'application/json', ...corsHeaders }
-      });
-    }
-
-    if (request.method !== 'POST') {
-      return new Response(JSON.stringify({ error: { message: 'Gunakan metode POST' } }), {
-        status: 405,
-        headers: { 'Content-Type': 'application/json', ...corsHeaders }
-      });
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return json({ error: 'JSON tidak valid' }, 400);
     }
 
     try {
-      const apiKey = request.headers.get('x-api-key');
-      if (!apiKey) {
-        return new Response(JSON.stringify({ error: { message: 'API key required' } }), {
-          status: 401,
-          headers: { 'Content-Type': 'application/json', ...corsHeaders }
-        });
+      switch (url.pathname) {
+        case '/generate':
+          return await handleGenerate(body, env);
+        case '/verify':
+          return await handleVerify(body, env);
+        case '/admin/generate':
+          return await handleAdminGenerate(body, env);
+        case '/admin/list':
+          return await handleAdminList(body, env);
+        case '/admin/revoke':
+          return await handleAdminRevoke(body, env);
+        default:
+          return json({ error: 'Not found' }, 404);
       }
-
-      const body = await request.text();
-
-      const upstream = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': request.headers.get('anthropic-version') || '2023-06-01',
-        },
-        body,
-      });
-
-      const responseText = await upstream.text();
-
-      return new Response(responseText, {
-        status: upstream.status,
-        headers: {
-          'Content-Type': 'application/json',
-          ...corsHeaders,
-        },
-      });
-
     } catch (err) {
-      return new Response(JSON.stringify({ error: { message: err.message } }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json', ...corsHeaders },
-      });
+      return json({ error: err.message }, 500);
     }
   },
 };

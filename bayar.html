@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pembayaran — Andri Wulandika</title>
-  <meta name="description" content="Cara pembayaran paket Pro dan OPD/Instansi untuk mengakses fitur premium AI Tools perencanaan daerah."/>
+  <meta name="description" content="Cara pembayaran Paket Berbayar (Bulanan/Tahunan) untuk mengakses penuh AI Tools perencanaan daerah tanpa batas demo."/>
   <meta name="robots" content="noindex"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <style>
@@ -77,22 +77,6 @@
     .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 6px; }
     .pkg-features li { font-size: 0.8rem; color: var(--text2); display: flex; gap: 8px; }
     .pkg-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
-
-    /* Durasi */
-    .dur-label { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 12px; }
-    .dur-grid { display: flex; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
-    .dur-btn {
-      padding: 10px 20px; border: 2px solid var(--border); border-radius: 980px;
-      font-size: 0.85rem; cursor: pointer; transition: all 0.2s; background: var(--bg);
-      font-weight: 500; color: var(--text); position: relative;
-    }
-    .dur-btn:hover { border-color: var(--accent); }
-    .dur-btn.active { border-color: var(--accent); background: #f0f7ff; color: var(--accent); }
-    .dur-badge {
-      position: absolute; top: -8px; right: -8px;
-      background: #ff9f0a; color: #000; font-size: 0.6rem; font-weight: 700;
-      padding: 2px 6px; border-radius: 980px;
-    }
 
     /* Bank transfer card */
     .bank-card {
@@ -194,8 +178,8 @@
 
 <div class="hero">
   <p class="eyebrow">Pembayaran</p>
-  <h1>Pilih paket &amp;<br/>lakukan transfer.</h1>
-  <p>Proses sederhana — pilih paket, transfer, konfirmasi via WhatsApp, dan kode akses Pro dikirim dalam 1×24 jam.</p>
+  <h1>Pilih durasi &amp;<br/>lakukan transfer.</h1>
+  <p>Proses sederhana — pilih durasi Berbayar, transfer, konfirmasi via WhatsApp, dan kode akses dikirim dalam 1×24 jam.</p>
 </div>
 
 <div class="section">
@@ -220,50 +204,39 @@
     </div>
     <div class="step-item">
       <div class="step-num">5</div>
-      <div class="step-label">Aktifkan<br/>Fitur Pro</div>
+      <div class="step-label">Masuk &amp;<br/>Akses Penuh</div>
     </div>
   </div>
 
-  <!-- STEP 1: Pilih paket -->
-  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Langkah 1 — Pilih Paket</h2>
+  <!-- STEP 1: Pilih durasi -->
+  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Langkah 1 — Pilih Durasi Berbayar</h2>
   <div class="pkg-grid">
-    <div class="pkg-card active" id="pkg-pro" onclick="selectPkg('pro')">
+    <div class="pkg-card active" id="pkg-bulanan" onclick="selectPkg('bulanan')">
       <div class="pkg-check">✓</div>
-      <span class="pkg-badge pro">Pro</span>
-      <div class="pkg-name">Pro</div>
-      <div class="pkg-price" id="pro-price">Rp 99.000</div>
-      <div class="pkg-price-sub" id="pro-price-sub">per bulan</div>
+      <span class="pkg-badge pro">Bulanan</span>
+      <div class="pkg-name">Bulanan</div>
+      <div class="pkg-price" id="bulanan-price">Rp 99.000</div>
+      <div class="pkg-price-sub">per bulan</div>
       <ul class="pkg-features">
+        <li>Akses penuh semua tools</li>
         <li>API key sudah termasuk</li>
-        <li>Template Word/Excel premium</li>
-        <li>Support prioritas WhatsApp</li>
-        <li>Update fitur lebih awal</li>
+        <li>Tanpa potongan demo</li>
+        <li>Aktif 1 bulan</li>
       </ul>
     </div>
-    <div class="pkg-card" id="pkg-opd" onclick="selectPkg('opd')">
+    <div class="pkg-card" id="pkg-tahunan" onclick="selectPkg('tahunan')">
       <div class="pkg-check">✓</div>
-      <span class="pkg-badge opd">OPD / Instansi</span>
-      <div class="pkg-name">OPD / Instansi</div>
-      <div class="pkg-price" id="opd-price">Rp 299.000</div>
-      <div class="pkg-price-sub" id="opd-price-sub">per bulan</div>
+      <span class="pkg-badge opd">Tahunan · Hemat 20%</span>
+      <div class="pkg-name">Tahunan</div>
+      <div class="pkg-price" id="tahunan-price">Rp 950.000</div>
+      <div class="pkg-price-sub">per tahun (≈ Rp 79.000/bulan)</div>
       <ul class="pkg-features">
-        <li>Semua fitur Pro</li>
-        <li>Hingga 10 user OPD</li>
-        <li>1x training online 2 jam</li>
-        <li>Invoice resmi untuk SPJ</li>
+        <li>Akses penuh semua tools</li>
+        <li>API key sudah termasuk</li>
+        <li>Tanpa potongan demo</li>
+        <li>Aktif 12 bulan</li>
       </ul>
     </div>
-  </div>
-
-  <!-- Durasi -->
-  <div class="dur-label">Pilih Durasi</div>
-  <div class="dur-grid">
-    <button class="dur-btn active" id="dur-1" onclick="selectDur(1)">1 Bulan</button>
-    <button class="dur-btn" id="dur-3" onclick="selectDur(3)">3 Bulan</button>
-    <button class="dur-btn" id="dur-12" onclick="selectDur(12)">
-      12 Bulan
-      <span class="dur-badge">Hemat 20%</span>
-    </button>
   </div>
 
   <!-- STEP 2: Nominal transfer -->
@@ -327,11 +300,10 @@
     <div class="konfirm-desc">
       Sertakan informasi berikut agar proses verifikasi lebih cepat:<br/><br/>
       ✅ Nama lengkap &amp; instansi/OPD<br/>
-      ✅ Paket yang dipilih (Pro / OPD Instansi)<br/>
-      ✅ Durasi berlangganan<br/>
+      ✅ Durasi yang dipilih (Bulanan/Tahunan)<br/>
       ✅ Nominal &amp; kode unik yang ditransfer<br/>
       ✅ Screenshot bukti transfer<br/><br/>
-      <strong style="color:var(--text);">Kode akses Pro akan dikirim dalam 1×24 jam (hari kerja).</strong>
+      <strong style="color:var(--text);">Kode akses Berbayar akan dikirim dalam 1×24 jam (hari kerja).</strong>
     </div>
     <a href="#" id="wa-konfirm-btn" class="wa-btn" target="_blank">
       💬 Konfirmasi via WhatsApp
@@ -340,10 +312,10 @@
 
   <!-- STEP 4 & 5 -->
   <div class="success-box">
-    <strong style="font-size:0.95rem;color:#0d4a1f;">✅ Langkah 4 &amp; 5 — Terima &amp; Aktifkan Kode Akses</strong>
-    Setelah pembayaran terverifikasi, Anda akan menerima <strong>kode akses Pro</strong> via WhatsApp. Masukkan kode tersebut di halaman aktivasi untuk langsung mengakses fitur Pro.
+    <strong style="font-size:0.95rem;color:#0d4a1f;">✅ Langkah 4 &amp; 5 — Terima &amp; Gunakan Kode Akses</strong>
+    Setelah pembayaran terverifikasi, Anda akan menerima <strong>kode akses Berbayar</strong> (format AW-XXXXXXXX) via WhatsApp. Masukkan kode tersebut di halaman Masuk untuk langsung mendapat akses penuh tanpa batas demo.
     <br/><br/>
-    <a href="aktifkan-pro.html" style="color:var(--accent);font-weight:600;text-decoration:none;">→ Pergi ke Halaman Aktivasi</a>
+    <a href="aktifkan-pro.html" style="color:var(--accent);font-weight:600;text-decoration:none;">→ Pergi ke Halaman Masuk</a>
   </div>
 
   <!-- FAQ -->
@@ -354,8 +326,8 @@
     <div class="faq-a"><p>Maksimal 1×24 jam di hari kerja (Senin–Jumat). Rata-rata proses verifikasi selesai dalam 2–4 jam setelah konfirmasi diterima.</p></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Apakah tersedia invoice/kuitansi untuk SPJ? <span class="icon">▼</span></div>
-    <div class="faq-a"><p>Ya, invoice resmi bisa diterbitkan untuk paket OPD/Instansi. Untuk paket Pro perorangan, kuitansi sederhana tersedia atas permintaan. Sampaikan kebutuhan saat konfirmasi WhatsApp.</p></div>
+    <div class="faq-q" onclick="toggleFaq(this)">Apakah tersedia kuitansi pembayaran? <span class="icon">▼</span></div>
+    <div class="faq-a"><p>Kuitansi sederhana tersedia atas permintaan untuk Paket Berbayar. Sampaikan kebutuhan Anda saat konfirmasi WhatsApp.</p></div>
   </div>
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)">Apakah bisa refund? <span class="icon">▼</span></div>
@@ -363,7 +335,7 @@
   </div>
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)">Apakah kode akses bisa digunakan di banyak perangkat? <span class="icon">▼</span></div>
-    <div class="faq-a"><p>Paket Pro untuk 1 perangkat/akun browser. Paket OPD/Instansi mendukung hingga 10 akun. Kode akses disimpan di browser (localStorage) masing-masing pengguna.</p></div>
+    <div class="faq-a"><p>Bisa. Kode akses Berbayar divalidasi oleh server, jadi Anda bisa memasukkan kode yang sama di halaman Masuk pada beberapa perangkat.</p></div>
   </div>
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)">Bagaimana cara perpanjang berlangganan? <span class="icon">▼</span></div>
@@ -373,41 +345,27 @@
 </div>
 
 <footer>
-  <p>© 2026 Andri Wulandika &nbsp;·&nbsp; <a href="index.html">Beranda</a> &nbsp;·&nbsp; <a href="harga.html">Harga</a> &nbsp;·&nbsp; <a href="aktifkan-pro.html">Aktivasi Pro</a> &nbsp;·&nbsp; <a href="https://wa.me/62811660568" target="_blank">WhatsApp</a></p>
+  <p>© 2026 Andri Wulandika &nbsp;·&nbsp; <a href="index.html">Beranda</a> &nbsp;·&nbsp; <a href="harga.html">Harga</a> &nbsp;·&nbsp; <a href="aktifkan-pro.html">Masuk</a> &nbsp;·&nbsp; <a href="https://wa.me/62811660568" target="_blank">WhatsApp</a></p>
 </footer>
 
 <script>
-  let selectedPkg = 'pro';
-  let selectedDur = 1;
+  let selectedDur = 'bulanan';
 
-  const prices = {
-    pro:  { 1: 99000,  3: 285000,  12: 950400 },
-    opd:  { 1: 299000, 3: 855000,  12: 2872800 }
-  };
+  const prices = { bulanan: 99000, tahunan: 950000 };
 
   function fmt(n) {
     return 'Rp ' + n.toLocaleString('id-ID');
   }
 
   function updateDisplay() {
-    const amount = prices[selectedPkg][selectedDur];
+    const amount = prices[selectedDur];
     document.getElementById('amountDisplay').textContent = fmt(amount);
 
-    const proM = prices.pro[selectedDur];
-    const opdM = prices.opd[selectedDur];
-    const perBulan = selectedDur > 1;
-
-    document.getElementById('pro-price').textContent = fmt(proM);
-    document.getElementById('pro-price-sub').textContent = selectedDur === 1 ? 'per bulan' : `untuk ${selectedDur} bulan`;
-    document.getElementById('opd-price').textContent = fmt(opdM);
-    document.getElementById('opd-price-sub').textContent = selectedDur === 1 ? 'per bulan' : `untuk ${selectedDur} bulan`;
-
     // Update WA message
-    const pkgName = selectedPkg === 'pro' ? 'Pro' : 'OPD/Instansi';
-    const durLabel = selectedDur === 1 ? '1 bulan' : selectedDur === 3 ? '3 bulan' : '12 bulan (1 tahun)';
+    const durLabel = selectedDur === 'bulanan' ? '1 bulan (Bulanan)' : '12 bulan (Tahunan)';
     const msg = encodeURIComponent(
       `Halo Andri, saya ingin konfirmasi pembayaran:\n\n` +
-      `• Paket: ${pkgName}\n` +
+      `• Paket: Berbayar\n` +
       `• Durasi: ${durLabel}\n` +
       `• Nominal: ${fmt(amount)} + kode unik\n\n` +
       `[Lampirkan screenshot bukti transfer]`
@@ -415,18 +373,10 @@
     document.getElementById('wa-konfirm-btn').href = `https://wa.me/62811660568?text=${msg}`;
   }
 
-  function selectPkg(pkg) {
-    selectedPkg = pkg;
-    document.getElementById('pkg-pro').classList.toggle('active', pkg === 'pro');
-    document.getElementById('pkg-opd').classList.toggle('active', pkg === 'opd');
-    updateDisplay();
-  }
-
-  function selectDur(dur) {
+  function selectPkg(dur) {
     selectedDur = dur;
-    [1,3,12].forEach(d => {
-      document.getElementById('dur-' + d).classList.toggle('active', d === dur);
-    });
+    document.getElementById('pkg-bulanan').classList.toggle('active', dur === 'bulanan');
+    document.getElementById('pkg-tahunan').classList.toggle('active', dur === 'tahunan');
     updateDisplay();
   }
 

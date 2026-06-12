@@ -301,6 +301,19 @@
       .starter-grid { grid-template-columns: 1fr; }
     }
 
+    @media (max-width: 480px) {
+      nav { padding: 0 12px; gap: 6px; }
+      .nav-sep { display: none; }
+      .nav-back { font-size: 0.78rem; }
+      .nav-badge, .access-badge { display: none; }
+      .welcome { padding: 24px 16px; }
+      .welcome-icon { width: 56px; height: 56px; font-size: 1.5rem; margin-bottom: 14px; }
+      .welcome h1 { font-size: 1.4rem; }
+      .welcome p { font-size: 0.85rem; margin-bottom: 22px; }
+      .msg-group { padding: 0 14px; }
+      .input-bar { padding: 10px 12px 14px; }
+    }
+
     /* ── API KEY MODAL ── */
     .modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 1000;
@@ -339,17 +352,18 @@
       transition: background 0.2s;
     }
     .btn-modal-save:hover { background: #0a7a6a; }
-    .api-status {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.7rem; padding: 2px 9px; border-radius: 980px;
-      border: 1px solid; cursor: pointer;
-    }
-    .api-status.set { background: var(--accent-light); border-color: rgba(20,184,166,0.4); color: var(--accent-dark); }
-    .api-status.unset { background: #fff3cd; border-color: #ffc107; color: #856404; }
-    .api-status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .access-badge { font-size: 11px; font-weight: 600; color: var(--text2); padding: 4px 10px; border-radius: 980px; background: var(--bg2); border: 1px solid var(--border); white-space: nowrap; }
+    .access-badge.active { color: #7c3aed; background: #f3f0ff; border-color: #c4b5fd; }
   </style>
 </head>
 <body>
+
+<script type="module">
+  import { callAI, formatApiError, getAccessStatus } from './assets/js/apiService.js';
+  window.callAI = callAI;
+  window.formatApiError = formatApiError;
+  window.getAccessStatus = getAccessStatus;
+</script>
 
 <!-- NAV -->
 <nav>
@@ -363,42 +377,11 @@
     </div>
   </div>
   <div class="nav-right">
-    <span class="nav-credit">by Andri Wulandika</span>
-    <span class="api-status unset" id="apiStatusBtn" onclick="openApiModal()" title="Konfigurasi API Key">
-      <span class="api-status-dot"></span><span id="apiStatusText">API Key</span>
-    </span>
+    <span class="access-badge" id="accessBadge"></span>
+    <a href="aktifkan-pro.html" class="btn-new" style="text-decoration:none;">Masuk</a>
     <button class="btn-new" onclick="newChat()">+ Baru</button>
   </div>
 </nav>
-
-<!-- API KEY MODAL -->
-<div class="modal-overlay" id="apiModal">
-  <div class="modal-box">
-    <div class="modal-title">🔑 Konfigurasi API Key</div>
-    <p class="modal-sub">Masukkan Google Gemini API Key Anda untuk mengaktifkan AI. Key disimpan lokal di browser dan tidak dikirim ke server mana pun.<br><a href="https://aistudio.google.com/app/apikey" target="_blank">Dapatkan API Key Gemini gratis →</a></p>
-    <label class="modal-label">Google Gemini API Key</label>
-    <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:12.5px;line-height:1.75;color:#0c4a6e;">
-  <strong>Cara mendapatkan API Key Gemini (gratis):</strong>
-  <ol style="margin:5px 0 0 16px;">
-    <li>Buka <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color:#0369a1;font-weight:600">aistudio.google.com/app/apikey</a></li>
-    <li>Login akun Google &rarr; klik <strong>Create API key</strong></li>
-    <li>Pilih project &rarr; klik <strong>Create API key in existing project</strong></li>
-    <li>Copy key yang muncul (diawali <code style="background:#e0f2fe;padding:1px 5px;border-radius:3px;font-size:12px">AIzaSy...</code> atau <code style="background:#e0f2fe;padding:1px 5px;border-radius:3px;font-size:12px">AQ.</code>)</li>
-    <li>Paste di kolom di bawah &rarr; klik <strong>Simpan</strong></li>
-  </ol>
-  <div style="margin-top:6px;font-size:12px;color:#0369a1;">✓ Gratis &middot; ✓ 1.500 generate/hari &middot; ✓ Tidak perlu kartu kredit</div>
-</div>
-<input class="modal-input" id="apiKeyInput" type="password" placeholder="Masukkan API Key Gemini Anda..." autocomplete="off"/>
-<div style="margin-top:6px;"><button type="button" onclick="resetApiKey()" style="background:none;border:none;color:#dc2626;font-size:12px;text-decoration:underline;cursor:pointer;padding:2px 0;">🗑 Hapus API key tersimpan &amp; mulai ulang</button></div>
-    <div class="modal-hint" style="margin-bottom:16px">Salin key dari Google AI Studio → Dapatkan API Key • Disimpan lokal di browser Anda</div>
-    <div id="testResult" style="font-size:0.78rem;margin-bottom:12px;display:none;padding:8px 12px;border-radius:8px;"></div>
-    <div class="modal-actions">
-      <button class="btn-modal-cancel" onclick="testProxyConnection()" style="color:var(--accent-dark);border-color:var(--accent)">🔌 Test Koneksi</button>
-      <button class="btn-modal-cancel" onclick="closeApiModal()">Batal</button>
-      <button class="btn-modal-save" onclick="saveApiKey()">Simpan & Aktifkan</button>
-    </div>
-  </div>
-</div>
 
 <!-- APP BODY -->
 <div class="app-body">
@@ -481,8 +464,8 @@
     <!-- Input -->
     <div class="input-bar">
       <div class="credit-bar">
-        <span class="credit-pill credit-free">✦ Gratis</span>
-        <span class="credit-pill">Sisa: <span class="credit-num" id="creditCount">5</span> pertanyaan hari ini</span>
+        <span class="credit-pill credit-free" id="tierPill">✦ Gratis (Demo)</span>
+        <span class="credit-pill" id="creditPill">Sisa: <span class="credit-num" id="creditCount">5</span> pertanyaan sesi ini</span>
       </div>
       <div class="input-wrap">
         <textarea class="input-box" id="userInput" placeholder="Tanyakan tentang RKPD, Renja, Renstra, SAKIP, RAB, atau regulasi perencanaan daerah…" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
@@ -500,70 +483,24 @@
   let isLoading = false;
   let conversationHistory = [];
 
-  function getApiKey() { return localStorage.getItem('gemini_api_key') || ''; }
-
-  function openApiModal() {
-    document.getElementById('apiKeyInput').value = getApiKey();
-    document.getElementById('apiModal').classList.add('open');
-  }
-  function closeApiModal() { document.getElementById('apiModal').classList.remove('open'); }
-
-  async function testProxyConnection() {
-    const box = document.getElementById('testResult');
-    const key = document.getElementById('apiKeyInput').value.trim();
-    if (!key) { box.style.cssText='display:block;background:#fff3cd;color:#856404'; box.textContent='⚠️ Isi API Key dulu sebelum test.'; return; }
-    box.style.cssText='display:block;background:#f5f5f7;color:#6e6e73'; box.textContent='⏳ Menguji koneksi ke Gemini...';
-    try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-        body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Halo' }] }], generationConfig: { maxOutputTokens: 5 } })
-      });
-      if (res.ok) {
-        box.style.cssText='display:block;background:#e6f7f5;color:#0d9488';
-        box.textContent='✅ API Key valid! Gemini terhubung. Klik Simpan & Aktifkan.';
-      } else {
-        const d = await res.json().catch(()=>({}));
-        box.style.cssText='display:block;background:#ffeef0;color:#cc0000';
-        box.textContent='❌ ' + (d?.error?.message || `HTTP ${res.status} — periksa API Key Anda.`);
-      }
-    } catch(e) {
-      box.style.cssText='display:block;background:#ffeef0;color:#cc0000';
-      box.textContent='❌ Gagal terhubung: ' + (e.message || 'network error');
-    }
-  }
-
-  function resetApiKey() {
-    localStorage.removeItem('gemini_api_key');
-    const inp = document.getElementById('apiKeyInput');
-    if (inp) inp.value = '';
-    const tr = document.getElementById('testResult');
-    if (tr) { tr.style.display=''; tr.textContent = '✓ API key dihapus. Masukkan key baru lalu klik Simpan.'; }
-    updateApiStatus();
-  }
-  function saveApiKey() {
-    const key = document.getElementById('apiKeyInput').value.trim();
-    if (key) localStorage.setItem('gemini_api_key', key); else localStorage.removeItem('gemini_api_key');
-    closeApiModal();
-    updateApiStatus();
-  }
-
-  function updateApiStatus() {
-    const btn = document.getElementById('apiStatusBtn');
-    const txt = document.getElementById('apiStatusText');
-    if (getApiKey()) {
-      btn.className = 'api-status set';
-      txt.textContent = 'API Aktif';
+  function updateAccessUI() {
+    const access = getAccessStatus();
+    const badge = document.getElementById('accessBadge');
+    const tierPill = document.getElementById('tierPill');
+    if (access.active) {
+      badge.textContent = '👑 Berbayar';
+      badge.classList.add('active');
+      tierPill.textContent = '👑 Berbayar';
+      credits = 50;
     } else {
-      btn.className = 'api-status unset';
-      txt.textContent = 'API Key';
+      badge.textContent = '🔓 Demo';
+      tierPill.textContent = '✦ Gratis (Demo)';
+      credits = 5;
     }
+    document.getElementById('creditCount').textContent = credits;
   }
 
-  document.addEventListener('DOMContentLoaded', updateApiStatus);
-  document.getElementById('apiModal').addEventListener('click', function(e) {
-    if (e.target === this) closeApiModal();
-  });
+  document.addEventListener('DOMContentLoaded', updateAccessUI);
 
   const SYSTEM_PROMPT = `Kamu adalah SiPerda, asisten AI ahli konsultasi perencanaan pembangunan daerah Indonesia.
 
@@ -620,8 +557,7 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
     document.getElementById('welcomeScreen').style.display = 'flex';
     document.querySelectorAll('.tmpl-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('userInput').value = '';
-    credits = 5;
-    document.getElementById('creditCount').textContent = credits;
+    updateAccessUI();
     document.getElementById('sendBtn').disabled = false;
   }
 
@@ -686,9 +622,7 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
     const input = document.getElementById('userInput');
     const text = input.value.trim();
     if (!text) return;
-    const apiKey = getApiKey();
-    if (!apiKey) { openApiModal(); return; }
-    if (credits <= 0) { alert('Kuota harian habis. Klik "+ Baru" untuk sesi baru.'); return; }
+    if (credits <= 0) { alert('Batas pertanyaan sesi ini habis. Klik "+ Baru" untuk sesi baru.'); return; }
 
     showWelcome(false);
     isLoading = true;
@@ -700,33 +634,15 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
     conversationHistory.push({ role: 'user', content: text });
 
     try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`;
-      const contents = conversationHistory.map(m => ({
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }]
-      }));
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-          contents,
-          generationConfig: { maxOutputTokens: 1500 }
-        })
-      });
+      const transcript = conversationHistory.map(m =>
+        (m.role === 'assistant' ? 'SiPerda' : 'Pengguna') + ': ' + m.content
+      ).join('\n\n');
+      const prompt = `${SYSTEM_PROMPT}\n\nPERCAKAPAN:\n${transcript}\n\nSiPerda:`;
 
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        if (res.status === 400) throw new Error('API Key tidak valid atau kedaluwarsa. Klik badge untuk memperbarui.');
-        if (res.status === 429) throw new Error('Batas rate tercapai. Tunggu sebentar lalu coba lagi.');
-        throw new Error(errData?.error?.message || `Error HTTP ${res.status}`);
-      }
-
-      const data = await res.json();
-      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Maaf, terjadi kesalahan. Coba lagi.';
+      const result = await callAI(prompt, { temperature: 0.7, maxTokens: 1500 });
       typing.remove();
-      appendMessage('ai', reply);
-      conversationHistory.push({ role: 'assistant', content: reply });
+      appendMessage('ai', result.text);
+      conversationHistory.push({ role: 'assistant', content: result.text });
 
       credits--;
       document.getElementById('creditCount').textContent = credits;
@@ -734,11 +650,7 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
 
     } catch (err) {
       typing.remove();
-      const isCors = err.message === 'Failed to fetch' || err.message.includes('NetworkError');
-      const msg = isCors
-        ? 'Gagal terhubung ke server AI (CORS/jaringan). Pastikan Proxy URL sudah dikonfigurasi dengan benar.'
-        : err.message || 'Terjadi kesalahan tidak diketahui.';
-      appendMessage('ai', '⚠️ ' + msg);
+      appendMessage('ai', '⚠️ ' + formatApiError(err));
     }
 
     isLoading = false;

@@ -52,11 +52,13 @@ nav .logo span{font-weight:300;color:var(--sub);font-size:13px;margin-left:8px;}
 nav a{color:var(--sub);text-decoration:none;font-size:14px;transition:color .2s;}
 nav a:hover{color:var(--text);}
 nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
-.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;}
+.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
 .btn-outline{background:none;border:1.5px solid var(--border);color:var(--text);}
 .btn-outline:hover{border-color:var(--teal);color:var(--teal);}
 .btn-primary-sm{background:var(--teal);color:#fff;}
 .btn-primary-sm:hover{background:var(--teal-h);}
+.access-badge{font-size:11px;font-weight:600;color:var(--sub);padding:4px 10px;border-radius:980px;background:var(--bg);border:1px solid var(--border);white-space:nowrap;}
+.access-badge.active{color:#7c3aed;background:#f3f0ff;border-color:#c4b5fd;}
 
 .hero{text-align:center;padding:48px 24px 36px;}
 .hero-badge{display:inline-block;background:#cffafe;color:var(--teal);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px;}
@@ -157,61 +159,77 @@ table.data-tbl input:focus,table.data-tbl select:focus,table.data-tbl textarea:f
 .compliance{background:#1D1D1F;color:#f5f5f7;padding:32px 24px;text-align:center;margin-top:64px;font-size:13px;line-height:1.8;}
 .compliance a{color:#67e8f9;text-decoration:none;}
 
-/* MOBILE NAV (hamburger) */
-.nav-burger{display:none;background:none;border:0;cursor:pointer;padding:0;width:34px;height:34px;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex:none;}
-.nav-burger span{display:block;width:18px;height:2px;border-radius:2px;background:var(--text,#1d1d1f);transition:transform .25s ease,opacity .2s ease;}
-nav.nav-open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-nav.nav-open .nav-burger span:nth-child(2){opacity:0;}
-nav.nav-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.nav-links{display:flex;gap:24px;align-items:center;}
-.nav-up-mobile{display:none !important;}
-@media(max-width:700px){
-  nav{padding:0 14px;gap:14px;}
+/* ============================================================
+   MODERN REFINEMENTS
+   ============================================================ */
+.card{border:1px solid rgba(0,0,0,.04);}
+.btn,.btn-sm{min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:6px;}
+.access-badge{display:inline-flex;align-items:center;}
+.nav-links{display:flex;align-items:center;gap:24px;flex:1;}
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+.nav-toggle{display:none;background:none;border:none;font-size:22px;line-height:1;color:var(--text);cursor:pointer;padding:6px 4px;margin-left:auto;}
+
+.step-current-label{display:none;text-align:center;font-size:13px;font-weight:600;color:var(--teal);margin:-12px 0 20px;}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+@media(max-width:760px){
+  nav{flex-wrap:wrap;height:auto;min-height:52px;padding:10px 16px;}
+  nav .logo{font-size:15px;}
   nav .logo span{display:none;}
-  .nav-burger{display:flex;}
-  nav .nav-right .btn-primary-sm,nav .nav-right a.btn-primary{display:none;}
-  .nav-links{display:none;position:fixed;top:52px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border,#d2d2d7);box-shadow:0 16px 32px rgba(0,0,0,.08);padding:6px 16px 14px;max-height:calc(100vh - 52px);overflow-y:auto;z-index:99;}
-  nav.nav-open .nav-links{display:flex;}
-  .nav-links a{display:block;width:100%;padding:13px 6px;font-size:15px;border-bottom:1px solid rgba(0,0,0,.05);}
-  .nav-links a:last-child{border-bottom:0;}
-  .nav-up-mobile{display:block !important;color:var(--blue,#0071e3);font-weight:600;}
+  .nav-toggle{display:block;}
+  .nav-links{display:none;width:100%;flex-direction:column;align-items:stretch;gap:4px;padding:12px 0 4px;border-top:1px solid var(--border);margin-top:10px;}
+  .nav-links.open{display:flex;}
+  .nav-links > a{padding:10px 6px;font-size:15px;}
+  .nav-right{flex-direction:column;align-items:stretch;gap:8px;margin-left:0;width:100%;margin-top:6px;}
+  .nav-right .access-badge,.nav-right .btn-sm{width:100%;text-align:center;}
+
+  .hero{padding:32px 16px 24px;}
+  .hero-tags{gap:6px;}
+
+  .main{padding:0 14px 60px;}
+  .card{padding:18px;border-radius:14px;}
+
+  .step-label{display:none;}
+  .step-line{width:16px;}
+  .step-current-label{display:block;}
+
+  .nav-btns{flex-direction:column-reverse;align-items:stretch;}
+  .nav-btns .btn{width:100%;}
+  .preview-toolbar{flex-direction:column;align-items:stretch;}
+  .preview-toolbar h2{margin-bottom:4px;}
+
+  .modal{padding:22px;}
 }
-  </style>
+</style>
 </head>
 <body>
 
+<script type="module">
+  import { callAI, formatApiError, getAccessStatus } from './assets/js/apiService.js';
+  window.callAI = callAI;
+  window.formatApiError = formatApiError;
+  window.getAccessStatus = getAccessStatus;
+</script>
+
 <nav>
   <a href="index.html" class="logo">Andri Wulandika <span>AI Tools</span></a>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Beranda</a>
     <a href="sirenja.html">SiRENJA</a>
     <a href="sigendok.html">SiGenDok</a>
-    <a href="harga.html" class="nav-up-mobile">Upgrade Pro →</a>
+    <div class="nav-right">
+      <span class="access-badge" id="accessBadge"></span>
+      <a href="aktifkan-pro.html" class="btn-sm btn-outline">Masuk</a>
+      <a href="harga.html" class="btn-sm btn-primary-sm">Upgrade Berbayar</a>
+    </div>
   </div>
-  <div class="nav-right">
-    <button class="btn-sm btn-outline" onclick="openApiModal()">⚙ API Key</button>
-    <a href="harga.html" class="btn-sm btn-primary-sm">Upgrade Pro</a>
-  </div>
-  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
 </nav>
-<script>
-(function(){
-  var nav=document.querySelector('nav');if(!nav)return;
-  var btn=nav.querySelector('.nav-burger');if(!btn)return;
-  btn.addEventListener('click',function(){
-    var open=nav.classList.toggle('nav-open');
-    btn.setAttribute('aria-expanded',open?'true':'false');
-  });
-  nav.addEventListener('click',function(e){
-    var t=e.target;
-    while(t&&t!==nav){
-      if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}
-      t=t.parentNode;
-    }
-  });
-})();
-</script>
-
 
 <div class="hero">
   <div class="hero-badge">✦ AI Writer Dokumen Perencanaan</div>
@@ -239,6 +257,7 @@ nav.nav-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45
     <div class="step-line" id="sl-3"></div>
     <div class="step pending" id="si-4"><div class="step-num">5</div><div class="step-label">Preview & Ekspor</div></div>
   </div>
+  <div class="step-current-label" id="stepCurrentLabel"></div>
 
   <!-- STEP 1: IDENTITAS DAERAH -->
   <div class="wizard-step active" id="step-0">
@@ -499,34 +518,6 @@ nav.nav-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45
 
 </div><!-- /main -->
 
-<!-- API MODAL -->
-<div class="modal-overlay" id="apiModal">
-  <div class="modal">
-    <h3>⚙ Konfigurasi API Key</h3>
-    <p>Masukkan Google Gemini API Key Anda. Key disimpan lokal di browser, tidak dikirim ke server mana pun.<br/>
-    <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Dapatkan API Key Gemini gratis →</a></p>
-    <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:12.5px;line-height:1.75;color:#0c4a6e;">
-  <strong>Cara mendapatkan API Key Gemini (gratis):</strong>
-  <ol style="margin:5px 0 0 16px;">
-    <li>Buka <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color:#0369a1;font-weight:600">aistudio.google.com/app/apikey</a></li>
-    <li>Login akun Google &rarr; klik <strong>Create API key</strong></li>
-    <li>Pilih project &rarr; klik <strong>Create API key in existing project</strong></li>
-    <li>Copy key yang muncul (diawali <code style="background:#e0f2fe;padding:1px 5px;border-radius:3px;font-size:12px">AIzaSy...</code> atau <code style="background:#e0f2fe;padding:1px 5px;border-radius:3px;font-size:12px">AQ.</code>)</li>
-    <li>Paste di kolom di bawah &rarr; klik <strong>Simpan</strong></li>
-  </ol>
-  <div style="margin-top:6px;font-size:12px;color:#0369a1;">✓ Gratis &middot; ✓ 1.500 generate/hari &middot; ✓ Tidak perlu kartu kredit</div>
-</div>
-<input class="modal-input" id="apiKeyInput" type="password" placeholder="Masukkan Gemini API Key..." autocomplete="off"/>
-<div style="margin-top:6px;"><button type="button" onclick="resetApiKey()" style="background:none;border:none;color:#dc2626;font-size:12px;text-decoration:underline;cursor:pointer;padding:2px 0;">🗑 Hapus API key tersimpan &amp; mulai ulang</button></div>
-    <div id="testResult" style="font-size:13px;min-height:20px;color:var(--success);"></div>
-    <div class="modal-actions">
-      <button class="btn btn-prev" onclick="testApiKey()">Test Koneksi</button>
-      <button class="btn btn-prev" onclick="closeApiModal()">Batal</button>
-      <button class="btn btn-next" onclick="saveApiKey()">Simpan</button>
-    </div>
-  </div>
-</div>
-
 <div class="compliance">
   Dokumen dihasilkan oleh <strong>SiRKPD</strong> — AI Writer RKPD | <a href="https://andriwulandika.uk">andriwulandika.uk</a><br/>
   Sesuai <strong>Permendagri 81/2022</strong> · Inmendagri 2/2025 · RPJMN 2025–2029<br/>
@@ -539,6 +530,7 @@ nav.nav-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45
 // ============================================================
 let currentStep = 0;
 const TOTAL_STEPS = 5;
+const STEP_LABELS = ['Identitas Daerah','Kondisi Daerah','Isu Strategis','Program Prioritas','Preview & Ekspor'];
 
 function goTo(n) {
   if (n < 0 || n >= TOTAL_STEPS) return;
@@ -550,6 +542,8 @@ function goTo(n) {
   currentStep = n;
   document.getElementById('step-' + currentStep).classList.add('active');
   updateStepIndicator(currentStep, 'active');
+  const lbl = document.getElementById('stepCurrentLabel');
+  if (lbl) lbl.textContent = `Langkah ${currentStep+1}/${TOTAL_STEPS} — ${STEP_LABELS[currentStep]}`;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -629,9 +623,6 @@ function parsePagu(s) {
 // AI GENERATE
 // ============================================================
 async function generateNarasi() {
-  const key = getApiKey();
-  if (!key) { openApiModal(); return; }
-
   const pemda   = v('namaPemda');
   const tahun   = v('tahunRkpd');
   const kepala  = v('namaKepala');
@@ -701,10 +692,14 @@ Format: narasi paragraf formal + poin bernomor. Total sekitar 700-1000 kata.`;
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callGemini(prompt, { temperature: 0.5, maxTokens: 2500 });
-    document.getElementById('aiNarasi').value = result;
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2500 });
+    document.getElementById('aiNarasi').value = result.text;
     document.getElementById('narasiBox').style.display = 'block';
-    setAiStatus('success', 'Narasi berhasil dibuat! Periksa dan edit jika perlu sebelum ekspor.');
+    if (result.isDemo) {
+      setAiStatus('success', 'Narasi berhasil dibuat! (hasil dipotong). <a href="harga.html">Upgrade ke Berbayar</a> untuk hasil lengkap.');
+    } else {
+      setAiStatus('success', 'Narasi berhasil dibuat! Periksa dan edit jika perlu sebelum ekspor.');
+    }
   } catch (err) {
     setAiStatus('error', formatApiError(err));
   }
@@ -851,77 +846,6 @@ function exportPdf() {
 }
 
 // ============================================================
-// API KEY
-// ============================================================
-function getApiKey() { return localStorage.getItem('gemini_api_key') || ''; }
-function resetApiKey() {
-  localStorage.removeItem('gemini_api_key');
-  const inp = document.getElementById('apiKeyInput');
-  if (inp) inp.value = '';
-  const tr = document.getElementById('testResult');
-  if (tr) { tr.style.display=''; tr.textContent = '✓ API key dihapus. Masukkan key baru lalu klik Simpan.'; }
-}
-function saveApiKey() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  if (key) localStorage.setItem('gemini_api_key', key);
-  else localStorage.removeItem('gemini_api_key');
-  closeApiModal();
-}
-function openApiModal() {
-  document.getElementById('apiKeyInput').value = getApiKey();
-  document.getElementById('testResult').textContent = '';
-  document.getElementById('apiModal').classList.add('open');
-}
-function closeApiModal() { document.getElementById('apiModal').classList.remove('open'); }
-async function testApiKey() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  if (!key) { document.getElementById('testResult').textContent = '⚠ Masukkan API key.'; return; }
-  document.getElementById('testResult').textContent = '⏳ Testing...';
-  try {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
-      method:'POST', headers:{'Content-Type':'application/json','x-goog-api-key':key},
-      body: JSON.stringify({contents:[{parts:[{text:'Halo'}]}]})
-    });
-    document.getElementById('testResult').textContent = res.ok ? '✅ Valid!' : `❌ Error ${res.status}`;
-    document.getElementById('testResult').style.color = res.ok ? '#16a34a' : '#dc2626';
-  } catch { document.getElementById('testResult').textContent = '❌ Gagal terhubung.'; }
-}
-
-async function callGemini(prompt, { temperature=0.7, maxTokens=2048 }={}) {
-  const key = getApiKey();
-  if (!key) throw new Error('NO_KEY');
-  for (const model of ['gemini-2.5-flash','gemini-2.5-flash-lite']) {
-    let res;
-    try {
-      res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-        { method:'POST', headers:{'Content-Type':'application/json','x-goog-api-key':key},
-          body: JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature,maxOutputTokens:maxTokens}}) }
-      );
-    } catch { throw new Error('NETWORK_ERROR'); }
-    if (res.ok) {
-      const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!text) throw new Error('API_EMPTY_RESPONSE');
-      return text;
-    }
-    if (res.status===401||res.status===403) throw new Error('API_KEY_INVALID');
-    if (res.status===429) continue;
-    throw new Error('API_ERROR: '+res.status);
-  }
-  throw new Error('API_QUOTA');
-}
-
-function formatApiError(err) {
-  const m = err.message||'';
-  if (m==='NO_KEY') return 'Masukkan API Key Gemini terlebih dahulu.';
-  if (m==='API_KEY_INVALID') return 'API Key tidak valid. Cek di <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>.';
-  if (m==='API_QUOTA') return 'Kuota harian habis. Sudah dicoba otomatis dengan model cadangan. <strong>Solusi:</strong> tunggu reset pukul 07.00 WIB, atau <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:inherit;font-weight:600">buat API key baru →</a>';
-  if (m.includes('fetch')||m.includes('Network')) return 'Gagal terhubung ke server AI.';
-  return 'Error: ' + m;
-}
-
-// ============================================================
 // HELPERS
 // ============================================================
 function v(id) { return document.getElementById(id)?.value?.trim()||''; }
@@ -937,6 +861,25 @@ function fmtRp(n) { return 'Rp ' + Math.round(n||0).toLocaleString('id-ID'); }
   addProg({bidang:'Kesehatan', program:'Program Pemenuhan Upaya Kesehatan Masyarakat', opd:'Dinas Kesehatan', pagu:'120.000.000.000'});
   addProg({bidang:'Pendidikan', program:'Program Pengelolaan Pendidikan Dasar', opd:'Dinas Pendidikan', pagu:'200.000.000.000'});
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Mobile nav toggle
+  document.getElementById('navToggle')?.addEventListener('click', () => {
+    document.getElementById('navLinks')?.classList.toggle('open');
+  });
+  const stepLbl = document.getElementById('stepCurrentLabel');
+  if (stepLbl) stepLbl.textContent = `Langkah 1/${TOTAL_STEPS} — ${STEP_LABELS[0]}`;
+
+  // Access badge
+  const access = getAccessStatus();
+  const badge = document.getElementById('accessBadge');
+  if (access.active) {
+    badge.textContent = '👑 Berbayar';
+    badge.classList.add('active');
+  } else {
+    badge.textContent = '🔓 Demo';
+  }
+});
 </script>
 </body>
 </html>
