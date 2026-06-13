@@ -6,5 +6,13 @@ https://andriwulandika.pages.dev/*  https://andriwulandika.uk/:splat  301
 # Redirect tanpa trailing slash ke dengan slash (opsional)
 /index  /  301
 
+# Redirect www ke non-www
+https://www.andriwulandika.uk/*  https://andriwulandika.uk/:splat  301
+
+# Redirect old URL patterns
+/tools  /sirenja.html  301
+/ai-tools  /sirenja.html  301
+/pricing  /harga.html  301
+
 # Halaman 404 custom
 /*  /404.html  404
