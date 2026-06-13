@@ -99,7 +99,14 @@ async function callGeminiAPI(prompt, env, { temperature = 0.7, maxTokens = 4096 
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { temperature, maxOutputTokens: maxTokens },
+            generationConfig: {
+              temperature,
+              maxOutputTokens: maxTokens,
+              // Model "thinking" memakai sebagian budget maxOutputTokens untuk token
+              // internal, menyisakan sedikit/tanpa token untuk jawaban akhir -> hasil
+              // terpotong. Matikan thinking agar seluruh budget dipakai untuk jawaban.
+              thinkingConfig: { thinkingBudget: 0 },
+            },
           }),
         }
       );
@@ -108,7 +115,9 @@ async function callGeminiAPI(prompt, env, { temperature = 0.7, maxTokens = 4096 
     }
     if (res.ok) {
       const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      const text = data?.candidates?.[0]?.content?.parts
+        ?.map((p) => p.text || '')
+        .join('');
       if (!text) throw new Error('API_EMPTY_RESPONSE');
       return text;
     }
