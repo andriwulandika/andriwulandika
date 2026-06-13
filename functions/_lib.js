@@ -1,43 +1,36 @@
 /**
- * Cloudflare Worker — Backend AI Tools Andri Wulandika
- * Proxy ke Google Gemini API + sistem kode akses berbayar (Bulanan/Tahunan).
+ * _lib.js — Logika bersama untuk Cloudflare Pages Functions.
+ * Bukan endpoint (tidak meng-export onRequest*); hanya diimpor oleh file route.
  *
- * Endpoint:
- *  POST /generate      { prompt, temperature?, maxTokens?, code? }
- *                       -> { text, isDemo }
- *                       Tanpa kode (atau kode tidak valid/kadaluarsa): hasil dipotong (demo/preview).
- *                       Dengan kode aktif: hasil lengkap.
- *  POST /verify         { code } -> { valid, tier?, expiresAt?, name? }
- *  POST /admin/generate { password, tier: 'bulanan'|'tahunan', name? } -> { code, tier, expiresAt, ... }
- *  POST /admin/list     { password } -> { codes: [...] }
- *  POST /admin/revoke   { password, code } -> { revoked: true }
+ * Backend = proxy ke Google Gemini API + sistem kode akses berbayar.
+ * Karena Functions satu domain dengan website, frontend memanggil path relatif
+ * (/generate, /verify, /admin/*) sehingga tidak perlu CORS.
  *
- * Setup:
- * 1. wrangler kv namespace create ACCESS_CODES
- *    -> salin "id" yang dihasilkan ke wrangler.jsonc
- * 2. wrangler secret put GEMINI_API_KEY    (API key dari https://aistudio.google.com/app/apikey)
- * 3. wrangler secret put ADMIN_PASSWORD
- * 4. wrangler deploy
- * 5. Salin URL worker (https://andriwulandika.<akun>.workers.dev) ke WORKER_URL
- *    di assets/js/apiService.js
+ * Setup di dashboard Cloudflare (project Pages "andriwulandika" -> Settings):
+ *  1. Bindings -> KV namespace: variable "ACCESS_CODES" -> pilih namespace ACCESS_CODES.
+ *  2. Variables and Secrets (type Secret):
+ *       GEMINI_API_KEY   (dari https://aistudio.google.com/app/apikey)
+ *       ADMIN_PASSWORD   (password bebas untuk halaman admin-kode)
  */
-
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Max-Age': '86400',
-};
 
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // tanpa 0/O dan 1/I
 const DEMO_CHAR_LIMIT = 700;
 const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
 
-function json(data, status = 200) {
+export function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+    headers: { 'Content-Type': 'application/json' },
   });
+}
+
+/** Baca JSON body request; null jika tidak valid. */
+export async function readBody(request) {
+  try {
+    return await request.json();
+  } catch {
+    return null;
+  }
 }
 
 function randomCode(len = 8) {
@@ -98,7 +91,7 @@ function isAdmin(body, env) {
   return !!body.password && body.password === env.ADMIN_PASSWORD;
 }
 
-async function handleGenerate(body, env) {
+export async function handleGenerate(body, env) {
   const { prompt, temperature, maxTokens, code } = body;
   if (!prompt || typeof prompt !== 'string') return json({ error: 'prompt diperlukan' }, 400);
 
@@ -109,13 +102,13 @@ async function handleGenerate(body, env) {
   return json({ text: truncateDemo(text), isDemo: true });
 }
 
-async function handleVerify(body, env) {
+export async function handleVerify(body, env) {
   const access = await checkCode(env, body.code);
   if (!access) return json({ valid: false });
   return json({ valid: true, tier: access.tier, expiresAt: access.expiresAt, name: access.name || null });
 }
 
-async function handleAdminGenerate(body, env) {
+export async function handleAdminGenerate(body, env) {
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
   const tier = body.tier === 'tahunan' ? 'tahunan' : 'bulanan';
   const months = tier === 'tahunan' ? 12 : 1;
@@ -131,7 +124,7 @@ async function handleAdminGenerate(body, env) {
   return json({ code, ...data });
 }
 
-async function handleAdminList(body, env) {
+export async function handleAdminList(body, env) {
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
   const list = await env.ACCESS_CODES.list();
   const codes = await Promise.all(
@@ -144,48 +137,9 @@ async function handleAdminList(body, env) {
   return json({ codes });
 }
 
-async function handleAdminRevoke(body, env) {
+export async function handleAdminRevoke(body, env) {
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
   if (!body.code) return json({ error: 'code diperlukan' }, 400);
   await env.ACCESS_CODES.delete(String(body.code).trim().toUpperCase());
   return json({ revoked: true });
 }
-
-export default {
-  async fetch(request, env) {
-    if (request.method === 'OPTIONS') return new Response(null, { headers: CORS_HEADERS });
-
-    const url = new URL(request.url);
-
-    if (request.method === 'GET' && url.pathname === '/') {
-      return json({ status: 'ok', service: 'Andri Wulandika — AI Tools API' });
-    }
-    if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
-
-    let body;
-    try {
-      body = await request.json();
-    } catch {
-      return json({ error: 'JSON tidak valid' }, 400);
-    }
-
-    try {
-      switch (url.pathname) {
-        case '/generate':
-          return await handleGenerate(body, env);
-        case '/verify':
-          return await handleVerify(body, env);
-        case '/admin/generate':
-          return await handleAdminGenerate(body, env);
-        case '/admin/list':
-          return await handleAdminList(body, env);
-        case '/admin/revoke':
-          return await handleAdminRevoke(body, env);
-        default:
-          return json({ error: 'Not found' }, 404);
-      }
-    } catch (err) {
-      return json({ error: err.message }, 500);
-    }
-  },
-};

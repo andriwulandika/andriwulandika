@@ -1,10 +1,12 @@
 /**
- * apiService.js — Shared AI service via Cloudflare Worker
- * Worker menyimpan API key Gemini & memvalidasi kode akses berbayar.
+ * apiService.js — Shared AI service via Cloudflare Pages Functions
+ * Backend (_worker.js) menyimpan API key Gemini & memvalidasi kode akses berbayar.
+ * Karena backend kini satu domain dengan website, semua request memakai path relatif.
  * Tanpa kode aktif: hasil dipotong (demo/preview).
  */
 
-export const WORKER_URL = 'https://andriwulandika.wulandikaandri.workers.dev';
+// Kosong = same-origin: /generate, /verify, /admin/* dilayani _worker.js di domain ini.
+export const WORKER_URL = '';
 
 export function getAccessCode() {
   return localStorage.getItem('access_code') || '';
