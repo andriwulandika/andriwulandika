@@ -489,9 +489,9 @@
     const badge = document.getElementById('accessBadge');
     const tierPill = document.getElementById('tierPill');
     if (access.active) {
-      badge.textContent = '👑 Berbayar';
+      badge.textContent = access.engine === 'claude' ? '👑 Premium' : '👑 Berbayar';
       badge.classList.add('active');
-      tierPill.textContent = '👑 Berbayar';
+      tierPill.textContent = access.engine === 'claude' ? '👑 Premium' : '👑 Berbayar';
       credits = 50;
     } else {
       badge.textContent = '🔓 Demo';

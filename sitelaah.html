@@ -505,7 +505,7 @@ function fmtTgl(d){if(!d)return '';const dt=new Date(d);const B=['Januari','Febr
 document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('navToggle')?.addEventListener('click',()=>{document.getElementById('navLinks')?.classList.toggle('open');});
   document.getElementById('tanggal').value=new Date().toISOString().slice(0,10);
-  const access=getAccessStatus();const badge=document.getElementById('accessBadge');if(access.active){badge.textContent='👑 Berbayar';badge.classList.add('active');}else{badge.textContent='🔓 Demo';}
+  const access=getAccessStatus();const badge=document.getElementById('accessBadge');if(access.active){badge.textContent=access.engine==='claude'?'👑 Premium':'👑 Berbayar';badge.classList.add('active');}else{badge.textContent='🔓 Demo';}
 });
 </script>
 </body>

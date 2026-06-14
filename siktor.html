@@ -892,7 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const access = getAccessStatus();
   const badge = document.getElementById('accessBadge');
   if (access.active) {
-    badge.textContent = '👑 Berbayar';
+    badge.textContent = access.engine === 'claude' ? '👑 Premium' : '👑 Berbayar';
     badge.classList.add('active');
   } else {
     badge.textContent = '🔓 Demo';
