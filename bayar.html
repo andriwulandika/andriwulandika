@@ -5,7 +5,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pembayaran — Andri Wulandika</title>
-  <meta name="description" content="Cara pembayaran Paket Berbayar (Bulanan/Tahunan) untuk mengakses penuh AI Tools perencanaan daerah tanpa batas demo."/>
+  <meta name="description" content="Cara pembayaran Paket Berbayar (Gemini) atau Premium (Claude), Bulanan/Tahunan, untuk mengakses penuh AI Tools perencanaan daerah tanpa batas demo."/>
   <meta name="robots" content="noindex"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <style>
@@ -180,7 +180,7 @@
 <div class="hero">
   <p class="eyebrow">Pembayaran</p>
   <h1>Pilih durasi &amp;<br/>lakukan transfer.</h1>
-  <p>Proses sederhana — pilih durasi Berbayar, transfer, konfirmasi via WhatsApp, dan kode akses dikirim dalam 1×24 jam.</p>
+  <p>Proses sederhana — pilih paket &amp; durasi, transfer, konfirmasi via WhatsApp, dan kode akses dikirim dalam 1×24 jam.</p>
 </div>
 
 <div class="section">
@@ -209,15 +209,43 @@
     </div>
   </div>
 
-  <!-- STEP 1: Pilih durasi -->
-  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Langkah 1 — Pilih Durasi Berbayar</h2>
+  <!-- STEP 1: Pilih paket & durasi -->
+  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Langkah 1 — Pilih Paket &amp; Durasi</h2>
+
+  <p style="font-size:0.85rem;color:var(--text2);margin-bottom:16px;">Pilih mesin AI:</p>
+  <div class="pkg-grid" style="margin-bottom:32px;">
+    <div class="pkg-card active" id="pkg-gemini" onclick="selectEngine('gemini')">
+      <div class="pkg-check">✓</div>
+      <span class="pkg-badge pro">Berbayar</span>
+      <div class="pkg-name">Gemini</div>
+      <div class="pkg-price-sub" style="margin-bottom:12px;">Mesin AI: Google Gemini</div>
+      <ul class="pkg-features">
+        <li>Akses penuh semua tools</li>
+        <li>API key sudah termasuk</li>
+        <li>Tanpa potongan demo</li>
+      </ul>
+    </div>
+    <div class="pkg-card" id="pkg-claude" onclick="selectEngine('claude')">
+      <div class="pkg-check">✓</div>
+      <span class="pkg-badge" style="background:#f3f0ff;color:#7c3aed;">Premium</span>
+      <div class="pkg-name">Claude</div>
+      <div class="pkg-price-sub" style="margin-bottom:12px;">Mesin AI: Claude — kualitas narasi terbaik</div>
+      <ul class="pkg-features">
+        <li>Akses penuh semua tools</li>
+        <li>API key sudah termasuk</li>
+        <li>Narasi lebih natural &amp; formal</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="font-size:0.85rem;color:var(--text2);margin-bottom:16px;">Pilih durasi:</p>
   <div class="pkg-grid">
     <div class="pkg-card active" id="pkg-bulanan" onclick="selectPkg('bulanan')">
       <div class="pkg-check">✓</div>
       <span class="pkg-badge pro">Bulanan</span>
       <div class="pkg-name">Bulanan</div>
       <div class="pkg-price" id="bulanan-price">Rp 99.000</div>
-      <div class="pkg-price-sub">per bulan</div>
+      <div class="pkg-price-sub" id="bulanan-price-sub">per bulan</div>
       <ul class="pkg-features">
         <li>Akses penuh semua tools</li>
         <li>API key sudah termasuk</li>
@@ -230,7 +258,7 @@
       <span class="pkg-badge opd">Tahunan · Hemat 20%</span>
       <div class="pkg-name">Tahunan</div>
       <div class="pkg-price" id="tahunan-price">Rp 950.000</div>
-      <div class="pkg-price-sub">per tahun (≈ Rp 79.000/bulan)</div>
+      <div class="pkg-price-sub" id="tahunan-price-sub">per tahun (≈ Rp 79.000/bulan)</div>
       <ul class="pkg-features">
         <li>Akses penuh semua tools</li>
         <li>API key sudah termasuk</li>
@@ -314,7 +342,7 @@
   <!-- STEP 4 & 5 -->
   <div class="success-box">
     <strong style="font-size:0.95rem;color:#0d4a1f;">✅ Langkah 4 &amp; 5 — Terima &amp; Gunakan Kode Akses</strong>
-    Setelah pembayaran terverifikasi, Anda akan menerima <strong>kode akses Berbayar</strong> (format AW-XXXXXXXX) via WhatsApp. Masukkan kode tersebut di halaman Masuk untuk langsung mendapat akses penuh tanpa batas demo.
+    Setelah pembayaran terverifikasi, Anda akan menerima <strong>kode akses Berbayar/Premium</strong> (format AW-XXXXXXXX) via WhatsApp. Masukkan kode tersebut di halaman Masuk untuk langsung mendapat akses penuh tanpa batas demo.
     <br/><br/>
     <a href="aktifkan-pro.html" style="color:var(--accent);font-weight:600;text-decoration:none;">→ Pergi ke Halaman Masuk</a>
   </div>
@@ -350,28 +378,48 @@
 </footer>
 
 <script>
+  let selectedEngine = 'gemini';
   let selectedDur = 'bulanan';
 
-  const prices = { bulanan: 99000, tahunan: 950000 };
+  const prices = {
+    gemini: { bulanan: 99000, tahunan: 950000, tahunanSub: 'per tahun (≈ Rp 79.000/bulan)' },
+    claude: { bulanan: 199000, tahunan: 1910000, tahunanSub: 'per tahun (≈ Rp 159.000/bulan)' },
+  };
 
   function fmt(n) {
     return 'Rp ' + n.toLocaleString('id-ID');
   }
 
+  function updatePackagePrices() {
+    const p = prices[selectedEngine];
+    document.getElementById('bulanan-price').textContent = fmt(p.bulanan);
+    document.getElementById('tahunan-price').textContent = fmt(p.tahunan);
+    document.getElementById('tahunan-price-sub').textContent = p.tahunanSub;
+  }
+
   function updateDisplay() {
-    const amount = prices[selectedDur];
+    const amount = prices[selectedEngine][selectedDur];
     document.getElementById('amountDisplay').textContent = fmt(amount);
 
     // Update WA message
     const durLabel = selectedDur === 'bulanan' ? '1 bulan (Bulanan)' : '12 bulan (Tahunan)';
+    const engineLabel = selectedEngine === 'claude' ? 'Premium (Claude)' : 'Berbayar (Gemini)';
     const msg = encodeURIComponent(
       `Halo Andri, saya ingin konfirmasi pembayaran:\n\n` +
-      `• Paket: Berbayar\n` +
+      `• Paket: ${engineLabel}\n` +
       `• Durasi: ${durLabel}\n` +
       `• Nominal: ${fmt(amount)} + kode unik\n\n` +
       `[Lampirkan screenshot bukti transfer]`
     );
     document.getElementById('wa-konfirm-btn').href = `https://wa.me/62811660568?text=${msg}`;
+  }
+
+  function selectEngine(engine) {
+    selectedEngine = engine;
+    document.getElementById('pkg-gemini').classList.toggle('active', engine === 'gemini');
+    document.getElementById('pkg-claude').classList.toggle('active', engine === 'claude');
+    updatePackagePrices();
+    updateDisplay();
   }
 
   function selectPkg(dur) {
@@ -391,7 +439,7 @@
   }
 
   function copyAmount() {
-    const amount = prices[selectedPkg][selectedDur];
+    const amount = prices[selectedEngine][selectedDur];
     navigator.clipboard.writeText(amount.toString()).then(() => {
       const btn = document.querySelector('.amount-copy-btn');
       btn.textContent = '✓ Disalin';
@@ -412,6 +460,7 @@
     }
   }
 
+  updatePackagePrices();
   updateDisplay();
 </script>
 </body>

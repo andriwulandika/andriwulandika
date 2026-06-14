@@ -36,7 +36,7 @@ export function getAccessStatus() {
   const info = getAccessInfo();
   if (!info || !info.expiresAt) return { active: false };
   if (new Date(info.expiresAt) < new Date()) return { active: false, expired: true };
-  return { active: true, tier: info.tier, expiresAt: info.expiresAt, name: info.name || null };
+  return { active: true, tier: info.tier, engine: info.engine || 'gemini', expiresAt: info.expiresAt, name: info.name || null };
 }
 
 /** Verifikasi kode akses ke server, simpan hasilnya jika valid. */
@@ -49,7 +49,7 @@ export async function verifyAccessCode(code) {
   const data = await res.json();
   if (data.valid) {
     saveAccessCode(code);
-    saveAccessInfo({ tier: data.tier, expiresAt: data.expiresAt, name: data.name });
+    saveAccessInfo({ tier: data.tier, engine: data.engine || 'gemini', expiresAt: data.expiresAt, name: data.name });
   }
   return data;
 }

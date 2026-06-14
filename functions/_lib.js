@@ -10,12 +10,14 @@
  *  1. Bindings -> KV namespace: variable "ACCESS_CODES" -> pilih namespace ACCESS_CODES.
  *  2. Variables and Secrets (type Secret):
  *       GEMINI_API_KEY   (dari https://aistudio.google.com/app/apikey)
+ *       CLAUDE_API_KEY   (dari https://console.anthropic.com/settings/keys, untuk paket Premium)
  *       ADMIN_PASSWORD   (password bebas untuk halaman admin-kode)
  */
 
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // tanpa 0/O dan 1/I
 const DEMO_CHAR_LIMIT = 700;
 const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
+const CLAUDE_MODELS = ['claude-sonnet-4-6', 'claude-haiku-4-5'];
 
 // Rate limiting: max 100 requests per minute per IP
 const RATE_LIMIT_REQUESTS = 100;
@@ -127,6 +129,39 @@ async function callGeminiAPI(prompt, env, { temperature = 0.7, maxTokens = 4096 
   throw new Error('API_QUOTA');
 }
 
+async function callClaudeAPI(prompt, env, { temperature = 0.7, maxTokens = 4096 } = {}) {
+  for (const model of CLAUDE_MODELS) {
+    let res;
+    try {
+      res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': env.CLAUDE_API_KEY,
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: maxTokens,
+          temperature,
+          messages: [{ role: 'user', content: prompt }],
+        }),
+      });
+    } catch {
+      throw new Error('NETWORK_ERROR');
+    }
+    if (res.ok) {
+      const data = await res.json();
+      const text = data?.content?.map((c) => c.text || '').join('');
+      if (!text) throw new Error('API_EMPTY_RESPONSE');
+      return text;
+    }
+    if (res.status === 429) continue; // coba model cadangan
+    throw new Error(`API_ERROR_${res.status}`);
+  }
+  throw new Error('API_QUOTA');
+}
+
 async function checkCode(env, rawCode) {
   if (!rawCode) return null;
   const code = String(rawCode).trim().toUpperCase();
@@ -154,21 +189,25 @@ export async function handleGenerate(body, env, clientIp) {
   const maxTokens = validateMaxTokens(body.maxTokens);
 
   const access = await checkCode(env, body.code);
-  const text = await callGeminiAPI(prompt, env, { temperature, maxTokens });
+  const engine = access?.engine === 'claude' ? 'claude' : 'gemini';
+  const text = engine === 'claude'
+    ? await callClaudeAPI(prompt, env, { temperature, maxTokens })
+    : await callGeminiAPI(prompt, env, { temperature, maxTokens });
 
-  if (access) return json({ text, isDemo: false });
-  return json({ text: truncateDemo(text), isDemo: true });
+  if (access) return json({ text, isDemo: false, engine });
+  return json({ text: truncateDemo(text), isDemo: true, engine });
 }
 
 export async function handleVerify(body, env) {
   const access = await checkCode(env, body.code);
   if (!access) return json({ valid: false });
-  return json({ valid: true, tier: access.tier, expiresAt: access.expiresAt, name: access.name || null });
+  return json({ valid: true, tier: access.tier, engine: access.engine || 'gemini', expiresAt: access.expiresAt, name: access.name || null });
 }
 
 export async function handleAdminGenerate(body, env) {
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
   const tier = body.tier === 'tahunan' ? 'tahunan' : 'bulanan';
+  const engine = body.engine === 'claude' ? 'claude' : 'gemini';
   const months = tier === 'tahunan' ? 12 : 1;
   const name = (body.name || '').trim() || null;
 
@@ -177,7 +216,7 @@ export async function handleAdminGenerate(body, env) {
   expires.setMonth(expires.getMonth() + months);
 
   const code = 'AW-' + randomCode(8);
-  const data = { tier, name, createdAt: now.toISOString(), expiresAt: expires.toISOString() };
+  const data = { tier, engine, name, createdAt: now.toISOString(), expiresAt: expires.toISOString() };
   await env.ACCESS_CODES.put(code, JSON.stringify(data));
   return json({ code, ...data });
 }

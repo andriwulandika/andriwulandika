@@ -5,7 +5,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Masuk — Andri Wulandika</title>
-  <meta name="description" content="Masuk dengan kode akses Berbayar untuk membuka akses penuh tanpa batas demo di semua AI Tools perencanaan daerah."/>
+  <meta name="description" content="Masuk dengan kode akses Berbayar atau Premium untuk membuka akses penuh tanpa batas demo di semua AI Tools perencanaan daerah."/>
   <meta name="robots" content="noindex"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <style>
@@ -194,7 +194,7 @@
       <div class="status-card" id="statusCard">
         <div class="status-icon">👑</div>
         <div class="status-info">
-          <div class="status-title">Berbayar Aktif</div>
+          <div class="status-title" id="statusTitle">Berbayar Aktif</div>
           <div class="status-detail" id="statusDetail">Paket Berbayar • Aktif hingga —</div>
         </div>
       </div>
@@ -236,6 +236,12 @@
               <span>Tidak ada lagi batasan demo/preview</span>
             </div>
           </div>
+          <div class="feature-row" id="featureClaude" style="display:none;">
+            <span class="feature-check">✓</span>
+            <div class="feature-text">Mesin AI: Claude (Premium)
+              <span>Kualitas narasi lebih natural, runtut, dan formal</span>
+            </div>
+          </div>
           <div class="feature-row">
             <span class="feature-check">✓</span>
             <div class="feature-text">Semua 8 AI Tools tanpa batas
@@ -271,8 +277,10 @@
 <script type="module">
   import { verifyAccessCode, getAccessStatus, clearAccess, formatApiError } from './assets/js/apiService.js';
 
-  function tierLabel(tier) {
-    return tier === 'tahunan' ? 'Berbayar (Tahunan)' : 'Berbayar (Bulanan)';
+  function tierLabel(tier, engine) {
+    const engineName = engine === 'claude' ? 'Premium (Claude)' : 'Berbayar (Gemini)';
+    const durName = tier === 'tahunan' ? 'Tahunan' : 'Bulanan';
+    return `${engineName} — ${durName}`;
   }
 
   function formatDate(d) {
@@ -317,7 +325,7 @@
         return;
       }
       inp.classList.add('success');
-      showSuccess(data.tier, data.expiresAt, data.name);
+      showSuccess(data.tier, data.engine, data.expiresAt, data.name);
     } catch (err) {
       inp.classList.add('error');
       errEl.textContent = formatApiError(err);
@@ -327,12 +335,14 @@
     }
   }
 
-  function showSuccess(tier, expiresAt, name) {
+  function showSuccess(tier, engine, expiresAt, name) {
     document.getElementById('enterForm').classList.add('hide');
     document.getElementById('successScreen').classList.add('show');
     document.getElementById('statusCard').classList.add('show');
+    document.getElementById('statusTitle').textContent = engine === 'claude' ? 'Premium Aktif' : 'Berbayar Aktif';
     document.getElementById('statusDetail').textContent =
-      `${tierLabel(tier)}${name ? ' • ' + name : ''} • Aktif hingga ${formatDate(expiresAt)}`;
+      `${tierLabel(tier, engine)}${name ? ' • ' + name : ''} • Aktif hingga ${formatDate(expiresAt)}`;
+    document.getElementById('featureClaude').style.display = engine === 'claude' ? 'flex' : 'none';
   }
 
   function deactivate() {
@@ -345,8 +355,10 @@
     const status = getAccessStatus();
     if (!status.active) return;
     document.getElementById('statusCard').classList.add('show');
+    document.getElementById('statusTitle').textContent = status.engine === 'claude' ? 'Premium Aktif' : 'Berbayar Aktif';
     document.getElementById('statusDetail').textContent =
-      `${tierLabel(status.tier)}${status.name ? ' • ' + status.name : ''} • Aktif hingga ${formatDate(status.expiresAt)}`;
+      `${tierLabel(status.tier, status.engine)}${status.name ? ' • ' + status.name : ''} • Aktif hingga ${formatDate(status.expiresAt)}`;
+    document.getElementById('featureClaude').style.display = status.engine === 'claude' ? 'flex' : 'none';
     document.getElementById('enterForm').classList.add('hide');
     document.getElementById('successScreen').classList.add('show');
   }
