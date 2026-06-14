@@ -38,11 +38,11 @@
       {
         "@type": "Offer",
         "name": "Paket Berbayar",
-        "price": "99000",
+        "price": "100000",
         "priceCurrency": "IDR",
         "priceSpecification": {
           "@type": "UnitPriceSpecification",
-          "price": "99000",
+          "price": "100000",
           "priceCurrency": "IDR",
           "unitText": "MONTH"
         },
@@ -51,11 +51,11 @@
       {
         "@type": "Offer",
         "name": "Paket Premium",
-        "price": "199000",
+        "price": "200000",
         "priceCurrency": "IDR",
         "priceSpecification": {
           "@type": "UnitPriceSpecification",
-          "price": "199000",
+          "price": "200000",
           "priceCurrency": "IDR",
           "unitText": "MONTH"
         },
@@ -556,7 +556,7 @@
       <p class="plan-name">Berbayar</p>
       <p class="plan-desc">Untuk ASN aktif yang butuh hasil dokumen lengkap tanpa batas, tanpa kerumitan setup API key.</p>
       <div class="price-main">
-        <span class="price-amount" id="pro-price">Rp 99.000</span>
+        <span class="price-amount" id="pro-price">Rp 100.000</span>
       </div>
       <p class="price-period" id="pro-period">/bulan</p>
       <p class="price-annual-note" id="pro-annual-note">&nbsp;</p>
@@ -580,7 +580,7 @@
       <p class="plan-name">Premium</p>
       <p class="plan-desc">Untuk ASN yang ingin kualitas narasi terbaik — ditenagai Claude, model AI dengan kemampuan menulis paling natural saat ini.</p>
       <div class="price-main">
-        <span class="price-amount" id="premium-price">Rp 199.000</span>
+        <span class="price-amount" id="premium-price">Rp 200.000</span>
       </div>
       <p class="price-period" id="premium-period">/bulan</p>
       <p class="price-annual-note" id="premium-annual-note">&nbsp;</p>
@@ -846,19 +846,19 @@
     saveBadge.style.display = isAnnual ? 'inline-block' : 'none';
 
     if (isAnnual) {
-      proPrice.textContent  = 'Rp 950.000';
+      proPrice.textContent  = 'Rp 960.000';
       proPeriod.textContent = '/tahun';
-      proNote.textContent   = '≈ Rp 79.000/bulan · hemat Rp 238.000';
+      proNote.textContent   = '≈ Rp 80.000/bulan · hemat Rp 240.000';
 
-      premiumPrice.textContent  = 'Rp 1.910.000';
+      premiumPrice.textContent  = 'Rp 1.920.000';
       premiumPeriod.textContent = '/tahun';
-      premiumNote.textContent   = '≈ Rp 159.000/bulan · hemat Rp 478.000';
+      premiumNote.textContent   = '≈ Rp 160.000/bulan · hemat Rp 480.000';
     } else {
-      proPrice.textContent  = 'Rp 99.000';
+      proPrice.textContent  = 'Rp 100.000';
       proPeriod.textContent = '/bulan';
       proNote.innerHTML     = '&nbsp;';
 
-      premiumPrice.textContent  = 'Rp 199.000';
+      premiumPrice.textContent  = 'Rp 200.000';
       premiumPeriod.textContent = '/bulan';
       premiumNote.innerHTML     = '&nbsp;';
     }

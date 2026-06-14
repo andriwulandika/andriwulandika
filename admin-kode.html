@@ -255,8 +255,8 @@
             <option value="claude">Premium (Claude)</option>
           </select>
           <select class="select-field" id="genTier">
-            <option value="bulanan">Bulanan — Rp 99.000</option>
-            <option value="tahunan">Tahunan — Rp 950.000</option>
+            <option value="bulanan">Bulanan — Rp 100.000</option>
+            <option value="tahunan">Tahunan — Rp 960.000</option>
           </select>
         </div>
 
@@ -284,19 +284,19 @@
         <table style="font-size:0.8rem;">
           <tr>
             <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--accent);">Gemini · Bulanan</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 99.000 — aktif 1 bulan</td>
+            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 100.000 — aktif 1 bulan</td>
           </tr>
           <tr>
             <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:#1a7a3e;">Gemini · Tahunan</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 950.000 — aktif 12 bulan</td>
+            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 960.000 — aktif 12 bulan</td>
           </tr>
           <tr>
             <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:#b85c1f;">Claude · Bulanan</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 199.000 — aktif 1 bulan</td>
+            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 200.000 — aktif 1 bulan</td>
           </tr>
           <tr>
             <td style="padding:8px 0;font-weight:600;color:#b85c1f;">Claude · Tahunan</td>
-            <td style="padding:8px 0 8px 12px;color:var(--text2);">Rp 1.910.000 — aktif 12 bulan</td>
+            <td style="padding:8px 0 8px 12px;color:var(--text2);">Rp 1.920.000 — aktif 12 bulan</td>
           </tr>
         </table>
         <div style="margin-top:16px;padding:12px;background:var(--bg);border-radius:8px;font-size:0.78rem;color:var(--text2);line-height:1.6;">
@@ -348,8 +348,8 @@
   const SESSION_KEY = 'admin_session';
   const SENT_KEY = 'admin_sent_codes';
   const PRICE = {
-    gemini: { bulanan: 99000, tahunan: 950000 },
-    claude: { bulanan: 199000, tahunan: 1910000 },
+    gemini: { bulanan: 100000, tahunan: 960000 },
+    claude: { bulanan: 200000, tahunan: 1920000 },
   };
 
   function tierLabel(t) { return t === 'tahunan' ? 'Tahunan' : 'Bulanan'; }
