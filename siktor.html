@@ -640,8 +640,11 @@ async function generateNarasi() {
   const metTamb = v('metodologiTambahan');
   const konteks = v('konteksAi');
   const pagu    = v('paguAnggaran');
+  const jangka  = document.getElementById('jangkaWaktu')?.value || '';
+  const tglMul  = v('tglMulai');
+  const tglSel  = v('tglSelesai');
 
-  const prompt = `Anda adalah konsultan perencanaan pemerintah berpengalaman. Tugas Anda adalah menulis narasi formal untuk ${jenis} (Kerangka Acuan Kerja) berikut.
+  const prompt = `Anda adalah konsultan perencanaan pemerintah berpengalaman, terbiasa menyusun KAK/TOR dengan kelengkapan unsur setara dokumen perencanaan berpredikat terbaik nasional — setiap keluaran dirumuskan secara terukur (SMART) dan tahapan pelaksanaannya jelas. Tugas Anda adalah menulis narasi formal untuk ${jenis} (Kerangka Acuan Kerja) berikut.
 
 PENTING:
 - Tulis dalam Bahasa Indonesia formal dan baku sesuai standar dokumen pemerintah
@@ -656,6 +659,8 @@ Kegiatan: ${keg}
 ${subKeg ? 'Sub Kegiatan: ' + subKeg : ''}
 Pagu Anggaran: ${pagu ? 'Rp ' + parseInt(pagu).toLocaleString('id-ID') : '-'}
 Metode Pelaksanaan: ${metode}${metTamb ? ' — ' + metTamb : ''}
+${jangka ? 'Jangka Waktu Pelaksanaan: ' + jangka : ''}
+${tglMul && tglSel ? `Periode: ${tglMul} s.d. ${tglSel}` : ''}
 ${konteks ? 'Konteks Tambahan: ' + konteks : ''}
 
 POIN LATAR BELAKANG:
@@ -670,11 +675,12 @@ OUTPUT: ${output}
 Tulis narasi ${jenis} yang terdiri dari:
 1. **LATAR BELAKANG** — 3-4 paragraf formal yang mengembangkan poin latar belakang di atas, menyebutkan kondisi empiris, dasar kebijakan, dan urgensi kegiatan
 2. **MAKSUD DAN TUJUAN** — kembangkan poin tujuan menjadi paragraf formal (maksud) dan daftar tujuan spesifik
-3. **SASARAN** — jelaskan target penerima manfaat secara formal
-4. **RUANG LINGKUP** — uraikan cakupan kegiatan berdasarkan metode yang dipilih
-5. **METODOLOGI PELAKSANAAN** — jelaskan cara pelaksanaan secara sistematis
+3. **SASARAN DAN PENERIMA MANFAAT** — jelaskan target penerima manfaat secara formal
+4. **RUANG LINGKUP** — uraikan batasan dan cakupan kegiatan berdasarkan metode yang dipilih
+5. **METODOLOGI DAN TAHAPAN PELAKSANAAN** — jelaskan cara pelaksanaan secara sistematis beserta tahapan kegiatan secara kronologis, kaitkan dengan jangka waktu/periode pelaksanaan jika tersedia
+6. **INDIKATOR KINERJA KELUARAN** — jelaskan ukuran keberhasilan keluaran (output) secara terukur/SMART berdasarkan output yang diberikan
 
-Format: teks narasi formal, paragraf dan poin-poin bernomor sesuai bagian, sekitar 500-700 kata total.`;
+Format: teks narasi formal, paragraf dan poin-poin bernomor sesuai bagian, sekitar 600-850 kata total.`;
 
   setAiStatus('loading', 'Sedang menyusun narasi KAK... (estimasi 15-30 detik)');
   document.getElementById('btnGenAi').disabled = true;

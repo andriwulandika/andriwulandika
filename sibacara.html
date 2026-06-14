@@ -371,9 +371,9 @@ async function generateBa() {
   const hasil   = v('hasil');
   const tindak  = v('tindakLanjut');
 
-  const prompt = `Anda adalah staf administrasi pemerintah yang berpengalaman menyusun ${jenis}.
+  const prompt = `Anda adalah staf administrasi pemerintah yang berpengalaman menyusun ${jenis} dengan kualitas setara dokumen berpredikat terbaik nasional, mengacu pada Permendagri Nomor 1 Tahun 2023 tentang Tata Naskah Dinas di Lingkungan Pemerintah Daerah (unsur pembuka, isi, dan penutup).
 
-Tugas: Tulis narasi isi ${jenis} yang formal dan lengkap.
+Tugas: Tulis narasi bagian ISI dari ${jenis} secara formal dan lengkap (bagian pembuka berupa hari/tanggal/tempat/pihak terkait dan bagian penutup berupa pengesahan akan disusun otomatis terpisah — fokus pada uraian substansi kegiatan).
 
 PENTING:
 - Bahasa Indonesia formal dan baku standar dokumen pemerintahan
@@ -394,10 +394,10 @@ ${hasil}
 
 TINDAK LANJUT: ${tindak || '-'}
 
-Tulis narasi ${jenis} yang meliputi:
+Tulis narasi isi ${jenis} yang meliputi:
 1. **JALANNYA KEGIATAN** — Narasi singkat kronologis pelaksanaan kegiatan secara formal (2-3 paragraf)
-2. **HASIL DAN KESIMPULAN** — Uraikan tiap butir hasil/kesimpulan secara formal dan detail
-${tindak ? '3. **TINDAK LANJUT** — Uraikan langkah-langkah tindak lanjut yang disepakati' : ''}
+2. **HASIL DAN KESIMPULAN** — Uraikan tiap butir hasil/kesimpulan secara formal, detail, dan dapat diverifikasi (bernomor)
+${tindak ? '3. **TINDAK LANJUT** — Uraikan langkah-langkah tindak lanjut yang disepakati secara konkret beserta pihak yang bertanggung jawab jika dapat disimpulkan dari data' : ''}
 
 Format: narasi paragraf formal. Total 250-400 kata.`;
 

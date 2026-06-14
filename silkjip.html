@@ -794,12 +794,12 @@ async function generateAnalysis() {
   const hambatan = v('hambatan');
   const tindakLanjut = v('tindakLanjut');
 
-  const prompt = `Anda adalah analis kinerja pemerintah yang berpengalaman. Tugas Anda adalah menulis narasi analisis kinerja untuk Laporan Kinerja Instansi Pemerintah (LKjIP) berdasarkan data berikut.
+  const prompt = `Anda adalah analis kinerja pemerintah yang berpengalaman, terbiasa menyusun LKjIP dengan kedalaman analisis setara dokumen berpredikat SAKIP AA (terbaik nasional). Tugas Anda adalah menulis narasi analisis kinerja untuk Laporan Kinerja Instansi Pemerintah (LKjIP) berdasarkan data berikut.
 
 PENTING:
 - Jangan mengarang angka atau data baru — gunakan HANYA data yang diberikan
 - Tulis dalam Bahasa Indonesia formal dan baku sesuai standar pelaporan pemerintah
-- Ikuti PermenPANRB 53/2014 dan PermenPANRB 88/2021
+- Ikuti PermenPANRB 53/2014 dan PermenPANRB 88/2021, dengan kedalaman analisis (analisis penyebab, analisis efisiensi, dan keterkaitan program-kinerja) yang menjadi ciri LKjIP berpredikat AA
 
 DATA KINERJA:
 OPD: ${opd}
@@ -814,13 +814,13 @@ TINDAK LANJUT: ${tindakLanjut || '-'}
 KONTEKS TAMBAHAN: ${konteks || '-'}
 
 Tulis narasi analisis kinerja yang terdiri dari:
-1. **Ringkasan Capaian Kinerja** - Paragraf pembuka menggambarkan capaian keseluruhan
-2. **Analisis Per Sasaran Strategis** - Untuk setiap sasaran: uraikan capaian, faktor pendukung, dan kendala
-3. **Analisis Efisiensi Anggaran** - Hubungan antara capaian kinerja dan penyerapan anggaran (jika data tersedia)
-4. **Hambatan dan Permasalahan** - Elaborasi dari hambatan yang disebutkan
-5. **Upaya Tindak Lanjut** - Langkah-langkah yang akan diambil
+1. **Ikhtisar Eksekutif Capaian Kinerja** - Paragraf pembuka yang merangkum capaian keseluruhan organisasi dibanding target, termasuk jumlah/proporsi sasaran yang mencapai kategori sangat baik/baik
+2. **Analisis Capaian per Sasaran Strategis** - Untuk setiap sasaran: bandingkan realisasi dengan target dan kategori capaiannya, uraikan program/kegiatan utama yang menjadi penunjang keberhasilan atau penyebab tidak tercapainya target, serta faktor pendukung dan penghambat
+3. **Analisis Efisiensi Penggunaan Sumber Daya** - Hubungan antara tingkat capaian kinerja dengan besaran anggaran yang digunakan (jika data tersedia), nilai efisien jika capaian kinerja ≥100% dengan penggunaan sumber daya yang proporsional atau lebih kecil dari rencana
+4. **Hambatan dan Permasalahan** - Elaborasi dari hambatan yang disebutkan, kaitkan dengan sasaran yang belum optimal capaiannya
+5. **Rencana Tindak Lanjut dan Rekomendasi Perbaikan** - Langkah-langkah konkret untuk mempertahankan capaian yang sudah baik dan memperbaiki capaian yang belum optimal pada periode berikutnya
 
-Format: teks narasi paragraf (bukan bullet point), formal, sekitar 600-900 kata.`;
+Format: teks narasi paragraf (bukan bullet point), formal, sekitar 700-1000 kata.`;
 
   setAiStatus('loading', 'Sedang membuat analisis... (estimasi 15-30 detik)');
   document.getElementById('btnGenAi').disabled = true;

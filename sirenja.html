@@ -686,12 +686,12 @@ async function generateNarasi() {
 
   const totalPagu = progs.reduce((s, p) => s + (parseFloat(p.pagu)||0), 0);
 
-  const prompt = `Anda adalah perencana pemerintah daerah berpengalaman. Tugas Anda adalah menulis narasi untuk ${isPerubahan ? 'Perubahan Rencana Kerja (Renja Perubahan)' : 'Rencana Kerja (Renja)'} OPD.
+  const prompt = `Anda adalah perencana pemerintah daerah berpengalaman yang menyusun dokumen Renja dengan kualitas setara dokumen perencanaan daerah berpredikat terbaik nasional — mengacu pada kriteria Penghargaan Pembangunan Daerah Bappenas (kejelasan, keterukuran/SMART, dan keterkaitan antar dokumen perencanaan). Tugas Anda adalah menulis narasi untuk ${isPerubahan ? 'Perubahan Rencana Kerja (Renja Perubahan)' : 'Rencana Kerja (Renja)'} OPD.
 
 PENTING:
 - Tulis dalam Bahasa Indonesia formal dan baku
-- Jangan mengarang data atau angka baru
-- Sesuai Permendagri 81/2022 tentang Renja OPD${isPerubahan ? ' dan Permendagri 86/2017 Pasal 78 tentang Perubahan RKPD/Renja' : ''}
+- Jangan mengarang data atau angka baru, gunakan hanya data yang diberikan
+- Ikuti sistematika Permendagri 81/2022 tentang Pedoman Penyusunan RKPD/Renja${isPerubahan ? ' dan Permendagri 86/2017 Pasal 78 tentang Perubahan RKPD/Renja' : ''}
 
 DATA OPD:
 OPD: ${opd}
@@ -718,14 +718,13 @@ ${capaian || '-'}
 
 KONTEKS TAMBAHAN: ${konteks || '-'}
 
-Tulis narasi ${isPerubahan ? 'Renja Perubahan' : 'Renja'} OPD yang terdiri dari:
-1. **BAB I: PENDAHULUAN** — Sub-bab: Latar Belakang (2-3 paragraf formal tentang urgensi Renja${isPerubahan ? ' Perubahan' : ''} dan dasar kebijakan), Landasan Hukum (daftarkan UU/PP/Permendagri yang relevan)
-2. **GAMBARAN PELAYANAN OPD** — Uraikan tugas, fungsi, dan kapasitas OPD dalam memberikan pelayanan (2-3 paragraf berdasarkan tupoksi yang diberikan)
-3. **PERMASALAHAN DAN ISU STRATEGIS** — Uraikan tiap isu strategis secara formal, kaitkan dengan program yang direncanakan
-4. **TUJUAN DAN SASARAN** — Rumuskan tujuan dan sasaran Renja berdasarkan program yang direncanakan${isPerubahan ? `
-5. **DASAR DAN ALASAN PERUBAHAN** — Jelaskan secara formal dasar hukum dan alasan/latar belakang dilakukannya perubahan Renja berdasarkan informasi yang diberikan, kaitkan dengan ketentuan Permendagri 86/2017 Pasal 78` : ''}
+Tulis narasi ${isPerubahan ? 'Renja Perubahan' : 'Renja'} OPD dengan sistematika berikut:
+1. **BAB I: PENDAHULUAN** — Sub-bab: (a) Latar Belakang (2-3 paragraf formal tentang dasar penyusunan serta keterkaitan Renja${isPerubahan ? ' Perubahan' : ''} dengan RKPD dan Renstra), (b) Landasan Hukum (daftarkan UU/PP/Permendagri yang relevan secara bernomor), (c) Maksud dan Tujuan penyusunan dokumen, (d) Sistematika Penulisan (uraian singkat isi tiap bab)
+2. **BAB II: HASIL EVALUASI RENJA PERANGKAT DAERAH TAHUN LALU** — Sub-bab: (a) Evaluasi Pelaksanaan Renja dan Capaian Renstra (uraikan capaian program/kegiatan tahun sebelumnya berdasarkan data yang diberikan, bandingkan realisasi dengan target, identifikasi faktor pendorong dan penghambat), (b) Analisis Kinerja Pelayanan OPD (uraikan tugas, fungsi, dan kapasitas OPD berdasarkan tupoksi yang diberikan), (c) Isu-Isu Penting Penyelenggaraan Tugas dan Fungsi OPD (uraikan tiap isu strategis secara formal dan kaitkan dengan program yang direncanakan tahun ini sebagai tindak lanjut)
+3. **BAB III: TUJUAN DAN SASARAN PERANGKAT DAERAH** — Sub-bab: (a) Telaah Kebijakan dan Prioritas Pembangunan Daerah (kaitkan prioritas yang diberikan dengan arah kebijakan OPD), (b) Tujuan dan Sasaran Renja (rumuskan tujuan dan sasaran yang terukur/SMART berdasarkan program yang direncanakan dan visi-misi yang relevan)${isPerubahan ? `
+4. **DASAR DAN ALASAN PERUBAHAN** — Jelaskan secara formal dasar hukum dan alasan/latar belakang dilakukannya perubahan Renja berdasarkan informasi yang diberikan, kaitkan dengan ketentuan Permendagri 86/2017 Pasal 78` : ''}
 
-Format: narasi paragraf formal + poin-poin bernomor. Total sekitar 600-800 kata.`;
+Format: narasi paragraf formal dengan sub-bab bernomor/berhuruf sesuai struktur di atas. Total sekitar 700-1000 kata.`;
 
   setAiStatus('loading', 'Sedang menyusun narasi Renja... (estimasi 15-30 detik)');
   document.getElementById('btnGenAi').disabled = true;
@@ -849,7 +848,7 @@ ${isPerubahan ? `<h2>DASAR DAN ALASAN PERUBAHAN</h2>
 
 <div style="page-break-before:always;"></div>
 
-<h2>BAB II — RENCANA KERJA DAN PENDANAAN</h2>
+<h2>BAB IV — RENCANA KERJA DAN PENDANAAN</h2>
 <p>${isPerubahan
   ? `Perubahan rencana kerja ${opd} Tahun ${tahun} mencakup penyesuaian program, kegiatan, dan sub kegiatan dengan total pagu anggaran semula sebesar <strong>${fmtRp(progs.reduce((s,p)=>s+(parseFloat(p.paguSemula)||0),0))}</strong> menjadi <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja, alokasi anggaran semula dan menjadi, serta status perubahannya:`
   : `Rencana kerja ${opd} Tahun ${tahun} mencakup program, kegiatan, dan sub kegiatan dengan total pagu anggaran sebesar <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja dan alokasi anggarannya:`}</p>
@@ -858,7 +857,7 @@ ${progTbl}
 
 <div style="page-break-before:always;"></div>
 
-<h2>BAB III — PENUTUP</h2>
+<h2>BAB V — PENUTUP</h2>
 <p>${isPerubahan
   ? `Perubahan Rencana Kerja ${opd} Tahun ${tahun} ini disusun sebagai penyesuaian atas Renja ${opd} Tahun ${tahun} sebelumnya, sejalan dengan Perubahan RKPD Tahun ${tahun}, dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah serta Permendagri Nomor 86 Tahun 2017 tentang Tata Cara Perencanaan, Pengendalian dan Evaluasi Pembangunan Daerah.`
   : `Rencana Kerja ${opd} Tahun ${tahun} ini merupakan dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan program dan kegiatan selama satu tahun anggaran. Dokumen ini disusun mengacu pada Renstra ${opd} Periode ${renstra||'...'} dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah.`}</p>

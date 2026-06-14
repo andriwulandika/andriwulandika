@@ -325,7 +325,27 @@ async function generateTelaahan() {
   const rekomen= v('rekomendasi');
   const dasHk  = v('dasarHukum');
 
-  const prompt = `Anda adalah seorang ASN senior yang berpengalaman menyusun dokumen administrasi pemerintahan.
+  const isTelaahan = jenis === 'Telaahan Staf';
+
+  const sections = isTelaahan
+    ? `Tulis narasi Telaahan Staf dengan 6 unsur wajib sesuai Permendagri Nomor 1 Tahun 2023 tentang Tata Naskah Dinas di Lingkungan Pemerintah Daerah — kelengkapan unsur ini menjadi ciri Telaahan Staf berpredikat terbaik nasional:
+1. **I. PERSOALAN** — Rumuskan pokok persoalan secara singkat, jelas, dan lengkap berdasarkan permasalahan yang diberikan
+2. **II. PRAANGGAPAN** — Kemukakan dugaan yang beralasan (asumsi/perkiraan) mengenai persoalan tersebut apabila tidak ada tindakan, berdasarkan fakta yang ada
+3. **III. FAKTA YANG MEMPENGARUHI** — Uraikan fakta-fakta dan data yang berkaitan dan berpengaruh terhadap persoalan, berdasarkan latar belakang yang diberikan
+4. **IV. ANALISIS** — Analisis pengaruh fakta terhadap persoalan, kemukakan kemungkinan-kemungkinan/opsi yang dapat diambil beserta keuntungan dan kerugian masing-masing${opsiTx ? ' (kembangkan dari opsi penyelesaian yang diberikan)' : ''}
+5. **V. KESIMPULAN** — Simpulkan opsi/kemungkinan terbaik dari hasil analisis
+6. **VI. SARAN** — Sampaikan saran tindakan yang konkret dan dapat dilaksanakan${rekomen ? ', kembangkan dari rekomendasi yang diberikan' : ''}
+
+Format: narasi paragraf formal per unsur, urutkan persis I sampai VI. Total 400-600 kata.`
+    : `Tulis narasi ${jenis} yang terdiri dari:
+1. **PENDAHULUAN** — 1-2 paragraf formal: dasar dan tujuan ${jenis} ini dibuat
+2. **PERMASALAHAN** — Uraikan permasalahan/isu secara sistematis dan formal (bernomor)
+3. **ANALISIS** — Analisis tiap permasalahan dengan mengaitkan pada dasar hukum dan kondisi faktual${opsiTx ? '\n4. **ALTERNATIF PENYELESAIAN** — Uraikan opsi-opsi beserta kelebihan/kekurangannya' : ''}
+${opsiTx ? '5.' : '4.'} **KESIMPULAN DAN SARAN** — Simpulkan dan sampaikan rekomendasi/saran tindak secara tegas
+
+Format: narasi paragraf formal. Total 300-500 kata.`;
+
+  const prompt = `Anda adalah seorang ASN senior yang berpengalaman menyusun dokumen administrasi pemerintahan${isTelaahan ? ', termasuk Telaahan Staf dengan kualitas setara dokumen berpredikat terbaik nasional' : ''}.
 
 Tugas: Tulis isi/narasi formal untuk ${jenis} berikut.
 
@@ -352,13 +372,7 @@ ${opsiTx || '-'}
 REKOMENDASI:
 ${rekomen || '-'}
 
-Tulis narasi ${jenis} yang terdiri dari:
-1. **PENDAHULUAN** — 1-2 paragraf formal: dasar dan tujuan ${jenis} ini dibuat
-2. **PERMASALAHAN** — Uraikan permasalahan/isu secara sistematis dan formal (bernomor)
-3. **ANALISIS** — Analisis tiap permasalahan dengan mengaitkan pada dasar hukum dan kondisi faktual${opsiTx ? '\n4. **ALTERNATIF PENYELESAIAN** — Uraikan opsi-opsi beserta kelebihan/kekurangannya' : ''}
-${opsiTx ? '5.' : '4.'} **KESIMPULAN DAN SARAN** — Simpulkan dan sampaikan rekomendasi/saran tindak secara tegas
-
-Format: narasi paragraf formal. Total 300-500 kata.`;
+${sections}`;
 
   setAiStatus('loading', 'Sedang menyusun narasi...');
   document.getElementById('btnGenAi').disabled = true;
@@ -441,7 +455,7 @@ function buildDocument(withAi) {
 
 <div style="border-top:1.5px solid #000;border-bottom:1.5px solid #000;padding:4px 0;margin-bottom:16px;text-align:center;font-weight:bold;font-size:13pt;letter-spacing:1px;text-transform:uppercase;">${jenis.toUpperCase()}</div>
 
-${dasHkList ? `<h3>I. DASAR / LANDASAN HUKUM</h3><ol>${dasHkList}</ol>` : ''}
+${dasHkList ? `<h3>DASAR / LANDASAN HUKUM</h3><ol>${dasHkList}</ol>` : ''}
 
 ${narasiHtml}
 
