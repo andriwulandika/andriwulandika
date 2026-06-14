@@ -154,6 +154,16 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
 .modal-input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;margin-bottom:8px;}
 .modal-input:focus{outline:none;border-color:var(--blue);}
 .modal-actions{display:flex;gap:10px;margin-top:16px;}
+.urusan-chips{display:flex;flex-wrap:wrap;gap:6px;min-height:20px;}
+.urusan-chip{display:flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;color:var(--blue);font-size:12px;font-weight:500;padding:5px 8px 5px 12px;border-radius:980px;}
+.urusan-chip button{background:none;border:none;color:var(--blue);cursor:pointer;font-size:15px;line-height:1;padding:0;display:flex;}
+.urusan-chip button:hover{color:var(--danger);}
+.urusan-empty{font-size:13px;color:var(--sub);}
+.urusan-group-label{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;padding:10px 6px 4px;}
+.urusan-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:8px;font-size:13px;cursor:pointer;}
+.urusan-item:hover{background:var(--bg);}
+.nomenklatur-box{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:18px;}
+.nomenklatur-box .form-row{margin-bottom:10px;}
 
 .wizard-step{display:none;}
 .wizard-step.active{display:block;}
@@ -312,68 +322,10 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
           <input type="number" id="tahunRenja" placeholder="2026" min="2020" max="2040"/>
         </div>
         <div class="form-group">
-          <label>Urusan Pemerintahan</label>
-          <select id="urusan">
-            <option value="">-- Pilih Urusan --</option>
-            <optgroup label="Urusan Wajib – Pelayanan Dasar">
-            <option value="1.01 Pendidikan">1.01 Pendidikan</option>
-            <option value="1.02 Kesehatan">1.02 Kesehatan</option>
-            <option value="1.03 Pekerjaan Umum dan Penataan Ruang">1.03 Pekerjaan Umum dan Penataan Ruang</option>
-            <option value="1.04 Perumahan Rakyat dan Kawasan Permukiman">1.04 Perumahan Rakyat dan Kawasan Permukiman</option>
-            <option value="1.05 Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat">1.05 Ketentraman, Ketertiban Umum, dan Perlindungan Masyarakat</option>
-            <option value="1.06 Sosial">1.06 Sosial</option>
-            </optgroup>
-            <optgroup label="Urusan Wajib – Non Pelayanan Dasar">
-            <option value="2.01 Tenaga Kerja">2.01 Tenaga Kerja</option>
-            <option value="2.02 Pemberdayaan Perempuan dan Perlindungan Anak">2.02 Pemberdayaan Perempuan dan Perlindungan Anak</option>
-            <option value="2.03 Pangan">2.03 Pangan</option>
-            <option value="2.04 Pertanahan">2.04 Pertanahan</option>
-            <option value="2.05 Lingkungan Hidup">2.05 Lingkungan Hidup</option>
-            <option value="2.06 Administrasi Kependudukan dan Pencatatan Sipil">2.06 Administrasi Kependudukan dan Pencatatan Sipil</option>
-            <option value="2.07 Pemberdayaan Masyarakat dan Desa">2.07 Pemberdayaan Masyarakat dan Desa</option>
-            <option value="2.08 Pengendalian Penduduk dan Keluarga Berencana">2.08 Pengendalian Penduduk dan Keluarga Berencana</option>
-            <option value="2.09 Perhubungan">2.09 Perhubungan</option>
-            <option value="2.10 Komunikasi dan Informatika">2.10 Komunikasi dan Informatika</option>
-            <option value="2.11 Koperasi, Usaha Kecil, dan Menengah">2.11 Koperasi, Usaha Kecil, dan Menengah</option>
-            <option value="2.12 Penanaman Modal">2.12 Penanaman Modal</option>
-            <option value="2.13 Kepemudaan dan Olahraga">2.13 Kepemudaan dan Olahraga</option>
-            <option value="2.14 Statistik">2.14 Statistik</option>
-            <option value="2.15 Persandian">2.15 Persandian</option>
-            <option value="2.16 Kebudayaan">2.16 Kebudayaan</option>
-            <option value="2.17 Perpustakaan">2.17 Perpustakaan</option>
-            <option value="2.18 Kearsipan">2.18 Kearsipan</option>
-            </optgroup>
-            <optgroup label="Urusan Pilihan">
-            <option value="3.01 Kelautan dan Perikanan">3.01 Kelautan dan Perikanan</option>
-            <option value="3.02 Pariwisata">3.02 Pariwisata</option>
-            <option value="3.03 Pertanian">3.03 Pertanian</option>
-            <option value="3.04 Kehutanan">3.04 Kehutanan</option>
-            <option value="3.05 Energi dan Sumber Daya Mineral">3.05 Energi dan Sumber Daya Mineral</option>
-            <option value="3.06 Perdagangan">3.06 Perdagangan</option>
-            <option value="3.07 Perindustrian">3.07 Perindustrian</option>
-            <option value="3.08 Transmigrasi">3.08 Transmigrasi</option>
-            </optgroup>
-            <optgroup label="Unsur Pendukung">
-            <option value="4.01 Sekretariat Daerah">4.01 Sekretariat Daerah</option>
-            <option value="4.02 Sekretariat DPRD">4.02 Sekretariat DPRD</option>
-            </optgroup>
-            <optgroup label="Unsur Penunjang">
-            <option value="5.01 Perencanaan">5.01 Perencanaan</option>
-            <option value="5.02 Keuangan">5.02 Keuangan</option>
-            <option value="5.03 Kepegawaian serta Pendidikan dan Pelatihan">5.03 Kepegawaian serta Pendidikan dan Pelatihan</option>
-            <option value="5.04 Penelitian dan Pengembangan">5.04 Penelitian dan Pengembangan</option>
-            <option value="5.05 Unsur Penunjang Lainnya">5.05 Unsur Penunjang Lainnya</option>
-            </optgroup>
-            <optgroup label="Unsur Pengawasan">
-            <option value="6.01 Inspektorat Daerah">6.01 Inspektorat Daerah</option>
-            </optgroup>
-            <optgroup label="Unsur Kewilayahan">
-            <option value="7.01 Kecamatan">7.01 Kecamatan</option>
-            </optgroup>
-            <optgroup label="Pemerintahan Umum">
-            <option value="8.01 Kesatuan Bangsa dan Politik">8.01 Kesatuan Bangsa dan Politik</option>
-            </optgroup>
-          </select>
+          <label>Bidang Urusan Pemerintahan</label>
+          <div class="urusan-chips" id="urusanChips"><span class="urusan-empty">Belum ada bidang urusan dipilih</span></div>
+          <button type="button" class="tbl-add-btn" style="margin-top:6px;align-self:flex-start;" onclick="openUrusanPicker()">+ Tambah Bidang Urusan</button>
+          <span class="hint">Sesuai nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran). OPD yang menangani lebih dari satu bidang urusan dapat menambahkan semuanya.</span>
         </div>
       </div>
 
@@ -409,7 +361,41 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
   <div class="wizard-step" id="step-1">
     <div class="card">
       <h2>2. Program, Kegiatan, dan Sub Kegiatan</h2>
-      <p class="card-sub">Masukkan struktur program sesuai nomenklatur Kepmendagri 050-5889/2021. Klik "+ Tambah Kegiatan" untuk menambah baris.</p>
+      <p class="card-sub">Masukkan struktur program sesuai nomenklatur Kepmendagri 050-5889/2021. Klik "+ Tambah Kegiatan" untuk menambah baris, atau gunakan pencarian nomenklatur resmi di bawah.</p>
+
+      <div class="nomenklatur-box">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;">📋 Tambah dari Nomenklatur Resmi (Kepmendagri 050-5889/2021, pemutakhiran)</div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Bidang Urusan</label>
+            <select id="nomBidang" onchange="onNomBidangChange()">
+              <option value="">-- Pilih Bidang Urusan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Program</label>
+            <select id="nomProgram" onchange="onNomProgramChange()" disabled>
+              <option value="">-- Pilih Program --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Kegiatan</label>
+            <select id="nomKegiatan" onchange="onNomKegiatanChange()" disabled>
+              <option value="">-- Pilih Kegiatan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Sub Kegiatan</label>
+            <select id="nomSub" disabled>
+              <option value="">-- Pilih Sub Kegiatan --</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="tbl-add-btn" onclick="addFromNomenklatur()">+ Tambahkan ke Tabel</button>
+        <span class="hint" style="display:block;margin-top:6px;">Memilih Sub Kegiatan akan menambahkan baris Program, Kegiatan, dan Sub Kegiatan beserta indikator &amp; satuan resmi ke tabel di bawah (jika belum ada).</span>
+      </div>
 
       <div class="prog-table-wrap">
         <table class="prog-tbl" id="progTable">
@@ -525,6 +511,18 @@ table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:f
 
 </div><!-- /main -->
 
+<!-- MODAL: PILIH BIDANG URUSAN -->
+<div class="modal-overlay" id="urusanModalOverlay">
+  <div class="modal" style="max-width:560px;">
+    <h3>Pilih Bidang Urusan</h3>
+    <p>Centang satu atau lebih bidang urusan yang ditangani OPD ini, sesuai nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran).</p>
+    <input type="text" class="modal-input" id="urusanSearch" placeholder="Cari bidang urusan..." oninput="renderUrusanList()"/>
+    <div id="urusanList" style="max-height:340px;overflow:auto;border:1px solid var(--border);border-radius:12px;padding:4px 10px;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-next" style="flex:1;" onclick="closeUrusanPicker()">Selesai</button>
+    </div>
+  </div>
+</div>
 
 <div class="compliance">
   <div style="max-width:700px;margin:0 auto;">
@@ -604,6 +602,199 @@ function validateStep(step) {
 }
 
 // ============================================================
+// NOMENKLATUR (Kepmendagri 050-5889/2021, pemutakhiran)
+// ============================================================
+let NOMENKLATUR_INDEX = [];
+let selectedUrusan = []; // array of bidang codes, e.g. '1.01'
+const nomenklaturCache = {};
+let currentNomKegiatan = null; // kegiatan object currently shown in #nomSub
+
+async function loadNomenklaturIndex() {
+  try {
+    const res = await fetch('assets/data/nomenklatur/index.json');
+    NOMENKLATUR_INDEX = await res.json();
+  } catch {
+    NOMENKLATUR_INDEX = [];
+  }
+  populateNomBidangSelect();
+}
+
+function getUrusanNama(code) {
+  return NOMENKLATUR_INDEX.find(b => b.code === code)?.nama || code;
+}
+
+function detectJenisPemda() {
+  return /provinsi/i.test(v('namaPemda')) ? 'PROV' : 'KABKOT';
+}
+
+async function getNomenklaturData(code) {
+  if (nomenklaturCache[code]) return nomenklaturCache[code];
+  const res = await fetch(`assets/data/nomenklatur/${code}.json`);
+  const data = await res.json();
+  nomenklaturCache[code] = data;
+  return data;
+}
+
+// ---- Urusan chips & picker modal ----
+function renderUrusanChips() {
+  const box = document.getElementById('urusanChips');
+  if (selectedUrusan.length === 0) {
+    box.innerHTML = '<span class="urusan-empty">Belum ada bidang urusan dipilih</span>';
+  } else {
+    box.innerHTML = selectedUrusan.map(code => `
+      <span class="urusan-chip">${esc(getUrusanNama(code))}<button type="button" onclick="toggleUrusan('${code}')" title="Hapus">×</button></span>
+    `).join('');
+  }
+  populateNomBidangSelect();
+}
+
+function openUrusanPicker() {
+  document.getElementById('urusanSearch').value = '';
+  renderUrusanList();
+  document.getElementById('urusanModalOverlay').classList.add('open');
+}
+
+function closeUrusanPicker() {
+  document.getElementById('urusanModalOverlay').classList.remove('open');
+}
+
+function renderUrusanList() {
+  const q = (document.getElementById('urusanSearch').value || '').toLowerCase();
+  const list = document.getElementById('urusanList');
+  const groups = [
+    { prefix: '1', label: 'Urusan Wajib – Pelayanan Dasar' },
+    { prefix: '2', label: 'Urusan Wajib – Non Pelayanan Dasar' },
+    { prefix: '3', label: 'Urusan Pilihan' },
+    { prefix: '4', label: 'Unsur Pendukung' },
+    { prefix: '5', label: 'Unsur Penunjang' },
+    { prefix: '6', label: 'Unsur Pengawasan' },
+    { prefix: '7', label: 'Unsur Kewilayahan' },
+    { prefix: '8', label: 'Pemerintahan Umum' },
+    { prefix: '9', label: 'Kekhususan Daerah' },
+  ];
+  let html = '';
+  groups.forEach(g => {
+    const items = NOMENKLATUR_INDEX.filter(b => b.code.startsWith(g.prefix + '.') &&
+      (!q || b.nama.toLowerCase().includes(q)));
+    if (items.length === 0) return;
+    html += `<div class="urusan-group-label">${esc(g.label)}</div>`;
+    items.forEach(b => {
+      const checked = selectedUrusan.includes(b.code) ? 'checked' : '';
+      html += `<label class="urusan-item"><input type="checkbox" ${checked} onchange="toggleUrusan('${b.code}')"/> ${esc(b.nama)}</label>`;
+    });
+  });
+  list.innerHTML = html || '<p class="urusan-empty" style="padding:12px;">Tidak ditemukan.</p>';
+}
+
+function toggleUrusan(code) {
+  const i = selectedUrusan.indexOf(code);
+  if (i >= 0) selectedUrusan.splice(i, 1);
+  else selectedUrusan.push(code);
+  renderUrusanChips();
+  renderUrusanList();
+}
+
+// ---- Cascading nomenklatur picker (Step 2) ----
+function populateNomBidangSelect() {
+  const sel = document.getElementById('nomBidang');
+  if (!sel) return;
+  const current = sel.value;
+  const options = selectedUrusan.length > 0
+    ? NOMENKLATUR_INDEX.filter(b => selectedUrusan.includes(b.code))
+    : NOMENKLATUR_INDEX;
+  sel.innerHTML = '<option value="">-- Pilih Bidang Urusan --</option>' +
+    options.map(b => `<option value="${b.code}">${esc(b.nama)}</option>`).join('');
+  if (options.some(b => b.code === current)) sel.value = current;
+  else { resetNomSelect('nomProgram', '-- Pilih Program --'); resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --'); resetNomSelect('nomSub', '-- Pilih Sub Kegiatan --'); }
+}
+
+function resetNomSelect(id, placeholder) {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  sel.innerHTML = `<option value="">${placeholder}</option>`;
+  sel.disabled = true;
+}
+
+async function onNomBidangChange() {
+  const code = v('nomBidang');
+  resetNomSelect('nomProgram', '-- Pilih Program --');
+  resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --');
+  resetNomSelect('nomSub', '-- Pilih Sub Kegiatan --');
+  if (!code) return;
+
+  const data = await getNomenklaturData(code);
+  const jenis = detectJenisPemda();
+  const progs = (data[jenis] && data[jenis].length > 0) ? data[jenis] : (data.PROV.length > 0 ? data.PROV : data.KABKOT);
+
+  const sel = document.getElementById('nomProgram');
+  sel.innerHTML = '<option value="">-- Pilih Program --</option>' +
+    progs.map((p, i) => `<option value="${i}">${esc(p.program)}</option>`).join('');
+  sel.disabled = progs.length === 0;
+  sel.dataset.progs = JSON.stringify(progs);
+}
+
+function onNomProgramChange() {
+  resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --');
+  resetNomSelect('nomSub', '-- Pilih Sub Kegiatan --');
+  const progSel = document.getElementById('nomProgram');
+  const idx = progSel.value;
+  if (idx === '') return;
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const kegiatan = progs[idx]?.kegiatan || [];
+
+  const sel = document.getElementById('nomKegiatan');
+  sel.innerHTML = '<option value="">-- Pilih Kegiatan --</option>' +
+    kegiatan.map((k, i) => `<option value="${i}">${esc(k.nama)}</option>`).join('');
+  sel.disabled = kegiatan.length === 0;
+  sel.dataset.kegiatan = JSON.stringify(kegiatan);
+}
+
+function onNomKegiatanChange() {
+  resetNomSelect('nomSub', '-- Pilih Sub Kegiatan --');
+  const kegSel = document.getElementById('nomKegiatan');
+  const idx = kegSel.value;
+  if (idx === '') return;
+  const kegiatan = JSON.parse(kegSel.dataset.kegiatan || '[]');
+  const sub = kegiatan[idx]?.sub || [];
+
+  const sel = document.getElementById('nomSub');
+  sel.innerHTML = '<option value="">-- Pilih Sub Kegiatan --</option>' +
+    sub.map((s, i) => `<option value="${i}">${esc(s.nama)}</option>`).join('');
+  sel.disabled = sub.length === 0;
+  sel.dataset.sub = JSON.stringify(sub);
+}
+
+function findProgRow(tipe, nama) {
+  return Array.from(document.querySelectorAll('#progBody tr')).find(tr =>
+    tr.dataset.tipe === tipe && tr.querySelector('[data-field="nama"]')?.value?.trim() === nama);
+}
+
+function addFromNomenklatur() {
+  const progSel = document.getElementById('nomProgram');
+  const kegSel = document.getElementById('nomKegiatan');
+  const subSel = document.getElementById('nomSub');
+  if (!progSel.value || !kegSel.value || !subSel.value) {
+    alert('Pilih Bidang Urusan, Program, Kegiatan, dan Sub Kegiatan terlebih dahulu.');
+    return;
+  }
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const kegiatan = JSON.parse(kegSel.dataset.kegiatan || '[]');
+  const sub = JSON.parse(subSel.dataset.sub || '[]');
+
+  const programNama = progs[progSel.value]?.program || '';
+  const kegiatanNama = kegiatan[kegSel.value]?.nama || '';
+  const subData = sub[subSel.value];
+  if (!subData) return;
+
+  if (programNama && !findProgRow('program', programNama)) addProgRow('program', { nama: programNama });
+  if (kegiatanNama && !findProgRow('kegiatan', kegiatanNama)) addProgRow('kegiatan', { nama: kegiatanNama });
+  if (!findProgRow('subkegiatan', subData.nama)) {
+    addProgRow('subkegiatan', { nama: subData.nama, indikator: subData.ind, satuan: subData.sat || '%' });
+  }
+  renumberProg();
+}
+
+// ============================================================
 // PROGRAM TABLE
 // ============================================================
 const SATUAN_LIST = ['%','Dokumen','Kegiatan','Orang','Unit','Paket','km','Ha','Ton','Nilai','Skor','Rp','Lainnya'];
@@ -631,7 +822,7 @@ function addProgRow(tipe = 'kegiatan', data = {}) {
     <td><input type="text" data-field="indikator" placeholder="Indikator kinerja..." value="${esc(data.indikator||'')}"/></td>
     <td><input type="number" data-field="target" placeholder="Target" value="${data.target||''}" step="any"/></td>
     <td>
-      <select data-field="satuan">${SATUAN_LIST.map(s=>`<option ${s===(data.satuan||'%')?'selected':''}>${s}</option>`).join('')}</select>
+      <select data-field="satuan">${(data.satuan && !SATUAN_LIST.includes(data.satuan) ? [data.satuan, ...SATUAN_LIST] : SATUAN_LIST).map(s=>`<option ${s===(data.satuan||'%')?'selected':''}>${esc(s)}</option>`).join('')}</select>
     </td>
     <td class="col-perubahan"><input type="number" data-field="paguSemula" placeholder="Pagu semula Rp" value="${data.paguSemula||''}"/></td>
     <td><input type="number" data-field="pagu" placeholder="Pagu Rp" value="${data.pagu||''}"/></td>
@@ -668,7 +859,7 @@ async function generateNarasi() {
   const opd    = v('namaOpd');
   const pemda  = v('namaPemda');
   const tahun  = v('tahunRenja');
-  const urusan = v('urusan');
+  const urusan = selectedUrusan.map(getUrusanNama).join('; ');
   const tupok  = v('tupoksi');
   const vismis = v('visiMisi');
   const isu    = v('isuStrategis');
@@ -757,7 +948,7 @@ function buildDocument() {
   const opd     = v('namaOpd');
   const pemda   = v('namaPemda');
   const tahun   = v('tahunRenja');
-  const urusan  = v('urusan');
+  const urusan  = selectedUrusan.map(getUrusanNama).join('; ');
   const kepala  = v('namaKepala');
   const renstra = v('periodeRenstra');
   const narasi  = document.getElementById('aiNarasi')?.value || '';
@@ -955,6 +1146,9 @@ document.addEventListener('DOMContentLoaded', () => {
   addProgRow('program', { nama: '', indikator: '', target: '', satuan: '%', pagu: '' });
   addProgRow('kegiatan');
   addProgRow('subkegiatan');
+
+  // Nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran)
+  loadNomenklaturIndex();
 
   updateStepUI();
 
