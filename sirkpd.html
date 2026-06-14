@@ -107,6 +107,8 @@ table.data-tbl input,table.data-tbl select,table.data-tbl textarea{border:none;b
 table.data-tbl input:focus,table.data-tbl select:focus,table.data-tbl textarea:focus{outline:1px solid var(--teal);border-radius:3px;}
 .tbl-add-btn{font-size:13px;color:var(--teal);cursor:pointer;background:none;border:1.5px dashed var(--teal);border-radius:980px;padding:6px 16px;transition:all .2s;margin-bottom:8px;}
 .tbl-add-btn:hover{background:#e0f2fe;}
+.nomenklatur-box{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:18px;}
+.nomenklatur-box .form-row{margin-bottom:10px;}
 .tbl-del{color:var(--danger);cursor:pointer;font-size:16px;font-weight:700;background:none;border:none;padding:0 4px;}
 
 /* NAV BUTTONS */
@@ -437,6 +439,26 @@ table.data-tbl input:focus,table.data-tbl select:focus,table.data-tbl textarea:f
       <h2>4. Program Prioritas RKPD</h2>
       <p class="card-sub">Program prioritas pembangunan daerah beserta OPD penanggung jawab dan pagu indikatif.</p>
 
+      <div class="nomenklatur-box">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;">📋 Tambah dari Nomenklatur Resmi (Kepmendagri 050-5889/2021, pemutakhiran)</div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Bidang Urusan</label>
+            <select id="nomBidang" onchange="onNomBidangChange()">
+              <option value="">-- Pilih Bidang Urusan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Program</label>
+            <select id="nomProgram" disabled>
+              <option value="">-- Pilih Program --</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="tbl-add-btn" onclick="addFromNomenklatur()">+ Tambahkan ke Tabel</button>
+        <span class="hint" style="display:block;margin-top:6px;">Menambahkan baris Bidang/Urusan dan Program Prioritas sesuai nomenklatur resmi — lengkapi OPD penanggung jawab dan pagu secara manual.</span>
+      </div>
+
       <div class="tbl-wrap">
         <table class="data-tbl" id="progTable">
           <thead>
@@ -585,6 +607,75 @@ function getIsuData() {
     bidang: tr.querySelector('[data-field="bidang"]')?.value||'',
     isu: tr.querySelector('[data-field="isu"]')?.value?.trim()||'',
   })).filter(r => r.isu);
+}
+
+// ============================================================
+// NOMENKLATUR (Kepmendagri 050-5889/2021, pemutakhiran)
+// ============================================================
+let NOMENKLATUR_INDEX = [];
+const nomenklaturCache = {};
+
+async function loadNomenklaturIndex() {
+  try {
+    const res = await fetch('assets/data/nomenklatur/index.json');
+    NOMENKLATUR_INDEX = await res.json();
+  } catch {
+    NOMENKLATUR_INDEX = [];
+  }
+  const sel = document.getElementById('nomBidang');
+  if (sel) {
+    sel.innerHTML = '<option value="">-- Pilih Bidang Urusan --</option>' +
+      NOMENKLATUR_INDEX.map(b => `<option value="${b.code}">${esc(b.nama)}</option>`).join('');
+  }
+}
+
+function detectJenisPemda() {
+  return v('jabatanKepala') === 'Gubernur' ? 'PROV' : 'KABKOT';
+}
+
+async function getNomenklaturData(code) {
+  if (nomenklaturCache[code]) return nomenklaturCache[code];
+  const res = await fetch(`assets/data/nomenklatur/${code}.json`);
+  const data = await res.json();
+  nomenklaturCache[code] = data;
+  return data;
+}
+
+function shortBidangNama(nama) {
+  return nama.replace(/^(\d[\d.]*) URUSAN PEMERINTAHAN BIDANG /, '$1 ');
+}
+
+async function onNomBidangChange() {
+  const code = v('nomBidang');
+  const sel = document.getElementById('nomProgram');
+  sel.innerHTML = '<option value="">-- Pilih Program --</option>';
+  sel.disabled = true;
+  if (!code) return;
+
+  const data = await getNomenklaturData(code);
+  const jenis = detectJenisPemda();
+  const progs = (data[jenis] && data[jenis].length > 0) ? data[jenis] : (data.PROV.length > 0 ? data.PROV : data.KABKOT);
+
+  sel.innerHTML = '<option value="">-- Pilih Program --</option>' +
+    progs.map((p, i) => `<option value="${i}">${esc(p.program)}</option>`).join('');
+  sel.disabled = progs.length === 0;
+  sel.dataset.progs = JSON.stringify(progs);
+}
+
+function addFromNomenklatur() {
+  const bidangSel = document.getElementById('nomBidang');
+  const progSel = document.getElementById('nomProgram');
+  if (!bidangSel.value || !progSel.value) {
+    alert('Pilih Bidang Urusan dan Program terlebih dahulu.');
+    return;
+  }
+  const bidangNama = bidangSel.options[bidangSel.selectedIndex].textContent;
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const programNama = progs[progSel.value]?.program || '';
+  if (!programNama) return;
+
+  addProg({ bidang: shortBidangNama(bidangNama), program: programNama });
+  renumberProg();
 }
 
 // ============================================================
@@ -850,6 +941,7 @@ function exportPdf() {
 // HELPERS
 // ============================================================
 function v(id) { return document.getElementById(id)?.value?.trim()||''; }
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
 function fmtRp(n) { return 'Rp ' + Math.round(n||0).toLocaleString('id-ID'); }
 
 // INIT — pre-populate dengan 3 contoh baris
@@ -861,6 +953,9 @@ function fmtRp(n) { return 'Rp ' + Math.round(n||0).toLocaleString('id-ID'); }
   addProg({bidang:'Infrastruktur', program:'Program Penyelenggaraan Jalan', opd:'Dinas PUPR', pagu:'150.000.000.000'});
   addProg({bidang:'Kesehatan', program:'Program Pemenuhan Upaya Kesehatan Masyarakat', opd:'Dinas Kesehatan', pagu:'120.000.000.000'});
   addProg({bidang:'Pendidikan', program:'Program Pengelolaan Pendidikan Dasar', opd:'Dinas Pendidikan', pagu:'200.000.000.000'});
+
+  // Nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran)
+  loadNomenklaturIndex();
 })();
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -155,6 +155,8 @@ textarea{resize:vertical;min-height:80px;}
 .tbl-del{color:var(--danger);cursor:pointer;font-size:18px;font-weight:700;background:none;border:none;padding:0 4px;}
 .tbl-add-btn{font-size:13px;color:var(--green);cursor:pointer;background:none;border:1.5px dashed var(--green);border-radius:980px;padding:6px 16px;transition:all .2s;}
 .tbl-add-btn:hover{background:#dcfce7;}
+.nomenklatur-box{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:18px;}
+.nomenklatur-box .form-row{margin-bottom:10px;}
 
 .preview-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
 .preview-toolbar h2{flex:1;font-size:18px;}
@@ -291,6 +293,40 @@ textarea{resize:vertical;min-height:80px;}
             <option value="TOR">TOR — Term of Reference</option>
           </select>
         </div>
+      </div>
+
+      <div class="nomenklatur-box">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;">📋 Isi dari Nomenklatur Resmi (Kepmendagri 050-5889/2021, pemutakhiran)</div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Bidang Urusan</label>
+            <select id="nomBidang" onchange="onNomBidangChange()">
+              <option value="">-- Pilih Bidang Urusan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Program</label>
+            <select id="nomProgram" onchange="onNomProgramChange()" disabled>
+              <option value="">-- Pilih Program --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Kegiatan</label>
+            <select id="nomKegiatan" onchange="onNomKegiatanChange()" disabled>
+              <option value="">-- Pilih Kegiatan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Sub Kegiatan (opsional)</label>
+            <select id="nomSub" disabled>
+              <option value="">-- (tanpa sub kegiatan) --</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="tbl-add-btn" onclick="applyFromNomenklatur()">+ Isi Otomatis Program/Kegiatan</button>
+        <span class="hint" style="display:block;margin-top:6px;">Mengisi Nama Program, Nama Kegiatan, Nama Sub Kegiatan, dan Kode Rekening secara otomatis sesuai nomenklatur resmi.</span>
       </div>
 
       <div class="form-group">
@@ -529,6 +565,134 @@ let currentStep = 0;
 const TOTAL_STEPS = 5;
 const STEP_LABELS = ['Identitas','Detail Kegiatan','Anggaran & Jadwal','Narasi AI','Preview & Ekspor'];
 let komponenList = [];
+
+// ============================================================
+// NOMENKLATUR (Kepmendagri 050-5889/2021, pemutakhiran)
+// ============================================================
+let NOMENKLATUR_INDEX = [];
+const nomenklaturCache = {};
+
+async function loadNomenklaturIndex() {
+  try {
+    const res = await fetch('assets/data/nomenklatur/index.json');
+    NOMENKLATUR_INDEX = await res.json();
+  } catch {
+    NOMENKLATUR_INDEX = [];
+  }
+  const sel = document.getElementById('nomBidang');
+  if (sel) {
+    sel.innerHTML = '<option value="">-- Pilih Bidang Urusan --</option>' +
+      NOMENKLATUR_INDEX.map(b => `<option value="${b.code}">${esc(b.nama)}</option>`).join('');
+  }
+}
+
+function detectJenisPemda() {
+  return /provinsi/i.test(v('namaPemda')) ? 'PROV' : 'KABKOT';
+}
+
+async function getNomenklaturData(code) {
+  if (nomenklaturCache[code]) return nomenklaturCache[code];
+  const res = await fetch(`assets/data/nomenklatur/${code}.json`);
+  const data = await res.json();
+  nomenklaturCache[code] = data;
+  return data;
+}
+
+const KECIL_WORDS = ['dan','di','ke','dari','yang','untuk','pada','atau','dengan','serta','dalam','antar'];
+function titleCaseID(str) {
+  return str.toLowerCase().split(' ').map((w, i) =>
+    (i > 0 && KECIL_WORDS.includes(w)) ? w : (w.charAt(0).toUpperCase() + w.slice(1))
+  ).join(' ');
+}
+
+function splitKodeNama(s) {
+  const m = s.match(/^([\d.]+)\s+(.*)$/);
+  return m ? { kode: m[1], nama: m[2] } : { kode: '', nama: s };
+}
+
+async function onNomBidangChange() {
+  const code = v('nomBidang');
+  resetNomSelect('nomProgram', '-- Pilih Program --');
+  resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --');
+  resetNomSelect('nomSub', '-- (tanpa sub kegiatan) --');
+  if (!code) return;
+
+  const data = await getNomenklaturData(code);
+  const jenis = detectJenisPemda();
+  const progs = (data[jenis] && data[jenis].length > 0) ? data[jenis] : (data.PROV.length > 0 ? data.PROV : data.KABKOT);
+
+  const sel = document.getElementById('nomProgram');
+  sel.innerHTML = '<option value="">-- Pilih Program --</option>' +
+    progs.map((p, i) => `<option value="${i}">${esc(p.program)}</option>`).join('');
+  sel.disabled = progs.length === 0;
+  sel.dataset.progs = JSON.stringify(progs);
+}
+
+function resetNomSelect(id, placeholder) {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  sel.innerHTML = `<option value="">${placeholder}</option>`;
+  sel.disabled = true;
+}
+
+function onNomProgramChange() {
+  resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --');
+  resetNomSelect('nomSub', '-- (tanpa sub kegiatan) --');
+  const progSel = document.getElementById('nomProgram');
+  const idx = progSel.value;
+  if (idx === '') return;
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const kegiatan = progs[idx]?.kegiatan || [];
+
+  const sel = document.getElementById('nomKegiatan');
+  sel.innerHTML = '<option value="">-- Pilih Kegiatan --</option>' +
+    kegiatan.map((k, i) => `<option value="${i}">${esc(k.nama)}</option>`).join('');
+  sel.disabled = kegiatan.length === 0;
+  sel.dataset.kegiatan = JSON.stringify(kegiatan);
+}
+
+function onNomKegiatanChange() {
+  resetNomSelect('nomSub', '-- (tanpa sub kegiatan) --');
+  const kegSel = document.getElementById('nomKegiatan');
+  const idx = kegSel.value;
+  if (idx === '') return;
+  const kegiatan = JSON.parse(kegSel.dataset.kegiatan || '[]');
+  const sub = kegiatan[idx]?.sub || [];
+
+  const sel = document.getElementById('nomSub');
+  sel.innerHTML = '<option value="">-- (tanpa sub kegiatan) --</option>' +
+    sub.map((s, i) => `<option value="${i}">${esc(s.nama)}</option>`).join('');
+  sel.disabled = sub.length === 0;
+  sel.dataset.sub = JSON.stringify(sub);
+}
+
+function applyFromNomenklatur() {
+  const progSel = document.getElementById('nomProgram');
+  const kegSel = document.getElementById('nomKegiatan');
+  const subSel = document.getElementById('nomSub');
+  if (!progSel.value || !kegSel.value) {
+    alert('Pilih Bidang Urusan, Program, dan Kegiatan terlebih dahulu.');
+    return;
+  }
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const kegiatan = JSON.parse(kegSel.dataset.kegiatan || '[]');
+
+  const prog = splitKodeNama(progs[progSel.value]?.program || '');
+  const keg = splitKodeNama(kegiatan[kegSel.value]?.nama || '');
+
+  document.getElementById('namaProgram').value = titleCaseID(prog.nama);
+  document.getElementById('namaKegiatan').value = keg.nama;
+  document.getElementById('kodeRekening').value = keg.kode;
+
+  if (subSel.value !== '') {
+    const sub = JSON.parse(subSel.dataset.sub || '[]');
+    const sk = splitKodeNama(sub[subSel.value]?.nama || '');
+    document.getElementById('namaSubKegiatan').value = sk.nama;
+    document.getElementById('kodeRekening').value = sk.kode;
+  } else {
+    document.getElementById('namaSubKegiatan').value = '';
+  }
+}
 
 // ============================================================
 // STEP NAVIGATION
@@ -887,6 +1051,9 @@ function fmtTgl(d) {
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('tahunAnggaran').value = new Date().getFullYear() + 1;
+
+  // Nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran)
+  loadNomenklaturIndex();
 
   // Mobile nav toggle
   document.getElementById('navToggle')?.addEventListener('click', () => {
