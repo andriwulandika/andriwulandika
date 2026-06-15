@@ -250,13 +250,9 @@
         <div class="card-title">Generator Kode Baru</div>
 
         <div class="gen-row">
-          <select class="select-field" id="genEngine" onchange="updateTierOptions()">
-            <option value="gemini">Berbayar (Gemini)</option>
-            <option value="claude">Premium (Claude)</option>
-          </select>
           <select class="select-field" id="genTier">
-            <option value="bulanan">Bulanan — Rp 100.000</option>
-            <option value="tahunan">Tahunan — Rp 960.000</option>
+            <option value="bulanan">Bulanan — Rp 99.000</option>
+            <option value="tahunan">Tahunan — Rp 950.000</option>
           </select>
         </div>
 
@@ -283,20 +279,12 @@
         <div class="card-title">Paket &amp; Panduan</div>
         <table style="font-size:0.8rem;">
           <tr>
-            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--accent);">Gemini · Bulanan</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 100.000 — aktif 1 bulan</td>
+            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--accent);">Berbayar · Bulanan</td>
+            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 99.000 — aktif 1 bulan</td>
           </tr>
           <tr>
-            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:#1a7a3e;">Gemini · Tahunan</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 960.000 — aktif 12 bulan</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:#b85c1f;">Claude · Bulanan</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 200.000 — aktif 1 bulan</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 0;font-weight:600;color:#b85c1f;">Claude · Tahunan</td>
-            <td style="padding:8px 0 8px 12px;color:var(--text2);">Rp 1.920.000 — aktif 12 bulan</td>
+            <td style="padding:8px 0;font-weight:600;color:#1a7a3e;">Berbayar · Tahunan</td>
+            <td style="padding:8px 0 8px 12px;color:var(--text2);">Rp 950.000 — aktif 12 bulan</td>
           </tr>
         </table>
         <div style="margin-top:16px;padding:12px;background:var(--bg);border-radius:8px;font-size:0.78rem;color:var(--text2);line-height:1.6;">
@@ -347,23 +335,16 @@
 
   const SESSION_KEY = 'admin_session';
   const SENT_KEY = 'admin_sent_codes';
+  // Harga 'claude' dipertahankan hanya untuk menampilkan riwayat kode Premium lama.
   const PRICE = {
-    gemini: { bulanan: 100000, tahunan: 960000 },
+    gemini: { bulanan: 99000, tahunan: 950000 },
     claude: { bulanan: 200000, tahunan: 1920000 },
   };
 
   function tierLabel(t) { return t === 'tahunan' ? 'Tahunan' : 'Bulanan'; }
-  function engineLabel(e) { return e === 'claude' ? 'Premium (Claude)' : 'Berbayar (Gemini)'; }
+  function engineLabel(e) { return e === 'claude' ? 'Premium (Claude)' : 'Berbayar'; }
   function fmtRupiah(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
   function formatDate(d) { return new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); }
-
-  function updateTierOptions() {
-    const engine = document.getElementById('genEngine').value;
-    const p = PRICE[engine];
-    document.getElementById('genTier').innerHTML =
-      `<option value="bulanan">Bulanan — ${fmtRupiah(p.bulanan)}</option>` +
-      `<option value="tahunan">Tahunan — ${fmtRupiah(p.tahunan)}</option>`;
-  }
 
   /* ── LOGIN ── */
   async function login() {
@@ -416,7 +397,6 @@
   }
 
   async function generateCode() {
-    const engine = document.getElementById('genEngine').value;
     const tier = document.getElementById('genTier').value;
     const name = document.getElementById('genName').value.trim();
     const btn = document.getElementById('genBtn');
@@ -427,7 +407,7 @@
       const res = await fetch(`${WORKER_URL}/admin/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: sessionStorage.getItem(SESSION_KEY), tier, engine, name }),
+        body: JSON.stringify({ password: sessionStorage.getItem(SESSION_KEY), tier, engine: 'gemini', name }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -569,7 +549,6 @@
 
   window.login = login;
   window.logout = logout;
-  window.updateTierOptions = updateTierOptions;
   window.generateCode = generateCode;
   window.copyGeneratedCode = copyGeneratedCode;
   window.refreshCodes = refreshCodes;
