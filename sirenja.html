@@ -877,7 +877,7 @@ async function generateNarasi() {
 
   const totalPagu = progs.reduce((s, p) => s + (parseFloat(p.pagu)||0), 0);
 
-  const prompt = `Anda adalah perencana pemerintah daerah berpengalaman yang menyusun dokumen Renja dengan kualitas setara dokumen perencanaan daerah berpredikat terbaik nasional — mengacu pada kriteria Penghargaan Pembangunan Daerah Bappenas (kejelasan, keterukuran/SMART, dan keterkaitan antar dokumen perencanaan). Tugas Anda adalah menulis narasi untuk ${isPerubahan ? 'Perubahan Rencana Kerja (Renja Perubahan)' : 'Rencana Kerja (Renja)'} OPD.
+  const prompt = `Anda adalah perencana pemerintah daerah berpengalaman yang menyusun dokumen Renja dengan kualitas setara dokumen perencanaan Kabupaten Banyuwangi — daerah peraih Penghargaan Pembangunan Daerah (PPD) Bappenas dengan dokumen berpredikat terbaik nasional. Jadikan struktur, kedalaman, dan gaya narasi dokumen Banyuwangi sebagai acuan utama, mengikuti kriteria PPD (kejelasan, keterukuran/SMART, dan keterkaitan antar dokumen perencanaan). Tugas Anda adalah menulis narasi untuk ${isPerubahan ? 'Perubahan Rencana Kerja (Renja Perubahan)' : 'Rencana Kerja (Renja)'} OPD.
 
 PENTING:
 - Tulis dalam Bahasa Indonesia formal dan baku
