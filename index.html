@@ -562,7 +562,7 @@
     <li><a href="harga.html">Harga</a></li>
     <li><a href="regulasi.html">Regulasi</a></li>
     <li><a href="#blog">Blog</a></li>
-    <li><a href="aktifkan-pro.html">Masuk</a></li>
+    <li id="navMasukItem"><a href="aktifkan-pro.html" id="navMasuk">Masuk</a></li>
     <li><a href="#kontak" class="nav-cta">Konsultasi</a></li>
   </ul>
   <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -1080,6 +1080,14 @@
     document.querySelector('nav').style.borderBottomColor =
       window.scrollY > 10 ? 'rgba(0,0,0,0.1)' : 'rgba(0,0,0,0.06)';
   });
+</script>
+<script type="module">
+  import { getAccessStatus } from './assets/js/apiService.js';
+  const status = getAccessStatus();
+  if (status.active) {
+    const link = document.getElementById('navMasuk');
+    if (link) { link.textContent = 'Dashboard'; link.href = 'dashboard.html'; }
+  }
 </script>
 </body>
 </html>

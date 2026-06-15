@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — Andri Wulandika</title>
+  <meta name="description" content="Dashboard AI Tools — akses semua aplikasi perencanaan daerah dan panduan penggunaannya di satu tempat."/>
+  <meta name="robots" content="noindex"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #0b0c10; --surface: #16181d; --surface2: #1e2128;
+      --text: #f5f5f7; --text2: #9a9ca3;
+      --accent: #2997ff; --green: #34c759; --red: #ff453a;
+      --border: #2c2f37; --radius: 18px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased;
+      background-image: radial-gradient(circle at 50% -10%, rgba(41,151,255,0.18), transparent 45%);
+    }
+
+    /* Top bar */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      height: 56px; background: rgba(11,12,16,0.78);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    .nav-logo { font-size: 1rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .nav-link { font-size: 0.82rem; color: var(--text2); text-decoration: none; }
+    .nav-link:hover { color: var(--text); }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.74rem; font-weight: 600; padding: 5px 12px; border-radius: 980px;
+      border: 1px solid var(--border); color: var(--text2);
+    }
+    .status-pill.active { color: #34c759; border-color: rgba(52,199,89,0.35); background: rgba(52,199,89,0.08); }
+    .status-pill.demo { color: #ff9f0a; border-color: rgba(255,159,10,0.35); background: rgba(255,159,10,0.08); }
+
+    /* Layout */
+    .page { max-width: 1080px; margin: 0 auto; padding: 96px 24px 80px; }
+
+    /* Header / welcome */
+    .welcome { margin-bottom: 28px; }
+    .welcome-eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .welcome h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .welcome p { color: var(--text2); font-size: 0.95rem; line-height: 1.6; max-width: 640px; }
+
+    /* Status card */
+    .status-card {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px 22px; margin: 24px 0 36px;
+    }
+    .status-card .dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+      background: var(--green); box-shadow: 0 0 0 4px rgba(52,199,89,0.18);
+    }
+    .status-card.demo .dot { background: #ff9f0a; box-shadow: 0 0 0 4px rgba(255,159,10,0.18); }
+    .status-card .info { flex: 1; min-width: 200px; }
+    .status-card .info strong { font-size: 0.95rem; display: block; margin-bottom: 2px; }
+    .status-card .info span { font-size: 0.82rem; color: var(--text2); }
+    .status-card .cta {
+      flex-shrink: 0; padding: 10px 18px; border-radius: 980px; font-size: 0.84rem; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .status-card .cta.upgrade { background: var(--accent); color: #fff; }
+    .status-card .cta.upgrade:hover { opacity: 0.85; }
+
+    /* Section title */
+    .section-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 16px; }
+
+    /* Tools grid */
+    .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    @media (max-width: 760px) { .tools-grid { grid-template-columns: 1fr; } }
+
+    .tool-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px; display: flex; flex-direction: column;
+      border-top: 3px solid var(--tool-color, var(--accent));
+    }
+    .tool-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .tool-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+      background: color-mix(in srgb, var(--tool-color, var(--accent)) 18%, transparent);
+    }
+    .tool-name { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+    .tool-tag { font-size: 0.76rem; color: var(--tool-color, var(--accent)); font-weight: 600; }
+    .tool-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin-bottom: 16px; flex: 1; }
+
+    .tool-btn {
+      display: block; text-align: center; padding: 11px;
+      background: var(--tool-color, var(--accent)); color: #fff;
+      border-radius: 12px; font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s; margin-bottom: 10px;
+    }
+    .tool-btn:hover { opacity: 0.88; }
+
+    /* Guide (collapsible) */
+    .guide { border-top: 1px solid var(--border); padding-top: 10px; }
+    .guide summary {
+      cursor: pointer; font-size: 0.82rem; font-weight: 600; color: var(--text);
+      list-style: none; display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 0;
+    }
+    .guide summary::-webkit-details-marker { display: none; }
+    .guide summary::after { content: '+'; color: var(--text2); font-weight: 400; font-size: 1rem; }
+    .guide[open] summary::after { content: '–'; }
+    .guide-body { padding-top: 10px; }
+    .guide-steps { list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .guide-steps li {
+      counter-increment: step; font-size: 0.82rem; color: var(--text2); line-height: 1.5;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .guide-steps li::before {
+      content: counter(step); flex-shrink: 0;
+      width: 20px; height: 20px; border-radius: 50%; background: var(--surface2);
+      color: var(--text); font-size: 0.7rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .guide-link { font-size: 0.8rem; color: var(--tool-color, var(--accent)); text-decoration: none; font-weight: 600; }
+    .guide-link:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border); padding: 24px;
+      text-align: center; font-size: 0.78rem; color: var(--text2);
+    }
+    footer a { color: var(--text2); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Andri Wulandika <span style="color:var(--text2);font-weight:500;">/ Dashboard</span></a>
+  <div class="nav-right">
+    <span class="status-pill" id="navStatus">Memeriksa…</span>
+    <a href="index.html" class="nav-link">Beranda</a>
+    <a href="#" class="nav-link" id="logoutLink" style="display:none;">Keluar</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="welcome">
+    <div class="welcome-eyebrow">Dashboard</div>
+    <h1>Selamat datang kembali 👋</h1>
+    <p>Semua AI Tools dan panduan penggunaannya ada di sini. Klik "Buka Aplikasi" untuk mulai bekerja, atau buka "Panduan Penggunaan" untuk melihat langkah-langkah singkat tiap aplikasi.</p>
+  </div>
+
+  <div class="status-card" id="statusCard">
+    <div class="dot"></div>
+    <div class="info">
+      <strong id="statusTitle">Memeriksa status akses…</strong>
+      <span id="statusDetail">Mohon tunggu sebentar.</span>
+    </div>
+  </div>
+
+  <div class="section-title">AI Tools (8)</div>
+  <div class="tools-grid">
+
+    <article class="tool-card" style="--tool-color:#0071e3;">
+      <div class="tool-head">
+        <div class="tool-icon">📑</div>
+        <div>
+          <div class="tool-name">SiRENJA</div>
+          <div class="tool-tag">AI Asisten · Renja OPD</div>
+        </div>
+      </div>
+      <p class="tool-desc">Susun Renja OPD lebih cepat dengan bantuan AI — pilih program/kegiatan sesuai nomenklatur resmi terbaru, lalu biarkan AI menyusun narasinya.</p>
+      <a href="sirenja.html" class="tool-btn">Buka Aplikasi →</a>
+      <details class="guide">
+        <summary>📘 Panduan Penggunaan</summary>
+        <div class="guide-body">
+          <ol class="guide-steps">
+            <li>Isi Data OPD (nama, tugas, fungsi)</li>
+            <li>Pilih Program & Kegiatan sesuai nomenklatur resmi</li>
+            <li>Tentukan Isu & Prioritas daerah</li>
+            <li>AI menyusun narasi Renja</li>
+            <li>Preview & Ekspor dokumen</li>
+          </ol>
+          <a href="renja-opd-panduan-lengkap.html" class="guide-link">Baca panduan lengkap →</a>
+        </div>
+      </details>
+    </article>
+
+    <article class="tool-card" style="--tool-color:#34c759;">
+      <div class="tool-head">
+        <div class="tool-icon">🏛️</div>
+        <div>
+          <div class="tool-name">SiRKPD</div>
+          <div class="tool-tag">AI Asisten · RKPD</div>
+        </div>
+      </div>
+      <p class="tool-desc">Bantu penyusunan RKPD dari isu strategis hingga program prioritas, lengkap dengan nomenklatur Program/Kegiatan/Sub Kegiatan resmi terbaru.</p>
+      <a href="sirkpd.html" class="tool-btn">Buka Aplikasi →</a>
+      <details class="guide">
+        <summary>📘 Panduan Penggunaan</summary>
+        <div class="guide-body">
+          <ol class="guide-steps">
+            <li>Isi Identitas Daerah</li>
+            <li>Jelaskan Kondisi Daerah saat ini</li>
+            <li>Tentukan Isu Strategis</li>
+            <li>Susun Program Prioritas sesuai nomenklatur resmi</li>
+            <li>Preview & Ekspor dokumen</li>
+          </ol>
+          <a href="rkpd-dan-perubahan-rkpd.html" class="guide-link">Baca panduan lengkap →</a>
+        </div>
+      </details>
+    </article>
+
+    <article class="tool-card" style="--tool-color:#14b8a6;">
+      <div class="tool-head">
+        <div class="tool-icon">💬</div>
+        <div>
+          <div class="tool-name">SiPerda</div>
+          <div class="tool-tag">AI Chat · Konsultasi</div>
+        </div>
+      </div>
+      <p class="tool-desc">Tanya langsung ke AI ahli perencanaan daerah seputar RKPD, Renja, Renstra, SAKIP, RAB, dan regulasi terkait — cocok untuk konsultasi cepat.</p>
+      <a href="siperda.html" class="tool-btn">Buka Aplikasi →</a>
+      <details class="guide">
+        <summary>📘 Panduan Penggunaan</summary>
+        <div class="guide-body">
+          <ol class="guide-steps">
+            <li>Ketik pertanyaan Anda di kolom chat</li>
+            <li>AI menjawab berdasarkan regulasi & praktik terbaik perencanaan daerah</li>
+            <li>Lanjutkan tanya-jawab untuk memperdalam topik</li>
+          </ol>
+          <a href="regulasi.html" class="guide-link">Lihat kumpulan regulasi →</a>
+        </div>
+      </details>
+    </article>
+
+    <article class="tool-card" style="--tool-color:#7c3aed;">
+      <div class="tool-head">
+        <div class="tool-icon">📄</div>
+        <div>
+          <div class="tool-name">SiGenDok</div>
+          <div class="tool-tag">Generator Dokumen</div>
+        </div>
+      </div>
+      <p class="tool-desc">Isi formulir, langsung dapat dokumen resmi — PK berjenjang, SKP, Renstra OPD, Renja Perubahan, Telaahan Staf, Berita Acara, dan lainnya.</p>
+      <a href="sigendok.html" class="tool-btn">Buka Aplikasi →</a>
+      <details class="guide">
+        <summary>📘 Panduan Penggunaan</summary>
+        <div class="guide-body">
+          <ol class="guide-steps">
+            <li>Pilih jenis dokumen (Renja OPD, LKjIP/LAKIP, PK, Renstra OPD, Renja Perubahan, Telaahan Staf/ND, Berita Acara)</li>
+            <li>Isi formulir sesuai jenis dokumen yang dipilih</li>
+            <li>Generate & unduh dokumen siap pakai</li>
+          </ol>
+          <a href="cara-pakai-template-dokumen.html" class="guide-link">Baca panduan lengkap →</a>
+        </div>
+      </details>
+    </article>
+
+    <article class="tool-card" style="--tool-color:#16a34a;">
+      <div class="tool-head">
+        <div class="tool-icon">📊</div>
+        <div>
+          <div class="tool-name">SiLKjIP</div>
+          <div class="tool-tag">AI Writer · LKjIP</div>
+        </div>
+      </div>
+      <p class="tool-desc">Buat LKjIP lengkap dengan wizard 5 langkah, dari data OPD hingga analisis capaian kinerja yang disusun otomatis oleh AI.</p>
+      <a href="silkjip.html" class="tool-btn">Buka Aplikasi →</a>
+      <details class="guide">
+        <summary>📘 Panduan Penggunaan</summary>
+        <div class="guide-body">
+          <ol class="guide-steps">
+            <li>Isi Data OPD</li>
+            <li>Tentukan Sasaran & IKU</li>
+            <li>Masukkan Realisasi kinerja</li>
+            <li>AI menyusun Analisis capaian</li>
+            <li>Preview & Ekspor dokumen</li>
+          </ol>
+          <a href="sakip-dari-pk-hingga-lkjip.html" class="guide-link">Baca panduan lengkap →</a>
+        </div>
+      </details>
+    </article>
+
+    <article class="tool-card" style="--tool-color:#b45309;">
+      <div class="tool-head">
+        <div class="tool-icon">🧾</div>
+        <div>
+          <div class="tool-name">SiKTOR</div>
+          <div class="tool-tag">AI Writer · KAK/TOR</div>
+        </div>
+      </div>
+      <p class="tool-desc">Buat Kerangka Acuan Kerja (KAK/TOR) lengkap — identitas kegiatan, anggaran, jadwal, hingga narasi disusun otomatis oleh AI.</p>
+      <a href="siktor.html" class="tool-btn">Buka Aplikasi →</a>
+      <details class="guide">
+        <summary>📘 Panduan Penggunaan</summary>
+        <div class="guide-body">
+          <ol class="guide-steps">
+            <li>Isi Identitas kegiatan</li>
+            <li>Lengkapi Detail kegiatan</li>
+            <li>Susun Anggaran & Jadwal</li>
+            <li>AI menyusun narasi KAK/TOR</li>
+            <li>Preview & Ekspor dokumen</li>
+          </ol>
+          <a href="menyusun-kak-tor.html" class="guide-link">Baca panduan lengkap →</a>
+        </div>
+      </details>
+    </article>
+
+    <article class="tool-card" style="--tool-color:#0d9488;">
+      <div class="tool-head">
+        <div class="tool-icon">✍️</div>
+        <div>
+          <div class="tool-name">SiTelaah</div>
+          <div class="tool-tag">AI Writer · Telaahan Staf</div>
+        </div>
+      </div>
+      <p class="tool-desc">AI Writer untuk Telaahan Staf & Nota Dinas — isi identitas surat dan uraian masalah, AI yang menyusun narasinya.</p>
+      <a href="sitelaah.html" class="tool-btn">Buka Aplikasi →</a>
+      <details class="guide">
+        <summary>📘 Panduan Penggunaan</summary>
+        <div class="guide-body">
+          <ol class="guide-steps">
+            <li>Isi identitas surat (nomor, tujuan, perihal)</li>
+            <li>Isi uraian / pokok masalah</li>
+            <li>AI menyusun narasi telaahan</li>
+            <li>Ekspor dokumen</li>
+          </ol>
+          <a href="nota-dinas-vs-telaahan-staf.html" class="guide-link">Baca panduan lengkap →</a>
+        </div>
+      </details>
+    </article>
+
+    <article class="tool-card" style="--tool-color:#4f46e5;">
+      <div class="tool-head">
+        <div class="tool-icon">🗒️</div>
+        <div>
+          <div class="tool-name">SiBACARA</div>
+          <div class="tool-tag">AI Writer · Berita Acara</div>
+        </div>
+      </div>
+      <p class="tool-desc">AI Writer untuk Berita Acara Rapat — isi identitas rapat dan poin pembahasan, AI yang menyusun narasinya.</p>
+      <a href="sibacara.html" class="tool-btn">Buka Aplikasi →</a>
+      <details class="guide">
+        <summary>📘 Panduan Penggunaan</summary>
+        <div class="guide-body">
+          <ol class="guide-steps">
+            <li>Isi identitas rapat (nomor, agenda, peserta)</li>
+            <li>Isi poin pembahasan & kesimpulan</li>
+            <li>AI menyusun narasi berita acara</li>
+            <li>Ekspor dokumen</li>
+          </ol>
+          <a href="berita-acara-rapat.html" class="guide-link">Baca panduan lengkap →</a>
+        </div>
+      </details>
+    </article>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Andri Wulandika &nbsp;·&nbsp; <a href="index.html">Beranda</a> &nbsp;·&nbsp; <a href="harga.html">Harga</a> &nbsp;·&nbsp; <a href="aktifkan-pro.html">Akun</a> &nbsp;·&nbsp; <a href="https://wa.me/62811660568" target="_blank">WhatsApp</a></p>
+</footer>
+
+<script type="module">
+  import { getAccessStatus, clearAccess } from './assets/js/apiService.js';
+
+  function formatDate(d) {
+    return new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function render() {
+    const status = getAccessStatus();
+    const navStatus = document.getElementById('navStatus');
+    const statusCard = document.getElementById('statusCard');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusDetail = document.getElementById('statusDetail');
+    const logoutLink = document.getElementById('logoutLink');
+
+    if (status.active) {
+      navStatus.textContent = '🟢 Berbayar Aktif';
+      navStatus.classList.add('active');
+
+      statusTitle.textContent = `Anda masuk sebagai pengguna Berbayar${status.name ? ' — ' + status.name : ''}`;
+      statusDetail.textContent = `Akses penuh tanpa batas demo · Aktif hingga ${formatDate(status.expiresAt)}`;
+
+      logoutLink.style.display = 'inline';
+      logoutLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!confirm('Keluar dari akun ini di perangkat ini?')) return;
+        clearAccess();
+        location.reload();
+      });
+    } else {
+      navStatus.textContent = '🔓 Mode Demo';
+      navStatus.classList.add('demo');
+      statusCard.classList.add('demo');
+
+      statusTitle.textContent = 'Anda menggunakan Mode Demo';
+      statusDetail.textContent = 'Hasil dari setiap AI Tools masih dibatasi (preview). Aktifkan akses Berbayar untuk hasil lengkap tanpa batas.';
+
+      const cta = document.createElement('a');
+      cta.href = 'aktifkan-pro.html';
+      cta.className = 'cta upgrade';
+      cta.textContent = 'Aktifkan Akses Berbayar';
+      statusCard.appendChild(cta);
+    }
+  }
+
+  render();
+</script>
+</body>
+</html>
