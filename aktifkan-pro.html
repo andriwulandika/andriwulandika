@@ -278,7 +278,7 @@
   import { verifyAccessCode, getAccessStatus, clearAccess, formatApiError } from './assets/js/apiService.js';
 
   function tierLabel(tier, engine) {
-    const engineName = engine === 'claude' ? 'Premium (Claude)' : 'Berbayar (Gemini)';
+    const engineName = 'Berbayar';
     const durName = tier === 'tahunan' ? 'Tahunan' : 'Bulanan';
     return `${engineName} — ${durName}`;
   }

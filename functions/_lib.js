@@ -2,7 +2,7 @@
  * _lib.js — Logika bersama untuk Cloudflare Pages Functions.
  * Bukan endpoint (tidak meng-export onRequest*); hanya diimpor oleh file route.
  *
- * Backend = proxy ke Google Gemini API + sistem kode akses berbayar.
+ * Backend = proxy ke AI (Claude untuk Berbayar, Gemini untuk demo) + sistem kode akses berbayar.
  * Karena Functions satu domain dengan website, frontend memanggil path relatif
  * (/generate, /verify, /admin/*) sehingga tidak perlu CORS.
  *
@@ -10,7 +10,7 @@
  *  1. Bindings -> KV namespace: variable "ACCESS_CODES" -> pilih namespace ACCESS_CODES.
  *  2. Variables and Secrets (type Secret):
  *       GEMINI_API_KEY   (dari https://aistudio.google.com/app/apikey)
- *       CLAUDE_API_KEY   (dari https://console.anthropic.com/settings/keys, untuk paket Premium)
+ *       CLAUDE_API_KEY   (dari https://console.anthropic.com/settings/keys, mesin AI pengguna Berbayar)
  *       ADMIN_PASSWORD   (password bebas untuk halaman admin-kode)
  */
 
@@ -189,7 +189,8 @@ export async function handleGenerate(body, env, clientIp) {
   const maxTokens = validateMaxTokens(body.maxTokens);
 
   const access = await checkCode(env, body.code);
-  const engine = access?.engine === 'claude' ? 'claude' : 'gemini';
+  // Pengguna Berbayar (kode akses valid) memakai Claude; mode demo tetap Gemini.
+  const engine = access ? 'claude' : 'gemini';
   const text = engine === 'claude'
     ? await callClaudeAPI(prompt, env, { temperature, maxTokens })
     : await callGeminiAPI(prompt, env, { temperature, maxTokens });
