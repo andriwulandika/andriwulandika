@@ -1043,6 +1043,7 @@ p{margin:6pt 0;text-align:justify;}
   a.download = filename + '.doc';
   document.body.appendChild(a); a.click();
   document.body.removeChild(a); URL.revokeObjectURL(url);
+  try{const _h=JSON.parse(localStorage.getItem('gen_history')||'[]');_h.unshift({tool:'SiLKjIP',title:(filename||'Dokumen').replace(/_/g,' ').trim(),href:'silkjip.html',at:Date.now()});localStorage.setItem('gen_history',JSON.stringify(_h.slice(0,80)));}catch(_e){}
 }
 
 function exportPdf() {

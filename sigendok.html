@@ -1801,6 +1801,7 @@ ${content}
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+  try{const _h=JSON.parse(localStorage.getItem('gen_history')||'[]');_h.unshift({tool:'SiGenDok',title:(title||'Dokumen').trim(),href:'sigendok.html',at:Date.now()});localStorage.setItem('gen_history',JSON.stringify(_h.slice(0,80)));}catch(_e){}
 }
 
 function showPreview(title, html) {

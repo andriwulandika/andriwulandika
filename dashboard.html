@@ -5,7 +5,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard — Andri Wulandika</title>
-  <meta name="description" content="Ruang kerja AI Tools perencanaan daerah — akses semua aplikasi dan panduan penggunaannya di satu tempat."/>
+  <meta name="description" content="Ruang kerja AI Tools perencanaan daerah — akses semua aplikasi, panduan, dan riwayat dokumen yang Anda buat dalam satu tempat."/>
   <meta name="robots" content="noindex"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <style>
@@ -91,35 +91,86 @@
 
     .content { padding: 28px; max-width: 1180px; }
 
-    /* Welcome */
-    .welcome h1 { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
-    .welcome p { color: var(--text2); font-size: 0.92rem; line-height: 1.6; max-width: 660px; }
+    /* ===== Hero ===== */
+    .hero {
+      position: relative; overflow: hidden;
+      border-radius: 22px; padding: 30px 32px; margin-bottom: 22px;
+      background: linear-gradient(135deg, #0071e3 0%, #5b21b6 55%, #7c3aed 100%);
+      color: #fff;
+    }
+    .hero::after {
+      content: ''; position: absolute; right: -60px; top: -60px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.22), transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 { font-size: clamp(1.45rem, 3.2vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; position: relative; }
+    .hero p { font-size: 0.92rem; line-height: 1.6; max-width: 620px; opacity: 0.92; position: relative; }
+    .hero-chip {
+      display: inline-flex; align-items: center; gap: 7px; position: relative;
+      margin-top: 16px; padding: 7px 15px; border-radius: 980px;
+      font-size: 0.8rem; font-weight: 600;
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.28); color: #fff;
+      backdrop-filter: blur(4px);
+    }
+    .hero-chip .led { width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+    .hero-chip.demo .led { background: #fde68a; }
+    .hero-chip.active .led { background: #86efac; }
 
-    /* Status banner */
+    /* ===== Stats ===== */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 30px; }
+    @media (max-width: 720px) { .stats { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px 20px; display: flex; align-items: center; gap: 15px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .stat-ico {
+      width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.35rem;
+      background: var(--accent-soft);
+    }
+    .stat-ico.g { background: rgba(22,163,74,0.12); }
+    .stat-ico.p { background: rgba(124,58,237,0.12); }
+    .stat-meta .sv { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+    .stat-meta .sl { font-size: 0.78rem; color: var(--text2); margin-top: 2px; }
+
+    /* ===== Access banner ===== */
     .banner {
       display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 18px 22px; margin: 22px 0 32px;
+      padding: 16px 20px; margin-bottom: 30px;
     }
+    .banner.demo { border-color: rgba(180,83,9,0.25); background: rgba(180,83,9,0.04); }
+    .banner.active { border-color: rgba(22,163,74,0.25); background: rgba(22,163,74,0.04); }
     .banner-ico {
-      width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
       background: var(--accent-soft);
     }
     .banner.demo .banner-ico { background: rgba(180,83,9,0.1); }
+    .banner.active .banner-ico { background: rgba(22,163,74,0.1); }
     .banner-info { flex: 1; min-width: 220px; }
-    .banner-info strong { font-size: 0.95rem; display: block; margin-bottom: 2px; }
-    .banner-info span { font-size: 0.83rem; color: var(--text2); }
+    .banner-info strong { font-size: 0.92rem; display: block; margin-bottom: 2px; }
+    .banner-info span { font-size: 0.82rem; color: var(--text2); }
     .banner-cta {
       flex-shrink: 0; padding: 10px 20px; border-radius: 980px; font-size: 0.85rem; font-weight: 600;
       background: var(--accent); color: #fff; transition: opacity 0.2s;
     }
     .banner-cta:hover { opacity: 0.88; }
 
-    /* Tools grid */
-    .grid-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
-    .grid-head h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
-    .grid-head span { font-size: 0.8rem; color: var(--text3); }
+    /* ===== Section heads ===== */
+    .grid-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap: 12px; flex-wrap: wrap; }
+    .grid-head h2 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; }
+    .grid-head .gh-sub { font-size: 0.8rem; color: var(--text3); }
+    .ghost-btn {
+      font-size: 0.78rem; font-weight: 600; color: var(--text2);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 980px;
+      padding: 6px 14px; cursor: pointer; transition: all 0.15s;
+    }
+    .ghost-btn:hover { color: var(--red); border-color: rgba(220,38,38,0.3); }
+
+    /* ===== Tools grid ===== */
     .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     @media (max-width: 1100px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 620px) { .tools-grid { grid-template-columns: 1fr; } }
@@ -129,7 +180,7 @@
       padding: 20px; display: flex; flex-direction: column;
       transition: box-shadow 0.2s, transform 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
     }
-    .tool-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .tool-card:hover { box-shadow: 0 10px 26px rgba(0,0,0,0.09); transform: translateY(-3px); }
     .tool-head { display: flex; align-items: center; gap: 13px; margin-bottom: 12px; }
     .tool-icon {
       width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0;
@@ -172,6 +223,46 @@
     .guide-link { font-size: 0.79rem; color: var(--tc); font-weight: 600; }
     .guide-link:hover { text-decoration: underline; }
 
+    /* ===== Riwayat ===== */
+    .history { margin-top: 40px; }
+    .history-list {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .history-row {
+      display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+      border-bottom: 1px solid var(--border); transition: background 0.15s;
+    }
+    .history-row:last-child { border-bottom: none; }
+    .history-row:hover { background: var(--surface2); }
+    .hr-ico {
+      width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+      background: color-mix(in srgb, var(--tc) 14%, #fff); color: var(--tc);
+    }
+    .hr-main { flex: 1; min-width: 0; }
+    .hr-title { font-size: 0.9rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hr-meta { font-size: 0.76rem; color: var(--text2); margin-top: 2px; }
+    .hr-meta .hr-tool { color: var(--tc); font-weight: 600; }
+    .hr-open {
+      flex-shrink: 0; font-size: 0.78rem; font-weight: 600; color: var(--tc);
+      border: 1px solid color-mix(in srgb, var(--tc) 35%, var(--border)); border-radius: 980px;
+      padding: 6px 14px; transition: all 0.15s; white-space: nowrap;
+    }
+    .hr-open:hover { background: color-mix(in srgb, var(--tc) 10%, #fff); }
+
+    .history-empty {
+      background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius);
+      padding: 44px 24px; text-align: center;
+    }
+    .history-empty .he-emoji { font-size: 2.4rem; }
+    .history-empty strong { display: block; font-size: 0.98rem; margin: 12px 0 5px; }
+    .history-empty p { font-size: 0.85rem; color: var(--text2); line-height: 1.55; max-width: 420px; margin: 0 auto 18px; }
+    .history-empty a {
+      display: inline-block; padding: 10px 22px; border-radius: 980px;
+      background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
+    }
+
     /* Quality note */
     .quality-note {
       margin-top: 30px; background: var(--surface); border: 1px solid var(--border);
@@ -208,6 +299,7 @@
     <nav class="sidebar-nav">
       <div class="nav-section">Menu</div>
       <a class="nav-item active"><span class="ico">🏠</span> Dashboard</a>
+      <a href="#riwayat" class="nav-item"><span class="ico">🕘</span> Riwayat Dokumen</a>
       <a href="index.html" class="nav-item"><span class="ico">🌐</span> Beranda Situs</a>
       <a href="harga.html" class="nav-item"><span class="ico">💳</span> Langganan</a>
 
@@ -246,11 +338,31 @@
     </header>
 
     <div class="content">
-      <div class="welcome">
-        <h1 id="welcomeTitle">Selamat datang 👋</h1>
-        <p>Ini ruang kerja Anda. Semua AI Tools dan panduan penggunaannya ada di sini — klik <strong>Buka Aplikasi</strong> untuk mulai bekerja, atau buka <strong>Panduan Penggunaan</strong> untuk melihat langkah-langkah singkat tiap aplikasi.</p>
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1 id="heroTitle">Selamat datang 👋</h1>
+        <p>Ini ruang kerja Anda. Semua AI Tools, panduan penggunaan, dan riwayat dokumen yang pernah Anda buat ada di satu tempat. Pilih aplikasi untuk mulai bekerja.</p>
+        <span class="hero-chip" id="heroChip"><span class="led"></span> Memeriksa status…</span>
+      </section>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-ico p">📄</div>
+          <div class="stat-meta"><div class="sv" id="statTotal">0</div><div class="sl">Dokumen dibuat</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-ico g">⭐</div>
+          <div class="stat-meta"><div class="sv" id="statFav">—</div><div class="sl">Tool paling sering dipakai</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-ico">🕘</div>
+          <div class="stat-meta"><div class="sv" id="statLast">—</div><div class="sl">Dokumen terakhir</div></div>
+        </div>
       </div>
 
+      <!-- Access banner -->
       <div class="banner" id="banner">
         <div class="banner-ico" id="bannerIco">⏳</div>
         <div class="banner-info">
@@ -259,9 +371,10 @@
         </div>
       </div>
 
+      <!-- Tools -->
       <div class="grid-head">
         <h2>AI Tools</h2>
-        <span>8 aplikasi</span>
+        <span class="gh-sub">8 aplikasi</span>
       </div>
       <div class="tools-grid">
 
@@ -413,6 +526,18 @@
 
       </div>
 
+      <!-- Riwayat Generate Dokumen -->
+      <section class="history" id="riwayat">
+        <div class="grid-head">
+          <div>
+            <h2>🕘 Riwayat Generate Dokumen</h2>
+            <span class="gh-sub" id="historySub">Dokumen yang Anda ekspor akan tercatat di sini</span>
+          </div>
+          <button class="ghost-btn" id="clearHistoryBtn" style="display:none;">Hapus Riwayat</button>
+        </div>
+        <div id="historyContainer"></div>
+      </section>
+
       <div class="quality-note">
         <span class="qn-ico">🏆</span>
         <div>
@@ -427,13 +552,94 @@
 <script type="module">
   import { getAccessStatus, clearAccess } from './assets/js/apiService.js';
 
-  function formatDate(d) {
-    return new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  // Metadata tiap tool untuk tampilan riwayat (ikon, warna, nama tampilan).
+  const TOOLS = {
+    SiRENJA:  { icon: '📑', color: '#0071e3', href: 'sirenja.html',  label: 'SiRENJA · Renja OPD' },
+    SiRKPD:   { icon: '🏛️', color: '#34c759', href: 'sirkpd.html',   label: 'SiRKPD · RKPD' },
+    SiGenDok: { icon: '📄', color: '#7c3aed', href: 'sigendok.html', label: 'SiGenDok · Generator Dokumen' },
+    SiLKjIP:  { icon: '📊', color: '#16a34a', href: 'silkjip.html',  label: 'SiLKjIP · LKjIP' },
+    SiKTOR:   { icon: '🧾', color: '#b45309', href: 'siktor.html',   label: 'SiKTOR · KAK/TOR' },
+    SiTelaah: { icon: '✍️', color: '#0d9488', href: 'sitelaah.html', label: 'SiTelaah · Telaahan Staf' },
+    SiBACARA: { icon: '🗒️', color: '#4f46e5', href: 'sibacara.html', label: 'SiBACARA · Berita Acara' },
+  };
+
+  const fmtDateFull = (d) => new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  function relativeTime(ts) {
+    const diff = Date.now() - ts;
+    const min = Math.round(diff / 60000);
+    if (min < 1) return 'Baru saja';
+    if (min < 60) return `${min} menit lalu`;
+    const hr = Math.round(min / 60);
+    if (hr < 24) return `${hr} jam lalu`;
+    const day = Math.round(hr / 24);
+    if (day === 1) return 'Kemarin';
+    if (day < 7) return `${day} hari lalu`;
+    return new Date(ts).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function getHistory() {
+    try {
+      const arr = JSON.parse(localStorage.getItem('gen_history') || '[]');
+      return Array.isArray(arr) ? arr.filter(e => e && e.at && TOOLS[e.tool]) : [];
+    } catch { return []; }
+  }
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
+
+  function renderHistory() {
+    const history = getHistory();
+    const container = document.getElementById('historyContainer');
+    const clearBtn = document.getElementById('clearHistoryBtn');
+    const sub = document.getElementById('historySub');
+
+    // Stats
+    document.getElementById('statTotal').textContent = history.length;
+    if (history.length) {
+      const counts = {};
+      history.forEach(e => { counts[e.tool] = (counts[e.tool] || 0) + 1; });
+      const favKey = Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0];
+      document.getElementById('statFav').textContent = favKey;
+      document.getElementById('statLast').textContent = relativeTime(history[0].at);
+      sub.textContent = `${history.length} dokumen telah Anda ekspor dari perangkat ini`;
+      clearBtn.style.display = 'inline-block';
+    } else {
+      document.getElementById('statFav').textContent = '—';
+      document.getElementById('statLast').textContent = '—';
+      clearBtn.style.display = 'none';
+    }
+
+    if (!history.length) {
+      container.innerHTML = `
+        <div class="history-empty">
+          <div class="he-emoji">🗂️</div>
+          <strong>Belum ada dokumen</strong>
+          <p>Setiap kali Anda mengekspor dokumen dari salah satu AI Tools, catatannya akan otomatis muncul di sini — lengkap dengan tautan untuk membukanya lagi.</p>
+          <a href="sigendok.html">Buat dokumen pertama →</a>
+        </div>`;
+      return;
+    }
+
+    const rows = history.map(e => {
+      const t = TOOLS[e.tool];
+      return `
+        <div class="history-row" style="--tc:${t.color};">
+          <div class="hr-ico">${t.icon}</div>
+          <div class="hr-main">
+            <div class="hr-title">${esc(e.title || 'Dokumen')}</div>
+            <div class="hr-meta"><span class="hr-tool">${esc(e.tool)}</span> · ${relativeTime(e.at)} · ${fmtDateFull(e.at)}</div>
+          </div>
+          <a href="${t.href}" class="hr-open">Buka lagi →</a>
+        </div>`;
+    }).join('');
+    container.innerHTML = `<div class="history-list">${rows}</div>`;
   }
 
   function render() {
     const status = getAccessStatus();
     const navStatus = document.getElementById('navStatus');
+    const heroChip = document.getElementById('heroChip');
+    const heroTitle = document.getElementById('heroTitle');
     const banner = document.getElementById('banner');
     const bannerIco = document.getElementById('bannerIco');
     const bannerTitle = document.getElementById('bannerTitle');
@@ -443,20 +649,25 @@
     const userAvatar = document.getElementById('userAvatar');
     const logoutBtn = document.getElementById('logoutBtn');
 
+    // Sapaan sesuai waktu
+    const h = new Date().getHours();
+    const greet = h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 19 ? 'Selamat sore' : 'Selamat malam';
+    const name = status.active && status.name ? status.name : '';
+    heroTitle.textContent = `${greet}${name ? ', ' + name : ''} 👋`;
+
     if (status.active) {
       navStatus.classList.add('active');
       navStatus.innerHTML = '<span class="led"></span> Berbayar Aktif';
+      heroChip.classList.add('active');
+      heroChip.innerHTML = `<span class="led"></span> Akses penuh aktif hingga ${fmtDateFull(status.expiresAt)}`;
 
+      banner.classList.add('active');
       bannerIco.textContent = '✅';
       bannerTitle.textContent = `Akses penuh aktif${status.name ? ' — ' + status.name : ''}`;
-      bannerDetail.textContent = `Semua AI Tools tanpa batas demo · Aktif hingga ${formatDate(status.expiresAt)}`;
+      bannerDetail.textContent = `Semua AI Tools tanpa batas demo · Aktif hingga ${fmtDateFull(status.expiresAt)}`;
 
-      if (status.name) {
-        userName.textContent = status.name;
-        userAvatar.textContent = status.name.trim().charAt(0).toUpperCase() || 'U';
-      } else {
-        userName.textContent = 'Pengguna Berbayar';
-      }
+      userName.textContent = status.name || 'Pengguna Berbayar';
+      userAvatar.textContent = (status.name || 'P').trim().charAt(0).toUpperCase() || 'U';
       userRole.textContent = 'Berbayar · Aktif';
 
       logoutBtn.style.display = 'inline';
@@ -468,8 +679,10 @@
     } else {
       navStatus.classList.add('demo');
       navStatus.innerHTML = '<span class="led"></span> Mode Demo';
-      banner.classList.add('demo');
+      heroChip.classList.add('demo');
+      heroChip.innerHTML = '<span class="led"></span> Mode Demo — hasil masih dibatasi';
 
+      banner.classList.add('demo');
       bannerIco.textContent = '🔓';
       bannerTitle.textContent = 'Anda menggunakan Mode Demo';
       bannerDetail.textContent = 'Hasil tiap AI Tools masih dibatasi (preview). Aktifkan akses Berbayar untuk hasil lengkap.';
@@ -496,7 +709,15 @@
     sidebar.classList.remove('open'); overlay.classList.remove('show');
   });
 
+  // Hapus riwayat
+  document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+    if (!confirm('Hapus seluruh riwayat dokumen di perangkat ini? Tindakan ini tidak bisa dibatalkan.')) return;
+    localStorage.removeItem('gen_history');
+    renderHistory();
+  });
+
   render();
+  renderHistory();
 </script>
 </body>
 </html>
