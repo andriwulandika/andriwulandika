@@ -31,12 +31,35 @@ export function clearAccess() {
   localStorage.removeItem('access_info');
 }
 
-/** Status akses dari cache lokal (tanpa request ke server). */
+/**
+ * Status akses dari cache lokal (tanpa request ke server).
+ * Model pay-as-you-go: akses aktif jika masih punya kredit (credits > 0) atau
+ * langganan lama yang belum kedaluwarsa (unlimited). `loggedIn` true jika kode
+ * pernah diverifikasi, walau saldo 0 (untuk menampilkan ajakan top-up).
+ */
 export function getAccessStatus() {
   const info = getAccessInfo();
-  if (!info || !info.expiresAt) return { active: false };
-  if (new Date(info.expiresAt) < new Date()) return { active: false, expired: true };
-  return { active: true, tier: info.tier, engine: info.engine || 'gemini', expiresAt: info.expiresAt, name: info.name || null };
+  if (!info) return { active: false, loggedIn: false, credits: 0 };
+  const unlimited = !!info.unlimited && !!info.expiresAt && new Date(info.expiresAt) > new Date();
+  const credits = Number.isInteger(info.credits) ? info.credits : 0;
+  return {
+    active: unlimited || credits > 0,
+    loggedIn: true,
+    credits,
+    unlimited,
+    expiresAt: info.expiresAt || null,
+    name: info.name || null,
+    engine: info.engine || 'claude',
+  };
+}
+
+/** Perbarui sisa kredit di cache lokal (dipanggil setelah tiap generate). */
+export function updateCredits(credits) {
+  const info = getAccessInfo();
+  if (info && Number.isInteger(credits)) {
+    info.credits = credits;
+    saveAccessInfo(info);
+  }
 }
 
 /** Verifikasi kode akses ke server, simpan hasilnya jika valid. */
@@ -49,7 +72,13 @@ export async function verifyAccessCode(code) {
   const data = await res.json();
   if (data.valid) {
     saveAccessCode(code);
-    saveAccessInfo({ tier: data.tier, engine: data.engine || 'gemini', expiresAt: data.expiresAt, name: data.name });
+    saveAccessInfo({
+      credits: data.credits,
+      unlimited: data.unlimited,
+      expiresAt: data.expiresAt,
+      name: data.name,
+      engine: data.engine || 'claude',
+    });
   }
   return data;
 }
@@ -74,7 +103,10 @@ export async function callAI(prompt, { temperature = 0.7, maxTokens = 4096 } = {
     const data = await res.json().catch(() => ({}));
     throw new Error(data.error || `API_ERROR_${res.status}`);
   }
-  return res.json();
+  const data = await res.json();
+  // Sinkronkan sisa kredit dari server agar saldo lokal selalu terbaru.
+  if (data && typeof data.credits === 'number') updateCredits(data.credits);
+  return data;
 }
 
 export function formatApiError(err) {

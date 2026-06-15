@@ -971,7 +971,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const access = getAccessStatus();
   const badge = document.getElementById('accessBadge');
   if (access.active) {
-    badge.textContent = access.engine === 'claude' ? '👑 Premium' : '👑 Berbayar';
+    badge.textContent = access.unlimited ? '👑 Berbayar' : '💳 ' + access.credits + ' kredit';
     badge.classList.add('active');
   } else {
     badge.textContent = '🔓 Demo';

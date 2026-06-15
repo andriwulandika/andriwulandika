@@ -226,7 +226,7 @@
       <div class="success-screen" id="successScreen">
         <div class="success-anim">✓</div>
         <h2 class="success-title">Berhasil Masuk!</h2>
-        <p class="success-sub">Selamat! Anda kini memiliki akses penuh (tanpa batas demo) ke semua AI Tools di perangkat ini.</p>
+        <p class="success-sub" id="successSub">Selamat! Akun Anda aktif di perangkat ini.</p>
 
         <div class="features-unlocked">
           <div class="features-title">Fitur yang Terbuka</div>
@@ -238,7 +238,7 @@
           </div>
           <div class="feature-row" id="featureClaude" style="display:none;">
             <span class="feature-check">✓</span>
-            <div class="feature-text">Mesin AI: Claude (Premium)
+            <div class="feature-text">Mesin AI: Claude
               <span>Kualitas narasi lebih natural, runtut, dan formal</span>
             </div>
           </div>
@@ -263,6 +263,7 @@
         </div>
 
         <a href="dashboard.html" class="go-btn">Buka Dashboard →</a>
+        <a href="#" id="topupBtn" class="go-btn" style="background:#16a34a;color:#fff;display:none;" target="_blank" rel="noopener">💳 Top-up Kredit via WhatsApp</a>
         <a href="index.html" class="go-btn" style="background:var(--bg2);color:var(--text);">Kembali ke Beranda</a>
         <button class="deactivate-btn" onclick="deactivate()">Keluar dari akun ini</button>
       </div>
@@ -277,11 +278,7 @@
 <script type="module">
   import { verifyAccessCode, getAccessStatus, clearAccess, formatApiError } from './assets/js/apiService.js';
 
-  function tierLabel(tier, engine) {
-    const engineName = 'Berbayar';
-    const durName = tier === 'tahunan' ? 'Tahunan' : 'Bulanan';
-    return `${engineName} — ${durName}`;
-  }
+  const WA_TOPUP = 'https://wa.me/62811660568?text=' + encodeURIComponent('Halo, saya ingin top-up kredit untuk kode akses Andri Wulandika saya.');
 
   function formatDate(d) {
     return new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -318,14 +315,14 @@
       const data = await verifyAccessCode(raw);
       if (!data.valid) {
         inp.classList.add('error');
-        errEl.textContent = 'Kode tidak valid atau sudah kadaluarsa. Periksa kembali atau hubungi WhatsApp.';
+        errEl.textContent = 'Kode tidak dikenali. Periksa kembali atau hubungi WhatsApp.';
         errEl.classList.add('show');
         btn.disabled = false;
         btn.textContent = 'Masuk';
         return;
       }
       inp.classList.add('success');
-      showSuccess(data.tier, data.engine, data.expiresAt, data.name);
+      renderStatus(data);
     } catch (err) {
       inp.classList.add('error');
       errEl.textContent = formatApiError(err);
@@ -335,14 +332,33 @@
     }
   }
 
-  function showSuccess(tier, engine, expiresAt, name) {
+  // Tampilkan kartu status berdasarkan saldo kredit (atau langganan lama).
+  function renderStatus(s) {
     document.getElementById('enterForm').classList.add('hide');
     document.getElementById('successScreen').classList.add('show');
     document.getElementById('statusCard').classList.add('show');
-    document.getElementById('statusTitle').textContent = engine === 'claude' ? 'Premium Aktif' : 'Berbayar Aktif';
-    document.getElementById('statusDetail').textContent =
-      `${tierLabel(tier, engine)}${name ? ' • ' + name : ''} • Aktif hingga ${formatDate(expiresAt)}`;
-    document.getElementById('featureClaude').style.display = engine === 'claude' ? 'flex' : 'none';
+    document.getElementById('featureClaude').style.display = 'flex';
+
+    const credits = Number.isInteger(s.credits) ? s.credits : 0;
+    const topupBtn = document.getElementById('topupBtn');
+    if (topupBtn) {
+      topupBtn.href = WA_TOPUP;
+      topupBtn.style.display = s.unlimited ? 'none' : 'block';
+    }
+
+    if (s.unlimited) {
+      document.getElementById('statusTitle').textContent = 'Akses Penuh Aktif';
+      document.getElementById('statusDetail').textContent =
+        `Langganan aktif${s.name ? ' • ' + s.name : ''}${s.expiresAt ? ' • hingga ' + formatDate(s.expiresAt) : ''}`;
+      document.getElementById('successSub').textContent = 'Akses penuh ke semua AI Tools tanpa potong kredit.';
+    } else {
+      document.getElementById('statusTitle').textContent = credits > 0 ? 'Kredit Aktif' : 'Kredit Habis';
+      document.getElementById('statusDetail').textContent =
+        `Sisa kredit: ${credits} dokumen${s.name ? ' • ' + s.name : ''}`;
+      document.getElementById('successSub').textContent = credits > 0
+        ? `Anda punya ${credits} kredit. Setiap dokumen yang berhasil dibuat memakai 1 kredit.`
+        : 'Kredit Anda habis. Lakukan top-up untuk lanjut membuat dokumen.';
+    }
   }
 
   function deactivate() {
@@ -353,14 +369,8 @@
 
   function checkExisting() {
     const status = getAccessStatus();
-    if (!status.active) return;
-    document.getElementById('statusCard').classList.add('show');
-    document.getElementById('statusTitle').textContent = status.engine === 'claude' ? 'Premium Aktif' : 'Berbayar Aktif';
-    document.getElementById('statusDetail').textContent =
-      `${tierLabel(status.tier, status.engine)}${status.name ? ' • ' + status.name : ''} • Aktif hingga ${formatDate(status.expiresAt)}`;
-    document.getElementById('featureClaude').style.display = status.engine === 'claude' ? 'flex' : 'none';
-    document.getElementById('enterForm').classList.add('hide');
-    document.getElementById('successScreen').classList.add('show');
+    if (!status.loggedIn) return;
+    renderStatus(status);
   }
 
   window.onCodeInput = onCodeInput;

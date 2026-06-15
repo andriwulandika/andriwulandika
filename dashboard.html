@@ -649,52 +649,73 @@
     const userAvatar = document.getElementById('userAvatar');
     const logoutBtn = document.getElementById('logoutBtn');
 
-    // Sapaan sesuai waktu
-    const h = new Date().getHours();
-    const greet = h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 19 ? 'Selamat sore' : 'Selamat malam';
-    const name = status.active && status.name ? status.name : '';
-    heroTitle.textContent = `${greet}${name ? ', ' + name : ''} 👋`;
-
-    if (status.active) {
-      navStatus.classList.add('active');
-      navStatus.innerHTML = '<span class="led"></span> Berbayar Aktif';
-      heroChip.classList.add('active');
-      heroChip.innerHTML = `<span class="led"></span> Akses penuh aktif hingga ${fmtDateFull(status.expiresAt)}`;
-
-      banner.classList.add('active');
-      bannerIco.textContent = '✅';
-      bannerTitle.textContent = `Akses penuh aktif${status.name ? ' — ' + status.name : ''}`;
-      bannerDetail.textContent = `Semua AI Tools tanpa batas demo · Aktif hingga ${fmtDateFull(status.expiresAt)}`;
-
-      userName.textContent = status.name || 'Pengguna Berbayar';
-      userAvatar.textContent = (status.name || 'P').trim().charAt(0).toUpperCase() || 'U';
-      userRole.textContent = 'Berbayar · Aktif';
-
+    const WA_TOPUP = 'https://wa.me/62811660568?text=' + encodeURIComponent('Halo, saya ingin top-up kredit untuk kode akses Andri Wulandika saya.');
+    const bindLogout = () => {
       logoutBtn.style.display = 'inline';
       logoutBtn.addEventListener('click', () => {
         if (!confirm('Keluar dari akun ini di perangkat ini?')) return;
         clearAccess();
         location.reload();
       });
+    };
+
+    // Sapaan sesuai waktu
+    const h = new Date().getHours();
+    const greet = h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 19 ? 'Selamat sore' : 'Selamat malam';
+    const name = status.loggedIn && status.name ? status.name : '';
+    heroTitle.textContent = `${greet}${name ? ', ' + name : ''} 👋`;
+
+    if (status.active) {
+      const credits = status.credits;
+      navStatus.classList.add('active');
+      navStatus.innerHTML = '<span class="led"></span> ' + (status.unlimited ? 'Akses Penuh' : credits + ' kredit');
+      heroChip.classList.add('active');
+      heroChip.innerHTML = '<span class="led"></span> ' + (status.unlimited
+        ? `Akses penuh aktif${status.expiresAt ? ' hingga ' + fmtDateFull(status.expiresAt) : ''}`
+        : `💳 Sisa kredit: ${credits} dokumen`);
+
+      banner.classList.add('active');
+      bannerIco.textContent = status.unlimited ? '✅' : '💳';
+      bannerTitle.textContent = status.unlimited
+        ? `Akses penuh aktif${status.name ? ' — ' + status.name : ''}`
+        : `Sisa kredit: ${credits} dokumen`;
+      bannerDetail.textContent = status.unlimited
+        ? `Semua AI Tools tanpa potong kredit${status.expiresAt ? ' · Aktif hingga ' + fmtDateFull(status.expiresAt) : ''}`
+        : 'Setiap dokumen yang berhasil dibuat memakai 1 kredit · hasil penuh tanpa potongan.';
+
+      if (!status.unlimited) {
+        const cta = document.createElement('a');
+        cta.href = WA_TOPUP; cta.target = '_blank'; cta.rel = 'noopener';
+        cta.className = 'banner-cta'; cta.textContent = 'Top-up Kredit';
+        banner.appendChild(cta);
+      }
+
+      userName.textContent = status.name || 'Pengguna';
+      userAvatar.textContent = (status.name || 'P').trim().charAt(0).toUpperCase() || 'U';
+      userRole.textContent = status.unlimited ? 'Akses Penuh' : `${credits} kredit`;
+      bindLogout();
     } else {
+      const habis = status.loggedIn; // sudah login tapi kredit 0
       navStatus.classList.add('demo');
-      navStatus.innerHTML = '<span class="led"></span> Mode Demo';
+      navStatus.innerHTML = '<span class="led"></span> ' + (habis ? 'Kredit habis' : 'Mode Demo');
       heroChip.classList.add('demo');
-      heroChip.innerHTML = '<span class="led"></span> Mode Demo — hasil masih dibatasi';
+      heroChip.innerHTML = '<span class="led"></span> ' + (habis ? 'Kredit habis — silakan top-up' : 'Mode Demo — hasil masih dibatasi');
 
       banner.classList.add('demo');
-      bannerIco.textContent = '🔓';
-      bannerTitle.textContent = 'Anda menggunakan Mode Demo';
-      bannerDetail.textContent = 'Hasil tiap AI Tools masih dibatasi (preview). Aktifkan akses Berbayar untuk hasil lengkap.';
+      bannerIco.textContent = habis ? '💳' : '🔓';
+      bannerTitle.textContent = habis ? 'Kredit Anda habis' : 'Anda menggunakan Mode Demo';
+      bannerDetail.textContent = habis
+        ? 'Hasil kembali dibatasi (preview). Top-up kredit untuk lanjut membuat dokumen lengkap.'
+        : 'Hasil tiap AI Tools masih dibatasi (preview). Beli kredit untuk hasil lengkap — bayar sesuai pemakaian.';
 
-      userName.textContent = 'Tamu';
-      userRole.textContent = 'Mode Demo';
-      userAvatar.textContent = '?';
+      userName.textContent = habis ? (status.name || 'Pengguna') : 'Tamu';
+      userRole.textContent = habis ? '0 kredit' : 'Mode Demo';
+      userAvatar.textContent = habis ? ((status.name || 'P').trim().charAt(0).toUpperCase() || 'U') : '?';
 
       const cta = document.createElement('a');
-      cta.href = 'aktifkan-pro.html';
       cta.className = 'banner-cta';
-      cta.textContent = 'Aktifkan Akses';
+      if (habis) { cta.href = WA_TOPUP; cta.target = '_blank'; cta.rel = 'noopener'; cta.textContent = 'Top-up Kredit'; bindLogout(); }
+      else { cta.href = 'aktifkan-pro.html'; cta.textContent = 'Beli Kredit'; }
       banner.appendChild(cta);
     }
   }

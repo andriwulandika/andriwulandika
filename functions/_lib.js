@@ -18,6 +18,7 @@ const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // tanpa 0/O dan 1/I
 const DEMO_CHAR_LIMIT = 700;
 const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
 const CLAUDE_MODELS = ['claude-sonnet-4-6', 'claude-haiku-4-5'];
+const CREDIT_COST = 1; // kredit terpotong per dokumen yang berhasil dibuat (pay-as-you-go)
 
 // Rate limiting: max 100 requests per minute per IP
 const RATE_LIMIT_REQUESTS = 100;
@@ -167,10 +168,16 @@ async function checkCode(env, rawCode) {
   const code = String(rawCode).trim().toUpperCase();
   const raw = await env.ACCESS_CODES.get(code);
   if (!raw) return null;
-  const data = JSON.parse(raw);
-  if (new Date(data.expiresAt) < new Date()) return null;
-  return { code, ...data };
+  return { code, ...JSON.parse(raw) };
 }
+
+// ── Helper akses & kredit ──────────────────────────────────────────────
+// Sebuah kode kini berperan sebagai "dompet": punya field `credits` (sisa
+// dokumen). Kode langganan lama (punya `expiresAt`) tetap dihormati sebagai
+// akses tanpa batas sampai kedaluwarsa, tanpa memotong kredit.
+function creditsOf(data) { return data && Number.isInteger(data.credits) ? data.credits : 0; }
+function subActive(data) { return !!(data && data.expiresAt && new Date(data.expiresAt) > new Date()); }
+function hasAccess(data) { return !!data && (subActive(data) || creditsOf(data) > 0); }
 
 function isAdmin(body, env) {
   return !!body.password && body.password === env.ADMIN_PASSWORD;
@@ -188,36 +195,75 @@ export async function handleGenerate(body, env, clientIp) {
   const temperature = validateTemperature(body.temperature);
   const maxTokens = validateMaxTokens(body.maxTokens);
 
-  const access = await checkCode(env, body.code);
-  // Pengguna Berbayar (kode akses valid) memakai Claude; mode demo tetap Gemini.
-  const engine = access ? 'claude' : 'gemini';
-  const text = engine === 'claude'
+  const record = await checkCode(env, body.code);
+  const paid = hasAccess(record);
+  // Pengguna dengan kredit/langganan memakai Claude; mode demo tetap Gemini.
+  const engine = paid ? 'claude' : 'gemini';
+
+  // Panggil AI dulu. Jika gagal, error dilempar ke route handler dan kredit
+  // TIDAK terpotong — pengguna hanya membayar untuk dokumen yang berhasil.
+  const text = paid
     ? await callClaudeAPI(prompt, env, { temperature, maxTokens })
     : await callGeminiAPI(prompt, env, { temperature, maxTokens });
 
-  if (access) return json({ text, isDemo: false, engine });
-  return json({ text: truncateDemo(text), isDemo: true, engine });
+  if (paid) {
+    let credits = creditsOf(record);
+    // Langganan aktif = tanpa potong kredit; selain itu potong 1 kredit/dokumen.
+    if (!subActive(record)) {
+      credits = Math.max(0, credits - CREDIT_COST);
+      const { code, ...data } = record;
+      data.credits = credits;
+      await env.ACCESS_CODES.put(code, JSON.stringify(data));
+    }
+    return json({ text, isDemo: false, engine, credits, unlimited: subActive(record) });
+  }
+
+  return json({ text: truncateDemo(text), isDemo: true, engine, credits: creditsOf(record) });
 }
 
 export async function handleVerify(body, env) {
-  const access = await checkCode(env, body.code);
-  if (!access) return json({ valid: false });
-  return json({ valid: true, tier: access.tier, engine: access.engine || 'gemini', expiresAt: access.expiresAt, name: access.name || null });
+  const record = await checkCode(env, body.code);
+  if (!record) return json({ valid: false });
+  // valid:true selama kode dikenal (meski 0 kredit), supaya pengguna bisa
+  // "masuk" untuk melihat saldo & melakukan top-up. Akses generate tetap
+  // dijaga server-side oleh hasAccess().
+  return json({
+    valid: true,
+    credits: creditsOf(record),
+    unlimited: subActive(record),
+    expiresAt: record.expiresAt || null,
+    name: record.name || null,
+    engine: 'claude',
+  });
 }
 
+// Buat kode "dompet" baru dengan saldo kredit awal.
 export async function handleAdminGenerate(body, env) {
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
-  const tier = body.tier === 'tahunan' ? 'tahunan' : 'bulanan';
-  const engine = body.engine === 'claude' ? 'claude' : 'gemini';
-  const months = tier === 'tahunan' ? 12 : 1;
+  const credits = parseInt(body.credits, 10);
+  if (!Number.isInteger(credits) || credits < 1 || credits > 100000) {
+    return json({ error: 'Jumlah kredit tidak valid (1-100000)' }, 400);
+  }
   const name = (body.name || '').trim() || null;
-
-  const now = new Date();
-  const expires = new Date(now);
-  expires.setMonth(expires.getMonth() + months);
-
   const code = 'AW-' + randomCode(8);
-  const data = { tier, engine, name, createdAt: now.toISOString(), expiresAt: expires.toISOString() };
+  const data = { credits, name, createdAt: new Date().toISOString() };
+  await env.ACCESS_CODES.put(code, JSON.stringify(data));
+  return json({ code, ...data });
+}
+
+// Tambah saldo kredit ke kode yang sudah ada (top-up).
+export async function handleAdminTopup(body, env) {
+  if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
+  const code = String(body.code || '').trim().toUpperCase();
+  if (!code) return json({ error: 'code diperlukan' }, 400);
+  const amount = parseInt(body.credits, 10);
+  if (!Number.isInteger(amount) || amount < 1 || amount > 100000) {
+    return json({ error: 'Jumlah kredit tidak valid (1-100000)' }, 400);
+  }
+  const raw = await env.ACCESS_CODES.get(code);
+  if (!raw) return json({ error: 'Kode tidak ditemukan' }, 404);
+  const data = JSON.parse(raw);
+  data.credits = creditsOf(data) + amount;
   await env.ACCESS_CODES.put(code, JSON.stringify(data));
   return json({ code, ...data });
 }

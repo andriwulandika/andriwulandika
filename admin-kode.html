@@ -239,7 +239,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-num" id="stat-pro" style="color:var(--pro)">0</div>
-        <div class="stat-label">Paket Tahunan</div>
+        <div class="stat-label">Total Kredit</div>
       </div>
     </div>
 
@@ -250,10 +250,8 @@
         <div class="card-title">Generator Kode Baru</div>
 
         <div class="gen-row">
-          <select class="select-field" id="genTier">
-            <option value="bulanan">Bulanan — Rp 99.000</option>
-            <option value="tahunan">Tahunan — Rp 950.000</option>
-          </select>
+          <input type="number" class="select-field" id="genCredits" min="1" max="100000"
+            placeholder="Jumlah kredit (mis. 50)" value="50"/>
         </div>
 
         <div class="gen-row">
@@ -279,21 +277,21 @@
         <div class="card-title">Paket &amp; Panduan</div>
         <table style="font-size:0.8rem;">
           <tr>
-            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--accent);">Berbayar · Bulanan</td>
-            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">Rp 99.000 — aktif 1 bulan</td>
+            <td style="padding:8px 0;border-bottom:1px solid var(--border);font-weight:600;color:var(--accent);">Sistem kredit (PAYG)</td>
+            <td style="padding:8px 0 8px 12px;border-bottom:1px solid var(--border);color:var(--text2);">1 kredit = 1 dokumen berhasil dibuat</td>
           </tr>
           <tr>
-            <td style="padding:8px 0;font-weight:600;color:#1a7a3e;">Berbayar · Tahunan</td>
-            <td style="padding:8px 0 8px 12px;color:var(--text2);">Rp 950.000 — aktif 12 bulan</td>
+            <td style="padding:8px 0;font-weight:600;color:#1a7a3e;">Top-up</td>
+            <td style="padding:8px 0 8px 12px;color:var(--text2);">Tambah kredit via tombol "+Kredit" di daftar</td>
           </tr>
         </table>
         <div style="margin-top:16px;padding:12px;background:var(--bg);border-radius:8px;font-size:0.78rem;color:var(--text2);line-height:1.6;">
-          <strong style="color:var(--text);">Langkah kirim kode:</strong><br/>
-          1. Pilih paket &amp; isi nama (opsional), klik "+ Generate"<br/>
+          <strong style="color:var(--text);">Langkah:</strong><br/>
+          1. Isi jumlah kredit &amp; nama (opsional), klik "+ Generate" untuk kode baru<br/>
           2. Kode dibuat otomatis oleh server (format AW-XXXXXXXX)<br/>
           3. Klik "Kirim via WA" → pesan terisi otomatis<br/>
-          4. Kirim ke nomor WA pelanggan, lalu tandai "Sudah Terkirim" di daftar<br/><br/>
-          <strong style="color:var(--text);">Catatan:</strong> Kode disimpan di server (Cloudflare KV) via Worker, sehingga valid untuk validasi otomatis di semua AI Tools.
+          4. Pelanggan lama yang top-up: klik "+Kredit" pada kodenya di daftar<br/><br/>
+          <strong style="color:var(--text);">Catatan:</strong> Kredit disimpan di server (Cloudflare KV) dan otomatis terpotong 1 per dokumen di semua AI Tools.
         </div>
       </div>
     </div>
@@ -309,10 +307,9 @@
           <thead>
             <tr>
               <th>Kode</th>
-              <th>Paket</th>
-              <th>Engine</th>
+              <th>Sisa Kredit</th>
               <th>Nama</th>
-              <th>Kadaluarsa</th>
+              <th>Dibuat</th>
               <th>Status</th>
               <th>Aksi</th>
             </tr>
@@ -335,16 +332,9 @@
 
   const SESSION_KEY = 'admin_session';
   const SENT_KEY = 'admin_sent_codes';
-  // Harga 'claude' dipertahankan hanya untuk menampilkan riwayat kode Premium lama.
-  const PRICE = {
-    gemini: { bulanan: 99000, tahunan: 950000 },
-    claude: { bulanan: 200000, tahunan: 1920000 },
-  };
-
-  function tierLabel(t) { return t === 'tahunan' ? 'Tahunan' : 'Bulanan'; }
-  function engineLabel(e) { return e === 'claude' ? 'Premium (Claude)' : 'Berbayar'; }
-  function fmtRupiah(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
-  function formatDate(d) { return new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function creditsOf(c) { return Number.isInteger(c.credits) ? c.credits : 0; }
+  function subActive(c) { return !!(c.expiresAt && new Date(c.expiresAt) > new Date()); }
+  function formatDate(d) { return d ? new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'; }
 
   /* ── LOGIN ── */
   async function login() {
@@ -392,14 +382,15 @@
   let lastGenerated = null;
 
   function buildWaMessage(c) {
-    const engine = c.engine || 'gemini';
-    return `Halo${c.name ? ' ' + c.name : ''},\n\nTerima kasih atas pembayaran Anda! ✅\n\nBerikut kode akses ${engineLabel(engine)} Anda:\n\n*${c.code}*\n\nPaket: ${engineLabel(engine)} — ${tierLabel(c.tier)} (${fmtRupiah(PRICE[engine][c.tier])})\nAktif hingga: ${formatDate(c.expiresAt)}\n\nCara masuk:\n1. Buka: https://andriwulandika.uk/aktifkan-pro.html\n2. Masukkan kode di atas\n3. Klik "Masuk"\n\nSelamat menggunakan! Jika ada kendala, balas pesan ini.\n\n— Andri Wulandika`;
+    return `Halo${c.name ? ' ' + c.name : ''},\n\nTerima kasih atas pembayaran Anda! ✅\n\nBerikut kode akses Anda:\n\n*${c.code}*\n\nSaldo kredit: ${creditsOf(c)} dokumen (1 kredit = 1 dokumen)\n\nCara masuk:\n1. Buka: https://andriwulandika.uk/aktifkan-pro.html\n2. Masukkan kode di atas\n3. Klik "Masuk"\n\nKredit terpotong otomatis tiap kali Anda membuat dokumen. Ingin top-up? Balas pesan ini.\n\n— Andri Wulandika`;
   }
 
   async function generateCode() {
-    const tier = document.getElementById('genTier').value;
+    const credits = parseInt(document.getElementById('genCredits').value, 10);
     const name = document.getElementById('genName').value.trim();
     const btn = document.getElementById('genBtn');
+
+    if (!Number.isInteger(credits) || credits < 1) { alert('Isi jumlah kredit (minimal 1).'); return; }
 
     btn.disabled = true;
     btn.textContent = '...';
@@ -407,7 +398,7 @@
       const res = await fetch(`${WORKER_URL}/admin/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: sessionStorage.getItem(SESSION_KEY), tier, engine: 'gemini', name }),
+        body: JSON.stringify({ password: sessionStorage.getItem(SESSION_KEY), credits, name }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -418,7 +409,7 @@
 
       document.getElementById('codeDisplay').textContent = data.code;
       document.getElementById('codeMeta').innerHTML =
-        `Paket: <strong>${engineLabel(data.engine)} — ${tierLabel(data.tier)}</strong> (${fmtRupiah(PRICE[data.engine || 'gemini'][data.tier])}) &nbsp;·&nbsp; Aktif hingga: <strong>${formatDate(data.expiresAt)}</strong>` +
+        `Saldo awal: <strong>${creditsOf(data)} kredit</strong>` +
         (data.name ? ` &nbsp;·&nbsp; Untuk: <strong>${data.name}</strong>` : '');
 
       const waMsg = buildWaMessage(data);
@@ -484,12 +475,12 @@
         return `
         <tr>
           <td class="mono">${c.code}</td>
-          <td><span class="badge-${c.tier}">${tierLabel(c.tier)}</span></td>
-          <td><span class="badge-${(c.engine || 'gemini') === 'claude' ? 'claude' : 'gemini'}">${(c.engine || 'gemini') === 'claude' ? 'Claude' : 'Gemini'}</span></td>
+          <td style="font-weight:600;${creditsOf(c) === 0 && !subActive(c) ? 'color:#dc2626;' : ''}">${subActive(c) ? '∞ langganan' : creditsOf(c) + ' kredit'}</td>
           <td style="color:var(--text2)">${c.name || '—'}</td>
-          <td style="color:var(--text2);font-size:0.75rem;">${formatDate(c.expiresAt)}</td>
+          <td style="color:var(--text2);font-size:0.75rem;">${formatDate(c.createdAt)}</td>
           <td><span class="badge-${isSent ? 'sent' : 'new'}">${isSent ? 'Terkirim' : 'Baru'}</span></td>
           <td style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="action-sm" onclick="topupCode(${i})" title="Tambah kredit" style="color:var(--green);border-color:rgba(52,199,89,0.3);">+Kredit</button>
             <button class="action-sm" onclick="copyCode(${i})" title="Salin kode">Salin</button>
             <button class="action-sm" onclick="sendWA(${i})" title="Kirim WA">WA</button>
             ${isSent ?
@@ -507,7 +498,7 @@
     document.getElementById('stat-total').textContent = total;
     document.getElementById('stat-new').textContent = total - sentCount;
     document.getElementById('stat-sent').textContent = sentCount;
-    document.getElementById('stat-pro').textContent = codes.filter(c => c.tier === 'tahunan').length;
+    document.getElementById('stat-pro').textContent = codes.reduce((s, c) => s + creditsOf(c), 0);
   }
 
   function copyCode(i) {
@@ -547,8 +538,28 @@
     await refreshCodes();
   }
 
+  async function topupCode(i) {
+    const c = currentCodes[i];
+    const input = prompt(`Tambah berapa kredit untuk ${c.code}? (sisa sekarang: ${creditsOf(c)})`, '50');
+    if (input === null) return;
+    const amount = parseInt(input, 10);
+    if (!Number.isInteger(amount) || amount < 1) { alert('Jumlah tidak valid.'); return; }
+    try {
+      const res = await fetch(`${WORKER_URL}/admin/topup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: sessionStorage.getItem(SESSION_KEY), code: c.code, credits: amount }),
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(data.error || 'Gagal top-up.'); return; }
+      alert(`Berhasil! Saldo ${data.code} kini ${creditsOf(data)} kredit.`);
+      await refreshCodes();
+    } catch { alert('Gagal terhubung ke server.'); }
+  }
+
   window.login = login;
   window.logout = logout;
+  window.topupCode = topupCode;
   window.generateCode = generateCode;
   window.copyGeneratedCode = copyGeneratedCode;
   window.refreshCodes = refreshCodes;
