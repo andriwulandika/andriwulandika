@@ -921,13 +921,15 @@ ACUAN GAYA & KEDALAMAN — Renja Kabupaten Banyuwangi (peraih Penghargaan Pemban
 - Rumuskan tujuan dan sasaran yang terukur dan kaitkan dengan indikator kinerja yang jelas; sebut nomenklatur program/kegiatan sesuai kodefikasi.
 - Gaya kalimat formal-administratif. Contoh nada Banyuwangi: "Rencana Kerja Perangkat Daerah merupakan dokumen perencanaan periode tahun berjalan yang bersifat indikatif yang didasarkan pada penjabaran dari Visi, Misi Perangkat Daerah."
 
-Format: narasi paragraf formal dengan sub-bab bernomor/berhuruf sesuai struktur di atas. Total sekitar 700-1000 kata.`;
+Jadikan Banyuwangi sebagai salah satu acuan kualitas, namun UTAMAKAN kepatuhan pada regulasi yang berlaku (a.l. Permendagri 86/2017 & 90/2019) dan praktik terbaik perencanaan nasional.
+
+Format: narasi paragraf formal dengan sub-bab bernomor/berhuruf sesuai struktur di atas. Uraikan SETIAP bagian secara rinci, konkret, dan terstruktur — beberapa paragraf per bagian, mengalir dan tidak sekadar ringkas. Total sekitar 1200-1700 kata.`;
 
   setAiStatus('loading', 'Sedang menyusun narasi Renja... (estimasi 15-30 detik)');
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2048 });
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('narasiBox').style.display = 'block';
     if (result.isDemo) {

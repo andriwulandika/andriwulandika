@@ -785,13 +785,15 @@ ACUAN STRUKTUR & GAYA — RKPD Kabupaten Banyuwangi (peraih PPD Bappenas), tiru 
 - Rumuskan tujuan/sasaran terukur (SMART) dan prioritas yang konsisten dengan visi RPJMD daerah pengguna.
 - Gaya formal-analitis. Contoh nada Banyuwangi: "Rencana Kerja Pemerintah Daerah (RKPD) merupakan dokumen perencanaan pembangunan daerah tahunan yang berpedoman pada Dokumen Rencana Pembangunan Jangka Menengah Daerah (RPJMD)."
 
-Format: narasi paragraf formal + poin bernomor. Total sekitar 700-1000 kata.`;
+Jadikan Banyuwangi sebagai salah satu acuan kualitas, namun UTAMAKAN kepatuhan pada regulasi yang berlaku (a.l. Permendagri 81/2022) dan praktik terbaik perencanaan nasional.
+
+Format: narasi paragraf formal + poin bernomor. Uraikan SETIAP bab secara rinci, konkret, dan terstruktur — beberapa paragraf per bagian, mengalir dan tidak sekadar ringkas. Total sekitar 1200-1700 kata.`;
 
   setAiStatus('loading', 'Sedang menyusun narasi RKPD... (estimasi 20-35 detik)');
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2500 });
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('narasiBox').style.display = 'block';
     if (result.isDemo) {

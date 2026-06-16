@@ -826,13 +826,15 @@ ACUAN STRUKTUR & GAYA — LKjIP Kabupaten Banyuwangi (SAKIP berpredikat AA), tir
 - Untuk indikator berbasis indeks/kategori, jelaskan bahwa perubahan nilai tidak selalu berarti penurunan substantif — dapat dipengaruhi penyempurnaan metode/bobot penilaian.
 - Gaya formal-analitis yang mengaitkan angka dengan sebab. Contoh nada Banyuwangi: "Capaian yang melampaui target menunjukkan bahwa secara agregat, kinerja pembangunan daerah berada pada jalur yang positif dan melampaui ekspektasi yang telah ditetapkan dalam dokumen perencanaan."
 
-Format: teks narasi paragraf (bukan bullet point), formal, sekitar 700-1000 kata.`;
+Jadikan Banyuwangi sebagai salah satu acuan kualitas, namun UTAMAKAN kepatuhan pada regulasi (PermenPANRB 53/2014 & 88/2021) dan praktik SAKIP terbaik nasional.
+
+Format: teks narasi paragraf (bukan bullet point), formal. Uraikan SETIAP bagian/sasaran secara rinci, konkret, analitis, dan terstruktur — beberapa paragraf per sasaran, mengalir dan tidak sekadar ringkas. Total sekitar 1200-1700 kata.`;
 
   setAiStatus('loading', 'Sedang membuat analisis... (estimasi 15-30 detik)');
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2048 });
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
     aiNarasiResult = result.text;
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('aiNarasiBox').style.display = 'block';
