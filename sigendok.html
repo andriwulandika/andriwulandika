@@ -2020,8 +2020,9 @@ function generateLKjIP() {
 <div class="page-break"></div>
 
 <p class="bab-title">IKHTISAR EKSEKUTIF</p>
-<p>${opd} ${daerah} pada Tahun ${tahun} telah menetapkan sasaran strategis yang tertuang dalam Perjanjian Kinerja bersama Kepala Daerah. Laporan ini menyajikan capaian kinerja atas target yang telah ditetapkan.</p>
-<p><strong>Realisasi Anggaran:</strong> Total anggaran ${totalAng}, terealisasi ${totalReal} atau ${persen}% dari total pagu.</p>
+<p>${opd} ${daerah} pada Tahun ${tahun} telah menetapkan sasaran strategis yang dituangkan dalam Perjanjian Kinerja bersama Kepala Daerah. Laporan ini menyajikan capaian kinerja atas seluruh target yang telah ditetapkan, disertai analisis penyebab keberhasilan/kegagalan, perbandingan dengan capaian tahun sebelumnya, serta efisiensi penggunaan sumber daya.</p>
+<p>Secara umum, capaian kinerja diukur dari rata-rata realisasi seluruh indikator sasaran terhadap targetnya. Keberhasilan capaian tidak terlepas dari sinergi antarunit kerja, perencanaan berbasis data, serta komitmen pimpinan; sementara tantangan yang dihadapi menjadi dasar perumusan langkah perbaikan pada periode berikutnya.</p>
+<p><strong>Realisasi Anggaran:</strong> Total anggaran ${totalAng}, terealisasi ${totalReal} atau ${persen}% dari total pagu — mencerminkan tingkat efisiensi dan efektivitas penggunaan sumber daya dalam mendukung pencapaian kinerja.</p>
 
 <div class="page-break"></div>
 
@@ -2034,7 +2035,9 @@ function generateLKjIP() {
 <div class="page-break"></div>
 
 <p class="bab-title">BAB II<br/>PERENCANAAN KINERJA</p>
-<h2>2.1 Perjanjian Kinerja Tahun ${tahun}</h2>
+<h2>2.1 Tujuan dan Sasaran Strategis</h2>
+<p>Perencanaan kinerja ${opd} ${daerah} Tahun ${tahun} berpedoman pada tujuan dan sasaran strategis dalam Rencana Strategis (Renstra), yang dijabarkan menjadi indikator kinerja terukur sebagai dasar penilaian akuntabilitas. Sasaran strategis tersebut diselaraskan dengan prioritas pembangunan daerah serta tugas dan fungsi organisasi.</p>
+<h2>2.2 Perjanjian Kinerja Tahun ${tahun}</h2>
 <p>Berikut adalah Perjanjian Kinerja ${opd} ${daerah} Tahun ${tahun} yang telah ditandatangani antara Kepala ${opd} dengan Kepala Daerah:</p>
 <table>
   <thead>
@@ -2055,7 +2058,8 @@ function generateLKjIP() {
 </table>
 <h2>3.2 Analisis Capaian Kinerja</h2>
 <p>${analisis}</p>
-<h2>3.3 Realisasi Anggaran</h2>
+<p>Analisis capaian di atas mempertimbangkan perbandingan realisasi terhadap target tahun berjalan, tren capaian dibanding tahun sebelumnya, serta kontribusi program/kegiatan terhadap pencapaian sasaran — sehingga teridentifikasi faktor pendorong keberhasilan maupun penghambat yang perlu ditindaklanjuti.</p>
+<h2>3.3 Akuntabilitas Keuangan</h2>
 <table>
   <thead>
     <tr><th>No</th><th>Program</th><th>Anggaran (Rp)</th><th>Realisasi (Rp)</th><th>% Serap</th><th>Keterangan</th></tr>
@@ -2065,6 +2069,8 @@ function generateLKjIP() {
     <tr><td colspan="2" style="font-weight:bold;text-align:right;">Total</td><td style="text-align:center;font-weight:bold;">${totalAng}</td><td style="text-align:center;font-weight:bold;">${totalReal}</td><td style="text-align:center;font-weight:bold;">${persen}%</td><td>-</td></tr>
   </tfoot>
 </table>
+<h2>3.4 Analisis Efisiensi Penggunaan Sumber Daya</h2>
+<p>Efisiensi diukur dari perbandingan antara tingkat capaian kinerja dengan tingkat penyerapan anggaran. Capaian sasaran yang mencapai atau melampaui target dengan penyerapan anggaran yang proporsional atau lebih rendah dari pagu menunjukkan penggunaan sumber daya yang efisien, tanpa menurunkan mutu keluaran.</p>
 
 <div class="page-break"></div>
 
@@ -2305,7 +2311,7 @@ function generateRenstra() {
 
   const vm = getVisiMisi();
   const vmBlock = vm && vm.visi ? `
-<h2>1.3 Visi dan Misi Kepala Daerah</h2>
+<h2>Visi dan Misi Kepala Daerah yang Diacu</h2>
 <p><strong>Visi:</strong> ${vm.visi}</p>
 ${vm.misi&&vm.misi.length?'<ol>'+vm.misi.map(m=>`<li>${m}</li>`).join('')+'</ol>':''}` : '';
 
@@ -2345,8 +2351,8 @@ ${vm.misi&&vm.misi.length?'<ol>'+vm.misi.map(m=>`<li>${m}</li>`).join('')+'</ol>
 
 <p class="bab-title">BAB I<br/>PENDAHULUAN</p>
 <h2>1.1 Latar Belakang</h2>
-<p>Rencana Strategis Perangkat Daerah adalah dokumen perencanaan untuk periode 5 tahun yang memuat tujuan, sasaran, strategi, arah kebijakan, program, dan kegiatan sesuai dengan tugas dan fungsi Perangkat Daerah. Renstra ${opd} ${daerah} Periode ${periode} disusun berpedoman pada RPJMD ${daerah} dan mengacu pada RPJMN.</p>
-<h2>1.2 Landasan Hukum</h2>
+<p>Rencana Strategis Perangkat Daerah adalah dokumen perencanaan untuk periode 5 (lima) tahun yang memuat tujuan, sasaran, strategi, arah kebijakan, program, kegiatan, dan sub kegiatan sesuai dengan tugas dan fungsi Perangkat Daerah. Renstra ${opd} ${daerah} Periode ${periode} disusun berpedoman pada RPJMD ${daerah} dan mengacu pada RPJMN, sehingga menjamin keselarasan arah pembangunan dari tingkat nasional hingga Perangkat Daerah.</p>
+<h2>1.2 Dasar Hukum Penyusunan</h2>
 <ul>
   <li>Undang-Undang Nomor 25 Tahun 2004 tentang Sistem Perencanaan Pembangunan Nasional;</li>
   <li>Undang-Undang Nomor 23 Tahun 2014 tentang Pemerintahan Daerah;</li>
@@ -2354,56 +2360,47 @@ ${vm.misi&&vm.misi.length?'<ol>'+vm.misi.map(m=>`<li>${m}</li>`).join('')+'</ol>
   <li>Peraturan Menteri Dalam Negeri Nomor 90 Tahun 2019 tentang Klasifikasi, Kodefikasi, dan Nomenklatur Perencanaan Pembangunan dan Keuangan Daerah;</li>
   <li>Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025 tentang Pedoman Penyusunan Renstra Perangkat Daerah;</li>
 </ul>
+<h2>1.3 Maksud dan Tujuan</h2>
+<p>Renstra ${opd} ${daerah} Periode ${periode} dimaksudkan sebagai pedoman bagi ${opd} dalam menyusun Renja OPD tahunan dan sebagai acuan penyelenggaraan program kegiatan bidang ${urusan}. Tujuannya adalah menjamin konsistensi antara perencanaan, penganggaran, pelaksanaan, dan evaluasi kinerja Perangkat Daerah.</p>
+<h2>1.4 Sistematika Penulisan</h2>
+<p>Renstra ini disusun dengan sistematika sesuai Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025: <strong>Bab I Pendahuluan</strong>; <strong>Bab II Gambaran Pelayanan, Permasalahan dan Isu Strategis Perangkat Daerah</strong>; <strong>Bab III Tujuan, Sasaran, Strategi dan Arah Kebijakan</strong>; <strong>Bab IV Program, Kegiatan, Sub Kegiatan dan Sasaran Kinerja Penyelenggaraan Bidang Urusan</strong>; serta <strong>Bab V Penutup</strong>.</p>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB II<br/>GAMBARAN PELAYANAN, PERMASALAHAN DAN ISU STRATEGIS PERANGKAT DAERAH</p>
+<h2>2.1 Gambaran Pelayanan Perangkat Daerah</h2>
+<p><strong>Tugas, Fungsi, dan Struktur Organisasi.</strong> ${tupoksi}</p>
+<p><strong>Kinerja Pelayanan Perangkat Daerah.</strong> ${kinerja}</p>
+<h2>2.2 Permasalahan dan Isu Strategis Perangkat Daerah</h2>
+<p><strong>Identifikasi Permasalahan.</strong> ${isu}</p>
+<p><strong>Telaahan RPJMD dan Kebijakan Nasional.</strong> ${telaah}</p>
+<div class="page-break"></div>
+
+<p class="bab-title">BAB III<br/>TUJUAN, SASARAN, STRATEGI DAN ARAH KEBIJAKAN</p>
 ${vmBlock}
-<h2>1.4 Maksud dan Tujuan</h2>
-<p>Renstra ${opd} ${daerah} Periode ${periode} dimaksudkan sebagai pedoman bagi ${opd} dalam menyusun Renja OPD tahunan dan sebagai acuan dalam penyelenggaraan program kegiatan bidang ${urusan}. Tujuannya adalah menjamin konsistensi antara perencanaan, penganggaran, pelaksanaan, dan evaluasi kinerja OPD.</p>
-<div class="page-break"></div>
-
-<p class="bab-title">BAB II<br/>GAMBARAN PELAYANAN PERANGKAT DAERAH</p>
-<h2>2.1 Tugas, Fungsi, dan Struktur Organisasi</h2>
-<p>${tupoksi}</p>
-<h2>2.2 Kinerja Pelayanan Perangkat Daerah</h2>
-<p>${kinerja}</p>
-<div class="page-break"></div>
-
-<p class="bab-title">BAB III<br/>PERMASALAHAN DAN ISU-ISU STRATEGIS</p>
-<h2>3.1 Identifikasi Permasalahan</h2>
-<p>${isu}</p>
-<h2>3.2 Telaahan RPJMD dan Kebijakan Nasional</h2>
-<p>${telaah}</p>
-<div class="page-break"></div>
-
-<p class="bab-title">BAB IV<br/>TUJUAN DAN SASARAN</p>
-<h2>4.1 Tujuan Jangka Menengah OPD</h2>
+<h2>3.1 Tujuan dan Sasaran Jangka Menengah Perangkat Daerah</h2>
 <p>Tujuan ${opd}: <strong>${tujuan}</strong></p>
 <p>Indikator Kinerja Utama (IKU): ${iku}</p>
-<h2>4.2 Sasaran Strategis dan Target Kinerja</h2>
 <table>
-  <thead><tr><th>No</th><th>Sasaran Strategis</th><th>Indikator (IKD)</th><th>Sat.</th><th>Awal</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr></thead>
+  <thead><tr><th>No</th><th>Tujuan/Sasaran Strategis</th><th>Indikator</th><th>Sat.</th><th>Awal</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr></thead>
   <tbody>${sasTbl}</tbody>
 </table>
+<h2>3.2 Strategi dan Arah Kebijakan</h2>
+<p><strong>Strategi.</strong> ${strategi}</p>
+<p><strong>Arah Kebijakan.</strong> ${kebijakan}</p>
 <div class="page-break"></div>
 
-<p class="bab-title">BAB V<br/>STRATEGI DAN ARAH KEBIJAKAN</p>
-<h2>5.1 Strategi</h2>
-<p>${strategi}</p>
-<h2>5.2 Arah Kebijakan</h2>
-<p>${kebijakan}</p>
-<div class="page-break"></div>
-
-<p class="bab-title">BAB VI<br/>RENCANA PROGRAM, KEGIATAN DAN PENDANAAN</p>
+<p class="bab-title">BAB IV<br/>PROGRAM, KEGIATAN, SUB KEGIATAN DAN SASARAN KINERJA PENYELENGGARAAN BIDANG URUSAN</p>
+<h2>4.1 Rencana Program, Kegiatan, Sub Kegiatan dan Pendanaan</h2>
 <table>
   <thead><tr><th>No</th><th>Program</th><th>Pagu 2025</th><th>Pagu 2026</th><th>Pagu 2027</th><th>Pagu 2028</th><th>Pagu 2029</th><th>OPD</th></tr></thead>
   <tbody>${progTbl}</tbody>
 </table>
+<h2>4.2 Kinerja Penyelenggaraan Bidang Urusan</h2>
+<p>Indikator kinerja ${opd} yang mengacu pada tujuan dan sasaran RPJMD ${daerah} Periode ${periode} disajikan pada tabel sasaran strategis BAB III di atas. Pencapaian target tersebut menjadi tolok ukur keberhasilan penyelenggaraan urusan ${urusan} selama periode Renstra.</p>
 <div class="page-break"></div>
 
-<p class="bab-title">BAB VII<br/>KINERJA PENYELENGGARAAN BIDANG URUSAN</p>
-<p>Indikator kinerja ${opd} yang mengacu pada tujuan dan sasaran RPJMD ${daerah} Periode ${periode} disajikan pada tabel sasaran strategis BAB IV di atas. Pencapaian target tersebut menjadi tolok ukur keberhasilan penyelenggaraan urusan ${urusan} selama periode Renstra.</p>
-<div class="page-break"></div>
-
-<p class="bab-title">BAB VIII<br/>PENUTUP</p>
-<p>Renstra ${opd} ${daerah} Periode ${periode} merupakan pedoman bagi seluruh aparatur ${opd} dalam merencanakan, melaksanakan, dan mengevaluasi kinerja organisasi. Komitmen dan konsistensi dalam pelaksanaan program-program yang telah ditetapkan menjadi kunci keberhasilan pencapaian tujuan dan sasaran strategis.</p>
+<p class="bab-title">BAB V<br/>PENUTUP</p>
+<p>Renstra ${opd} ${daerah} Periode ${periode} merupakan pedoman bagi seluruh aparatur ${opd} dalam merencanakan, melaksanakan, dan mengevaluasi kinerja organisasi. Sebagai dokumen yang bersifat dinamis, Renstra dapat disesuaikan apabila terjadi perubahan signifikan pada lingkungan strategis, kebijakan nasional, maupun kondisi daerah. Komitmen dan konsistensi seluruh jajaran menjadi kunci keberhasilan pencapaian tujuan dan sasaran strategis.</p>
 <div class="ttd-wrap">
   <div class="ttd-box">
     <p>${ttd}</p><p>Kepala ${opd}</p>
