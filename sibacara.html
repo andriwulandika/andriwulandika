@@ -371,7 +371,7 @@ async function generateBa() {
   const hasil   = v('hasil');
   const tindak  = v('tindakLanjut');
 
-  const prompt = `Anda adalah staf administrasi pemerintah yang berpengalaman menyusun ${jenis} dengan kualitas setara dokumen administrasi Kabupaten Banyuwangi yang berpredikat terbaik nasional, mengacu pada Permendagri Nomor 1 Tahun 2023 tentang Tata Naskah Dinas di Lingkungan Pemerintah Daerah (unsur pembuka, isi, dan penutup).
+  const prompt = `Anda adalah staf administrasi pemerintah yang berpengalaman menyusun ${jenis} berkualitas terbaik sesuai Permendagri Nomor 1 Tahun 2023 tentang Tata Naskah Dinas di Lingkungan Pemerintah Daerah (unsur pembuka, isi, dan penutup).
 
 Tugas: Tulis narasi bagian ISI dari ${jenis} secara formal dan lengkap (bagian pembuka berupa hari/tanggal/tempat/pihak terkait dan bagian penutup berupa pengesahan akan disusun otomatis terpisah — fokus pada uraian substansi kegiatan).
 
@@ -399,12 +399,14 @@ Tulis narasi isi ${jenis} yang meliputi:
 2. **HASIL DAN KESIMPULAN** — Uraikan tiap butir hasil/kesimpulan secara formal, detail, dan dapat diverifikasi (bernomor)
 ${tindak ? '3. **TINDAK LANJUT** — Uraikan langkah-langkah tindak lanjut yang disepakati secara konkret beserta pihak yang bertanggung jawab jika dapat disimpulkan dari data' : ''}
 
-Format: narasi paragraf formal. Total 250-400 kata.`;
+CIRI KUALITAS: faktual & kronologis (catat yang benar-benar terjadi/disepakati, bukan opini); hasil/kesepakatan terinci, terukur, dan dapat diverifikasi; bila relevan sebut pihak penanggung jawab.
+
+Format: narasi paragraf formal. Uraikan setiap bagian secara rinci dan terstruktur. Total 500-800 kata.`;
 
   setAiStatus('loading','Menyusun narasi Berita Acara...');
   document.getElementById('btnGenAi').disabled = true;
   try {
-    const result = await callAI(prompt,{temperature:0.5,maxTokens:1200});
+    const result = await callAI(prompt,{temperature:0.5,maxTokens:2500});
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('formSection').style.display='none';
     document.getElementById('narasiSection').style.display='block';

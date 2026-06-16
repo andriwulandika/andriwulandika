@@ -336,16 +336,18 @@ async function generateTelaahan() {
 5. **V. KESIMPULAN** — Simpulkan opsi/kemungkinan terbaik dari hasil analisis
 6. **VI. SARAN** — Sampaikan saran tindakan yang konkret dan dapat dilaksanakan${rekomen ? ', kembangkan dari rekomendasi yang diberikan' : ''}
 
-Format: narasi paragraf formal per unsur, urutkan persis I sampai VI. Total 400-600 kata.`
+CIRI KUALITAS TERBAIK: pisahkan tegas antara FAKTA (objektif) dan PRAANGGAPAN/ANALISIS (penalaran); fokus pada satu persoalan pokok; kesimpulan mengalir logis dari analisis; saran konkret, spesifik, dan dapat dieksekusi.
+
+Format: narasi paragraf formal per unsur, urutkan persis I sampai VI. Uraikan setiap unsur secara rinci dan terstruktur (beberapa kalimat/paragraf per unsur). Total 700-1000 kata.`
     : `Tulis narasi ${jenis} yang terdiri dari:
 1. **PENDAHULUAN** — 1-2 paragraf formal: dasar dan tujuan ${jenis} ini dibuat
 2. **PERMASALAHAN** — Uraikan permasalahan/isu secara sistematis dan formal (bernomor)
 3. **ANALISIS** — Analisis tiap permasalahan dengan mengaitkan pada dasar hukum dan kondisi faktual${opsiTx ? '\n4. **ALTERNATIF PENYELESAIAN** — Uraikan opsi-opsi beserta kelebihan/kekurangannya' : ''}
 ${opsiTx ? '5.' : '4.'} **KESIMPULAN DAN SARAN** — Simpulkan dan sampaikan rekomendasi/saran tindak secara tegas
 
-Format: narasi paragraf formal. Total 300-500 kata.`;
+Format: narasi paragraf formal. Uraikan setiap bagian secara rinci dan terstruktur. Total 500-800 kata.`;
 
-  const prompt = `Anda adalah seorang ASN senior yang berpengalaman menyusun dokumen administrasi pemerintahan${isTelaahan ? ', termasuk Telaahan Staf dengan kualitas setara dokumen administrasi Kabupaten Banyuwangi yang berpredikat terbaik nasional' : ''}.
+  const prompt = `Anda adalah seorang ASN senior yang berpengalaman menyusun dokumen administrasi pemerintahan${isTelaahan ? ', termasuk Telaahan Staf sesuai Permendagri 1/2023 (untuk Pemda) atau Peraturan ANRI 5/2021 (untuk instansi pusat) dengan kualitas terbaik' : ''}.
 
 Tugas: Tulis isi/narasi formal untuk ${jenis} berikut.
 
@@ -378,7 +380,7 @@ ${sections}`;
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, {temperature:0.5,maxTokens:1500});
+    const result = await callAI(prompt, {temperature:0.5,maxTokens:3000});
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('formSection').style.display = 'none';
     document.getElementById('narasiSection').style.display = 'block';

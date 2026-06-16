@@ -808,7 +808,7 @@ async function generateNarasi() {
   const tglMul  = v('tglMulai');
   const tglSel  = v('tglSelesai');
 
-  const prompt = `Anda adalah konsultan perencanaan pemerintah berpengalaman, terbiasa menyusun KAK/TOR dengan kelengkapan unsur setara dokumen perencanaan Kabupaten Banyuwangi — daerah peraih Penghargaan Pembangunan Daerah Bappenas yang dokumennya Anda jadikan acuan; setiap keluaran dirumuskan secara terukur (SMART) dan tahapan pelaksanaannya jelas. Tugas Anda adalah menulis narasi formal untuk ${jenis} (Kerangka Acuan Kerja) berikut.
+  const prompt = `Anda adalah konsultan perencanaan dan penganggaran pemerintah berpengalaman, terbiasa menyusun KAK/TOR berkualitas terbaik sesuai regulasi — KAK/TOR adalah dokumen pendukung wajib RKA (mengacu PMK 62/2023, sebelumnya PMK 94/2017), disusun lengkap mengikuti kaidah 7W1H, dengan keluaran terukur (SMART), tahapan jelas, dan justifikasi kebutuhan biaya yang logis (selaras Standar Biaya). Tugas Anda adalah menulis narasi formal untuk ${jenis} (Kerangka Acuan Kerja) berikut.
 
 PENTING:
 - Tulis dalam Bahasa Indonesia formal dan baku sesuai standar dokumen pemerintah
@@ -844,13 +844,18 @@ Tulis narasi ${jenis} yang terdiri dari:
 5. **METODOLOGI DAN TAHAPAN PELAKSANAAN** — jelaskan cara pelaksanaan secara sistematis beserta tahapan kegiatan secara kronologis, kaitkan dengan jangka waktu/periode pelaksanaan jika tersedia
 6. **INDIKATOR KINERJA KELUARAN** — jelaskan ukuran keberhasilan keluaran (output) secara terukur/SMART berdasarkan output yang diberikan
 
-Format: teks narasi formal, paragraf dan poin-poin bernomor sesuai bagian, sekitar 600-850 kata total.`;
+ACUAN KUALITAS (KAK terbaik sesuai PMK 62/2023, kaidah 7W1H):
+- Latar belakang menjawab WHY berbasis data/tusi & dasar kebijakan (bukan klaim umum); maksud-tujuan & ruang lingkup menjawab WHAT.
+- Penerima manfaat (WHO), metode pelaksanaan kontraktual/swakelola (HOW), tempat (WHERE), jadwal/tahapan kronologis (WHEN), dan kebutuhan biaya (HOW MUCH) diuraikan lengkap & saling konsisten.
+- Keluaran dinyatakan terukur (volume + satuan), indikator keberhasilan jelas; setiap tahapan terhubung logis ke keluaran dan kebutuhan biaya (tidak ada komponen menggantung).
+
+Format: teks narasi formal, paragraf dan poin-poin bernomor sesuai bagian. Uraikan SETIAP bagian secara rinci, konkret, dan terstruktur — beberapa paragraf per bagian, tidak sekadar ringkas. Total sekitar 1100-1500 kata.`;
 
   setAiStatus('loading', 'Sedang menyusun narasi KAK... (estimasi 15-30 detik)');
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2048 });
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('narasiBox').style.display = 'block';
     if (result.isDemo) {
