@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script src="assets/js/analytics.js"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SiRKPD — AI Writer RKPD | Andri Wulandika</title>
@@ -39,7 +40,7 @@
 :root{
   --bg:#F5F5F7;--surface:#fff;--text:#1D1D1F;--sub:#6e6e73;
   --teal:#0891b2;--teal-h:#0e7490;
-  --border:#d2d2d7;--radius:12px;--shadow:0 2px 16px rgba(0,0,0,.08);
+  --border:#d2d2d7;--radius:18px;--shadow:0 1px 3px rgba(0,0,0,.04);
   --danger:#dc2626;--success:#16a34a;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -52,8 +53,8 @@ nav .logo span{font-weight:300;color:var(--sub);font-size:13px;margin-left:8px;}
 nav a{color:var(--sub);text-decoration:none;font-size:14px;transition:color .2s;}
 nav a:hover{color:var(--text);}
 nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
-.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
-.btn-outline{background:none;border:1.5px solid var(--border);color:var(--text);}
+.btn-sm{padding:6px 16px;border-radius:980px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-outline{background:none;border:1px solid var(--border);color:var(--text);}
 .btn-outline:hover{border-color:var(--teal);color:var(--teal);}
 .btn-primary-sm{background:var(--teal);color:#fff;}
 .btn-primary-sm:hover{background:var(--teal-h);}
@@ -73,7 +74,7 @@ nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 /* STEPS */
 .steps{display:flex;align-items:center;justify-content:center;margin-bottom:28px;flex-wrap:wrap;gap:0;}
 .step{display:flex;align-items:center;gap:8px;}
-.step-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:none;transition:all .3s;}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none;transition:all .3s;}
 .step.active .step-num{background:var(--teal);color:#fff;}
 .step.done .step-num{background:var(--success);color:#fff;}
 .step.pending .step-num{background:var(--border);color:var(--sub);}
@@ -81,10 +82,10 @@ nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 .step.active .step-label{color:var(--teal);}
 .step.done .step-label{color:var(--success);}
 .step.pending .step-label{color:var(--sub);}
-.step-line{width:28px;height:2px;background:var(--border);flex:none;}
+.step-line{width:32px;height:2px;background:var(--border);flex:none;}
 .step-line.done{background:var(--success);}
 
-.card{background:var(--surface);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.card{background:var(--surface);border-radius:var(--radius);padding:32px;margin-bottom:20px;box-shadow:var(--shadow);}
 .card h2{font-size:18px;font-weight:700;margin-bottom:6px;}
 .card .card-sub{color:var(--sub);font-size:13px;margin-bottom:20px;}
 
@@ -93,35 +94,37 @@ nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
 .form-group label{font-size:13px;font-weight:600;}
 .form-group .hint{font-size:12px;color:var(--sub);}
-input[type=text],input[type=number],select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--text);background:#fafafa;transition:border-color .2s;}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);background:#fff;}
+input[type=text],input[type=number],select,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;color:var(--text);background:#fff;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);}
 textarea{resize:vertical;min-height:80px;}
 
 /* TABLE */
 .tbl-wrap{overflow-x:auto;margin-bottom:16px;}
 table.data-tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:600px;}
-table.data-tbl th{background:#e0f2fe;font-weight:600;padding:8px 10px;border:1px solid var(--border);white-space:nowrap;}
+table.data-tbl th{background:var(--bg);font-weight:600;padding:8px 10px;border:1px solid var(--border);white-space:nowrap;}
 table.data-tbl td{border:1px solid var(--border);padding:6px 8px;vertical-align:top;}
 table.data-tbl input,table.data-tbl select,table.data-tbl textarea{border:none;background:transparent;width:100%;font-size:13px;padding:0;min-height:unset;resize:none;}
 table.data-tbl input:focus,table.data-tbl select:focus,table.data-tbl textarea:focus{outline:1px solid var(--teal);border-radius:3px;}
-.tbl-add-btn{font-size:13px;color:var(--teal);cursor:pointer;background:none;border:1.5px dashed var(--teal);border-radius:8px;padding:6px 14px;transition:all .2s;margin-bottom:8px;}
+.tbl-add-btn{font-size:13px;color:var(--teal);cursor:pointer;background:none;border:1.5px dashed var(--teal);border-radius:980px;padding:6px 16px;transition:all .2s;margin-bottom:8px;}
 .tbl-add-btn:hover{background:#e0f2fe;}
+.nomenklatur-box{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:18px;}
+.nomenklatur-box .form-row{margin-bottom:10px;}
 .tbl-del{color:var(--danger);cursor:pointer;font-size:16px;font-weight:700;background:none;border:none;padding:0 4px;}
 
 /* NAV BUTTONS */
 .nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px;}
-.btn{padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
+.btn{padding:11px 24px;border-radius:980px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
 .btn:disabled{opacity:.5;cursor:not-allowed;}
 .btn-prev{background:var(--bg);border:1.5px solid var(--border);color:var(--text);}
 .btn-prev:hover:not(:disabled){border-color:var(--text);}
 .btn-next{background:var(--teal);color:#fff;}
 .btn-next:hover:not(:disabled){background:var(--teal-h);}
-.btn-ai{background:linear-gradient(135deg,#0891b2,#0071e3);color:#fff;display:flex;align-items:center;gap:8px;}
-.btn-ai:hover:not(:disabled){opacity:.9;}
+.btn-ai{background:var(--teal);color:#fff;display:flex;align-items:center;gap:8px;}
+.btn-ai:hover:not(:disabled){background:var(--teal-h);}
 .btn-export{background:var(--success);color:#fff;}
 
 /* AI STATUS */
-.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;}
+.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;margin-bottom:16px;font-size:13px;}
 .ai-status.loading{background:#e0f2fe;color:var(--teal);}
 .ai-status.error{background:#fee2e2;color:var(--danger);}
 .ai-status.success{background:#dcfce7;color:var(--success);}
@@ -129,7 +132,7 @@ table.data-tbl input:focus,table.data-tbl select:focus,table.data-tbl textarea:f
 @keyframes spin{to{transform:rotate(360deg);}}
 
 /* PREVIEW */
-.doc-preview{background:#fff;border:1px solid var(--border);border-radius:8px;padding:40px 48px;max-width:820px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.6;color:#000;}
+.doc-preview{background:#fff;border:1px solid var(--border);border-radius:12px;padding:40px 48px;max-width:820px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.6;color:#000;}
 @media(max-width:600px){.doc-preview{padding:20px 14px;}}
 .doc-preview h1{font-size:14pt;text-align:center;font-weight:bold;margin-bottom:8px;}
 .doc-preview h2{font-size:13pt;font-weight:bold;margin:20px 0 8px;text-transform:uppercase;}
@@ -142,10 +145,10 @@ table.data-tbl input:focus,table.data-tbl select:focus,table.data-tbl textarea:f
 /* API MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal{background:#fff;border-radius:16px;padding:32px;max-width:440px;width:90%;}
+.modal{background:#fff;border-radius:20px;padding:32px;max-width:440px;width:90%;}
 .modal h3{font-size:18px;font-weight:700;margin-bottom:8px;}
 .modal p{color:var(--sub);font-size:14px;margin-bottom:20px;}
-.modal-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;margin-bottom:8px;}
+.modal-input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;margin-bottom:8px;}
 .modal-input:focus{outline:none;border-color:var(--teal);}
 .modal-actions{display:flex;gap:10px;margin-top:16px;}
 .modal a{color:var(--teal);font-size:13px;}
@@ -192,7 +195,7 @@ table.data-tbl input:focus,table.data-tbl select:focus,table.data-tbl textarea:f
   .hero-tags{gap:6px;}
 
   .main{padding:0 14px 60px;}
-  .card{padding:18px;border-radius:14px;}
+  .card{padding:20px;border-radius:16px;}
 
   .step-label{display:none;}
   .step-line{width:16px;}
@@ -436,6 +439,26 @@ table.data-tbl input:focus,table.data-tbl select:focus,table.data-tbl textarea:f
       <h2>4. Program Prioritas RKPD</h2>
       <p class="card-sub">Program prioritas pembangunan daerah beserta OPD penanggung jawab dan pagu indikatif.</p>
 
+      <div class="nomenklatur-box">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;">📋 Tambah dari Nomenklatur Resmi (Kepmendagri 050-5889/2021, pemutakhiran)</div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Bidang Urusan</label>
+            <select id="nomBidang" onchange="onNomBidangChange()">
+              <option value="">-- Pilih Bidang Urusan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Program</label>
+            <select id="nomProgram" disabled>
+              <option value="">-- Pilih Program --</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="tbl-add-btn" onclick="addFromNomenklatur()">+ Tambahkan ke Tabel</button>
+        <span class="hint" style="display:block;margin-top:6px;">Menambahkan baris Bidang/Urusan dan Program Prioritas sesuai nomenklatur resmi — lengkapi OPD penanggung jawab dan pagu secara manual.</span>
+      </div>
+
       <div class="tbl-wrap">
         <table class="data-tbl" id="progTable">
           <thead>
@@ -587,6 +610,75 @@ function getIsuData() {
 }
 
 // ============================================================
+// NOMENKLATUR (Kepmendagri 050-5889/2021, pemutakhiran)
+// ============================================================
+let NOMENKLATUR_INDEX = [];
+const nomenklaturCache = {};
+
+async function loadNomenklaturIndex() {
+  try {
+    const res = await fetch('assets/data/nomenklatur/index.json');
+    NOMENKLATUR_INDEX = await res.json();
+  } catch {
+    NOMENKLATUR_INDEX = [];
+  }
+  const sel = document.getElementById('nomBidang');
+  if (sel) {
+    sel.innerHTML = '<option value="">-- Pilih Bidang Urusan --</option>' +
+      NOMENKLATUR_INDEX.map(b => `<option value="${b.code}">${esc(b.nama)}</option>`).join('');
+  }
+}
+
+function detectJenisPemda() {
+  return v('jabatanKepala') === 'Gubernur' ? 'PROV' : 'KABKOT';
+}
+
+async function getNomenklaturData(code) {
+  if (nomenklaturCache[code]) return nomenklaturCache[code];
+  const res = await fetch(`assets/data/nomenklatur/${code}.json`);
+  const data = await res.json();
+  nomenklaturCache[code] = data;
+  return data;
+}
+
+function shortBidangNama(nama) {
+  return nama.replace(/^(\d[\d.]*) URUSAN PEMERINTAHAN BIDANG /, '$1 ');
+}
+
+async function onNomBidangChange() {
+  const code = v('nomBidang');
+  const sel = document.getElementById('nomProgram');
+  sel.innerHTML = '<option value="">-- Pilih Program --</option>';
+  sel.disabled = true;
+  if (!code) return;
+
+  const data = await getNomenklaturData(code);
+  const jenis = detectJenisPemda();
+  const progs = (data[jenis] && data[jenis].length > 0) ? data[jenis] : (data.PROV.length > 0 ? data.PROV : data.KABKOT);
+
+  sel.innerHTML = '<option value="">-- Pilih Program --</option>' +
+    progs.map((p, i) => `<option value="${i}">${esc(p.program)}</option>`).join('');
+  sel.disabled = progs.length === 0;
+  sel.dataset.progs = JSON.stringify(progs);
+}
+
+function addFromNomenklatur() {
+  const bidangSel = document.getElementById('nomBidang');
+  const progSel = document.getElementById('nomProgram');
+  if (!bidangSel.value || !progSel.value) {
+    alert('Pilih Bidang Urusan dan Program terlebih dahulu.');
+    return;
+  }
+  const bidangNama = bidangSel.options[bidangSel.selectedIndex].textContent;
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const programNama = progs[progSel.value]?.program || '';
+  if (!programNama) return;
+
+  addProg({ bidang: shortBidangNama(bidangNama), program: programNama });
+  renumberProg();
+}
+
+// ============================================================
 // PROGRAM TABLE
 // ============================================================
 function addProg(data={}) {
@@ -644,7 +736,7 @@ async function generateNarasi() {
   const progSummary = progData.slice(0,12).map((p,i) =>
     `${i+1}. ${p.program} — OPD: ${p.opd}${p.pagu?' | Pagu: Rp '+p.pagu:''}`).join('\n');
 
-  const prompt = `Anda adalah perencana pembangunan daerah senior. Tugas Anda menulis narasi analisis untuk dokumen RKPD (Rencana Kerja Pemerintah Daerah).
+  const prompt = `Anda adalah perencana pembangunan daerah senior yang menyusun RKPD dengan kualitas setara dokumen perencanaan Kabupaten Banyuwangi — daerah peraih Penghargaan Pembangunan Daerah (PPD) Bappenas dengan dokumen berpredikat terbaik nasional. Jadikan struktur, kedalaman, dan gaya narasi dokumen Banyuwangi sebagai acuan utama, mengikuti kriteria PPD: kejelasan dan keterukuran (SMART) target, konsistensi dengan RPJMD, keterkaitan isu strategis dengan program prioritas, serta inovasi daerah. Tugas Anda menulis narasi analisis untuk dokumen RKPD (Rencana Kerja Pemerintah Daerah).
 
 KETENTUAN:
 - Bahasa Indonesia formal dan baku sesuai kaidah dokumen perencanaan pemerintah
@@ -680,19 +772,28 @@ ${progSummary||'-'}
 KONTEKS TAMBAHAN: ${konteks||'-'}
 
 Tulis narasi RKPD yang meliputi:
-1. **BAB I — PENDAHULUAN**: Latar belakang urgensi penyusunan RKPD (2-3 paragraf), dasar hukum (daftarkan UU/PP/Permendagri relevan), hubungan RKPD dengan dokumen perencanaan lain
-2. **BAB II — GAMBARAN UMUM KONDISI DAERAH**: Analisis kondisi makro daerah berdasarkan indikator yang diberikan, capaian dan tantangan (2-3 paragraf)
-3. **BAB III — PERMASALAHAN DAN ISU STRATEGIS**: Analisis tiap isu strategis secara mendalam per bidang, kaitkan dengan prioritas nasional
-4. **BAB IV — TUJUAN DAN SASARAN**: Rumuskan tujuan dan sasaran pembangunan daerah tahun ${tahun} berdasarkan isu dan program yang diberikan
-5. **ARAH KEBIJAKAN DAN PRIORITAS PROGRAM**: Uraikan arah kebijakan dan justifikasi pemilihan program prioritas
+1. **BAB I — PENDAHULUAN**: Latar belakang urgensi penyusunan RKPD (2-3 paragraf), dasar hukum (daftarkan UU/PP/Permendagri relevan), hubungan RKPD dengan RPJMD, RPJPD, dan dokumen perencanaan lain
+2. **BAB II — GAMBARAN UMUM KONDISI DAERAH**: Analisis kondisi makro daerah berdasarkan indikator yang diberikan, bandingkan capaian terhadap target RPJMD/tahun sebelumnya jika tersedia pada data capaian, serta tantangan ke depan (2-3 paragraf)
+3. **BAB III — PERMASALAHAN DAN ISU STRATEGIS**: Analisis tiap isu strategis secara mendalam per bidang, kaitkan secara eksplisit dengan prioritas nasional dan dengan program prioritas yang akan dilaksanakan sebagai bentuk respons
+4. **BAB IV — TUJUAN DAN SASARAN**: Rumuskan tujuan dan sasaran pembangunan daerah tahun ${tahun} secara terukur/SMART, konsisten dengan visi RPJMD, berdasarkan isu dan program yang diberikan
+5. **ARAH KEBIJAKAN DAN PRIORITAS PROGRAM**: Uraikan arah kebijakan, justifikasi pemilihan program prioritas (kaitkan tiap program dengan sasaran dan isu yang relevan), serta sebutkan unsur inovasi daerah jika dapat diidentifikasi dari data yang diberikan
 
-Format: narasi paragraf formal + poin bernomor. Total sekitar 700-1000 kata.`;
+ACUAN STRUKTUR & GAYA — RKPD Kabupaten Banyuwangi (peraih PPD Bappenas), tiru kedalaman & pola konkret ini:
+- Pendahuluan menegaskan RKPD sebagai dokumen perencanaan tahunan yang berpedoman pada RPJMD, dan menyebut pemicu/konteks kebijakan terkini (mis. RPJMN, arah kebijakan nasional, efisiensi anggaran).
+- Sajikan evaluasi pelaksanaan tahun berjalan: faktor pendorong keberhasilan dan faktor penghambat pencapaian kinerja, beserta tindak lanjut pengendalian.
+- Tegaskan TEMA pembangunan tahunan daerah dan selaraskan prioritas secara berjenjang: Nasional → Provinsi → Kabupaten; kaitkan dengan pencapaian SPM, SDGs, penanggulangan kemiskinan, dan agenda nasional yang relevan.
+- Rumuskan tujuan/sasaran terukur (SMART) dan prioritas yang konsisten dengan visi RPJMD daerah pengguna.
+- Gaya formal-analitis. Contoh nada Banyuwangi: "Rencana Kerja Pemerintah Daerah (RKPD) merupakan dokumen perencanaan pembangunan daerah tahunan yang berpedoman pada Dokumen Rencana Pembangunan Jangka Menengah Daerah (RPJMD)."
+
+Jadikan Banyuwangi sebagai salah satu acuan kualitas, namun UTAMAKAN kepatuhan pada regulasi yang berlaku (a.l. Permendagri 81/2022) dan praktik terbaik perencanaan nasional.
+
+Format: narasi paragraf formal + poin bernomor. Uraikan SETIAP bab secara rinci, konkret, dan terstruktur — beberapa paragraf per bagian, mengalir dan tidak sekadar ringkas. Total sekitar 1200-1700 kata.`;
 
   setAiStatus('loading', 'Sedang menyusun narasi RKPD... (estimasi 20-35 detik)');
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2500 });
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('narasiBox').style.display = 'block';
     if (result.isDemo) {
@@ -829,6 +930,7 @@ p{margin:5pt 0;text-align:justify;} ol,ul{margin:4pt 0 4pt 16pt;}li{margin-botto
   a.href = url; a.download = fname.replace(/[^a-zA-Z0-9_\- ]/g,'_') + '.doc';
   document.body.appendChild(a); a.click();
   document.body.removeChild(a); URL.revokeObjectURL(url);
+  try{const _h=JSON.parse(localStorage.getItem('gen_history')||'[]');_h.unshift({tool:'SiRKPD',title:(fname||'Dokumen').replace(/_/g,' ').trim(),href:'sirkpd.html',at:Date.now()});localStorage.setItem('gen_history',JSON.stringify(_h.slice(0,80)));}catch(_e){}
 }
 
 function exportPdf() {
@@ -849,6 +951,7 @@ function exportPdf() {
 // HELPERS
 // ============================================================
 function v(id) { return document.getElementById(id)?.value?.trim()||''; }
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
 function fmtRp(n) { return 'Rp ' + Math.round(n||0).toLocaleString('id-ID'); }
 
 // INIT — pre-populate dengan 3 contoh baris
@@ -860,6 +963,9 @@ function fmtRp(n) { return 'Rp ' + Math.round(n||0).toLocaleString('id-ID'); }
   addProg({bidang:'Infrastruktur', program:'Program Penyelenggaraan Jalan', opd:'Dinas PUPR', pagu:'150.000.000.000'});
   addProg({bidang:'Kesehatan', program:'Program Pemenuhan Upaya Kesehatan Masyarakat', opd:'Dinas Kesehatan', pagu:'120.000.000.000'});
   addProg({bidang:'Pendidikan', program:'Program Pengelolaan Pendidikan Dasar', opd:'Dinas Pendidikan', pagu:'200.000.000.000'});
+
+  // Nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran)
+  loadNomenklaturIndex();
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -874,12 +980,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const access = getAccessStatus();
   const badge = document.getElementById('accessBadge');
   if (access.active) {
-    badge.textContent = '👑 Berbayar';
+    badge.textContent = access.unlimited ? '👑 Berbayar' : '💳 ' + access.credits + ' kredit';
     badge.classList.add('active');
   } else {
     badge.textContent = '🔓 Demo';
   }
 });
 </script>
+<script type="module" src="assets/js/nav-auth.js"></script>
 </body>
 </html>

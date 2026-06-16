@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script src="assets/js/analytics.js"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SiKTOR — AI Writer KAK/TOR Otomatis | Andri Wulandika</title>
@@ -46,7 +47,7 @@
 :root {
   --bg:#F5F5F7;--surface:#fff;--text:#1D1D1F;--sub:#6e6e73;
   --accent:#0071e3;--green:#16a34a;--green-h:#15803d;
-  --border:#d2d2d7;--radius:12px;--shadow:0 2px 16px rgba(0,0,0,.08);
+  --border:#d2d2d7;--radius:18px;--shadow:0 1px 3px rgba(0,0,0,.04);
   --danger:#dc2626;--warning:#d97706;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -59,8 +60,8 @@ nav .logo span{font-weight:300;color:var(--sub);font-size:13px;margin-left:8px;}
 nav a{color:var(--sub);text-decoration:none;font-size:14px;transition:color .2s;}
 nav a:hover{color:var(--text);}
 nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
-.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
-.btn-outline{background:none;border:1.5px solid var(--border);color:var(--text);}
+.btn-sm{padding:6px 16px;border-radius:980px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-outline{background:none;border:1px solid var(--border);color:var(--text);}
 .btn-outline:hover{border-color:var(--green);color:var(--green);}
 .btn-primary{background:var(--green);color:#fff;}
 .btn-primary:hover{background:var(--green-h);}
@@ -90,7 +91,7 @@ nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 .step-line{width:32px;height:2px;background:var(--border);flex:none;}
 .step-line.done{background:var(--green);}
 
-.card{background:var(--surface);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.card{background:var(--surface);border-radius:var(--radius);padding:32px;margin-bottom:20px;box-shadow:var(--shadow);}
 .card h2{font-size:18px;font-weight:700;margin-bottom:6px;}
 .card .card-sub{color:var(--sub);font-size:13px;margin-bottom:20px;}
 
@@ -99,29 +100,29 @@ nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
 .form-group label{font-size:13px;font-weight:600;color:var(--text);}
 .form-group .hint{font-size:12px;color:var(--sub);}
-input[type=text],input[type=number],input[type=date],select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--text);background:#fafafa;transition:border-color .2s;}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);background:#fff;}
+input[type=text],input[type=number],input[type=date],select,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;color:var(--text);background:#fff;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);}
 textarea{resize:vertical;min-height:80px;}
 
 .nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px;}
-.btn{padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
+.btn{padding:11px 24px;border-radius:980px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
 .btn:disabled{opacity:.5;cursor:not-allowed;}
 .btn-prev{background:var(--bg);border:1.5px solid var(--border);color:var(--text);}
 .btn-prev:hover:not(:disabled){border-color:var(--text);}
 .btn-next{background:var(--green);color:#fff;}
 .btn-next:hover:not(:disabled){background:var(--green-h);}
-.btn-ai{background:linear-gradient(135deg,#16a34a,#0071e3);color:#fff;display:flex;align-items:center;gap:8px;}
-.btn-ai:hover:not(:disabled){opacity:.9;}
+.btn-ai{background:var(--green);color:#fff;display:flex;align-items:center;gap:8px;}
+.btn-ai:hover:not(:disabled){background:var(--green-h);}
 .btn-export{background:var(--green);color:#fff;}
 
-.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;}
+.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;margin-bottom:16px;font-size:13px;}
 .ai-status.loading{background:#dcfce7;color:var(--green);}
 .ai-status.error{background:#fee2e2;color:var(--danger);}
 .ai-status.success{background:#dcfce7;color:var(--green);}
 .spinner{width:16px;height:16px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;flex:none;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
-.doc-preview{background:#fff;border:1px solid var(--border);border-radius:8px;padding:40px 48px;max-width:800px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.6;color:#000;}
+.doc-preview{background:#fff;border:1px solid var(--border);border-radius:12px;padding:40px 48px;max-width:800px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.6;color:#000;}
 @media(max-width:600px){.doc-preview{padding:24px 16px;}}
 .doc-preview h1{font-size:14pt;text-align:center;font-weight:bold;margin-bottom:8px;}
 .doc-preview h2{font-size:13pt;font-weight:bold;margin:20px 0 8px;}
@@ -136,10 +137,10 @@ textarea{resize:vertical;min-height:80px;}
 
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal{background:#fff;border-radius:16px;padding:32px;max-width:440px;width:90%;}
+.modal{background:#fff;border-radius:20px;padding:32px;max-width:440px;width:90%;}
 .modal h3{font-size:18px;font-weight:700;margin-bottom:8px;}
 .modal p{color:var(--sub);font-size:14px;margin-bottom:20px;}
-.modal-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;margin-bottom:8px;}
+.modal-input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;margin-bottom:8px;}
 .modal-input:focus{outline:none;border-color:var(--green);}
 .modal-actions{display:flex;gap:10px;margin-top:16px;}
 .modal a{color:var(--accent);font-size:13px;}
@@ -148,12 +149,14 @@ textarea{resize:vertical;min-height:80px;}
 .wizard-step.active{display:block;}
 
 /* Komponen kegiatan */
-.komponen-item{background:var(--bg);border-radius:8px;padding:16px;margin-bottom:12px;border:1px solid var(--border);}
+.komponen-item{background:var(--bg);border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid var(--border);}
 .komponen-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
 .komponen-header span{font-weight:600;font-size:14px;}
 .tbl-del{color:var(--danger);cursor:pointer;font-size:18px;font-weight:700;background:none;border:none;padding:0 4px;}
-.tbl-add-btn{font-size:13px;color:var(--green);cursor:pointer;background:none;border:1.5px dashed var(--green);border-radius:8px;padding:6px 14px;transition:all .2s;}
+.tbl-add-btn{font-size:13px;color:var(--green);cursor:pointer;background:none;border:1.5px dashed var(--green);border-radius:980px;padding:6px 16px;transition:all .2s;}
 .tbl-add-btn:hover{background:#dcfce7;}
+.nomenklatur-box{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:18px;}
+.nomenklatur-box .form-row{margin-bottom:10px;}
 
 .preview-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
 .preview-toolbar h2{flex:1;font-size:18px;}
@@ -194,7 +197,7 @@ textarea{resize:vertical;min-height:80px;}
   .hero-tags{gap:6px;}
 
   .main{padding:0 14px 60px;}
-  .card{padding:18px;border-radius:14px;}
+  .card{padding:20px;border-radius:16px;}
 
   .step-label{display:none;}
   .step-line{width:16px;}
@@ -290,6 +293,40 @@ textarea{resize:vertical;min-height:80px;}
             <option value="TOR">TOR — Term of Reference</option>
           </select>
         </div>
+      </div>
+
+      <div class="nomenklatur-box">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;">📋 Isi dari Nomenklatur Resmi (Kepmendagri 050-5889/2021, pemutakhiran)</div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Bidang Urusan</label>
+            <select id="nomBidang" onchange="onNomBidangChange()">
+              <option value="">-- Pilih Bidang Urusan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Program</label>
+            <select id="nomProgram" onchange="onNomProgramChange()" disabled>
+              <option value="">-- Pilih Program --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Kegiatan</label>
+            <select id="nomKegiatan" onchange="onNomKegiatanChange()" disabled>
+              <option value="">-- Pilih Kegiatan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Sub Kegiatan (opsional)</label>
+            <select id="nomSub" disabled>
+              <option value="">-- (tanpa sub kegiatan) --</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="tbl-add-btn" onclick="applyFromNomenklatur()">+ Isi Otomatis Program/Kegiatan</button>
+        <span class="hint" style="display:block;margin-top:6px;">Mengisi Nama Program, Nama Kegiatan, Nama Sub Kegiatan, dan Kode Rekening secara otomatis sesuai nomenklatur resmi.</span>
       </div>
 
       <div class="form-group">
@@ -530,6 +567,134 @@ const STEP_LABELS = ['Identitas','Detail Kegiatan','Anggaran & Jadwal','Narasi A
 let komponenList = [];
 
 // ============================================================
+// NOMENKLATUR (Kepmendagri 050-5889/2021, pemutakhiran)
+// ============================================================
+let NOMENKLATUR_INDEX = [];
+const nomenklaturCache = {};
+
+async function loadNomenklaturIndex() {
+  try {
+    const res = await fetch('assets/data/nomenklatur/index.json');
+    NOMENKLATUR_INDEX = await res.json();
+  } catch {
+    NOMENKLATUR_INDEX = [];
+  }
+  const sel = document.getElementById('nomBidang');
+  if (sel) {
+    sel.innerHTML = '<option value="">-- Pilih Bidang Urusan --</option>' +
+      NOMENKLATUR_INDEX.map(b => `<option value="${b.code}">${esc(b.nama)}</option>`).join('');
+  }
+}
+
+function detectJenisPemda() {
+  return /provinsi/i.test(v('namaPemda')) ? 'PROV' : 'KABKOT';
+}
+
+async function getNomenklaturData(code) {
+  if (nomenklaturCache[code]) return nomenklaturCache[code];
+  const res = await fetch(`assets/data/nomenklatur/${code}.json`);
+  const data = await res.json();
+  nomenklaturCache[code] = data;
+  return data;
+}
+
+const KECIL_WORDS = ['dan','di','ke','dari','yang','untuk','pada','atau','dengan','serta','dalam','antar'];
+function titleCaseID(str) {
+  return str.toLowerCase().split(' ').map((w, i) =>
+    (i > 0 && KECIL_WORDS.includes(w)) ? w : (w.charAt(0).toUpperCase() + w.slice(1))
+  ).join(' ');
+}
+
+function splitKodeNama(s) {
+  const m = s.match(/^([\d.]+)\s+(.*)$/);
+  return m ? { kode: m[1], nama: m[2] } : { kode: '', nama: s };
+}
+
+async function onNomBidangChange() {
+  const code = v('nomBidang');
+  resetNomSelect('nomProgram', '-- Pilih Program --');
+  resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --');
+  resetNomSelect('nomSub', '-- (tanpa sub kegiatan) --');
+  if (!code) return;
+
+  const data = await getNomenklaturData(code);
+  const jenis = detectJenisPemda();
+  const progs = (data[jenis] && data[jenis].length > 0) ? data[jenis] : (data.PROV.length > 0 ? data.PROV : data.KABKOT);
+
+  const sel = document.getElementById('nomProgram');
+  sel.innerHTML = '<option value="">-- Pilih Program --</option>' +
+    progs.map((p, i) => `<option value="${i}">${esc(p.program)}</option>`).join('');
+  sel.disabled = progs.length === 0;
+  sel.dataset.progs = JSON.stringify(progs);
+}
+
+function resetNomSelect(id, placeholder) {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  sel.innerHTML = `<option value="">${placeholder}</option>`;
+  sel.disabled = true;
+}
+
+function onNomProgramChange() {
+  resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --');
+  resetNomSelect('nomSub', '-- (tanpa sub kegiatan) --');
+  const progSel = document.getElementById('nomProgram');
+  const idx = progSel.value;
+  if (idx === '') return;
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const kegiatan = progs[idx]?.kegiatan || [];
+
+  const sel = document.getElementById('nomKegiatan');
+  sel.innerHTML = '<option value="">-- Pilih Kegiatan --</option>' +
+    kegiatan.map((k, i) => `<option value="${i}">${esc(k.nama)}</option>`).join('');
+  sel.disabled = kegiatan.length === 0;
+  sel.dataset.kegiatan = JSON.stringify(kegiatan);
+}
+
+function onNomKegiatanChange() {
+  resetNomSelect('nomSub', '-- (tanpa sub kegiatan) --');
+  const kegSel = document.getElementById('nomKegiatan');
+  const idx = kegSel.value;
+  if (idx === '') return;
+  const kegiatan = JSON.parse(kegSel.dataset.kegiatan || '[]');
+  const sub = kegiatan[idx]?.sub || [];
+
+  const sel = document.getElementById('nomSub');
+  sel.innerHTML = '<option value="">-- (tanpa sub kegiatan) --</option>' +
+    sub.map((s, i) => `<option value="${i}">${esc(s.nama)}</option>`).join('');
+  sel.disabled = sub.length === 0;
+  sel.dataset.sub = JSON.stringify(sub);
+}
+
+function applyFromNomenklatur() {
+  const progSel = document.getElementById('nomProgram');
+  const kegSel = document.getElementById('nomKegiatan');
+  const subSel = document.getElementById('nomSub');
+  if (!progSel.value || !kegSel.value) {
+    alert('Pilih Bidang Urusan, Program, dan Kegiatan terlebih dahulu.');
+    return;
+  }
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const kegiatan = JSON.parse(kegSel.dataset.kegiatan || '[]');
+
+  const prog = splitKodeNama(progs[progSel.value]?.program || '');
+  const keg = splitKodeNama(kegiatan[kegSel.value]?.nama || '');
+
+  document.getElementById('namaProgram').value = titleCaseID(prog.nama);
+  document.getElementById('namaKegiatan').value = keg.nama;
+  document.getElementById('kodeRekening').value = keg.kode;
+
+  if (subSel.value !== '') {
+    const sub = JSON.parse(subSel.dataset.sub || '[]');
+    const sk = splitKodeNama(sub[subSel.value]?.nama || '');
+    document.getElementById('namaSubKegiatan').value = sk.nama;
+    document.getElementById('kodeRekening').value = sk.kode;
+  } else {
+    document.getElementById('namaSubKegiatan').value = '';
+  }
+}
+
+// ============================================================
 // STEP NAVIGATION
 // ============================================================
 function goStep(n) {
@@ -639,8 +804,11 @@ async function generateNarasi() {
   const metTamb = v('metodologiTambahan');
   const konteks = v('konteksAi');
   const pagu    = v('paguAnggaran');
+  const jangka  = document.getElementById('jangkaWaktu')?.value || '';
+  const tglMul  = v('tglMulai');
+  const tglSel  = v('tglSelesai');
 
-  const prompt = `Anda adalah konsultan perencanaan pemerintah berpengalaman. Tugas Anda adalah menulis narasi formal untuk ${jenis} (Kerangka Acuan Kerja) berikut.
+  const prompt = `Anda adalah konsultan perencanaan dan penganggaran pemerintah berpengalaman, terbiasa menyusun KAK/TOR berkualitas terbaik sesuai regulasi — KAK/TOR adalah dokumen pendukung wajib RKA (mengacu PMK 62/2023, sebelumnya PMK 94/2017), disusun lengkap mengikuti kaidah 7W1H, dengan keluaran terukur (SMART), tahapan jelas, dan justifikasi kebutuhan biaya yang logis (selaras Standar Biaya). Tugas Anda adalah menulis narasi formal untuk ${jenis} (Kerangka Acuan Kerja) berikut.
 
 PENTING:
 - Tulis dalam Bahasa Indonesia formal dan baku sesuai standar dokumen pemerintah
@@ -655,6 +823,8 @@ Kegiatan: ${keg}
 ${subKeg ? 'Sub Kegiatan: ' + subKeg : ''}
 Pagu Anggaran: ${pagu ? 'Rp ' + parseInt(pagu).toLocaleString('id-ID') : '-'}
 Metode Pelaksanaan: ${metode}${metTamb ? ' — ' + metTamb : ''}
+${jangka ? 'Jangka Waktu Pelaksanaan: ' + jangka : ''}
+${tglMul && tglSel ? `Periode: ${tglMul} s.d. ${tglSel}` : ''}
 ${konteks ? 'Konteks Tambahan: ' + konteks : ''}
 
 POIN LATAR BELAKANG:
@@ -669,17 +839,23 @@ OUTPUT: ${output}
 Tulis narasi ${jenis} yang terdiri dari:
 1. **LATAR BELAKANG** — 3-4 paragraf formal yang mengembangkan poin latar belakang di atas, menyebutkan kondisi empiris, dasar kebijakan, dan urgensi kegiatan
 2. **MAKSUD DAN TUJUAN** — kembangkan poin tujuan menjadi paragraf formal (maksud) dan daftar tujuan spesifik
-3. **SASARAN** — jelaskan target penerima manfaat secara formal
-4. **RUANG LINGKUP** — uraikan cakupan kegiatan berdasarkan metode yang dipilih
-5. **METODOLOGI PELAKSANAAN** — jelaskan cara pelaksanaan secara sistematis
+3. **SASARAN DAN PENERIMA MANFAAT** — jelaskan target penerima manfaat secara formal
+4. **RUANG LINGKUP** — uraikan batasan dan cakupan kegiatan berdasarkan metode yang dipilih
+5. **METODOLOGI DAN TAHAPAN PELAKSANAAN** — jelaskan cara pelaksanaan secara sistematis beserta tahapan kegiatan secara kronologis, kaitkan dengan jangka waktu/periode pelaksanaan jika tersedia
+6. **INDIKATOR KINERJA KELUARAN** — jelaskan ukuran keberhasilan keluaran (output) secara terukur/SMART berdasarkan output yang diberikan
 
-Format: teks narasi formal, paragraf dan poin-poin bernomor sesuai bagian, sekitar 500-700 kata total.`;
+ACUAN KUALITAS (KAK terbaik sesuai PMK 62/2023, kaidah 7W1H):
+- Latar belakang menjawab WHY berbasis data/tusi & dasar kebijakan (bukan klaim umum); maksud-tujuan & ruang lingkup menjawab WHAT.
+- Penerima manfaat (WHO), metode pelaksanaan kontraktual/swakelola (HOW), tempat (WHERE), jadwal/tahapan kronologis (WHEN), dan kebutuhan biaya (HOW MUCH) diuraikan lengkap & saling konsisten.
+- Keluaran dinyatakan terukur (volume + satuan), indikator keberhasilan jelas; setiap tahapan terhubung logis ke keluaran dan kebutuhan biaya (tidak ada komponen menggantung).
+
+Format: teks narasi formal, paragraf dan poin-poin bernomor sesuai bagian. Uraikan SETIAP bagian secara rinci, konkret, dan terstruktur — beberapa paragraf per bagian, tidak sekadar ringkas. Total sekitar 1100-1500 kata.`;
 
   setAiStatus('loading', 'Sedang menyusun narasi KAK... (estimasi 15-30 detik)');
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2048 });
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('narasiBox').style.display = 'block';
     if (result.isDemo) {
@@ -847,6 +1023,7 @@ li{margin-bottom:3pt;}
   a.href = url; a.download = fname.replace(/[^a-zA-Z0-9_\- ]/g,'_') + '.doc';
   document.body.appendChild(a); a.click();
   document.body.removeChild(a); URL.revokeObjectURL(url);
+  try{const _h=JSON.parse(localStorage.getItem('gen_history')||'[]');_h.unshift({tool:'SiKTOR',title:(fname||'Dokumen').replace(/_/g,' ').trim(),href:'siktor.html',at:Date.now()});localStorage.setItem('gen_history',JSON.stringify(_h.slice(0,80)));}catch(_e){}
 }
 
 function exportPdf() {
@@ -881,6 +1058,9 @@ function fmtTgl(d) {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('tahunAnggaran').value = new Date().getFullYear() + 1;
 
+  // Nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran)
+  loadNomenklaturIndex();
+
   // Mobile nav toggle
   document.getElementById('navToggle')?.addEventListener('click', () => {
     document.getElementById('navLinks')?.classList.toggle('open');
@@ -891,12 +1071,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const access = getAccessStatus();
   const badge = document.getElementById('accessBadge');
   if (access.active) {
-    badge.textContent = '👑 Berbayar';
+    badge.textContent = access.unlimited ? '👑 Berbayar' : '💳 ' + access.credits + ' kredit';
     badge.classList.add('active');
   } else {
     badge.textContent = '🔓 Demo';
   }
 });
 </script>
+<script type="module" src="assets/js/nav-auth.js"></script>
 </body>
 </html>

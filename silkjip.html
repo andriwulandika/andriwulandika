@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script src="assets/js/analytics.js"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SiLKjIP — AI Writer LKjIP Otomatis | Andri Wulandika</title>
@@ -55,8 +56,8 @@
   --purple: #7c3aed;
   --purple-h: #6d28d9;
   --border: #d2d2d7;
-  --radius: 12px;
-  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+  --radius: 18px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04);
   --success: #16a34a;
   --warning: #d97706;
   --danger: #dc2626;
@@ -72,8 +73,8 @@ nav .logo span { font-weight: 300; color: var(--sub); font-size: 13px; margin-le
 nav a { color: var(--sub); text-decoration: none; font-size: 14px; transition: color .2s; }
 nav a:hover { color: var(--text); }
 nav .nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
-.btn-sm { padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; border: none; cursor: pointer; transition: all .2s; text-decoration: none; display: inline-block; }
-.btn-outline { background: none; border: 1.5px solid var(--border); color: var(--text); }
+.btn-sm { padding: 6px 16px; border-radius: 980px; font-size: 13px; font-weight: 500; border: none; cursor: pointer; transition: all .2s; text-decoration: none; display: inline-block; }
+.btn-outline { background: none; border: 1px solid var(--border); color: var(--text); }
 .btn-outline:hover { border-color: var(--purple); color: var(--purple); }
 .btn-primary { background: var(--purple); color: #fff; }
 .btn-primary:hover { background: var(--purple-h); }
@@ -107,7 +108,7 @@ nav .nav-right { margin-left: auto; display: flex; align-items: center; gap: 12p
 .step-line.done { background: var(--success); }
 
 /* CARD */
-.card { background: var(--surface); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; box-shadow: var(--shadow); }
+.card { background: var(--surface); border-radius: var(--radius); padding: 32px; margin-bottom: 20px; box-shadow: var(--shadow); }
 .card h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
 .card .card-sub { color: var(--sub); font-size: 13px; margin-bottom: 20px; }
 
@@ -118,39 +119,39 @@ nav .nav-right { margin-left: auto; display: flex; align-items: center; gap: 12p
 .form-group label { font-size: 13px; font-weight: 600; color: var(--text); }
 .form-group .hint { font-size: 12px; color: var(--sub); }
 input[type=text], input[type=number], select, textarea {
-  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px;
-  font-size: 14px; font-family: inherit; color: var(--text); background: #fafafa;
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px;
+  font-size: 14px; font-family: inherit; color: var(--text); background: #fff;
   transition: border-color .2s;
 }
-input:focus, select:focus, textarea:focus { outline: none; border-color: var(--purple); background: #fff; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--purple); }
 textarea { resize: vertical; min-height: 80px; }
 
 /* SASARAN TABLE */
 .tbl-container { overflow-x: auto; margin-bottom: 16px; }
 table.sasaran-tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
 table.sasaran-tbl th, table.sasaran-tbl td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
-table.sasaran-tbl th { background: #f0edff; font-weight: 600; white-space: nowrap; }
+table.sasaran-tbl th { background: var(--bg); font-weight: 600; white-space: nowrap; }
 table.sasaran-tbl input, table.sasaran-tbl select { border: none; background: transparent; width: 100%; font-size: 13px; padding: 0; }
 table.sasaran-tbl input:focus, table.sasaran-tbl select:focus { outline: 1px solid var(--purple); border-radius: 4px; }
-.tbl-add-btn { font-size: 13px; color: var(--purple); cursor: pointer; background: none; border: 1.5px dashed var(--purple); border-radius: 8px; padding: 6px 14px; transition: all .2s; }
+.tbl-add-btn { font-size: 13px; color: var(--purple); cursor: pointer; background: none; border: 1.5px dashed var(--purple); border-radius: 980px; padding: 6px 16px; transition: all .2s; }
 .tbl-add-btn:hover { background: #ede9fe; }
 .tbl-del { color: var(--danger); cursor: pointer; font-size: 16px; font-weight: 700; background: none; border: none; padding: 0 4px; }
 
 /* NAV BUTTONS */
 .nav-btns { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 12px; }
-.btn { padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+.btn { padding: 11px 24px; border-radius: 980px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
 .btn:disabled { opacity: .5; cursor: not-allowed; }
 .btn-prev { background: var(--bg); border: 1.5px solid var(--border); color: var(--text); }
 .btn-prev:hover:not(:disabled) { border-color: var(--text); }
 .btn-next { background: var(--purple); color: #fff; }
 .btn-next:hover:not(:disabled) { background: var(--purple-h); }
-.btn-ai { background: linear-gradient(135deg, #7c3aed, #0071e3); color: #fff; display: flex; align-items: center; gap: 8px; }
-.btn-ai:hover:not(:disabled) { opacity: .9; }
+.btn-ai { background: var(--purple); color: #fff; display: flex; align-items: center; gap: 8px; }
+.btn-ai:hover:not(:disabled) { background: var(--purple-h); }
 .btn-export { background: var(--success); color: #fff; }
 .btn-export:hover { opacity: .9; }
 
 /* AI STATUS */
-.ai-status { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 13px; }
+.ai-status { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 13px; }
 .ai-status.loading { background: #ede9fe; color: var(--purple); }
 .ai-status.error { background: #fee2e2; color: var(--danger); }
 .ai-status.success { background: #dcfce7; color: var(--success); }
@@ -161,7 +162,7 @@ table.sasaran-tbl input:focus, table.sasaran-tbl select:focus { outline: 1px sol
 #previewSection { display: none; }
 .preview-toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
 .preview-toolbar h2 { flex: 1; font-size: 18px; }
-.doc-preview { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 40px 48px; max-width: 800px; margin: 0 auto; font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; }
+.doc-preview { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 40px 48px; max-width: 800px; margin: 0 auto; font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; }
 @media(max-width:600px) { .doc-preview { padding: 24px 16px; } }
 .doc-preview h1 { font-size: 14pt; text-align: center; font-weight: bold; margin-bottom: 8px; }
 .doc-preview h2 { font-size: 13pt; font-weight: bold; margin: 20px 0 8px; }
@@ -177,10 +178,10 @@ table.sasaran-tbl input:focus, table.sasaran-tbl select:focus { outline: 1px sol
 /* API MODAL */
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 200; align-items: center; justify-content: center; }
 .modal-overlay.open { display: flex; }
-.modal { background: #fff; border-radius: 16px; padding: 32px; max-width: 440px; width: 90%; }
+.modal { background: #fff; border-radius: 20px; padding: 32px; max-width: 440px; width: 90%; }
 .modal h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
 .modal p { color: var(--sub); font-size: 14px; margin-bottom: 20px; }
-.modal-input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; margin-bottom: 8px; }
+.modal-input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px; font-size: 14px; margin-bottom: 8px; }
 .modal-input:focus { outline: none; border-color: var(--purple); }
 .modal-actions { display: flex; gap: 10px; margin-top: 16px; }
 .modal a { color: var(--accent); font-size: 13px; }
@@ -194,11 +195,11 @@ table.sasaran-tbl input:focus, table.sasaran-tbl select:focus { outline: 1px sol
 .wizard-step.active { display: block; }
 
 /* PRO BADGE */
-.pro-info { background: linear-gradient(135deg, #ede9fe, #dbeafe); border: 1px solid #c4b5fd; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--purple); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.pro-info { background: linear-gradient(135deg, #ede9fe, #dbeafe); border: 1px solid #c4b5fd; border-radius: 12px; padding: 12px 16px; font-size: 13px; color: var(--purple); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 
 /* CAPAIAN SUMMARY */
 .capaian-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 16px; }
-.capaian-card { background: var(--bg); border-radius: 8px; padding: 14px 16px; text-align: center; }
+.capaian-card { background: var(--bg); border-radius: 12px; padding: 14px 16px; text-align: center; }
 .capaian-card .val { font-size: 24px; font-weight: 700; }
 .capaian-card .lbl { font-size: 12px; color: var(--sub); margin-top: 2px; }
 
@@ -235,7 +236,7 @@ table.sasaran-tbl input:focus, table.sasaran-tbl select:focus { outline: 1px sol
   .hero-tags{gap:6px;}
 
   .main{padding:0 14px 60px;}
-  .card{padding:18px;border-radius:14px;}
+  .card{padding:20px;border-radius:16px;}
 
   .step-label{display:none;}
   .step-line{width:16px;}
@@ -793,12 +794,12 @@ async function generateAnalysis() {
   const hambatan = v('hambatan');
   const tindakLanjut = v('tindakLanjut');
 
-  const prompt = `Anda adalah analis kinerja pemerintah yang berpengalaman. Tugas Anda adalah menulis narasi analisis kinerja untuk Laporan Kinerja Instansi Pemerintah (LKjIP) berdasarkan data berikut.
+  const prompt = `Anda adalah analis kinerja pemerintah yang berpengalaman, terbiasa menyusun LKjIP dengan kedalaman analisis setara dokumen kinerja Kabupaten Banyuwangi — daerah dengan praktik SAKIP berpredikat terbaik nasional yang Anda jadikan acuan struktur dan kedalaman analisisnya. Tugas Anda adalah menulis narasi analisis kinerja untuk Laporan Kinerja Instansi Pemerintah (LKjIP) berdasarkan data berikut.
 
 PENTING:
 - Jangan mengarang angka atau data baru — gunakan HANYA data yang diberikan
 - Tulis dalam Bahasa Indonesia formal dan baku sesuai standar pelaporan pemerintah
-- Ikuti PermenPANRB 53/2014 dan PermenPANRB 88/2021
+- Ikuti PermenPANRB 53/2014 dan PermenPANRB 88/2021, dengan kedalaman analisis (analisis penyebab, analisis efisiensi, dan keterkaitan program-kinerja) yang menjadi ciri LKjIP berpredikat AA
 
 DATA KINERJA:
 OPD: ${opd}
@@ -813,19 +814,27 @@ TINDAK LANJUT: ${tindakLanjut || '-'}
 KONTEKS TAMBAHAN: ${konteks || '-'}
 
 Tulis narasi analisis kinerja yang terdiri dari:
-1. **Ringkasan Capaian Kinerja** - Paragraf pembuka menggambarkan capaian keseluruhan
-2. **Analisis Per Sasaran Strategis** - Untuk setiap sasaran: uraikan capaian, faktor pendukung, dan kendala
-3. **Analisis Efisiensi Anggaran** - Hubungan antara capaian kinerja dan penyerapan anggaran (jika data tersedia)
-4. **Hambatan dan Permasalahan** - Elaborasi dari hambatan yang disebutkan
-5. **Upaya Tindak Lanjut** - Langkah-langkah yang akan diambil
+1. **Ikhtisar Eksekutif Capaian Kinerja** - Paragraf pembuka yang merangkum capaian keseluruhan organisasi dibanding target, termasuk jumlah/proporsi sasaran yang mencapai kategori sangat baik/baik
+2. **Analisis Capaian per Sasaran Strategis** - Untuk setiap sasaran: bandingkan realisasi dengan target dan kategori capaiannya, uraikan program/kegiatan utama yang menjadi penunjang keberhasilan atau penyebab tidak tercapainya target, serta faktor pendukung dan penghambat
+3. **Analisis Efisiensi Penggunaan Sumber Daya** - Hubungan antara tingkat capaian kinerja dengan besaran anggaran yang digunakan (jika data tersedia), nilai efisien jika capaian kinerja ≥100% dengan penggunaan sumber daya yang proporsional atau lebih kecil dari rencana
+4. **Hambatan dan Permasalahan** - Elaborasi dari hambatan yang disebutkan, kaitkan dengan sasaran yang belum optimal capaiannya
+5. **Rencana Tindak Lanjut dan Rekomendasi Perbaikan** - Langkah-langkah konkret untuk mempertahankan capaian yang sudah baik dan memperbaiki capaian yang belum optimal pada periode berikutnya
 
-Format: teks narasi paragraf (bukan bullet point), formal, sekitar 600-900 kata.`;
+ACUAN STRUKTUR & GAYA — LKjIP Kabupaten Banyuwangi (SAKIP berpredikat AA), tiru kedalaman & pola berlapis ini:
+- Ikhtisar eksekutif merangkum capaian dalam ANGKA konkret (rata-rata capaian IKU, proporsi sasaran yang melampaui/di bawah target), lalu menyebut faktor pendorong (sinergi lintas PD, perencanaan berbasis data, inovasi) dan tantangan (dinamika kebijakan nasional, kompetensi SDM belum merata).
+- Analisis capaian disajikan BERLAPIS untuk tiap sasaran: (a) capaian tahun ini vs target; (b) tren beberapa tahun terakhir; (c) realisasi vs target akhir Renstra; (d) bila relevan, perbandingan dengan rata-rata daerah lain/provinsi/nasional; (e) penyebab keberhasilan/kegagalan; (f) efisiensi sumber daya (capaian kinerja dibanding penyerapan anggaran) dengan kategori Efisien/Kurang Efisien; (g) program/kegiatan penunjang.
+- Untuk indikator berbasis indeks/kategori, jelaskan bahwa perubahan nilai tidak selalu berarti penurunan substantif — dapat dipengaruhi penyempurnaan metode/bobot penilaian.
+- Gaya formal-analitis yang mengaitkan angka dengan sebab. Contoh nada Banyuwangi: "Capaian yang melampaui target menunjukkan bahwa secara agregat, kinerja pembangunan daerah berada pada jalur yang positif dan melampaui ekspektasi yang telah ditetapkan dalam dokumen perencanaan."
+
+Jadikan Banyuwangi sebagai salah satu acuan kualitas, namun UTAMAKAN kepatuhan pada regulasi (PermenPANRB 53/2014 & 88/2021) dan praktik SAKIP terbaik nasional.
+
+Format: teks narasi paragraf (bukan bullet point), formal. Uraikan SETIAP bagian/sasaran secara rinci, konkret, analitis, dan terstruktur — beberapa paragraf per sasaran, mengalir dan tidak sekadar ringkas. Total sekitar 1200-1700 kata.`;
 
   setAiStatus('loading', 'Sedang membuat analisis... (estimasi 15-30 detik)');
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 2048 });
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
     aiNarasiResult = result.text;
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('aiNarasiBox').style.display = 'block';
@@ -1042,6 +1051,7 @@ p{margin:6pt 0;text-align:justify;}
   a.download = filename + '.doc';
   document.body.appendChild(a); a.click();
   document.body.removeChild(a); URL.revokeObjectURL(url);
+  try{const _h=JSON.parse(localStorage.getItem('gen_history')||'[]');_h.unshift({tool:'SiLKjIP',title:(filename||'Dokumen').replace(/_/g,' ').trim(),href:'silkjip.html',at:Date.now()});localStorage.setItem('gen_history',JSON.stringify(_h.slice(0,80)));}catch(_e){}
 }
 
 function exportPdf() {
@@ -1103,12 +1113,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const access = getAccessStatus();
   const badge = document.getElementById('accessBadge');
   if (access.active) {
-    badge.textContent = '👑 Berbayar';
+    badge.textContent = access.unlimited ? '👑 Berbayar' : '💳 ' + access.credits + ' kredit';
     badge.classList.add('active');
   } else {
     badge.textContent = '🔓 Demo';
   }
 });
 </script>
+<script type="module" src="assets/js/nav-auth.js"></script>
 </body>
 </html>

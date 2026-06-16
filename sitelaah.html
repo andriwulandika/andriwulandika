@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script src="assets/js/analytics.js"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SiTelaah — AI Writer Nota Dinas & Telaahan Staf | Andri Wulandika</title>
@@ -42,7 +43,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 <style>
-:root{--bg:#F5F5F7;--surface:#fff;--text:#1D1D1F;--sub:#6e6e73;--teal:#0d9488;--teal-h:#0f766e;--border:#d2d2d7;--radius:12px;--shadow:0 2px 16px rgba(0,0,0,.08);--danger:#dc2626;--success:#16a34a;}
+:root{--bg:#F5F5F7;--surface:#fff;--text:#1D1D1F;--sub:#6e6e73;--teal:#0d9488;--teal-h:#0f766e;--border:#d2d2d7;--radius:18px;--shadow:0 1px 3px rgba(0,0,0,.04);--danger:#dc2626;--success:#16a34a;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;}
 nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:24px;}
@@ -51,8 +52,8 @@ nav .logo span{font-weight:300;color:var(--sub);font-size:13px;margin-left:8px;}
 nav a{color:var(--sub);text-decoration:none;font-size:14px;}
 nav a:hover{color:var(--text);}
 nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
-.btn-sm{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-block;}
-.btn-outline{background:none;border:1.5px solid var(--border);color:var(--text);}
+.btn-sm{padding:6px 16px;border-radius:980px;font-size:13px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-outline{background:none;border:1px solid var(--border);color:var(--text);}
 .btn-outline:hover{border-color:var(--teal);color:var(--teal);}
 .access-badge{font-size:11px;font-weight:600;color:var(--sub);padding:4px 10px;border-radius:980px;background:var(--bg);border:1px solid var(--border);white-space:nowrap;}
 .access-badge.active{color:#7c3aed;background:#f3f0ff;border-color:#c4b5fd;}
@@ -64,7 +65,7 @@ nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 .hero-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
 .tag{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--sub);}
 .main{max-width:860px;margin:0 auto;padding:0 20px 80px;}
-.card{background:var(--surface);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+.card{background:var(--surface);border-radius:var(--radius);padding:32px;margin-bottom:20px;box-shadow:var(--shadow);}
 .card h2{font-size:18px;font-weight:700;margin-bottom:6px;}
 .card-sub{color:var(--sub);font-size:13px;margin-bottom:20px;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
@@ -72,24 +73,24 @@ nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
 .form-group label{font-size:13px;font-weight:600;}
 .form-group .hint{font-size:12px;color:var(--sub);}
-input[type=text],input[type=date],select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--text);background:#fafafa;transition:border-color .2s;}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);background:#fff;}
+input[type=text],input[type=date],select,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;color:var(--text);background:#fff;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);}
 textarea{resize:vertical;min-height:80px;}
-.btn{padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
+.btn{padding:11px 24px;border-radius:980px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
 .btn:disabled{opacity:.5;cursor:not-allowed;}
 .btn-teal{background:var(--teal);color:#fff;}
 .btn-teal:hover:not(:disabled){background:var(--teal-h);}
-.btn-ai{background:linear-gradient(135deg,#0d9488,#0071e3);color:#fff;display:flex;align-items:center;gap:8px;}
-.btn-ai:hover:not(:disabled){opacity:.9;}
+.btn-ai{background:var(--teal);color:#fff;display:flex;align-items:center;gap:8px;}
+.btn-ai:hover:not(:disabled){background:var(--teal-h);}
 .btn-grey{background:var(--bg);border:1.5px solid var(--border);color:var(--text);}
 .btn-export{background:var(--success);color:#fff;}
-.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;}
+.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;margin-bottom:16px;font-size:13px;}
 .ai-status.loading{background:#ccfbf1;color:var(--teal);}
 .ai-status.error{background:#fee2e2;color:var(--danger);}
 .ai-status.success{background:#dcfce7;color:var(--success);}
 .spinner{width:16px;height:16px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;flex:none;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.doc-preview{background:#fff;border:1px solid var(--border);border-radius:8px;padding:40px 52px;max-width:760px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.7;color:#000;}
+.doc-preview{background:#fff;border:1px solid var(--border);border-radius:12px;padding:40px 52px;max-width:760px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.7;color:#000;}
 @media(max-width:600px){.doc-preview{padding:20px 14px;}}
 .doc-preview p{margin:6px 0;text-align:justify;}
 .doc-preview h3{font-size:12pt;font-weight:bold;margin:14px 0 6px;}
@@ -100,10 +101,10 @@ textarea{resize:vertical;min-height:80px;}
 .preview-toolbar h2{flex:1;font-size:18px;}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal{background:#fff;border-radius:16px;padding:32px;max-width:440px;width:90%;}
+.modal{background:#fff;border-radius:20px;padding:32px;max-width:440px;width:90%;}
 .modal h3{font-size:18px;font-weight:700;margin-bottom:8px;}
 .modal p{color:var(--sub);font-size:14px;margin-bottom:20px;}
-.modal-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;margin-bottom:8px;}
+.modal-input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;margin-bottom:8px;}
 .modal-actions{display:flex;gap:10px;margin-top:16px;}
 .compliance{background:#1D1D1F;color:#f5f5f7;padding:32px 24px;text-align:center;margin-top:64px;font-size:13px;line-height:1.8;}
 .compliance a{color:#5eead4;text-decoration:none;}
@@ -139,7 +140,7 @@ textarea{resize:vertical;min-height:80px;}
   .hero-tags{gap:6px;}
 
   .main{padding:0 14px 60px;}
-  .card{padding:18px;border-radius:14px;}
+  .card{padding:20px;border-radius:16px;}
 
   .nav-btns{flex-direction:column-reverse;align-items:stretch;}
   .nav-btns .btn{width:100%;}
@@ -324,7 +325,29 @@ async function generateTelaahan() {
   const rekomen= v('rekomendasi');
   const dasHk  = v('dasarHukum');
 
-  const prompt = `Anda adalah seorang ASN senior yang berpengalaman menyusun dokumen administrasi pemerintahan.
+  const isTelaahan = jenis === 'Telaahan Staf';
+
+  const sections = isTelaahan
+    ? `Tulis narasi Telaahan Staf dengan 6 unsur wajib sesuai Permendagri Nomor 1 Tahun 2023 tentang Tata Naskah Dinas di Lingkungan Pemerintah Daerah — kelengkapan unsur ini menjadi ciri Telaahan Staf berpredikat terbaik nasional:
+1. **I. PERSOALAN** — Rumuskan pokok persoalan secara singkat, jelas, dan lengkap berdasarkan permasalahan yang diberikan
+2. **II. PRAANGGAPAN** — Kemukakan dugaan yang beralasan (asumsi/perkiraan) mengenai persoalan tersebut apabila tidak ada tindakan, berdasarkan fakta yang ada
+3. **III. FAKTA YANG MEMPENGARUHI** — Uraikan fakta-fakta dan data yang berkaitan dan berpengaruh terhadap persoalan, berdasarkan latar belakang yang diberikan
+4. **IV. ANALISIS** — Analisis pengaruh fakta terhadap persoalan, kemukakan kemungkinan-kemungkinan/opsi yang dapat diambil beserta keuntungan dan kerugian masing-masing${opsiTx ? ' (kembangkan dari opsi penyelesaian yang diberikan)' : ''}
+5. **V. KESIMPULAN** — Simpulkan opsi/kemungkinan terbaik dari hasil analisis
+6. **VI. SARAN** — Sampaikan saran tindakan yang konkret dan dapat dilaksanakan${rekomen ? ', kembangkan dari rekomendasi yang diberikan' : ''}
+
+CIRI KUALITAS TERBAIK: pisahkan tegas antara FAKTA (objektif) dan PRAANGGAPAN/ANALISIS (penalaran); fokus pada satu persoalan pokok; kesimpulan mengalir logis dari analisis; saran konkret, spesifik, dan dapat dieksekusi.
+
+Format: narasi paragraf formal per unsur, urutkan persis I sampai VI. Uraikan setiap unsur secara rinci dan terstruktur (beberapa kalimat/paragraf per unsur). Total 700-1000 kata.`
+    : `Tulis narasi ${jenis} yang terdiri dari:
+1. **PENDAHULUAN** — 1-2 paragraf formal: dasar dan tujuan ${jenis} ini dibuat
+2. **PERMASALAHAN** — Uraikan permasalahan/isu secara sistematis dan formal (bernomor)
+3. **ANALISIS** — Analisis tiap permasalahan dengan mengaitkan pada dasar hukum dan kondisi faktual${opsiTx ? '\n4. **ALTERNATIF PENYELESAIAN** — Uraikan opsi-opsi beserta kelebihan/kekurangannya' : ''}
+${opsiTx ? '5.' : '4.'} **KESIMPULAN DAN SARAN** — Simpulkan dan sampaikan rekomendasi/saran tindak secara tegas
+
+Format: narasi paragraf formal. Uraikan setiap bagian secara rinci dan terstruktur. Total 500-800 kata.`;
+
+  const prompt = `Anda adalah seorang ASN senior yang berpengalaman menyusun dokumen administrasi pemerintahan${isTelaahan ? ', termasuk Telaahan Staf sesuai Permendagri 1/2023 (untuk Pemda) atau Peraturan ANRI 5/2021 (untuk instansi pusat) dengan kualitas terbaik' : ''}.
 
 Tugas: Tulis isi/narasi formal untuk ${jenis} berikut.
 
@@ -351,19 +374,13 @@ ${opsiTx || '-'}
 REKOMENDASI:
 ${rekomen || '-'}
 
-Tulis narasi ${jenis} yang terdiri dari:
-1. **PENDAHULUAN** — 1-2 paragraf formal: dasar dan tujuan ${jenis} ini dibuat
-2. **PERMASALAHAN** — Uraikan permasalahan/isu secara sistematis dan formal (bernomor)
-3. **ANALISIS** — Analisis tiap permasalahan dengan mengaitkan pada dasar hukum dan kondisi faktual${opsiTx ? '\n4. **ALTERNATIF PENYELESAIAN** — Uraikan opsi-opsi beserta kelebihan/kekurangannya' : ''}
-${opsiTx ? '5.' : '4.'} **KESIMPULAN DAN SARAN** — Simpulkan dan sampaikan rekomendasi/saran tindak secara tegas
-
-Format: narasi paragraf formal. Total 300-500 kata.`;
+${sections}`;
 
   setAiStatus('loading', 'Sedang menyusun narasi...');
   document.getElementById('btnGenAi').disabled = true;
 
   try {
-    const result = await callAI(prompt, {temperature:0.5,maxTokens:1500});
+    const result = await callAI(prompt, {temperature:0.5,maxTokens:3000});
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('formSection').style.display = 'none';
     document.getElementById('narasiSection').style.display = 'block';
@@ -440,7 +457,7 @@ function buildDocument(withAi) {
 
 <div style="border-top:1.5px solid #000;border-bottom:1.5px solid #000;padding:4px 0;margin-bottom:16px;text-align:center;font-weight:bold;font-size:13pt;letter-spacing:1px;text-transform:uppercase;">${jenis.toUpperCase()}</div>
 
-${dasHkList ? `<h3>I. DASAR / LANDASAN HUKUM</h3><ol>${dasHkList}</ol>` : ''}
+${dasHkList ? `<h3>DASAR / LANDASAN HUKUM</h3><ol>${dasHkList}</ol>` : ''}
 
 ${narasiHtml}
 
@@ -481,6 +498,7 @@ p{margin:5pt 0;text-align:justify;}ol{margin:4pt 0 4pt 16pt;}li{margin-bottom:3p
   a.href = url; a.download = fname.replace(/[^a-zA-Z0-9_\- ]/g,'_').substring(0,60) + '.doc';
   document.body.appendChild(a); a.click();
   document.body.removeChild(a); URL.revokeObjectURL(url);
+  try{const _h=JSON.parse(localStorage.getItem('gen_history')||'[]');_h.unshift({tool:'SiTelaah',title:(fname||'Dokumen').replace(/_/g,' ').trim(),href:'sitelaah.html',at:Date.now()});localStorage.setItem('gen_history',JSON.stringify(_h.slice(0,80)));}catch(_e){}
 }
 
 function exportPdf() {
@@ -504,8 +522,9 @@ function fmtTgl(d){if(!d)return '';const dt=new Date(d);const B=['Januari','Febr
 document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('navToggle')?.addEventListener('click',()=>{document.getElementById('navLinks')?.classList.toggle('open');});
   document.getElementById('tanggal').value=new Date().toISOString().slice(0,10);
-  const access=getAccessStatus();const badge=document.getElementById('accessBadge');if(access.active){badge.textContent='👑 Berbayar';badge.classList.add('active');}else{badge.textContent='🔓 Demo';}
+  const access=getAccessStatus();const badge=document.getElementById('accessBadge');if(access.active){badge.textContent=access.unlimited?'👑 Berbayar':'💳 '+access.credits+' kredit';badge.classList.add('active');}else{badge.textContent='🔓 Demo';}
 });
 </script>
+<script type="module" src="assets/js/nav-auth.js"></script>
 </body>
 </html>

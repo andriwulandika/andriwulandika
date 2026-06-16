@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script src="assets/js/analytics.js"></script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SiPerda — AI Konsultasi Perencanaan Daerah | Andri Wulandika</title>
@@ -488,9 +489,9 @@
     const badge = document.getElementById('accessBadge');
     const tierPill = document.getElementById('tierPill');
     if (access.active) {
-      badge.textContent = '👑 Berbayar';
+      badge.textContent = access.unlimited ? '👑 Berbayar' : '💳 ' + access.credits + ' kredit';
       badge.classList.add('active');
-      tierPill.textContent = '👑 Berbayar';
+      tierPill.textContent = access.unlimited ? '👑 Berbayar' : '💳 ' + access.credits + ' kredit';
       credits = 50;
     } else {
       badge.textContent = '🔓 Demo';
@@ -657,5 +658,6 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
     if (credits > 0) document.getElementById('sendBtn').disabled = false;
   }
 </script>
+<script type="module" src="assets/js/nav-auth.js"></script>
 </body>
 </html>
