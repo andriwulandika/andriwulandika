@@ -486,13 +486,8 @@
   <p class="hero-sub">Mulai gratis, upgrade kapan saja.<br/>Tidak ada biaya tersembunyi.</p>
 </section>
 
-<!-- TOGGLE -->
-<div class="toggle-wrap">
-  <span class="toggle-label active" id="label-monthly">Bulanan</span>
-  <button class="toggle-pill off" id="billing-toggle" aria-label="Ganti periode tagihan"></button>
-  <span class="toggle-label" id="label-annual">Tahunan</span>
-  <span class="save-badge" id="save-badge" style="display:none">HEMAT 20%</span>
-</div>
+<!-- MODEL HARGA -->
+<p style="text-align:center;color:#86868b;font-size:0.9rem;max-width:560px;margin:0 auto 8px;">Bayar sesuai pemakaian — beli kredit, <strong>1 kredit = 1 dokumen</strong>. Tanpa langganan bulanan, tanpa kedaluwarsa.</p>
 
 <!-- PRICING CARDS -->
 <section class="pricing-section">
@@ -525,22 +520,22 @@
       <div class="card-badge-wrap">
         <span class="card-badge badge-popular">Akses Penuh</span>
       </div>
-      <p class="plan-name">Berbayar</p>
-      <p class="plan-desc">Untuk ASN aktif yang butuh hasil dokumen lengkap tanpa batas, tanpa kerumitan setup API key.</p>
+      <p class="plan-name">Kredit</p>
+      <p class="plan-desc">Untuk ASN aktif yang butuh hasil dokumen lengkap — beli kredit, pakai kapan saja. 1 kredit = 1 dokumen.</p>
       <div class="price-main">
-        <span class="price-amount" id="pro-price">Rp 99.000</span>
+        <span class="price-amount">Rp 5.000</span>
       </div>
-      <p class="price-period" id="pro-period">/bulan</p>
-      <p class="price-annual-note" id="pro-annual-note">&nbsp;</p>
-      <a href="bayar.html" class="price-cta cta-white">Pilih Berbayar</a>
+      <p class="price-period">per kredit · tanpa kedaluwarsa</p>
+      <p class="price-annual-note">Lebih hemat dengan paket di bawah</p>
+      <a href="bayar.html" class="price-cta cta-white">Beli Kredit</a>
       <hr class="card-divider"/>
-      <p class="features-label">Semua fitur Gratis, ditambah:</p>
+      <p class="features-label">Paket hemat (bayar sekali, pakai kapan saja):</p>
       <ul class="features-list">
-        <li class="feat-item"><span class="feat-icon">✓</span>Hasil dokumen lengkap, tanpa potongan demo</li>
-        <li class="feat-item"><span class="feat-icon">✓</span>API key sudah termasuk — tidak perlu setup apapun</li>
-        <li class="feat-item"><span class="feat-icon">✓</span>Pilihan Bulanan atau Tahunan (hemat 20%)</li>
-        <li class="feat-item"><span class="feat-icon">✓</span>Support prioritas via WhatsApp langsung</li>
-        <li class="feat-item"><span class="feat-icon">✓</span>Akses update fitur lebih awal (early access)</li>
+        <li class="feat-item"><span class="feat-icon">✓</span>Paket Coba — 5 kredit · Rp 25.000</li>
+        <li class="feat-item"><span class="feat-icon">✓</span>Paket Hemat — 25 kredit · Rp 100.000</li>
+        <li class="feat-item"><span class="feat-icon">✓</span>Paket Pro — 50 kredit · Rp 175.000 <strong>(paling populer)</strong></li>
+        <li class="feat-item"><span class="feat-icon">✓</span>Paket Instansi — 100 kredit · Rp 300.000</li>
+        <li class="feat-item"><span class="feat-icon">✓</span>Hasil lengkap tanpa potongan · API key sudah termasuk · support WhatsApp</li>
       </ul>
     </div>
 
@@ -667,7 +662,7 @@
           <span class="faq-arrow">+</span>
         </button>
         <div class="faq-a">
-          Tentu. Anda bisa langsung mencoba semua 8 AI tools secara gratis tanpa perlu daftar atau setup apapun — hasilnya dalam bentuk demo (dipotong). Jika sudah merasa cocok dan ingin hasil dokumen lengkap, upgrade ke Paket Berbayar (Bulanan/Tahunan).
+          Tentu. Anda bisa langsung mencoba semua 8 AI tools secara gratis tanpa perlu daftar atau setup apapun — hasilnya dalam bentuk demo (dipotong). Jika sudah merasa cocok dan ingin hasil dokumen lengkap, upgrade ke Paket Berbayar dengan membeli kredit sesuai pemakaian.
         </div>
       </div>
 
@@ -748,36 +743,7 @@
       window.scrollY > 10 ? 'rgba(0,0,0,0.1)' : 'rgba(0,0,0,0.06)';
   });
 
-  /* ── Billing toggle ── */
-  const toggle = document.getElementById('billing-toggle');
-  const labelMonthly = document.getElementById('label-monthly');
-  const labelAnnual  = document.getElementById('label-annual');
-  const saveBadge    = document.getElementById('save-badge');
-
-  const proPrice       = document.getElementById('pro-price');
-  const proPeriod      = document.getElementById('pro-period');
-  const proNote        = document.getElementById('pro-annual-note');
-
-  let isAnnual = false;
-
-  toggle.addEventListener('click', () => {
-    isAnnual = !isAnnual;
-    toggle.classList.toggle('off', !isAnnual);
-
-    labelMonthly.classList.toggle('active', !isAnnual);
-    labelAnnual.classList.toggle('active', isAnnual);
-    saveBadge.style.display = isAnnual ? 'inline-block' : 'none';
-
-    if (isAnnual) {
-      proPrice.textContent  = 'Rp 950.000';
-      proPeriod.textContent = '/tahun';
-      proNote.textContent   = '≈ Rp 79.000/bulan · hemat Rp 238.000';
-    } else {
-      proPrice.textContent  = 'Rp 99.000';
-      proPeriod.textContent = '/bulan';
-      proNote.innerHTML     = '&nbsp;';
-    }
-  });
+  /* Model harga kredit (pay-as-you-go) — tanpa toggle langganan */
 
   /* ── FAQ accordion ── */
   document.querySelectorAll('.faq-item').forEach(item => {

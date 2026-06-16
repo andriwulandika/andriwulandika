@@ -209,35 +209,57 @@
     </div>
   </div>
 
-  <!-- STEP 1: Pilih durasi -->
-  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Langkah 1 — Pilih Durasi</h2>
+  <!-- STEP 1: Pilih paket kredit -->
+  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Langkah 1 — Pilih Paket Kredit</h2>
 
-  <p style="font-size:0.85rem;color:var(--text2);margin-bottom:16px;">Pilih durasi:</p>
+  <p style="font-size:0.85rem;color:var(--text2);margin-bottom:16px;">Pilih paket kredit — <strong>1 kredit = 1 dokumen</strong>, tanpa kedaluwarsa:</p>
   <div class="pkg-grid">
-    <div class="pkg-card active" id="pkg-bulanan" onclick="selectPkg('bulanan')">
+    <div class="pkg-card" id="pkg-coba" onclick="selectPkg('coba')">
       <div class="pkg-check">✓</div>
-      <span class="pkg-badge pro">Bulanan</span>
-      <div class="pkg-name">Bulanan</div>
-      <div class="pkg-price" id="bulanan-price">Rp 99.000</div>
-      <div class="pkg-price-sub" id="bulanan-price-sub">per bulan</div>
+      <span class="pkg-badge pro">Coba</span>
+      <div class="pkg-name">5 Kredit</div>
+      <div class="pkg-price">Rp 25.000</div>
+      <div class="pkg-price-sub">Rp 5.000 / dokumen</div>
       <ul class="pkg-features">
-        <li>Akses penuh semua tools</li>
+        <li>5 dokumen lengkap</li>
         <li>API key sudah termasuk</li>
-        <li>Tanpa potongan demo</li>
-        <li>Aktif 1 bulan</li>
+        <li>Tanpa kedaluwarsa</li>
       </ul>
     </div>
-    <div class="pkg-card" id="pkg-tahunan" onclick="selectPkg('tahunan')">
+    <div class="pkg-card" id="pkg-hemat" onclick="selectPkg('hemat')">
       <div class="pkg-check">✓</div>
-      <span class="pkg-badge opd">Tahunan · Hemat 20%</span>
-      <div class="pkg-name">Tahunan</div>
-      <div class="pkg-price" id="tahunan-price">Rp 950.000</div>
-      <div class="pkg-price-sub" id="tahunan-price-sub">per tahun (≈ Rp 79.000/bulan)</div>
+      <span class="pkg-badge pro">Hemat</span>
+      <div class="pkg-name">25 Kredit</div>
+      <div class="pkg-price">Rp 100.000</div>
+      <div class="pkg-price-sub">Rp 4.000 / dokumen</div>
       <ul class="pkg-features">
-        <li>Akses penuh semua tools</li>
+        <li>25 dokumen lengkap</li>
         <li>API key sudah termasuk</li>
-        <li>Tanpa potongan demo</li>
-        <li>Aktif 12 bulan</li>
+        <li>Tanpa kedaluwarsa</li>
+      </ul>
+    </div>
+    <div class="pkg-card active" id="pkg-pro" onclick="selectPkg('pro')">
+      <div class="pkg-check">✓</div>
+      <span class="pkg-badge opd">Pro · Populer</span>
+      <div class="pkg-name">50 Kredit</div>
+      <div class="pkg-price">Rp 175.000</div>
+      <div class="pkg-price-sub">Rp 3.500 / dokumen</div>
+      <ul class="pkg-features">
+        <li>50 dokumen lengkap</li>
+        <li>API key sudah termasuk</li>
+        <li>Tanpa kedaluwarsa</li>
+      </ul>
+    </div>
+    <div class="pkg-card" id="pkg-instansi" onclick="selectPkg('instansi')">
+      <div class="pkg-check">✓</div>
+      <span class="pkg-badge opd">Instansi</span>
+      <div class="pkg-name">100 Kredit</div>
+      <div class="pkg-price">Rp 300.000</div>
+      <div class="pkg-price-sub">Rp 3.000 / dokumen</div>
+      <ul class="pkg-features">
+        <li>100 dokumen lengkap</li>
+        <li>API key sudah termasuk</li>
+        <li>Tanpa kedaluwarsa</li>
       </ul>
     </div>
   </div>
@@ -247,13 +269,13 @@
 
   <div class="info-box">
     <strong>💡 Tips unik nominal</strong>
-    Tambahkan kode unik 3 digit terakhir untuk mempermudah verifikasi. Contoh: jika nominal Rp 99.000 dan kode unik Anda 007, transfer <strong>Rp 99.007</strong>. Kode unik bebas (001–999).
+    Tambahkan kode unik 3 digit terakhir untuk mempermudah verifikasi. Contoh: jika nominal Rp 175.000 dan kode unik Anda 007, transfer <strong>Rp 175.007</strong>. Kode unik bebas (001–999).
   </div>
 
   <div class="amount-box">
     <div>
       <div class="amount-label">Nominal Transfer</div>
-      <div class="amount-val" id="amountDisplay">Rp 99.000</div>
+      <div class="amount-val" id="amountDisplay">Rp 175.000</div>
       <div class="amount-note">+ kode unik 3 digit pilihan Anda</div>
     </div>
     <button class="amount-copy-btn" onclick="copyAmount()">Salin Nominal</button>
@@ -303,7 +325,7 @@
     <div class="konfirm-desc">
       Sertakan informasi berikut agar proses verifikasi lebih cepat:<br/><br/>
       ✅ Nama lengkap &amp; instansi/OPD<br/>
-      ✅ Durasi yang dipilih (Bulanan/Tahunan)<br/>
+      ✅ Paket kredit yang dipilih<br/>
       ✅ Nominal &amp; kode unik yang ditransfer<br/>
       ✅ Screenshot bukti transfer<br/><br/>
       <strong style="color:var(--text);">Kode akses Berbayar akan dikirim dalam 1×24 jam (hari kerja).</strong>
@@ -352,10 +374,13 @@
 </footer>
 
 <script>
-  let selectedDur = 'bulanan';
+  let selectedPkg = 'pro';
 
-  const prices = {
-    bulanan: 99000, tahunan: 950000,
+  const PKG = {
+    coba:     { kredit: 5,   harga: 25000,  label: '5 kredit' },
+    hemat:    { kredit: 25,  harga: 100000, label: '25 kredit' },
+    pro:      { kredit: 50,  harga: 175000, label: '50 kredit' },
+    instansi: { kredit: 100, harga: 300000, label: '100 kredit' },
   };
 
   function fmt(n) {
@@ -363,27 +388,27 @@
   }
 
   function updateDisplay() {
-    const amount = prices[selectedDur];
-    document.getElementById('amountDisplay').textContent = fmt(amount);
+    const p = PKG[selectedPkg];
+    document.getElementById('amountDisplay').textContent = fmt(p.harga);
 
     // Update WA message
-    const durLabel = selectedDur === 'bulanan' ? '1 bulan (Bulanan)' : '12 bulan (Tahunan)';
     const msg = encodeURIComponent(
       `Halo Andri, saya ingin konfirmasi pembayaran:\n\n` +
-      `• Paket: Berbayar\n` +
-      `• Durasi: ${durLabel}\n` +
-      `• Nominal: ${fmt(amount)} + kode unik\n\n` +
+      `• Paket kredit: ${p.label} (${fmt(p.harga)})\n` +
+      `• Nominal: ${fmt(p.harga)} + kode unik\n\n` +
       `[Lampirkan screenshot bukti transfer]`
     );
     document.getElementById('wa-konfirm-btn').href = `https://wa.me/62811660568?text=${msg}`;
   }
 
-  function selectPkg(dur) {
-    selectedDur = dur;
-    document.getElementById('pkg-bulanan').classList.toggle('active', dur === 'bulanan');
-    document.getElementById('pkg-tahunan').classList.toggle('active', dur === 'tahunan');
+  function selectPkg(key) {
+    selectedPkg = key;
+    ['coba', 'hemat', 'pro', 'instansi'].forEach(k =>
+      document.getElementById('pkg-' + k).classList.toggle('active', k === key));
     updateDisplay();
   }
+
+  updateDisplay();
 
   function copyText(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
