@@ -835,6 +835,7 @@ Format: teks narasi paragraf (bukan bullet point), formal. Uraikan SETIAP bagian
 
   try {
     const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
+    try{const _a=getAccessStatus(),_b=document.getElementById('accessBadge');if(_b){_b.textContent=_a.active?(_a.unlimited?'👑 Berbayar':'💳 '+_a.credits+' kredit'):'🔓 Demo';_b.classList.toggle('active',_a.active);}}catch(_e){}
     aiNarasiResult = result.text;
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('aiNarasiBox').style.display = 'block';

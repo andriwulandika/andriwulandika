@@ -641,6 +641,7 @@ Jawab dengan singkat, padat, dan langsung dapat digunakan. Maksimal 500 kata kec
       const prompt = `${SYSTEM_PROMPT}\n\nPERCAKAPAN:\n${transcript}\n\nSiPerda:`;
 
       const result = await callAI(prompt, { temperature: 0.7, maxTokens: 1500 });
+      try{const _a=getAccessStatus();['accessBadge','tierPill'].forEach(id=>{const _b=document.getElementById(id);if(_b){_b.textContent=_a.active?(_a.unlimited?'👑 Berbayar':'💳 '+_a.credits+' kredit'):'🔓 Demo';_b.classList.toggle('active',_a.active);}});}catch(_e){}
       typing.remove();
       appendMessage('ai', result.text);
       conversationHistory.push({ role: 'assistant', content: result.text });
