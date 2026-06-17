@@ -532,6 +532,95 @@
       .nav-dropdown { display: block; position: static; transform: none; background: transparent; border: 0; box-shadow: none; padding: 0 0 4px 12px; min-width: 0; }
       .nav-dropdown a { padding: 10px 6px; font-size: 0.88rem; border-bottom: 0; }
     }
+
+    /* ── C. AURORA GRADIENT BACKGROUND (hero) ── */
+    .hero { position: relative; overflow: hidden; isolation: isolate; }
+    .hero::before {
+      content: ""; position: absolute; inset: -45%;
+      z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(circle at 28% 32%, rgba(124,58,237,0.13), transparent 45%),
+        radial-gradient(circle at 72% 38%, rgba(0,113,227,0.13), transparent 45%),
+        radial-gradient(circle at 50% 72%, rgba(20,184,166,0.10), transparent 48%);
+      filter: blur(26px);
+      animation: aurora 12s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes aurora {
+      0%   { transform: rotate(0deg)   scale(1);    }
+      50%  { transform: rotate(180deg) scale(1.18); }
+      100% { transform: rotate(360deg) scale(1);    }
+    }
+
+    /* ── E. PREMIUM HOVER MICROINTERACTIONS ── */
+    .service-card {
+      border: 1px solid transparent;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1),
+                  box-shadow 0.4s cubic-bezier(0.34,1.56,1,1),
+                  border-color 0.3s ease, background 0.2s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+      border-color: rgba(0,113,227,0.35);
+      background: #fff;
+      position: relative; z-index: 1;
+    }
+    .svc-icon { display: inline-block; transition: transform 0.4s cubic-bezier(0.34,1.56,1,1); }
+    .service-card:hover .svc-icon { transform: scale(1.15) rotate(5deg); }
+
+    .tool-card {
+      border: 1px solid transparent;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1),
+                  box-shadow 0.4s cubic-bezier(0.34,1.56,1,1),
+                  border-color 0.3s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.45);
+      border-color: rgba(124,58,237,0.45);
+    }
+
+    .tmpl-card {
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1),
+                  box-shadow 0.4s cubic-bezier(0.34,1.56,1,1),
+                  border-color 0.3s ease;
+    }
+    .tmpl-card:hover { border-color: rgba(0,113,227,0.4); }
+    .tmpl-thumb { transition: transform 0.45s cubic-bezier(0.34,1.56,1,1); }
+    .tmpl-card:hover .tmpl-thumb { transform: scale(1.08); }
+
+    /* price cards (pricing teaser) */
+    .price-promo {
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1),
+                  box-shadow 0.4s cubic-bezier(0.34,1.56,1,1),
+                  border-color 0.3s ease !important;
+    }
+    .price-promo:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      border-color: rgba(124,58,237,0.5) !important;
+    }
+    .price-promo.featured-promo:hover {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%,100% { box-shadow: 0 0 0 1px rgba(0,113,227,0.40), 0 18px 45px rgba(0,113,227,0.30); }
+      50%     { box-shadow: 0 0 0 1px rgba(0,113,227,0.70), 0 24px 60px rgba(0,113,227,0.55); }
+    }
+
+    /* ── REDUCED MOTION (matikan semua animasi) ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .hero::before { animation: none !important; }
+      .hero-eyebrow, .hero-name, .hero-sub, .hero-actions { opacity: 1 !important; transform: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
   </style>
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
@@ -603,19 +692,19 @@
 <div class="stat-bar">
   <div class="stat-bar-inner">
     <div class="stat-item reveal">
-      <span class="stat-num">7+</span>
+      <span class="stat-num" data-count="7" data-suffix="+">7+</span>
       <span class="stat-lbl">Tahun<br/>Pengalaman</span>
     </div>
     <div class="stat-item reveal reveal-d1">
-      <span class="stat-num">51</span>
+      <span class="stat-num" data-count="51">51</span>
       <span class="stat-lbl">OPD<br/>Dikoordinasi</span>
     </div>
     <div class="stat-item reveal reveal-d2">
-      <span class="stat-num">6</span>
+      <span class="stat-num" data-count="6">6</span>
       <span class="stat-lbl">AI Tools<br/>Tersedia Gratis</span>
     </div>
     <div class="stat-item reveal reveal-d3">
-      <span class="stat-num">34</span>
+      <span class="stat-num" data-count="34">34</span>
       <span class="stat-lbl">Provinsi<br/>Bisa Menggunakan</span>
     </div>
   </div>
@@ -877,7 +966,7 @@
       <p class="section-body" style="color:#86868b;max-width:500px;margin:0 auto;">Semua tools tersedia gratis (demo). Upgrade ke Berbayar untuk hasil dokumen lengkap tanpa batas, API key sudah termasuk.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:600px;margin:0 auto;">
-      <div class="reveal" style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:32px 24px;">
+      <div class="reveal price-promo" style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:32px 24px;">
         <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#86868b;margin-bottom:12px;">Gratis</p>
         <p style="font-size:2.2rem;font-weight:700;color:#f5f5f7;letter-spacing:-0.04em;margin-bottom:4px;">Rp 0</p>
         <p style="font-size:0.8rem;color:#86868b;margin-bottom:24px;">selamanya</p>
@@ -889,10 +978,10 @@
         </ul>
         <a href="sigendok.html" style="display:block;text-align:center;border:1px solid rgba(255,255,255,0.2);color:#f5f5f7;padding:12px;border-radius:980px;font-size:0.85rem;text-decoration:none;font-weight:500;">Mulai Gratis</a>
       </div>
-      <div class="reveal reveal-d1" style="background:linear-gradient(135deg,#0071e3,#0055b3);border:1px solid transparent;border-radius:18px;padding:32px 24px;position:relative;">
+      <div class="reveal reveal-d1 price-promo featured-promo" style="background:linear-gradient(135deg,#0071e3,#0055b3);border:1px solid transparent;border-radius:18px;padding:32px 24px;position:relative;">
         <span style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#ff9f0a;color:#000;font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:980px;">Paling Populer</span>
         <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:12px;">Kredit</p>
-        <p style="font-size:2.2rem;font-weight:700;color:#fff;letter-spacing:-0.04em;margin-bottom:4px;">Rp 5.000</p>
+        <p style="font-size:2.2rem;font-weight:700;color:#fff;letter-spacing:-0.04em;margin-bottom:4px;" data-count="5000" data-prefix="Rp " data-sep=".">Rp 5.000</p>
         <p style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-bottom:24px;">per kredit · paket mulai Rp 25.000</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
           <li style="font-size:0.83rem;color:#fff;display:flex;gap:8px;align-items:flex-start;"><span style="color:#ffd60a;">✓</span> Hasil dokumen lengkap, tanpa potongan</li>
@@ -1136,6 +1225,41 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ── A. COUNTER NUMBER ANIMATION (easeOutExpo) ──
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function fmt(el, n){
+      var decimals = parseInt(el.getAttribute('data-decimals')||'0',10);
+      var sep = el.getAttribute('data-sep');
+      var prefix = el.getAttribute('data-prefix')||'';
+      var suffix = el.getAttribute('data-suffix')||'';
+      var s = n.toFixed(decimals);
+      if(sep){ s = s.replace(/\B(?=(\d{3})+(?!\d))/g, sep); }
+      return prefix + s + suffix;
+    }
+    function run(el){
+      var target = parseFloat(el.getAttribute('data-count'));
+      if(isNaN(target)) return;
+      if(reduce){ el.textContent = fmt(el, target); return; }
+      var dur = 1500, start = null;
+      function step(ts){
+        if(start===null) start = ts;
+        var p = Math.min((ts-start)/dur, 1);
+        var eased = p>=1 ? 1 : 1 - Math.pow(2, -10*p);
+        el.textContent = fmt(el, target*eased);
+        if(p<1) requestAnimationFrame(step);
+        else el.textContent = fmt(el, target);
+      }
+      requestAnimationFrame(step);
+    }
+    var nums = document.querySelectorAll('[data-count]');
+    nums.forEach(function(el){ el.textContent = fmt(el, 0); });
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ run(e.target); cio.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    nums.forEach(function(el){ cio.observe(el); });
+  })();
 
   window.addEventListener('scroll', () => {
     document.querySelector('nav').style.borderBottomColor =

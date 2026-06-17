@@ -421,6 +421,96 @@
     .footer-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
     .footer-links a { font-size: 0.78rem; color: var(--text3); transition: color 0.2s; }
     .footer-links a:hover { color: var(--text2); }
+
+    /* ── C. AURORA GRADIENT BACKGROUND (hero) ── */
+    .hero::before {
+      content: ""; position: absolute; inset: -40%;
+      z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(circle at 30% 35%, rgba(124,58,237,0.18), transparent 45%),
+        radial-gradient(circle at 70% 40%, rgba(59,130,246,0.16), transparent 45%),
+        radial-gradient(circle at 50% 72%, rgba(6,182,212,0.14), transparent 48%);
+      filter: blur(32px);
+      animation: aurora 14s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes aurora {
+      0%   { transform: rotate(0deg)   scale(1);   }
+      50%  { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1);   }
+    }
+    .hero-orb-1 { animation: floatA 9s ease-in-out infinite; }
+    .hero-orb-2 { animation: floatB 11s ease-in-out infinite; }
+    .hero-orb-3 { animation: floatA 13s ease-in-out infinite reverse; }
+    @keyframes floatA { 0%,100% { transform: translate(0,0); }   50% { transform: translate(22px,-26px); } }
+    @keyframes floatB { 0%,100% { transform: translate(0,0); }   50% { transform: translate(-26px,22px); } }
+
+    /* ── E. PREMIUM HOVER MICROINTERACTIONS ── */
+    .plus-card {
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1),
+                  box-shadow 0.4s cubic-bezier(0.34,1.56,1,1),
+                  border-color 0.3s ease, background 0.2s ease;
+    }
+    .plus-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      border-color: rgba(99,102,241,0.4);
+    }
+    .plus-card-icon-box { transition: transform 0.4s cubic-bezier(0.34,1.56,1,1); }
+    .plus-card:hover .plus-card-icon-box { transform: scale(1.15) rotate(5deg); }
+
+    .portfolio-card {
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1),
+                  box-shadow 0.4s cubic-bezier(0.34,1.56,1,1),
+                  border-color 0.3s ease;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(99,102,241,0.4);
+      box-shadow: 0 22px 55px rgba(0,0,0,0.45);
+    }
+
+    .price-card {
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1),
+                  box-shadow 0.4s cubic-bezier(0.34,1.56,1,1),
+                  border-color 0.3s ease;
+    }
+    .price-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+      border-color: rgba(99,102,241,0.45);
+    }
+    .price-card.featured { animation: pulseGlowJ 2.6s ease-in-out infinite; }
+    .price-card.featured:hover { transform: translateY(-6px) scale(1.03); }
+    @keyframes pulseGlowJ {
+      0%,100% { box-shadow: 0 0 0 1px rgba(99,102,241,0.30), 0 20px 60px rgba(99,102,241,0.20); }
+      50%     { box-shadow: 0 0 0 1px rgba(99,102,241,0.60), 0 26px 70px rgba(99,102,241,0.40); }
+    }
+    @media (max-width: 750px) { .price-card.featured:hover { transform: none; } }
+
+    .addon-item {
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1),
+                  box-shadow 0.4s cubic-bezier(0.34,1.56,1,1),
+                  border-color 0.3s ease, background 0.2s ease;
+    }
+    .addon-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.30);
+    }
+    .addon-icon-box { transition: transform 0.4s cubic-bezier(0.34,1.56,1,1); }
+    .addon-item:hover .addon-icon-box { transform: scale(1.15) rotate(5deg); }
+
+    /* ── REDUCED MOTION (matikan semua animasi) ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .hero::before, .hero-orb, .price-card.featured { animation: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -468,7 +558,7 @@
         <div class="hero-stat-label">Selesai</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">100</div>
+        <div class="hero-stat-num" data-count="100">100</div>
         <div class="hero-stat-label">PageSpeed Score</div>
       </div>
       <div class="hero-stat">
@@ -906,6 +996,41 @@
     entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
   },{threshold:0.1});
   els.forEach(function(el){obs.observe(el);});
+})();
+
+// ── A. COUNTER NUMBER ANIMATION (easeOutExpo) ──
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(el, n){
+    var decimals = parseInt(el.getAttribute('data-decimals')||'0',10);
+    var sep = el.getAttribute('data-sep');
+    var prefix = el.getAttribute('data-prefix')||'';
+    var suffix = el.getAttribute('data-suffix')||'';
+    var s = n.toFixed(decimals);
+    if(sep){ s = s.replace(/\B(?=(\d{3})+(?!\d))/g, sep); }
+    return prefix + s + suffix;
+  }
+  function run(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    if(isNaN(target)) return;
+    if(reduce){ el.textContent = fmt(el, target); return; }
+    var dur = 1500, start = null;
+    function step(ts){
+      if(start===null) start = ts;
+      var p = Math.min((ts-start)/dur, 1);
+      var eased = p>=1 ? 1 : 1 - Math.pow(2, -10*p);
+      el.textContent = fmt(el, target*eased);
+      if(p<1) requestAnimationFrame(step);
+      else el.textContent = fmt(el, target);
+    }
+    requestAnimationFrame(step);
+  }
+  var nums = document.querySelectorAll('[data-count]');
+  nums.forEach(function(el){ el.textContent = fmt(el, 0); });
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ run(e.target); cio.unobserve(e.target); } });
+  }, { threshold: 0.4 });
+  nums.forEach(function(el){ cio.observe(el); });
 })();
 
 (function(){
