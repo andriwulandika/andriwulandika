@@ -500,6 +500,52 @@
     .addon-icon-box { transition: transform 0.4s cubic-bezier(0.34,1.56,1,1); }
     .addon-item:hover .addon-icon-box { transform: scale(1.15) rotate(5deg); }
 
+    /* ── HERO TITLE SHIMMER ── */
+    .hero-title { background-size: 200% auto; animation: shimmer 7s ease-in-out infinite; }
+    @keyframes shimmer { 0%,100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+
+    /* ── SCROLL PROGRESS BAR ── */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0;
+      z-index: 1000; pointer-events: none;
+      background: linear-gradient(90deg, #6366f1, #3b82f6, #06b6d4);
+      transition: width 0.1s linear;
+    }
+
+    /* ── BACK TO TOP ── */
+    .to-top {
+      position: fixed; right: 20px; bottom: 20px; z-index: 99;
+      width: 46px; height: 46px; border-radius: 50%; border: none; cursor: pointer;
+      background: var(--accent-g); color: #fff; font-size: 1.2rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.4);
+      opacity: 0; transform: translateY(16px) scale(0.9); pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34,1.56,1,1), box-shadow 0.2s;
+    }
+    .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+    .to-top:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(99,102,241,0.5); }
+
+    /* ── NAV LINK UNDERLINE (desktop) ── */
+    @media (min-width: 701px) {
+      .nav-links a { position: relative; }
+      .nav-links a:not(.nav-cta)::after {
+        content: ""; position: absolute; left: 0; right: 0; bottom: -5px;
+        height: 2px; margin: 0 auto; width: 0;
+        background: var(--accent); transition: width 0.25s ease;
+      }
+      .nav-links a:not(.nav-cta):hover::after { width: 100%; }
+    }
+
+    /* ── BUTTON SHINE SWEEP ── */
+    .btn-wa-hero, .btn-wa, .cta-gradient { position: relative; overflow: hidden; }
+    .btn-wa-hero::after, .btn-wa::after, .cta-gradient::after {
+      content: ""; position: absolute; top: 0; left: -130%;
+      width: 55%; height: 100%; transform: skewX(-20deg);
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.30), transparent);
+      transition: left 0.6s ease; pointer-events: none;
+    }
+    .btn-wa-hero:hover::after, .btn-wa:hover::after, .cta-gradient:hover::after { left: 150%; }
+
     /* ── REDUCED MOTION (matikan semua animasi) ── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -514,6 +560,9 @@
   </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<button class="to-top" id="toTop" type="button" aria-label="Kembali ke atas">↑</button>
 
 <!-- NAV -->
 <nav id="main-nav">
@@ -1031,6 +1080,30 @@
     entries.forEach(function(e){ if(e.isIntersecting){ run(e.target); cio.unobserve(e.target); } });
   }, { threshold: 0.4 });
   nums.forEach(function(el){ cio.observe(el); });
+})();
+
+// ── SCROLL PROGRESS BAR + BACK TO TOP ──
+(function(){
+  var bar = document.getElementById('scrollProgress');
+  var top = document.getElementById('toTop');
+  var ticking = false;
+  function update(){
+    var h = document.documentElement;
+    var sc = h.scrollTop || document.body.scrollTop;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (sc / max) * 100 : 0;
+    if(bar) bar.style.width = p + '%';
+    if(top) top.classList.toggle('show', sc > 600);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  if(top) top.addEventListener('click', function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+  update();
 })();
 
 (function(){

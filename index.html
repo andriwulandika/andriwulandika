@@ -609,6 +609,48 @@
       50%     { box-shadow: 0 0 0 1px rgba(0,113,227,0.70), 0 24px 60px rgba(0,113,227,0.55); }
     }
 
+    /* ── SCROLL PROGRESS BAR ── */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0;
+      z-index: 1000; pointer-events: none;
+      background: linear-gradient(90deg, #0071e3, #7c3aed, #14b8a6);
+      transition: width 0.1s linear;
+    }
+
+    /* ── BACK TO TOP ── */
+    .to-top {
+      position: fixed; right: 20px; bottom: 20px; z-index: 998;
+      width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer;
+      background: var(--text); color: #fff; font-size: 1.15rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      opacity: 0; transform: translateY(16px) scale(0.9); pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34,1.56,1,1), background 0.2s;
+    }
+    .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+    .to-top:hover { background: #333; transform: translateY(-3px); }
+
+    /* ── NAV LINK UNDERLINE (desktop) ── */
+    @media (min-width: 769px) {
+      .nav-links > li > a { position: relative; }
+      .nav-links > li > a:not(.nav-cta)::after {
+        content: ""; position: absolute; left: 0; right: 0; bottom: -4px;
+        height: 2px; margin: 0 auto; width: 0;
+        background: var(--accent); transition: width 0.25s ease;
+      }
+      .nav-links > li > a:not(.nav-cta):hover::after { width: 100%; }
+    }
+
+    /* ── BUTTON SHINE SWEEP ── */
+    .btn-dark, .btn-blue { position: relative; overflow: hidden; }
+    .btn-dark::after, .btn-blue::after {
+      content: ""; position: absolute; top: 0; left: -130%;
+      width: 55%; height: 100%; transform: skewX(-20deg);
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+      transition: left 0.6s ease;
+    }
+    .btn-dark:hover::after, .btn-blue:hover::after { left: 150%; }
+
     /* ── REDUCED MOTION (matikan semua animasi) ── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -628,6 +670,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<button class="to-top" id="toTop" type="button" aria-label="Kembali ke atas">↑</button>
 
 <!-- NAV -->
 <nav>
@@ -700,7 +745,7 @@
       <span class="stat-lbl">OPD<br/>Dikoordinasi</span>
     </div>
     <div class="stat-item reveal reveal-d2">
-      <span class="stat-num" data-count="6">6</span>
+      <span class="stat-num" data-count="8">8</span>
       <span class="stat-lbl">AI Tools<br/>Tersedia Gratis</span>
     </div>
     <div class="stat-item reveal reveal-d3">
@@ -808,7 +853,7 @@
     <div class="tools-header reveal">
       <p class="eyebrow">AI Tools Eksklusif</p>
       <h2 class="section-title">Asisten AI untuk<br/>perencanaan daerah.</h2>
-      <p class="section-body">Dua tools berbasis kecerdasan buatan yang dirancang khusus membantu ASN perencana bekerja lebih cepat dan lebih tepat.</p>
+      <p class="section-body">Delapan tools berbasis kecerdasan buatan yang dirancang khusus membantu ASN perencana bekerja lebih cepat dan lebih tepat.</p>
     </div>
     <div class="tools-grid">
       <div class="tool-card reveal">
@@ -904,6 +949,40 @@
           <span class="chip">Perpres 16/2018</span>
         </div>
         <a href="siktor.html" class="tool-link" style="background:#b45309;" onmouseover="this.style.background='#92400e'" onmouseout="this.style.background='#b45309'">Buka SiKTOR →</a>
+      </div>
+
+      <!-- SiTelaah -->
+      <div class="tool-card reveal reveal-d4">
+        <div class="tool-glow" style="background:radial-gradient(ellipse at top,rgba(219,39,119,.22),transparent 70%)"></div>
+        <span class="tool-badge" style="background:rgba(219,39,119,.12);color:#db2777;border-color:rgba(219,39,119,.25)">
+          AI Writer · Nota Dinas
+        </span>
+        <h3 class="tool-card-name">SiTelaah</h3>
+        <p class="desc">Buat Nota Dinas, Telaahan Staf, atau Memorandum — isi pokok masalah dan opsi, AI menyusun analisis dan rekomendasi secara formal. Export Word & PDF.</p>
+        <div class="chip-list">
+          <span class="chip">Nota Dinas</span>
+          <span class="chip">Telaahan Staf</span>
+          <span class="chip">Memorandum</span>
+          <span class="chip">Export Word+PDF</span>
+        </div>
+        <a href="sitelaah.html" class="tool-link" style="background:#db2777;" onmouseover="this.style.background='#be185d'" onmouseout="this.style.background='#db2777'">Buka SiTelaah →</a>
+      </div>
+
+      <!-- SiBACARA -->
+      <div class="tool-card reveal reveal-d4">
+        <div class="tool-glow" style="background:radial-gradient(ellipse at top,rgba(14,165,233,.22),transparent 70%)"></div>
+        <span class="tool-badge" style="background:rgba(14,165,233,.12);color:#0ea5e9;border-color:rgba(14,165,233,.25)">
+          AI Writer · Berita Acara
+        </span>
+        <h3 class="tool-card-name">SiBACARA</h3>
+        <p class="desc">Buat Berita Acara rapat, serah terima, pemeriksaan, atau musyawarah — lengkap daftar peserta dan kolom tanda tangan. Export Word & PDF.</p>
+        <div class="chip-list">
+          <span class="chip">Berita Acara</span>
+          <span class="chip">Daftar Hadir</span>
+          <span class="chip">Tanda Tangan</span>
+          <span class="chip">Export Word+PDF</span>
+        </div>
+        <a href="sibacara.html" class="tool-link" style="background:#0ea5e9;" onmouseover="this.style.background='#0284c7'" onmouseout="this.style.background='#0ea5e9'">Buka SiBACARA →</a>
       </div>
     </div>
   </div>
@@ -1259,6 +1338,30 @@
       entries.forEach(function(e){ if(e.isIntersecting){ run(e.target); cio.unobserve(e.target); } });
     }, { threshold: 0.4 });
     nums.forEach(function(el){ cio.observe(el); });
+  })();
+
+  // ── SCROLL PROGRESS BAR + BACK TO TOP ──
+  (function(){
+    var bar = document.getElementById('scrollProgress');
+    var top = document.getElementById('toTop');
+    var ticking = false;
+    function update(){
+      var h = document.documentElement;
+      var sc = h.scrollTop || document.body.scrollTop;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? (sc / max) * 100 : 0;
+      if(bar) bar.style.width = p + '%';
+      if(top) top.classList.toggle('show', sc > 600);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    if(top) top.addEventListener('click', function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    update();
   })();
 
   window.addEventListener('scroll', () => {
