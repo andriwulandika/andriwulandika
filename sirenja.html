@@ -930,6 +930,7 @@ Format: narasi paragraf formal dengan sub-bab bernomor/berhuruf sesuai struktur 
 
   try {
     const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
+    try{const _a=getAccessStatus(),_b=document.getElementById('accessBadge');if(_b){_b.textContent=_a.active?(_a.unlimited?'👑 Berbayar':'💳 '+_a.credits+' kredit'):'🔓 Demo';_b.classList.toggle('active',_a.active);}}catch(_e){}
     document.getElementById('aiNarasi').value = result.text;
     document.getElementById('narasiBox').style.display = 'block';
     if (result.isDemo) {
