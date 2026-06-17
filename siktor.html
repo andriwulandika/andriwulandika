@@ -43,9 +43,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 <style>
 :root {
   --bg:#F5F5F7;--surface:#fff;--text:#1D1D1F;--sub:#6e6e73;
@@ -1032,7 +1031,17 @@ li{margin-bottom:3pt;}
 
 function exportPdf() {
   const el = document.getElementById('docOutput');
-  if (typeof html2pdf === 'undefined') { alert('Library PDF sedang dimuat. Coba lagi sesaat.'); return; }
+  if (typeof html2pdf === 'undefined') {
+    if (!window.__h2pLoading) {
+      window.__h2pLoading = true;
+      var __s = document.createElement('script');
+      __s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+      __s.onload = function () { window.__h2pLoading = false; exportPdf(); };
+      __s.onerror = function () { window.__h2pLoading = false; alert('Gagal memuat library PDF. Periksa koneksi internet Anda.'); };
+      document.head.appendChild(__s);
+    }
+    return;
+  }
   const jenis = v('jenisDok') || 'KAK';
   const keg   = v('namaKegiatan') || 'Kegiatan';
   const tahun = v('tahunAnggaran') || '';
