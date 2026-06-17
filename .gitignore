@@ -1,6 +1,12 @@
 # Claude Code internal
 .claude/
 
+# OG image dev files
+og-jasa-preview.html
+og-main-preview.html
+generate-og.mjs
+node_modules/
+
 # wrangler files
 .wrangler
 .dev.vars*
