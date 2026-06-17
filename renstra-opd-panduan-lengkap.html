@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panduan Lengkap Menyusun Renstra OPD Sesuai Regulasi Terbaru — Andri Wulandika</title>
+  <meta name="description" content="Panduan lengkap menyusun Rencana Strategis (Renstra) OPD — struktur 5 bab, cascading dengan RPJMD, cara merumuskan tujuan-sasaran-IKU, matriks kinerja dan pendanaan, serta kesalahan umum yang harus dihindari."/>
+  <meta name="keywords" content="Renstra OPD, cara menyusun Renstra, Rencana Strategis OPD, Inmendagri 2 2025, Permendagri 86 2017, tujuan sasaran Renstra, matriks Renstra, IKU OPD, cascading RPJMD Renstra"/>
+  <meta name="author" content="Andri Wulandika"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://andriwulandika.uk/renstra-opd-panduan-lengkap.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Panduan Lengkap Menyusun Renstra OPD Sesuai Regulasi Terbaru"/>
+  <meta property="og:description" content="Struktur 5 bab, cascading RPJMD, tujuan-sasaran-IKU, matriks kinerja dan pendanaan, serta kesalahan umum yang harus dihindari dalam penyusunan Renstra OPD."/>
+  <meta property="og:url" content="https://andriwulandika.uk/renstra-opd-panduan-lengkap.html"/>
+  <meta property="og:site_name" content="Andri Wulandika"/>
+  <meta property="og:image" content="https://andriwulandika.uk/og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="article:author" content="Andri Wulandika"/>
+  <meta property="article:published_time" content="2026-06-17"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Panduan Lengkap Menyusun Renstra OPD Sesuai Regulasi Terbaru",
+    "author": { "@type": "Person", "name": "Andri Wulandika", "url": "https://andriwulandika.uk/" },
+    "datePublished": "2026-06-17",
+    "dateModified": "2026-06-17",
+    "image": "https://andriwulandika.uk/og-image.png",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://andriwulandika.uk/renstra-opd-panduan-lengkap.html" },
+    "publisher": { "@type": "Person", "name": "Andri Wulandika" },
+    "description": "Panduan lengkap menyusun Renstra OPD — struktur 5 bab, cascading RPJMD, tujuan-sasaran-IKU, matriks kinerja dan pendanaan, serta kesalahan umum.",
+    "url": "https://andriwulandika.uk/renstra-opd-panduan-lengkap.html"
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff; --bg2: #f5f5f7; --text: #1d1d1f; --text2: #6e6e73;
+      --accent: #0071e3; --border: #d2d2d7; --radius: 14px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased;
+    }
+    #progress-bar { position: fixed; top: 0; left: 0; z-index: 1000; height: 3px; width: 0%; background: linear-gradient(90deg, #0071e3, #34aadc); transition: width 0.1s linear; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 52px;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text, #1d1d1f); transition: transform .25s ease, opacity .2s ease; }
+    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-burger { display: flex; }
+      .nav-links { display: none; position: fixed; top: 52px; left: 0; right: 0; flex-direction: column; gap: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.08); box-shadow: 0 16px 32px rgba(0,0,0,0.08); padding: 6px 16px 14px; max-height: calc(100vh - 52px); overflow-y: auto; }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+      .nav-links li:last-child > a { border-bottom: 0; }
+    }
+    @media (max-width: 480px) { .nav-title { display: none; } }
+
+    .page-wrap { max-width: 1080px; margin: 0 auto; padding: 80px 24px 80px; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+    @media (max-width: 860px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    .breadcrumb { font-size: 0.75rem; color: var(--text2); margin-bottom: 2rem; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .breadcrumb span { color: var(--border); }
+
+    .article-category { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: rgba(0,113,227,0.08); padding: 4px 10px; border-radius: 980px; margin-bottom: 1.2rem; }
+    .article-title { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); margin-bottom: 1.2rem; }
+    .article-subtitle { font-size: 1.1rem; color: var(--text2); line-height: 1.65; margin-bottom: 1.8rem; font-weight: 400; }
+    .article-meta { display: flex; gap: 1.5rem; align-items: center; font-size: 0.8rem; color: var(--text2); padding-bottom: 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2.8rem; flex-wrap: wrap; }
+    .meta-author { display: flex; gap: 8px; align-items: center; }
+    .meta-author-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .meta-author-name { font-weight: 600; color: var(--text); }
+    .meta-dot { color: var(--border); }
+
+    .article-body { font-size: 1.02rem; line-height: 1.78; color: var(--text); }
+    .article-body h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 3rem 0 1rem; color: var(--text); scroll-margin-top: 70px; }
+    .article-body h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; margin: 2.2rem 0 0.75rem; color: var(--text); scroll-margin-top: 70px; }
+    .article-body p { margin-bottom: 1.4rem; }
+    .article-body ul, .article-body ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+    .article-body li { margin-bottom: 0.55rem; }
+    .article-body strong { font-weight: 600; }
+    .article-body em { font-style: italic; color: var(--text2); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    .callout { background: var(--bg2); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.2rem 1.4rem; margin: 1.8rem 0; font-size: 0.95rem; }
+    .callout.warn { border-left-color: #FF3B30; background: #FFF5F5; }
+    .callout.info { border-left-color: #0071e3; background: #EFF6FF; }
+    .callout.tip { border-left-color: #28CD41; background: #F0FFF4; }
+    .callout-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .callout.warn .callout-label { color: #FF3B30; }
+    .callout.info .callout-label { color: #0071e3; }
+    .callout.tip .callout-label { color: #28CD41; }
+
+    .article-body table { width: 100%; border-collapse: collapse; margin: 1.8rem 0; font-size: 0.875rem; overflow: hidden; }
+    .article-body th { background: var(--bg2); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); font-size: 0.8rem; }
+    .article-body td { padding: 10px 14px; border-bottom: 1px solid var(--bg2); vertical-align: top; }
+    .article-body tr:last-child td { border-bottom: none; }
+    .article-body tr:hover td { background: #fafafa; }
+
+    .steps { margin: 1.8rem 0; }
+    .step-item { display: flex; gap: 16px; margin-bottom: 1.6rem; }
+    .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--text); }
+    .step-content p { font-size: 0.9rem; color: var(--text2); margin-bottom: 0; line-height: 1.6; }
+
+    /* CASCADE DIAGRAM */
+    .cascade { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; }
+    .cascade-item {
+      display: flex; align-items: stretch; gap: 0;
+    }
+    .cascade-line { width: 3px; background: var(--border); margin: 0 18px; flex-shrink: 0; }
+    .cascade-line.accent { background: var(--accent); }
+    .cascade-box {
+      flex: 1; background: var(--bg2); border-radius: var(--radius);
+      padding: 14px 18px; margin-bottom: 8px;
+      border-left: 3px solid var(--border);
+    }
+    .cascade-box.highlight { border-left-color: var(--accent); background: #EFF6FF; }
+    .cascade-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); margin-bottom: 3px; }
+    .cascade-label.accent { color: var(--accent); }
+    .cascade-name { font-size: 0.92rem; font-weight: 600; color: var(--text); }
+    .cascade-note { font-size: 0.78rem; color: var(--text2); margin-top: 2px; }
+
+    /* STRUCTURE CARD */
+    .structure-grid { display: flex; flex-direction: column; gap: 10px; margin: 1.8rem 0; }
+    .bab-card { border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .bab-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px; cursor: pointer; user-select: none;
+      background: var(--bg2); transition: background 0.15s;
+    }
+    .bab-header:hover { background: #ebebed; }
+    .bab-num { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; flex-shrink: 0; }
+    .bab-title { font-size: 0.95rem; font-weight: 700; flex: 1; }
+    .bab-arrow { font-size: 1rem; color: var(--text2); transition: transform 0.25s; flex-shrink: 0; }
+    .bab-card.open .bab-arrow { transform: rotate(90deg); }
+    .bab-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .bab-card.open .bab-body { max-height: 600px; }
+    .bab-inner { padding: 16px 18px 18px; border-top: 1px solid var(--border); font-size: 0.88rem; color: var(--text2); line-height: 1.65; }
+    .bab-inner ul { padding-left: 1.2rem; margin-top: 8px; }
+    .bab-inner li { margin-bottom: 5px; }
+
+    .share-bar { display: flex; gap: 10px; align-items: center; margin: 2.5rem 0; padding: 1.2rem 1.4rem; background: var(--bg2); border-radius: var(--radius); flex-wrap: wrap; }
+    .share-label { font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-right: 4px; }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 980px; font-size: 0.8rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; transition: opacity 0.2s; }
+    .share-btn:hover { opacity: 0.8; }
+    .share-wa { background: #25D366; color: #fff; }
+    .share-copy { background: #e5e5ea; color: var(--text); }
+
+    .tag { display: inline-block; font-size: 0.72rem; font-weight: 500; padding: 3px 9px; border-radius: 980px; background: var(--bg2); color: var(--text2); margin-right: 4px; margin-bottom: 4px; }
+
+    .article-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .article-footer-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); margin-bottom: 1rem; }
+    .article-tags { margin-bottom: 2rem; }
+    .author-card { background: var(--bg2); border-radius: var(--radius); padding: 1.5rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+    .author-card-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .author-card-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+    .author-card-title { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.6rem; }
+    .author-card-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+    .btn-back { display: inline-flex; align-items: center; gap: 6px; margin-top: 2rem; background: var(--bg2); color: var(--text); padding: 12px 22px; border-radius: 980px; font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+    .btn-back:hover { background: #e5e5ea; }
+
+    .related-section { margin-top: 3.5rem; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    .related-card { background: var(--bg2); border-radius: var(--radius); padding: 1.2rem; text-decoration: none; color: var(--text); transition: background 0.2s; display: block; }
+    .related-card:hover { background: #e5e5ea; }
+    .related-card-cat { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .related-card-title { font-size: 0.9rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.4rem; }
+    .related-card-meta { font-size: 0.75rem; color: var(--text2); }
+
+    .sidebar { position: sticky; top: 72px; }
+    .sidebar-card { background: var(--bg2); border-radius: var(--radius); padding: 1.3rem; margin-bottom: 1.2rem; }
+    .sidebar-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); margin-bottom: 0.8rem; }
+    .toc-list { list-style: none; padding: 0; }
+    .toc-list li { margin-bottom: 0.4rem; }
+    .toc-list a { font-size: 0.8rem; color: var(--text2); text-decoration: none; line-height: 1.45; display: block; padding: 3px 0; border-left: 2px solid transparent; padding-left: 8px; transition: all 0.15s; }
+    .toc-list a:hover, .toc-list a.active { color: var(--accent); border-left-color: var(--accent); }
+    .sidebar-author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.7rem; }
+    .sidebar-author-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; }
+    .sidebar-author-title { font-size: 0.75rem; color: var(--text2); line-height: 1.4; }
+    .cta-box { background: linear-gradient(135deg, #0071e3 0%, #0055b3 100%); border-radius: var(--radius); padding: 1.4rem; color: #fff; margin-top: 1.2rem; }
+    .cta-box-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; }
+    .cta-box-desc { font-size: 0.78rem; opacity: 0.82; line-height: 1.5; margin-bottom: 14px; }
+    .cta-box-btn { display: block; background: #fff; color: var(--accent); text-align: center; padding: 10px 18px; border-radius: 980px; font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; }
+    .cta-box-btn:hover { opacity: 0.9; }
+
+    footer { background: #f5f5f7; border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.78rem; color: var(--text2); margin-top: 60px; }
+    footer a { color: var(--text2); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <a href="index.html" class="nav-back">← Beranda</a>
+  <span class="nav-title">Blog &amp; Artikel</span>
+  <ul class="nav-links">
+    <li><a href="template.html">Template</a></li>
+    <li><a href="index.html#tools">AI Tools</a></li>
+    <li><a href="harga.html">Harga</a></li>
+    <li><a href="aktifkan-pro.html">Masuk</a></li>
+  </ul>
+  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<script>
+(function(){
+  var nav=document.querySelector('nav');if(!nav)return;
+  var btn=nav.querySelector('.nav-burger');if(!btn)return;
+  btn.addEventListener('click',function(){var open=nav.classList.toggle('nav-open');btn.setAttribute('aria-expanded',open?'true':'false');});
+  nav.addEventListener('click',function(e){var t=e.target;while(t&&t!==nav){if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}t=t.parentNode;}});
+})();
+</script>
+
+<div class="page-wrap">
+  <main>
+
+    <div class="breadcrumb reveal">
+      <a href="index.html">Beranda</a>
+      <span>›</span>
+      <a href="index.html#blog">Blog</a>
+      <span>›</span>
+      <span>Panduan Renstra OPD</span>
+    </div>
+
+    <header>
+      <div class="article-category reveal">Perencanaan Daerah</div>
+      <h1 class="article-title reveal">Panduan Lengkap Menyusun Renstra OPD Sesuai Regulasi Terbaru</h1>
+      <p class="article-subtitle reveal">Rencana Strategis OPD adalah kompas lima tahun yang menentukan ke mana arah kerja instansi Anda. Panduan ini membahas struktur 5 bab, cara merumuskan tujuan dan sasaran yang tepat, cascading dengan RPJMD, matriks kinerja dan pendanaan, serta kesalahan umum yang paling sering terjadi di lapangan.</p>
+      <div class="article-meta reveal">
+        <div class="meta-author">
+          <div class="meta-author-avatar">AW</div>
+          <div>
+            <div class="meta-author-name">Andri Wulandika</div>
+            <div style="font-size:0.75rem;color:var(--text2);">Perencana Ahli Pertama · Bappeda Aceh Tenggara</div>
+          </div>
+        </div>
+        <span class="meta-dot">·</span>
+        <span>17 Juni 2026</span>
+        <span class="meta-dot">·</span>
+        <span>15 menit baca</span>
+      </div>
+    </header>
+
+    <div class="article-body">
+
+      <h2 id="apa-itu-renstra">Apa Itu Renstra OPD dan Mengapa Penting?</h2>
+
+      <p>Rencana Strategis Organisasi Perangkat Daerah — disingkat <strong>Renstra OPD</strong> — adalah dokumen perencanaan yang memuat tujuan, sasaran, strategi, kebijakan, program, dan kegiatan OPD untuk jangka waktu <strong>5 tahun</strong>. Dokumen ini disusun bersamaan atau segera setelah RPJMD ditetapkan, karena Renstra OPD adalah penjabaran operasional dari sasaran RPJMD di level masing-masing OPD.</p>
+
+      <p>Jika RPJMD adalah peta wilayah, maka Renstra OPD adalah peta jalan khusus untuk satu instansi: Dinas Pendidikan punya Renstranya sendiri, Dinas Kesehatan punya Renstranya sendiri, Bappeda punya Renstranya sendiri — masing-masing dengan tujuan dan program yang berbeda, tapi semuanya harus bermuara pada sasaran yang sama di dalam RPJMD.</p>
+
+      <div class="callout info">
+        <div class="callout-label">Dasar Hukum</div>
+        Penyusunan Renstra OPD mengacu pada <strong>UU 23/2014</strong> tentang Pemerintahan Daerah, <strong>Permendagri 86/2017</strong> tentang tata cara perencanaan, serta <strong>Inmendagri 2/2025</strong> yang memperbarui pedoman teknis penyusunan dengan struktur 5 bab yang lebih proporsional.
+      </div>
+
+      <h2 id="posisi-renstra">Posisi Renstra dalam Rantai Perencanaan Daerah</h2>
+
+      <p>Renstra OPD tidak berdiri sendiri. Ia ada di tengah-tengah rantai perencanaan yang menghubungkan visi kepala daerah dengan belanja anggaran tahunan. Berikut alur cascading-nya dari atas ke bawah:</p>
+
+      <div class="cascade reveal">
+        <div class="cascade-item">
+          <div class="cascade-box">
+            <div class="cascade-label">Nasional · 5 Tahun</div>
+            <div class="cascade-name">RPJMN (Rencana Pembangunan Jangka Menengah Nasional)</div>
+            <div class="cascade-note">Visi dan prioritas pembangunan nasional</div>
+          </div>
+        </div>
+        <div class="cascade-item">
+          <div class="cascade-box">
+            <div class="cascade-label">Daerah · 5 Tahun</div>
+            <div class="cascade-name">RPJMD (Rencana Pembangunan Jangka Menengah Daerah)</div>
+            <div class="cascade-note">Visi-misi kepala daerah, tujuan dan sasaran daerah</div>
+          </div>
+        </div>
+        <div class="cascade-item">
+          <div class="cascade-box highlight">
+            <div class="cascade-label accent">OPD · 5 Tahun ← Anda di sini</div>
+            <div class="cascade-name">Renstra OPD</div>
+            <div class="cascade-note">Tujuan, sasaran, program OPD yang mendukung sasaran RPJMD</div>
+          </div>
+        </div>
+        <div class="cascade-item">
+          <div class="cascade-box">
+            <div class="cascade-label">Daerah · 1 Tahun</div>
+            <div class="cascade-name">RKPD (Rencana Kerja Pemerintah Daerah)</div>
+            <div class="cascade-note">Prioritas dan program tahunan daerah</div>
+          </div>
+        </div>
+        <div class="cascade-item">
+          <div class="cascade-box">
+            <div class="cascade-label">OPD · 1 Tahun</div>
+            <div class="cascade-name">Renja OPD → RKA → DPA → APBD</div>
+            <div class="cascade-note">Rencana kerja tahunan yang berujung pada anggaran</div>
+          </div>
+        </div>
+      </div>
+
+      <p>Satu hal yang sering disalahpahami: <strong>OPD tidak memiliki visi-misi sendiri</strong>. Visi dan misi dalam Renstra OPD adalah visi-misi kepala daerah yang termuat dalam RPJMD — bukan visi organisasi OPD. Yang OPD rumuskan sendiri adalah <em>tujuan</em> dan <em>sasaran</em> OPD yang mendukung tujuan/sasaran daerah tersebut.</p>
+
+      <h2 id="struktur-5-bab">Struktur Renstra OPD: 5 Bab</h2>
+
+      <p>Sesuai Inmendagri 2/2025, Renstra OPD disusun dalam 5 bab dengan proporsi yang lebih seimbang dibanding format lama. Klik tiap bab untuk melihat sub-babnya:</p>
+
+      <div class="structure-grid">
+
+        <div class="bab-card open">
+          <div class="bab-header">
+            <div class="bab-num">I</div>
+            <div class="bab-title">Pendahuluan</div>
+            <span class="bab-arrow">›</span>
+          </div>
+          <div class="bab-body">
+            <div class="bab-inner">
+              Menetapkan konteks mengapa Renstra ini disusun dan apa kerangka hukumnya.
+              <ul>
+                <li><strong>1.1 Latar Belakang</strong> — urgensi penyusunan Renstra, hubungan dengan RPJMD</li>
+                <li><strong>1.2 Landasan Hukum</strong> — daftar peraturan yang menjadi dasar penyusunan</li>
+                <li><strong>1.3 Maksud dan Tujuan</strong> — untuk apa Renstra ini dibuat</li>
+                <li><strong>1.4 Sistematika Penulisan</strong> — gambaran singkat isi tiap bab</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bab-card">
+          <div class="bab-header">
+            <div class="bab-num">II</div>
+            <div class="bab-title">Gambaran Pelayanan OPD</div>
+            <span class="bab-arrow">›</span>
+          </div>
+          <div class="bab-body">
+            <div class="bab-inner">
+              Potret kondisi OPD saat ini — siapa kita, apa yang kita kerjakan, seberapa baik kinerja kita.
+              <ul>
+                <li><strong>2.1 Tugas, Fungsi, dan Struktur Organisasi</strong> — pejabat, nomenklatur jabatan, tugas pokok</li>
+                <li><strong>2.2 Sumber Daya OPD</strong> — jumlah ASN per golongan, aset, anggaran historis</li>
+                <li><strong>2.3 Kinerja Pelayanan OPD</strong> — capaian IKU/IKK 5 tahun terakhir dalam tabel</li>
+                <li><strong>2.4 Tantangan dan Peluang Pengembangan Pelayanan</strong> — analisis lingkungan strategis OPD</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bab-card">
+          <div class="bab-header">
+            <div class="bab-num">III</div>
+            <div class="bab-title">Permasalahan dan Isu Strategis OPD</div>
+            <span class="bab-arrow">›</span>
+          </div>
+          <div class="bab-body">
+            <div class="bab-inner">
+              Titik terpenting yang menentukan arah Renstra — isu strategis yang salah merusak seluruh dokumen.
+              <ul>
+                <li><strong>3.1 Identifikasi Permasalahan</strong> — gap antara kondisi saat ini dan kondisi yang diinginkan</li>
+                <li><strong>3.2 Telaahan Visi, Misi, dan Program Kepala Daerah</strong> — misi mana dan program mana yang relevan dengan OPD</li>
+                <li><strong>3.3 Telaahan Renstra K/L dan Renstra Provinsi</strong> — sinkronisasi dengan rencana induk di atasnya</li>
+                <li><strong>3.4 Telaahan RTRW dan KLHS</strong> — aspek ruang dan lingkungan yang mempengaruhi pelayanan OPD</li>
+                <li><strong>3.5 Penentuan Isu-Isu Strategis</strong> — 3–5 isu utama yang menjadi dasar perumusan tujuan dan sasaran</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bab-card">
+          <div class="bab-header">
+            <div class="bab-num">IV</div>
+            <div class="bab-title">Tujuan dan Sasaran</div>
+            <span class="bab-arrow">›</span>
+          </div>
+          <div class="bab-body">
+            <div class="bab-inner">
+              Inti dari Renstra — apa yang ingin dicapai OPD dalam 5 tahun, terukur dengan indikator.
+              <ul>
+                <li><strong>4.1 Tujuan OPD</strong> — pernyataan hasil akhir yang ingin dicapai (2–3 tujuan), masing-masing dengan Indikator Tujuan (outcome level)</li>
+                <li><strong>4.2 Sasaran OPD</strong> — kondisi spesifik yang harus dicapai untuk mewujudkan tiap tujuan, masing-masing dengan Indikator Kinerja Sasaran (IKS) dan target per tahun</li>
+                <li>Tabel tujuan-sasaran-indikator-target (T-1 s.d. T+5)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bab-card">
+          <div class="bab-header">
+            <div class="bab-num">V</div>
+            <div class="bab-title">Strategi, Arah Kebijakan, dan Program</div>
+            <span class="bab-arrow">›</span>
+          </div>
+          <div class="bab-body">
+            <div class="bab-inner">
+              Cara mencapai tujuan dan sasaran — dari strategi abstrak hingga program yang konkret dan berbiaya.
+              <ul>
+                <li><strong>5.1 Strategi OPD</strong> — pendekatan umum untuk mewujudkan sasaran (dari analisis SWOT)</li>
+                <li><strong>5.2 Arah Kebijakan</strong> — pedoman pengambilan keputusan yang mengarahkan program</li>
+                <li><strong>5.3 Program dan Kerangka Pendanaan Indikatif</strong> — daftar program, kegiatan, subkegiatan beserta pagu indikatif per tahun dan penanggung jawab</li>
+                <li>Matriks kinerja dan pendanaan 5 tahun (lampiran utama)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h2 id="tujuan-sasaran">Cara Merumuskan Tujuan dan Sasaran yang Tepat</h2>
+
+      <p>Bab IV adalah jantung Renstra — dan paling sering bermasalah. Ada tiga aturan dasar yang harus dipegang:</p>
+
+      <h3>1. Tujuan OPD harus mendukung sasaran daerah dalam RPJMD</h3>
+      <p>Buka RPJMD, temukan misi yang relevan dengan OPD Anda, lalu lihat tujuan dan sasaran daerah di bawah misi tersebut. Tujuan OPD harus berelasi langsung — bukan sekadar mirip kata-katanya, tapi benar-benar <em>berkontribusi</em> pada pencapaian sasaran daerah.</p>
+
+      <div class="callout tip">
+        <div class="callout-label">Contoh Cascading</div>
+        <strong>Sasaran RPJMD:</strong> "Meningkatnya kualitas perencanaan pembangunan daerah" → <strong>Tujuan Bappeda:</strong> "Terwujudnya perencanaan pembangunan daerah yang berkualitas, konsisten, dan berbasis data" → <strong>Sasaran Bappeda:</strong> "Meningkatnya konsistensi perencanaan dan penganggaran daerah" dengan IKS: Persentase konsistensi program RKPD dengan RPJMD (target: 85% → 90% → 92% → 95% → 95%).
+      </div>
+
+      <h3>2. Indikator sasaran harus outcome, bukan output</h3>
+      <p><strong>Output</strong> adalah hasil langsung kegiatan ("jumlah dokumen yang disusun", "jumlah peserta yang dilatih"). <strong>Outcome</strong> adalah dampak dari output tersebut ("persentase OPD yang menyampaikan laporan kinerja tepat waktu", "nilai SAKIP kabupaten"). Renstra harus mengukur outcome — itulah level sasaran yang bermakna.</p>
+
+      <table>
+        <thead>
+          <tr><th>Level</th><th>Contoh Buruk (Output)</th><th>Contoh Baik (Outcome)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tujuan</td>
+            <td>Meningkatnya jumlah dokumen perencanaan</td>
+            <td>Terwujudnya perencanaan daerah yang berkualitas dan berbasis data</td>
+          </tr>
+          <tr>
+            <td>Sasaran</td>
+            <td>Tersusunnya 5 dokumen RKPD tepat waktu</td>
+            <td>Meningkatnya kualitas dan konsistensi dokumen perencanaan daerah</td>
+          </tr>
+          <tr>
+            <td>Indikator</td>
+            <td>Jumlah dokumen yang diterbitkan</td>
+            <td>Persentase konsistensi RKPD dengan RPJMD (%)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Target harus realistis dan progresif</h3>
+      <p>Jangan isi semua target dengan angka yang sama selama 5 tahun — itu menunjukkan tidak ada perencanaan yang serius. Target harus naik (atau turun untuk indikator negatif) secara bertahap, dengan angka tahun pertama yang berangkat dari capaian aktual tahun terakhir, bukan dari angka ideal.</p>
+
+      <h2 id="matriks-renstra">Matriks Kinerja dan Pendanaan</h2>
+
+      <p>Matriks adalah wujud konkret dari Renstra — di sinilah semua tujuan dan sasaran "dibuktikan" dengan program berbiaya. Matriks Renstra OPD memuat kolom-kolom berikut:</p>
+
+      <table>
+        <thead>
+          <tr><th>Kolom</th><th>Isi</th><th>Catatan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tujuan / Sasaran</td><td>Pernyataan tujuan dan sasaran OPD</td><td>Mengacu Bab IV</td></tr>
+          <tr><td>Indikator Kinerja</td><td>IKU/IKS per sasaran</td><td>Harus terukur dan bisa diverifikasi</td></tr>
+          <tr><td>Kondisi Awal (T-0)</td><td>Capaian tahun terakhir</td><td>Baseline yang jujur</td></tr>
+          <tr><td>Target T+1 s.d. T+5</td><td>Target per tahun</td><td>Progresif, tidak flat</td></tr>
+          <tr><td>Program</td><td>Nomenklatur program sesuai Permendagri 90/2019</td><td>Tidak boleh nama program sendiri</td></tr>
+          <tr><td>Kegiatan / Subkegiatan</td><td>Sesuai nomenklatur baku</td><td>Harus ada dalam SIPD-RI</td></tr>
+          <tr><td>Pagu Indikatif per Tahun</td><td>Perkiraan anggaran (Rp)</td><td>Indikatif, bukan pagu pasti</td></tr>
+          <tr><td>Sumber Dana</td><td>APBD, DAK, DAU, dll.</td><td>Konsisten dengan KUA-PPAS</td></tr>
+          <tr><td>Penanggung Jawab</td><td>Bidang/seksi pelaksana</td><td>Nama unit, bukan nama orang</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <div class="callout-label">Perhatian</div>
+        Nomenklatur program, kegiatan, dan subkegiatan <strong>wajib mengacu Permendagri 90/2019</strong> dan pemutakhirannya. Anda tidak bisa mengarang nama program sendiri — jika program yang Anda rencanakan tidak ada dalam daftar baku, berarti harus diakomodasi ke dalam nomenklatur yang paling mendekati.
+      </div>
+
+      <h2 id="langkah-penyusunan">Langkah Praktis Penyusunan Renstra OPD</h2>
+
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Pelajari RPJMD secara mendalam</h4>
+            <p>Identifikasi misi, tujuan, dan sasaran RPJMD yang relevan dengan tugas pokok OPD Anda. Catat indikator sasaran daerah beserta targetnya — ini yang akan menjadi "atasan hierarki" bagi tujuan dan sasaran OPD.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Kumpulkan data kinerja historis OPD (5 tahun terakhir)</h4>
+            <p>Capaian IKU/IKK tahun-tahun sebelumnya, realisasi anggaran, jumlah SDM, dan aset. Data ini mengisi Bab II dan menjadi baseline untuk target di Bab IV.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Lakukan identifikasi permasalahan dan isu strategis</h4>
+            <p>Gunakan analisis SWOT atau analisis gap. Libatkan seluruh kepala bidang dalam FGD — permasalahan yang muncul dari praktik lapangan jauh lebih valid dari yang dikarang di meja. Dari sini pilih 3–5 isu strategis yang paling kritis.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Rumuskan tujuan, sasaran, dan indikator</h4>
+            <p>Tujuan OPD diturunkan dari isu strategis dan dikaitkan ke sasaran RPJMD. Setiap tujuan punya 1–2 sasaran, setiap sasaran punya 1–2 IKS. Tentukan target tiap tahun mulai dari baseline yang realistis.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>Susun program, kegiatan, dan pagu indikatif</h4>
+            <p>Pastikan nama program mengacu nomenklatur baku Permendagri 90/2019. Alokasikan pagu indikatif berdasarkan prioritas tujuan/sasaran — program yang mendukung sasaran utama mendapat alokasi lebih besar.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <h4>Susun matriks dan finalisasi dokumen</h4>
+            <p>Isi matriks kinerja dan pendanaan 5 tahun, lalu tulis narasi Bab I–V secara berurutan. Periksa konsistensi: indikator di tabel harus sama dengan yang disebut di narasi. Minta tim Bappeda melakukan desk review sebelum penetapan.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="kesalahan-umum">Kesalahan Umum yang Harus Dihindari</h2>
+
+      <p>Dalam pengalaman melakukan review Renstra OPD, berikut kesalahan yang paling sering muncul:</p>
+
+      <ol>
+        <li><strong>OPD membuat visi-misi sendiri.</strong> Renstra OPD tidak memuat visi-misi OPD. Yang ada hanya visi-misi kepala daerah (dikutip dari RPJMD) sebagai acuan, lalu tujuan dan sasaran OPD sebagai penjabaran operasionalnya.</li>
+        <li><strong>Tujuan OPD tidak terhubung ke sasaran RPJMD.</strong> Akibatnya, saat evaluasi, OPD tidak bisa mengklaim kontribusi terhadap target daerah meski kinerjanya bagus.</li>
+        <li><strong>Indikator sasaran berupa output, bukan outcome.</strong> "Jumlah kegiatan yang dilaksanakan" bukan indikator sasaran — itu indikator kegiatan. Sasaran harus diukur dengan dampak atau hasil akhir.</li>
+        <li><strong>Target flat selama 5 tahun.</strong> Target yang sama dari T+1 sampai T+5 menandakan perencanaan yang tidak serius. Evaluasi pun menjadi tidak bermakna.</li>
+        <li><strong>Nomenklatur program tidak sesuai Permendagri 90/2019.</strong> Ini menyebabkan data tidak bisa diinput di SIPD-RI atau berbeda dengan RKA saat penganggaran.</li>
+        <li><strong>Tidak ada keterkaitan antara isu strategis dan tujuan/sasaran.</strong> Isu strategis di Bab III harusnya menjadi sumber dari tujuan di Bab IV. Jika keduanya tidak nyambung, seluruh alur logis dokumen hancur.</li>
+      </ol>
+
+      <h2 id="renstra-vs-renja">Perbedaan Renstra dan Renja OPD</h2>
+
+      <p>Keduanya adalah dokumen OPD yang berbeda fungsi dan periodisasi:</p>
+
+      <table>
+        <thead>
+          <tr><th>Aspek</th><th>Renstra OPD</th><th>Renja OPD</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Periode</td><td>5 tahun (mengikuti masa jabatan)</td><td>1 tahun</td></tr>
+          <tr><td>Waktu penyusunan</td><td>Setelah RPJMD ditetapkan</td><td>Setiap tahun (Mei–Juni)</td></tr>
+          <tr><td>Isi utama</td><td>Tujuan, sasaran, strategi, arah kebijakan, program 5 tahun</td><td>Program, kegiatan, subkegiatan, pagu 1 tahun</td></tr>
+          <tr><td>Ditetapkan oleh</td><td>Kepala OPD (Perkada)</td><td>Kepala OPD</td></tr>
+          <tr><td>Hubungan</td><td>Induk dari Renja</td><td>Penjabaran tahunan Renstra</td></tr>
+          <tr><td>Acuan utama</td><td>RPJMD</td><td>Renstra OPD + RKPD</td></tr>
+        </tbody>
+      </table>
+
+      <p>Renja OPD adalah "irisan" satu tahun dari Renstra — mengambil program dan kegiatan yang dijadwalkan untuk tahun bersangkutan, lalu memperinci ke level subkegiatan dengan pagu yang lebih akurat berdasarkan KUA-PPAS.</p>
+
+      <h2 id="gunakan-ai-tools">Menyusun Renstra Lebih Cepat dengan AI Tools</h2>
+
+      <p>Penyusunan Renstra membutuhkan banyak narasi — mulai dari latar belakang, gambaran pelayanan, analisis isu strategis, hingga rumusan tujuan dan sasaran yang terstruktur. <a href="sigendok.html">SiGenDok</a> di platform ini menyediakan template Renstra OPD 5 bab yang bisa langsung diisi dan diunduh, sehingga Anda tidak perlu mulai dari lembar kosong.</p>
+
+      <div class="callout tip">
+        <div class="callout-label">Tips Praktis</div>
+        Gunakan <a href="sigendok.html">SiGenDok → Template Renstra OPD</a> untuk mendapatkan kerangka 5 bab yang sudah terstruktur. Isi data OPD Anda, lalu gunakan <a href="sirenja.html">SiRENJA</a> untuk menghasilkan narasi sub-bab secara otomatis. Hasilnya bisa langsung diedit di Word — menghemat waktu 60–70% dibanding menyusun dari nol.
+      </div>
+
+      <div class="share-bar">
+        <span class="share-label">Bagikan:</span>
+        <a href="https://wa.me/?text=Panduan%20Lengkap%20Menyusun%20Renstra%20OPD%20https://andriwulandika.uk/renstra-opd-panduan-lengkap.html" target="_blank" rel="noopener" class="share-btn share-wa">WhatsApp</a>
+        <button class="share-btn share-copy" onclick="navigator.clipboard.writeText(location.href);this.textContent='Tersalin!';setTimeout(()=>this.textContent='Salin Link',2000)" type="button">Salin Link</button>
+      </div>
+
+    </div><!-- /article-body -->
+
+    <footer class="article-footer">
+      <div class="article-tags">
+        <div class="article-footer-label">Tag</div>
+        <span class="tag">Renstra OPD</span>
+        <span class="tag">Perencanaan Daerah</span>
+        <span class="tag">RPJMD</span>
+        <span class="tag">Tujuan Sasaran</span>
+        <span class="tag">IKU</span>
+        <span class="tag">Matriks Kinerja</span>
+        <span class="tag">ASN</span>
+      </div>
+      <div class="author-card">
+        <div class="author-card-avatar">AW</div>
+        <div>
+          <div class="author-card-name">Andri Wulandika</div>
+          <div class="author-card-title">Perencana Ahli Pertama · Bappeda Kabupaten Aceh Tenggara</div>
+          <div class="author-card-desc">Praktisi perencanaan pembangunan daerah dengan pengalaman langsung menyusun RPJMD, Renstra, Renja, dan SAKIP. Mengembangkan AI Tools untuk membantu ASN Indonesia bekerja lebih efisien dan menghasilkan dokumen yang lebih berkualitas.</div>
+        </div>
+      </div>
+      <a href="index.html#blog" class="btn-back">← Kembali ke Semua Artikel</a>
+
+      <div class="related-section">
+        <div class="article-footer-label">Artikel Terkait</div>
+        <div class="related-grid">
+          <a href="renja-opd-panduan-lengkap.html" class="related-card">
+            <div class="related-card-cat">Perencanaan Daerah</div>
+            <div class="related-card-title">Panduan Lengkap Menyusun Renja OPD Sesuai Permendagri 81/2022</div>
+            <div class="related-card-meta">Andri Wulandika · 2026</div>
+          </a>
+          <a href="cascading-perencanaan-daerah.html" class="related-card">
+            <div class="related-card-cat">Perencanaan Daerah</div>
+            <div class="related-card-title">Cascading Perencanaan Daerah: Dari RPJMD sampai Perjanjian Kinerja</div>
+            <div class="related-card-meta">Andri Wulandika · 2026</div>
+          </a>
+          <a href="indikator-kinerja-utama-smart.html" class="related-card">
+            <div class="related-card-cat">SAKIP &amp; Kinerja</div>
+            <div class="related-card-title">Indikator Kinerja Utama (IKU) yang SMART</div>
+            <div class="related-card-meta">Andri Wulandika · 2026</div>
+          </a>
+          <a href="sakip-dari-pk-hingga-lkjip.html" class="related-card">
+            <div class="related-card-cat">SAKIP &amp; Kinerja</div>
+            <div class="related-card-title">SAKIP Bukan Sekadar Dokumen: Dari PK hingga LKjIP yang Bernilai A</div>
+            <div class="related-card-meta">Andri Wulandika · 2026</div>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-label">Daftar Isi</div>
+      <ul class="toc-list">
+        <li><a href="#apa-itu-renstra">Apa itu Renstra OPD?</a></li>
+        <li><a href="#posisi-renstra">Posisi dalam Rantai Perencanaan</a></li>
+        <li><a href="#struktur-5-bab">Struktur 5 Bab</a></li>
+        <li><a href="#tujuan-sasaran">Tujuan &amp; Sasaran</a></li>
+        <li><a href="#matriks-renstra">Matriks Kinerja &amp; Pendanaan</a></li>
+        <li><a href="#langkah-penyusunan">Langkah Penyusunan</a></li>
+        <li><a href="#kesalahan-umum">Kesalahan Umum</a></li>
+        <li><a href="#renstra-vs-renja">Renstra vs Renja</a></li>
+        <li><a href="#gunakan-ai-tools">Pakai AI Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-author-avatar">AW</div>
+      <div class="sidebar-author-name">Andri Wulandika</div>
+      <div class="sidebar-author-title">Perencana Ahli Pertama · Bappeda Aceh Tenggara</div>
+    </div>
+    <div class="cta-box">
+      <div class="cta-box-title">Generate Renstra dengan AI</div>
+      <div class="cta-box-desc">Dapatkan template Renstra OPD 5 bab siap isi — hemat waktu 60–70%.</div>
+      <a href="sigendok.html" class="cta-box-btn">Buka SiGenDok</a>
+    </div>
+  </aside>
+</div><!-- /page-wrap -->
+
+<footer>
+  <div style="max-width:860px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <span>&copy; 2026 Andri Wulandika. Dibuat untuk ASN Indonesia.</span>
+    <div style="display:flex;gap:1.6rem;flex-wrap:wrap;">
+      <a href="index.html">Beranda</a>
+      <a href="index.html#tools">AI Tools</a>
+      <a href="template.html">Template</a>
+      <a href="harga.html">Harga</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var bar=document.getElementById('progress-bar');
+  if(!bar)return;
+  function upd(){var s=document.documentElement;var p=(s.scrollTop||document.body.scrollTop)/(s.scrollHeight-s.clientHeight)*100;bar.style.width=p+'%';}
+  window.addEventListener('scroll',upd,{passive:true});
+})();
+
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!els.length)return;
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:0.1});
+  els.forEach(function(el){obs.observe(el);});
+})();
+
+(function(){
+  var cards=document.querySelectorAll('.bab-card');
+  cards.forEach(function(card){
+    var hdr=card.querySelector('.bab-header');
+    if(!hdr)return;
+    hdr.addEventListener('click',function(){card.classList.toggle('open');});
+  });
+})();
+
+(function(){
+  var toc=document.querySelectorAll('.toc-list a');
+  if(!toc.length)return;
+  var heads=[];
+  toc.forEach(function(a){var id=a.getAttribute('href').replace('#','');var el=document.getElementById(id);if(el)heads.push({el:el,a:a});});
+  function setActive(){var mid=window.scrollY+120;var cur=null;heads.forEach(function(h){if(h.el.offsetTop<=mid)cur=h;});toc.forEach(function(a){a.classList.remove('active');});if(cur)cur.a.classList.add('active');}
+  window.addEventListener('scroll',setActive,{passive:true});setActive();
+})();
+</script>
+
+</body>
+</html>
