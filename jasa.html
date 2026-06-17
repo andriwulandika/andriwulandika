@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jasa Pembuatan Website — Andri Wulandika</title>
+  <meta name="description" content="Jasa pembuatan website profesional oleh Andri Wulandika. Website bisnis, profil instansi, landing page, dan portfolio — desain modern, cepat, SEO-ready, harga transparan."/>
+  <meta name="keywords" content="jasa pembuatan website, jasa web murah profesional, buat website bisnis, website OPD instansi, landing page murah, web developer Indonesia"/>
+  <meta name="author" content="Andri Wulandika"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://andriwulandika.uk/jasa.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Jasa Pembuatan Website Profesional — Andri Wulandika"/>
+  <meta property="og:description" content="Website bisnis, landing page, profil instansi, dan portofolio — desain modern, cepat selesai, harga terjangkau dan transparan."/>
+  <meta property="og:url" content="https://andriwulandika.uk/jasa.html"/>
+  <meta property="og:site_name" content="Andri Wulandika"/>
+  <meta property="og:image" content="https://andriwulandika.uk/og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Jasa Pembuatan Website Profesional",
+    "provider": { "@type": "Person", "name": "Andri Wulandika", "url": "https://andriwulandika.uk/" },
+    "url": "https://andriwulandika.uk/jasa.html",
+    "description": "Jasa pembuatan website profesional — landing page, website bisnis, profil instansi. Desain modern, responsif, SEO-ready.",
+    "areaServed": "ID",
+    "offers": [
+      { "@type": "Offer", "name": "Paket Landing Page", "price": "750000", "priceCurrency": "IDR" },
+      { "@type": "Offer", "name": "Paket Website Profil", "price": "2000000", "priceCurrency": "IDR" },
+      { "@type": "Offer", "name": "Paket Website Instansi / OPD", "price": "3500000", "priceCurrency": "IDR" }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    :root {
+      --bg: #ffffff; --bg2: #f5f5f7; --text: #1d1d1f; --text2: #6e6e73;
+      --accent: #0071e3; --green: #28cd41; --border: #d2d2d7; --radius: 18px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 52px;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    .nav-logo { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; color: var(--text2); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active { font-weight: 600; color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: #fff !important;
+      padding: 7px 16px; border-radius: 980px; font-size: 0.78rem !important;
+      font-weight: 600 !important; transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #0077ed !important; color: #fff !important; }
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text); transition: transform .25s, opacity .2s; }
+    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: none; position: fixed; top: 52px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        padding: 6px 16px 14px; max-height: calc(100vh - 52px); overflow-y: auto;
+      }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+      .nav-links a.nav-cta { margin: 10px 0 4px; text-align: center; border-bottom: none; }
+      .nav-links li:last-child > a { border-bottom: 0; }
+    }
+
+    /* ANIMATIONS */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    @keyframes up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+    /* HERO */
+    .hero {
+      padding: 130px 24px 80px; text-align: center; background: var(--bg);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(0,113,227,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+      opacity: 0; animation: up 0.7s ease 0.1s forwards;
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1.08; color: var(--text);
+      margin-bottom: 1.2rem;
+      opacity: 0; animation: up 0.7s ease 0.25s forwards;
+    }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text2); font-weight: 400;
+      line-height: 1.6; max-width: 540px; margin: 0 auto 2.4rem;
+      opacity: 0; animation: up 0.7s ease 0.4s forwards;
+    }
+    .hero-ctas {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: up 0.7s ease 0.55s forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff;
+      padding: 14px 28px; border-radius: 980px;
+      font-size: 0.95rem; font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #0077ed; transform: scale(1.02); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg2); color: var(--text);
+      padding: 14px 28px; border-radius: 980px;
+      font-size: 0.95rem; font-weight: 500; border: 1px solid var(--border);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { background: #e5e5ea; transform: scale(1.02); }
+
+    /* TRUST BAR */
+    .trust-bar {
+      background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+    .trust-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 9px; font-size: 0.82rem; color: var(--text2); font-weight: 500; }
+    .trust-icon { font-size: 1rem; }
+
+    /* SECTION COMMONS */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+    .section-title { font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.12; color: var(--text); margin-bottom: 1rem; }
+    .section-sub { font-size: 1.05rem; color: var(--text2); line-height: 1.65; max-width: 580px; }
+
+    /* KEUNGGULAN */
+    .plus-section { background: var(--bg); }
+    .plus-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 3rem;
+    }
+    @media (max-width: 700px) { .plus-grid { grid-template-columns: 1fr; gap: 14px; } }
+    @media (min-width: 701px) and (max-width: 920px) { .plus-grid { grid-template-columns: repeat(2, 1fr); } }
+    .plus-card {
+      background: var(--bg2); border-radius: var(--radius);
+      padding: 26px 24px; transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .plus-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.07); transform: translateY(-3px); }
+    .plus-card-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .plus-card-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .plus-card-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+    /* PORTFOLIO */
+    .portfolio-section { background: var(--bg2); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 3rem; }
+    @media (max-width: 700px) { .portfolio-grid { grid-template-columns: 1fr; } }
+    @media (min-width: 701px) and (max-width: 920px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+    .portfolio-card {
+      background: var(--bg); border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .portfolio-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.1); transform: translateY(-4px); }
+    .portfolio-thumb {
+      height: 180px; background: var(--bg2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .portfolio-thumb.real {
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f4ff 100%);
+    }
+    .portfolio-thumb.placeholder {
+      background: linear-gradient(135deg, #f5f5f7 0%, #ebebed 100%);
+    }
+    .portfolio-badge {
+      position: absolute; top: 12px; right: 12px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 980px;
+    }
+    .badge-live { background: #e3f9e7; color: #1a7f37; }
+    .badge-wip { background: #fff3e0; color: #e67e00; }
+    .portfolio-info { padding: 18px 20px; }
+    .portfolio-type { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+    .portfolio-name { font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+    .portfolio-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.5; margin-bottom: 12px; }
+    .portfolio-link { font-size: 0.8rem; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+    .portfolio-link:hover { text-decoration: underline; }
+    .tech-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+    .tech-tag { font-size: 0.68rem; font-weight: 600; padding: 3px 9px; border-radius: 980px; background: var(--bg2); color: var(--text2); }
+
+    /* PRICING */
+    .pricing-section { background: var(--bg); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 3rem; align-items: start; }
+    @media (max-width: 720px) { .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; } }
+    @media (min-width: 721px) and (max-width: 920px) { .pricing-grid { grid-template-columns: 1fr 1fr; } .price-card:last-child { grid-column: 1/-1; max-width: 380px; margin: 0 auto; width: 100%; } }
+    .price-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 32px 28px; background: var(--bg);
+      display: flex; flex-direction: column;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .price-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .price-card.featured {
+      background: linear-gradient(160deg, #0071e3 0%, #0055b3 100%);
+      border-color: transparent; color: #fff;
+    }
+    .price-card.featured:hover { box-shadow: 0 16px 48px rgba(0,113,227,0.35); }
+    .price-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 11px; border-radius: 980px; display: inline-block; margin-bottom: 16px; min-height: 24px; }
+    .badge-popular { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+    .badge-empty { opacity: 0; }
+    .price-name { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .price-card.featured .price-name { color: #fff; }
+    .price-desc { font-size: 0.83rem; color: var(--text2); line-height: 1.5; margin-bottom: 20px; }
+    .price-card.featured .price-desc { color: rgba(255,255,255,0.75); }
+    .price-amount { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.05em; line-height: 1; margin-bottom: 4px; }
+    .price-card.featured .price-amount { color: #fff; }
+    .price-note { font-size: 0.78rem; color: var(--text2); margin-bottom: 24px; }
+    .price-card.featured .price-note { color: rgba(255,255,255,0.7); }
+    .price-cta {
+      display: block; text-align: center; padding: 13px 20px; border-radius: 980px;
+      font-size: 0.88rem; font-weight: 600; margin-bottom: 24px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .price-cta:hover { opacity: 0.88; transform: scale(1.02); }
+    .cta-white { background: #fff; color: var(--accent); }
+    .cta-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+    .price-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 20px; }
+    .price-card.featured .price-divider { border-color: rgba(255,255,255,0.2); }
+    .price-features-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); margin-bottom: 12px; }
+    .price-card.featured .price-features-label { color: rgba(255,255,255,0.6); }
+    .price-features { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .feat { display: flex; align-items: flex-start; gap: 9px; font-size: 0.84rem; color: var(--text2); line-height: 1.5; }
+    .price-card.featured .feat { color: rgba(255,255,255,0.85); }
+    .feat-check { width: 18px; height: 18px; border-radius: 50%; background: #e3f9e7; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: var(--green); margin-top: 1px; }
+    .price-card.featured .feat-check { background: rgba(255,255,255,0.2); color: #fff; }
+    .price-addons { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text2); }
+
+    /* PROCESS */
+    .process-section { background: var(--bg2); }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 3rem; position: relative; }
+    @media (max-width: 700px) { .process-steps { grid-template-columns: 1fr; gap: 16px; } }
+    @media (min-width: 701px) and (max-width: 920px) { .process-steps { grid-template-columns: repeat(2, 1fr); } }
+    .process-step { text-align: center; }
+    .process-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 700;
+      margin: 0 auto 16px;
+    }
+    .process-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .process-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.6; }
+    .process-duration { display: inline-block; margin-top: 8px; font-size: 0.72rem; font-weight: 600; color: var(--accent); background: rgba(0,113,227,0.08); padding: 3px 10px; border-radius: 980px; }
+
+    /* ADDONS */
+    .addons-section { background: var(--bg); }
+    .addons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 2.4rem; }
+    @media (max-width: 580px) { .addons-grid { grid-template-columns: 1fr; } }
+    .addon-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--bg2); border-radius: 14px; padding: 18px 18px;
+    }
+    .addon-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .addon-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 3px; }
+    .addon-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.5; }
+    .addon-price { font-size: 0.8rem; font-weight: 700; color: var(--accent); margin-top: 4px; }
+
+    /* FAQ */
+    .faq-section { background: var(--bg2); }
+    .faq-list { margin-top: 3rem; max-width: 700px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; cursor: pointer; font-family: inherit;
+      font-size: 0.98rem; font-weight: 600; color: var(--text); text-align: left; gap: 16px;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-arrow { font-size: 1.2rem; color: var(--text2); transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); }
+    .faq-a { font-size: 0.9rem; color: var(--text2); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 20px; }
+
+    /* FINAL CTA */
+    .final-cta {
+      background: linear-gradient(160deg, #0071e3 0%, #0055b3 100%);
+      padding: 100px 24px; text-align: center; color: #fff;
+    }
+    .final-cta-inner { max-width: 560px; margin: 0 auto; }
+    .final-cta-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; }
+    .final-cta-sub { font-size: 1.05rem; opacity: 0.82; line-height: 1.6; margin-bottom: 2.4rem; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: #fff;
+      padding: 16px 32px; border-radius: 980px;
+      font-size: 1rem; font-weight: 700;
+      transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-wa:hover { background: #20c45c; transform: scale(1.03); }
+    .final-note { margin-top: 1.4rem; font-size: 0.82rem; opacity: 0.65; }
+
+    /* FOOTER */
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 28px 24px; }
+    .footer-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-left { font-size: 0.78rem; color: var(--text2); }
+    .footer-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; color: var(--text2); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Andri Wulandika</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="index.html#tools">AI Tools</a></li>
+    <li><a href="harga.html">Kredit</a></li>
+    <li><a href="jasa.html" class="active">Jasa Website</a></li>
+    <li><a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20tanya%20soal%20jasa%20pembuatan%20website." target="_blank" rel="noopener" class="nav-cta">💬 Konsultasi</a></li>
+  </ul>
+  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<script>
+(function(){
+  var nav=document.getElementById('main-nav');if(!nav)return;
+  var btn=nav.querySelector('.nav-burger');if(!btn)return;
+  btn.addEventListener('click',function(){var open=nav.classList.toggle('nav-open');btn.setAttribute('aria-expanded',open?'true':'false');});
+  nav.addEventListener('click',function(e){var t=e.target;while(t&&t!==nav){if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}t=t.parentNode;}});
+})();
+</script>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Jasa Pembuatan Website</p>
+  <h1 class="hero-title">Website yang bekerja keras<br/>untuk <em>bisnis Anda</em></h1>
+  <p class="hero-sub">Desain modern, cepat selesai, dan SEO-ready — agar siapapun yang mencari Anda di Google bisa menemukan Anda dengan mudah.</p>
+  <div class="hero-ctas">
+    <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20" target="_blank" rel="noopener" class="btn-primary">💬 Konsultasi Gratis</a>
+    <a href="#paket" class="btn-secondary">Lihat Paket Harga</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">⚡</span> Selesai 3–21 hari kerja</div>
+    <div class="trust-item"><span class="trust-icon">📱</span> Responsif di semua perangkat</div>
+    <div class="trust-item"><span class="trust-icon">🔍</span> SEO-ready dari hari pertama</div>
+    <div class="trust-item"><span class="trust-icon">🛡️</span> Revisi sampai puas</div>
+    <div class="trust-item"><span class="trust-icon">💬</span> Support via WhatsApp</div>
+  </div>
+</div>
+
+<!-- KEUNGGULAN -->
+<section class="plus-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Mengapa memilih kami</p>
+    <h2 class="section-title reveal">Bukan sekadar tampan — tapi juga <br/>fungsional dan ditemukan Google</h2>
+    <p class="section-sub reveal">Website bagus tidak cukup jika tidak ada yang mengunjunginya. Setiap website yang kami buat sudah dirancang untuk terlihat profesional sekaligus mudah ditemukan di mesin pencari.</p>
+
+    <div class="plus-grid">
+      <div class="plus-card reveal">
+        <div class="plus-card-icon">🎨</div>
+        <div class="plus-card-title">Desain Modern & Bersih</div>
+        <div class="plus-card-desc">Tampilan minimalis, elegan, dan profesional — bukan template gratisan yang terlihat sama dengan ratusan website lain.</div>
+      </div>
+      <div class="plus-card reveal reveal-d1">
+        <div class="plus-card-icon">⚡</div>
+        <div class="plus-card-title">Loading Super Cepat</div>
+        <div class="plus-card-desc">Dibangun dengan teknologi statis modern — loading di bawah 1 detik. Google menyukai website cepat, dan pengunjung juga tidak akan kabur.</div>
+      </div>
+      <div class="plus-card reveal reveal-d2">
+        <div class="plus-card-icon">📱</div>
+        <div class="plus-card-title">Mobile-First</div>
+        <div class="plus-card-desc">Lebih dari 70% pengunjung datang dari HP. Semua halaman dirancang tampil sempurna di layar kecil maupun besar.</div>
+      </div>
+      <div class="plus-card reveal">
+        <div class="plus-card-icon">🔍</div>
+        <div class="plus-card-title">SEO Terstruktur</div>
+        <div class="plus-card-desc">Meta tag, schema markup, sitemap, dan struktur heading yang benar — agar Google tahu website Anda relevan dan menaruhnya di halaman pertama.</div>
+      </div>
+      <div class="plus-card reveal reveal-d1">
+        <div class="plus-card-icon">🆓</div>
+        <div class="plus-card-title">Hosting Gratis Selamanya</div>
+        <div class="plus-card-desc">Menggunakan Cloudflare Pages — hosting global, gratis, tidak ada batas bandwidth. Anda hanya bayar domain (opsional).</div>
+      </div>
+      <div class="plus-card reveal reveal-d2">
+        <div class="plus-card-icon">🔧</div>
+        <div class="plus-card-title">Mudah Dikelola</div>
+        <div class="plus-card-desc">Kami berikan panduan cara update konten sendiri — tidak perlu bayar developer setiap kali mau ganti teks atau foto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Portofolio</p>
+    <h2 class="section-title reveal">Hasil nyata, bukan janji</h2>
+    <p class="section-sub reveal">Beberapa contoh website yang sudah kami kerjakan — dari platform AI tools hingga website profil dan landing page.</p>
+
+    <div class="portfolio-grid">
+
+      <!-- Real: andriwulandika.uk -->
+      <div class="portfolio-card reveal">
+        <div class="portfolio-thumb real">
+          <span style="font-size:2.8rem;">🤖</span>
+          <span class="portfolio-badge badge-live">Live</span>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-type">Platform AI Tools</div>
+          <div class="portfolio-name">andriwulandika.uk</div>
+          <div class="portfolio-desc">Platform 8 AI Tools untuk ASN Indonesia — generator dokumen perencanaan daerah dengan sistem kredit pay-as-you-go. SEO organik, 100 PageSpeed.</div>
+          <a href="https://andriwulandika.uk" target="_blank" rel="noopener" class="portfolio-link">Lihat Website →</a>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML/CSS/JS</span>
+            <span class="tech-tag">Cloudflare Pages</span>
+            <span class="tech-tag">SEO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder 1 -->
+      <div class="portfolio-card reveal reveal-d1">
+        <div class="portfolio-thumb placeholder">
+          <span style="font-size:2.8rem;">🏢</span>
+          <span class="portfolio-badge badge-wip">Segera</span>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-type">Website Profil Bisnis</div>
+          <div class="portfolio-name">Contoh: Company Profile</div>
+          <div class="portfolio-desc">Website profil perusahaan atau instansi — beranda, tentang, layanan, tim, dan kontak. Desain profesional, siap cetak & share.</div>
+          <a href="https://wa.me/62811660568?text=Halo%2C%20saya%20ingin%20buat%20website%20profil%20bisnis." target="_blank" rel="noopener" class="portfolio-link">Minta Contoh Desain →</a>
+          <div class="tech-tags">
+            <span class="tech-tag">5–7 Halaman</span>
+            <span class="tech-tag">SEO</span>
+            <span class="tech-tag">Responsif</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder 2 -->
+      <div class="portfolio-card reveal reveal-d2">
+        <div class="portfolio-thumb placeholder">
+          <span style="font-size:2.8rem;">🛍️</span>
+          <span class="portfolio-badge badge-wip">Segera</span>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-type">Landing Page / UMKM</div>
+          <div class="portfolio-name">Contoh: Landing Page Produk</div>
+          <div class="portfolio-desc">Satu halaman panjang untuk produk, jasa, atau acara — dengan CTA yang jelas, testimoni, dan form pemesanan atau WhatsApp.</div>
+          <a href="https://wa.me/62811660568?text=Halo%2C%20saya%20ingin%20buat%20landing%20page." target="_blank" rel="noopener" class="portfolio-link">Minta Contoh Desain →</a>
+          <div class="tech-tags">
+            <span class="tech-tag">1 Halaman</span>
+            <span class="tech-tag">Konversi Tinggi</span>
+            <span class="tech-tag">WA Ready</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="paket">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Paket Harga</p>
+    <h2 class="section-title reveal">Harga transparan, tanpa biaya tersembunyi</h2>
+    <p class="section-sub reveal">Semua paket sudah termasuk hosting gratis (Cloudflare Pages) dan panduan penggunaan dasar.</p>
+
+    <div class="pricing-grid">
+
+      <!-- LANDING PAGE -->
+      <div class="price-card reveal">
+        <span class="price-badge badge-empty">.</span>
+        <div class="price-name">Landing Page</div>
+        <div class="price-desc">Cocok untuk promosi produk, jasa, atau acara. Satu halaman yang langsung mengkonversi pengunjung.</div>
+        <div class="price-amount">Rp 750rb</div>
+        <div class="price-note">Bayar sekali, milik Anda selamanya</div>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Landing%20Page%20Rp750rb.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="price-cta cta-outline">Pilih Paket Ini</a>
+        <hr class="price-divider"/>
+        <div class="price-features-label">Sudah termasuk:</div>
+        <ul class="price-features">
+          <li class="feat"><span class="feat-check">✓</span>1 halaman panjang (scroll)</li>
+          <li class="feat"><span class="feat-check">✓</span>Desain profesional & responsif</li>
+          <li class="feat"><span class="feat-check">✓</span>Tombol WhatsApp / form kontak</li>
+          <li class="feat"><span class="feat-check">✓</span>SEO dasar (meta, schema, sitemap)</li>
+          <li class="feat"><span class="feat-check">✓</span>Hosting gratis (Cloudflare Pages)</li>
+          <li class="feat"><span class="feat-check">✓</span>Setup subdomain gratis</li>
+          <li class="feat"><span class="feat-check">✓</span>Selesai 3–5 hari kerja</li>
+          <li class="feat"><span class="feat-check">✓</span>2× revisi konten</li>
+        </ul>
+      </div>
+
+      <!-- WEBSITE PROFIL (FEATURED) -->
+      <div class="price-card featured reveal reveal-d1">
+        <span class="price-badge badge-popular">Paling Populer</span>
+        <div class="price-name">Website Profil</div>
+        <div class="price-desc">Untuk bisnis, komunitas, atau personal branding yang butuh kehadiran online lengkap dan profesional.</div>
+        <div class="price-amount">Rp 2 juta</div>
+        <div class="price-note">Domain .com/id opsional (+Rp 150rb/tahun)</div>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Website%20Profil%20Rp2juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="price-cta cta-white">Pilih Paket Ini</a>
+        <hr class="price-divider"/>
+        <div class="price-features-label">Sudah termasuk:</div>
+        <ul class="price-features">
+          <li class="feat"><span class="feat-check">✓</span>5–7 halaman (Beranda, Tentang, Layanan, Kontak, dll)</li>
+          <li class="feat"><span class="feat-check">✓</span>Desain custom sesuai identitas brand</li>
+          <li class="feat"><span class="feat-check">✓</span>Responsif sempurna di HP & desktop</li>
+          <li class="feat"><span class="feat-check">✓</span>SEO lengkap (meta, OG, schema, sitemap)</li>
+          <li class="feat"><span class="feat-check">✓</span>Formulir kontak + integrasi WhatsApp</li>
+          <li class="feat"><span class="feat-check">✓</span>Hosting gratis selamanya</li>
+          <li class="feat"><span class="feat-check">✓</span>Google Analytics terpasang</li>
+          <li class="feat"><span class="feat-check">✓</span>Selesai 7–14 hari kerja</li>
+          <li class="feat"><span class="feat-check">✓</span>Revisi sampai puas (maks 3 putaran)</li>
+          <li class="feat"><span class="feat-check">✓</span>Support WhatsApp 1 bulan</li>
+        </ul>
+      </div>
+
+      <!-- INSTANSI / OPD -->
+      <div class="price-card reveal reveal-d2">
+        <span class="price-badge badge-empty">.</span>
+        <div class="price-name">Instansi / OPD</div>
+        <div class="price-desc">Untuk lembaga pemerintah, OPD, desa, sekolah, atau organisasi yang butuh website komprehensif.</div>
+        <div class="price-amount">Rp 3,5 juta</div>
+        <div class="price-note">Harga bisa disesuaikan scope kebutuhan</div>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20dari%20instansi%20dan%20tertarik%20Paket%20Website%20Instansi%2FOPD.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="price-cta cta-outline">Konsultasi Dulu</a>
+        <hr class="price-divider"/>
+        <div class="price-features-label">Semua di Paket Profil, ditambah:</div>
+        <ul class="price-features">
+          <li class="feat"><span class="feat-check">✓</span>10+ halaman terstruktur</li>
+          <li class="feat"><span class="feat-check">✓</span>Halaman berita / publikasi (update mandiri)</li>
+          <li class="feat"><span class="feat-check">✓</span>Struktur sesuai regulasi website pemerintah</li>
+          <li class="feat"><span class="feat-check">✓</span>Halaman dokumen publik & unduhan</li>
+          <li class="feat"><span class="feat-check">✓</span>Training penggunaan & update konten</li>
+          <li class="feat"><span class="feat-check">✓</span>Support WhatsApp 3 bulan</li>
+          <li class="feat"><span class="feat-check">✓</span>Selesai 14–21 hari kerja</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="price-addons" style="margin-top:2rem;background:var(--bg2);border-radius:var(--radius);padding:1.4rem 1.6rem;font-size:0.88rem;color:var(--text2);">
+      <strong style="color:var(--text);">Add-on yang tersedia (opsional):</strong>&ensp;
+      Domain .com (Rp 150rb/tahun) &bull; Koneksi ke media sosial (Rp 150rb) &bull; Blog / artikel rutin (Rp 50rb/artikel) &bull; Maintenance tahunan (mulai Rp 300rb/tahun)
+    </div>
+  </div>
+</section>
+
+<!-- PROSES -->
+<section class="process-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Cara Kerja</p>
+    <h2 class="section-title reveal">Dari konsultasi ke website siap pakai<br/>dalam 4 langkah mudah</h2>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-num">1</div>
+        <div class="process-title">Konsultasi Gratis</div>
+        <div class="process-desc">Ceritakan kebutuhan Anda via WhatsApp — jenis usaha, target pengunjung, dan fitur yang diinginkan. Tidak perlu tahu teknis apapun.</div>
+        <span class="process-duration">Hari ke-1</span>
+      </div>
+      <div class="process-step reveal reveal-d1">
+        <div class="process-num">2</div>
+        <div class="process-title">Brief & Desain Awal</div>
+        <div class="process-desc">Kami kirim mockup desain awal dan struktur halaman untuk disetujui. Anda bebas minta perubahan sebelum pengerjaan dimulai.</div>
+        <span class="process-duration">Hari ke-2 sampai 4</span>
+      </div>
+      <div class="process-step reveal reveal-d2">
+        <div class="process-num">3</div>
+        <div class="process-title">Pengerjaan & Revisi</div>
+        <div class="process-desc">Website dibangun sesuai brief yang disetujui. Anda bisa memantau progress dan memberi feedback di setiap tahap.</div>
+        <span class="process-duration">Hari ke-3 sampai 14</span>
+      </div>
+      <div class="process-step reveal reveal-d3">
+        <div class="process-num">4</div>
+        <div class="process-title">Launch & Serah Terima</div>
+        <div class="process-desc">Website live dan siap dikunjungi. Anda mendapat file, akses penuh, dan panduan update konten secara mandiri.</div>
+        <span class="process-duration">Sesuai paket</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section class="addons-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Layanan Tambahan</p>
+    <h2 class="section-title reveal">Butuh lebih? Kami siap</h2>
+
+    <div class="addons-grid">
+      <div class="addon-item reveal">
+        <div class="addon-icon">✍️</div>
+        <div>
+          <div class="addon-name">Penulisan Konten</div>
+          <div class="addon-desc">Tidak punya waktu nulis teks halaman? Kami bantu tulis konten yang menarik dan SEO-friendly untuk bisnis Anda.</div>
+          <div class="addon-price">Rp 50.000 / halaman</div>
+        </div>
+      </div>
+      <div class="addon-item reveal reveal-d1">
+        <div class="addon-icon">🔄</div>
+        <div>
+          <div class="addon-name">Maintenance Tahunan</div>
+          <div class="addon-desc">Update konten berkala, perbaikan bug, dan pemantauan performa — agar website tetap sehat sepanjang tahun.</div>
+          <div class="addon-price">mulai Rp 300.000 / tahun</div>
+        </div>
+      </div>
+      <div class="addon-item reveal">
+        <div class="addon-icon">📊</div>
+        <div>
+          <div class="addon-name">Setup Google Bisnisku</div>
+          <div class="addon-desc">Agar bisnis Anda muncul di Google Maps dan pencarian lokal — penting untuk bisnis dengan lokasi fisik.</div>
+          <div class="addon-price">Rp 150.000 (sekali)</div>
+        </div>
+      </div>
+      <div class="addon-item reveal reveal-d1">
+        <div class="addon-icon">🚀</div>
+        <div>
+          <div class="addon-name">Optimasi SEO Lanjutan</div>
+          <div class="addon-desc">Riset keyword, optimasi on-page mendalam, dan laporan posisi di Google — untuk yang serius ingin halaman pertama.</div>
+          <div class="addon-price">mulai Rp 500.000 / bulan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">FAQ</p>
+    <h2 class="section-title reveal">Pertanyaan yang sering ditanyakan</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" type="button">Apakah saya perlu tahu coding untuk mengelola website?<span class="faq-arrow">+</span></button>
+        <div class="faq-a">Tidak sama sekali. Setelah serah terima, kami berikan panduan lengkap cara update teks, ganti gambar, dan tambah konten dasar — semuanya bisa dilakukan tanpa sentuh kode apapun. Untuk perubahan desain yang lebih kompleks, Anda bisa hubungi kami kembali.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Berapa biaya hosting per bulan?<span class="faq-arrow">+</span></button>
+        <div class="faq-a">Nol rupiah. Website yang kami buat di-hosting di Cloudflare Pages — platform global yang gratis tanpa batas bandwidth dan tidak ada biaya bulanan. Satu-satunya biaya tahunan yang mungkin ada adalah domain (misalnya .com sekitar Rp 150.000/tahun), dan itu pun opsional jika Anda ingin subdomain gratis.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Apakah website bisa ditambah fitur belanja online (e-commerce)?<span class="faq-arrow">+</span></button>
+        <div class="faq-a">Untuk toko online dengan manajemen produk dan keranjang belanja penuh, kami sarankan diskusi terlebih dahulu — karena itu membutuhkan backend yang berbeda. Namun untuk integrasi WhatsApp order atau redirect ke Tokopedia/Shopee, bisa kami akomodasi di semua paket.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Bagaimana jika saya tidak puas dengan hasilnya?<span class="faq-arrow">+</span></button>
+        <div class="faq-a">Setiap paket sudah menyertakan putaran revisi yang jelas. Kami tidak akan menyerahkan website jika Anda belum puas — prosesnya kolaboratif dari awal. Pastikan di tahap brief Anda sampaikan semua keinginan dan referensi desain, agar hasilnya sesuai ekspektasi tanpa revisi berulang.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Berapa lama proses pengerjaannya?<span class="faq-arrow">+</span></button>
+        <div class="faq-a">Landing Page selesai 3–5 hari kerja, Website Profil 7–14 hari kerja, Paket Instansi 14–21 hari kerja. Durasi ini bergantung pada kelengkapan konten (teks dan foto) yang Anda sediakan — semakin cepat konten tersedia, semakin cepat selesai.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Apakah ada garansi website akan muncul di halaman 1 Google?<span class="faq-arrow">+</span></button>
+        <div class="faq-a">Tidak ada yang bisa menjamin posisi Google — siapapun yang menjanjikan itu patut dicurigai. Yang kami lakukan adalah membangun fondasi SEO yang benar dari awal: struktur HTML yang sesuai, meta tag lengkap, schema markup, konten berkualitas, dan kecepatan loading optimal. Ini memaksimalkan peluang Anda ditemukan, tapi posisi final bergantung pada kompetisi keyword dan konsistensi konten dari waktu ke waktu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2 class="final-cta-title reveal">Siap punya website<br/>yang bekerja untuk Anda?</h2>
+    <p class="final-cta-sub reveal">Konsultasi gratis, tanpa komitmen. Ceritakan kebutuhan Anda dan kami bantu tentukan paket yang paling pas.</p>
+    <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website.%20Bisnis%20saya%3A%20" target="_blank" rel="noopener" class="btn-wa reveal reveal-d1">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.531 5.851L.057 23.475a.75.75 0 00.916.93l5.815-1.524A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.91 0-3.705-.512-5.254-1.41l-.378-.223-3.447.904.92-3.36-.246-.388A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Chat WhatsApp Sekarang
+    </a>
+    <p class="final-note">Biasanya kami respons dalam 1–2 jam di hari kerja</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-left">&copy; 2026 Andri Wulandika. Jasa Pembuatan Website Profesional.</span>
+    <div class="footer-links">
+      <a href="index.html">Beranda</a>
+      <a href="index.html#tools">AI Tools</a>
+      <a href="harga.html">Kredit</a>
+      <a href="tentang.html">Tentang</a>
+      <a href="https://wa.me/62811660568" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!els.length)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
+  },{threshold:0.1});
+  els.forEach(function(el){obs.observe(el);});
+})();
+
+(function(){
+  var items=document.querySelectorAll('.faq-item');
+  items.forEach(function(item){
+    var btn=item.querySelector('.faq-q');
+    if(!btn)return;
+    btn.addEventListener('click',function(){
+      var wasOpen=item.classList.contains('open');
+      items.forEach(function(i){i.classList.remove('open');});
+      if(!wasOpen)item.classList.add('open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
