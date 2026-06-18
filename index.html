@@ -1306,7 +1306,7 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // ── A. COUNTER NUMBER ANIMATION (easeOutExpo) ──
+  // ── A. COUNTER NUMBER ANIMATION (easeOutCubic) ──
   (function(){
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function fmt(el, n){
@@ -1322,11 +1322,11 @@
       var target = parseFloat(el.getAttribute('data-count'));
       if(isNaN(target)) return;
       if(reduce){ el.textContent = fmt(el, target); return; }
-      var dur = 1500, start = null;
+      var dur = 2600, start = null;
       function step(ts){
         if(start===null) start = ts;
         var p = Math.min((ts-start)/dur, 1);
-        var eased = p>=1 ? 1 : 1 - Math.pow(2, -10*p);
+        var eased = p>=1 ? 1 : 1 - Math.pow(1-p, 3);
         el.textContent = fmt(el, target*eased);
         if(p<1) requestAnimationFrame(step);
         else el.textContent = fmt(el, target);
