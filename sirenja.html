@@ -884,7 +884,7 @@ async function generateNarasi() {
 PENTING:
 - Tulis dalam Bahasa Indonesia formal dan baku
 - Jangan mengarang data atau angka baru, gunakan hanya data yang diberikan
-- Ikuti sistematika Permendagri 81/2022 tentang Pedoman Penyusunan RKPD/Renja${isPerubahan ? ' dan Permendagri 86/2017 Pasal 78 tentang Perubahan RKPD/Renja' : ''}
+- Ikuti sistematika tiga bab Renja Perangkat Daerah format Kabupaten Banyuwangi, berpedoman pada Permendagri 86/2017 jo. Permendagri 90/2019 dan Permendagri 81/2022 tentang Pedoman Penyusunan RKPD/Renja${isPerubahan ? ' serta Permendagri 86/2017 Pasal 78 tentang Perubahan RKPD/Renja' : ''}
 
 DATA OPD:
 OPD: ${opd}
@@ -911,10 +911,10 @@ ${capaian || '-'}
 
 KONTEKS TAMBAHAN: ${konteks || '-'}
 
-Tulis narasi ${isPerubahan ? 'Renja Perubahan' : 'Renja'} OPD dengan sistematika berikut:
-1. **BAB I: PENDAHULUAN** — Sub-bab: (a) Latar Belakang (2-3 paragraf formal tentang dasar penyusunan serta keterkaitan Renja${isPerubahan ? ' Perubahan' : ''} dengan RKPD dan Renstra), (b) Landasan Hukum (daftarkan UU/PP/Permendagri yang relevan secara bernomor), (c) Maksud dan Tujuan penyusunan dokumen, (d) Sistematika Penulisan (uraian singkat isi tiap bab)
-2. **BAB II: HASIL EVALUASI RENJA PERANGKAT DAERAH TAHUN LALU** — Sub-bab: (a) Evaluasi Pelaksanaan Renja dan Capaian Renstra (uraikan capaian program/kegiatan tahun sebelumnya berdasarkan data yang diberikan, bandingkan realisasi dengan target, identifikasi faktor pendorong dan penghambat), (b) Analisis Kinerja Pelayanan OPD (uraikan tugas, fungsi, dan kapasitas OPD berdasarkan tupoksi yang diberikan), (c) Isu-Isu Penting Penyelenggaraan Tugas dan Fungsi OPD (uraikan tiap isu strategis secara formal dan kaitkan dengan program yang direncanakan tahun ini sebagai tindak lanjut)
-3. **BAB III: TUJUAN DAN SASARAN PERANGKAT DAERAH** — Sub-bab: (a) Telaah Kebijakan dan Prioritas Pembangunan Daerah (kaitkan prioritas yang diberikan dengan arah kebijakan OPD), (b) Tujuan dan Sasaran Renja (rumuskan tujuan dan sasaran yang terukur/SMART berdasarkan program yang direncanakan dan visi-misi yang relevan)${isPerubahan ? `
+Tulis narasi ${isPerubahan ? 'Renja Perubahan' : 'Renja'} OPD mengikuti sistematika TIGA BAB format Kabupaten Banyuwangi (sub-bab berhuruf A, B, C) berikut:
+1. **BAB I: PENDAHULUAN** — Sub-bab: (A) Latar Belakang (2-3 paragraf formal tentang dasar penyusunan serta keterkaitan Renja${isPerubahan ? ' Perubahan' : ''} dengan RKPD dan Renstra), (B) Landasan Hukum (daftarkan UU/PP/Permendagri yang relevan secara bernomor), (C) Maksud dan Tujuan penyusunan dokumen, (D) Sistematika Penulisan (uraian singkat isi tiap bab)
+2. **BAB II: EVALUASI HASIL RENCANA KERJA** — Sub-bab: (A) Evaluasi Pelaksanaan Renja Tahun Lalu dan Capaian Renstra (uraikan capaian program/kegiatan tahun sebelumnya berdasarkan data yang diberikan, bandingkan realisasi dengan target, identifikasi faktor pendorong dan penghambat), (B) Analisis Kinerja Pelayanan OPD (uraikan tugas, fungsi, dan kapasitas OPD berdasarkan tupoksi yang diberikan, kaitkan dengan capaian SPM bila relevan), (C) Isu-Isu Penting Penyelenggaraan Tugas dan Fungsi OPD (uraikan tiap isu strategis secara formal dan kaitkan dengan program yang direncanakan tahun ini sebagai tindak lanjut)
+3. **BAB III: RENCANA PROGRAM DAN KEGIATAN** — Sub-bab: (A) Telaahan Terhadap Kebijakan Nasional (kaitkan prioritas dan program OPD dengan arah/sasaran kebijakan pembangunan nasional pada bidang urusan terkait), (B) Tujuan dan Sasaran Renja Perangkat Daerah (rumuskan tujuan dan sasaran yang terukur/SMART berdasarkan program yang direncanakan dan visi-misi yang relevan), (C) Program, Kegiatan, Sub Kegiatan dan Pendanaan (uraikan rencana program/kegiatan/sub kegiatan beserta indikator, target, dan pagu indikatif sesuai nomenklatur Kepmendagri 050-5889/2021)${isPerubahan ? `
 4. **DASAR DAN ALASAN PERUBAHAN** — Jelaskan secara formal dasar hukum dan alasan/latar belakang dilakukannya perubahan Renja berdasarkan informasi yang diberikan, kaitkan dengan ketentuan Permendagri 86/2017 Pasal 78` : ''}
 
 ACUAN GAYA & KEDALAMAN — Renja Kabupaten Banyuwangi (peraih Penghargaan Pembangunan Daerah Bappenas), tiru pola konkret ini:
@@ -1050,7 +1050,8 @@ ${isPerubahan ? `<h2>DASAR DAN ALASAN PERUBAHAN</h2>
 
 <div style="page-break-before:always;"></div>
 
-<h2>BAB IV — RENCANA KERJA DAN PENDANAAN</h2>
+<h3>Matriks Rincian Program, Kegiatan, Sub Kegiatan dan Pendanaan</h3>
+<p style="font-size:10pt;color:#555;font-style:italic;">(melengkapi BAB III huruf C — Program, Kegiatan, Sub Kegiatan dan Pendanaan)</p>
 <p>${isPerubahan
   ? `Perubahan rencana kerja ${opd} Tahun ${tahun} mencakup penyesuaian program, kegiatan, dan sub kegiatan dengan total pagu anggaran semula sebesar <strong>${fmtRp(progs.reduce((s,p)=>s+(parseFloat(p.paguSemula)||0),0))}</strong> menjadi <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja, alokasi anggaran semula dan menjadi, serta status perubahannya:`
   : `Rencana kerja ${opd} Tahun ${tahun} mencakup program, kegiatan, dan sub kegiatan dengan total pagu anggaran sebesar <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja dan alokasi anggarannya:`}</p>
@@ -1059,7 +1060,7 @@ ${progTbl}
 
 <div style="page-break-before:always;"></div>
 
-<h2>BAB V — PENUTUP</h2>
+<h2>PENUTUP</h2>
 <p>${isPerubahan
   ? `Perubahan Rencana Kerja ${opd} Tahun ${tahun} ini disusun sebagai penyesuaian atas Renja ${opd} Tahun ${tahun} sebelumnya, sejalan dengan Perubahan RKPD Tahun ${tahun}, dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah serta Permendagri Nomor 86 Tahun 2017 tentang Tata Cara Perencanaan, Pengendalian dan Evaluasi Pembangunan Daerah.`
   : `Rencana Kerja ${opd} Tahun ${tahun} ini merupakan dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan program dan kegiatan selama satu tahun anggaran. Dokumen ini disusun mengacu pada Renstra ${opd} Periode ${renstra||'...'} dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah.`}</p>
@@ -1076,7 +1077,7 @@ ${progTbl}
 
 <div style="margin-top:32px;border-top:1px solid #ccc;padding-top:10px;font-size:9pt;color:#666;text-align:center;">
   Dokumen dibuat dengan SiRENJA — AI Writer Renja OPD | andriwulandika.github.io<br/>
-  Sesuai Permendagri 81/2022 dan Inmendagri 2/2025
+  Sistematika tiga bab format Kabupaten Banyuwangi · Permendagri 86/2017 jo. 90/2019 dan Permendagri 81/2022
 </div>`;
 
   document.getElementById('docOutput').innerHTML = doc;

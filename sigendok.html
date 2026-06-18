@@ -323,7 +323,7 @@
         <div class="doc-type-icon">📐</div>
         <div class="doc-type-name">Renstra OPD</div>
         <div class="doc-type-reg">Inmendagri 2/2025</div>
-        <div class="doc-type-desc">Rencana Strategis Perangkat Daerah 5 tahunan — BAB I hingga VIII, tujuan, sasaran, strategi, arah kebijakan, dan rencana program jangka menengah.</div>
+        <div class="doc-type-desc">Rencana Strategis Perangkat Daerah 5 tahunan — format Banyuwangi 5 bab: gambaran pelayanan, isu strategis, tujuan, sasaran, strategi, arah kebijakan, serta program/kegiatan/sub kegiatan jangka menengah.</div>
       </div>
       <div class="doc-type-card" onclick="selectDoc('renjap')">
         <div class="doc-type-icon">🔄</div>
@@ -663,17 +663,16 @@
         <div class="form-card-body">
           <div style="background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;">
             <p style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.5rem;">Siap dibuat</p>
-            <p style="font-size:.85rem;color:var(--text2);line-height:1.6;">Klik <strong>Generate Dokumen</strong> untuk menghasilkan Renja OPD dalam format dokumen resmi sesuai sistematika Permendagri 81/2022. Dokumen dapat langsung dicetak atau disalin ke Word.</p>
+            <p style="font-size:.85rem;color:var(--text2);line-height:1.6;">Klik <strong>Generate Dokumen</strong> untuk menghasilkan Renja OPD dalam format dokumen resmi mengikuti sistematika tiga bab Kabupaten Banyuwangi (Permendagri 86/2017 jo. 90/2019 dan Permendagri 81/2022). Dokumen dapat langsung dicetak atau disalin ke Word.</p>
           </div>
           <div style="background:var(--bg2);border-radius:var(--radius);padding:16px 18px;">
             <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:8px;">Dokumen akan memuat</p>
             <ul style="font-size:.82rem;color:var(--text2);line-height:1.8;padding-left:16px;">
               <li>Halaman sampul & kata pengantar</li>
-              <li>BAB I — Pendahuluan (latar belakang, landasan hukum, maksud &amp; tujuan)</li>
-              <li>BAB II — Hasil evaluasi Renja tahun lalu</li>
-              <li>BAB III — Tujuan &amp; sasaran OPD</li>
-              <li>BAB IV — Rencana kerja &amp; pendanaan (tabel program lengkap)</li>
-              <li>BAB V — Penutup &amp; lembar pengesahan</li>
+              <li>BAB I — Pendahuluan (latar belakang, landasan hukum, maksud &amp; tujuan, sistematika)</li>
+              <li>BAB II — Evaluasi Hasil Rencana Kerja (evaluasi Renja tahun lalu, analisis kinerja pelayanan, isu penting)</li>
+              <li>BAB III — Rencana Program dan Kegiatan (telaahan kebijakan nasional, tujuan &amp; sasaran, program &amp; pendanaan)</li>
+              <li>Lembar pengesahan</li>
             </ul>
           </div>
         </div>
@@ -1124,19 +1123,16 @@
         <div class="form-card-body">
           <div style="background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;">
             <p style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.5rem;">Siap dibuat</p>
-            <p style="font-size:.85rem;color:var(--text2);line-height:1.6;">Renstra OPD akan disusun sesuai sistematika Inmendagri 2 Tahun 2025 — BAB I hingga BAB VIII, siap cetak dan diajukan sebagai dokumen resmi.</p>
+            <p style="font-size:.85rem;color:var(--text2);line-height:1.6;">Renstra OPD akan disusun mengikuti format Renstra Perangkat Daerah Kabupaten Banyuwangi (lima bab, periode 2025–2029) sesuai Permendagri 86/2017 jo. 90/2019 dan Inmendagri 2/2025, siap cetak dan diajukan sebagai dokumen resmi.</p>
           </div>
           <div style="background:var(--bg2);border-radius:var(--radius);padding:16px 18px;">
-            <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:8px;">Struktur dokumen (Inmendagri 2/2025)</p>
+            <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:8px;">Struktur dokumen (format Banyuwangi, 5 bab)</p>
             <ul style="font-size:.82rem;color:var(--text2);line-height:1.8;padding-left:16px;">
               <li>BAB I — Pendahuluan</li>
-              <li>BAB II — Gambaran Pelayanan Perangkat Daerah</li>
-              <li>BAB III — Permasalahan dan Isu-Isu Strategis OPD</li>
-              <li>BAB IV — Tujuan dan Sasaran</li>
-              <li>BAB V — Strategi dan Arah Kebijakan</li>
-              <li>BAB VI — Rencana Program, Kegiatan dan Pendanaan</li>
-              <li>BAB VII — Kinerja Penyelenggaraan Bidang Urusan</li>
-              <li>BAB VIII — Penutup</li>
+              <li>BAB II — Gambaran Pelayanan, Permasalahan dan Isu Strategis Perangkat Daerah</li>
+              <li>BAB III — Tujuan, Sasaran, Strategi dan Arah Kebijakan</li>
+              <li>BAB IV — Program, Kegiatan, Sub Kegiatan dan Sasaran Kinerja Penyelenggaraan Bidang Urusan</li>
+              <li>BAB V — Penutup</li>
             </ul>
           </div>
         </div>
@@ -1878,12 +1874,12 @@ ${vm.misi && vm.misi.length ? '<ol>' + vm.misi.map(m=>`<li>${m}</li>`).join('') 
 <div class="page-break"></div>
 
 <p class="bab-title">BAB I<br/>PENDAHULUAN</p>
-<h2>1.1 Latar Belakang</h2>
+<h2>A. Latar Belakang</h2>
 <p>Rencana Kerja (Renja) Perangkat Daerah merupakan dokumen perencanaan Perangkat Daerah untuk periode satu tahun, yang disusun berpedoman pada Rencana Strategis Perangkat Daerah dan mengacu pada Rencana Kerja Pemerintah Daerah (RKPD).</p>
 <p>${opd} ${daerah} sebagai unsur pelaksana urusan pemerintahan bidang ${urusan} berkewajiban menyusun Renja sebagai acuan penyelenggaraan program dan kegiatan dalam rangka pelayanan kepada masyarakat.</p>
 <p>Sebagai dokumen perencanaan tahunan yang bersifat indikatif, Renja memuat program, kegiatan, dan sub kegiatan beserta pendanaan indikatifnya untuk Tahun Anggaran ${tahun}, yang dirumuskan secara terukur dan selaras dengan prioritas pembangunan daerah. Penyusunannya menjamin konsistensi antara perencanaan, penganggaran, pelaksanaan, dan evaluasi kinerja sehingga setiap program memberikan kontribusi nyata terhadap pencapaian sasaran pembangunan ${daerah}.</p>
 
-<h2>1.2 Landasan Hukum</h2>
+<h2>B. Landasan Hukum</h2>
 <ul>
   <li>Undang-Undang Nomor 25 Tahun 2004 tentang Sistem Perencanaan Pembangunan Nasional;</li>
   <li>Undang-Undang Nomor 23 Tahun 2014 tentang Pemerintahan Daerah;</li>
@@ -1896,28 +1892,28 @@ ${vm.misi && vm.misi.length ? '<ol>' + vm.misi.map(m=>`<li>${m}</li>`).join('') 
 
 ${vmBlock}
 
-<h2>1.3 Maksud dan Tujuan</h2>
+<h2>C. Maksud dan Tujuan</h2>
 <p>Maksud penyusunan Renja ${opd} Tahun ${tahun} adalah tersedianya dokumen perencanaan OPD yang memuat program dan kegiatan sebagai penjabaran kebijakan jangka menengah. Tujuannya adalah memberikan arah dan pedoman pelaksanaan kegiatan OPD dalam rangka pencapaian sasaran pembangunan daerah.</p>
 
-<h2>1.4 Isu Strategis</h2>
-<p>${isu}</p>
-
-<h2>1.5 Sistematika Penulisan</h2>
-<p>Dokumen Renja ini disusun dengan sistematika sebagai berikut: <strong>Bab I Pendahuluan</strong> memuat latar belakang, landasan hukum, maksud dan tujuan, isu strategis, serta sistematika penulisan; <strong>Bab II</strong> memuat hasil evaluasi pelaksanaan Renja tahun sebelumnya beserta capaian Renstra; <strong>Bab III</strong> memuat telaahan kebijakan nasional serta tujuan dan sasaran Perangkat Daerah; <strong>Bab IV</strong> memuat rencana kerja dan pendanaan; serta <strong>Bab V Penutup</strong>.</p>
+<h2>D. Sistematika Penulisan</h2>
+<p>Mengikuti format Renja Perangkat Daerah Kabupaten Banyuwangi, dokumen ini disusun dalam tiga bab: <strong>Bab I Pendahuluan</strong> (latar belakang, landasan hukum, maksud dan tujuan, serta sistematika penulisan); <strong>Bab II Evaluasi Hasil Rencana Kerja</strong> memuat evaluasi pelaksanaan Renja tahun sebelumnya, capaian Renstra, serta isu penting penyelenggaraan tugas dan fungsi; serta <strong>Bab III Rencana Program dan Kegiatan</strong> memuat telaahan kebijakan nasional, tujuan dan sasaran Renja, serta program, kegiatan, sub kegiatan dan pendanaan.</p>
 
 <div class="page-break"></div>
 
-<p class="bab-title">BAB II<br/>HASIL EVALUASI RENJA TAHUN LALU</p>
-<h2>2.1 Evaluasi Pelaksanaan Renja Tahun Sebelumnya</h2>
+<p class="bab-title">BAB II<br/>EVALUASI HASIL RENCANA KERJA</p>
+<h2>A. Evaluasi Pelaksanaan Renja Tahun Sebelumnya dan Capaian Renstra</h2>
 <p>${eval_}</p>
 
+<h2>B. Isu Penting Penyelenggaraan Tugas dan Fungsi</h2>
+<p>${isu}</p>
+
 <div class="page-break"></div>
 
-<p class="bab-title">BAB III<br/>TUJUAN DAN SASARAN PERANGKAT DAERAH</p>
-<h2>3.1 Telaahan terhadap Kebijakan Nasional dan RPJMD</h2>
+<p class="bab-title">BAB III<br/>RENCANA PROGRAM DAN KEGIATAN</p>
+<h2>A. Telaahan terhadap Kebijakan Nasional</h2>
 <p>Kebijakan ${opd} diarahkan sesuai prioritas pembangunan nasional dan sinkronisasi dengan RPJMD ${daerah} Periode ${rpjmd}.</p>
 
-<h2>3.2 Tujuan dan Sasaran OPD</h2>
+<h2>B. Tujuan dan Sasaran Renja Perangkat Daerah</h2>
 <p>Tujuan ${opd}: <strong>${tujuan}</strong></p>
 <p>Indikator Kinerja Utama (IKU): ${iku}</p>
 
@@ -1930,11 +1926,8 @@ ${vmBlock}
   <tbody>${sasarTbl}</tbody>
 </table>
 
-<div class="page-break"></div>
-
-<p class="bab-title">BAB IV<br/>RENCANA KERJA DAN PENDANAAN PERANGKAT DAERAH</p>
-<h2>4.1 Program, Kegiatan dan Sub Kegiatan</h2>
-<p>Total pagu anggaran ${opd} Tahun ${tahun}: <strong>${pagu}</strong> (sumber: ${sumber}).</p>
+<h2>C. Program, Kegiatan, Sub Kegiatan dan Pendanaan</h2>
+<p>Total pagu anggaran ${opd} Tahun ${tahun}: <strong>${pagu}</strong> (sumber: ${sumber}). Penomoran program, kegiatan, dan sub kegiatan mengacu pada Kepmendagri 050-5889/2021.</p>
 
 <table>
   <thead>
@@ -1947,7 +1940,7 @@ ${vmBlock}
 
 <div class="page-break"></div>
 
-<p class="bab-title">BAB V<br/>PENUTUP</p>
+<p class="bab-title">PENUTUP</p>
 <p>Rencana Kerja ${opd} ${daerah} Tahun ${tahun} ini merupakan pedoman dalam pelaksanaan program dan kegiatan pada tahun anggaran berjalan. Dengan komitmen seluruh jajaran OPD dan dukungan pemangku kepentingan, diharapkan seluruh target kinerja dapat tercapai secara optimal.</p>
 <p>Dokumen ini bersifat dinamis dan dapat disempurnakan apabila terdapat kebijakan yang baru dari pemerintah pusat maupun daerah dalam proses RKPD Perubahan.</p>
 

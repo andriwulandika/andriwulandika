@@ -18,7 +18,7 @@ th{background:#d9d9d9;font-weight:bold;text-align:center;}
 
 <h1>RENCANA KERJA PERUBAHAN (RENJA PERUBAHAN)<br/>[NAMA OPD]<br/>[NAMA KABUPATEN/KOTA/PROVINSI]<br/>TAHUN [20XX]</h1>
 
-<p class="note">Template berdasarkan Permendagri Nomor 81 Tahun 2022, digunakan saat OPD perlu menyesuaikan Renja tahun berjalan akibat perubahan RKPD, kebijakan, atau kondisi yang tidak terduga (force majeure, refocusing anggaran, dsb). Ganti seluruh teks berwarna biru ([...]) dengan data riil OPD Anda.</p>
+<p class="note">Template berdasarkan Permendagri Nomor 81 Tahun 2022, digunakan saat OPD perlu menyesuaikan Renja tahun berjalan akibat perubahan RKPD, kebijakan, atau kondisi yang tidak terduga (force majeure, refocusing anggaran, dsb). Format matriks perubahan (semula→menjadi) selaras dengan praktik dokumen perubahan perencanaan Kabupaten Banyuwangi. Ganti seluruh teks berwarna biru ([...]) dengan data riil OPD Anda.</p>
 
 <h2>I. Identitas Dokumen</h2>
 <table>
@@ -32,6 +32,7 @@ th{background:#d9d9d9;font-weight:bold;text-align:center;}
 <p>[Uraikan alasan dan dasar pertimbangan dilakukannya perubahan Renja, misalnya: (1) terjadi perubahan kebijakan nasional/daerah yang mendasar; (2) terjadi keadaan darurat/bencana; (3) terjadi pergeseran kebutuhan prioritas; (4) hasil evaluasi semester menunjukkan target perlu disesuaikan.]</p>
 <h3>Landasan Hukum</h3>
 <ol>
+<li>Peraturan Menteri Dalam Negeri Nomor 86 Tahun 2017 jo. Permendagri Nomor 90 Tahun 2019;</li>
 <li>Peraturan Menteri Dalam Negeri Nomor 81 Tahun 2022 tentang Pedoman Penyusunan Rencana Kerja Pemerintah Daerah Tahun [20XX];</li>
 <li>Peraturan [Bupati/Wali Kota/Gubernur] <span class="ph">[NAMA DAERAH]</span> Nomor [..] Tahun [..] tentang Perubahan RKPD <span class="ph">[NAMA DAERAH]</span> Tahun <span class="ph">[20XX]</span>;</li>
 <li>[Tambahkan dasar hukum lain yang relevan dengan kondisi perubahan, misalnya peraturan refocusing anggaran/penanggulangan bencana.]</li>
