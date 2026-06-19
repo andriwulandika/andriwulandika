@@ -666,17 +666,30 @@
     }
 
     /* ===================== 3D ENHANCEMENTS (lightweight CSS) ===================== */
-    /* Hero floating 3D panels */
     .hero { position: relative; perspective: 1000px; }
     .hero > *:not(.hero-3d) { position: relative; z-index: 2; }
+
+    /* Animated 3D rotating logo — always visible (desktop + mobile) */
+    .hero-logo3d { width: 138px; height: 138px; margin: 0 auto 28px; perspective: 700px; }
+    .hero-logo3d img {
+      width: 100%; height: 100%; display: block; transform-style: preserve-3d;
+      animation: spin3d 7s ease-in-out infinite;
+      filter: drop-shadow(0 26px 34px rgba(124,58,237,.5));
+    }
+    @keyframes spin3d {
+      0%,100% { transform: rotateY(-26deg) rotateX(8deg); }
+      50%     { transform: rotateY(26deg)  rotateX(8deg); }
+    }
+
+    /* hero floating glass panels */
     .hero-3d {
       position: absolute; inset: -30px 0 -10px; z-index: 0;
       pointer-events: none; transform-style: preserve-3d;
     }
     .hero-3d .panel {
       position: absolute; border-radius: 22px;
-      background: linear-gradient(135deg, rgba(99,102,241,.20), rgba(124,58,237,.10));
-      border: 1px solid rgba(124,58,237,.20);
+      background: linear-gradient(135deg, rgba(99,102,241,.22), rgba(124,58,237,.12));
+      border: 1px solid rgba(124,58,237,.22);
       box-shadow: 0 30px 60px -28px rgba(124,58,237,.55), inset 0 1px 0 rgba(255,255,255,.5);
       backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
     }
@@ -688,47 +701,61 @@
       transform: rotateX(-16deg) rotateY(18deg); animation: floatY 9.5s ease-in-out infinite; }
     @keyframes floatY { 0%,100% { translate: 0 0; } 50% { translate: 0 -16px; } }
 
-    /* 3D tilt cards (driven by tiny JS that sets --rx / --ry) */
-    .tool-card, .service-card {
+    /* Cards carry a REAL perspective lean so depth is visible even without hover (works on mobile too) */
+    .tool-card {
       transform-style: preserve-3d;
+      transform: perspective(1600px) rotateX(6deg);
       transition: transform .4s cubic-bezier(.22,.7,.25,1), box-shadow .4s ease;
+      box-shadow: 0 22px 45px -26px rgba(0,0,0,.65);
+      will-change: transform;
+    }
+    .service-card {
+      transform-style: preserve-3d;
+      transform: perspective(1600px) rotateX(5deg);
+      transition: transform .4s cubic-bezier(.22,.7,.25,1), box-shadow .4s ease;
+      box-shadow: 0 18px 38px -24px rgba(60,40,120,.45);
       will-change: transform;
     }
     .tilt3d.is-tilting { transition: transform .1s linear, box-shadow .4s ease; }
 
     /* depth pop for tool-card inner layers (dark showcase) */
-    .tool-card-eyebrow { transform: translateZ(28px); }
-    .tool-card-name { transform: translateZ(55px); }
-    .tool-card-tagline { transform: translateZ(38px); }
-    .tool-features { transform: translateZ(30px); }
-    .tool-card .tool-link, .tool-card .tool-badge { transform: translateZ(46px); }
-    .tool-card .tool-glow { transform: translateZ(10px); }
+    .tool-card-eyebrow { transform: translateZ(30px); }
+    .tool-card-name { transform: translateZ(60px); }
+    .tool-card-tagline { transform: translateZ(42px); }
+    .tool-features { transform: translateZ(32px); }
+    .tool-card .tool-link, .tool-card .tool-badge { transform: translateZ(50px); }
+    .tool-card .tool-glow { transform: translateZ(12px); }
     .tool-card:hover {
-      box-shadow: 0 36px 70px -28px rgba(0,0,0,.75), inset 0 0 0 1px rgba(255,255,255,.07);
-    }
-    .service-card {
-      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      box-shadow: 0 44px 85px -28px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,.08);
     }
     .service-card:hover {
-      box-shadow: 0 28px 55px -26px rgba(60,40,120,.35), inset 0 0 0 1px rgba(124,58,237,.10);
+      box-shadow: 0 30px 60px -26px rgba(60,40,120,.4), inset 0 0 0 1px rgba(124,58,237,.12);
     }
 
-    /* stat items: subtle 3D depth on hover */
+    /* stat items: 3D depth on hover */
     .stat-item { transition: transform .35s cubic-bezier(.22,.7,.25,1), box-shadow .35s ease; border-radius: var(--radius); }
-    .stat-item:hover { transform: translateY(-6px); box-shadow: 0 22px 45px -24px rgba(60,40,120,.4); }
+    .stat-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 45px -24px rgba(60,40,120,.4); }
 
-    @media (max-width: 768px) { .hero-3d { display: none; } }
+    @media (max-width: 768px) {
+      .hero-3d { opacity: .65; }
+      .hero-3d .p1 { width: 104px; height: 70px; }
+      .hero-3d .p2 { width: 88px; height: 88px; }
+      .hero-3d .p3 { display: none; }
+      .hero-logo3d { width: 112px; height: 112px; }
+    }
     @media (prefers-reduced-motion: reduce) {
+      .hero-logo3d img { animation: none; transform: rotateY(0deg) rotateX(0deg); }
       .hero-3d { display: none; }
+      .tool-card, .service-card { transform: none; }
       .tool-card-eyebrow, .tool-card-name, .tool-card-tagline,
       .tool-features, .tool-card .tool-link, .tool-card .tool-badge,
       .tool-card .tool-glow { transform: none !important; }
     }
   </style>
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2"/>
 </head>
 <body>
 
@@ -737,7 +764,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:8px;"><img src="assets/logo.png" alt="AW" style="height:28px;width:auto;"/><span>Andri Wulandika</span></a>
+  <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:8px;"><img src="assets/logo.png?v=2" alt="AW" style="height:28px;width:auto;"/><span>Andri Wulandika</span></a>
   <ul class="nav-links">
     <li><a href="tentang.html">Tentang</a></li>
     <li style="position:relative;" class="nav-dropdown-wrap">
@@ -789,6 +816,7 @@
     <span class="panel p2"></span>
     <span class="panel p3"></span>
   </div>
+  <div class="hero-logo3d"><img src="assets/brand/logo-badge.svg" alt="Logo Andri Wulandika" width="138" height="138"/></div>
   <p class="hero-eyebrow">Perencana Ahli Pertama · Bappeda Aceh Tenggara</p>
   <h1 class="hero-name">AI Tools<br/>Perencanaan Daerah.</h1>
   <p class="hero-sub">
