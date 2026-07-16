@@ -31,11 +31,10 @@
 		"binding": "IMAGES"
 	},
 	"d1_databases": [
-		// Spike Fase 0: database untuk lead/contact form, dsb. Belum dibuat di akun nyata.
 		{
 			"binding": "DB",
 			"database_name": "andriwulandika-web-db",
-			"database_id": "REPLACE_AFTER_WRANGLER_D1_CREATE",
+			"database_id": "be911df7-e04e-4996-b67c-e141206d86dc",
 			"migrations_dir": "drizzle"
 		}
 	]
