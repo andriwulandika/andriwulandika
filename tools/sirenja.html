@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js"></script>
+  <script src="/assets/js/ui-enhance.js" defer></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SiRENJA — AI Writer Renja OPD | Andri Wulandika</title>
+<meta name="description" content="Buat Rencana Kerja (Renja) OPD otomatis dengan AI. Sesuai Permendagri 81/2022 dan Inmendagri 2/2025."/>
+<meta name="keywords" content="SiRENJA, AI Renja OPD, Renja 2026, indikator kinerja OPD, penyusunan Renja, Andri Wulandika"/>
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml"/>
+<link rel="canonical" href="https://ai.andriwulandika.uk/sirenja.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="SiRENJA — AI Writer Renja OPD"/>
+<meta property="og:description" content="Buat Rencana Kerja (Renja) OPD otomatis dengan AI. Wizard 5-langkah, sesuai Permendagri 81/2022 dan Inmendagri 2/2025."/>
+<meta property="og:url" content="https://ai.andriwulandika.uk/sirenja.html"/>
+<meta property="og:site_name" content="Andri Wulandika"/>
+<meta property="og:locale" content="id_ID"/>
+<meta property="og:image" content="https://andriwulandika.uk/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SiRENJA",
+  "description": "AI Writer Renja OPD — wizard 5-langkah membuat Rencana Kerja Perangkat Daerah otomatis sesuai Permendagri 81/2022 dan Inmendagri 2/2025.",
+  "url": "https://ai.andriwulandika.uk/sirenja.html",
+  "applicationCategory": "GovernmentApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "IDR" },
+  "author": {
+    "@type": "Person",
+    "name": "Andri Wulandika",
+    "url": "https://andriwulandika.uk/"
+  },
+  "inLanguage": "id",
+  "keywords": "Renja OPD, Rencana Kerja Perangkat Daerah, AI writer, Permendagri 81/2022, Inmendagri 2/2025, perencanaan daerah"
+}
+</script>
+<style>
+:root {
+  --bg:#F5F5F7;--surface:#fff;--text:#1D1D1F;--sub:#6e6e73;
+  --blue:#0071e3;--blue-h:#0077ed;
+  --border:#d2d2d7;--radius:18px;--shadow:0 1px 3px rgba(0,0,0,.04);
+  --danger:#dc2626;--success:#16a34a;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:24px;}
+nav .logo{font-weight:700;font-size:17px;color:var(--blue);text-decoration:none;flex:none;}
+nav .logo span{font-weight:300;color:var(--sub);font-size:13px;margin-left:8px;}
+nav a{color:var(--sub);text-decoration:none;font-size:14px;transition:color .2s;}
+nav a:hover{color:var(--text);}
+nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.btn-sm{padding:6px 16px;border-radius:980px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-outline{background:none;border:1px solid var(--border);color:var(--text);}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+.btn-primary-sm{background:var(--blue);color:#fff;}
+.btn-primary-sm:hover{background:var(--blue-h);}
+.access-badge{font-size:11px;font-weight:600;color:var(--sub);padding:4px 10px;border-radius:980px;background:var(--bg);border:1px solid var(--border);white-space:nowrap;}
+.access-badge.active{color:#7c3aed;background:#f3f0ff;border-color:#c4b5fd;}
+
+.hero{text-align:center;padding:48px 24px 36px;}
+.hero-badge{display:inline-block;background:#dbeafe;color:var(--blue);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px;}
+.hero h1{font-size:clamp(26px,5vw,42px);font-weight:700;line-height:1.15;margin-bottom:12px;}
+.hero h1 span{color:var(--blue);}
+.hero p{color:var(--sub);font-size:16px;max-width:560px;margin:0 auto 20px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.tag{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--sub);}
+
+.main{max-width:1000px;margin:0 auto;padding:0 20px 80px;}
+
+.steps{display:flex;align-items:center;justify-content:center;margin-bottom:28px;flex-wrap:wrap;gap:0;}
+.step{display:flex;align-items:center;gap:8px;}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none;transition:all .3s;}
+.step.active .step-num{background:var(--blue);color:#fff;}
+.step.done .step-num{background:var(--success);color:#fff;}
+.step.pending .step-num{background:var(--border);color:var(--sub);}
+.step-label{font-size:11px;font-weight:500;white-space:nowrap;}
+.step.active .step-label{color:var(--blue);}
+.step.done .step-label{color:var(--success);}
+.step.pending .step-label{color:var(--sub);}
+.step-line{width:32px;height:2px;background:var(--border);flex:none;}
+.step-line.done{background:var(--success);}
+
+.card{background:var(--surface);border-radius:var(--radius);padding:32px;margin-bottom:20px;box-shadow:var(--shadow);}
+.card h2{font-size:18px;font-weight:700;margin-bottom:6px;}
+.card .card-sub{color:var(--sub);font-size:13px;margin-bottom:20px;}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.form-group label{font-size:13px;font-weight:600;}
+.form-group .hint{font-size:12px;color:var(--sub);}
+input[type=text],input[type=number],select,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;color:var(--text);background:#fff;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);}
+textarea{resize:vertical;min-height:80px;}
+
+/* Program-Kegiatan Table */
+.prog-table-wrap{overflow-x:auto;margin-bottom:16px;}
+table.prog-tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:700px;}
+table.prog-tbl th{background:var(--bg);font-weight:600;padding:8px 10px;border:1px solid var(--border);white-space:nowrap;}
+table.prog-tbl td{border:1px solid var(--border);padding:6px 8px;vertical-align:top;}
+table.prog-tbl input,table.prog-tbl select,table.prog-tbl textarea{border:none;background:transparent;width:100%;font-size:13px;padding:0;min-height:unset;resize:none;}
+table.prog-tbl input:focus,table.prog-tbl select:focus,table.prog-tbl textarea:focus{outline:1px solid var(--blue);border-radius:3px;}
+.tbl-add-btn{font-size:13px;color:var(--blue);cursor:pointer;background:none;border:1.5px dashed var(--blue);border-radius:980px;padding:6px 16px;transition:all .2s;margin-bottom:8px;}
+.tbl-add-btn:hover{background:#dbeafe;}
+.tbl-del{color:var(--danger);cursor:pointer;font-size:16px;font-weight:700;background:none;border:none;padding:0 4px;}
+.tbl-group-btn{font-size:11px;color:#fff;background:var(--blue);border:none;border-radius:4px;padding:2px 8px;cursor:pointer;margin-left:4px;}
+
+.nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px;}
+.btn{padding:11px 24px;border-radius:980px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-prev{background:var(--bg);border:1.5px solid var(--border);color:var(--text);}
+.btn-prev:hover:not(:disabled){border-color:var(--text);}
+.btn-next{background:var(--blue);color:#fff;}
+.btn-next:hover:not(:disabled){background:var(--blue-h);}
+.btn-ai{background:var(--blue);color:#fff;display:flex;align-items:center;gap:8px;}
+.btn-ai:hover:not(:disabled){background:var(--blue-h);}
+.btn-export{background:var(--success);color:#fff;}
+
+.ai-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;margin-bottom:16px;font-size:13px;}
+.ai-status.loading{background:#dbeafe;color:var(--blue);}
+.ai-status.error{background:#fee2e2;color:var(--danger);}
+.ai-status.success{background:#dcfce7;color:var(--success);}
+.spinner{width:16px;height:16px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;flex:none;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.doc-preview{background:#fff;border:1px solid var(--border);border-radius:12px;padding:40px 48px;max-width:820px;margin:0 auto;font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:1.6;color:#000;}
+@media(max-width:600px){.doc-preview{padding:20px 14px;}}
+.doc-preview h1{font-size:14pt;text-align:center;font-weight:bold;margin-bottom:8px;}
+.doc-preview h2{font-size:13pt;font-weight:bold;margin:20px 0 8px;text-transform:uppercase;}
+.doc-preview h3{font-size:12pt;font-weight:bold;margin:14px 0 6px;}
+.doc-preview p{margin:6px 0;text-align:justify;}
+.doc-preview table{width:100%;border-collapse:collapse;margin:12px 0;font-size:10pt;}
+.doc-preview th,.doc-preview td{border:1px solid #000;padding:4px 7px;}
+.doc-preview th{background:#f0f0f0;text-align:center;font-weight:bold;}
+.doc-preview ul,.doc-preview ol{margin:6px 0 6px 18px;}
+.doc-preview li{margin-bottom:3px;}
+
+.preview-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+.preview-toolbar h2{flex:1;font-size:18px;text-transform:none;}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:20px;padding:32px;max-width:440px;width:90%;}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:8px;}
+.modal p{color:var(--sub);font-size:14px;margin-bottom:20px;}
+.modal-input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:14px;margin-bottom:8px;}
+.modal-input:focus{outline:none;border-color:var(--blue);}
+.modal-actions{display:flex;gap:10px;margin-top:16px;}
+.urusan-chips{display:flex;flex-wrap:wrap;gap:6px;min-height:20px;}
+.urusan-chip{display:flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;color:var(--blue);font-size:12px;font-weight:500;padding:5px 8px 5px 12px;border-radius:980px;}
+.urusan-chip button{background:none;border:none;color:var(--blue);cursor:pointer;font-size:15px;line-height:1;padding:0;display:flex;}
+.urusan-chip button:hover{color:var(--danger);}
+.urusan-empty{font-size:13px;color:var(--sub);}
+.urusan-group-label{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;padding:10px 6px 4px;}
+.urusan-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:8px;font-size:13px;cursor:pointer;}
+.urusan-item:hover{background:var(--bg);}
+.nomenklatur-box{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:18px;}
+.nomenklatur-box .form-row{margin-bottom:10px;}
+
+.wizard-step{display:none;}
+.wizard-step.active{display:block;}
+
+.compliance{background:#1D1D1F;color:#f5f5f7;padding:32px 24px;text-align:center;margin-top:64px;font-size:13px;line-height:1.8;}
+.compliance a{color:#93c5fd;text-decoration:none;}
+
+/* ============================================================
+   MODERN REFINEMENTS
+   ============================================================ */
+.card{border:1px solid rgba(0,0,0,.04);}
+.btn,.btn-sm{min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:6px;}
+.access-badge{display:inline-flex;align-items:center;}
+.nav-links{display:flex;align-items:center;gap:24px;flex:1;}
+
+/* Renja Perubahan */
+.perubahan-fields{display:none;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:16px;margin-top:4px;margin-bottom:16px;}
+.perubahan-fields.show{display:block;}
+.col-perubahan{display:none;}
+#progTable.mode-perubahan .col-perubahan{display:table-cell;}
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+.nav-toggle{display:none;background:none;border:none;font-size:22px;line-height:1;color:var(--text);cursor:pointer;padding:6px 4px;margin-left:auto;}
+
+.step-current-label{display:none;text-align:center;font-size:13px;font-weight:600;color:var(--blue);margin:-12px 0 20px;}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+@media(max-width:760px){
+  nav{flex-wrap:wrap;height:auto;min-height:52px;padding:10px 16px;}
+  nav .logo{font-size:15px;}
+  nav .logo span{display:none;}
+  .nav-toggle{display:block;}
+  .nav-links{display:none;width:100%;flex-direction:column;align-items:stretch;gap:4px;padding:12px 0 4px;border-top:1px solid var(--border);margin-top:10px;}
+  .nav-links.open{display:flex;}
+  .nav-links > a{padding:10px 6px;font-size:15px;}
+  .nav-right{flex-direction:column;align-items:stretch;gap:8px;margin-left:0;width:100%;margin-top:6px;}
+  .nav-right .access-badge,.nav-right .btn-sm{width:100%;text-align:center;}
+
+  .hero{padding:32px 16px 24px;}
+  .hero-tags{gap:6px;}
+
+  .main{padding:0 14px 60px;}
+  .card{padding:20px;border-radius:16px;}
+
+  .step-label{display:none;}
+  .step-line{width:16px;}
+  .step-current-label{display:block;}
+
+  .nav-btns{flex-direction:column-reverse;align-items:stretch;}
+  .nav-btns .btn{width:100%;}
+  .preview-toolbar{flex-direction:column;align-items:stretch;}
+  .preview-toolbar h2{margin-bottom:4px;}
+
+  .modal{padding:22px;}
+}
+</style>
+</head>
+<body>
+
+<script type="module">
+  import { callAI, formatApiError, getAccessStatus } from './assets/js/apiService.js';
+  window.callAI = callAI;
+  window.formatApiError = formatApiError;
+  window.getAccessStatus = getAccessStatus;
+</script>
+
+<nav>
+  <a href="https://andriwulandika.uk/" class="logo">Andri Wulandika <span>AI Tools</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="https://andriwulandika.uk/">Beranda</a>
+    <a href="silkjip.html">SiLKjIP</a>
+    <a href="siktor.html">SiKTOR</a>
+    <div class="nav-right">
+      <span class="access-badge" id="accessBadge"></span>
+      <a href="aktifkan-pro.html" class="btn-sm btn-outline">Masuk</a>
+      <a href="harga.html" class="btn-sm btn-primary-sm">Upgrade Berbayar</a>
+    </div>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">✦ AI Writer Dokumen Perencanaan</div>
+  <h1>SiRENJA<br/><span>AI Writer Renja OPD Otomatis</span></h1>
+  <p>Susun Rencana Kerja OPD lengkap dengan wizard — masukkan program, kegiatan, dan indikator, AI narasikan analisis situasinya.</p>
+  <div class="hero-tags">
+    <span class="tag">Permendagri 81/2022</span>
+    <span class="tag">Inmendagri 2/2025</span>
+    <span class="tag">Kepmendagri 050-5889/2021</span>
+    <span class="tag">Export Word + PDF</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- STEPS -->
+  <div class="steps" id="stepIndicator">
+    <div class="step active" id="si-0"><div class="step-num">1</div><div class="step-label">Data OPD</div></div>
+    <div class="step-line" id="sl-0"></div>
+    <div class="step pending" id="si-1"><div class="step-num">2</div><div class="step-label">Program & Kegiatan</div></div>
+    <div class="step-line" id="sl-1"></div>
+    <div class="step pending" id="si-2"><div class="step-num">3</div><div class="step-label">Isu & Prioritas</div></div>
+    <div class="step-line" id="sl-2"></div>
+    <div class="step pending" id="si-3"><div class="step-num">4</div><div class="step-label">Narasi AI</div></div>
+    <div class="step-line" id="sl-3"></div>
+    <div class="step pending" id="si-4"><div class="step-num">5</div><div class="step-label">Preview & Ekspor</div></div>
+  </div>
+  <div class="step-current-label" id="stepCurrentLabel"></div>
+
+  <!-- STEP 1: DATA OPD -->
+  <div class="wizard-step active" id="step-0">
+    <div class="card">
+      <h2>1. Data Organisasi Perangkat Daerah</h2>
+      <p class="card-sub">Informasi dasar OPD dan periode Renja yang akan disusun.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama OPD *</label>
+          <input type="text" id="namaOpd" placeholder="contoh: Bappeda Kabupaten Aceh Tenggara"/>
+        </div>
+        <div class="form-group">
+          <label>Nama Pemerintah Daerah *</label>
+          <input type="text" id="namaPemda" placeholder="contoh: Kabupaten Aceh Tenggara"/>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jenis Dokumen *</label>
+          <select id="jenisRenja" onchange="toggleJenisRenja()">
+            <option value="murni">Renja Murni (Reguler)</option>
+            <option value="perubahan">Renja Perubahan</option>
+          </select>
+        </div>
+        <div class="form-group" id="dasarPerubahanGroup" style="display:none;">
+          <label>Dasar Hukum Perubahan</label>
+          <input type="text" id="dasarPerubahan" placeholder="contoh: Perubahan RKPD Kab. ... Tahun 2026 (Perkada No. ...)"/>
+        </div>
+      </div>
+
+      <div class="perubahan-fields" id="perubahanFields">
+        <div class="form-group" style="margin-bottom:0;">
+          <label>Alasan/Latar Belakang Perubahan Renja *</label>
+          <textarea id="alasanPerubahan" rows="3" placeholder="contoh: Perubahan dilakukan karena perkembangan yang tidak sesuai dengan asumsi KUA-PPAS, adanya kebijakan refocusing anggaran daerah, dan pergeseran prioritas program/kegiatan..."></textarea>
+          <span class="hint">Sesuai Permendagri 86/2017 Pasal 78: perkembangan yang tidak sesuai asumsi KUA-PPAS, keadaan darurat, keadaan luar biasa, dan/atau pergeseran program-kegiatan antar SKPD.</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tahun Renja *</label>
+          <input type="number" id="tahunRenja" placeholder="2026" min="2020" max="2040"/>
+        </div>
+        <div class="form-group">
+          <label>Bidang Urusan Pemerintahan</label>
+          <div class="urusan-chips" id="urusanChips"><span class="urusan-empty">Belum ada bidang urusan dipilih</span></div>
+          <button type="button" class="tbl-add-btn" style="margin-top:6px;align-self:flex-start;" onclick="openUrusanPicker()">+ Tambah Bidang Urusan</button>
+          <span class="hint">Sesuai nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran). OPD yang menangani lebih dari satu bidang urusan dapat menambahkan semuanya.</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Kepala OPD</label>
+          <input type="text" id="namaKepala" placeholder="contoh: Ir. Ahmad Yani, M.Si"/>
+        </div>
+        <div class="form-group">
+          <label>Periode Renstra OPD</label>
+          <input type="text" id="periodeRenstra" placeholder="contoh: 2021-2026"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Tugas Pokok dan Fungsi OPD</label>
+        <textarea id="tupoksi" rows="3" placeholder="Tugas pokok OPD sesuai peraturan pembentukan perangkat daerah..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Visi dan Misi Kepala Daerah yang Relevan</label>
+        <textarea id="visiMisi" rows="3" placeholder="Visi: ...&#10;Misi yang relevan: ..."></textarea>
+      </div>
+
+      <div class="nav-btns">
+        <div></div>
+        <button class="btn btn-next" onclick="goStep(1)">Lanjut: Program & Kegiatan →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: PROGRAM & KEGIATAN -->
+  <div class="wizard-step" id="step-1">
+    <div class="card">
+      <h2>2. Program, Kegiatan, dan Sub Kegiatan</h2>
+      <p class="card-sub">Masukkan struktur program sesuai nomenklatur Kepmendagri 050-5889/2021. Klik "+ Tambah Kegiatan" untuk menambah baris, atau gunakan pencarian nomenklatur resmi di bawah.</p>
+
+      <div class="nomenklatur-box">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;">📋 Tambah dari Nomenklatur Resmi (Kepmendagri 050-5889/2021, pemutakhiran)</div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Bidang Urusan</label>
+            <select id="nomBidang" onchange="onNomBidangChange()">
+              <option value="">-- Pilih Bidang Urusan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Program</label>
+            <select id="nomProgram" onchange="onNomProgramChange()" disabled>
+              <option value="">-- Pilih Program --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Kegiatan</label>
+            <select id="nomKegiatan" onchange="onNomKegiatanChange()" disabled>
+              <option value="">-- Pilih Kegiatan --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label style="font-size:12px;">Sub Kegiatan</label>
+            <select id="nomSub" disabled>
+              <option value="">-- Pilih Sub Kegiatan --</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="tbl-add-btn" onclick="addFromNomenklatur()">+ Tambahkan ke Tabel</button>
+        <span class="hint" style="display:block;margin-top:6px;">Memilih Sub Kegiatan akan menambahkan baris Program, Kegiatan, dan Sub Kegiatan beserta indikator &amp; satuan resmi ke tabel di bawah (jika belum ada).</span>
+      </div>
+
+      <div class="prog-table-wrap">
+        <table class="prog-tbl" id="progTable">
+          <thead>
+            <tr>
+              <th style="width:30px">No</th>
+              <th style="min-width:200px">Program / Kegiatan / Sub Kegiatan</th>
+              <th style="min-width:150px">Indikator Kinerja</th>
+              <th style="min-width:80px">Target</th>
+              <th style="min-width:70px">Satuan</th>
+              <th class="col-perubahan" style="min-width:110px">Pagu Semula (Rp)</th>
+              <th style="min-width:110px" id="thPagu">Pagu (Rp)</th>
+              <th class="col-perubahan" style="min-width:110px">Status</th>
+              <th style="width:36px"></th>
+            </tr>
+          </thead>
+          <tbody id="progBody"></tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="tbl-add-btn" onclick="addProgRow('program')">+ Program</button>
+        <button class="tbl-add-btn" onclick="addProgRow('kegiatan')">+ Kegiatan</button>
+        <button class="tbl-add-btn" onclick="addProgRow('subkegiatan')">+ Sub Kegiatan</button>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-prev" onclick="goStep(0)">← Kembali</button>
+        <button class="btn btn-next" onclick="goStep(2)">Lanjut: Isu & Prioritas →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: ISU & PRIORITAS -->
+  <div class="wizard-step" id="step-2">
+    <div class="card">
+      <h2>3. Isu Strategis & Prioritas Pembangunan</h2>
+      <p class="card-sub">Data konteks untuk AI menyusun narasi analisis situasi dan gambaran pelayanan OPD.</p>
+
+      <div class="form-group">
+        <label>Isu Strategis OPD (pisahkan dengan Enter) *</label>
+        <textarea id="isuStrategis" rows="5" placeholder="Isu 1: Masih rendahnya kualitas perencanaan OPD&#10;Isu 2: Belum optimalnya koordinasi antar OPD&#10;Isu 3: Terbatasnya kapasitas SDM perencana..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Prioritas Pembangunan Daerah Tahun <span id="tahunLabel">Renja</span></label>
+        <textarea id="prioritasDaerah" rows="4" placeholder="Prioritas 1: ...&#10;Prioritas 2: ...&#10;Prioritas 3: ..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Capaian Kinerja Tahun Sebelumnya (ringkasan)</label>
+        <textarea id="capaianSebelumnya" rows="4" placeholder="Misal: Tahun 2025 capaian program A mencapai 85%, program B baru 70% akibat keterlambatan pengadaan..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Total Pagu Anggaran Renja (Rp)</label>
+        <input type="number" id="totalPagu" placeholder="contoh: 8500000000"/>
+        <span class="hint">Jika berbeda dari total pagu per program di langkah 2</span>
+      </div>
+
+      <div class="form-group">
+        <label>Konteks Tambahan untuk AI (opsional)</label>
+        <textarea id="konteksAi" rows="3" placeholder="Misal: ada bencana alam, kebijakan efisiensi anggaran, refocusing, instruksi bupati..."></textarea>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-prev" onclick="goStep(1)">← Kembali</button>
+        <button class="btn btn-next" onclick="goStep(3)">Lanjut: Narasi AI →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: NARASI AI -->
+  <div class="wizard-step" id="step-3">
+    <div class="card">
+      <h2>4. Narasi Analisis Situasi oleh AI</h2>
+      <p class="card-sub">AI akan menyusun narasi gambaran pelayanan OPD, analisis isu strategis, dan tujuan/sasaran Renja berdasarkan data Anda.</p>
+
+      <div id="aiStatusBox"></div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-ai" id="btnGenAi" onclick="generateNarasi()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Generate Narasi AI
+        </button>
+        <button class="btn btn-prev" onclick="goStep(2)">← Kembali</button>
+      </div>
+
+      <div id="narasiBox" style="margin-top:24px;display:none;">
+        <h3 style="font-size:15px;margin-bottom:12px;">Narasi AI (dapat diedit):</h3>
+        <textarea id="aiNarasi" style="min-height:320px;width:100%;font-size:13px;line-height:1.7;padding:16px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;resize:vertical;"></textarea>
+        <p style="font-size:12px;color:var(--sub);margin-top:8px;">💡 Periksa dan edit narasi sebelum membuat dokumen final.</p>
+        <div class="nav-btns" style="margin-top:16px;">
+          <div></div>
+          <button class="btn btn-next" onclick="goStep(4)">Buat Dokumen Renja →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: PREVIEW & EXPORT -->
+  <div class="wizard-step" id="step-4">
+    <div class="card">
+      <div class="preview-toolbar">
+        <h2>5. Preview & Ekspor Renja OPD</h2>
+        <button class="btn btn-export" onclick="exportWord()">⬇ Word (.doc)</button>
+        <button class="btn" style="background:#e11d48;color:#fff" onclick="exportPdf()">⬇ PDF</button>
+        <button class="btn btn-prev" onclick="goStep(3)">← Edit</button>
+      </div>
+      <div class="doc-preview" id="docOutput"></div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- MODAL: PILIH BIDANG URUSAN -->
+<div class="modal-overlay" id="urusanModalOverlay">
+  <div class="modal" style="max-width:560px;">
+    <h3>Pilih Bidang Urusan</h3>
+    <p>Centang satu atau lebih bidang urusan yang ditangani OPD ini, sesuai nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran).</p>
+    <input type="text" class="modal-input" id="urusanSearch" placeholder="Cari bidang urusan..." oninput="renderUrusanList()"/>
+    <div id="urusanList" style="max-height:340px;overflow:auto;border:1px solid var(--border);border-radius:12px;padding:4px 10px;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-next" style="flex:1;" onclick="closeUrusanPicker()">Selesai</button>
+    </div>
+  </div>
+</div>
+
+<div class="compliance">
+  <div style="max-width:700px;margin:0 auto;">
+    <strong>SiRENJA</strong> — AI Writer Rencana Kerja OPD<br/>
+    Sesuai: <strong>Permendagri 81/2022</strong> · <strong>Inmendagri 2/2025</strong> · <strong>Kepmendagri 050-5889/2021</strong><br/>
+    AI hanya menarasikan analisis — <strong>semua data dan program berasal dari input pengguna.</strong><br/><br/>
+    <a href="https://andriwulandika.uk/">Beranda</a> · <a href="harga.html">Harga</a> · <a href="regulasi.html">Regulasi</a> ·
+    <a href="https://andriwulandika.uk/tentang.html">Tentang</a><br/>
+    © 2026 <a href="https://andriwulandika.uk/tentang.html">Andri Wulandika</a> · AI Tools Perencanaan Daerah Indonesia
+  </div>
+</div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+let currentStep = 0;
+const TOTAL_STEPS = 5;
+const STEP_LABELS = ['Data OPD','Program & Kegiatan','Isu & Prioritas','Narasi AI','Preview & Ekspor'];
+
+// ============================================================
+// STEP NAVIGATION
+// ============================================================
+function goStep(n) {
+  if (n < 0 || n >= TOTAL_STEPS) return;
+  if (n > currentStep) {
+    const err = validateStep(currentStep);
+    if (err) { alert(err); return; }
+  }
+  if (n === 2) document.getElementById('tahunLabel').textContent = v('tahunRenja') || 'Renja';
+  if (n === 4) buildDocument();
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  document.getElementById('step-' + n).classList.add('active');
+  currentStep = n;
+  updateStepUI();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateStepUI() {
+  for (let i = 0; i < TOTAL_STEPS; i++) {
+    const el = document.getElementById('si-' + i);
+    if (!el) continue;
+    el.className = 'step ' + (i < currentStep ? 'done' : i === currentStep ? 'active' : 'pending');
+    const line = document.getElementById('sl-' + i);
+    if (line) line.className = 'step-line ' + (i < currentStep ? 'done' : '');
+  }
+  const lbl = document.getElementById('stepCurrentLabel');
+  if (lbl) lbl.textContent = `Langkah ${currentStep+1}/${TOTAL_STEPS} — ${STEP_LABELS[currentStep]}`;
+}
+
+// ============================================================
+// RENJA PERUBAHAN
+// ============================================================
+function toggleJenisRenja() {
+  const isPerubahan = v('jenisRenja') === 'perubahan';
+  document.getElementById('dasarPerubahanGroup').style.display = isPerubahan ? '' : 'none';
+  document.getElementById('perubahanFields').classList.toggle('show', isPerubahan);
+  document.getElementById('progTable').classList.toggle('mode-perubahan', isPerubahan);
+  document.getElementById('thPagu').textContent = isPerubahan ? 'Pagu Menjadi (Rp)' : 'Pagu (Rp)';
+}
+
+function validateStep(step) {
+  if (step === 0) {
+    if (!v('namaOpd') || !v('namaPemda') || !v('tahunRenja'))
+      return 'Harap lengkapi Nama OPD, Pemerintah Daerah, dan Tahun Renja.';
+    if (v('jenisRenja') === 'perubahan' && !v('alasanPerubahan'))
+      return 'Harap isi Alasan/Latar Belakang Perubahan Renja.';
+  }
+  if (step === 1) {
+    if (document.querySelectorAll('#progBody tr').length === 0)
+      return 'Masukkan minimal 1 program atau kegiatan.';
+  }
+  if (step === 2) {
+    if (!v('isuStrategis')) return 'Masukkan minimal 1 isu strategis.';
+  }
+  return null;
+}
+
+// ============================================================
+// NOMENKLATUR (Kepmendagri 050-5889/2021, pemutakhiran)
+// ============================================================
+let NOMENKLATUR_INDEX = [];
+let selectedUrusan = []; // array of bidang codes, e.g. '1.01'
+const nomenklaturCache = {};
+let currentNomKegiatan = null; // kegiatan object currently shown in #nomSub
+
+async function loadNomenklaturIndex() {
+  try {
+    const res = await fetch('assets/data/nomenklatur/index.json');
+    NOMENKLATUR_INDEX = await res.json();
+  } catch {
+    NOMENKLATUR_INDEX = [];
+  }
+  populateNomBidangSelect();
+}
+
+function getUrusanNama(code) {
+  return NOMENKLATUR_INDEX.find(b => b.code === code)?.nama || code;
+}
+
+function detectJenisPemda() {
+  return /provinsi/i.test(v('namaPemda')) ? 'PROV' : 'KABKOT';
+}
+
+async function getNomenklaturData(code) {
+  if (nomenklaturCache[code]) return nomenklaturCache[code];
+  const res = await fetch(`assets/data/nomenklatur/${code}.json`);
+  const data = await res.json();
+  nomenklaturCache[code] = data;
+  return data;
+}
+
+// ---- Urusan chips & picker modal ----
+function renderUrusanChips() {
+  const box = document.getElementById('urusanChips');
+  if (selectedUrusan.length === 0) {
+    box.innerHTML = '<span class="urusan-empty">Belum ada bidang urusan dipilih</span>';
+  } else {
+    box.innerHTML = selectedUrusan.map(code => `
+      <span class="urusan-chip">${esc(getUrusanNama(code))}<button type="button" onclick="toggleUrusan('${code}')" title="Hapus">×</button></span>
+    `).join('');
+  }
+  populateNomBidangSelect();
+}
+
+function openUrusanPicker() {
+  document.getElementById('urusanSearch').value = '';
+  renderUrusanList();
+  document.getElementById('urusanModalOverlay').classList.add('open');
+}
+
+function closeUrusanPicker() {
+  document.getElementById('urusanModalOverlay').classList.remove('open');
+}
+
+function renderUrusanList() {
+  const q = (document.getElementById('urusanSearch').value || '').toLowerCase();
+  const list = document.getElementById('urusanList');
+  const groups = [
+    { prefix: '1', label: 'Urusan Wajib – Pelayanan Dasar' },
+    { prefix: '2', label: 'Urusan Wajib – Non Pelayanan Dasar' },
+    { prefix: '3', label: 'Urusan Pilihan' },
+    { prefix: '4', label: 'Unsur Pendukung' },
+    { prefix: '5', label: 'Unsur Penunjang' },
+    { prefix: '6', label: 'Unsur Pengawasan' },
+    { prefix: '7', label: 'Unsur Kewilayahan' },
+    { prefix: '8', label: 'Pemerintahan Umum' },
+    { prefix: '9', label: 'Kekhususan Daerah' },
+  ];
+  let html = '';
+  groups.forEach(g => {
+    const items = NOMENKLATUR_INDEX.filter(b => b.code.startsWith(g.prefix + '.') &&
+      (!q || b.nama.toLowerCase().includes(q)));
+    if (items.length === 0) return;
+    html += `<div class="urusan-group-label">${esc(g.label)}</div>`;
+    items.forEach(b => {
+      const checked = selectedUrusan.includes(b.code) ? 'checked' : '';
+      html += `<label class="urusan-item"><input type="checkbox" ${checked} onchange="toggleUrusan('${b.code}')"/> ${esc(b.nama)}</label>`;
+    });
+  });
+  list.innerHTML = html || '<p class="urusan-empty" style="padding:12px;">Tidak ditemukan.</p>';
+}
+
+function toggleUrusan(code) {
+  const i = selectedUrusan.indexOf(code);
+  if (i >= 0) selectedUrusan.splice(i, 1);
+  else selectedUrusan.push(code);
+  renderUrusanChips();
+  renderUrusanList();
+}
+
+// ---- Cascading nomenklatur picker (Step 2) ----
+function populateNomBidangSelect() {
+  const sel = document.getElementById('nomBidang');
+  if (!sel) return;
+  const current = sel.value;
+  const options = selectedUrusan.length > 0
+    ? NOMENKLATUR_INDEX.filter(b => selectedUrusan.includes(b.code))
+    : NOMENKLATUR_INDEX;
+  sel.innerHTML = '<option value="">-- Pilih Bidang Urusan --</option>' +
+    options.map(b => `<option value="${b.code}">${esc(b.nama)}</option>`).join('');
+  if (options.some(b => b.code === current)) sel.value = current;
+  else { resetNomSelect('nomProgram', '-- Pilih Program --'); resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --'); resetNomSelect('nomSub', '-- Pilih Sub Kegiatan --'); }
+}
+
+function resetNomSelect(id, placeholder) {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  sel.innerHTML = `<option value="">${placeholder}</option>`;
+  sel.disabled = true;
+}
+
+async function onNomBidangChange() {
+  const code = v('nomBidang');
+  resetNomSelect('nomProgram', '-- Pilih Program --');
+  resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --');
+  resetNomSelect('nomSub', '-- Pilih Sub Kegiatan --');
+  if (!code) return;
+
+  const data = await getNomenklaturData(code);
+  const jenis = detectJenisPemda();
+  const progs = (data[jenis] && data[jenis].length > 0) ? data[jenis] : (data.PROV.length > 0 ? data.PROV : data.KABKOT);
+
+  const sel = document.getElementById('nomProgram');
+  sel.innerHTML = '<option value="">-- Pilih Program --</option>' +
+    progs.map((p, i) => `<option value="${i}">${esc(p.program)}</option>`).join('');
+  sel.disabled = progs.length === 0;
+  sel.dataset.progs = JSON.stringify(progs);
+}
+
+function onNomProgramChange() {
+  resetNomSelect('nomKegiatan', '-- Pilih Kegiatan --');
+  resetNomSelect('nomSub', '-- Pilih Sub Kegiatan --');
+  const progSel = document.getElementById('nomProgram');
+  const idx = progSel.value;
+  if (idx === '') return;
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const kegiatan = progs[idx]?.kegiatan || [];
+
+  const sel = document.getElementById('nomKegiatan');
+  sel.innerHTML = '<option value="">-- Pilih Kegiatan --</option>' +
+    kegiatan.map((k, i) => `<option value="${i}">${esc(k.nama)}</option>`).join('');
+  sel.disabled = kegiatan.length === 0;
+  sel.dataset.kegiatan = JSON.stringify(kegiatan);
+}
+
+function onNomKegiatanChange() {
+  resetNomSelect('nomSub', '-- Pilih Sub Kegiatan --');
+  const kegSel = document.getElementById('nomKegiatan');
+  const idx = kegSel.value;
+  if (idx === '') return;
+  const kegiatan = JSON.parse(kegSel.dataset.kegiatan || '[]');
+  const sub = kegiatan[idx]?.sub || [];
+
+  const sel = document.getElementById('nomSub');
+  sel.innerHTML = '<option value="">-- Pilih Sub Kegiatan --</option>' +
+    sub.map((s, i) => `<option value="${i}">${esc(s.nama)}</option>`).join('');
+  sel.disabled = sub.length === 0;
+  sel.dataset.sub = JSON.stringify(sub);
+}
+
+function findProgRow(tipe, nama) {
+  return Array.from(document.querySelectorAll('#progBody tr')).find(tr =>
+    tr.dataset.tipe === tipe && tr.querySelector('[data-field="nama"]')?.value?.trim() === nama);
+}
+
+function addFromNomenklatur() {
+  const progSel = document.getElementById('nomProgram');
+  const kegSel = document.getElementById('nomKegiatan');
+  const subSel = document.getElementById('nomSub');
+  if (!progSel.value || !kegSel.value || !subSel.value) {
+    alert('Pilih Bidang Urusan, Program, Kegiatan, dan Sub Kegiatan terlebih dahulu.');
+    return;
+  }
+  const progs = JSON.parse(progSel.dataset.progs || '[]');
+  const kegiatan = JSON.parse(kegSel.dataset.kegiatan || '[]');
+  const sub = JSON.parse(subSel.dataset.sub || '[]');
+
+  const programNama = progs[progSel.value]?.program || '';
+  const kegiatanNama = kegiatan[kegSel.value]?.nama || '';
+  const subData = sub[subSel.value];
+  if (!subData) return;
+
+  if (programNama && !findProgRow('program', programNama)) addProgRow('program', { nama: programNama });
+  if (kegiatanNama && !findProgRow('kegiatan', kegiatanNama)) addProgRow('kegiatan', { nama: kegiatanNama });
+  if (!findProgRow('subkegiatan', subData.nama)) {
+    addProgRow('subkegiatan', { nama: subData.nama, indikator: subData.ind, satuan: subData.sat || '%' });
+  }
+  renumberProg();
+}
+
+// ============================================================
+// PROGRAM TABLE
+// ============================================================
+const SATUAN_LIST = ['%','Dokumen','Kegiatan','Orang','Unit','Paket','km','Ha','Ton','Nilai','Skor','Rp','Lainnya'];
+const STATUS_LIST = ['Tetap','Bertambah/Baru','Berkurang/Berubah','Dihapus'];
+
+function addProgRow(tipe = 'kegiatan', data = {}) {
+  const rowNum = document.querySelectorAll('#progBody tr').length + 1;
+  const tr = document.createElement('tr');
+  tr.dataset.tipe = tipe;
+
+  const bgMap = { program: '#eff6ff', kegiatan: '#f8fafc', subkegiatan: '#fff' };
+  const labelMap = { program: 'PROGRAM', kegiatan: '  Kegiatan', subkegiatan: '    Sub Kegiatan' };
+  const boldMap = { program: 'font-weight:700;', kegiatan: '', subkegiatan: '' };
+  const indentMap = { program: 0, kegiatan: 16, subkegiatan: 32 };
+
+  tr.style.background = bgMap[tipe] || '#fff';
+  tr.innerHTML = `
+    <td style="text-align:center;font-size:12px;color:var(--sub)">${rowNum}</td>
+    <td>
+      <div style="display:flex;align-items:flex-start;gap:4px;">
+        <span style="font-size:10px;color:var(--sub);white-space:nowrap;padding-top:2px;min-width:${40+indentMap[tipe]}px;${boldMap[tipe]}">${labelMap[tipe]}</span>
+        <input type="text" data-field="nama" placeholder="${tipe === 'program' ? 'Nama program...' : tipe === 'kegiatan' ? 'Nama kegiatan...' : 'Nama sub kegiatan...'}" value="${esc(data.nama||'')}" style="flex:1;"/>
+      </div>
+    </td>
+    <td><input type="text" data-field="indikator" placeholder="Indikator kinerja..." value="${esc(data.indikator||'')}"/></td>
+    <td><input type="number" data-field="target" placeholder="Target" value="${data.target||''}" step="any"/></td>
+    <td>
+      <select data-field="satuan">${(data.satuan && !SATUAN_LIST.includes(data.satuan) ? [data.satuan, ...SATUAN_LIST] : SATUAN_LIST).map(s=>`<option ${s===(data.satuan||'%')?'selected':''}>${esc(s)}</option>`).join('')}</select>
+    </td>
+    <td class="col-perubahan"><input type="number" data-field="paguSemula" placeholder="Pagu semula Rp" value="${data.paguSemula||''}"/></td>
+    <td><input type="number" data-field="pagu" placeholder="Pagu Rp" value="${data.pagu||''}"/></td>
+    <td class="col-perubahan">
+      <select data-field="status">${STATUS_LIST.map(s=>`<option ${s===(data.status||'Tetap')?'selected':''}>${s}</option>`).join('')}</select>
+    </td>
+    <td><button class="tbl-del" onclick="this.closest('tr').remove();renumberProg()" title="Hapus">×</button></td>`;
+  document.getElementById('progBody').appendChild(tr);
+}
+
+function renumberProg() {
+  document.querySelectorAll('#progBody tr td:first-child').forEach((td, i) => {
+    td.textContent = i + 1;
+  });
+}
+
+function getProgData() {
+  return Array.from(document.querySelectorAll('#progBody tr')).map(tr => ({
+    tipe: tr.dataset.tipe,
+    nama: tr.querySelector('[data-field="nama"]')?.value?.trim() || '',
+    indikator: tr.querySelector('[data-field="indikator"]')?.value?.trim() || '',
+    target: tr.querySelector('[data-field="target"]')?.value?.trim() || '',
+    satuan: tr.querySelector('[data-field="satuan"]')?.value || '%',
+    pagu: tr.querySelector('[data-field="pagu"]')?.value?.trim() || '',
+    paguSemula: tr.querySelector('[data-field="paguSemula"]')?.value?.trim() || '',
+    status: tr.querySelector('[data-field="status"]')?.value || 'Tetap',
+  }));
+}
+
+// ============================================================
+// AI NARASI
+// ============================================================
+async function generateNarasi() {
+  const opd    = v('namaOpd');
+  const pemda  = v('namaPemda');
+  const tahun  = v('tahunRenja');
+  const urusan = selectedUrusan.map(getUrusanNama).join('; ');
+  const tupok  = v('tupoksi');
+  const vismis = v('visiMisi');
+  const isu    = v('isuStrategis');
+  const prior  = v('prioritasDaerah');
+  const capaian= v('capaianSebelumnya');
+  const konteks= v('konteksAi');
+  const isPerubahan = v('jenisRenja') === 'perubahan';
+  const dasarPerubahan = v('dasarPerubahan');
+  const alasanPerubahan = v('alasanPerubahan');
+  const progs  = getProgData();
+
+  const progSummary = progs.slice(0, 10).map((p, i) =>
+    `${i+1}. [${p.tipe.toUpperCase()}] ${p.nama}${p.indikator?' | IK: '+p.indikator:''}`
+  ).join('\n');
+
+  const totalPagu = progs.reduce((s, p) => s + (parseFloat(p.pagu)||0), 0);
+
+  const prompt = `Anda adalah perencana pemerintah daerah berpengalaman yang menyusun dokumen Renja dengan kualitas setara dokumen perencanaan Kabupaten Banyuwangi — daerah peraih Penghargaan Pembangunan Daerah (PPD) Bappenas dengan dokumen berpredikat terbaik nasional. Jadikan struktur, kedalaman, dan gaya narasi dokumen Banyuwangi sebagai acuan utama, mengikuti kriteria PPD (kejelasan, keterukuran/SMART, dan keterkaitan antar dokumen perencanaan). Tugas Anda adalah menulis narasi untuk ${isPerubahan ? 'Perubahan Rencana Kerja (Renja Perubahan)' : 'Rencana Kerja (Renja)'} OPD.
+
+PENTING:
+- Tulis dalam Bahasa Indonesia formal dan baku
+- Jangan mengarang data atau angka baru, gunakan hanya data yang diberikan
+- Ikuti sistematika tiga bab Renja Perangkat Daerah format Kabupaten Banyuwangi, berpedoman pada Permendagri 86/2017 jo. Permendagri 90/2019 dan Permendagri 81/2022 tentang Pedoman Penyusunan RKPD/Renja${isPerubahan ? ' serta Permendagri 86/2017 Pasal 78 tentang Perubahan RKPD/Renja' : ''}
+
+DATA OPD:
+OPD: ${opd}
+Pemerintah Daerah: ${pemda}
+Tahun Renja: ${tahun}
+Jenis Dokumen: ${isPerubahan ? 'Renja Perubahan' : 'Renja Murni (Reguler)'}
+${urusan ? 'Urusan: ' + urusan : ''}
+${tupok ? 'Tupoksi: ' + tupok : ''}
+${vismis ? 'Visi-Misi terkait: ' + vismis : ''}
+Total Pagu Anggaran: ${totalPagu > 0 ? fmtRp(totalPagu) : '-'}
+${isPerubahan ? `\nDASAR HUKUM PERUBAHAN: ${dasarPerubahan || '-'}\nALASAN/LATAR BELAKANG PERUBAHAN: ${alasanPerubahan}` : ''}
+
+PROGRAM DAN KEGIATAN:
+${progSummary || '-'}
+
+ISU STRATEGIS:
+${isu}
+
+PRIORITAS PEMBANGUNAN:
+${prior || '-'}
+
+CAPAIAN SEBELUMNYA:
+${capaian || '-'}
+
+KONTEKS TAMBAHAN: ${konteks || '-'}
+
+Tulis narasi ${isPerubahan ? 'Renja Perubahan' : 'Renja'} OPD mengikuti sistematika TIGA BAB format Kabupaten Banyuwangi (sub-bab berhuruf A, B, C) berikut:
+1. **BAB I: PENDAHULUAN** — Sub-bab: (A) Latar Belakang (2-3 paragraf formal tentang dasar penyusunan serta keterkaitan Renja${isPerubahan ? ' Perubahan' : ''} dengan RKPD dan Renstra), (B) Landasan Hukum (daftarkan UU/PP/Permendagri yang relevan secara bernomor), (C) Maksud dan Tujuan penyusunan dokumen, (D) Sistematika Penulisan (uraian singkat isi tiap bab)
+2. **BAB II: EVALUASI HASIL RENCANA KERJA** — Sub-bab: (A) Evaluasi Pelaksanaan Renja Tahun Lalu dan Capaian Renstra (uraikan capaian program/kegiatan tahun sebelumnya berdasarkan data yang diberikan, bandingkan realisasi dengan target, identifikasi faktor pendorong dan penghambat), (B) Analisis Kinerja Pelayanan OPD (uraikan tugas, fungsi, dan kapasitas OPD berdasarkan tupoksi yang diberikan, kaitkan dengan capaian SPM bila relevan), (C) Isu-Isu Penting Penyelenggaraan Tugas dan Fungsi OPD (uraikan tiap isu strategis secara formal dan kaitkan dengan program yang direncanakan tahun ini sebagai tindak lanjut)
+3. **BAB III: RENCANA PROGRAM DAN KEGIATAN** — Sub-bab: (A) Telaahan Terhadap Kebijakan Nasional (kaitkan prioritas dan program OPD dengan arah/sasaran kebijakan pembangunan nasional pada bidang urusan terkait), (B) Tujuan dan Sasaran Renja Perangkat Daerah (rumuskan tujuan dan sasaran yang terukur/SMART berdasarkan program yang direncanakan dan visi-misi yang relevan), (C) Program, Kegiatan, Sub Kegiatan dan Pendanaan (uraikan rencana program/kegiatan/sub kegiatan beserta indikator, target, dan pagu indikatif sesuai nomenklatur Kepmendagri 050-5889/2021)${isPerubahan ? `
+4. **DASAR DAN ALASAN PERUBAHAN** — Jelaskan secara formal dasar hukum dan alasan/latar belakang dilakukannya perubahan Renja berdasarkan informasi yang diberikan, kaitkan dengan ketentuan Permendagri 86/2017 Pasal 78` : ''}
+
+ACUAN GAYA & KEDALAMAN — Renja Kabupaten Banyuwangi (peraih Penghargaan Pembangunan Daerah Bappenas), tiru pola konkret ini:
+- Latar Belakang memposisikan Renja sebagai dokumen perencanaan tahunan bersifat indikatif, penjabaran Visi-Misi Perangkat Daerah, serta selaras dengan RKPD dan Renstra.
+- Pada evaluasi tahun lalu, untuk TIAP program sebutkan secara konkret: jumlah kegiatan/sub kegiatan, tingkat realisasi anggaran (%) dan realisasi kinerja (%), serta faktor pendorong/penghambatnya.
+- Rumuskan tujuan dan sasaran yang terukur dan kaitkan dengan indikator kinerja yang jelas; sebut nomenklatur program/kegiatan sesuai kodefikasi.
+- Gaya kalimat formal-administratif. Contoh nada Banyuwangi: "Rencana Kerja Perangkat Daerah merupakan dokumen perencanaan periode tahun berjalan yang bersifat indikatif yang didasarkan pada penjabaran dari Visi, Misi Perangkat Daerah."
+
+Jadikan Banyuwangi sebagai salah satu acuan kualitas, namun UTAMAKAN kepatuhan pada regulasi yang berlaku (a.l. Permendagri 86/2017 & 90/2019) dan praktik terbaik perencanaan nasional.
+
+Format: narasi paragraf formal dengan sub-bab bernomor/berhuruf sesuai struktur di atas. Uraikan SETIAP bagian secara rinci, konkret, dan terstruktur — beberapa paragraf per bagian, mengalir dan tidak sekadar ringkas. Total sekitar 1200-1700 kata.`;
+
+  setAiStatus('loading', 'Sedang menyusun narasi Renja... (estimasi 15-30 detik)');
+  document.getElementById('btnGenAi').disabled = true;
+
+  try {
+    const result = await callAI(prompt, { temperature: 0.5, maxTokens: 4096 });
+    try{const _a=getAccessStatus(),_b=document.getElementById('accessBadge');if(_b){_b.textContent=_a.active?(_a.unlimited?'👑 Berbayar':'💳 '+_a.credits+' kredit'):'🔓 Demo';_b.classList.toggle('active',_a.active);}}catch(_e){}
+    document.getElementById('aiNarasi').value = result.text;
+    document.getElementById('narasiBox').style.display = 'block';
+    if (result.isDemo) {
+      setAiStatus('success', 'Narasi demo berhasil dibuat (hasil dipotong). <a href="harga.html">Upgrade ke Berbayar</a> untuk hasil lengkap.');
+    } else {
+      setAiStatus('success', 'Narasi berhasil dibuat! Periksa dan edit jika perlu.');
+    }
+  } catch (err) {
+    setAiStatus('error', formatApiError(err));
+  }
+  document.getElementById('btnGenAi').disabled = false;
+}
+
+function setAiStatus(type, msg) {
+  const icons = { loading:'<div class="spinner"></div>', error:'⚠', success:'✓' };
+  document.getElementById('aiStatusBox').innerHTML =
+    `<div class="ai-status ${type}">${icons[type]} ${msg}</div>`;
+}
+
+// ============================================================
+// BUILD DOCUMENT
+// ============================================================
+function buildDocument() {
+  const opd     = v('namaOpd');
+  const pemda   = v('namaPemda');
+  const tahun   = v('tahunRenja');
+  const urusan  = selectedUrusan.map(getUrusanNama).join('; ');
+  const kepala  = v('namaKepala');
+  const renstra = v('periodeRenstra');
+  const narasi  = document.getElementById('aiNarasi')?.value || '';
+  const progs   = getProgData();
+  const totalPagu = progs.reduce((s, p) => s + (parseFloat(p.pagu)||0), 0);
+  const customPagu = v('totalPagu');
+  const paguFinal = customPagu ? parseFloat(customPagu) : totalPagu;
+  const isPerubahan = v('jenisRenja') === 'perubahan';
+  const dasarPerubahan = v('dasarPerubahan');
+  const alasanPerubahan = v('alasanPerubahan');
+
+  // Program table
+  let progTbl = `<table>
+    <thead><tr>
+      <th>No</th><th>Program/Kegiatan/Sub Kegiatan</th>
+      <th>Indikator Kinerja</th><th>Target</th><th>Satuan</th>
+      ${isPerubahan ? `<th>Pagu Semula (Rp)</th><th>Pagu Menjadi (Rp)</th><th>Selisih (Rp)</th><th>Status</th>` : `<th>Pagu (Rp)</th>`}
+    </tr></thead><tbody>`;
+  let totalSemula = 0;
+  progs.forEach((p, i) => {
+    const bold   = p.tipe === 'program' ? 'font-weight:bold;' : '';
+    const indent = p.tipe === 'subkegiatan' ? 'padding-left:24px;' : p.tipe === 'kegiatan' ? 'padding-left:12px;' : '';
+    const label  = p.tipe === 'program' ? 'PROGRAM' : p.tipe === 'kegiatan' ? 'Kegiatan' : 'Sub Kegiatan';
+    const pagu = parseFloat(p.pagu)||0;
+    progTbl += `<tr>
+      <td style="text-align:center">${i+1}</td>
+      <td style="${bold}${indent}">${label}: ${p.nama}</td>
+      <td>${p.indikator||'-'}</td>
+      <td style="text-align:center">${p.target||'-'}</td>
+      <td style="text-align:center">${p.satuan}</td>`;
+    if (isPerubahan) {
+      const semula = parseFloat(p.paguSemula)||0;
+      const selisih = pagu - semula;
+      totalSemula += semula;
+      progTbl += `
+      <td style="text-align:right">${p.paguSemula ? fmtRp(semula) : '-'}</td>
+      <td style="text-align:right">${p.pagu ? fmtRp(pagu) : '-'}</td>
+      <td style="text-align:right">${selisih !== 0 ? (selisih>0?'+':'') + fmtRp(selisih) : '-'}</td>
+      <td style="text-align:center">${p.status}</td>`;
+    } else {
+      progTbl += `
+      <td style="text-align:right">${p.pagu ? fmtRp(pagu) : '-'}</td>`;
+    }
+    progTbl += `</tr>`;
+  });
+  if (isPerubahan) {
+    const totalSelisih = paguFinal - totalSemula;
+    progTbl += `<tr><td colspan="5" style="text-align:right;font-weight:bold">Total Pagu</td>
+      <td style="text-align:right;font-weight:bold">${fmtRp(totalSemula)}</td>
+      <td style="text-align:right;font-weight:bold">${fmtRp(paguFinal)}</td>
+      <td style="text-align:right;font-weight:bold">${(totalSelisih>=0?'+':'') + fmtRp(totalSelisih)}</td>
+      <td></td></tr>`;
+  } else {
+    progTbl += `<tr><td colspan="5" style="text-align:right;font-weight:bold">Total Pagu</td>
+      <td style="text-align:right;font-weight:bold">${fmtRp(paguFinal)}</td></tr>`;
+  }
+  progTbl += '</tbody></table>';
+
+  const narasiHtml = narasi
+    ? narasi.split('\n').filter(Boolean).map(p => {
+        if (p.startsWith('**') && p.endsWith('**')) return `<h2>${p.replace(/\*\*/g,'')}</h2>`;
+        if (/^#{1,3}\s/.test(p)) return `<h3>${p.replace(/^#{1,3}\s/,'')}</h3>`;
+        return `<p>${p}</p>`;
+      }).join('\n')
+    : '<p><em>Narasi belum dibuat. Kembali ke langkah sebelumnya.</em></p>';
+
+  const doc = `
+<div style="text-align:center;margin-bottom:28px;border-bottom:3px double #000;padding-bottom:16px;">
+  <div style="font-size:11pt;font-weight:bold;text-transform:uppercase;">PEMERINTAH ${pemda.toUpperCase()}</div>
+  <div style="font-size:11pt;font-weight:bold;text-transform:uppercase;">${opd.toUpperCase()}</div>
+  <div style="margin:12px 0 8px;">
+    <div style="font-size:16pt;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">${isPerubahan ? 'PERUBAHAN RENCANA KERJA' : 'RENCANA KERJA'}</div>
+    <div style="font-size:13pt;font-weight:bold;">${isPerubahan ? '(RENJA PERUBAHAN OPD)' : '(RENJA OPD)'}</div>
+    <div style="font-size:12pt;font-weight:bold;">TAHUN ${tahun}</div>
+  </div>
+  ${urusan ? `<div style="font-size:11pt;">Urusan: ${urusan}</div>` : ''}
+  ${renstra ? `<div style="font-size:10pt;color:#444;">Mengacu Renstra Periode ${renstra}</div>` : ''}
+  ${isPerubahan && dasarPerubahan ? `<div style="font-size:10pt;color:#444;">Dasar Perubahan: ${dasarPerubahan}</div>` : ''}
+</div>
+
+${narasiHtml}
+
+${isPerubahan ? `<h2>DASAR DAN ALASAN PERUBAHAN</h2>
+<p><strong>Dasar Hukum Perubahan:</strong> ${dasarPerubahan || '-'}</p>
+<p><strong>Alasan/Latar Belakang Perubahan:</strong></p>
+<p>${esc(alasanPerubahan).replace(/\n/g,'<br/>')}</p>
+<p>Perubahan Renja ini disusun dengan berpedoman pada ketentuan Pasal 78 Permendagri Nomor 86 Tahun 2017, yaitu apabila terjadi perkembangan yang tidak sesuai dengan asumsi KUA-PPAS, keadaan darurat, keadaan luar biasa, dan/atau pergeseran program dan kegiatan antar SKPD.</p>` : ''}
+
+<div style="page-break-before:always;"></div>
+
+<h3>Matriks Rincian Program, Kegiatan, Sub Kegiatan dan Pendanaan</h3>
+<p style="font-size:10pt;color:#555;font-style:italic;">(melengkapi BAB III huruf C — Program, Kegiatan, Sub Kegiatan dan Pendanaan)</p>
+<p>${isPerubahan
+  ? `Perubahan rencana kerja ${opd} Tahun ${tahun} mencakup penyesuaian program, kegiatan, dan sub kegiatan dengan total pagu anggaran semula sebesar <strong>${fmtRp(progs.reduce((s,p)=>s+(parseFloat(p.paguSemula)||0),0))}</strong> menjadi <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja, alokasi anggaran semula dan menjadi, serta status perubahannya:`
+  : `Rencana kerja ${opd} Tahun ${tahun} mencakup program, kegiatan, dan sub kegiatan dengan total pagu anggaran sebesar <strong>${fmtRp(paguFinal)}</strong>. Berikut rincian program dan kegiatan beserta indikator kinerja dan alokasi anggarannya:`}</p>
+
+${progTbl}
+
+<div style="page-break-before:always;"></div>
+
+<h2>PENUTUP</h2>
+<p>${isPerubahan
+  ? `Perubahan Rencana Kerja ${opd} Tahun ${tahun} ini disusun sebagai penyesuaian atas Renja ${opd} Tahun ${tahun} sebelumnya, sejalan dengan Perubahan RKPD Tahun ${tahun}, dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah serta Permendagri Nomor 86 Tahun 2017 tentang Tata Cara Perencanaan, Pengendalian dan Evaluasi Pembangunan Daerah.`
+  : `Rencana Kerja ${opd} Tahun ${tahun} ini merupakan dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan program dan kegiatan selama satu tahun anggaran. Dokumen ini disusun mengacu pada Renstra ${opd} Periode ${renstra||'...'} dan berpedoman pada Permendagri Nomor 81 Tahun 2022 tentang Rencana Kerja Perangkat Daerah.`}</p>
+<p>Dengan ditetapkannya ${isPerubahan ? 'Renja Perubahan' : 'Renja'} ini, diharapkan seluruh pelaksana kegiatan dapat menjalankan program sesuai target kinerja yang telah ditetapkan, efisien dalam penggunaan anggaran, dan akuntabel dalam pertanggungjawabannya.</p>
+
+<div style="margin-top:40px;display:flex;justify-content:flex-end;">
+  <div style="text-align:center;min-width:250px;">
+    <p>${pemda}, .......... ${tahun}</p>
+    <p>Kepala ${opd},</p>
+    <br/><br/><br/>
+    <p style="text-decoration:underline;font-weight:bold;">${kepala || '........................................'}</p>
+  </div>
+</div>
+
+<div style="margin-top:32px;border-top:1px solid #ccc;padding-top:10px;font-size:9pt;color:#666;text-align:center;">
+  Dokumen dibuat dengan SiRENJA — AI Writer Renja OPD | ai.andriwulandika.uk<br/>
+  Sistematika tiga bab format Kabupaten Banyuwangi · Permendagri 86/2017 jo. 90/2019 dan Permendagri 81/2022
+</div>`;
+
+  document.getElementById('docOutput').innerHTML = doc;
+}
+
+// ============================================================
+// EXPORT
+// ============================================================
+function exportWord() {
+  const content = document.getElementById('docOutput').innerHTML;
+  const opd   = v('namaOpd') || 'OPD';
+  const tahun = v('tahunRenja') || '';
+  const prefix = v('jenisRenja') === 'perubahan' ? 'Renja_Perubahan_' : 'Renja_';
+  const fname = `${prefix}${opd}_${tahun}`;
+  const wordHtml = `<html xmlns:o='urn:schemas-microsoft-com:office:office'
+    xmlns:w='urn:schemas-microsoft-com:office:word'
+    xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/><title>${fname}</title>
+<style>body{font-family:'Times New Roman',Times,serif;font-size:12pt;margin:2.54cm;line-height:1.5;}
+h2{font-size:13pt;font-weight:bold;margin:16pt 0 6pt;} h3{font-size:12pt;font-weight:bold;margin:10pt 0 4pt;}
+table{border-collapse:collapse;width:100%;font-size:10pt;}
+td,th{border:1px solid #000;padding:4pt 6pt;vertical-align:top;}
+th{background:#f0f0f0;font-weight:bold;text-align:center;}
+p{margin:5pt 0;text-align:justify;} ol,ul{margin:4pt 0 4pt 16pt;}li{margin-bottom:3pt;}
+@page{size:A4;margin:2.54cm;}</style></head>
+<body>${content}</body></html>`;
+  const blob = new Blob(['﻿' + wordHtml], { type: 'application/msword;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fname.replace(/[^a-zA-Z0-9_\- ]/g,'_') + '.doc';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+  try{const _h=JSON.parse(localStorage.getItem('gen_history')||'[]');_h.unshift({tool:'SiRENJA',title:(fname||'Dokumen').replace(/_/g,' ').trim(),href:'sirenja.html',at:Date.now()});localStorage.setItem('gen_history',JSON.stringify(_h.slice(0,80)));}catch(_e){}
+}
+
+function exportPdf() {
+  const el = document.getElementById('docOutput');
+  if (typeof html2pdf === 'undefined') {
+    if (!window.__h2pLoading) {
+      window.__h2pLoading = true;
+      var __s = document.createElement('script');
+      __s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+      __s.onload = function () { window.__h2pLoading = false; exportPdf(); };
+      __s.onerror = function () { window.__h2pLoading = false; alert('Gagal memuat library PDF. Periksa koneksi internet Anda.'); };
+      document.head.appendChild(__s);
+    }
+    return;
+  }
+  const opd   = v('namaOpd') || 'OPD';
+  const tahun = v('tahunRenja') || '';
+  const prefix = v('jenisRenja') === 'perubahan' ? 'Renja_Perubahan_' : 'Renja_';
+  html2pdf().set({
+    margin:[1.5,1.5,1.5,2], filename:`${prefix}${opd}_${tahun}.pdf`,
+    image:{type:'jpeg',quality:.95}, html2canvas:{scale:2},
+    jsPDF:{unit:'cm',format:'a4',orientation:'portrait'}
+  }).from(el).save();
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function v(id) { return document.getElementById(id)?.value?.trim()||''; }
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function fmtRp(n) { return 'Rp ' + Math.round(n||0).toLocaleString('id-ID'); }
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('tahunRenja').value = new Date().getFullYear() + 1;
+  toggleJenisRenja();
+
+  // Mobile nav toggle
+  document.getElementById('navToggle')?.addEventListener('click', () => {
+    document.getElementById('navLinks')?.classList.toggle('open');
+  });
+
+  // Pre-load vismis dari SiGenDok/SiLKjIP
+  try {
+    const raw = localStorage.getItem('sigendok_vimis');
+    if (raw) {
+      const d = JSON.parse(raw);
+      if (d.visi && !document.getElementById('visiMisi').value)
+        document.getElementById('visiMisi').value = (d.visi ? 'Visi: ' + d.visi : '') + (d.misi ? '\nMisi: ' + d.misi : '');
+    }
+  } catch {}
+
+  // Default rows
+  addProgRow('program', { nama: '', indikator: '', target: '', satuan: '%', pagu: '' });
+  addProgRow('kegiatan');
+  addProgRow('subkegiatan');
+
+  // Nomenklatur Kepmendagri 050-5889/2021 (pemutakhiran)
+  loadNomenklaturIndex();
+
+  updateStepUI();
+
+  // Access badge
+  const access = getAccessStatus();
+  const badge = document.getElementById('accessBadge');
+  if (access.active) {
+    badge.textContent = access.unlimited ? '👑 Berbayar' : '💳 ' + access.credits + ' kredit';
+    badge.classList.add('active');
+  } else {
+    badge.textContent = '🔓 Demo';
+  }
+});
+</script>
+<script type="module" src="assets/js/nav-auth.js"></script>
+</body>
+</html>

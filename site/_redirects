@@ -1,0 +1,51 @@
+# Cloudflare Pages — _redirects (andriwulandika.uk)
+
+# Redirect domain pages.dev lama ke domain custom andriwulandika.uk
+https://andriwulandika.pages.dev/*  https://andriwulandika.uk/:splat  301
+
+# Redirect tanpa trailing slash ke dengan slash (opsional)
+/index  /  301
+
+# Redirect www ke non-www
+https://www.andriwulandika.uk/*  https://andriwulandika.uk/:splat  301
+
+# ── Migrasi ke ai.andriwulandika.uk — 301 permanen, jaga SEO ranking existing ──
+/sirenja.html                             https://ai.andriwulandika.uk/sirenja.html                             301
+/sirkpd.html                              https://ai.andriwulandika.uk/sirkpd.html                              301
+/siktor.html                              https://ai.andriwulandika.uk/siktor.html                              301
+/silkjip.html                             https://ai.andriwulandika.uk/silkjip.html                             301
+/siperda.html                             https://ai.andriwulandika.uk/siperda.html                             301
+/sigendok.html                            https://ai.andriwulandika.uk/sigendok.html                            301
+/sibacara.html                            https://ai.andriwulandika.uk/sibacara.html                            301
+/sitelaah.html                            https://ai.andriwulandika.uk/sitelaah.html                            301
+
+/harga.html                               https://ai.andriwulandika.uk/harga.html                               301
+/bayar.html                               https://ai.andriwulandika.uk/bayar.html                               301
+/aktifkan-pro.html                        https://ai.andriwulandika.uk/aktifkan-pro.html                        301
+/panduan-kredit.html                      https://ai.andriwulandika.uk/panduan-kredit.html                      301
+/dashboard.html                           https://ai.andriwulandika.uk/dashboard.html                           301
+/admin-kode.html                          https://ai.andriwulandika.uk/admin-kode.html                          301
+
+/template.html                            https://ai.andriwulandika.uk/template.html                            301
+/regulasi.html                            https://ai.andriwulandika.uk/regulasi.html                            301
+
+/cascading-perencanaan-daerah.html        https://ai.andriwulandika.uk/cascading-perencanaan-daerah.html        301
+/rkpd-dan-perubahan-rkpd.html             https://ai.andriwulandika.uk/rkpd-dan-perubahan-rkpd.html             301
+/sakip-dari-pk-hingga-lkjip.html          https://ai.andriwulandika.uk/sakip-dari-pk-hingga-lkjip.html          301
+/indikator-kinerja-utama-smart.html       https://ai.andriwulandika.uk/indikator-kinerja-utama-smart.html       301
+/menyusun-kak-tor.html                    https://ai.andriwulandika.uk/menyusun-kak-tor.html                    301
+/nota-dinas-vs-telaahan-staf.html         https://ai.andriwulandika.uk/nota-dinas-vs-telaahan-staf.html         301
+/berita-acara-rapat.html                  https://ai.andriwulandika.uk/berita-acara-rapat.html                  301
+/kesalahan-umum-dokumen-perencanaan.html  https://ai.andriwulandika.uk/kesalahan-umum-dokumen-perencanaan.html  301
+/cara-pakai-template-dokumen.html         https://ai.andriwulandika.uk/cara-pakai-template-dokumen.html         301
+/renja-opd-panduan-lengkap.html           https://ai.andriwulandika.uk/renja-opd-panduan-lengkap.html           301
+/renstra-opd-panduan-lengkap.html         https://ai.andriwulandika.uk/renstra-opd-panduan-lengkap.html         301
+/mengenal-website-andri-wulandika.html    https://ai.andriwulandika.uk/mengenal-website-andri-wulandika.html    301
+
+# Legacy alias lama, arahkan langsung ke domain baru (bukan lagi ke file lokal)
+/tools      https://ai.andriwulandika.uk/sirenja.html   301
+/ai-tools   https://ai.andriwulandika.uk/sirenja.html   301
+/pricing    https://ai.andriwulandika.uk/harga.html     301
+
+# Halaman 404 custom
+/*  /404.html  404

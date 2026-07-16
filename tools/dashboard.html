@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js"></script>
+  <script src="/assets/js/ui-enhance.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — Andri Wulandika</title>
+  <meta name="description" content="Ruang kerja AI Tools perencanaan daerah — akses semua aplikasi, panduan, dan riwayat dokumen yang Anda buat dalam satu tempat."/>
+  <meta name="robots" content="noindex"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #f5f6f8; --surface: #ffffff; --surface2: #f0f2f5;
+      --text: #1d1d1f; --text2: #6b7280; --text3: #9ca3af;
+      --accent: #0071e3; --accent-soft: #e8f1fd;
+      --green: #16a34a; --amber: #b45309; --red: #dc2626;
+      --border: #e5e7eb; --radius: 16px;
+      --sidebar-w: 256px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== App shell ===== */
+    .app { display: flex; min-height: 100vh; }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-w); flex-shrink: 0;
+      background: var(--surface); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; bottom: 0; left: 0; z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar-brand {
+      display: flex; align-items: center; gap: 10px;
+      padding: 20px 22px; border-bottom: 1px solid var(--border);
+    }
+    .sidebar-brand img { height: 26px; width: auto; }
+    .sidebar-brand .bname { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.02em; }
+    .sidebar-brand .bsub { font-size: 0.7rem; color: var(--text3); font-weight: 500; }
+
+    .sidebar-nav { flex: 1; overflow-y: auto; padding: 16px 12px; }
+    .nav-section { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); padding: 14px 12px 6px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 11px;
+      padding: 9px 12px; border-radius: 10px; font-size: 0.875rem; font-weight: 500;
+      color: var(--text2); transition: background 0.15s, color 0.15s; cursor: pointer;
+    }
+    .nav-item:hover { background: var(--surface2); color: var(--text); }
+    .nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+    .nav-item .ico { width: 20px; text-align: center; font-size: 0.95rem; flex-shrink: 0; }
+    .nav-item .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--tc, var(--accent)); margin-left: 2px; flex-shrink: 0; }
+
+    .sidebar-foot { border-top: 1px solid var(--border); padding: 14px 16px; }
+    .user-box { display: flex; align-items: center; gap: 10px; }
+    .user-avatar {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #0071e3, #5b21b6); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;
+    }
+    .user-meta { flex: 1; min-width: 0; }
+    .user-meta .uname { font-size: 0.82rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .user-meta .urole { font-size: 0.72rem; color: var(--text2); }
+    .logout-btn { font-size: 0.74rem; color: var(--text3); background: none; border: none; cursor: pointer; padding: 4px; }
+    .logout-btn:hover { color: var(--red); }
+
+    /* Main content */
+    .main { flex: 1; margin-left: var(--sidebar-w); min-width: 0; }
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      height: 60px; background: rgba(255,255,255,0.85); backdrop-filter: saturate(180%) blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 28px; gap: 12px;
+    }
+    .topbar .tb-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--border); border-radius: 9px; padding: 7px 10px; cursor: pointer; font-size: 1rem; }
+    .tb-title { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.78rem; font-weight: 600; padding: 6px 14px; border-radius: 980px;
+      border: 1px solid var(--border); color: var(--text2); white-space: nowrap;
+    }
+    .status-pill.active { color: var(--green); border-color: rgba(22,163,74,0.3); background: rgba(22,163,74,0.07); }
+    .status-pill.demo { color: var(--amber); border-color: rgba(180,83,9,0.3); background: rgba(180,83,9,0.07); }
+    .status-pill .led { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+    .content { padding: 28px; max-width: 1180px; }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative; overflow: hidden;
+      border-radius: 22px; padding: 30px 32px; margin-bottom: 22px;
+      background: linear-gradient(135deg, #0071e3 0%, #5b21b6 55%, #7c3aed 100%);
+      color: #fff;
+    }
+    .hero::after {
+      content: ''; position: absolute; right: -60px; top: -60px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.22), transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 { font-size: clamp(1.45rem, 3.2vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; position: relative; }
+    .hero p { font-size: 0.92rem; line-height: 1.6; max-width: 620px; opacity: 0.92; position: relative; }
+    .hero-chip {
+      display: inline-flex; align-items: center; gap: 7px; position: relative;
+      margin-top: 16px; padding: 7px 15px; border-radius: 980px;
+      font-size: 0.8rem; font-weight: 600;
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.28); color: #fff;
+      backdrop-filter: blur(4px);
+    }
+    .hero-chip .led { width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+    .hero-chip.demo .led { background: #fde68a; }
+    .hero-chip.active .led { background: #86efac; }
+
+    /* ===== Stats ===== */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 30px; }
+    @media (max-width: 720px) { .stats { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px 20px; display: flex; align-items: center; gap: 15px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .stat-ico {
+      width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.35rem;
+      background: var(--accent-soft);
+    }
+    .stat-ico.g { background: rgba(22,163,74,0.12); }
+    .stat-ico.p { background: rgba(124,58,237,0.12); }
+    .stat-meta .sv { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+    .stat-meta .sl { font-size: 0.78rem; color: var(--text2); margin-top: 2px; }
+
+    /* ===== Access banner ===== */
+    .banner {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 20px; margin-bottom: 30px;
+    }
+    .banner.demo { border-color: rgba(180,83,9,0.25); background: rgba(180,83,9,0.04); }
+    .banner.active { border-color: rgba(22,163,74,0.25); background: rgba(22,163,74,0.04); }
+    .banner-ico {
+      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+      background: var(--accent-soft);
+    }
+    .banner.demo .banner-ico { background: rgba(180,83,9,0.1); }
+    .banner.active .banner-ico { background: rgba(22,163,74,0.1); }
+    .banner-info { flex: 1; min-width: 220px; }
+    .banner-info strong { font-size: 0.92rem; display: block; margin-bottom: 2px; }
+    .banner-info span { font-size: 0.82rem; color: var(--text2); }
+    .banner-cta {
+      flex-shrink: 0; padding: 10px 20px; border-radius: 980px; font-size: 0.85rem; font-weight: 600;
+      background: var(--accent); color: #fff; transition: opacity 0.2s;
+    }
+    .banner-cta:hover { opacity: 0.88; }
+
+    /* ===== Section heads ===== */
+    .grid-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap: 12px; flex-wrap: wrap; }
+    .grid-head h2 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; }
+    .grid-head .gh-sub { font-size: 0.8rem; color: var(--text3); }
+    .ghost-btn {
+      font-size: 0.78rem; font-weight: 600; color: var(--text2);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 980px;
+      padding: 6px 14px; cursor: pointer; transition: all 0.15s;
+    }
+    .ghost-btn:hover { color: var(--red); border-color: rgba(220,38,38,0.3); }
+
+    /* ===== Tools grid ===== */
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 1100px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px) { .tools-grid { grid-template-columns: 1fr; } }
+
+    .tool-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; display: flex; flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .tool-card:hover { box-shadow: 0 10px 26px rgba(0,0,0,0.09); transform: translateY(-3px); }
+    .tool-head { display: flex; align-items: center; gap: 13px; margin-bottom: 12px; }
+    .tool-icon {
+      width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+      background: color-mix(in srgb, var(--tc) 14%, #fff); color: var(--tc);
+    }
+    .tool-name { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; }
+    .tool-tag { font-size: 0.72rem; color: var(--tc); font-weight: 600; }
+    .tool-desc { font-size: 0.84rem; color: var(--text2); line-height: 1.55; margin-bottom: 16px; flex: 1; }
+
+    .tool-btn {
+      display: block; text-align: center; padding: 10px;
+      background: var(--tc); color: #fff;
+      border-radius: 11px; font-size: 0.85rem; font-weight: 600;
+      transition: opacity 0.2s; margin-bottom: 8px;
+    }
+    .tool-btn:hover { opacity: 0.88; }
+
+    .guide { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 6px; }
+    .guide summary {
+      cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--text2);
+      list-style: none; display: flex; align-items: center; justify-content: space-between; padding: 6px 0;
+    }
+    .guide summary:hover { color: var(--text); }
+    .guide summary::-webkit-details-marker { display: none; }
+    .guide summary::after { content: '+'; color: var(--text3); font-weight: 400; font-size: 1.05rem; }
+    .guide[open] summary::after { content: '–'; }
+    .guide-body { padding: 4px 0 8px; }
+    .guide-steps { list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+    .guide-steps li {
+      counter-increment: step; font-size: 0.81rem; color: var(--text2); line-height: 1.45;
+      display: flex; gap: 9px; align-items: flex-start;
+    }
+    .guide-steps li::before {
+      content: counter(step); flex-shrink: 0;
+      width: 19px; height: 19px; border-radius: 50%; background: var(--surface2);
+      color: var(--text); font-size: 0.68rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .guide-link { font-size: 0.79rem; color: var(--tc); font-weight: 600; }
+    .guide-link:hover { text-decoration: underline; }
+
+    /* ===== Riwayat ===== */
+    .history { margin-top: 40px; }
+    .history-list {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .history-row {
+      display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+      border-bottom: 1px solid var(--border); transition: background 0.15s;
+    }
+    .history-row:last-child { border-bottom: none; }
+    .history-row:hover { background: var(--surface2); }
+    .hr-ico {
+      width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+      background: color-mix(in srgb, var(--tc) 14%, #fff); color: var(--tc);
+    }
+    .hr-main { flex: 1; min-width: 0; }
+    .hr-title { font-size: 0.9rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hr-meta { font-size: 0.76rem; color: var(--text2); margin-top: 2px; }
+    .hr-meta .hr-tool { color: var(--tc); font-weight: 600; }
+    .hr-open {
+      flex-shrink: 0; font-size: 0.78rem; font-weight: 600; color: var(--tc);
+      border: 1px solid color-mix(in srgb, var(--tc) 35%, var(--border)); border-radius: 980px;
+      padding: 6px 14px; transition: all 0.15s; white-space: nowrap;
+    }
+    .hr-open:hover { background: color-mix(in srgb, var(--tc) 10%, #fff); }
+
+    .history-empty {
+      background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius);
+      padding: 44px 24px; text-align: center;
+    }
+    .history-empty .he-emoji { font-size: 2.4rem; }
+    .history-empty strong { display: block; font-size: 0.98rem; margin: 12px 0 5px; }
+    .history-empty p { font-size: 0.85rem; color: var(--text2); line-height: 1.55; max-width: 420px; margin: 0 auto 18px; }
+    .history-empty a {
+      display: inline-block; padding: 10px 22px; border-radius: 980px;
+      background: var(--accent); color: #fff; font-size: 0.85rem; font-weight: 600;
+    }
+
+    /* Quality note */
+    .quality-note {
+      margin-top: 30px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 22px; display: flex; gap: 14px; align-items: flex-start;
+    }
+    .quality-note .qn-ico { font-size: 1.3rem; flex-shrink: 0; }
+    .quality-note strong { font-size: 0.9rem; }
+    .quality-note p { font-size: 0.83rem; color: var(--text2); line-height: 1.55; margin-top: 3px; }
+
+    /* Overlay for mobile sidebar */
+    .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
+
+    @media (max-width: 860px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .menu-toggle { display: inline-flex; }
+      .overlay.show { display: block; }
+    }
+  </style>
+</head>
+<body data-enhance="off">
+
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <a href="https://andriwulandika.uk/" class="sidebar-brand">
+      <img src="assets/logo.png?v=2" alt="AW"/>
+      <div>
+        <div class="bname">Andri Wulandika</div>
+        <div class="bsub">Ruang Kerja AI Tools</div>
+      </div>
+    </a>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Menu</div>
+      <a class="nav-item active"><span class="ico">🏠</span> Dashboard</a>
+      <a href="#riwayat" class="nav-item"><span class="ico">🕘</span> Riwayat Dokumen</a>
+      <a href="https://andriwulandika.uk/" class="nav-item"><span class="ico">🌐</span> Beranda Situs</a>
+      <a href="harga.html" class="nav-item"><span class="ico">💳</span> Langganan</a>
+
+      <div class="nav-section">AI Tools</div>
+      <a href="sirenja.html" class="nav-item"><span class="dot" style="--tc:#0071e3;"></span> SiRENJA</a>
+      <a href="sirkpd.html" class="nav-item"><span class="dot" style="--tc:#34c759;"></span> SiRKPD</a>
+      <a href="siperda.html" class="nav-item"><span class="dot" style="--tc:#14b8a6;"></span> SiPerda</a>
+      <a href="sigendok.html" class="nav-item"><span class="dot" style="--tc:#7c3aed;"></span> SiGenDok</a>
+      <a href="silkjip.html" class="nav-item"><span class="dot" style="--tc:#16a34a;"></span> SiLKjIP</a>
+      <a href="siktor.html" class="nav-item"><span class="dot" style="--tc:#b45309;"></span> SiKTOR</a>
+      <a href="sitelaah.html" class="nav-item"><span class="dot" style="--tc:#0d9488;"></span> SiTelaah</a>
+      <a href="sibacara.html" class="nav-item"><span class="dot" style="--tc:#4f46e5;"></span> SiBACARA</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="user-box">
+        <div class="user-avatar" id="userAvatar">AW</div>
+        <div class="user-meta">
+          <div class="uname" id="userName">Pengguna</div>
+          <div class="urole" id="userRole">Mode Demo</div>
+        </div>
+        <button class="logout-btn" id="logoutBtn" title="Keluar" style="display:none;">Keluar</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+        <span class="tb-title">Dashboard</span>
+      </div>
+      <span class="status-pill" id="navStatus"><span class="led"></span> Memeriksa…</span>
+    </header>
+
+    <div class="content">
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1 id="heroTitle">Selamat datang 👋</h1>
+        <p>Ini ruang kerja Anda. Semua AI Tools, panduan penggunaan, dan riwayat dokumen yang pernah Anda buat ada di satu tempat. Pilih aplikasi untuk mulai bekerja.</p>
+        <span class="hero-chip" id="heroChip"><span class="led"></span> Memeriksa status…</span>
+      </section>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-ico p">📄</div>
+          <div class="stat-meta"><div class="sv" id="statTotal">0</div><div class="sl">Dokumen dibuat</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-ico g">⭐</div>
+          <div class="stat-meta"><div class="sv" id="statFav">—</div><div class="sl">Tool paling sering dipakai</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-ico">🕘</div>
+          <div class="stat-meta"><div class="sv" id="statLast">—</div><div class="sl">Dokumen terakhir</div></div>
+        </div>
+      </div>
+
+      <!-- Access banner -->
+      <div class="banner" id="banner">
+        <div class="banner-ico" id="bannerIco">⏳</div>
+        <div class="banner-info">
+          <strong id="bannerTitle">Memeriksa status akses…</strong>
+          <span id="bannerDetail">Mohon tunggu sebentar.</span>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="grid-head">
+        <h2>AI Tools</h2>
+        <span class="gh-sub">8 aplikasi</span>
+      </div>
+      <div class="tools-grid">
+
+        <article class="tool-card" style="--tc:#0071e3;">
+          <div class="tool-head">
+            <div class="tool-icon">📑</div>
+            <div><div class="tool-name">SiRENJA</div><div class="tool-tag">AI Asisten · Renja OPD</div></div>
+          </div>
+          <p class="tool-desc">Susun Renja OPD lebih cepat — pilih program/kegiatan sesuai nomenklatur resmi terbaru, lalu biarkan AI menyusun narasinya.</p>
+          <a href="sirenja.html" class="tool-btn">Buka Aplikasi →</a>
+          <details class="guide"><summary>📘 Panduan Penggunaan</summary><div class="guide-body">
+            <ol class="guide-steps">
+              <li>Isi Data OPD (nama, tugas, fungsi)</li>
+              <li>Pilih Program &amp; Kegiatan sesuai nomenklatur resmi</li>
+              <li>Tentukan Isu &amp; Prioritas daerah</li>
+              <li>AI menyusun narasi Renja</li>
+              <li>Preview &amp; Ekspor dokumen</li>
+            </ol>
+            <a href="renja-opd-panduan-lengkap.html" class="guide-link">Baca panduan lengkap →</a>
+          </div></details>
+        </article>
+
+        <article class="tool-card" style="--tc:#34c759;">
+          <div class="tool-head">
+            <div class="tool-icon">🏛️</div>
+            <div><div class="tool-name">SiRKPD</div><div class="tool-tag">AI Asisten · RKPD</div></div>
+          </div>
+          <p class="tool-desc">Bantu penyusunan RKPD dari isu strategis hingga program prioritas, lengkap dengan nomenklatur resmi terbaru.</p>
+          <a href="sirkpd.html" class="tool-btn">Buka Aplikasi →</a>
+          <details class="guide"><summary>📘 Panduan Penggunaan</summary><div class="guide-body">
+            <ol class="guide-steps">
+              <li>Isi Identitas Daerah</li>
+              <li>Jelaskan Kondisi Daerah saat ini</li>
+              <li>Tentukan Isu Strategis</li>
+              <li>Susun Program Prioritas sesuai nomenklatur resmi</li>
+              <li>Preview &amp; Ekspor dokumen</li>
+            </ol>
+            <a href="rkpd-dan-perubahan-rkpd.html" class="guide-link">Baca panduan lengkap →</a>
+          </div></details>
+        </article>
+
+        <article class="tool-card" style="--tc:#14b8a6;">
+          <div class="tool-head">
+            <div class="tool-icon">💬</div>
+            <div><div class="tool-name">SiPerda</div><div class="tool-tag">AI Chat · Konsultasi</div></div>
+          </div>
+          <p class="tool-desc">Tanya langsung ke AI ahli perencanaan daerah seputar RKPD, Renja, Renstra, SAKIP, RAB, dan regulasi terkait.</p>
+          <a href="siperda.html" class="tool-btn">Buka Aplikasi →</a>
+          <details class="guide"><summary>📘 Panduan Penggunaan</summary><div class="guide-body">
+            <ol class="guide-steps">
+              <li>Ketik pertanyaan Anda di kolom chat</li>
+              <li>AI menjawab berdasarkan regulasi &amp; praktik terbaik perencanaan daerah</li>
+              <li>Lanjutkan tanya-jawab untuk memperdalam topik</li>
+            </ol>
+            <a href="regulasi.html" class="guide-link">Lihat kumpulan regulasi →</a>
+          </div></details>
+        </article>
+
+        <article class="tool-card" style="--tc:#7c3aed;">
+          <div class="tool-head">
+            <div class="tool-icon">📄</div>
+            <div><div class="tool-name">SiGenDok</div><div class="tool-tag">Generator Dokumen</div></div>
+          </div>
+          <p class="tool-desc">Isi formulir, langsung dapat dokumen resmi — PK berjenjang, SKP, Renstra OPD, Renja Perubahan, Telaahan Staf, Berita Acara, dan lainnya.</p>
+          <a href="sigendok.html" class="tool-btn">Buka Aplikasi →</a>
+          <details class="guide"><summary>📘 Panduan Penggunaan</summary><div class="guide-body">
+            <ol class="guide-steps">
+              <li>Pilih jenis dokumen (Renja, LKjIP, PK, Renstra, Telaahan Staf, Berita Acara, dll.)</li>
+              <li>Isi formulir sesuai jenis dokumen</li>
+              <li>Generate &amp; unduh dokumen siap pakai</li>
+            </ol>
+            <a href="cara-pakai-template-dokumen.html" class="guide-link">Baca panduan lengkap →</a>
+          </div></details>
+        </article>
+
+        <article class="tool-card" style="--tc:#16a34a;">
+          <div class="tool-head">
+            <div class="tool-icon">📊</div>
+            <div><div class="tool-name">SiLKjIP</div><div class="tool-tag">AI Writer · LKjIP</div></div>
+          </div>
+          <p class="tool-desc">Buat LKjIP lengkap dengan wizard 5 langkah, dari data OPD hingga analisis capaian kinerja yang disusun otomatis oleh AI.</p>
+          <a href="silkjip.html" class="tool-btn">Buka Aplikasi →</a>
+          <details class="guide"><summary>📘 Panduan Penggunaan</summary><div class="guide-body">
+            <ol class="guide-steps">
+              <li>Isi Data OPD</li>
+              <li>Tentukan Sasaran &amp; IKU</li>
+              <li>Masukkan Realisasi kinerja</li>
+              <li>AI menyusun Analisis capaian</li>
+              <li>Preview &amp; Ekspor dokumen</li>
+            </ol>
+            <a href="sakip-dari-pk-hingga-lkjip.html" class="guide-link">Baca panduan lengkap →</a>
+          </div></details>
+        </article>
+
+        <article class="tool-card" style="--tc:#b45309;">
+          <div class="tool-head">
+            <div class="tool-icon">🧾</div>
+            <div><div class="tool-name">SiKTOR</div><div class="tool-tag">AI Writer · KAK/TOR</div></div>
+          </div>
+          <p class="tool-desc">Buat Kerangka Acuan Kerja (KAK/TOR) lengkap — identitas kegiatan, anggaran, jadwal, hingga narasi disusun otomatis oleh AI.</p>
+          <a href="siktor.html" class="tool-btn">Buka Aplikasi →</a>
+          <details class="guide"><summary>📘 Panduan Penggunaan</summary><div class="guide-body">
+            <ol class="guide-steps">
+              <li>Isi Identitas kegiatan</li>
+              <li>Lengkapi Detail kegiatan</li>
+              <li>Susun Anggaran &amp; Jadwal</li>
+              <li>AI menyusun narasi KAK/TOR</li>
+              <li>Preview &amp; Ekspor dokumen</li>
+            </ol>
+            <a href="menyusun-kak-tor.html" class="guide-link">Baca panduan lengkap →</a>
+          </div></details>
+        </article>
+
+        <article class="tool-card" style="--tc:#0d9488;">
+          <div class="tool-head">
+            <div class="tool-icon">✍️</div>
+            <div><div class="tool-name">SiTelaah</div><div class="tool-tag">AI Writer · Telaahan Staf</div></div>
+          </div>
+          <p class="tool-desc">AI Writer untuk Telaahan Staf &amp; Nota Dinas — isi identitas surat dan uraian masalah, AI yang menyusun narasinya.</p>
+          <a href="sitelaah.html" class="tool-btn">Buka Aplikasi →</a>
+          <details class="guide"><summary>📘 Panduan Penggunaan</summary><div class="guide-body">
+            <ol class="guide-steps">
+              <li>Isi identitas surat (nomor, tujuan, perihal)</li>
+              <li>Isi uraian / pokok masalah</li>
+              <li>AI menyusun narasi telaahan</li>
+              <li>Ekspor dokumen</li>
+            </ol>
+            <a href="nota-dinas-vs-telaahan-staf.html" class="guide-link">Baca panduan lengkap →</a>
+          </div></details>
+        </article>
+
+        <article class="tool-card" style="--tc:#4f46e5;">
+          <div class="tool-head">
+            <div class="tool-icon">🗒️</div>
+            <div><div class="tool-name">SiBACARA</div><div class="tool-tag">AI Writer · Berita Acara</div></div>
+          </div>
+          <p class="tool-desc">AI Writer untuk Berita Acara Rapat — isi identitas rapat dan poin pembahasan, AI yang menyusun narasinya.</p>
+          <a href="sibacara.html" class="tool-btn">Buka Aplikasi →</a>
+          <details class="guide"><summary>📘 Panduan Penggunaan</summary><div class="guide-body">
+            <ol class="guide-steps">
+              <li>Isi identitas rapat (nomor, agenda, peserta)</li>
+              <li>Isi poin pembahasan &amp; kesimpulan</li>
+              <li>AI menyusun narasi berita acara</li>
+              <li>Ekspor dokumen</li>
+            </ol>
+            <a href="berita-acara-rapat.html" class="guide-link">Baca panduan lengkap →</a>
+          </div></details>
+        </article>
+
+      </div>
+
+      <!-- Riwayat Generate Dokumen -->
+      <section class="history" id="riwayat">
+        <div class="grid-head">
+          <div>
+            <h2>🕘 Riwayat Generate Dokumen</h2>
+            <span class="gh-sub" id="historySub">Dokumen yang Anda ekspor akan tercatat di sini</span>
+          </div>
+          <button class="ghost-btn" id="clearHistoryBtn" style="display:none;">Hapus Riwayat</button>
+        </div>
+        <div id="historyContainer"></div>
+      </section>
+
+      <div class="quality-note">
+        <span class="qn-ico">🏆</span>
+        <div>
+          <strong>Standar dokumen terbaik nasional</strong>
+          <p>Seluruh AI Writer dirancang menghasilkan dokumen dengan struktur, kedalaman, dan gaya narasi mengacu pada praktik dokumen perencanaan <strong>Kabupaten Banyuwangi</strong> — peraih Penghargaan Pembangunan Daerah (PPD) Bappenas.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script type="module">
+  import { getAccessStatus, clearAccess } from './assets/js/apiService.js';
+
+  // Metadata tiap tool untuk tampilan riwayat (ikon, warna, nama tampilan).
+  const TOOLS = {
+    SiRENJA:  { icon: '📑', color: '#0071e3', href: 'sirenja.html',  label: 'SiRENJA · Renja OPD' },
+    SiRKPD:   { icon: '🏛️', color: '#34c759', href: 'sirkpd.html',   label: 'SiRKPD · RKPD' },
+    SiGenDok: { icon: '📄', color: '#7c3aed', href: 'sigendok.html', label: 'SiGenDok · Generator Dokumen' },
+    SiLKjIP:  { icon: '📊', color: '#16a34a', href: 'silkjip.html',  label: 'SiLKjIP · LKjIP' },
+    SiKTOR:   { icon: '🧾', color: '#b45309', href: 'siktor.html',   label: 'SiKTOR · KAK/TOR' },
+    SiTelaah: { icon: '✍️', color: '#0d9488', href: 'sitelaah.html', label: 'SiTelaah · Telaahan Staf' },
+    SiBACARA: { icon: '🗒️', color: '#4f46e5', href: 'sibacara.html', label: 'SiBACARA · Berita Acara' },
+  };
+
+  const fmtDateFull = (d) => new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  function relativeTime(ts) {
+    const diff = Date.now() - ts;
+    const min = Math.round(diff / 60000);
+    if (min < 1) return 'Baru saja';
+    if (min < 60) return `${min} menit lalu`;
+    const hr = Math.round(min / 60);
+    if (hr < 24) return `${hr} jam lalu`;
+    const day = Math.round(hr / 24);
+    if (day === 1) return 'Kemarin';
+    if (day < 7) return `${day} hari lalu`;
+    return new Date(ts).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function getHistory() {
+    try {
+      const arr = JSON.parse(localStorage.getItem('gen_history') || '[]');
+      return Array.isArray(arr) ? arr.filter(e => e && e.at && TOOLS[e.tool]) : [];
+    } catch { return []; }
+  }
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
+
+  function renderHistory() {
+    const history = getHistory();
+    const container = document.getElementById('historyContainer');
+    const clearBtn = document.getElementById('clearHistoryBtn');
+    const sub = document.getElementById('historySub');
+
+    // Stats
+    document.getElementById('statTotal').textContent = history.length;
+    if (history.length) {
+      const counts = {};
+      history.forEach(e => { counts[e.tool] = (counts[e.tool] || 0) + 1; });
+      const favKey = Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0];
+      document.getElementById('statFav').textContent = favKey;
+      document.getElementById('statLast').textContent = relativeTime(history[0].at);
+      sub.textContent = `${history.length} dokumen telah Anda ekspor dari perangkat ini`;
+      clearBtn.style.display = 'inline-block';
+    } else {
+      document.getElementById('statFav').textContent = '—';
+      document.getElementById('statLast').textContent = '—';
+      clearBtn.style.display = 'none';
+    }
+
+    if (!history.length) {
+      container.innerHTML = `
+        <div class="history-empty">
+          <div class="he-emoji">🗂️</div>
+          <strong>Belum ada dokumen</strong>
+          <p>Setiap kali Anda mengekspor dokumen dari salah satu AI Tools, catatannya akan otomatis muncul di sini — lengkap dengan tautan untuk membukanya lagi.</p>
+          <a href="sigendok.html">Buat dokumen pertama →</a>
+        </div>`;
+      return;
+    }
+
+    const rows = history.map(e => {
+      const t = TOOLS[e.tool];
+      return `
+        <div class="history-row" style="--tc:${t.color};">
+          <div class="hr-ico">${t.icon}</div>
+          <div class="hr-main">
+            <div class="hr-title">${esc(e.title || 'Dokumen')}</div>
+            <div class="hr-meta"><span class="hr-tool">${esc(e.tool)}</span> · ${relativeTime(e.at)} · ${fmtDateFull(e.at)}</div>
+          </div>
+          <a href="${t.href}" class="hr-open">Buka lagi →</a>
+        </div>`;
+    }).join('');
+    container.innerHTML = `<div class="history-list">${rows}</div>`;
+  }
+
+  function render() {
+    const status = getAccessStatus();
+    const navStatus = document.getElementById('navStatus');
+    const heroChip = document.getElementById('heroChip');
+    const heroTitle = document.getElementById('heroTitle');
+    const banner = document.getElementById('banner');
+    const bannerIco = document.getElementById('bannerIco');
+    const bannerTitle = document.getElementById('bannerTitle');
+    const bannerDetail = document.getElementById('bannerDetail');
+    const userName = document.getElementById('userName');
+    const userRole = document.getElementById('userRole');
+    const userAvatar = document.getElementById('userAvatar');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    const WA_TOPUP = 'https://wa.me/62811660568?text=' + encodeURIComponent('Halo, saya ingin top-up kredit untuk kode akses Andri Wulandika saya.');
+    const bindLogout = () => {
+      logoutBtn.style.display = 'inline';
+      logoutBtn.addEventListener('click', () => {
+        if (!confirm('Keluar dari akun ini di perangkat ini?')) return;
+        clearAccess();
+        location.reload();
+      });
+    };
+
+    // Sapaan sesuai waktu
+    const h = new Date().getHours();
+    const greet = h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 19 ? 'Selamat sore' : 'Selamat malam';
+    const name = status.loggedIn && status.name ? status.name : '';
+    heroTitle.textContent = `${greet}${name ? ', ' + name : ''} 👋`;
+
+    if (status.active) {
+      const credits = status.credits;
+      navStatus.classList.add('active');
+      navStatus.innerHTML = '<span class="led"></span> ' + (status.unlimited ? 'Akses Penuh' : credits + ' kredit');
+      heroChip.classList.add('active');
+      heroChip.innerHTML = '<span class="led"></span> ' + (status.unlimited
+        ? `Akses penuh aktif${status.expiresAt ? ' hingga ' + fmtDateFull(status.expiresAt) : ''}`
+        : `💳 Sisa kredit: ${credits} dokumen`);
+
+      banner.classList.add('active');
+      bannerIco.textContent = status.unlimited ? '✅' : '💳';
+      bannerTitle.textContent = status.unlimited
+        ? `Akses penuh aktif${status.name ? ' — ' + status.name : ''}`
+        : `Sisa kredit: ${credits} dokumen`;
+      bannerDetail.textContent = status.unlimited
+        ? `Semua AI Tools tanpa potong kredit${status.expiresAt ? ' · Aktif hingga ' + fmtDateFull(status.expiresAt) : ''}`
+        : 'Setiap dokumen yang berhasil dibuat memakai 1 kredit · hasil penuh tanpa potongan.';
+
+      if (!status.unlimited) {
+        const cta = document.createElement('a');
+        cta.href = WA_TOPUP; cta.target = '_blank'; cta.rel = 'noopener';
+        cta.className = 'banner-cta'; cta.textContent = 'Top-up Kredit';
+        banner.appendChild(cta);
+      }
+
+      userName.textContent = status.name || 'Pengguna';
+      userAvatar.textContent = (status.name || 'P').trim().charAt(0).toUpperCase() || 'U';
+      userRole.textContent = status.unlimited ? 'Akses Penuh' : `${credits} kredit`;
+      bindLogout();
+    } else {
+      const habis = status.loggedIn; // sudah login tapi kredit 0
+      navStatus.classList.add('demo');
+      navStatus.innerHTML = '<span class="led"></span> ' + (habis ? 'Kredit habis' : 'Mode Demo');
+      heroChip.classList.add('demo');
+      heroChip.innerHTML = '<span class="led"></span> ' + (habis ? 'Kredit habis — silakan top-up' : 'Mode Demo — hasil masih dibatasi');
+
+      banner.classList.add('demo');
+      bannerIco.textContent = habis ? '💳' : '🔓';
+      bannerTitle.textContent = habis ? 'Kredit Anda habis' : 'Anda menggunakan Mode Demo';
+      bannerDetail.textContent = habis
+        ? 'Hasil kembali dibatasi (preview). Top-up kredit untuk lanjut membuat dokumen lengkap.'
+        : 'Hasil tiap AI Tools masih dibatasi (preview). Beli kredit untuk hasil lengkap — bayar sesuai pemakaian.';
+
+      userName.textContent = habis ? (status.name || 'Pengguna') : 'Tamu';
+      userRole.textContent = habis ? '0 kredit' : 'Mode Demo';
+      userAvatar.textContent = habis ? ((status.name || 'P').trim().charAt(0).toUpperCase() || 'U') : '?';
+
+      const cta = document.createElement('a');
+      cta.className = 'banner-cta';
+      if (habis) { cta.href = WA_TOPUP; cta.target = '_blank'; cta.rel = 'noopener'; cta.textContent = 'Top-up Kredit'; bindLogout(); }
+      else { cta.href = 'aktifkan-pro.html'; cta.textContent = 'Beli Kredit'; }
+      banner.appendChild(cta);
+    }
+  }
+
+  // Sidebar mobile toggle
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    sidebar.classList.add('open'); overlay.classList.add('show');
+  });
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open'); overlay.classList.remove('show');
+  });
+
+  // Hapus riwayat
+  document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+    if (!confirm('Hapus seluruh riwayat dokumen di perangkat ini? Tindakan ini tidak bisa dibatalkan.')) return;
+    localStorage.removeItem('gen_history');
+    renderHistory();
+  });
+
+  render();
+  renderHistory();
+</script>
+</body>
+</html>
