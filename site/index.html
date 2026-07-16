@@ -236,6 +236,18 @@
     .plus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     @media (max-width: 700px) { .plus-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 460px) { .plus-grid { grid-template-columns: 1fr; } }
+
+    /* LAYANAN DIGITAL */
+    .layanan-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 600px) { .layanan-grid { grid-template-columns: 1fr; } }
+    .layanan-card {
+      display: block; text-decoration: none;
+      background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 26px;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,1,1), box-shadow 0.4s cubic-bezier(0.34,1.56,1,1), border-color 0.3s ease, background 0.2s ease;
+    }
+    .layanan-card:hover { border-color: rgba(99,102,241,0.4); background: var(--glass2); transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,0.35); }
+    .layanan-card-cta { display: inline-block; margin-top: 14px; font-size: 0.82rem; font-weight: 700; color: var(--accent); }
     .plus-card {
       background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 24px 22px;
@@ -445,8 +457,8 @@
   <a href="/" class="nav-logo">Andri Wulandika</a>
   <ul class="nav-links">
     <li><a href="/" class="active">Beranda</a></li>
+    <li><a href="#layanan">Layanan Digital</a></li>
     <li><a href="#paket">Paket Harga</a></li>
-    <li><a href="https://ai.andriwulandika.uk/harga.html">AI Tools</a></li>
     <li><a href="tentang.html">Tentang</a></li>
     <li><a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20tanya%20soal%20jasa%20pembuatan%20website." target="_blank" rel="noopener" class="nav-cta">💬 Konsultasi</a></li>
   </ul>
@@ -497,6 +509,29 @@
     <div class="trust-item"><span class="trust-icon">☁️</span> Hosting Cloudflare gratis</div>
   </div>
 </div>
+
+<!-- LAYANAN DIGITAL -->
+<section class="plus-section" id="layanan">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Layanan Digital</p>
+    <h2 class="section-title reveal">Dua layanan, satu tujuan:<br/>bantu Anda tampil profesional online.</h2>
+    <p class="section-sub reveal">Selain jasa pembuatan website, saya juga membangun dan mengelola platform AI Tools untuk ASN perencana daerah se-Indonesia.</p>
+    <div class="layanan-grid">
+      <a href="#paket" class="layanan-card reveal">
+        <div class="plus-card-icon-box icon-blue">🌐</div>
+        <div class="plus-card-title">Jasa Pembuatan Website</div>
+        <div class="plus-card-desc">Website bisnis, profil instansi/OPD, dan landing page — desain modern, SEO-ready, hosting gratis. Mulai dari Rp 750rb.</div>
+        <span class="layanan-card-cta">Lihat paket harga ↓</span>
+      </a>
+      <a href="https://ai.andriwulandika.uk/" target="_blank" rel="noopener" class="layanan-card reveal reveal-d1">
+        <div class="plus-card-icon-box icon-purple">🤖</div>
+        <div class="plus-card-title">AI Tools Perencanaan Daerah</div>
+        <div class="plus-card-desc">Platform 8 AI tools gratis untuk ASN se-Indonesia — generator Renja OPD, RKPD, LKjIP, KAK/TOR, Nota Dinas, dan lainnya.</div>
+        <span class="layanan-card-cta">Kunjungi platform →</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- KEUNGGULAN -->
 <section class="plus-section">
@@ -834,7 +869,7 @@
     <span class="footer-left">&copy; 2026 Andri Wulandika. Jasa Pembuatan Website Profesional.</span>
     <div class="footer-links">
       <a href="/">Beranda</a>
-      <a href="https://ai.andriwulandika.uk/harga.html">AI Tools</a>
+      <a href="#layanan">Layanan Digital</a>
       <a href="tentang.html">Tentang</a>
       <a href="https://wa.me/62811660568" target="_blank" rel="noopener">WhatsApp</a>
     </div>
