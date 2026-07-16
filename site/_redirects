@@ -9,6 +9,9 @@ https://andriwulandika.pages.dev/*  https://andriwulandika.uk/:splat  301
 # Redirect www ke non-www
 https://www.andriwulandika.uk/*  https://andriwulandika.uk/:splat  301
 
+# jasa.html digabung ke beranda (redesain jasa pembuatan website)
+/jasa.html  /  301
+
 # ── Migrasi ke ai.andriwulandika.uk — 301 permanen, jaga SEO ranking existing ──
 /sirenja.html                             https://ai.andriwulandika.uk/sirenja.html                             301
 /sirkpd.html                              https://ai.andriwulandika.uk/sirkpd.html                              301
