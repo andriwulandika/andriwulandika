@@ -13,6 +13,7 @@
     "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@radix-ui/react-navigation-menu": "^1.2.18",
     "@radix-ui/react-slot": "^1.3.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
