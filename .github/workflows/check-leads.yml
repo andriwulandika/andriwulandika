@@ -2,6 +2,11 @@ name: Cek leads D1 (remote)
 
 on:
   workflow_dispatch:
+  # push-trigger pada file ini sendiri diperlukan agar GitHub meregistrasi
+  # workflow (file belum ada di branch default, dispatch-only akan 404)
+  push:
+    paths:
+      - ".github/workflows/check-leads.yml"
 
 jobs:
   query:
