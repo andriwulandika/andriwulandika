@@ -37,7 +37,7 @@ export default function AboutPage() {
           About
         </p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-          Dari dokumen ke dampak.
+          Mitra Transformasi Digital untuk Pemerintah dan Bisnis
         </h1>
         <p className="mt-4 text-muted-foreground">
           Andri Wulandika — Perencana Ahli Pertama yang menghabiskan
@@ -47,30 +47,12 @@ export default function AboutPage() {
         </p>
       </section>
 
+      {/* Placeholder: cerita personal akan ditulis langsung oleh Andri, bukan digenerasikan */}
       <section className="border-y border-border/60 bg-muted/30">
-        <div className="mx-auto grid max-w-5xl gap-10 px-6 py-16 sm:grid-cols-2">
-          <FadeIn>
-            <h2 className="text-xl font-semibold">Praktisi, bukan sekadar teori</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Sebagai Perencana Ahli Pertama di Bappeda Kabupaten Aceh
-              Tenggara, saya terlibat langsung dalam penyusunan RPJMD, RKPD,
-              review teknis dokumen OPD, hingga koordinasi lintas 51 OPD
-              sebagai bagian dari TAPD. Pengalaman ini membentuk cara saya
-              membangun sistem digital — selalu dimulai dari memahami
-              proses kerja sungguhan, bukan asumsi.
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <h2 className="text-xl font-semibold">Dari perencanaan ke produk digital</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Kebutuhan nyata di lapangan mendorong saya membangun 8 AI Tools
-              untuk membantu ASN menyusun dokumen perencanaan lebih cepat,
-              lalu berkembang ke jasa pembuatan website dan sistem digital
-              untuk pemerintah maupun bisnis. Sekarang, saya membantu
-              organisasi lain melewati jalan yang sama — dari dokumen ke
-              dampak nyata.
-            </p>
-          </FadeIn>
+        <div className="mx-auto max-w-5xl px-6 py-16">
+          <div className="rounded-lg border-2 border-dashed border-border p-10 text-center text-sm text-muted-foreground">
+            TODO: Andri akan isi cerita personal di sini
+          </div>
         </div>
       </section>
 

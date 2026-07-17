@@ -1,0 +1,38 @@
+name: Cek leads D1 (remote)
+
+on:
+  workflow_dispatch:
+  # push-trigger pada file ini sendiri diperlukan agar GitHub meregistrasi
+  # workflow (file belum ada di branch default, dispatch-only akan 404)
+  push:
+    paths:
+      - ".github/workflows/check-leads.yml"
+
+jobs:
+  query:
+    name: Tampilkan isi tabel leads
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Query 20 leads terbaru
+        run: >
+          npx wrangler@4 d1 execute andriwulandika-web-db --remote --command
+          "SELECT id, name, email, company, substr(message, 1, 80) AS message, source,
+           datetime(created_at, 'unixepoch') AS created_at_utc
+           FROM leads ORDER BY created_at DESC LIMIT 20"
+
+      - name: Hitung total leads
+        run: >
+          npx wrangler@4 d1 execute andriwulandika-web-db --remote --command
+          "SELECT COUNT(*) AS total_leads FROM leads"

@@ -8,6 +8,13 @@
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
 	},
+	"routes": [
+		// Custom domain produksi. Sebelum deploy pertama dengan routes ini,
+		// domain harus dilepas dulu dari Pages project lama "andriwulandika"
+		// (Pages → Custom domains), kalau tidak wrangler menolak attach.
+		{ "pattern": "andriwulandika.uk", "custom_domain": true },
+		{ "pattern": "www.andriwulandika.uk", "custom_domain": true }
+	],
 	"services": [
 		{
 			// Self-reference service binding, the service name must match the worker name
@@ -21,7 +28,6 @@
 		// See https://opennext.js.org/cloudflare/caching
 		{
 			"binding": "NEXT_INC_CACHE_R2_BUCKET",
-			// Create the bucket before deploying (Fase 0: belum dibuat, lihat laporan)
 			"bucket_name": "andriwulandika-web-opennext-cache"
 		}
 	],

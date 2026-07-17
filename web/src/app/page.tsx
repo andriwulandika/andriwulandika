@@ -31,14 +31,13 @@ export default function Home() {
           Digital Transformation Consultant
         </p>
         <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">
-          Dari dokumen ke dampak —
-          <br className="hidden sm:block" /> transformasi digital yang{" "}
-          <span className="text-primary/70">nyata</span>.
+          Mitra Transformasi Digital untuk
+          <br className="hidden sm:block" /> Pemerintah dan{" "}
+          <span className="text-primary/70">Bisnis</span>
         </h1>
         <p className="mt-6 max-w-xl text-balance text-muted-foreground">
-          Website, aplikasi web, dashboard pemerintah, AI automation, hingga
-          konsultasi transformasi digital end-to-end — untuk instansi dan
-          organisasi yang serius ingin bertransformasi.
+          Kami bantu Anda punya website dan sistem digital yang benar-benar
+          dipakai sehari-hari — bukan cuma jadi, lalu ditinggal.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button asChild size="lg">
