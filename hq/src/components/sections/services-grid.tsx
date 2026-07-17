@@ -34,9 +34,9 @@ const services = [
     href: "/services#ai",
   },
   {
-    title: "SEO & UI/UX",
+    title: "SEO & Media Sosial",
     description:
-      "Riset, strategi konten, dan desain antarmuka untuk membangun otoritas digital jangka panjang.",
+      "Strategi konten, optimasi pencarian, dan pengelolaan Instagram & Facebook untuk membangun otoritas digital jangka panjang.",
     href: "/services#seo",
   },
   {
