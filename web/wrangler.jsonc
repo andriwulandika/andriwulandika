@@ -21,7 +21,6 @@
 		// See https://opennext.js.org/cloudflare/caching
 		{
 			"binding": "NEXT_INC_CACHE_R2_BUCKET",
-			// Create the bucket before deploying (Fase 0: belum dibuat, lihat laporan)
 			"bucket_name": "andriwulandika-web-opennext-cache"
 		}
 	],
