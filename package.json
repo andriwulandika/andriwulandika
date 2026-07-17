@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "bash scripts/sync-assets.sh"
+  },
   "devDependencies": {
     "sharp": "^0.35.1"
   }
