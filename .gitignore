@@ -1,5 +1,6 @@
-# Claude Code internal
-.claude/
+# Claude Code internal (session state, local settings) — but keep versioned skills
+.claude/*
+!.claude/skills/
 
 # OG image dev files
 og-jasa-preview.html

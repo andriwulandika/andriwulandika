@@ -304,6 +304,16 @@
     .mockup-lp-btn { height: 16px; background: rgba(249,115,22,0.3); border-radius: 6px; width: 40%; }
     .mockup-lp-cards { display: flex; gap: 5px; }
     .mockup-lp-card { flex: 1; height: 36px; background: rgba(255,255,255,0.05); border-radius: 4px; }
+    .mockup-toko { padding: 12px; height: 100%; display: flex; flex-direction: column; gap: 7px; background: linear-gradient(180deg, #f7ecd9, #f1ddb9); }
+    .mockup-toko-nav { display: flex; align-items: center; gap: 6px; }
+    .mockup-toko-dot { width: 15px; height: 15px; border-radius: 50%; background: #a0402f; flex-shrink: 0; }
+    .mockup-toko-navtext { height: 7px; width: 64px; background: rgba(160,64,47,0.3); border-radius: 4px; }
+    .mockup-toko-eyebrow { height: 6px; width: 58%; background: rgba(160,64,47,0.4); border-radius: 3px; margin-top: 4px; }
+    .mockup-toko-title { height: 15px; width: 72%; background: #a0402f; border-radius: 4px; }
+    .mockup-toko-sub { height: 6px; width: 48%; background: rgba(160,64,47,0.3); border-radius: 3px; }
+    .mockup-toko-row { display: flex; gap: 6px; margin-top: 3px; }
+    .mockup-toko-btn1 { height: 17px; width: 74px; background: #15803d; border-radius: 980px; }
+    .mockup-toko-btn2 { height: 17px; width: 58px; border: 1.5px solid #a0402f; border-radius: 980px; }
     .portfolio-badge { position: absolute; top: 8px; right: 8px; font-size: 0.68rem; font-weight: 700; padding: 3px 9px; border-radius: 980px; letter-spacing: 0.04em; }
     .badge-live { background: rgba(34,197,94,0.2); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
     .badge-wip { background: rgba(99,102,241,0.2); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
@@ -381,7 +391,7 @@
     .addon-item:hover { border-color: rgba(255,255,255,0.14); background: var(--glass2); transform: translateY(-4px); box-shadow: 0 14px 34px rgba(0,0,0,0.30); }
     .addon-icon-box { width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: transform 0.4s cubic-bezier(0.34,1.56,1,1); }
     .addon-item:hover .addon-icon-box { transform: scale(1.15) rotate(5deg); }
-    .ai-purple { background: rgba(139,92,246,0.18); } .ai-blue { background: rgba(59,130,246,0.18); } .ai-green { background: rgba(34,197,94,0.18); } .ai-orange { background: rgba(249,115,22,0.18); }
+    .ai-purple { background: rgba(139,92,246,0.18); } .ai-blue { background: rgba(59,130,246,0.18); } .ai-green { background: rgba(34,197,94,0.18); } .ai-orange { background: rgba(249,115,22,0.18); } .ai-pink { background: rgba(236,72,153,0.18); }
     .addon-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
     .addon-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.5; }
     .addon-price { font-size: 0.78rem; font-weight: 700; color: var(--accent); margin-top: 5px; }
@@ -636,29 +646,30 @@
         </div>
       </div>
 
-      <!-- Placeholder 2 -->
+      <!-- Real: Toko Sinar Aceh -->
       <div class="portfolio-card reveal reveal-d2" style="position:relative;">
         <div class="browser-window">
           <div class="browser-bar">
             <div class="browser-dots"><div class="browser-dot dot-red"></div><div class="browser-dot dot-yellow"></div><div class="browser-dot dot-green"></div></div>
-            <div class="browser-url">produk-anda.com</div>
+            <div class="browser-url">toko-sinar-aceh</div>
           </div>
           <div class="browser-content">
-            <div class="mockup-lp">
-              <div class="mockup-lp-hero"></div>
-              <div class="mockup-lp-sub"></div>
-              <div class="mockup-lp-btn"></div>
-              <div class="mockup-lp-cards"><div class="mockup-lp-card"></div><div class="mockup-lp-card"></div></div>
+            <div class="mockup-toko">
+              <div class="mockup-toko-nav"><div class="mockup-toko-dot"></div><div class="mockup-toko-navtext"></div></div>
+              <div class="mockup-toko-eyebrow"></div>
+              <div class="mockup-toko-title"></div>
+              <div class="mockup-toko-sub"></div>
+              <div class="mockup-toko-row"><div class="mockup-toko-btn1"></div><div class="mockup-toko-btn2"></div></div>
             </div>
-            <span class="portfolio-badge badge-wip">Segera</span>
+            <span class="portfolio-badge badge-live">Live</span>
           </div>
         </div>
         <div class="portfolio-info">
           <div class="portfolio-type">Landing Page / UMKM</div>
-          <div class="portfolio-name">Contoh: Landing Page Produk</div>
-          <div class="portfolio-desc">Satu halaman panjang untuk produk, jasa, atau acara — dengan CTA yang jelas, testimoni, dan form pemesanan atau WhatsApp.</div>
-          <a href="https://wa.me/62811660568?text=Halo%2C%20saya%20ingin%20buat%20landing%20page." target="_blank" rel="noopener" class="portfolio-link">Minta Contoh Desain →</a>
-          <div class="tech-tags"><span class="tech-tag">1 Halaman</span><span class="tech-tag">Konversi Tinggi</span><span class="tech-tag">WA Ready</span></div>
+          <div class="portfolio-name">Toko Sinar Aceh</div>
+          <div class="portfolio-desc">Toko sembako &amp; kelontong di Kutacane — landing page satu halaman dengan pemesanan langsung via WhatsApp dan info lokasi toko. Contoh nyata paket Landing Page untuk UMKM.</div>
+          <a href="https://andriwulandika.github.io/toko-sinar-aceh/" target="_blank" rel="noopener" class="portfolio-link">Lihat Website →</a>
+          <div class="tech-tags"><span class="tech-tag">1 Halaman</span><span class="tech-tag">WA Ready</span><span class="tech-tag">UMKM</span></div>
         </div>
       </div>
 
@@ -809,6 +820,10 @@
       <div class="addon-item reveal reveal-d1">
         <div class="addon-icon-box ai-orange">🚀</div>
         <div><div class="addon-name">Optimasi SEO Lanjutan</div><div class="addon-desc">Riset keyword, optimasi on-page mendalam, dan laporan posisi di Google — untuk yang serius ingin halaman pertama.</div><div class="addon-price">mulai Rp 500.000 / bulan</div></div>
+      </div>
+      <div class="addon-item reveal">
+        <div class="addon-icon-box ai-pink">📸</div>
+        <div><div class="addon-name">Kelola Media Sosial</div><div class="addon-desc">Pengelolaan akun Instagram &amp; Facebook — konten, jadwal posting, dan caption yang konsisten dengan brand Anda.</div><div class="addon-price">mulai Rp 750.000 / bulan</div></div>
       </div>
     </div>
   </div>
