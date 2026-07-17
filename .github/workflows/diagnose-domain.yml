@@ -1,0 +1,58 @@
+name: Diagnosa custom domain Worker
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/diagnose-domain.yml"
+
+jobs:
+  diagnose:
+    name: Cek zone, DNS, dan attach domain
+    runs-on: ubuntu-latest
+    env:
+      CF_API: https://api.cloudflare.com/client/v4
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Verifikasi token
+        run: |
+          curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "$CF_API/user/tokens/verify" | jq '{success, errors, status: .result.status}'
+
+      - name: Lookup zone andriwulandika.uk
+        id: zone
+        run: |
+          RESP=$(curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "$CF_API/zones?name=andriwulandika.uk")
+          echo "$RESP" | jq '{success, errors, zones: [.result[]? | {id, name, status}]}'
+          ZONE_ID=$(echo "$RESP" | jq -r '.result[0].id // empty')
+          echo "zone_id=$ZONE_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Daftar DNS record apex & www
+        if: steps.zone.outputs.zone_id != ''
+        run: |
+          for NAME in andriwulandika.uk www.andriwulandika.uk; do
+            echo "== $NAME =="
+            curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              "$CF_API/zones/${{ steps.zone.outputs.zone_id }}/dns_records?name=$NAME" \
+              | jq '{success, errors, records: [.result[]? | {id, type, name, content, proxied}]}'
+          done
+
+      - name: Coba attach apex ke Worker (tampilkan error asli)
+        if: steps.zone.outputs.zone_id != ''
+        run: |
+          curl -s -X PUT "$CF_API/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/domains" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{"zone_id":"${{ steps.zone.outputs.zone_id }}","hostname":"andriwulandika.uk","service":"andriwulandika-web","environment":"production"}' \
+            | jq '{success, errors, result: (.result // null | if . then {hostname, service} else null end)}'
+
+      - name: Coba attach www ke Worker (tampilkan error asli)
+        if: steps.zone.outputs.zone_id != ''
+        run: |
+          curl -s -X PUT "$CF_API/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/domains" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{"zone_id":"${{ steps.zone.outputs.zone_id }}","hostname":"www.andriwulandika.uk","service":"andriwulandika-web","environment":"production"}' \
+            | jq '{success, errors, result: (.result // null | if . then {hostname, service} else null end)}'
