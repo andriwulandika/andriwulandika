@@ -1,5 +1,6 @@
-# Claude Code internal
-.claude/
+# Claude Code internal (keep project-shared settings.json tracked)
+.claude/*
+!.claude/settings.json
 
 # OG image dev files
 og-jasa-preview.html
