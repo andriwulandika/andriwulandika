@@ -46,13 +46,16 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // www → apex
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.andriwulandika.uk" }],
-        destination: "https://andriwulandika.uk/:path*",
-        permanent: true,
-      },
+      // www → apex: sengaja TIDAK ditangani di sini. Next.js redirects()
+      // dengan `has: host` + destination path dinamis (:path*) gagal
+      // meng-interpolasi path saat dijalankan di Cloudflare Workers via
+      // OpenNext (Location header jadi literal "/:path*"). Alternatif
+      // Next.js Proxy/middleware juga tidak bisa dipakai — Next 16
+      // mewajibkan Proxy jalan di Node.js runtime, dan
+      // @opennextjs/cloudflare belum mendukung Node.js middleware
+      // (lihat cloudflare/workers-sdk#13755). Redirect ini ditangani di
+      // level Cloudflare Redirect Rule (zona andriwulandika.uk), di luar
+      // aplikasi Next.js.
       // Halaman situs statis lama → padanan barunya
       { source: "/index", destination: "/", permanent: true },
       { source: "/index.html", destination: "/", permanent: true },
