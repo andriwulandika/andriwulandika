@@ -67,10 +67,11 @@ menang.
         └── templates/          # .doc/.xls + contoh HTML
 ```
 
-Catatan: `site/assets/brand`, `site/assets/js`, `tools/assets/brand`, `tools/assets/js`,
-serta `*/apple-touch-icon.png` dan `*/favicon.ico` adalah **build output**. Untuk
-`tools/` file-file ini **tidak di-commit** (di-generate saat build). Untuk `site/`
-salinannya masih di-commit sebagai fallback.
+Catatan: `shared/` adalah **sumber kebenaran**. Aset bersama (`*/assets/brand`,
+4 file di `*/assets/js`, `*/apple-touch-icon.png`, `*/favicon.ico`) **ikut di-commit**
+di `site/` maupun `tools/` sebagai salinan, sehingga tiap situs berdiri sendiri (self-contained)
+dan dapat disajikan tanpa build. `scripts/sync-assets.sh` dipakai untuk menyinkron ulang
+salinan itu setiap `shared/` berubah — jalankan build lalu commit ulang hasilnya.
 
 ## 5. Coding Standards
 
@@ -104,20 +105,26 @@ salinannya masih di-commit sebagai fallback.
 ## 8. Build, Lint, Test & Deployment
 
 - **Build:** `npm run build` → menjalankan `scripts/sync-assets.sh` (murni bash+cp,
-  tanpa `node_modules`). Idempoten & reproducible.
+  tanpa `node_modules`). Idempoten & reproducible. **Opsional saat deploy** karena aset
+  bersama sudah ikut di-commit; build hanya perlu dijalankan ulang (lalu commit) setelah
+  `shared/` diubah.
 - **Lint/Test:** belum ada framework lint/test di repo. Pengganti minimal sebelum commit:
   `node --check` untuk berkas JS, dan cek keseimbangan tag HTML untuk halaman yang diubah.
   Jangan menambah tooling lint/test baru tanpa persetujuan.
 - **Deployment:** otomatis via integrasi GitHub–Cloudflare Pages. Push ke branch =
   preview deployment; merge ke `main` = production deployment.
-- **Konfigurasi Cloudflare Pages (WAJIB benar, sumber bug umum):**
-  - Proyek `andriwulandika-tools` (ai.andriwulandika.uk):
-    **Root Directory `/`**, **Build Command `npm run build`**, **Build Output Directory `tools`**.
-    Root harus `/` agar build menjangkau `package.json` dan `shared/`.
-  - Proyek `andriwulandika` (andriwulandika.uk): Output Directory `site` (build command
-    boleh `npm run build` juga agar aset tersinkron).
-- Setelah build gagal, Cloudflare umumnya tidak men-deploy versi baru. Jika halaman/aset
-  404 di produksi, curigai konfigurasi Root/Build/Output ini lebih dulu.
+- **Konfigurasi Cloudflare Pages.** Karena aset sudah ikut di-commit, tiap situs
+  self-contained dan bisa disajikan tanpa build. Konfigurasi paling sederhana &
+  anti-salah (disarankan):
+  - Proyek `andriwulandika-tools` (ai.andriwulandika.uk): **Root Directory `tools`**,
+    **Build Command kosong**, **Build Output Directory `/`** (root dari `tools/`).
+  - Proyek `andriwulandika` (andriwulandika.uk): **Root Directory `site`**,
+    **Build Command kosong**, **Build Output Directory `/`**.
+  - Alternatif (jika ingin build ikut menyinkron aset): Root `/`, Build `npm run build`,
+    Output `tools` atau `site`. Ini juga valid tapi lebih rentan salah-config.
+- **Yang di-serve haruslah folder situs** (`tools/` atau `site/`), yang berisi HTML +
+  `404.html` + `_redirects`. Gejala **semua halaman 404** (dan `404.html` custom tidak
+  muncul) berarti Output Directory salah menunjuk ke root repo — perbaiki Output/Root lebih dulu.
 
 ## 9. Aturan Refactoring
 
