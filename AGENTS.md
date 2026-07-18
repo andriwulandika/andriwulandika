@@ -39,6 +39,11 @@ menang.
 - **Pembayaran:** manual (transfer + konfirmasi WhatsApp); kode akses dibuat lewat panel admin. Tidak ada payment gateway.
 - **Aset bersama:** `shared/` adalah sumber tunggal untuk brand & JS bersama; disalin ke
   `site/assets/` dan `tools/assets/` saat build oleh `scripts/sync-assets.sh`.
+- **Nav/footer bersama (sebagian):** untuk kelompok halaman yang markup nav/footer-nya
+  identik (mis. 7-8 halaman artikel), sumbernya ada di `shared/partials/*.html` dan
+  disinkron ke tiap halaman lewat `scripts/sync-partials.py` (substitusi teks saat build,
+  bukan include runtime — hasil HTML yang di-commit tetap statis, tanpa risiko FOUC/timing
+  JS). Halaman dengan nav/footer bespoke **tidak** dipaksa masuk pola ini.
 
 ## 4. Struktur Folder
 
@@ -48,10 +53,12 @@ menang.
 ├── package-lock.json
 ├── AGENTS.md               # berkas ini
 ├── scripts/
-│   └── sync-assets.sh      # copy shared/ → site/assets/ & tools/assets/ (+ root icons)
-├── shared/                 # SUMBER TUNGGAL aset bersama
+│   ├── sync-assets.sh      # copy shared/ → site/assets/ & tools/assets/ (+ root icons)
+│   └── sync-partials.py    # regenerasi nav/footer identik dari shared/partials/
+├── shared/                 # SUMBER TUNGGAL aset & partial bersama
 │   ├── brand/              # logo, favicon, wallpaper (dipakai kedua situs)
-│   └── js/                 # analytics, apiService, nav-auth, ui-enhance
+│   ├── js/                 # analytics, apiService, nav-auth, ui-enhance
+│   └── partials/           # nav-*.html, footer-*.html untuk kelompok halaman identik
 ├── site/                   # → andriwulandika.uk (output dir Cloudflare = "site")
 │   ├── *.html, _headers, _redirects, sitemap.xml, robots.txt
 │   └── assets/{brand,js,share}/     # brand/js diisi oleh build (sync)
