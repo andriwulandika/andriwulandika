@@ -17,3 +17,6 @@ node_modules/
 # Python cache dari scripts/*.py
 __pycache__/
 *.pyc
+
+# Output transien 11ty (scripts/build-pages.sh menyalinnya ke site/ & tools/, tidak perlu di-commit)
+dist/

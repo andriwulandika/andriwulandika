@@ -1,0 +1,9 @@
+# Cloudflare Pages — _redirects (ai.andriwulandika.uk)
+#
+# TODO: setelah project Pages baru dibuat, Cloudflare akan memberi subdomain
+# otomatis (mis. <project-name>.pages.dev). Tambahkan baris redirect dari
+# subdomain itu ke https://ai.andriwulandika.uk/:splat di sini, mengikuti
+# pola yang sama seperti redirect pages.dev -> andriwulandika.uk di site/_redirects.
+
+# Halaman 404 custom
+/*  /404.html  404

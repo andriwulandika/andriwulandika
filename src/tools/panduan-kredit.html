@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js"></script>
+  <script src="/assets/js/ui-enhance.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panduan Sistem Kredit — Cara Membeli & Menggunakan Kredit AI Tools</title>
+  <meta name="description" content="Panduan lengkap sistem kredit di platform AI Tools Andri Wulandika. Pahami cara membeli kredit, mengecek saldo, menggunakan kredit di tiap AI tool, dan tips hemat agar dokumen perencanaan OPD selesai lebih efisien."/>
+  <meta name="keywords" content="kredit AI tools, cara beli kredit, cara pakai kredit perencanaan daerah, SiRENJA kredit, panduan kredit ASN, top-up kredit dokumen perencanaan"/>
+  <meta name="author" content="Andri Wulandika"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://ai.andriwulandika.uk/panduan-kredit.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Panduan Sistem Kredit — Cara Membeli & Menggunakan Kredit AI Tools"/>
+  <meta property="og:description" content="Panduan lengkap sistem kredit di platform AI Tools Andri Wulandika — cara beli, cek saldo, pakai di tiap tool, dan tips hemat."/>
+  <meta property="og:url" content="https://ai.andriwulandika.uk/panduan-kredit.html"/>
+  <meta property="og:site_name" content="Andri Wulandika"/>
+  <meta property="og:image" content="https://andriwulandika.uk/og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="article:author" content="Andri Wulandika"/>
+  <meta property="article:published_time" content="2026-06-16"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Panduan Sistem Kredit — Cara Membeli & Menggunakan Kredit AI Tools",
+    "author": { "@type": "Person", "name": "Andri Wulandika", "url": "https://andriwulandika.uk/" },
+    "datePublished": "2026-06-16",
+    "dateModified": "2026-06-16",
+    "image": "https://andriwulandika.uk/og-image.png",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ai.andriwulandika.uk/panduan-kredit.html" },
+    "publisher": { "@type": "Person", "name": "Andri Wulandika" },
+    "description": "Panduan lengkap sistem kredit di platform AI Tools Andri Wulandika — cara membeli, mengecek saldo, menggunakan di setiap AI tool, dan tips hemat kredit.",
+    "url": "https://ai.andriwulandika.uk/panduan-kredit.html"
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff; --bg2: #f5f5f7; --text: #1d1d1f; --text2: #6e6e73;
+      --accent: #0071e3; --border: #d2d2d7; --radius: 14px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    #progress-bar { position: fixed; top: 0; left: 0; z-index: 1000; height: 3px; width: 0%; background: linear-gradient(90deg, #0071e3, #34aadc); transition: width 0.1s linear; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 52px;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 480px) { .nav-title { display: none; } }
+
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text, #1d1d1f); transition: transform .25s ease, opacity .2s ease; }
+    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: none; position: fixed; top: 52px; left: 0; right: 0;
+        flex-direction: column; gap: 0; list-style: none;
+        background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0,0,0,0.08); box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        padding: 6px 16px 14px; max-height: calc(100vh - 52px); overflow-y: auto;
+      }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+      .nav-links li:last-child > a { border-bottom: 0; }
+    }
+
+    .page-wrap { max-width: 1080px; margin: 0 auto; padding: 80px 24px 80px; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+    @media (max-width: 860px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    .breadcrumb { font-size: 0.75rem; color: var(--text2); margin-bottom: 2rem; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .breadcrumb span { color: var(--border); }
+
+    .article-category { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: rgba(0,113,227,0.08); padding: 4px 10px; border-radius: 980px; margin-bottom: 1.2rem; }
+    .article-title { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); margin-bottom: 1.2rem; }
+    .article-subtitle { font-size: 1.1rem; color: var(--text2); line-height: 1.65; margin-bottom: 1.8rem; font-weight: 400; }
+    .article-meta { display: flex; gap: 1.5rem; align-items: center; font-size: 0.8rem; color: var(--text2); padding-bottom: 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2.8rem; flex-wrap: wrap; }
+    .meta-author { display: flex; gap: 8px; align-items: center; }
+    .meta-author-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .meta-author-name { font-weight: 600; color: var(--text); }
+    .meta-dot { color: var(--border); }
+
+    .article-body { font-size: 1.02rem; line-height: 1.78; color: var(--text); }
+    .article-body h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 3rem 0 1rem; color: var(--text); scroll-margin-top: 70px; }
+    .article-body h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; margin: 2.2rem 0 0.75rem; color: var(--text); scroll-margin-top: 70px; }
+    .article-body p { margin-bottom: 1.4rem; }
+    .article-body ul, .article-body ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+    .article-body li { margin-bottom: 0.55rem; }
+    .article-body strong { font-weight: 600; }
+    .article-body em { font-style: italic; color: var(--text2); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    .callout { background: var(--bg2); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.2rem 1.4rem; margin: 1.8rem 0; font-size: 0.95rem; }
+    .callout.warn { border-left-color: #FF3B30; background: #FFF5F5; }
+    .callout.info { border-left-color: #0071e3; background: #EFF6FF; }
+    .callout.tip { border-left-color: #28CD41; background: #F0FFF4; }
+    .callout-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .callout.warn .callout-label { color: #FF3B30; }
+    .callout.info .callout-label { color: #0071e3; }
+    .callout.tip .callout-label { color: #28CD41; }
+
+    .article-body table { width: 100%; border-collapse: collapse; margin: 1.8rem 0; font-size: 0.875rem; border-radius: var(--radius); overflow: hidden; }
+    .article-body th { background: var(--bg2); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); font-size: 0.8rem; }
+    .article-body td { padding: 10px 14px; border-bottom: 1px solid var(--bg2); vertical-align: top; }
+    .article-body tr:last-child td { border-bottom: none; }
+    .article-body tr:hover td { background: #fafafa; }
+
+    .steps { margin: 1.8rem 0; }
+    .step-item { display: flex; gap: 16px; margin-bottom: 1.6rem; }
+    .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--text); }
+    .step-content p { font-size: 0.9rem; color: var(--text2); margin-bottom: 0; line-height: 1.6; }
+
+    /* CREDIT CARD */
+    .credit-card {
+      background: linear-gradient(135deg, #0071e3 0%, #0055b3 100%);
+      border-radius: 18px; padding: 28px 28px 24px;
+      color: #fff; margin: 2rem 0; position: relative; overflow: hidden;
+    }
+    .credit-card::before {
+      content: ''; position: absolute; top: -30px; right: -30px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+    }
+    .credit-card-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
+    .credit-card-balance { font-size: 2.8rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+    .credit-card-note { font-size: 0.82rem; opacity: 0.75; }
+    .credit-card-badges { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+    .credit-badge {
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 980px; padding: 5px 14px; font-size: 0.78rem; font-weight: 600;
+    }
+
+    /* PACKAGE GRID */
+    .pkg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 1.8rem 0; }
+    @media (max-width: 560px) { .pkg-grid { grid-template-columns: 1fr; } }
+    .pkg-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 20px 20px 18px; transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .pkg-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,113,227,0.1); }
+    .pkg-card.popular { border-color: var(--accent); }
+    .pkg-popular-badge {
+      position: absolute; top: -11px; left: 16px;
+      background: var(--accent); color: #fff;
+      font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 980px;
+    }
+    .pkg-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 6px; }
+    .pkg-credits { font-size: 2rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: var(--text); margin-bottom: 2px; }
+    .pkg-credits span { font-size: 0.9rem; font-weight: 500; color: var(--text2); }
+    .pkg-price { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .pkg-per { font-size: 0.75rem; color: var(--text2); }
+
+    /* TOOL LIST */
+    .tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 1.6rem 0; }
+    @media (max-width: 560px) { .tool-grid { grid-template-columns: 1fr; } }
+    .tool-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg2); border-radius: 12px; padding: 14px 16px;
+    }
+    .tool-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .tool-name { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+    .tool-desc { font-size: 0.76rem; color: var(--text2); line-height: 1.4; }
+    .tool-cost { margin-left: auto; flex-shrink: 0; background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 980px; }
+
+    .share-bar { display: flex; gap: 10px; align-items: center; margin: 2.5rem 0; padding: 1.2rem 1.4rem; background: var(--bg2); border-radius: var(--radius); }
+    .share-label { font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-right: 4px; }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 980px; font-size: 0.8rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; transition: opacity 0.2s; }
+    .share-btn:hover { opacity: 0.8; }
+    .share-wa { background: #25D366; color: #fff; }
+    .share-copy { background: #e5e5ea; color: var(--text); }
+
+    .tag { display: inline-block; font-size: 0.72rem; font-weight: 500; padding: 3px 9px; border-radius: 980px; background: var(--bg2); color: var(--text2); margin-right: 4px; margin-bottom: 4px; }
+
+    .article-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .article-footer-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); margin-bottom: 1rem; }
+    .article-tags { margin-bottom: 2rem; }
+    .author-card { background: var(--bg2); border-radius: var(--radius); padding: 1.5rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+    .author-card-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .author-card-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+    .author-card-title { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.6rem; }
+    .author-card-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+    .btn-back { display: inline-flex; align-items: center; gap: 6px; margin-top: 2rem; background: var(--bg2); color: var(--text); padding: 12px 22px; border-radius: 980px; font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+    .btn-back:hover { background: #e5e5ea; }
+
+    .related-section { margin-top: 3.5rem; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    .related-card { background: var(--bg2); border-radius: var(--radius); padding: 1.2rem; text-decoration: none; color: var(--text); transition: background 0.2s; display: block; }
+    .related-card:hover { background: #e5e5ea; }
+    .related-card-cat { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .related-card-title { font-size: 0.9rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.4rem; }
+    .related-card-meta { font-size: 0.75rem; color: var(--text2); }
+
+    .sidebar { position: sticky; top: 72px; }
+    .sidebar-card { background: var(--bg2); border-radius: var(--radius); padding: 1.3rem; margin-bottom: 1.2rem; }
+    .sidebar-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); margin-bottom: 0.8rem; }
+    .toc-list { list-style: none; padding: 0; }
+    .toc-list li { margin-bottom: 0.4rem; }
+    .toc-list a { font-size: 0.8rem; color: var(--text2); text-decoration: none; line-height: 1.45; display: block; padding: 3px 0; border-left: 2px solid transparent; padding-left: 8px; transition: all 0.15s; }
+    .toc-list a:hover, .toc-list a.active { color: var(--accent); border-left-color: var(--accent); }
+    .sidebar-author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.7rem; }
+    .sidebar-author-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; }
+    .sidebar-author-title { font-size: 0.75rem; color: var(--text2); line-height: 1.4; }
+
+    .cta-box {
+      background: linear-gradient(135deg, #0071e3 0%, #0055b3 100%);
+      border-radius: var(--radius); padding: 1.4rem; color: #fff; margin-top: 1.2rem;
+    }
+    .cta-box-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; }
+    .cta-box-desc { font-size: 0.78rem; opacity: 0.82; line-height: 1.5; margin-bottom: 14px; }
+    .cta-box-btn { display: block; background: #fff; color: var(--accent); text-align: center; padding: 10px 18px; border-radius: 980px; font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; }
+    .cta-box-btn:hover { opacity: 0.9; }
+
+    footer { background: #f5f5f7; border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.78rem; color: var(--text2); margin-top: 60px; }
+    footer a { color: var(--text2); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* FAQ accordion mini */
+    .faq-mini { margin: 1.8rem 0; }
+    .faq-mini-item { border-bottom: 1px solid var(--border); }
+    .faq-mini-q {
+      width: 100%; background: none; border: none; display: flex;
+      justify-content: space-between; align-items: center;
+      padding: 16px 0; cursor: pointer; font-family: inherit;
+      font-size: 0.95rem; font-weight: 600; color: var(--text); text-align: left; gap: 14px;
+      transition: color 0.2s;
+    }
+    .faq-mini-q:hover { color: var(--accent); }
+    .faq-mini-arrow { font-size: 1.1rem; color: var(--text2); transition: transform 0.3s; flex-shrink: 0; }
+    .faq-mini-item.open .faq-mini-arrow { transform: rotate(45deg); }
+    .faq-mini-a { font-size: 0.9rem; color: var(--text2); line-height: 1.7; padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+    .faq-mini-item.open .faq-mini-a { max-height: 500px; padding-bottom: 18px; }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <a href="index.html" class="nav-back">← Beranda</a>
+  <span class="nav-title">Panduan Kredit</span>
+  <ul class="nav-links">
+    <li><a href="harga.html">Harga</a></li>
+    <li><a href="bayar.html">Beli Kredit</a></li>
+    <li><a href="aktifkan-pro.html">Masuk</a></li>
+  </ul>
+  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<script>
+(function(){
+  var nav=document.querySelector('nav');if(!nav)return;
+  var btn=nav.querySelector('.nav-burger');if(!btn)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.addEventListener('click',function(e){
+    var t=e.target;
+    while(t&&t!==nav){
+      if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}
+      t=t.parentNode;
+    }
+  });
+})();
+</script>
+
+<div class="page-wrap">
+  <main>
+
+    <div class="breadcrumb reveal">
+      <a href="index.html">Beranda</a>
+      <span>›</span>
+      <a href="https://andriwulandika.uk/#blog">Panduan</a>
+      <span>›</span>
+      <span>Panduan Kredit</span>
+    </div>
+
+    <header>
+      <div class="article-category reveal">Panduan & Tutorial</div>
+      <h1 class="article-title reveal">Panduan Sistem Kredit — Cara Membeli &amp; Menggunakan Kredit AI Tools</h1>
+      <p class="article-subtitle reveal">Sistem kredit adalah cara paling fleksibel untuk mengakses AI Tools perencanaan daerah. Tidak ada langganan bulanan, tidak ada biaya terkunci — Anda hanya membayar saat benar-benar butuh dokumen. Panduan ini menjelaskan cara kerjanya dari awal sampai selesai.</p>
+      <div class="article-meta reveal">
+        <div class="meta-author">
+          <div class="meta-author-avatar">A</div>
+          <div>
+            <div class="meta-author-name">Andri Wulandika</div>
+            <div style="font-size:0.75rem;color:var(--text2);">Perencana &amp; Pengembang Platform</div>
+          </div>
+        </div>
+        <span class="meta-dot">·</span>
+        <span>16 Juni 2026</span>
+        <span class="meta-dot">·</span>
+        <span>7 menit baca</span>
+      </div>
+    </header>
+
+    <div class="article-body">
+
+      <!-- 1. APA ITU KREDIT -->
+      <h2 id="apa-itu-kredit">Apa itu kredit?</h2>
+      <p>Bayangkan kredit seperti <strong>voucher dokumen</strong>. Setiap kali Anda menekan tombol "Generate" di salah satu AI Tool dan hasilnya sukses muncul secara lengkap, satu kredit terpotong dari saldo Anda. Sederhana: <strong>1 kredit = 1 dokumen penuh</strong>.</p>
+
+      <div class="credit-card">
+        <div class="credit-card-label">Saldo Kredit Anda</div>
+        <div class="credit-card-balance">25 kredit</div>
+        <div class="credit-card-note">Tanpa kedaluwarsa · Pakai kapan saja</div>
+        <div class="credit-card-badges">
+          <span class="credit-badge">1 kredit = 1 dokumen</span>
+          <span class="credit-badge">Tidak hangus</span>
+          <span class="credit-badge">API key termasuk</span>
+        </div>
+      </div>
+
+      <p>Kredit berbeda dari langganan bulanan. Dengan langganan, Anda membayar setiap bulan meski kadang tidak pakai. Dengan kredit, Anda membayar hanya untuk dokumen yang benar-benar Anda buat — cocok untuk ASN yang penyusunan dokumennya tidak merata sepanjang tahun.</p>
+
+      <div class="callout info">
+        <div class="callout-label">Info Penting</div>
+        Kredit <strong>tidak kedaluwarsa</strong>. Paket yang Anda beli bulan ini tetap bisa digunakan bulan depan atau tahun depan. Tidak ada tekanan untuk "habiskan sebelum expired".
+      </div>
+
+      <!-- 2. MODE DEMO vs KREDIT -->
+      <h2 id="demo-vs-kredit">Perbedaan Demo (Gratis) vs Kredit (Berbayar)</h2>
+      <p>Platform ini menyediakan dua mode untuk setiap AI Tool:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Fitur</th>
+            <th>Demo (Gratis)</th>
+            <th>Kredit (Berbayar)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Akses semua 8 AI Tools</td>
+            <td>✓</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>Hasil dokumen</td>
+            <td>Preview pendek (dipotong ~30%)</td>
+            <td>Lengkap 100%, siap pakai</td>
+          </tr>
+          <tr>
+            <td>AI yang digunakan</td>
+            <td>Google Gemini (demo)</td>
+            <td>Claude Sonnet — AI terbaik untuk narasi pemerintahan</td>
+          </tr>
+          <tr>
+            <td>Kualitas narasi</td>
+            <td>Standar</td>
+            <td>Detail, kontekstual, berbasis regulasi terbaru</td>
+          </tr>
+          <tr>
+            <td>Panjang dokumen</td>
+            <td>Terbatas</td>
+            <td>Penuh (1.200–1.700 kata per bagian besar)</td>
+          </tr>
+          <tr>
+            <td>Biaya per generate</td>
+            <td>Rp 0</td>
+            <td>1 kredit</td>
+          </tr>
+          <tr>
+            <td>Kredit dipotong jika error</td>
+            <td>N/A</td>
+            <td>Tidak — hanya potong saat sukses</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout tip">
+        <div class="callout-label">Tips</div>
+        Gunakan mode demo terlebih dahulu untuk memastikan input yang Anda isi sudah benar. Setelah yakin, baru generate dengan kredit untuk mendapatkan dokumen penuh.
+      </div>
+
+      <!-- 3. PAKET KREDIT -->
+      <h2 id="paket-kredit">Paket Kredit yang Tersedia</h2>
+      <p>Ada empat paket kredit yang bisa Anda pilih sesuai kebutuhan OPD. Semakin besar paket, semakin hemat harga per kredit-nya.</p>
+
+      <div class="pkg-grid">
+        <div class="pkg-card">
+          <div class="pkg-name">Paket Coba</div>
+          <div class="pkg-credits">5 <span>kredit</span></div>
+          <div class="pkg-price">Rp 25.000</div>
+          <div class="pkg-per">Rp 5.000 per kredit · cocok untuk coba pertama kali</div>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-name">Paket Hemat</div>
+          <div class="pkg-credits">25 <span>kredit</span></div>
+          <div class="pkg-price">Rp 100.000</div>
+          <div class="pkg-per">Rp 4.000 per kredit · hemat 20%</div>
+        </div>
+        <div class="pkg-card popular">
+          <div class="pkg-popular-badge">Paling Populer</div>
+          <div class="pkg-name">Paket Pro</div>
+          <div class="pkg-credits">50 <span>kredit</span></div>
+          <div class="pkg-price">Rp 175.000</div>
+          <div class="pkg-per">Rp 3.500 per kredit · hemat 30%</div>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-name">Paket Instansi</div>
+          <div class="pkg-credits">100 <span>kredit</span></div>
+          <div class="pkg-price">Rp 300.000</div>
+          <div class="pkg-per">Rp 3.000 per kredit · hemat 40%</div>
+        </div>
+      </div>
+
+      <p>Paket Pro adalah pilihan paling populer karena cukup untuk satu siklus perencanaan penuh — mulai dari Renja, PK, monitoring triwulanan, hingga LKjIP di akhir tahun — dengan margin penghematan yang signifikan.</p>
+
+      <!-- 4. CARA BELI -->
+      <h2 id="cara-beli">Cara Membeli Kredit</h2>
+      <p>Proses pembelian kredit dilakukan manual via WhatsApp — cepat, aman, dan tidak perlu mendaftar ke platform pembayaran mana pun.</p>
+
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Pilih paket di halaman Beli Kredit</h4>
+            <p>Kunjungi <a href="bayar.html">halaman Beli Kredit</a>, pilih paket yang sesuai (Coba, Hemat, Pro, atau Instansi). Salin kode konfirmasi yang tampil — kode ini akan dibutuhkan di langkah berikutnya.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Hubungi via WhatsApp untuk konfirmasi</h4>
+            <p>Kirim pesan ke nomor WhatsApp yang tersedia di halaman bayar, sertakan: nama paket, kode konfirmasi, dan nama OPD Anda. Admin akan merespons dalam jam kerja (biasanya di bawah 2 jam).</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Transfer dan kirim bukti pembayaran</h4>
+            <p>Lakukan transfer sesuai nominal paket ke rekening yang diberikan admin, lalu kirimkan foto/screenshot bukti transfer. Admin akan memproses top-up segera setelah pembayaran dikonfirmasi.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Dapatkan kode akses dan mulai pakai</h4>
+            <p>Admin akan mengirimkan <strong>kode akses</strong> unik melalui WhatsApp. Masukkan kode ini di halaman <a href="aktifkan-pro.html">Masuk/Aktivasi</a>. Saldo kredit langsung tersedia dan bisa langsung digunakan di semua AI Tools.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-label">Kode Akses</div>
+        Kode akses adalah "kunci dompet" kredit Anda. Simpan dengan baik — kode inilah yang menyimpan saldo kredit Anda. Jika Anda berganti perangkat, cukup masukkan kode yang sama di halaman <a href="aktifkan-pro.html">Masuk</a>.
+      </div>
+
+      <!-- 5. CARA CEK SALDO -->
+      <h2 id="cek-saldo">Cara Mengecek Saldo Kredit</h2>
+      <p>Ada tiga cara mudah untuk melihat sisa kredit Anda:</p>
+      <ul>
+        <li><strong>Badge di setiap AI Tool</strong> — Setelah login, setiap halaman AI Tool menampilkan badge "💳 N kredit" di area tombol Generate. Badge ini diperbarui otomatis setelah setiap generate.</li>
+        <li><strong>Dashboard</strong> — Halaman <a href="dashboard.html">Dashboard</a> menampilkan saldo kredit Anda beserta riwayat dokumen yang sudah pernah dibuat.</li>
+        <li><strong>Setelah generate</strong> — Setiap kali generate berhasil, notifikasi sukses akan mencantumkan sisa kredit terkini.</li>
+      </ul>
+
+      <!-- 6. KREDIT DI TIAP TOOL -->
+      <h2 id="tools-dan-kredit">Kredit di 8 AI Tools</h2>
+      <p>Semua AI Tools menggunakan tarif yang sama: <strong>1 kredit per 1 dokumen yang berhasil di-generate</strong>. Tidak ada tool yang lebih mahal dari tool lain.</p>
+
+      <div class="tool-grid">
+        <div class="tool-item">
+          <div class="tool-icon">📋</div>
+          <div>
+            <div class="tool-name">SiRENJA</div>
+            <div class="tool-desc">Generator Renja OPD (Permendagri 81/2022)</div>
+          </div>
+          <div class="tool-cost">1 kredit</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🏛️</div>
+          <div>
+            <div class="tool-name">SiRKPD</div>
+            <div class="tool-desc">Generator RKPD / Analisis Perencanaan Daerah</div>
+          </div>
+          <div class="tool-cost">1 kredit</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">⚖️</div>
+          <div>
+            <div class="tool-name">SiPerda</div>
+            <div class="tool-desc">Asisten chat analisis Perda & regulasi</div>
+          </div>
+          <div class="tool-cost">1 kredit</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">📄</div>
+          <div>
+            <div class="tool-name">SiGenDok</div>
+            <div class="tool-desc">Template Renstra, LKjIP, Renja (static)</div>
+          </div>
+          <div class="tool-cost">1 kredit</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">📊</div>
+          <div>
+            <div class="tool-name">SiLKjIP</div>
+            <div class="tool-desc">Generator Laporan Kinerja (LKjIP)</div>
+          </div>
+          <div class="tool-cost">1 kredit</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">📝</div>
+          <div>
+            <div class="tool-name">SiKTOR</div>
+            <div class="tool-desc">Generator KAK/TOR (PMK 62/2023)</div>
+          </div>
+          <div class="tool-cost">1 kredit</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🔍</div>
+          <div>
+            <div class="tool-name">SiTelaah</div>
+            <div class="tool-desc">Generator Telaahan Staf (Permendagri 1/2023)</div>
+          </div>
+          <div class="tool-cost">1 kredit</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">📋</div>
+          <div>
+            <div class="tool-name">SiBACARA</div>
+            <div class="tool-desc">Generator Berita Acara Rapat (ANRI 5/2021)</div>
+          </div>
+          <div class="tool-cost">1 kredit</div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-label">Perlu Diketahui</div>
+        Kredit hanya terpotong jika generate <strong>berhasil</strong> dan dokumen tampil lengkap. Jika terjadi error jaringan atau server, kredit tidak dipotong. Anda bisa mencoba ulang tanpa khawatir saldo berkurang sia-sia.
+      </div>
+
+      <!-- 7. TIPS HEMAT -->
+      <h2 id="tips-hemat">Tips Menggunakan Kredit Secara Efisien</h2>
+      <p>Berikut strategi praktis agar kredit Anda memberikan nilai maksimal:</p>
+      <ol>
+        <li><strong>Lengkapi semua input sebelum generate.</strong> Semakin detail isi form (nama OPD, tahun anggaran, program prioritas, target kinerja), semakin baik dokumen yang dihasilkan — dan Anda tidak perlu generate ulang.</li>
+        <li><strong>Preview dulu dengan mode demo.</strong> Sebelum pakai kredit, coba generate tanpa login untuk melihat apakah struktur dokumen sesuai kebutuhan. Jika sudah yakin, login dan generate dengan kredit.</li>
+        <li><strong>Simpan dokumen segera.</strong> Hasil generate tampil di layar — copy ke Word atau simpan sebagai PDF langsung setelah selesai. Riwayat generate tersimpan di Dashboard, tapi isi dokumen tidak disimpan di server.</li>
+        <li><strong>Beli paket lebih besar untuk hemat lebih.</strong> Paket Instansi (100 kredit) memberikan harga Rp 3.000/kredit dibanding Rp 5.000/kredit jika beli satuan — selisih Rp 200.000 untuk 100 dokumen.</li>
+        <li><strong>Gunakan satu kode untuk tim kecil.</strong> Kode akses bisa digunakan di beberapa perangkat dalam satu OPD — cukup bagikan kode ke rekan staf perencanaan, saldo dikurangi bersama dari satu "dompet".</li>
+      </ol>
+
+      <!-- 8. CONTOH PENGGUNAAN -->
+      <h2 id="contoh-penggunaan">Contoh Penggunaan: Satu Siklus Perencanaan Penuh</h2>
+      <p>Berikut gambaran nyata berapa kredit yang dibutuhkan untuk satu OPD dalam satu tahun anggaran:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Dokumen</th>
+            <th>AI Tool</th>
+            <th>Kredit</th>
+            <th>Waktu Generate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Renja OPD 2027</td>
+            <td>SiRENJA</td>
+            <td>1 kredit</td>
+            <td>~45 detik</td>
+          </tr>
+          <tr>
+            <td>Perubahan Renja 2026</td>
+            <td>SiRENJA</td>
+            <td>1 kredit</td>
+            <td>~45 detik</td>
+          </tr>
+          <tr>
+            <td>Perjanjian Kinerja Kepala OPD</td>
+            <td>SiGenDok</td>
+            <td>1 kredit</td>
+            <td>~20 detik</td>
+          </tr>
+          <tr>
+            <td>KAK/TOR 3 kegiatan prioritas</td>
+            <td>SiKTOR</td>
+            <td>3 kredit</td>
+            <td>~30 detik/KAK</td>
+          </tr>
+          <tr>
+            <td>Telaahan Staf revisi anggaran</td>
+            <td>SiTelaah</td>
+            <td>1 kredit</td>
+            <td>~30 detik</td>
+          </tr>
+          <tr>
+            <td>Berita Acara Rapat Monev Q1–Q4</td>
+            <td>SiBACARA</td>
+            <td>4 kredit</td>
+            <td>~25 detik/BA</td>
+          </tr>
+          <tr>
+            <td>LKjIP Akhir Tahun</td>
+            <td>SiLKjIP</td>
+            <td>1 kredit</td>
+            <td>~60 detik</td>
+          </tr>
+          <tr>
+            <td><strong>Total 1 siklus</strong></td>
+            <td>—</td>
+            <td><strong>12 kredit</strong></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Dengan <strong>Paket Pro (50 kredit)</strong>, satu OPD bisa menyelesaikan lebih dari <strong>4 siklus perencanaan penuh</strong> — atau digunakan untuk beberapa staf berbagi dalam satu OPD, dengan total biaya jauh lebih efisien dibanding menyewa konsultan dokumen.</p>
+
+      <!-- 9. FAQ -->
+      <h2 id="faq">Pertanyaan yang Sering Ditanyakan</h2>
+
+      <div class="faq-mini">
+        <div class="faq-mini-item">
+          <button class="faq-mini-q" type="button">
+            Apakah kredit bisa hangus atau expired?
+            <span class="faq-mini-arrow">+</span>
+          </button>
+          <div class="faq-mini-a">Tidak. Kredit yang Anda beli tidak memiliki tanggal kedaluwarsa. Saldo akan tetap ada di kode akses Anda sampai digunakan, tidak peduli berapa lama tidak aktif.</div>
+        </div>
+        <div class="faq-mini-item">
+          <button class="faq-mini-q" type="button">
+            Kredit terpotong tapi dokumen tidak muncul — bagaimana?
+            <span class="faq-mini-arrow">+</span>
+          </button>
+          <div class="faq-mini-a">Sistem kami hanya memotong kredit setelah AI mengembalikan respons sukses. Jika terjadi error jaringan atau timeout sebelum dokumen tampil, kredit tidak terpotong secara otomatis. Jika Anda yakin ada kredit terpotong tanpa dokumen yang diterima, hubungi admin via WhatsApp dengan menyertakan timestamp generate — kredit akan dikembalikan.</div>
+        </div>
+        <div class="faq-mini-item">
+          <button class="faq-mini-q" type="button">
+            Bisakah saya menambah kredit (top-up) ke kode yang sudah ada?
+            <span class="faq-mini-arrow">+</span>
+          </button>
+          <div class="faq-mini-a">Ya, bisa. Jika kode akses lama Anda hampir habis, hubungi admin via WhatsApp dan minta top-up ke kode yang sama. Saldo baru akan ditambahkan ke saldo sisa yang masih ada — tidak perlu kode akses baru.</div>
+        </div>
+        <div class="faq-mini-item">
+          <button class="faq-mini-q" type="button">
+            Apakah satu kode akses bisa dipakai oleh beberapa orang/perangkat?
+            <span class="faq-mini-arrow">+</span>
+          </button>
+          <div class="faq-mini-a">Ya. Kode akses bisa digunakan di beberapa perangkat secara bersamaan — cocok untuk satu tim kecil dalam satu OPD. Saldo dikurangi dari "dompet" yang sama setiap kali ada generate yang berhasil, dari perangkat mana pun.</div>
+        </div>
+        <div class="faq-mini-item">
+          <button class="faq-mini-q" type="button">
+            Apakah ada refund jika tidak puas?
+            <span class="faq-mini-arrow">+</span>
+          </button>
+          <div class="faq-mini-a">Karena pembelian kredit adalah produk digital yang langsung dapat digunakan, refund tidak tersedia setelah kode akses dikirimkan. Oleh karena itu, kami menyarankan untuk mencoba mode demo (gratis) terlebih dahulu sebelum membeli, agar Anda yakin dengan kualitas output AI Tools ini.</div>
+        </div>
+        <div class="faq-mini-item">
+          <button class="faq-mini-q" type="button">
+            Apakah kredit hilang jika saya berganti HP atau browser?
+            <span class="faq-mini-arrow">+</span>
+          </button>
+          <div class="faq-mini-a">Tidak. Kredit tersimpan di server berdasarkan kode akses Anda — bukan di HP atau browser. Cukup masukkan kode akses yang sama di halaman Masuk pada perangkat baru, dan saldo Anda langsung kembali.</div>
+        </div>
+        <div class="faq-mini-item">
+          <button class="faq-mini-q" type="button">
+            Apakah API key (Claude/Gemini) perlu saya beli sendiri?
+            <span class="faq-mini-arrow">+</span>
+          </button>
+          <div class="faq-mini-a">Tidak perlu. API key untuk Claude Sonnet (mode berbayar) dan Gemini Flash (mode demo) sudah termasuk dalam layanan ini. Anda tidak perlu mendaftar atau berlangganan ke Anthropic atau Google secara terpisah — cukup beli kredit dan langsung pakai.</div>
+        </div>
+      </div>
+
+      <!-- CTA AKHIR -->
+      <div style="background:var(--bg2);border-radius:var(--radius);padding:2rem;text-align:center;margin:3rem 0;">
+        <p style="font-size:1.1rem;font-weight:700;margin-bottom:0.6rem;">Siap mulai? Coba dulu gratis.</p>
+        <p style="font-size:0.9rem;color:var(--text2);margin-bottom:1.6rem;">Mode demo tersedia tanpa daftar. Jika hasilnya cocok, beli kredit dan dapatkan dokumen penuh.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://andriwulandika.uk/#tools" style="background:var(--accent);color:#fff;padding:12px 24px;border-radius:980px;font-size:0.9rem;font-weight:600;text-decoration:none;">Coba Gratis Sekarang</a>
+          <a href="bayar.html" style="background:#fff;color:var(--accent);border:1.5px solid var(--accent);padding:12px 24px;border-radius:980px;font-size:0.9rem;font-weight:600;text-decoration:none;">Beli Kredit</a>
+        </div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-label">Bagikan:</span>
+        <a href="https://wa.me/?text=Panduan%20kredit%20AI%20Tools%20perencanaan%20daerah%20https://ai.andriwulandika.uk/panduan-kredit.html" target="_blank" rel="noopener" class="share-btn share-wa">WhatsApp</a>
+        <button class="share-btn share-copy" onclick="navigator.clipboard.writeText(location.href);this.textContent='Tersalin!';setTimeout(()=>this.textContent='Salin Link',2000)" type="button">Salin Link</button>
+      </div>
+
+    </div><!-- /article-body -->
+
+    <footer class="article-footer">
+      <div class="article-tags">
+        <div class="article-footer-label">Tag</div>
+        <span class="tag">Kredit</span>
+        <span class="tag">Panduan</span>
+        <span class="tag">AI Tools</span>
+        <span class="tag">Perencanaan Daerah</span>
+        <span class="tag">ASN</span>
+      </div>
+      <div class="author-card">
+        <div class="author-card-avatar">A</div>
+        <div>
+          <div class="author-card-name">Andri Wulandika</div>
+          <div class="author-card-title">Perencana Pembangunan &amp; Pengembang AI Tools Perencanaan Daerah</div>
+          <div class="author-card-desc">Mengembangkan platform AI untuk membantu ASN Indonesia menyusun dokumen perencanaan yang berkualitas, efisien, dan sesuai regulasi — agar lebih banyak waktu bisa dicurahkan untuk hal yang lebih strategis.</div>
+        </div>
+      </div>
+      <a href="https://andriwulandika.uk/#blog" class="btn-back">← Kembali ke Semua Panduan</a>
+
+      <div class="related-section">
+        <div class="article-footer-label">Artikel Terkait</div>
+        <div class="related-grid">
+          <a href="cara-pakai-template-dokumen.html" class="related-card">
+            <div class="related-card-cat">Template &amp; Panduan</div>
+            <div class="related-card-title">Cara Menggunakan 9 Template Dokumen Perencanaan Daerah</div>
+            <div class="related-card-meta">Andri Wulandika · 2026</div>
+          </a>
+          <a href="harga.html" class="related-card">
+            <div class="related-card-cat">Harga &amp; Paket</div>
+            <div class="related-card-title">Bandingkan Paket Kredit — Pilih yang Tepat untuk OPD Anda</div>
+            <div class="related-card-meta">Andri Wulandika · 2026</div>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </main><!-- /main -->
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-label">Daftar Isi</div>
+      <ul class="toc-list">
+        <li><a href="#apa-itu-kredit">Apa itu kredit?</a></li>
+        <li><a href="#demo-vs-kredit">Demo vs Kredit</a></li>
+        <li><a href="#paket-kredit">Paket Kredit</a></li>
+        <li><a href="#cara-beli">Cara Membeli</a></li>
+        <li><a href="#cek-saldo">Cek Saldo</a></li>
+        <li><a href="#tools-dan-kredit">8 AI Tools</a></li>
+        <li><a href="#tips-hemat">Tips Hemat</a></li>
+        <li><a href="#contoh-penggunaan">Contoh Penggunaan</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-author-avatar">A</div>
+      <div class="sidebar-author-name">Andri Wulandika</div>
+      <div class="sidebar-author-title">Perencana Pembangunan &amp; Pengembang AI Tools Perencanaan Daerah</div>
+    </div>
+    <div class="cta-box">
+      <div class="cta-box-title">Siap pakai AI Tools?</div>
+      <div class="cta-box-desc">Mulai gratis, upgrade ke kredit kapan pun butuh dokumen lengkap.</div>
+      <a href="bayar.html" class="cta-box-btn">Beli Kredit</a>
+    </div>
+  </aside>
+</div><!-- /page-wrap -->
+
+<footer>
+  <div style="max-width:860px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <span>&copy; 2026 Andri Wulandika. Dibuat untuk ASN Indonesia.</span>
+    <div style="display:flex;gap:1.6rem;flex-wrap:wrap;">
+      <a href="index.html">Beranda</a>
+      <a href="harga.html">Harga</a>
+      <a href="bayar.html">Beli Kredit</a>
+      <a href="https://andriwulandika.uk/tentang.html">Tentang</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var bar=document.getElementById('progress-bar');
+  if(!bar)return;
+  function upd(){var s=document.documentElement;var p=(s.scrollTop||document.body.scrollTop)/(s.scrollHeight-s.clientHeight)*100;bar.style.width=p+'%';}
+  window.addEventListener('scroll',upd,{passive:true});
+})();
+
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!els.length)return;
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:0.12});
+  els.forEach(function(el){obs.observe(el);});
+})();
+
+(function(){
+  var items=document.querySelectorAll('.faq-mini-item');
+  items.forEach(function(item){
+    var btn=item.querySelector('.faq-mini-q');
+    if(!btn)return;
+    btn.addEventListener('click',function(){
+      var wasOpen=item.classList.contains('open');
+      items.forEach(function(i){i.classList.remove('open');});
+      if(!wasOpen)item.classList.add('open');
+    });
+  });
+})();
+
+(function(){
+  var toc=document.querySelectorAll('.toc-list a');
+  if(!toc.length)return;
+  var heads=[];
+  toc.forEach(function(a){var id=a.getAttribute('href').replace('#','');var el=document.getElementById(id);if(el)heads.push({el:el,a:a});});
+  function setActive(){var mid=window.scrollY+120;var cur=null;heads.forEach(function(h){if(h.el.offsetTop<=mid)cur=h;});toc.forEach(function(a){a.classList.remove('active');});if(cur)cur.a.classList.add('active');}
+  window.addEventListener('scroll',setActive,{passive:true});setActive();
+})();
+</script>
+
+</body>
+</html>

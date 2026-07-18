@@ -1,0 +1,91 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+xmlns:w='urn:schemas-microsoft-com:office:word'
+xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/><title>Template LKjIP OPD</title>
+<style>
+body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;}
+h1{font-size:14pt;text-align:center;font-weight:bold;text-transform:uppercase;}
+h2{font-size:12pt;font-weight:bold;text-transform:uppercase;margin-top:18px;}
+h3{font-size:12pt;font-weight:bold;margin-top:12px;}
+table{border-collapse:collapse;width:100%;margin:10px 0;}
+td,th{border:1px solid #000;padding:6px;font-size:11pt;vertical-align:top;}
+th{background:#d9d9d9;font-weight:bold;text-align:center;}
+.ph{color:#1155cc;}
+.note{color:#666;font-style:italic;font-size:10pt;}
+</style>
+</head>
+<body>
+
+<h1>LAPORAN KINERJA INSTANSI PEMERINTAH (LKjIP)<br/>[NAMA OPD]<br/>[NAMA KABUPATEN/KOTA/PROVINSI]<br/>TAHUN [20XX]</h1>
+
+<p class="note">Template disusun mengikuti sistematika pada Peraturan Menteri PANRB Nomor 53 Tahun 2014 tentang Petunjuk Teknis Perjanjian Kinerja, Pelaporan Kinerja dan Tata Cara Reviu atas Laporan Kinerja Instansi Pemerintah, dan Peraturan Menteri PANRB Nomor 88 Tahun 2021 tentang Pedoman Evaluasi Akuntabilitas Kinerja Instansi Pemerintah. Sistematika empat bab (Ikhtisar Eksekutif, Bab I–IV, dan Lampiran) selaras dengan format LKjIP Kabupaten Banyuwangi — daerah dengan praktik SAKIP berpredikat terbaik nasional. Ganti seluruh teks berwarna biru ([...]) dengan data riil OPD Anda.</p>
+
+<h2>IKHTISAR EKSEKUTIF</h2>
+<p>[Sajikan ringkasan singkat memuat: tujuan dan sasaran strategis OPD, ringkasan capaian kinerja utama tahun pelaporan beserta persentase capaiannya, faktor pendukung/penghambat, serta langkah perbaikan ke depan. Bagian ini ditulis terakhir setelah seluruh bab selesai disusun.]</p>
+
+<h2>BAB I PENDAHULUAN</h2>
+<h3>1.1 Latar Belakang</h3>
+<p>Laporan Kinerja Instansi Pemerintah (LKjIP) <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[20XX]</span> disusun sebagai bentuk pertanggungjawaban atas pencapaian kinerja yang telah diperjanjikan dalam dokumen Perjanjian Kinerja (PK) Tahun <span class="ph">[20XX]</span>, sekaligus sebagai wujud akuntabilitas pelaksanaan tugas dan fungsi <span class="ph">[NAMA OPD]</span> kepada pemangku kepentingan dan masyarakat.</p>
+<h3>1.2 Dasar Hukum</h3>
+<ol>
+<li>Peraturan Pemerintah Nomor 8 Tahun 2006 tentang Pelaporan Keuangan dan Kinerja Instansi Pemerintah;</li>
+<li>Peraturan Presiden Nomor 29 Tahun 2014 tentang Sistem Akuntabilitas Kinerja Instansi Pemerintah;</li>
+<li>Peraturan Menteri PANRB Nomor 53 Tahun 2014 tentang Petunjuk Teknis Perjanjian Kinerja, Pelaporan Kinerja dan Tata Cara Reviu atas Laporan Kinerja Instansi Pemerintah;</li>
+<li>Peraturan Menteri PANRB Nomor 88 Tahun 2021 tentang Pedoman Evaluasi Akuntabilitas Kinerja Instansi Pemerintah;</li>
+<li>Peraturan [Bupati/Wali Kota/Gubernur] <span class="ph">[NAMA DAERAH]</span> tentang Pembentukan dan Susunan Organisasi <span class="ph">[NAMA OPD]</span>.</li>
+</ol>
+<h3>1.3 Gambaran Umum Organisasi</h3>
+<p>[Uraikan tugas pokok, fungsi, dan struktur organisasi <span class="ph">[NAMA OPD]</span> berdasarkan Peraturan [Bupati/Wali Kota/Gubernur] Nomor [..] Tahun [..], beserta jumlah dan komposisi sumber daya manusia.]</p>
+<h3>1.4 Isu Strategis (Strategic Issued)</h3>
+<p>[Uraikan permasalahan dan isu strategis utama yang dihadapi OPD pada tahun pelaporan, yang memengaruhi pencapaian target kinerja.]</p>
+<h3>1.5 Sistematika Penyajian</h3>
+<p>[Uraikan secara ringkas isi tiap bab dari Bab I Pendahuluan hingga Bab IV Penutup beserta lampiran.]</p>
+
+<h2>BAB II PERENCANAAN KINERJA</h2>
+<h3>2.1 Rencana Strategis</h3>
+<p>Ringkasan tujuan dan sasaran strategis <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[periode Renstra]</span> sebagaimana tertuang dalam dokumen Renstra:</p>
+<table>
+<tr><th>Tujuan</th><th>Sasaran Strategis</th><th>Indikator Kinerja Utama (IKU)</th><th>Target Akhir Renstra</th></tr>
+<tr><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td></tr>
+</table>
+<h3>2.2 Perjanjian Kinerja Tahun [20XX]</h3>
+<p>Perjanjian Kinerja <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[20XX]</span> ditetapkan sebagai berikut:</p>
+<table>
+<tr><th>No</th><th>Sasaran Strategis</th><th>Indikator Kinerja</th><th>Target</th></tr>
+<tr><td>1</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td></tr>
+</table>
+
+<h2>BAB III AKUNTABILITAS KINERJA</h2>
+<h3>3.1 Capaian Kinerja Organisasi</h3>
+<p>[Uraikan analisis capaian kinerja untuk setiap sasaran strategis dengan membandingkan antara target dan realisasi kinerja tahun ini, serta perbandingan dengan tahun sebelumnya dan/atau target akhir Renstra.]</p>
+<table>
+<tr><th>No</th><th>Sasaran Strategis</th><th>Indikator Kinerja</th><th>Target</th><th>Realisasi</th><th>Capaian (%)</th><th>Kategori</th></tr>
+<tr><td>1</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[Sangat Berhasil/Berhasil/Cukup Berhasil/Tidak Berhasil]</td></tr>
+</table>
+<p class="note">Kategori capaian: ≥100% Sangat Berhasil, 85–&lt;100% Berhasil, 70–&lt;85% Cukup Berhasil, &lt;70% Tidak Berhasil (PermenPANRB 53/2014).</p>
+<h3>3.2 Analisis Penyebab Keberhasilan/Kegagalan, Permasalahan, dan Solusi</h3>
+<p>[Untuk setiap sasaran strategis, uraikan: (a) faktor pendukung keberhasilan atau penyebab tidak tercapainya target; (b) kendala/permasalahan yang dihadapi; (c) langkah/solusi/rencana aksi perbaikan ke depan.]</p>
+<h3>3.3 Analisis Efisiensi Penggunaan Sumber Daya</h3>
+<p>[Uraikan analisis efisiensi pemanfaatan anggaran dan sumber daya lain dalam mencapai target kinerja — bandingkan persentase capaian kinerja dengan persentase penyerapan anggaran.]</p>
+<h3>3.4 Realisasi Anggaran</h3>
+<table>
+<tr><th>No</th><th>Sasaran / Program</th><th>Pagu Anggaran (Rp)</th><th>Realisasi (Rp)</th><th>Persentase (%)</th></tr>
+<tr><td>1</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td></tr>
+</table>
+
+<h2>BAB IV PENUTUP</h2>
+<p>[Simpulkan secara umum keberhasilan maupun kendala pencapaian kinerja <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[20XX]</span>, serta rencana strategis peningkatan kinerja pada tahun berikutnya. Tegaskan komitmen OPD untuk terus meningkatkan akuntabilitas kinerja sesuai prinsip tata kelola pemerintahan yang baik.]</p>
+
+<h2>LAMPIRAN</h2>
+<ol>
+<li>Perjanjian Kinerja Tahun <span class="ph">[20XX]</span>;</li>
+<li>Pengukuran Kinerja Tahun <span class="ph">[20XX]</span>;</li>
+<li>[Lampiran pendukung lain yang relevan, mis. dokumentasi kegiatan, data capaian SPM, dsb.]</li>
+</ol>
+
+<p>[Nama Kota], [Tanggal Bulan Tahun]<br/>KEPALA <span class="ph">[NAMA OPD]</span><br/><br/><br/><br/>
+<span class="ph">[NAMA PEJABAT, Pangkat/Golongan]</span><br/>NIP. <span class="ph">[NIP]</span></p>
+
+<p class="note">— Template oleh Andri Wulandika · andriwulandika.pages.dev — Gunakan SiLKjIP (andriwulandika.pages.dev/silkjip.html) untuk menyusun analisis capaian dan narasi LKjIP secara otomatis dengan AI sesuai PermenPANRB 53/2014 dan 88/2021.</p>
+</body>
+</html>

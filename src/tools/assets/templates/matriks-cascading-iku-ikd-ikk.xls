@@ -1,0 +1,72 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+xmlns:x='urn:schemas-microsoft-com:office:excel'
+xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/>
+<!--[if gte mso 9]><xml>
+<x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>
+<x:Name>Cascading IKU-IKD-IKK</x:Name>
+<x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+</x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook>
+</xml><![endif]-->
+<style>
+td,th{border:1px solid #999;padding:5px;font-family:Calibri,Arial,sans-serif;font-size:11pt;vertical-align:top;}
+th{background:#bdd7ee;font-weight:bold;text-align:center;}
+.title{font-size:14pt;font-weight:bold;}
+.ph{color:#1155cc;}
+.lvl1{background:#fff2cc;font-weight:bold;}
+.lvl2{background:#e2efda;}
+.lvl3{background:#fce4d6;}
+.lvl4{background:#f2f2f2;}
+</style>
+</head>
+<body>
+<table>
+<tr><td colspan="6" class="title">MATRIKS CASCADING INDIKATOR KINERJA — [NAMA OPD] — TAHUN [20XX]</td></tr>
+<tr><td colspan="6">Berdasarkan Peraturan Menteri PANRB Nomor 6 Tahun 2022 tentang Pengelolaan Kinerja Pegawai Aparatur Sipil Negara — penurunan (cascading) indikator kinerja berjenjang dari level Pemerintah Daerah hingga individu ASN, sebagai dasar penyusunan SKP dan evaluasi SAKIP. Ganti seluruh sel berisi tanda kurung [..] dengan data riil OPD Anda.</td></tr>
+<tr><td colspan="6"></td></tr>
+<tr><th>Level</th><th>Jabatan / Unit Kerja</th><th>Sasaran / Rencana Kinerja</th><th>Indikator Kinerja</th><th>Target</th><th>Indikator Induk yang Didukung (Cascading dari)</th></tr>
+<tr class="lvl1">
+<td><b>Pemda</b></td><td class="ph">[NAMA DAERAH] — RPJMD</td>
+<td class="ph">[Sasaran RPJMD yang relevan dengan urusan OPD]</td>
+<td class="ph">[Indikator Kinerja Daerah / IKD]</td>
+<td class="ph">[target akhir RPJMD]</td>
+<td>—</td>
+</tr>
+<tr class="lvl1">
+<td><b>OPD<br/>(Eselon II)</b></td><td class="ph">Kepala [NAMA OPD]</td>
+<td class="ph">[Sasaran strategis OPD sesuai Renstra]</td>
+<td class="ph">Indikator Kinerja Utama (IKU): [isi]</td>
+<td class="ph">[target tahunan]</td>
+<td class="ph">IKD: [sebutkan indikator daerah yang didukung]</td>
+</tr>
+<tr class="lvl2">
+<td><b>Bidang<br/>(Eselon III)</b></td><td class="ph">Kepala Bidang [NAMA BIDANG]</td>
+<td class="ph">[Sasaran/program bidang]</td>
+<td class="ph">Indikator Kinerja Individu (IKI): [isi]</td>
+<td class="ph">[target tahunan]</td>
+<td class="ph">IKU: [sebutkan IKU OPD yang didukung]</td>
+</tr>
+<tr class="lvl3">
+<td><b>Sub Bidang / Seksi<br/>(Eselon IV)</b></td><td class="ph">Kepala Sub Bidang/Seksi [NAMA UNIT]</td>
+<td class="ph">[Sasaran kegiatan/sub kegiatan]</td>
+<td class="ph">IKI: [isi]</td>
+<td class="ph">[target tahunan]</td>
+<td class="ph">IKI Bidang: [sebutkan indikator Eselon III yang didukung]</td>
+</tr>
+<tr class="lvl4">
+<td><b>Individu<br/>(Pelaksana / ASN)</b></td><td class="ph">[Nama / Jabatan Pelaksana]</td>
+<td class="ph">[Rencana kinerja individu — SKP]</td>
+<td class="ph">Indikator Kinerja Individu: [isi]</td>
+<td class="ph">[target tahunan]</td>
+<td class="ph">IKI Sub Bidang/Seksi: [sebutkan indikator Eselon IV yang didukung]</td>
+</tr>
+<tr><td colspan="6"></td></tr>
+<tr><td colspan="6"><b>Catatan pengisian:</b></td></tr>
+<tr><td colspan="6">1. Cascading harus berjenjang dan konsisten — setiap indikator pada level di bawah harus secara logis mendukung pencapaian indikator pada level di atasnya (alignment top-down).</td></tr>
+<tr><td colspan="6">2. Indikator level individu menjadi dasar penyusunan Sasaran Kinerja Pegawai (SKP) sesuai PermenPANRB 6/2022 dan dievaluasi secara berkala (triwulanan/tahunan).</td></tr>
+<tr><td colspan="6">3. Duplikasi/perbanyak baris sesuai jumlah jabatan dan unit kerja riil di lingkungan OPD Anda.</td></tr>
+<tr><td colspan="6">4. Gunakan SiKTOR (andriwulandika.pages.dev/siktor.html) untuk menyusun cascading target kinerja secara otomatis dengan AI berbasis data Renstra dan Perjanjian Kinerja OPD.</td></tr>
+<tr><td colspan="6">— Template oleh Andri Wulandika · andriwulandika.pages.dev —</td></tr>
+</table>
+</body>
+</html>

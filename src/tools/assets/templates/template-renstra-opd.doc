@@ -1,0 +1,121 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+xmlns:w='urn:schemas-microsoft-com:office:word'
+xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/><title>Template Renstra OPD 2025-2029</title>
+<style>
+body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;}
+h1{font-size:14pt;text-align:center;font-weight:bold;text-transform:uppercase;}
+h2{font-size:12pt;font-weight:bold;text-transform:uppercase;margin-top:18px;}
+h3{font-size:12pt;font-weight:bold;margin-top:12px;}
+table{border-collapse:collapse;width:100%;margin:10px 0;}
+td,th{border:1px solid #000;padding:6px;font-size:11pt;vertical-align:top;}
+th{background:#d9d9d9;font-weight:bold;text-align:center;}
+.ph{color:#1155cc;}
+.note{color:#666;font-style:italic;font-size:10pt;}
+</style>
+</head>
+<body>
+
+<h1>RENCANA STRATEGIS (RENSTRA)<br/>[NAMA OPD]<br/>[NAMA KABUPATEN/KOTA/PROVINSI]<br/>TAHUN [2025] – [2029]</h1>
+
+<p class="note">Template ini disusun mengikuti sistematika Rencana Strategis Perangkat Daerah periode 2025–2029 (lima bab) berdasarkan Permendagri Nomor 86 Tahun 2017 jo. Permendagri Nomor 90 Tahun 2019 dan disesuaikan dengan Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025 — selaras dengan praktik dokumen perencanaan Kabupaten Banyuwangi (peraih Penghargaan Pembangunan Daerah Bappenas). Ganti seluruh teks berwarna biru ([...]) dengan data riil OPD dan daerah Anda.</p>
+
+<h2>KATA PENGANTAR</h2>
+<p>[Uraian kata pengantar dari Kepala <span class="ph">[NAMA OPD]</span> yang memuat ucapan syukur, dasar penyusunan Renstra, harapan terhadap dokumen, serta ucapan terima kasih kepada pihak yang terlibat dalam penyusunan.]</p>
+<p>[Nama Kota], [Bulan Tahun]<br/>KEPALA <span class="ph">[NAMA OPD]</span><br/><br/><br/><br/>
+<span class="ph">[NAMA PEJABAT, Pangkat/Golongan]</span><br/>NIP. <span class="ph">[NIP]</span></p>
+
+<h2>DAFTAR ISI</h2>
+<p class="note">[Daftar isi dibuat otomatis setelah dokumen final — gunakan fitur Table of Contents pada Microsoft Word. Mengikuti format lima bab Renstra 2025–2029.]</p>
+
+<h2>BAB I PENDAHULUAN</h2>
+<h3>1.1 Latar Belakang</h3>
+<p>Renstra <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[2025–2029]</span> disusun sebagai dokumen perencanaan jangka menengah yang memuat tujuan, sasaran, program, dan kegiatan pembangunan sesuai tugas dan fungsi <span class="ph">[NAMA OPD]</span>, serta berpedoman pada RPJMD <span class="ph">[NAMA DAERAH]</span> Tahun <span class="ph">[PERIODE RPJMD]</span>. [Lanjutkan uraian latar belakang penyusunan, keterkaitan dengan dokumen perencanaan lain, dan urgensi dokumen ini bagi penyelenggaraan pemerintahan daerah.]</p>
+<h3>1.2 Landasan Hukum</h3>
+<p>[Cantumkan seluruh dasar hukum penyusunan Renstra OPD, contoh:]</p>
+<ol>
+<li>Undang-Undang Nomor 23 Tahun 2014 tentang Pemerintahan Daerah;</li>
+<li>Peraturan Pemerintah Nomor 12 Tahun 2017 tentang Pembinaan dan Pengawasan Penyelenggaraan Pemerintahan Daerah;</li>
+<li>Peraturan Menteri Dalam Negeri Nomor 86 Tahun 2017 tentang Tata Cara Perencanaan, Pengendalian dan Evaluasi Pembangunan Daerah;</li>
+<li>Peraturan Menteri Dalam Negeri Nomor 90 Tahun 2019 tentang Klasifikasi, Kodefikasi, dan Nomenklatur Perencanaan Pembangunan dan Keuangan Daerah beserta pemutakhirannya;</li>
+<li>Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025 tentang [sebutkan perihal sesuai Inmendagri yang berlaku];</li>
+<li>Peraturan Daerah <span class="ph">[NAMA DAERAH]</span> Nomor [..] Tahun [..] tentang RPJMD <span class="ph">[NAMA DAERAH]</span> Tahun <span class="ph">[PERIODE]</span>;</li>
+<li>Peraturan [Bupati/Wali Kota/Gubernur] <span class="ph">[NAMA DAERAH]</span> Nomor [..] Tahun [..] tentang Pembentukan dan Susunan Organisasi <span class="ph">[NAMA OPD]</span>.</li>
+</ol>
+<h3>1.3 Maksud dan Tujuan</h3>
+<p><b>Maksud:</b> [Uraikan maksud penyusunan Renstra, misalnya sebagai pedoman penyusunan Renja OPD tahunan dan acuan pelaksanaan tugas dan fungsi OPD selama lima tahun ke depan.]</p>
+<p><b>Tujuan:</b></p>
+<ol>
+<li>[Menjabarkan visi misi Kepala Daerah ke dalam program dan kegiatan OPD;]</li>
+<li>[Menjadi dasar evaluasi kinerja OPD secara berkala;]</li>
+<li>[Menjamin keterpaduan, sinkronisasi, dan sinergi antar program pembangunan.]</li>
+</ol>
+<h3>1.4 Sistematika Penulisan</h3>
+<p>[Uraikan secara ringkas isi tiap bab. Mengikuti format Renstra 2025–2029, dokumen terdiri atas lima bab: Bab I Pendahuluan; Bab II Gambaran Pelayanan, Permasalahan dan Isu Strategis Perangkat Daerah; Bab III Tujuan, Sasaran, Strategi dan Arah Kebijakan; Bab IV Program, Kegiatan, Sub Kegiatan dan Sasaran Kinerja Penyelenggaraan Bidang Urusan; serta Bab V Penutup.]</p>
+
+<h2>BAB II GAMBARAN PELAYANAN, PERMASALAHAN DAN ISU STRATEGIS PERANGKAT DAERAH</h2>
+<h3>2.1 Tugas, Fungsi, dan Struktur Organisasi</h3>
+<p>Berdasarkan Peraturan [Bupati/Wali Kota/Gubernur] <span class="ph">[NAMA DAERAH]</span> Nomor [..] Tahun [..], <span class="ph">[NAMA OPD]</span> mempunyai tugas <span class="ph">[uraikan tugas pokok sesuai Perkada pembentukan]</span>, dengan fungsi sebagai berikut: [sebutkan fungsi-fungsi utama OPD]. [Sertakan bagan struktur organisasi OPD pada bagian ini.]</p>
+<h3>2.2 Sumber Daya Perangkat Daerah</h3>
+<p>[Uraikan kondisi sumber daya manusia (jumlah dan kualifikasi pegawai berdasarkan pendidikan, golongan, dan jabatan), aset/sarana prasarana, serta anggaran yang dikelola OPD pada tahun terakhir.]</p>
+<table>
+<tr><th>No</th><th>Jenis Sumber Daya</th><th>Kondisi Saat Ini</th><th>Keterangan</th></tr>
+<tr><td>1</td><td>Jumlah Pegawai (ASN/PPPK/Non-ASN)</td><td>[isi]</td><td>[isi]</td></tr>
+<tr><td>2</td><td>Sarana dan Prasarana</td><td>[isi]</td><td>[isi]</td></tr>
+<tr><td>3</td><td>Anggaran (Pagu Tahun Berjalan)</td><td>Rp [isi]</td><td>[isi]</td></tr>
+</table>
+<h3>2.3 Kinerja Pelayanan Perangkat Daerah</h3>
+<p>[Sajikan tabel capaian kinerja pelayanan OPD periode Renstra sebelumnya, mengacu pada indikator kinerja utama (IKU) dan target/realisasi tahunan. Uraikan pula tantangan internal dan eksternal serta peluang yang dapat dimanfaatkan OPD dalam lima tahun ke depan.]</p>
+<table>
+<tr><th>No</th><th>Indikator Kinerja</th><th>Target Akhir Renstra Sebelumnya</th><th>Realisasi</th><th>Capaian (%)</th></tr>
+<tr><td>1</td><td>[isi indikator]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td></tr>
+</table>
+<h3>2.4 Permasalahan Pelayanan Perangkat Daerah</h3>
+<p>[Uraikan permasalahan utama yang dihadapi OPD dalam menjalankan tugas dan fungsinya, didukung data kuantitatif jika tersedia.]</p>
+<h3>2.5 Telaahan Visi-Misi Kepala Daerah, Renstra K/L, serta RTRW dan KLHS</h3>
+<p><b>Telaahan Visi dan Misi Kepala Daerah.</b> Visi: <span class="ph">[VISI KEPALA DAERAH]</span>. Misi yang relevan dengan <span class="ph">[NAMA OPD]</span>: <span class="ph">[Misi ke-.., uraian]</span>. [Jelaskan keterkaitan tugas OPD dengan pencapaian visi misi tersebut.]</p>
+<p><b>Telaahan Renstra Kementerian/Lembaga dan Renstra Perangkat Daerah Provinsi.</b> [Uraikan keselarasan arah kebijakan OPD dengan Renstra K/L terkait dan/atau Renstra OPD Provinsi.]</p>
+<p><b>Telaahan RTRW dan Kajian Lingkungan Hidup Strategis (KLHS).</b> [Uraikan keterkaitan program OPD dengan RTRW dan KLHS daerah, bila relevan dengan tugas dan fungsi OPD.]</p>
+<h3>2.6 Penentuan Isu-Isu Strategis</h3>
+<p>[Rumuskan isu-isu strategis berdasarkan hasil analisis pada sub-bab sebelumnya, disusun berdasarkan skala prioritas.]</p>
+<table>
+<tr><th>No</th><th>Isu Strategis</th><th>Dasar Pertimbangan</th></tr>
+<tr><td>1</td><td>[isi]</td><td>[isi]</td></tr>
+</table>
+
+<h2>BAB III TUJUAN, SASARAN, STRATEGI DAN ARAH KEBIJAKAN</h2>
+<h3>3.1 Tujuan dan Sasaran Jangka Menengah Perangkat Daerah</h3>
+<p>[Rumuskan tujuan dan sasaran jangka menengah OPD yang selaras dengan tujuan dan sasaran RPJMD, lengkap dengan indikator dan target tahunan.]</p>
+<table>
+<tr><th>Tujuan</th><th>Indikator Tujuan</th><th>Sasaran</th><th>Indikator Sasaran</th><th>Target Tahun ke-1</th><th>Target Tahun ke-2</th><th>Target Tahun ke-3</th><th>Target Tahun ke-4</th><th>Target Tahun ke-5</th></tr>
+<tr><td>[isi]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td></tr>
+</table>
+<h3>3.2 Strategi dan Arah Kebijakan</h3>
+<p>[Rumuskan strategi dan arah kebijakan OPD untuk mencapai tujuan dan sasaran yang ditetapkan, disusun dalam bentuk tabel keterhubungan.]</p>
+<table>
+<tr><th>Tujuan</th><th>Sasaran</th><th>Strategi</th><th>Arah Kebijakan</th></tr>
+<tr><td>[isi]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td></tr>
+</table>
+
+<h2>BAB IV PROGRAM, KEGIATAN, SUB KEGIATAN DAN SASARAN KINERJA PENYELENGGARAAN BIDANG URUSAN</h2>
+<h3>4.1 Rencana Program, Kegiatan, Sub Kegiatan, dan Pendanaan</h3>
+<p>[Sajikan rencana program, kegiatan, sub kegiatan, indikator kinerja, target, dan kerangka pendanaan selama lima tahun, dengan nomenklatur sesuai Kepmendagri 050-5889/2021 beserta pemutakhirannya.]</p>
+<table>
+<tr><th>Kode</th><th>Program/Kegiatan/Sub Kegiatan</th><th>Indikator Kinerja</th><th>Target &amp; Pagu Tahun ke-1</th><th>Target &amp; Pagu Tahun ke-2</th><th>...</th><th>Target &amp; Pagu Akhir Renstra</th><th>Unit Kerja Penanggung Jawab</th></tr>
+<tr><td>[kode]</td><td>[nama program/kegiatan]</td><td>[indikator]</td><td>[target / Rp pagu]</td><td>[target / Rp pagu]</td><td>...</td><td>[target / Rp pagu]</td><td>[unit kerja]</td></tr>
+</table>
+<h3>4.2 Indikator Kinerja Penyelenggaraan Bidang Urusan (IKU/IKK)</h3>
+<p>Indikator kinerja <span class="ph">[NAMA OPD]</span> yang mengacu langsung pada tujuan dan sasaran RPJMD <span class="ph">[NAMA DAERAH]</span> disajikan sebagai berikut, sebagai tolok ukur keberhasilan penyelenggaraan urusan <span class="ph">[KODE DAN NAMA URUSAN, mis. 1.01 Pendidikan]</span> selama periode Renstra.</p>
+<table>
+<tr><th>No</th><th>Indikator Kinerja Utama</th><th>Kondisi Awal</th><th>Target Tahun ke-1 s.d. ke-5</th><th>Kondisi Akhir Periode Renstra</th></tr>
+<tr><td>1</td><td>[isi]</td><td>[isi]</td><td>[isi]</td><td>[isi]</td></tr>
+</table>
+
+<h2>BAB V PENUTUP</h2>
+<p>Renstra <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[2025–2029]</span> menjadi pedoman dalam penyusunan Renja OPD tahunan dan acuan pelaksanaan, pengendalian, serta evaluasi program dan kegiatan selama lima tahun mendatang. [Tambahkan harapan keberhasilan pelaksanaan dan ajakan komitmen seluruh jajaran OPD.]</p>
+<p>[Nama Kota], [Bulan Tahun]<br/>KEPALA <span class="ph">[NAMA OPD]</span><br/><br/><br/><br/>
+<span class="ph">[NAMA PEJABAT, Pangkat/Golongan]</span><br/>NIP. <span class="ph">[NIP]</span></p>
+
+<p class="note">— Template dibuat oleh Andri Wulandika · andriwulandika.uk — Sistematika lima bab mengikuti format Renstra 2025–2029 (acuan praktik dokumen Kabupaten Banyuwangi). Gunakan SiGenDok untuk mengisi dan menyempurnakan narasi dokumen ini secara otomatis dengan AI.</p>
+</body>
+</html>

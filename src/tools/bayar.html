@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js"></script>
+  <script src="/assets/js/ui-enhance.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pembayaran — Andri Wulandika</title>
+  <meta name="description" content="Cara pembayaran Paket Berbayar, Bulanan/Tahunan, untuk mengakses penuh AI Tools perencanaan daerah tanpa batas demo."/>
+  <meta name="robots" content="noindex"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff; --bg2: #f5f5f7; --bg3: #1d1d1f;
+      --text: #1d1d1f; --text2: #6e6e73; --text3: #ffffff;
+      --accent: #0071e3; --green: #34c759; --border: #d2d2d7; --radius: 18px;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      height: 52px; background: rgba(255,255,255,0.88);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    .nav-logo { font-size: 1rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .nav-back:hover { opacity: 0.7; }
+
+    .hero { padding: 100px 24px 60px; text-align: center; max-width: 680px; margin: 0 auto; }
+    .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 16px; }
+    .hero p { font-size: 1rem; color: var(--text2); line-height: 1.7; }
+
+    .section { padding: 60px 24px; max-width: 760px; margin: 0 auto; }
+
+    /* Step indicator */
+    .steps { display: flex; align-items: flex-start; gap: 0; margin-bottom: 56px; }
+    .step-item { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .step-item:not(:last-child)::after {
+      content: ''; position: absolute; top: 18px; left: 50%; width: 100%; height: 1px;
+      background: var(--border);
+    }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 700; position: relative; z-index: 1;
+      margin-bottom: 10px; flex-shrink: 0;
+    }
+    .step-label { font-size: 0.75rem; color: var(--text2); text-align: center; line-height: 1.4; }
+
+    /* Package selector */
+    .pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+    .pkg-card {
+      border: 2px solid var(--border); border-radius: var(--radius);
+      padding: 24px 20px; cursor: pointer; transition: all 0.2s; position: relative;
+    }
+    .pkg-card:hover { border-color: var(--accent); }
+    .pkg-card.active { border-color: var(--accent); background: #f0f7ff; }
+    .pkg-check {
+      display: none; position: absolute; top: 16px; right: 16px;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+      color: #fff; font-size: 0.7rem; align-items: center; justify-content: center;
+    }
+    .pkg-card.active .pkg-check { display: flex; }
+    .pkg-badge {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 980px; margin-bottom: 12px; display: inline-block;
+    }
+    .pkg-badge.pro { background: #e8f1fb; color: var(--accent); }
+    .pkg-badge.opd { background: #e8f8ee; color: #1a7a3e; }
+    .pkg-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .pkg-price { font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: -0.03em; }
+    .pkg-price-sub { font-size: 0.75rem; color: var(--text2); margin-bottom: 12px; }
+    .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .pkg-features li { font-size: 0.8rem; color: var(--text2); display: flex; gap: 8px; }
+    .pkg-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    /* Bank transfer card */
+    .bank-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 32px; margin-bottom: 24px;
+    }
+    .bank-card-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); margin-bottom: 20px; }
+    .bank-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .bank-row:last-child { border-bottom: none; }
+    .bank-key { font-size: 0.82rem; color: var(--text2); }
+    .bank-val { font-size: 0.95rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .copy-btn {
+      font-size: 0.7rem; padding: 4px 10px;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      cursor: pointer; color: var(--text2); transition: all 0.15s;
+    }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+    .amount-box {
+      background: linear-gradient(135deg, #0071e3, #0055b3);
+      border-radius: 14px; padding: 20px 24px; margin-bottom: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .amount-label { font-size: 0.82rem; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+    .amount-val { font-size: 1.8rem; font-weight: 700; color: #fff; letter-spacing: -0.03em; }
+    .amount-note { font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    .amount-copy-btn {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 10px; padding: 10px 16px; color: #fff; font-size: 0.8rem;
+      cursor: pointer; transition: background 0.2s; flex-shrink: 0;
+    }
+    .amount-copy-btn:hover { background: rgba(255,255,255,0.25); }
+
+    /* Konfirmasi WA */
+    .konfirm-box {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 32px; margin-bottom: 32px;
+    }
+    .konfirm-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .konfirm-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.65; margin-bottom: 20px; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #25D366; color: #fff;
+      padding: 14px 28px; border-radius: 980px;
+      font-size: 0.92rem; font-weight: 600; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .wa-btn:hover { background: #1ebe5b; }
+
+    /* Info boxes */
+    .info-box {
+      background: #fff9e6; border: 1px solid #ffd60a;
+      border-radius: 12px; padding: 16px 20px; margin-bottom: 16px;
+      font-size: 0.85rem; color: #7a5800; line-height: 1.6;
+    }
+    .info-box strong { display: block; margin-bottom: 4px; color: #5a4000; }
+
+    .success-box {
+      background: #e8f8ee; border: 1px solid #a3d9b4;
+      border-radius: 12px; padding: 16px 20px; margin-bottom: 24px;
+      font-size: 0.85rem; color: #1a5c2e; line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      padding: 18px 0; cursor: pointer;
+      font-size: 0.95rem; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center;
+      user-select: none;
+    }
+    .faq-q .icon { font-size: 0.7rem; transition: transform 0.2s; color: var(--text2); }
+    .faq-q.open .icon { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-a p { padding-bottom: 16px; font-size: 0.88rem; color: var(--text2); line-height: 1.7; }
+
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 20px 24px; text-align: center;
+      font-size: 0.78rem; color: var(--text2);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .pkg-grid { grid-template-columns: 1fr; }
+      .steps { gap: 0; }
+      .step-label { font-size: 0.65rem; }
+      .bank-card, .konfirm-box { padding: 20px; }
+    }
+  </style>
+</head>
+<body data-enhance="off">
+
+<nav>
+  <a href="harga.html" class="nav-back">← Kembali ke Harga</a>
+  <a href="index.html" class="nav-logo">Andri Wulandika</a>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">Pembayaran</p>
+  <h1>Pilih durasi &amp;<br/>lakukan transfer.</h1>
+  <p>Proses sederhana — pilih paket &amp; durasi, transfer, konfirmasi via WhatsApp, dan kode akses dikirim dalam 1×24 jam.</p>
+</div>
+
+<div class="section">
+
+  <!-- LANGKAH -->
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-label">Pilih<br/>Paket</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-label">Transfer<br/>Bank</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-label">Konfirmasi<br/>WhatsApp</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-label">Terima<br/>Kode Akses</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-label">Masuk &amp;<br/>Akses Penuh</div>
+    </div>
+  </div>
+
+  <!-- STEP 1: Pilih paket kredit -->
+  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">Langkah 1 — Pilih Paket Kredit</h2>
+
+  <p style="font-size:0.85rem;color:var(--text2);margin-bottom:16px;">Pilih paket kredit — <strong>1 kredit = 1 dokumen</strong>, tanpa kedaluwarsa:</p>
+  <div class="pkg-grid">
+    <div class="pkg-card" id="pkg-coba" onclick="selectPkg('coba')">
+      <div class="pkg-check">✓</div>
+      <span class="pkg-badge pro">Coba</span>
+      <div class="pkg-name">5 Kredit</div>
+      <div class="pkg-price">Rp 25.000</div>
+      <div class="pkg-price-sub">Rp 5.000 / dokumen</div>
+      <ul class="pkg-features">
+        <li>5 dokumen lengkap</li>
+        <li>API key sudah termasuk</li>
+        <li>Tanpa kedaluwarsa</li>
+      </ul>
+    </div>
+    <div class="pkg-card" id="pkg-hemat" onclick="selectPkg('hemat')">
+      <div class="pkg-check">✓</div>
+      <span class="pkg-badge pro">Hemat</span>
+      <div class="pkg-name">25 Kredit</div>
+      <div class="pkg-price">Rp 100.000</div>
+      <div class="pkg-price-sub">Rp 4.000 / dokumen</div>
+      <ul class="pkg-features">
+        <li>25 dokumen lengkap</li>
+        <li>API key sudah termasuk</li>
+        <li>Tanpa kedaluwarsa</li>
+      </ul>
+    </div>
+    <div class="pkg-card active" id="pkg-pro" onclick="selectPkg('pro')">
+      <div class="pkg-check">✓</div>
+      <span class="pkg-badge opd">Pro · Populer</span>
+      <div class="pkg-name">50 Kredit</div>
+      <div class="pkg-price">Rp 175.000</div>
+      <div class="pkg-price-sub">Rp 3.500 / dokumen</div>
+      <ul class="pkg-features">
+        <li>50 dokumen lengkap</li>
+        <li>API key sudah termasuk</li>
+        <li>Tanpa kedaluwarsa</li>
+      </ul>
+    </div>
+    <div class="pkg-card" id="pkg-instansi" onclick="selectPkg('instansi')">
+      <div class="pkg-check">✓</div>
+      <span class="pkg-badge opd">Instansi</span>
+      <div class="pkg-name">100 Kredit</div>
+      <div class="pkg-price">Rp 300.000</div>
+      <div class="pkg-price-sub">Rp 3.000 / dokumen</div>
+      <ul class="pkg-features">
+        <li>100 dokumen lengkap</li>
+        <li>API key sudah termasuk</li>
+        <li>Tanpa kedaluwarsa</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 2: Nominal transfer -->
+  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;margin-top:40px;">Langkah 2 — Transfer ke Rekening Berikut</h2>
+
+  <div class="info-box">
+    <strong>💡 Tips unik nominal</strong>
+    Tambahkan kode unik 3 digit terakhir untuk mempermudah verifikasi. Contoh: jika nominal Rp 175.000 dan kode unik Anda 007, transfer <strong>Rp 175.007</strong>. Kode unik bebas (001–999).
+  </div>
+
+  <div class="amount-box">
+    <div>
+      <div class="amount-label">Nominal Transfer</div>
+      <div class="amount-val" id="amountDisplay">Rp 175.000</div>
+      <div class="amount-note">+ kode unik 3 digit pilihan Anda</div>
+    </div>
+    <button class="amount-copy-btn" onclick="copyAmount()">Salin Nominal</button>
+  </div>
+
+  <div class="bank-card">
+    <div class="bank-card-title">Rekening Tujuan</div>
+    <div class="bank-row">
+      <span class="bank-key">Bank</span>
+      <span class="bank-val">
+        BRI (Bank Rakyat Indonesia)
+      </span>
+    </div>
+    <div class="bank-row">
+      <span class="bank-key">No. Rekening</span>
+      <span class="bank-val" id="rek-number">
+        1234-5678-9012-3456
+        <button class="copy-btn" onclick="copyText('1234567890123456', this)">Salin</button>
+      </span>
+    </div>
+    <div class="bank-row">
+      <span class="bank-key">Atas Nama</span>
+      <span class="bank-val">Andri Wulandika</span>
+    </div>
+  </div>
+
+  <div class="bank-card">
+    <div class="bank-card-title">Alternatif — Dana / GoPay / OVO</div>
+    <div class="bank-row">
+      <span class="bank-key">Nomor Dompet Digital</span>
+      <span class="bank-val" id="ewallet-number">
+        0811-660-568
+        <button class="copy-btn" onclick="copyText('0811660568', this)">Salin</button>
+      </span>
+    </div>
+    <div class="bank-row">
+      <span class="bank-key">Atas Nama</span>
+      <span class="bank-val">Andri Wulandika</span>
+    </div>
+  </div>
+
+  <!-- STEP 3: Konfirmasi WA -->
+  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;margin-top:40px;">Langkah 3 — Konfirmasi via WhatsApp</h2>
+
+  <div class="konfirm-box">
+    <div class="konfirm-title">Setelah transfer, kirim konfirmasi ke WhatsApp</div>
+    <div class="konfirm-desc">
+      Sertakan informasi berikut agar proses verifikasi lebih cepat:<br/><br/>
+      ✅ Nama lengkap &amp; instansi/OPD<br/>
+      ✅ Paket kredit yang dipilih<br/>
+      ✅ Nominal &amp; kode unik yang ditransfer<br/>
+      ✅ Screenshot bukti transfer<br/><br/>
+      <strong style="color:var(--text);">Kode akses Berbayar akan dikirim dalam 1×24 jam (hari kerja).</strong>
+    </div>
+    <a href="#" id="wa-konfirm-btn" class="wa-btn" target="_blank">
+      💬 Konfirmasi via WhatsApp
+    </a>
+  </div>
+
+  <!-- STEP 4 & 5 -->
+  <div class="success-box">
+    <strong style="font-size:0.95rem;color:#0d4a1f;">✅ Langkah 4 &amp; 5 — Terima &amp; Gunakan Kode Akses</strong>
+    Setelah pembayaran terverifikasi, Anda akan menerima <strong>kode akses Berbayar</strong> (format AW-XXXXXXXX) via WhatsApp. Masukkan kode tersebut di halaman Masuk untuk langsung mendapat akses penuh tanpa batas demo.
+    <br/><br/>
+    <a href="aktifkan-pro.html" style="color:var(--accent);font-weight:600;text-decoration:none;">→ Pergi ke Halaman Masuk</a>
+  </div>
+
+  <!-- FAQ -->
+  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:24px;margin-top:48px;">Pertanyaan Umum</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Berapa lama proses verifikasi? <span class="icon">▼</span></div>
+    <div class="faq-a"><p>Maksimal 1×24 jam di hari kerja (Senin–Jumat). Rata-rata proses verifikasi selesai dalam 2–4 jam setelah konfirmasi diterima.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Apakah tersedia kuitansi pembayaran? <span class="icon">▼</span></div>
+    <div class="faq-a"><p>Kuitansi sederhana tersedia atas permintaan untuk Paket Berbayar. Sampaikan kebutuhan Anda saat konfirmasi WhatsApp.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Apakah bisa refund? <span class="icon">▼</span></div>
+    <div class="faq-a"><p>Refund tersedia dalam 7 hari pertama jika fitur tidak berfungsi sebagaimana dijanjikan. Sampaikan keluhan via WhatsApp dan kami akan tinjau kasusnya.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Apakah kode akses bisa digunakan di banyak perangkat? <span class="icon">▼</span></div>
+    <div class="faq-a"><p>Bisa. Kode akses Berbayar divalidasi oleh server, jadi Anda bisa memasukkan kode yang sama di halaman Masuk pada beberapa perangkat.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Bagaimana cara perpanjang berlangganan? <span class="icon">▼</span></div>
+    <div class="faq-a"><p>Ulangi proses yang sama: transfer sesuai nominal paket, konfirmasi via WhatsApp. Anda akan menerima kode akses baru yang memperpanjang masa aktif.</p></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Andri Wulandika &nbsp;·&nbsp; <a href="index.html">Beranda</a> &nbsp;·&nbsp; <a href="harga.html">Harga</a> &nbsp;·&nbsp; <a href="aktifkan-pro.html">Masuk</a> &nbsp;·&nbsp; <a href="https://wa.me/62811660568" target="_blank">WhatsApp</a></p>
+</footer>
+
+<script>
+  let selectedPkg = 'pro';
+
+  const PKG = {
+    coba:     { kredit: 5,   harga: 25000,  label: '5 kredit' },
+    hemat:    { kredit: 25,  harga: 100000, label: '25 kredit' },
+    pro:      { kredit: 50,  harga: 175000, label: '50 kredit' },
+    instansi: { kredit: 100, harga: 300000, label: '100 kredit' },
+  };
+
+  function fmt(n) {
+    return 'Rp ' + n.toLocaleString('id-ID');
+  }
+
+  function updateDisplay() {
+    const p = PKG[selectedPkg];
+    document.getElementById('amountDisplay').textContent = fmt(p.harga);
+
+    // Update WA message
+    const msg = encodeURIComponent(
+      `Halo Andri, saya ingin konfirmasi pembayaran:\n\n` +
+      `• Paket kredit: ${p.label} (${fmt(p.harga)})\n` +
+      `• Nominal: ${fmt(p.harga)} + kode unik\n\n` +
+      `[Lampirkan screenshot bukti transfer]`
+    );
+    document.getElementById('wa-konfirm-btn').href = `https://wa.me/62811660568?text=${msg}`;
+  }
+
+  function selectPkg(key) {
+    selectedPkg = key;
+    ['coba', 'hemat', 'pro', 'instansi'].forEach(k =>
+      document.getElementById('pkg-' + k).classList.toggle('active', k === key));
+    updateDisplay();
+  }
+
+  updateDisplay();
+
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✓ Disalin';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  function copyAmount() {
+    const amount = prices[selectedDur];
+    navigator.clipboard.writeText(amount.toString()).then(() => {
+      const btn = document.querySelector('.amount-copy-btn');
+      btn.textContent = '✓ Disalin';
+      setTimeout(() => { btn.textContent = 'Salin Nominal'; }, 2000);
+    });
+  }
+
+  function toggleFaq(el) {
+    const ans = el.nextElementSibling;
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.classList.remove('open');
+      q.nextElementSibling.style.maxHeight = '0';
+    });
+    if (!isOpen) {
+      el.classList.add('open');
+      ans.style.maxHeight = ans.scrollHeight + 'px';
+    }
+  }
+
+  updateDisplay();
+</script>
+<script type="module" src="assets/js/nav-auth.js"></script>
+</body>
+</html>
