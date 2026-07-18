@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js" defer></script>
+  <script src="/assets/js/ui-enhance.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cara Menggunakan 9 Template Dokumen Perencanaan Daerah — Andri Wulandika</title>
+  <meta name="description" content="Panduan praktis memakai 9 template dokumen perencanaan daerah — Renstra, Renja, dan SAKIP — mulai dari mengunduh, mengisi placeholder, hingga menyempurnakan narasi dengan AI Tools."/>
+  <meta name="keywords" content="template Renstra OPD, template Renja OPD, template LKjIP, template Perjanjian Kinerja, cara mengisi Renja, cascading IKU IKD IKK, Andri Wulandika, perencanaan daerah"/>
+  <meta name="author" content="Andri Wulandika"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://ai.andriwulandika.uk/cara-pakai-template-dokumen.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Cara Menggunakan 9 Template Dokumen Perencanaan Daerah"/>
+  <meta property="og:description" content="Panduan praktis memakai template Renstra, Renja, dan SAKIP — dari mengunduh, mengisi placeholder, hingga menyempurnakan narasi dengan AI."/>
+  <meta property="og:url" content="https://ai.andriwulandika.uk/cara-pakai-template-dokumen.html"/>
+  <meta property="og:site_name" content="Andri Wulandika"/>
+  <meta property="og:image" content="https://andriwulandika.uk/og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="article:author" content="Andri Wulandika"/>
+  <meta property="article:published_time" content="2026-06-07"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cara Menggunakan 9 Template Dokumen Perencanaan Daerah",
+    "author": { "@type": "Person", "name": "Andri Wulandika", "url": "https://andriwulandika.uk/" },
+    "datePublished": "2026-06-07",
+    "dateModified": "2026-06-07",
+    "image": "https://andriwulandika.uk/og-image.png",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ai.andriwulandika.uk/cara-pakai-template-dokumen.html" },
+    "publisher": { "@type": "Person", "name": "Andri Wulandika" },
+    "description": "Panduan praktis memakai 9 template dokumen perencanaan daerah — Renstra, Renja, dan SAKIP — dari mengunduh hingga menyempurnakan narasi dengan AI.",
+    "url": "https://ai.andriwulandika.uk/cara-pakai-template-dokumen.html"
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff; --bg2: #f5f5f7; --text: #1d1d1f; --text2: #6e6e73;
+      --accent: #0071e3; --border: #d2d2d7; --radius: 14px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    #progress-bar { position: fixed; top: 0; left: 0; z-index: 1000; height: 3px; width: 0%; background: linear-gradient(90deg, #0071e3, #34aadc); transition: width 0.1s linear; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 52px;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 480px) { .nav-title { display: none; } }
+
+    .page-wrap { max-width: 1080px; margin: 0 auto; padding: 80px 24px 80px; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+    @media (max-width: 860px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    .breadcrumb { font-size: 0.75rem; color: var(--text2); margin-bottom: 2rem; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .breadcrumb span { color: var(--border); }
+
+    .article-category { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: rgba(0,113,227,0.08); padding: 4px 10px; border-radius: 980px; margin-bottom: 1.2rem; }
+    .article-title { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); margin-bottom: 1.2rem; }
+    .article-subtitle { font-size: 1.1rem; color: var(--text2); line-height: 1.65; margin-bottom: 1.8rem; font-weight: 400; }
+    .article-meta { display: flex; gap: 1.5rem; align-items: center; font-size: 0.8rem; color: var(--text2); padding-bottom: 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2.8rem; flex-wrap: wrap; }
+    .meta-author { display: flex; gap: 8px; align-items: center; }
+    .meta-author-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .meta-author-name { font-weight: 600; color: var(--text); }
+    .meta-dot { color: var(--border); }
+
+    .article-body { font-size: 1.02rem; line-height: 1.78; color: var(--text); }
+    .article-body h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 3rem 0 1rem; color: var(--text); scroll-margin-top: 70px; }
+    .article-body h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; margin: 2.2rem 0 0.75rem; color: var(--text); scroll-margin-top: 70px; }
+    .article-body p { margin-bottom: 1.4rem; }
+    .article-body ul, .article-body ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+    .article-body li { margin-bottom: 0.55rem; }
+    .article-body strong { font-weight: 600; }
+    .article-body em { font-style: italic; color: var(--text2); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    .callout { background: var(--bg2); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.2rem 1.4rem; margin: 1.8rem 0; font-size: 0.95rem; }
+    .callout.warn { border-left-color: #FF3B30; background: #FFF5F5; }
+    .callout.info { border-left-color: #0071e3; background: #EFF6FF; }
+    .callout.tip { border-left-color: #28CD41; background: #F0FFF4; }
+    .callout-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .callout.warn .callout-label { color: #FF3B30; }
+    .callout.info .callout-label { color: #0071e3; }
+    .callout.tip .callout-label { color: #28CD41; }
+
+    .article-body table { width: 100%; border-collapse: collapse; margin: 1.8rem 0; font-size: 0.875rem; border-radius: var(--radius); overflow: hidden; }
+    .article-body th { background: var(--bg2); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); font-size: 0.8rem; }
+    .article-body td { padding: 10px 14px; border-bottom: 1px solid var(--bg2); vertical-align: top; }
+    .article-body tr:last-child td { border-bottom: none; }
+    .article-body tr:hover td { background: #fafafa; }
+
+    .steps { margin: 1.8rem 0; }
+    .step-item { display: flex; gap: 16px; margin-bottom: 1.6rem; }
+    .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--text); }
+    .step-content p { font-size: 0.9rem; color: var(--text2); margin-bottom: 0; line-height: 1.6; }
+
+    /* TEMPLATE CARD */
+    .tpl-card { background: var(--bg2); border-radius: var(--radius); padding: 1.4rem 1.6rem; margin: 1.6rem 0; }
+    .tpl-card-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 0.6rem; }
+    .tpl-card-name { font-weight: 700; font-size: 1rem; color: var(--text); }
+    .tpl-format { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; padding: 2px 9px; border-radius: 980px; }
+    .tpl-format.word { background: #E8F0FB; color: #1a4b8c; }
+    .tpl-format.excel { background: #E2F5E9; color: #1A7F37; }
+    .tpl-reg { font-size: 0.78rem; color: var(--text2); margin-bottom: 0.7rem; }
+    .tpl-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+    .tpl-link:hover { text-decoration: underline; }
+
+    .share-bar { display: flex; gap: 10px; align-items: center; margin: 2.5rem 0; padding: 1.2rem 1.4rem; background: var(--bg2); border-radius: var(--radius); }
+    .share-label { font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-right: 4px; }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 980px; font-size: 0.8rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; transition: opacity 0.2s; }
+    .share-btn:hover { opacity: 0.8; }
+    .share-wa { background: #25D366; color: #fff; }
+    .share-copy { background: #e5e5ea; color: var(--text); }
+
+    .tag { display: inline-block; font-size: 0.72rem; font-weight: 500; padding: 3px 9px; border-radius: 980px; background: var(--bg2); color: var(--text2); margin-right: 4px; margin-bottom: 4px; }
+
+    .article-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .article-footer-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); margin-bottom: 1rem; }
+    .article-tags { margin-bottom: 2rem; }
+    .author-card { background: var(--bg2); border-radius: var(--radius); padding: 1.5rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+    .author-card-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .author-card-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+    .author-card-title { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.6rem; }
+    .author-card-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+    .btn-back { display: inline-flex; align-items: center; gap: 6px; margin-top: 2rem; background: var(--bg2); color: var(--text); padding: 12px 22px; border-radius: 980px; font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+    .btn-back:hover { background: #e5e5ea; }
+
+    .related-section { margin-top: 3.5rem; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    .related-card { background: var(--bg2); border-radius: var(--radius); padding: 1.2rem; text-decoration: none; color: var(--text); transition: background 0.2s; display: block; }
+    .related-card:hover { background: #e5e5ea; }
+    .related-card-cat { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .related-card-title { font-size: 0.9rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.4rem; }
+    .related-card-meta { font-size: 0.75rem; color: var(--text2); }
+
+    .sidebar { position: sticky; top: 72px; }
+    .sidebar-card { background: var(--bg2); border-radius: var(--radius); padding: 1.3rem; margin-bottom: 1.2rem; }
+    .sidebar-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); margin-bottom: 0.8rem; }
+    .toc-list { list-style: none; padding: 0; }
+    .toc-list li { margin-bottom: 0.4rem; }
+    .toc-list a { font-size: 0.8rem; color: var(--text2); text-decoration: none; line-height: 1.45; display: block; padding: 3px 0; border-left: 2px solid transparent; padding-left: 8px; transition: all 0.15s; }
+    .toc-list a:hover, .toc-list a.active { color: var(--accent); border-left-color: var(--accent); }
+    .sidebar-author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.7rem; }
+    .sidebar-author-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; }
+    .sidebar-author-title { font-size: 0.75rem; color: var(--text2); line-height: 1.4; }
+
+    footer { background: #f5f5f7; border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.78rem; color: var(--text2); margin-top: 60px; }
+    footer a { color: var(--text2); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+  
+    /* MOBILE NAV (hamburger) */
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text, #1d1d1f); transition: transform .25s ease, opacity .2s ease; }
+    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: none; position: fixed; top: 52px; left: 0; right: 0;
+        flex-direction: column; gap: 0; list-style: none;
+        background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        padding: 6px 16px 14px; max-height: calc(100vh - 52px); overflow-y: auto;
+      }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+      .nav-links li:last-child > a { border-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <a href="index.html" class="nav-back">← Beranda</a>
+  <span class="nav-title">Blog &amp; Artikel</span>
+  <ul class="nav-links">
+    <li><a href="template.html">Template</a></li>
+    <li><a href="https://andriwulandika.uk/#tools">AI Tools</a></li>
+    <li><a href="https://andriwulandika.uk/#kontak">Kontak</a></li>
+    <li><a href="aktifkan-pro.html">Masuk</a></li>
+  </ul>
+  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<script>
+(function(){
+  var nav=document.querySelector('nav');if(!nav)return;
+  var btn=nav.querySelector('.nav-burger');if(!btn)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.addEventListener('click',function(e){
+    var t=e.target;
+    while(t&&t!==nav){
+      if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}
+      t=t.parentNode;
+    }
+  });
+})();
+</script>
+
+
+<div class="page-wrap">
+  <main>
+
+    <div class="breadcrumb reveal">
+      <a href="index.html">Beranda</a>
+      <span>›</span>
+      <a href="https://andriwulandika.uk/#blog">Blog</a>
+      <span>›</span>
+      <span>Cara Pakai Template Dokumen</span>
+    </div>
+
+    <header>
+      <div class="article-category reveal">Template &amp; Panduan</div>
+      <h1 class="article-title reveal">Cara Menggunakan 9 Template Dokumen Perencanaan Daerah</h1>
+      <p class="article-subtitle reveal">Sembilan template — Renstra, Renja, dan SAKIP — sudah tersedia gratis di halaman <a href="template.html">Template</a>. Artikel ini memandu Anda langkah demi langkah: cara mengunduh, mengisi setiap bagian, dan menyempurnakan narasinya dengan AI Tools agar dokumen siap pakai tanpa revisi berulang.</p>
+      <div class="article-meta reveal">
+        <div class="meta-author">
+          <div class="meta-author-avatar">AW</div>
+          <div>
+            <div class="meta-author-name">Andri Wulandika</div>
+            <div style="font-size:0.75rem">Perencana Ahli Pertama · Bappeda Aceh Tenggara</div>
+          </div>
+        </div>
+        <span class="meta-dot">·</span>
+        <span>7 Juni 2026</span>
+        <span class="meta-dot">·</span>
+        <span>14 menit baca</span>
+      </div>
+    </header>
+
+    <article class="article-body">
+
+      <p class="reveal">Salah satu keluhan paling umum yang saya dengar dari rekan-rekan ASN perencana adalah: <em>"Tahu sistematikanya, tapi bingung mulai dari mana."</em> Membuka dokumen kosong dan menatap kursor yang berkedip ternyata jauh lebih melelahkan daripada mengisi dokumen yang sudah punya kerangka. Karena itu, saya menyusun <strong>9 template dokumen perencanaan daerah</strong> — mencakup Renstra, Renja, dan SAKIP — yang bisa diunduh gratis di halaman <a href="template.html">Template</a>.</p>
+
+      <p class="reveal">Tapi template hanyalah kerangka. Nilainya baru terasa kalau Anda tahu cara mengisinya dengan benar — bagian mana yang wajib diubah, bagian mana yang berupa contoh, dan bagaimana menyambungkannya dengan dokumen lain yang sudah ada (Renstra ke Renja, Renja ke RKA, Perjanjian Kinerja ke LKjIP). Artikel ini membahas itu semua, template demi template.</p>
+
+      <div class="callout info reveal">
+        <div class="callout-label">Format File</div>
+        Seluruh template tersedia dalam format <strong>Word (.doc)</strong> atau <strong>Excel (.xls)</strong> berbasis HTML — bisa langsung dibuka dan diedit di Microsoft Word/Excel, Google Docs/Sheets, maupun LibreOffice tanpa perlu instalasi tambahan apa pun.
+      </div>
+
+      <h2 id="cara-unduh" class="reveal">Cara Mengunduh dan Membuka Template</h2>
+
+      <p class="reveal">Sebelum masuk ke pembahasan tiap dokumen, ikuti tiga langkah dasar berikut agar template terbuka rapi di komputer Anda:</p>
+
+      <div class="steps reveal">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Buka halaman Template dan klik "Unduh Template"</h4>
+            <p>Kunjungi <a href="template.html">ai.andriwulandika.uk/template.html</a>, gunakan filter (Renstra/Renja/SAKIP) untuk mempersempit pilihan, lalu klik tombol <strong>⬇ Unduh Template</strong> pada kartu yang Anda butuhkan. File akan otomatis terunduh ke folder Downloads perangkat Anda.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Buka file dengan Word atau Excel</h4>
+            <p>File berekstensi <code>.doc</code> dibuka dengan Microsoft Word (atau Google Docs via menu "Buka dengan"), sedangkan <code>.xls</code> dibuka dengan Microsoft Excel atau Google Sheets. Saat membuka, aplikasi mungkin menampilkan peringatan format — pilih <strong>"Ya/Yes, buka tetap"</strong>, ini normal karena file ditulis dalam format HTML yang kompatibel dengan Office.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Simpan ulang dalam format native (.docx / .xlsx)</h4>
+            <p>Setelah terbuka, langsung gunakan menu <strong>File → Simpan Sebagai (Save As)</strong> dan pilih format <code>.docx</code> atau <code>.xlsx</code>. Ini membuat file lebih ringan, mudah diedit lebih lanjut, dan kompatibel penuh dengan SIPD-RI maupun sistem pelaporan internal OPD Anda.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Ganti seluruh teks placeholder berwarna biru</h4>
+            <p>Setiap template memuat teks contoh dalam tanda kurung siku dan berwarna biru, misalnya <code>[NAMA OPD]</code> atau <code>[20XX]</code>. Gunakan fitur <strong>Cari &amp; Ganti (Ctrl+H / Cmd+H)</strong> untuk mengganti placeholder yang berulang — misalnya ganti semua <code>[NAMA OPD]</code> sekaligus dengan "Dinas Pendidikan Kabupaten Aceh Tenggara" — agar pengisian lebih cepat dan konsisten.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip reveal">
+        <div class="callout-label">Tips</div>
+        Setiap template juga mencantumkan <strong>catatan pengisian</strong> dan <strong>rujukan regulasi</strong> di bagian bawah dokumen — jangan dihapus sampai pengisian selesai, karena bagian ini membantu Anda memverifikasi bahwa setiap bagian sudah lengkap dan sesuai aturan sebelum dokumen diajukan untuk direviu.
+      </div>
+
+      <h2 id="kelompok-renstra" class="reveal">Kelompok Renstra: 3 Template</h2>
+      <p class="reveal">Kelompok ini digunakan saat OPD menyusun atau mengevaluasi <strong>Rencana Strategis (Renstra)</strong> — dokumen perencanaan lima tahunan yang menjadi induk dari seluruh Renja tahunan. Berdasarkan Permendagri Nomor 86 Tahun 2017 dan disesuaikan dengan Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025.</p>
+
+      <h3 id="t-renstra-opd" class="reveal">1. Template Renstra OPD 2025–2029</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">📋 Template Renstra OPD 2025–2029</span><span class="tpl-format word">WORD (.doc)</span></div>
+        <div class="tpl-reg">Berdasarkan Permendagri 86/2017 &amp; Inmendagri 2/2025 — sistematika 8 bab lengkap</div>
+        <p style="margin-bottom:0.6rem">Dokumen utama Renstra, dari Kata Pengantar hingga Bab VIII Penutup. Cara mengisinya secara berurutan:</p>
+        <ul style="margin-bottom:0">
+          <li><strong>Bab I Pendahuluan</strong> — isi latar belakang dan landasan hukum sesuai daerah Anda; cantumkan nomor Perda RPJMD dan Perkada pembentukan OPD yang berlaku.</li>
+          <li><strong>Bab II Gambaran Pelayanan OPD</strong> — masukkan data riil tugas/fungsi (salin dari Perkada SOTK), jumlah pegawai, dan tabel capaian kinerja periode Renstra sebelumnya. Data ini biasanya sudah ada di LKjIP tahun-tahun lalu — tinggal direkap.</li>
+          <li><strong>Bab III Isu Strategis</strong> — rumuskan berdasarkan hasil telaahan terhadap visi-misi kepala daerah terpilih dan permasalahan riil OPD. Tabel isu strategis di akhir sub-bab membantu menyusun prioritas.</li>
+          <li><strong>Bab IV–V Tujuan, Sasaran, Strategi, dan Arah Kebijakan</strong> — pastikan setiap tujuan memiliki indikator dan target lima tahun yang selaras dengan sasaran RPJMD (cascading ke atas) dan tugas pokok OPD.</li>
+          <li><strong>Bab VI Program dan Pendanaan</strong> — gunakan kode dan nomenklatur program sesuai <strong>Kepmendagri 050-5889/2021</strong>, jangan mengarang nama program sendiri.</li>
+          <li><strong>Bab VII Kinerja Penyelenggaraan Bidang Urusan</strong> — sebutkan kode dan nama urusan yang menjadi kewenangan OPD Anda (misalnya 1.01 Pendidikan, 5.01 Perencanaan).</li>
+        </ul>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+      <div class="callout info reveal">
+        <div class="callout-label">Percepat dengan AI</div>
+        Setelah kerangka terisi, buka <a href="sigendok.html">SiGenDok</a> — masukkan data identitas OPD dan visi-misi kepala daerah, lalu biarkan AI menyusun draf narasi Bab II–VII secara otomatis. Anda tinggal menyalin hasilnya ke template dan menyesuaikan detail teknis.
+      </div>
+
+      <h3 id="t-matriks-tujuan-sasaran" class="reveal">2. Matriks Tujuan &amp; Sasaran Renstra</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">📊 Matriks Tujuan &amp; Sasaran Renstra</span><span class="tpl-format excel">EXCEL (.xls)</span></div>
+        <div class="tpl-reg">Berdasarkan Permendagri 86/2017 — spreadsheet pendamping Bab IV Renstra</div>
+        <p style="margin-bottom:0">Spreadsheet ini melengkapi Bab IV pada Template Renstra di atas. Isi kolom <strong>Tujuan → Indikator Tujuan → Target Akhir</strong>, lalu <strong>Sasaran → Indikator Sasaran → Target Tahun ke-1 s.d. ke-5</strong>. Pastikan target tahunan disusun progresif menuju target akhir — misalnya jika target akhir adalah 90%, jangan langsung melompat dari 60% ke 90% di tahun kedua. Setelah final, salin tabelnya ke dokumen Renstra Bab IV agar kedua dokumen konsisten.</p>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+
+      <h3 id="t-review-renstra" class="reveal">3. Template Review Renstra Triwulanan</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">🔍 Template Review Renstra Triwulanan</span><span class="tpl-format word">WORD (.doc)</span></div>
+        <div class="tpl-reg">Berdasarkan Permendagri 86/2017 — laporan monitoring &amp; evaluasi berkala</div>
+        <p style="margin-bottom:0">Gunakan template ini setiap akhir triwulan untuk memantau apakah pelaksanaan program OPD masih sejalan dengan target Renstra. Bagian inti yang wajib diisi setiap periode adalah <strong>Bagian III (Matriks Capaian Indikator)</strong> dan <strong>Bagian IV (Realisasi Anggaran)</strong> — bandingkan target tahunan dengan realisasi sampai dengan triwulan berjalan, lalu tentukan kategori capaian (lihat skala kategori yang tercantum di bawah tabel). Bagian V dan VI (Permasalahan dan Rencana Tindak Lanjut) adalah bagian yang paling sering diabaikan padahal paling penting — di sinilah Anda menunjukkan bahwa OPD benar-benar mengendalikan pelaksanaan rencana, bukan sekadar melaporkan angka.</p>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+
+      <h2 id="kelompok-renja" class="reveal">Kelompok Renja: 3 Template</h2>
+      <p class="reveal">Kelompok ini untuk dokumen tahunan — penjabaran dari Renstra ke dalam program dan kegiatan satu tahun anggaran, berdasarkan Permendagri Nomor 81 Tahun 2022 dan Inmendagri Nomor 2 Tahun 2025.</p>
+
+      <h3 id="t-renja-opd" class="reveal">4. Template Renja OPD 2025</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">📝 Template Renja OPD 2025</span><span class="tpl-format word">WORD (.doc)</span></div>
+        <div class="tpl-reg">Berdasarkan Permendagri 81/2022 — sistematika 5 bab lengkap</div>
+        <p style="margin-bottom:0.6rem">Urutan pengisian yang paling efisien <em>tidak selalu</em> mengikuti urutan bab. Berikut urutan yang saya sarankan:</p>
+        <ol style="margin-bottom:0">
+          <li>Mulai dari <strong>Bab II (Evaluasi Renja Tahun Lalu)</strong> — salin tabel capaian dari LKjIP/laporan evaluasi semester tahun sebelumnya. Bagian ini menjadi dasar untuk merumuskan isu strategis dan kebutuhan program tahun rencana.</li>
+          <li>Lanjutkan ke <strong>Bab III (Tujuan dan Sasaran)</strong> — turunkan langsung dari sasaran tahunan dalam Renstra OPD; jangan merumuskan sasaran baru yang tidak ada dalam Renstra.</li>
+          <li>Isi <strong>Bab IV (Rencana Kerja dan Pendanaan)</strong> — bagian paling teknis dan memakan waktu. Gunakan kode dan nomenklatur sesuai Kepmendagri 050-5889/2021, dan pastikan pagu indikatif realistis terhadap kemampuan keuangan daerah (cek rancangan awal RKPD/PPAS).</li>
+          <li>Terakhir, lengkapi <strong>Bab I (Pendahuluan)</strong> dan <strong>Bab V (Penutup)</strong> — kedua bab ini lebih mudah ditulis setelah isi utama (Bab II–IV) selesai, karena keduanya merangkum apa yang sudah Anda susun.</li>
+        </ol>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+      <div class="callout info reveal">
+        <div class="callout-label">Percepat dengan AI</div>
+        <a href="sirenja.html">SiRENJA</a> dapat membantu menyusun struktur program-kegiatan-sub kegiatan beserta indikator dan menulis narasi Bab I, II, dan V secara otomatis — cukup isi identitas OPD, urusan pemerintahan, dan ringkasan evaluasi tahun lalu di wizard 5 langkahnya.
+      </div>
+
+      <h3 id="t-renja-perubahan" class="reveal">5. Template Renja Perubahan</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">🔄 Template Renja Perubahan</span><span class="tpl-format word">WORD (.doc)</span></div>
+        <div class="tpl-reg">Berdasarkan Permendagri 81/2022 — dipakai saat terjadi perubahan RKPD/refocusing di tengah tahun</div>
+        <p style="margin-bottom:0">Template ini <em>bukan pengganti</em> Renja pokok — ia hanya mendokumentasikan <strong>selisih</strong> antara rencana semula dan rencana setelah perubahan. Fokus pengisian ada di <strong>Bagian III (Matriks Perubahan)</strong>: isi kolom "Semula" dengan data dari Renja pokok yang sudah ditetapkan, kolom "Menjadi" dengan rencana baru, dan jangan lewatkan kolom <strong>Justifikasi Perubahan</strong> — inilah bagian yang paling sering ditanyakan saat reviu, karena tim verifikator perlu memahami alasan logis di balik setiap pergeseran anggaran atau target.</p>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+
+      <h3 id="t-matriks-program" class="reveal">6. Matriks Program Kegiatan Sub Kegiatan</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">📑 Matriks Program Kegiatan Sub Kegiatan</span><span class="tpl-format excel">EXCEL (.xls)</span></div>
+        <div class="tpl-reg">Berdasarkan Kepmendagri 050-5889/2021 — spreadsheet pendamping Bab IV Renja / input SIPD-RI</div>
+        <p style="margin-bottom:0">Spreadsheet ini menyusun struktur berjenjang <strong>Urusan → Program → Kegiatan → Sub Kegiatan</strong> sesuai kode dan nomenklatur baku. Cara memakainya: salin baris "Program" sesuai jumlah program OPD Anda, lalu di bawah masing-masing salin baris "Kegiatan" dan "Sub Kegiatan". Pastikan setiap sub kegiatan memiliki indikator output yang terukur dan selaras dengan indikator kegiatan dan program di atasnya (cascading vertikal) — inilah struktur yang nantinya langsung dapat Anda salin ke kolom input SIPD-RI tanpa perlu menyusun ulang dari nol.</p>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+
+      <h2 id="kelompok-sakip" class="reveal">Kelompok SAKIP: 3 Template</h2>
+      <p class="reveal">Kelompok ini untuk dokumen akuntabilitas kinerja — Perjanjian Kinerja, LKjIP, dan cascading indikator — berdasarkan PermenPANRB Nomor 53 Tahun 2014, Nomor 88 Tahun 2021, dan Nomor 6 Tahun 2022.</p>
+
+      <h3 id="t-pk" class="reveal">7. Template Perjanjian Kinerja (PK) Eselon II–IV</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">🤝 Template Perjanjian Kinerja Eselon II–IV</span><span class="tpl-format word">WORD (.doc)</span></div>
+        <div class="tpl-reg">Berdasarkan PermenPANRB 53/2014 — 3 bagian PK berjenjang dalam satu file</div>
+        <p style="margin-bottom:0.6rem">Template ini memuat <strong>tiga PK sekaligus</strong> yang harus disusun secara berurutan dan saling terhubung (cascading), bukan terpisah:</p>
+        <ul style="margin-bottom:0">
+          <li><strong>Bagian A — PK Eselon II (Kepala OPD)</strong> diisi lebih dulu, memuat sasaran strategis dan IKU OPD dari dokumen Renstra/Perjanjian Kinerja tahun berjalan, ditandatangani bersama Bupati/Wali Kota/Gubernur.</li>
+          <li><strong>Bagian B — PK Eselon III (Kepala Bidang)</strong> baru disusun setelah Bagian A final — setiap sasaran dan Indikator Kinerja Individu (IKI) Kepala Bidang harus secara eksplisit "mendukung" salah satu sasaran/IKU pada Bagian A. Sebutkan keterhubungannya secara langsung di kolom yang tersedia.</li>
+          <li><strong>Bagian C — PK Eselon IV (Kepala Sub Bidang/Seksi)</strong> mengikuti pola yang sama — IKI level ini harus mendukung IKI Eselon III di atasnya. Inilah inti dari prinsip cascading yang dinilai dalam evaluasi SAKIP: setiap level kinerja punya benang merah yang jelas ke level di atasnya.</li>
+        </ul>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+      <div class="callout info reveal">
+        <div class="callout-label">Percepat dengan AI</div>
+        <a href="siktor.html">SiKTOR</a> membantu menyusun cascading target kinerja dari Eselon II hingga staf pelaksana secara otomatis berdasarkan data Renstra dan PK yang sudah Anda miliki — cocok dipakai bersamaan dengan template ini untuk memastikan keterhubungan antar level benar-benar konsisten.
+      </div>
+
+      <h3 id="t-lkjip" class="reveal">8. Template LKjIP OPD</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">📄 Template LKjIP OPD</span><span class="tpl-format word">WORD (.doc)</span></div>
+        <div class="tpl-reg">Berdasarkan PermenPANRB 53/2014 &amp; 88/2021 — sistematika 4 bab + ikhtisar eksekutif + lampiran</div>
+        <p style="margin-bottom:0.6rem">LKjIP adalah laporan pertanggungjawaban atas Perjanjian Kinerja yang sudah ditandatangani — jadi urutan pengisian paling logis adalah:</p>
+        <ol style="margin-bottom:0">
+          <li><strong>Bab II (Perencanaan Kinerja)</strong> — salin langsung sasaran, IKU, dan target dari dokumen Perjanjian Kinerja tahun pelaporan (Bagian A pada template PK).</li>
+          <li><strong>Bab III (Akuntabilitas Kinerja)</strong> — bagian terpenting dan paling banyak dinilai. Isi tabel capaian (target vs realisasi vs persentase vs kategori), lalu — yang sering terlewat — tulis <strong>analisis penyebab keberhasilan/kegagalan</strong> dan <strong>analisis efisiensi anggaran</strong> secara naratif, bukan sekadar menyalin angka. Inilah bagian yang membedakan LKjIP nilai BB ke atas dengan yang stuck di B atau CC.</li>
+          <li><strong>Bab I (Pendahuluan)</strong> dan <strong>Bab IV (Penutup)</strong> — tulis belakangan, karena keduanya merangkum isi Bab II dan III yang sudah selesai.</li>
+          <li><strong>Ikhtisar Eksekutif</strong> — selalu ditulis paling akhir, berisi ringkasan satu-dua halaman dari keseluruhan laporan.</li>
+        </ol>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+      <div class="callout info reveal">
+        <div class="callout-label">Percepat dengan AI</div>
+        <a href="silkjip.html">SiLKjIP</a> dirancang khusus untuk membantu menyusun analisis capaian, identifikasi penyebab keberhasilan/kegagalan, dan narasi Bab III secara otomatis — bagian yang biasanya paling menyita waktu dalam penyusunan LKjIP.
+      </div>
+
+      <h3 id="t-cascading" class="reveal">9. Matriks Cascading IKU/IKD/IKK</h3>
+      <div class="tpl-card reveal">
+        <div class="tpl-card-head"><span class="tpl-card-name">🎯 Matriks Cascading IKU/IKD/IKK</span><span class="tpl-format excel">EXCEL (.xls)</span></div>
+        <div class="tpl-reg">Berdasarkan PermenPANRB 6/2022 — penurunan indikator berjenjang dari Pemda hingga individu ASN</div>
+        <p style="margin-bottom:0">Spreadsheet ini menggambarkan keterhubungan indikator dari level <strong>Pemda (IKD) → OPD/Eselon II (IKU) → Bidang/Eselon III (IKI) → Sub Bidang/Eselon IV (IKI) → Individu/ASN (SKP)</strong>. Cara mengisi yang benar adalah <em>top-down</em>: tentukan dulu IKD yang relevan dengan urusan OPD Anda, lalu turunkan IKU yang mendukungnya, lalu IKI Eselon III yang mendukung IKU tersebut, dan seterusnya hingga ke level individu. Kolom paling kanan ("Indikator Induk yang Didukung") wajib diisi pada setiap baris — inilah yang membuktikan bahwa cascading benar-benar terhubung, bukan daftar indikator yang berdiri sendiri-sendiri. Hasil akhirnya menjadi dasar penyusunan SKP individu ASN sesuai PermenPANRB 6/2022.</p>
+        <p style="margin:0.8rem 0 0"><a class="tpl-link" href="template.html">⬇ Unduh template ini di halaman Template →</a></p>
+      </div>
+
+      <h2 id="tips-praktis" class="reveal">Tips Praktis Supaya Template Cepat Jadi Dokumen Final</h2>
+
+      <div class="steps reveal">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Isi dokumen "induk" lebih dulu</h4>
+            <p>Urutan yang benar adalah Renstra → Renja → Perjanjian Kinerja → LKjIP. Mengisi Renja sebelum Renstra selesai akan membuat Anda bolak-balik merevisi karena sasaran dan indikatornya belum punya acuan yang jelas.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Satu sumber data, banyak dokumen</h4>
+            <p>Siapkan satu spreadsheet "data master" berisi nama OPD, daftar pejabat beserta NIP dan jabatan, daftar program-kegiatan-sub kegiatan, dan daftar indikator kinerja. Salin dari sana ke setiap template — ini mencegah inkonsistensi data antar dokumen yang sering jadi temuan saat reviu.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Verifikasi nomenklatur sebelum menyalin ke SIPD-RI</h4>
+            <p>Sebelum menyalin kode dan nama program/kegiatan/sub kegiatan dari matriks Excel ke SIPD-RI, cocokkan sekali lagi dengan Kepmendagri 050-5889/2021 — kesalahan kode di tahap ini adalah penyebab paling umum dokumen ditolak sistem.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Manfaatkan AI Tools untuk bagian naratif, bukan bagian angka</h4>
+            <p>AI Tools (SiGenDok, SiRENJA, SiLKjIP, SiKTOR) paling efektif dipakai untuk menulis narasi — latar belakang, analisis, kesimpulan. Untuk bagian berisi angka (target, pagu, realisasi), tetap masukkan data riil dari sumber resmi OPD Anda, lalu minta AI menyusun narasi <em>berdasarkan</em> angka tersebut.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warn reveal">
+        <div class="callout-label">Perhatian</div>
+        Template ini adalah <strong>kerangka umum</strong> yang dapat diberlakukan untuk sebagian besar OPD di Indonesia. Beberapa daerah memiliki ketentuan tambahan dalam Peraturan Kepala Daerah atau petunjuk teknis Bappeda setempat — selalu cek apakah ada format baku tambahan yang wajib diikuti di daerah Anda sebelum dokumen difinalisasi.
+      </div>
+
+      <h2 id="penutup" class="reveal">Penutup</h2>
+
+      <p class="reveal">Template tidak menggantikan pemahaman Anda terhadap regulasi — ia hanya menghemat waktu yang biasanya habis untuk menyusun kerangka dari nol. Pemahaman tetap diperlukan untuk mengisi setiap bagian dengan substansi yang benar dan relevan dengan kondisi OPD Anda.</p>
+
+      <p class="reveal">Jika setelah mencoba template ini Anda masih menemukan kesulitan — baik soal substansi regulasi, sinkronisasi antar dokumen, atau persiapan input ke SIPD-RI — silakan <a href="https://andriwulandika.uk/#kontak">hubungi saya melalui halaman kontak</a>. Saya membuka sesi konsultasi terbatas untuk OPD se-Aceh Tenggara dan sekitarnya, serta pendampingan jarak jauh melalui WhatsApp.</p>
+
+      <div class="share-bar reveal">
+        <span class="share-label">Bagikan:</span>
+        <a href="https://wa.me/?text=Cara%20Menggunakan%209%20Template%20Dokumen%20Perencanaan%20Daerah%20%E2%80%94%20https%3A%2F%2Fai.andriwulandika.uk%2Fcara-pakai-template-dokumen.html" target="_blank" rel="noopener" class="share-btn share-wa">WhatsApp</a>
+        <button class="share-btn share-copy" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Tersalin!'">Salin Tautan</button>
+      </div>
+
+    </article>
+
+    <div class="article-footer reveal">
+      <div class="article-footer-label">Tags</div>
+      <div class="article-tags">
+        <span class="tag">Template Renstra</span>
+        <span class="tag">Template Renja</span>
+        <span class="tag">Template LKjIP</span>
+        <span class="tag">Perjanjian Kinerja</span>
+        <span class="tag">Cascading IKU IKD IKK</span>
+        <span class="tag">Permendagri 81/2022</span>
+        <span class="tag">PermenPANRB 53/2014</span>
+        <span class="tag">Kepmendagri 050-5889/2021</span>
+      </div>
+
+      <div class="article-footer-label">Tentang Penulis</div>
+      <div class="author-card">
+        <div class="author-card-avatar">AW</div>
+        <div>
+          <div class="author-card-name">Andri Wulandika</div>
+          <div class="author-card-title">Perencana Ahli Pertama · Bappeda Aceh Tenggara</div>
+          <div class="author-card-desc">ASN perencana yang fokus pada perencanaan pembangunan daerah, sistem perencanaan berbasis teknologi, dan peningkatan kualitas dokumen perencanaan di tingkat kabupaten.</div>
+        </div>
+      </div>
+
+      <a href="template.html" class="btn-back">← Lihat Semua Template</a>
+    </div>
+
+    <div class="related-section reveal">
+      <div class="article-footer-label">Artikel Terkait</div>
+      <div class="related-grid">
+        <a href="renja-opd-panduan-lengkap.html" class="related-card">
+          <div class="related-card-cat">Perencanaan Daerah</div>
+          <div class="related-card-title">Panduan Lengkap Menyusun Renja OPD yang Benar Sesuai Permendagri 81/2022</div>
+          <div class="related-card-meta">4 Juni 2026 · 12 menit baca</div>
+        </a>
+        <a href="sakip-dari-pk-hingga-lkjip.html" class="related-card">
+          <div class="related-card-cat">SAKIP &amp; Kinerja</div>
+          <div class="related-card-title">SAKIP Bukan Sekadar Dokumen: Dari Perjanjian Kinerja hingga LKjIP yang Bernilai A</div>
+          <div class="related-card-meta">4 Juni 2026 · 15 menit baca</div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-label">Daftar Isi</div>
+      <ul class="toc-list">
+        <li><a href="#cara-unduh">Cara Mengunduh &amp; Membuka</a></li>
+        <li><a href="#kelompok-renstra">Kelompok Renstra (3 Template)</a></li>
+        <li><a href="#kelompok-renja">Kelompok Renja (3 Template)</a></li>
+        <li><a href="#kelompok-sakip">Kelompok SAKIP (3 Template)</a></li>
+        <li><a href="#tips-praktis">Tips Praktis</a></li>
+        <li><a href="#penutup">Penutup</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-label">Penulis</div>
+      <div class="sidebar-author-avatar">AW</div>
+      <div class="sidebar-author-name">Andri Wulandika</div>
+      <div class="sidebar-author-title">Perencana Ahli Pertama<br/>Bappeda Aceh Tenggara</div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-label">Lihat Juga</div>
+      <a href="template.html" style="display:block;text-decoration:none;margin-bottom:0.8rem">
+        <div style="font-size:0.8rem;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:3px">Halaman Template Dokumen</div>
+        <div style="font-size:0.73rem;color:var(--text2)">Unduh 9 template gratis</div>
+      </a>
+      <a href="sigendok.html" style="display:block;text-decoration:none">
+        <div style="font-size:0.8rem;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:3px">SiGenDok — AI Writer Dokumen</div>
+        <div style="font-size:0.73rem;color:var(--text2)">Generator Renstra &amp; Renja otomatis</div>
+      </a>
+    </div>
+  </aside>
+</div>
+
+{% include "footer-panduan.html" %}
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    document.getElementById('progress-bar').style.width = pct + '%';
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => io.observe(el));
+
+  const headings = document.querySelectorAll('.article-body h2[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const tocObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector('.toc-list a[href="#' + e.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-60px 0px -70% 0px' });
+  headings.forEach(h => tocObserver.observe(h));
+</script>
+<script type="module" src="assets/js/nav-auth.js"></script>
+</body>
+</html>

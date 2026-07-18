@@ -39,43 +39,68 @@ menang.
 - **Pembayaran:** manual (transfer + konfirmasi WhatsApp); kode akses dibuat lewat panel admin. Tidak ada payment gateway.
 - **Aset bersama:** `shared/` adalah sumber tunggal untuk brand & JS bersama; disalin ke
   `site/assets/` dan `tools/assets/` saat build oleh `scripts/sync-assets.sh`.
+- **Sumber halaman (11ty, authoring-only):** `src/site/` dan `src/tools/` adalah sumber
+  kebenaran untuk isi `site/`/`tools/` yang di-commit. Dibangun via **11ty (Eleventy)**
+  (`.eleventy.site.js`, `.eleventy.tools.js`, `eleventy.factory.js`), lalu output-nya
+  disalin menimpa `site/`/`tools/` oleh `scripts/build-pages.sh`. **11ty tidak berjalan
+  saat deploy** — Cloudflare tetap menyajikan `site/`/`tools/` sebagai file statis apa
+  adanya, tanpa build command, sesuai keputusan pasca-insiden (lihat §8). Hanya 12
+  halaman `tools/` yang benar-benar memakai fitur templating (`{% include %}` untuk
+  nav/footer dari `src/tools/_includes/*.html`, klaster identik hasil analisis Phase 4);
+  ~24 halaman lain tetap HTML apa adanya, hanya "lewat" 11ty tanpa berubah (passthrough).
 
 ## 4. Struktur Folder
 
 ```
 /
-├── package.json            # scripts.build → scripts/sync-assets.sh; devDep: sharp
+├── package.json            # scripts: build (sync-assets), build:pages (11ty)
 ├── package-lock.json
 ├── AGENTS.md               # berkas ini
+├── .eleventy.site.js       # config 11ty untuk src/site/  -> dist/site/
+├── .eleventy.tools.js      # config 11ty untuk src/tools/ -> dist/tools/
+├── eleventy.factory.js     # factory config bersama (passthrough, permalink flat)
 ├── scripts/
-│   └── sync-assets.sh      # copy shared/ → site/assets/ & tools/assets/ (+ root icons)
+│   ├── sync-assets.sh      # copy shared/ → site/assets/ & tools/assets/ (+ root icons)
+│   └── build-pages.sh      # jalankan 11ty lalu salin dist/ menimpa site/ & tools/
 ├── shared/                 # SUMBER TUNGGAL aset bersama
 │   ├── brand/              # logo, favicon, wallpaper (dipakai kedua situs)
 │   └── js/                 # analytics, apiService, nav-auth, ui-enhance
-├── site/                   # → andriwulandika.uk (output dir Cloudflare = "site")
+├── src/                    # SUMBER 11ty (authoring) — lihat §3
+│   ├── site/               # mirror src andriwulandika.uk
+│   └── tools/
+│       ├── _includes/      # nav-article.html, footer-article.html, dst. (Nunjucks include)
+│       └── *.html          # 12 di antaranya pakai {% include %}, sisanya bespoke apa adanya
+├── dist/                   # OUTPUT TRANSIEN 11ty (gitignored, jangan di-commit)
+├── site/                   # → andriwulandika.uk (Cloudflare Root Directory = "site", tanpa build)
 │   ├── *.html, _headers, _redirects, sitemap.xml, robots.txt
-│   └── assets/{brand,js,share}/     # brand/js diisi oleh build (sync)
-└── tools/                  # → ai.andriwulandika.uk (output dir Cloudflare = "tools")
+│   └── assets/{brand,js,share}/     # brand/js diisi oleh sync-assets.sh
+└── tools/                  # → ai.andriwulandika.uk (Cloudflare Root Directory = "tools", tanpa build)
     ├── *.html, _headers, _redirects, sitemap.xml, robots.txt
     ├── functions/          # Cloudflare Pages Functions (backend)
     │   ├── _lib.js, generate.js, verify.js
     │   └── admin/{generate,list,revoke,topup}.js
     └── assets/
-        ├── brand/, js/     # diisi oleh build (sync dari shared/)
+        ├── brand/, js/     # diisi oleh sync-assets.sh (sync dari shared/)
         ├── css/            # stylesheet bersama (mis. article.css)
         ├── data/nomenklatur/   # 60+ JSON referensi program/kegiatan
         └── templates/          # .doc/.xls + contoh HTML
 ```
 
-Catatan: `shared/` adalah **sumber kebenaran**. Aset bersama (`*/assets/brand`,
-4 file di `*/assets/js`, `*/apple-touch-icon.png`, `*/favicon.ico`) **ikut di-commit**
-di `site/` maupun `tools/` sebagai salinan, sehingga tiap situs berdiri sendiri (self-contained)
-dan dapat disajikan tanpa build. `scripts/sync-assets.sh` dipakai untuk menyinkron ulang
-salinan itu setiap `shared/` berubah — jalankan build lalu commit ulang hasilnya.
+Catatan: `shared/` (aset) dan `src/` (halaman) adalah **sumber kebenaran**. Isi
+`site/`/`tools/` yang di-commit adalah **hasil generate** dari keduanya, tapi tetap
+ikut di-commit sebagai file statis apa adanya (self-contained) — bukan digenerate
+ulang saat deploy. Setelah mengubah `shared/` dan/atau `src/`, jalankan
+`npm run build` (sync aset) **dan** `npm run build:pages` (generate halaman dari
+11ty + salin ke `site/`/`tools/`), lalu commit perubahan yang muncul di `git status`.
 
 ## 5. Coding Standards
 
-- Vanilla HTML5, CSS, dan JavaScript. Jangan memperkenalkan framework/bundler tanpa persetujuan manusia.
+- Vanilla HTML5, CSS, dan JavaScript **di browser** — output yang dikirim ke pengguna
+  tidak berubah. 11ty (lihat §3, §8) adalah alat authoring/build lokal, bukan runtime
+  framework; jangan perkenalkan framework/bundler runtime baru tanpa persetujuan manusia.
+- Sumber halaman baru/edit halaman existing yang punya include (klaster nav/footer):
+  edit di `src/tools/*.html` atau `src/tools/_includes/*.html`, **bukan** langsung di
+  `tools/*.html` (akan tertimpa saat `build:pages` berikutnya dijalankan).
 - JavaScript: ES Modules, `import`/`export`. Jaga agar tetap berjalan langsung di browser tanpa transpile.
 - Path aset: gunakan path relatif konsisten (`assets/...`) agar resolve benar di kedua domain.
 - Bahasa: komentar & teks UI dalam **Bahasa Indonesia** (ikuti gaya berkas yang ada).
@@ -104,13 +129,17 @@ salinan itu setiap `shared/` berubah — jalankan build lalu commit ulang hasiln
 
 ## 8. Build, Lint, Test & Deployment
 
-- **Build:** `npm run build` → menjalankan `scripts/sync-assets.sh` (murni bash+cp,
-  tanpa `node_modules`). Idempoten & reproducible. **Opsional saat deploy** karena aset
-  bersama sudah ikut di-commit; build hanya perlu dijalankan ulang (lalu commit) setelah
-  `shared/` diubah.
-- **Lint/Test:** belum ada framework lint/test di repo. Pengganti minimal sebelum commit:
-  `node --check` untuk berkas JS, dan cek keseimbangan tag HTML untuk halaman yang diubah.
-  Jangan menambah tooling lint/test baru tanpa persetujuan.
+- **Build aset:** `npm run build` → `scripts/sync-assets.sh` (bash+cp murni). Idempoten.
+- **Build halaman:** `npm run build:pages` → `scripts/build-pages.sh` (11ty untuk
+  `src/site/` dan `src/tools/` ke `dist/`, lalu salin `dist/*` menimpa `site/`/`tools/`).
+  Idempoten & reproducible — dijalankan ulang tidak mengubah apa pun kalau `src/`
+  tidak berubah (dibuktikan: `git status` bersih setelah re-run).
+- **Keduanya opsional saat deploy** karena hasilnya sudah ikut di-commit; jalankan ulang
+  (lalu commit) hanya setelah `shared/` dan/atau `src/` diubah.
+- **Lint/Test:** belum ada framework lint/test formal. Pengganti minimal sebelum commit:
+  `node --check` untuk berkas JS/config 11ty, cek keseimbangan tag HTML untuk halaman
+  yang diubah, dan **diff byte-per-byte `dist/` vs `site/`/`tools/` setelah `build:pages`**
+  sebagai bukti tidak ada regresi output. Jangan menambah tooling lint/test baru tanpa persetujuan.
 - **Deployment:** otomatis via integrasi GitHub–Cloudflare Pages. Push ke branch =
   preview deployment; merge ke `main` = production deployment.
 - **Konfigurasi Cloudflare Pages.** Karena aset sudah ikut di-commit, tiap situs
@@ -147,8 +176,11 @@ salinan itu setiap `shared/` berubah — jalankan build lalu commit ulang hasiln
 
 ## 11. Aturan Dependency
 
-- Dependency seminimal mungkin. Saat ini hanya `sharp` (devDependency, pemrosesan gambar ad-hoc).
-- Tanpa dependency runtime; situs & build harus tetap berjalan tanpa `node_modules` di produksi.
+- Dependency seminimal mungkin. Saat ini: `sharp` (pemrosesan gambar ad-hoc) dan
+  `@11ty/eleventy` (build-time authoring, disetujui eksplisit sebagai Phase 5).
+- Tanpa dependency runtime di sisi klien; `node_modules` hanya dipakai saat authoring
+  lokal/CI (`build:pages`), **tidak pernah** dibutuhkan Cloudflare saat deploy karena
+  hasil generate sudah ikut di-commit di `site/`/`tools/`.
 - Sebelum menambah paket: pastikan benar-benar perlu, dan jaga `package-lock.json` konsisten.
 
 ## 12. Aturan Keamanan

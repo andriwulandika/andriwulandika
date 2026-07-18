@@ -1,0 +1,73 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+xmlns:w='urn:schemas-microsoft-com:office:word'
+xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/><title>Template Renja Perubahan</title>
+<style>
+body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;}
+h1{font-size:14pt;text-align:center;font-weight:bold;text-transform:uppercase;}
+h2{font-size:12pt;font-weight:bold;text-transform:uppercase;margin-top:18px;}
+h3{font-size:12pt;font-weight:bold;margin-top:12px;}
+table{border-collapse:collapse;width:100%;margin:10px 0;}
+td,th{border:1px solid #000;padding:6px;font-size:11pt;vertical-align:top;}
+th{background:#d9d9d9;font-weight:bold;text-align:center;}
+.ph{color:#1155cc;}
+.note{color:#666;font-style:italic;font-size:10pt;}
+</style>
+</head>
+<body>
+
+<h1>RENCANA KERJA PERUBAHAN (RENJA PERUBAHAN)<br/>[NAMA OPD]<br/>[NAMA KABUPATEN/KOTA/PROVINSI]<br/>TAHUN [20XX]</h1>
+
+<p class="note">Template berdasarkan Permendagri Nomor 81 Tahun 2022, digunakan saat OPD perlu menyesuaikan Renja tahun berjalan akibat perubahan RKPD, kebijakan, atau kondisi yang tidak terduga (force majeure, refocusing anggaran, dsb). Format matriks perubahan (semula→menjadi) selaras dengan praktik dokumen perubahan perencanaan Kabupaten Banyuwangi. Ganti seluruh teks berwarna biru ([...]) dengan data riil OPD Anda.</p>
+
+<h2>I. Identitas Dokumen</h2>
+<table>
+<tr><td style="width:35%"><b>Nama OPD</b></td><td class="ph">[NAMA OPD]</td></tr>
+<tr><td><b>Renja Pokok yang Diubah</b></td><td class="ph">[Nomor dan Tanggal Penetapan Renja Pokok Tahun ..]</td></tr>
+<tr><td><b>Tahun Anggaran Berjalan</b></td><td class="ph">[20XX]</td></tr>
+<tr><td><b>Dasar Perubahan</b></td><td class="ph">[mis. Perubahan RKPD Tahun .., Pergeseran Prioritas Pembangunan Daerah, Refocusing Anggaran, dll]</td></tr>
+</table>
+
+<h2>II. Latar Belakang dan Dasar Pertimbangan Perubahan</h2>
+<p>[Uraikan alasan dan dasar pertimbangan dilakukannya perubahan Renja, misalnya: (1) terjadi perubahan kebijakan nasional/daerah yang mendasar; (2) terjadi keadaan darurat/bencana; (3) terjadi pergeseran kebutuhan prioritas; (4) hasil evaluasi semester menunjukkan target perlu disesuaikan.]</p>
+<h3>Landasan Hukum</h3>
+<ol>
+<li>Peraturan Menteri Dalam Negeri Nomor 86 Tahun 2017 jo. Permendagri Nomor 90 Tahun 2019;</li>
+<li>Peraturan Menteri Dalam Negeri Nomor 81 Tahun 2022 tentang Pedoman Penyusunan Rencana Kerja Pemerintah Daerah Tahun [20XX];</li>
+<li>Peraturan [Bupati/Wali Kota/Gubernur] <span class="ph">[NAMA DAERAH]</span> Nomor [..] Tahun [..] tentang Perubahan RKPD <span class="ph">[NAMA DAERAH]</span> Tahun <span class="ph">[20XX]</span>;</li>
+<li>[Tambahkan dasar hukum lain yang relevan dengan kondisi perubahan, misalnya peraturan refocusing anggaran/penanggulangan bencana.]</li>
+</ol>
+
+<h2>III. Matriks Perubahan Program, Kegiatan, dan Sub Kegiatan</h2>
+<p>Sajikan perbandingan antara rencana semula (Renja pokok) dan rencana setelah perubahan, beserta justifikasi setiap perubahan.</p>
+<table>
+<tr><th rowspan="2">Kode</th><th rowspan="2">Program / Kegiatan / Sub Kegiatan</th>
+<th colspan="2">Semula (Renja Pokok)</th><th colspan="2">Menjadi (Renja Perubahan)</th>
+<th rowspan="2">Justifikasi Perubahan</th></tr>
+<tr><th>Target</th><th>Pagu (Rp)</th><th>Target</th><th>Pagu (Rp)</th></tr>
+<tr>
+<td class="ph">[kode]</td><td class="ph">[nama]</td>
+<td class="ph">[target semula]</td><td class="ph">[Rp semula]</td>
+<td class="ph">[target baru]</td><td class="ph">[Rp baru]</td>
+<td class="ph">[alasan perubahan: penambahan/pengurangan/pergeseran/penghapusan/penambahan kegiatan baru]</td>
+</tr>
+</table>
+
+<h2>IV. Rekapitulasi Perubahan Anggaran</h2>
+<table>
+<tr><th>Uraian</th><th>Pagu Semula (Rp)</th><th>Pagu Setelah Perubahan (Rp)</th><th>Selisih (Rp)</th><th>Persentase Perubahan (%)</th></tr>
+<tr><td class="ph">Total Belanja Program/Kegiatan OPD</td><td class="ph">[Rp ..]</td><td class="ph">[Rp ..]</td><td class="ph">[Rp ..]</td><td class="ph">[%]</td></tr>
+</table>
+
+<h2>V. Dampak Perubahan terhadap Capaian Kinerja</h2>
+<p>[Uraikan analisis dampak perubahan program/kegiatan/anggaran terhadap pencapaian target kinerja OPD pada tahun berjalan maupun terhadap capaian akhir periode Renstra.]</p>
+
+<h2>VI. Penutup</h2>
+<p>Renja Perubahan ini disusun sebagai dasar penyesuaian RKA Perubahan <span class="ph">[NAMA OPD]</span> Tahun Anggaran <span class="ph">[20XX]</span> dan menjadi acuan pelaksanaan program/kegiatan pada sisa tahun anggaran berjalan.</p>
+
+<p>[Nama Kota], [Tanggal Bulan Tahun]<br/>KEPALA <span class="ph">[NAMA OPD]</span><br/><br/><br/><br/>
+<span class="ph">[NAMA PEJABAT, Pangkat/Golongan]</span><br/>NIP. <span class="ph">[NIP]</span></p>
+
+<p class="note">— Template oleh Andri Wulandika · andriwulandika.pages.dev —</p>
+</body>
+</html>

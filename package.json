@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "build": "bash scripts/sync-assets.sh"
+    "build": "bash scripts/sync-assets.sh",
+    "build:pages": "bash scripts/build-pages.sh"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
     "sharp": "^0.35.1"
   }
 }

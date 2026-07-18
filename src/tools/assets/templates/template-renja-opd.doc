@@ -1,0 +1,84 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+xmlns:w='urn:schemas-microsoft-com:office:word'
+xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/><title>Template Renja OPD 2025</title>
+<style>
+body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;}
+h1{font-size:14pt;text-align:center;font-weight:bold;text-transform:uppercase;}
+h2{font-size:12pt;font-weight:bold;text-transform:uppercase;margin-top:18px;}
+h3{font-size:12pt;font-weight:bold;margin-top:12px;}
+table{border-collapse:collapse;width:100%;margin:10px 0;}
+td,th{border:1px solid #000;padding:6px;font-size:11pt;vertical-align:top;}
+th{background:#d9d9d9;font-weight:bold;text-align:center;}
+.ph{color:#1155cc;}
+.note{color:#666;font-style:italic;font-size:10pt;}
+</style>
+</head>
+<body>
+
+<h1>RENCANA KERJA (RENJA)<br/>[NAMA OPD]<br/>[NAMA KABUPATEN/KOTA/PROVINSI]<br/>TAHUN [2027]</h1>
+
+<p class="note">Template disusun mengikuti sistematika Rencana Kerja Perangkat Daerah Kabupaten Banyuwangi (peraih Penghargaan Pembangunan Daerah Bappenas) — tiga bab dengan sub-bab berhuruf (A, B, C), berpedoman pada Permendagri Nomor 86 Tahun 2017 jo. Permendagri Nomor 90 Tahun 2019, Permendagri Nomor 81 Tahun 2022, dan Inmendagri Nomor 2 Tahun 2025. Ganti seluruh teks berwarna biru ([...]) dengan data riil OPD Anda. Tahun Renja disusun (n) untuk pelaksanaan tahun anggaran (n+1).</p>
+
+<h2>KATA PENGANTAR</h2>
+<p>[Uraian kata pengantar Kepala <span class="ph">[NAMA OPD]</span> memuat dasar penyusunan Renja, ucapan syukur, harapan terhadap pemanfaatan dokumen sebagai pedoman kerja tahunan.]</p>
+
+<h2>BAB I PENDAHULUAN</h2>
+<h3>A. Latar Belakang</h3>
+<p>Renja <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[20XX]</span> merupakan dokumen perencanaan tahunan yang memuat program, kegiatan, dan sub kegiatan yang akan dilaksanakan, sebagai penjabaran dari Renstra <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[periode]</span> dan berpedoman pada Rancangan Awal RKPD <span class="ph">[NAMA DAERAH]</span> Tahun <span class="ph">[20XX]</span>. [Lanjutkan uraian keterkaitan Renja dengan dokumen perencanaan dan penganggaran lainnya — RKPD, KUA-PPAS, dan RKA.]</p>
+<h3>B. Landasan Hukum</h3>
+<ol>
+<li>Undang-Undang Nomor 23 Tahun 2014 tentang Pemerintahan Daerah;</li>
+<li>Undang-Undang Nomor 25 Tahun 2004 tentang Sistem Perencanaan Pembangunan Nasional;</li>
+<li>Peraturan Pemerintah Nomor 17 Tahun 2017 tentang Sinkronisasi Proses Perencanaan dan Penganggaran Pembangunan Nasional;</li>
+<li>Peraturan Menteri Dalam Negeri Nomor 86 Tahun 2017 jo. Permendagri Nomor 90 Tahun 2019;</li>
+<li>Peraturan Menteri Dalam Negeri Nomor 81 Tahun 2022 tentang Pedoman Penyusunan Rencana Kerja Pemerintah Daerah Tahun [20XX];</li>
+<li>Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025 tentang [sebutkan perihal sesuai Inmendagri yang berlaku];</li>
+<li>Peraturan Daerah <span class="ph">[NAMA DAERAH]</span> Nomor [..] Tahun [..] tentang RPJMD <span class="ph">[NAMA DAERAH]</span> Tahun <span class="ph">[periode]</span>;</li>
+<li>Peraturan [Bupati/Wali Kota/Gubernur] tentang Renstra <span class="ph">[NAMA OPD]</span> Tahun <span class="ph">[periode]</span>.</li>
+</ol>
+<h3>C. Maksud dan Tujuan</h3>
+<p><b>Maksud:</b> [Sebagai pedoman pelaksanaan program dan kegiatan OPD selama satu tahun anggaran serta acuan penyusunan RKA-OPD.]</p>
+<p><b>Tujuan:</b> [Menjabarkan target tahunan Renstra OPD; menyelaraskan program kegiatan dengan prioritas pembangunan daerah; menjadi instrumen evaluasi kinerja tahunan OPD.]</p>
+<h3>D. Sistematika Penulisan</h3>
+<p>[Uraikan secara ringkas isi tiap bab. Mengikuti format Renja Kabupaten Banyuwangi, dokumen terdiri atas tiga bab: Bab I Pendahuluan; Bab II Evaluasi Hasil Rencana Kerja Perangkat Daerah tahun lalu; serta Bab III Rencana Program dan Kegiatan.]</p>
+
+<h2>BAB II EVALUASI HASIL RENCANA KERJA</h2>
+<h3>A. Evaluasi Pelaksanaan Renja Tahun [20XX-2] dan Capaian Renstra</h3>
+<p>[Sajikan evaluasi capaian program/kegiatan tahun sebelumnya dibandingkan dengan target Renja maupun target Renstra, dalam bentuk tabel rekapitulasi.]</p>
+<table>
+<tr><th>Kode</th><th>Program / Kegiatan / Sub Kegiatan</th><th>Indikator Kinerja</th><th>Target Renja Tahun Lalu</th><th>Realisasi</th><th>Capaian (%)</th><th>Keterangan / Permasalahan</th></tr>
+<tr><td class="ph">[kode]</td><td class="ph">[nama]</td><td class="ph">[indikator]</td><td class="ph">[target]</td><td class="ph">[realisasi]</td><td class="ph">[%]</td><td class="ph">[isi]</td></tr>
+</table>
+<h3>B. Analisis Kinerja Pelayanan Perangkat Daerah</h3>
+<p>[Uraikan analisis terhadap capaian kinerja pelayanan OPD berdasarkan indikator kinerja yang telah ditetapkan, dikaitkan dengan capaian Standar Pelayanan Minimal (SPM) bila relevan.]</p>
+<h3>C. Isu Penting Penyelenggaraan Tugas dan Fungsi Perangkat Daerah</h3>
+<p>[Uraikan isu-isu strategis dan permasalahan utama yang menjadi perhatian dalam penyusunan Renja tahun rencana, berdasar hasil evaluasi tahun sebelumnya.]</p>
+<h3>D. Review Terhadap Rancangan Awal RKPD</h3>
+<p>[Bandingkan antara rancangan awal RKPD dengan hasil analisis kebutuhan OPD — sajikan dalam tabel bila terdapat perbedaan/usulan penyesuaian program.]</p>
+<h3>E. Penelaahan Usulan Program dan Kegiatan Masyarakat</h3>
+<p>[Uraikan usulan dari masyarakat/pemangku kepentingan (hasil Musrenbang) yang telah ditelaah dan diakomodasi dalam rancangan Renja OPD.]</p>
+
+<h2>BAB III RENCANA PROGRAM DAN KEGIATAN</h2>
+<h3>A. Telaahan Terhadap Kebijakan Nasional</h3>
+<p>[Uraikan keselarasan program dan kegiatan OPD dengan arah dan sasaran kebijakan pembangunan nasional pada bidang urusan terkait, termasuk pemenuhan Standar Pelayanan Minimal (SPM) bila relevan.]</p>
+<h3>B. Tujuan dan Sasaran Renja Perangkat Daerah</h3>
+<p>[Rumuskan tujuan dan sasaran tahunan OPD yang merupakan penjabaran dari sasaran Renstra OPD untuk tahun rencana, lengkap dengan indikator dan target.]</p>
+<table>
+<tr><th>Tujuan</th><th>Sasaran</th><th>Indikator Kinerja Sasaran</th><th>Target Tahun Rencana</th></tr>
+<tr><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td><td class="ph">[isi]</td></tr>
+</table>
+<h3>C. Program, Kegiatan, Sub Kegiatan dan Pendanaan</h3>
+<p>Rencana program, kegiatan, dan sub kegiatan disusun sesuai nomenklatur baku Kepmendagri 050-5889/2021 beserta pemutakhirannya dan diselaraskan dengan kebutuhan riil OPD serta kemampuan keuangan daerah.</p>
+<table>
+<tr><th>Kode Rekening</th><th>Program / Kegiatan / Sub Kegiatan</th><th>Indikator Kinerja</th><th>Target Capaian</th><th>Lokasi</th><th>Kebutuhan Dana / Pagu Indikatif (Rp)</th><th>Sumber Dana</th><th>Catatan / Penjelasan</th></tr>
+<tr><td class="ph">[kode]</td><td class="ph">[nama program/kegiatan/sub kegiatan]</td><td class="ph">[indikator]</td><td class="ph">[target]</td><td class="ph">[lokasi]</td><td class="ph">[Rp ..]</td><td class="ph">[APBD/DAK/dll]</td><td class="ph">[isi]</td></tr>
+</table>
+<p><b>Kaidah Pelaksanaan dan Rencana Tindak Lanjut.</b> [Uraikan kewajiban seluruh unit kerja melaksanakan program/kegiatan sesuai dokumen Renja ini sebagai bagian penyusunan RKA-OPD, serta langkah tindak lanjut: pengintegrasian ke KUA-PPAS dan RKA-OPD Tahun <span class="ph">[20XX]</span>, dan penyusunan Perjanjian Kinerja.]</p>
+
+<p>[Nama Kota], [Tanggal Bulan Tahun]<br/>KEPALA <span class="ph">[NAMA OPD]</span><br/><br/><br/><br/>
+<span class="ph">[NAMA PEJABAT, Pangkat/Golongan]</span><br/>NIP. <span class="ph">[NIP]</span></p>
+
+<p class="note">— Template oleh Andri Wulandika · andriwulandika.uk — Sistematika tiga bab (sub-bab berhuruf) mengikuti format Renja Kabupaten Banyuwangi. Gunakan SiRENJA atau SiGenDok untuk menyusun dan menyempurnakan narasi dokumen ini secara otomatis dengan AI sesuai Permendagri 86/2017 jo. 90/2019, Permendagri 81/2022, dan Inmendagri 2/2025.</p>
+</body>
+</html>

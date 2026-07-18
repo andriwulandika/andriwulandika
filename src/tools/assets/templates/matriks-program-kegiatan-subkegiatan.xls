@@ -1,0 +1,65 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+xmlns:x='urn:schemas-microsoft-com:office:excel'
+xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'/>
+<!--[if gte mso 9]><xml>
+<x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>
+<x:Name>Matriks Program Kegiatan</x:Name>
+<x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+</x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook>
+</xml><![endif]-->
+<style>
+td,th{border:1px solid #999;padding:5px;font-family:Calibri,Arial,sans-serif;font-size:11pt;vertical-align:top;}
+th{background:#bdd7ee;font-weight:bold;text-align:center;}
+.title{font-size:14pt;font-weight:bold;}
+.ph{color:#1155cc;}
+.lvl1{background:#ddebf7;font-weight:bold;}
+.lvl2{background:#f2f2f2;}
+</style>
+</head>
+<body>
+<table>
+<tr><td colspan="9" class="title">MATRIKS PROGRAM – KEGIATAN – SUB KEGIATAN — [NAMA OPD] — TAHUN [20XX]</td></tr>
+<tr><td colspan="9">Nomenklatur mengacu pada Kepmendagri Nomor 050-5889 Tahun 2021 tentang Hasil Verifikasi, Validasi dan Inventarisasi Klasifikasi, Kodefikasi, dan Nomenklatur Perencanaan Pembangunan dan Keuangan Daerah, sebagaimana dimutakhirkan. Jangan mengarang nomenklatur sendiri — sesuaikan dengan urusan dan kewenangan OPD.</td></tr>
+<tr><td colspan="9"></td></tr>
+<tr>
+<th>Kode</th><th>Urusan / Program / Kegiatan / Sub Kegiatan</th><th>Indikator Kinerja</th>
+<th>Target</th><th>Satuan</th><th>Lokasi</th><th>Pagu Indikatif (Rp)</th><th>Sumber Dana</th><th>Penanggung Jawab</th>
+</tr>
+<tr class="lvl1">
+<td class="ph">[x.xx]</td><td class="ph">URUSAN: [kode &amp; nama urusan, mis. 1.01 Pendidikan]</td>
+<td colspan="7"></td>
+</tr>
+<tr class="lvl1">
+<td class="ph">[x.xx.xx]</td><td class="ph">PROGRAM: [nama program sesuai Kepmendagri 050-5889/2021]</td>
+<td class="ph">[indikator program / outcome]</td><td class="ph">[target]</td><td class="ph">[satuan]</td>
+<td colspan="4"></td>
+</tr>
+<tr class="lvl2">
+<td class="ph">[x.xx.xx.x.xx]</td><td class="ph">&nbsp;&nbsp;Kegiatan: [nama kegiatan]</td>
+<td class="ph">[indikator kegiatan / output]</td><td class="ph">[target]</td><td class="ph">[satuan]</td>
+<td class="ph">[lokasi]</td><td class="ph">[Rp ..]</td><td class="ph">[APBD/DAK/dll]</td><td class="ph">[unit kerja]</td>
+</tr>
+<tr>
+<td class="ph">[x.xx.xx.x.xx.xxxx]</td><td class="ph">&nbsp;&nbsp;&nbsp;&nbsp;Sub Kegiatan: [nama sub kegiatan]</td>
+<td class="ph">[indikator sub kegiatan]</td><td class="ph">[target]</td><td class="ph">[satuan]</td>
+<td class="ph">[lokasi]</td><td class="ph">[Rp ..]</td><td class="ph">[APBD/DAK/dll]</td><td class="ph">[unit kerja]</td>
+</tr>
+<tr>
+<td class="ph">[..]</td><td class="ph">&nbsp;&nbsp;&nbsp;&nbsp;Sub Kegiatan: [..]</td>
+<td class="ph">[..]</td><td class="ph">[..]</td><td class="ph">[..]</td>
+<td class="ph">[..]</td><td class="ph">[..]</td><td class="ph">[..]</td><td class="ph">[..]</td>
+</tr>
+<tr><td colspan="9"></td></tr>
+<tr><td colspan="9"><b>Total Pagu Program (Rp)</b></td><td colspan="0"></td></tr>
+<tr><td colspan="9"></td></tr>
+<tr><td colspan="9"><b>Catatan pengisian:</b></td></tr>
+<tr><td colspan="9">1. Susunan kode mengikuti hierarki: Urusan (x.xx) → Program (x.xx.xx) → Kegiatan (x.xx.xx.x.xx) → Sub Kegiatan (x.xx.xx.x.xx.xxxx) sesuai struktur SIPD.</td></tr>
+<tr><td colspan="9">2. Setiap sub kegiatan wajib memiliki indikator kinerja output yang terukur (jumlah, persentase, dokumen, dll) dan selaras dengan indikator kegiatan/program di atasnya (cascading).</td></tr>
+<tr><td colspan="9">3. Pagu indikatif disesuaikan dengan kemampuan keuangan daerah dan plafon anggaran sementara (PPAS).</td></tr>
+<tr><td colspan="9">4. Salin/duplikasi baris kegiatan dan sub kegiatan sesuai jumlah riil dalam Renja/RKA OPD Anda.</td></tr>
+<tr><td colspan="9">5. Gunakan SiRENJA atau SiGenDok (andriwulandika.pages.dev) untuk membantu menyusun struktur program-kegiatan-sub kegiatan beserta indikatornya secara otomatis dengan AI.</td></tr>
+<tr><td colspan="9">— Template oleh Andri Wulandika · andriwulandika.pages.dev —</td></tr>
+</table>
+</body>
+</html>
