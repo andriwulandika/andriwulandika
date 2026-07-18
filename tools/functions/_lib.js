@@ -20,9 +20,12 @@ const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
 const CLAUDE_MODELS = ['claude-sonnet-4-6', 'claude-haiku-4-5'];
 const CREDIT_COST = 1; // kredit terpotong per dokumen yang berhasil dibuat (pay-as-you-go)
 
-// Rate limiting: max 100 requests per minute per IP
+// Rate limiting: max 100 requests per minute per IP untuk /generate publik
 const RATE_LIMIT_REQUESTS = 100;
 const RATE_LIMIT_WINDOW = 60; // seconds
+// Endpoint /admin/* jauh lebih jarang dipakai pemilik & lebih sensitif (brute-force
+// password) -> batas lebih ketat, namespace KV terpisah dari rate limit publik.
+const ADMIN_RATE_LIMIT_REQUESTS = 20;
 
 export function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -76,18 +79,21 @@ function validateMaxTokens(tokens) {
   return Math.max(100, Math.min(8000, num)); // Clamp between 100 and 8000
 }
 
-// Rate limiting helper
-async function checkRateLimit(env, ip) {
-  const key = `ratelimit:${ip}`;
-  const current = await env.ACCESS_CODES?.get(key);
+// Rate limiting helper — fail-closed: tanpa binding KV, request DITOLAK (bukan
+// diam-diam diloloskan). `keySuffix` membedakan namespace (mis. IP polos untuk
+// /generate publik, `admin:<ip>` untuk /admin/*) supaya kuota tidak saling makan.
+async function checkRateLimit(env, keySuffix, limit, windowSeconds = RATE_LIMIT_WINDOW) {
+  if (!env.ACCESS_CODES) return false;
+  const key = `ratelimit:${keySuffix}`;
+  const current = await env.ACCESS_CODES.get(key);
   const count = current ? parseInt(current, 10) : 0;
-  
-  if (count >= RATE_LIMIT_REQUESTS) {
+
+  if (count >= limit) {
     return false;
   }
-  
+
   // Increment and set expiry
-  await env.ACCESS_CODES?.put(key, String(count + 1), { expirationTtl: RATE_LIMIT_WINDOW });
+  await env.ACCESS_CODES.put(key, String(count + 1), { expirationTtl: windowSeconds });
   return true;
 }
 
@@ -179,13 +185,29 @@ function creditsOf(data) { return data && Number.isInteger(data.credits) ? data.
 function subActive(data) { return !!(data && data.expiresAt && new Date(data.expiresAt) > new Date()); }
 function hasAccess(data) { return !!data && (subActive(data) || creditsOf(data) > 0); }
 
+// Perbandingan waktu-konstan (tidak short-circuit di karakter pertama yang beda)
+// supaya durasi respons tidak bocor informasi soal seberapa banyak awal password
+// yang benar-tebak.
+function timingSafeEqual(a, b) {
+  const enc = new TextEncoder();
+  const aBytes = enc.encode(String(a ?? ''));
+  const bBytes = enc.encode(String(b ?? ''));
+  const len = Math.max(aBytes.length, bBytes.length, 1);
+  let diff = aBytes.length === bBytes.length ? 0 : 1;
+  for (let i = 0; i < len; i++) {
+    diff |= (aBytes[i] || 0) ^ (bBytes[i] || 0);
+  }
+  return diff === 0;
+}
+
 function isAdmin(body, env) {
-  return !!body.password && body.password === env.ADMIN_PASSWORD;
+  if (!body.password || !env.ADMIN_PASSWORD) return false;
+  return timingSafeEqual(body.password, env.ADMIN_PASSWORD);
 }
 
 export async function handleGenerate(body, env, clientIp) {
   // Rate limiting check
-  if (!await checkRateLimit(env, clientIp)) {
+  if (!await checkRateLimit(env, clientIp, RATE_LIMIT_REQUESTS)) {
     return json({ error: 'Rate limit exceeded. Max 100 requests per minute.' }, 429);
   }
 
@@ -238,7 +260,10 @@ export async function handleVerify(body, env) {
 }
 
 // Buat kode "dompet" baru dengan saldo kredit awal.
-export async function handleAdminGenerate(body, env) {
+export async function handleAdminGenerate(body, env, clientIp) {
+  if (!await checkRateLimit(env, `admin:${clientIp}`, ADMIN_RATE_LIMIT_REQUESTS)) {
+    return json({ error: 'Rate limit exceeded' }, 429);
+  }
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
   const credits = parseInt(body.credits, 10);
   if (!Number.isInteger(credits) || credits < 1 || credits > 100000) {
@@ -252,7 +277,10 @@ export async function handleAdminGenerate(body, env) {
 }
 
 // Tambah saldo kredit ke kode yang sudah ada (top-up).
-export async function handleAdminTopup(body, env) {
+export async function handleAdminTopup(body, env, clientIp) {
+  if (!await checkRateLimit(env, `admin:${clientIp}`, ADMIN_RATE_LIMIT_REQUESTS)) {
+    return json({ error: 'Rate limit exceeded' }, 429);
+  }
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
   const code = String(body.code || '').trim().toUpperCase();
   if (!code) return json({ error: 'code diperlukan' }, 400);
@@ -268,7 +296,10 @@ export async function handleAdminTopup(body, env) {
   return json({ code, ...data });
 }
 
-export async function handleAdminList(body, env) {
+export async function handleAdminList(body, env, clientIp) {
+  if (!await checkRateLimit(env, `admin:${clientIp}`, ADMIN_RATE_LIMIT_REQUESTS)) {
+    return json({ error: 'Rate limit exceeded' }, 429);
+  }
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
   const list = await env.ACCESS_CODES.list();
   const codes = await Promise.all(
@@ -283,7 +314,10 @@ export async function handleAdminList(body, env) {
   return json({ codes });
 }
 
-export async function handleAdminRevoke(body, env) {
+export async function handleAdminRevoke(body, env, clientIp) {
+  if (!await checkRateLimit(env, `admin:${clientIp}`, ADMIN_RATE_LIMIT_REQUESTS)) {
+    return json({ error: 'Rate limit exceeded' }, 429);
+  }
   if (!isAdmin(body, env)) return json({ error: 'Unauthorized' }, 401);
   if (!body.code) return json({ error: 'code diperlukan' }, 400);
   await env.ACCESS_CODES.delete(String(body.code).trim().toUpperCase());
