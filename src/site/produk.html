@@ -73,7 +73,7 @@
     .nav-cta { background: var(--accent-g); color: #fff !important; padding: 7px 16px; border-radius: 980px; font-size: 0.82rem !important; font-weight: 600; }
     .nav-burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
     .nav-burger span { display: block; width: 22px; height: 2px; background: var(--text2); border-radius: 2px; transition: all 0.3s; }
-    @media (max-width: 860px) {
+    @media (max-width: 700px) {
       .nav-links { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: var(--dark2); border-bottom: 1px solid var(--border); padding: 12px 24px 16px; gap: 0.6rem; }
       #main-nav.nav-open .nav-links { display: flex; }
       .nav-burger { display: flex; }
@@ -86,7 +86,7 @@
     .intro-sub { font-size: 1rem; color: var(--text2); line-height: 1.7; }
 
     .section { padding: 56px 24px; background: var(--dark2); }
-    .section:nth-of-type(even) { background: var(--dark); }
+    #produk-berikutnya { background: var(--dark); }
     .section-inner { max-width: 780px; margin: 0 auto; }
     .section-eyebrow { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
     .section-title { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
@@ -156,7 +156,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="produk-berikutnya">
   <div class="section-inner">
     <span class="section-eyebrow">Produk Berikutnya</span>
     <h2 class="section-title">Produk Digital Berikutnya</h2>
