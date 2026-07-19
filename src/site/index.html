@@ -238,9 +238,11 @@
     @media (max-width: 460px) { .plus-grid { grid-template-columns: 1fr; } }
 
     /* LAYANAN DIGITAL */
-    .layanan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    @media (max-width: 900px) { .layanan-grid { grid-template-columns: repeat(2, 1fr); } }
+    .layanan-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     @media (max-width: 600px) { .layanan-grid { grid-template-columns: 1fr; } }
+    .layanan-card.placeholder { opacity: 0.6; cursor: default; }
+    .layanan-card.placeholder:hover { transform: none; }
+    .layanan-card-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text3); background: var(--glass2); padding: 3px 10px; border-radius: 980px; margin-top: 10px; }
     .layanan-card {
       display: block; text-decoration: none;
       background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
@@ -516,7 +518,7 @@
   <div class="section-inner">
     <p class="section-eyebrow reveal">Layanan Digital</p>
     <h2 class="section-title reveal">Layanan yang mendukung<br/>transformasi digital untuk pemerintah &amp; bisnis.</h2>
-    <p class="section-sub reveal">Membantu instansi pemerintah dan bisnis tampil profesional dan bekerja lebih efisien — lewat website modern yang mudah ditemukan di Google dan platform AI Tools untuk ASN perencana daerah se-Indonesia.</p>
+    <p class="section-sub reveal">Membantu instansi pemerintah dan bisnis tampil profesional dan bekerja lebih efisien lewat website modern yang mudah ditemukan di Google.</p>
     <div class="layanan-grid">
       <a href="layanan-pemerintah.html" class="layanan-card reveal">
         <div class="plus-card-icon-box icon-blue">🏛️</div>
@@ -530,12 +532,29 @@
         <div class="plus-card-desc">Landing page dan website profil — desain modern, SEO-ready, hosting gratis. Mulai dari Rp 750rb.</div>
         <span class="layanan-card-cta">Lihat layanan bisnis →</span>
       </a>
-      <a href="https://ai.andriwulandika.uk/" target="_blank" rel="noopener" class="layanan-card reveal reveal-d2">
+    </div>
+  </div>
+</section>
+
+<!-- PRODUK DIGITAL -->
+<section class="plus-section" id="produk">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Produk Digital</p>
+    <h2 class="section-title reveal">Produk yang mempercepat<br/>transformasi digital Anda.</h2>
+    <p class="section-sub reveal">Selain layanan konsultasi, kami juga mengembangkan produk digital siap pakai — bagian dari komitmen jangka panjang mendukung pemerintah &amp; bisnis.</p>
+    <div class="layanan-grid">
+      <a href="produk.html" class="layanan-card reveal">
         <div class="plus-card-icon-box icon-purple">🤖</div>
         <div class="plus-card-title">AI Tools Perencanaan Daerah</div>
-        <div class="plus-card-desc">Platform 8 AI tools gratis untuk ASN se-Indonesia — generator Renja OPD, RKPD, LKjIP, KAK/TOR, Nota Dinas, dan lainnya.</div>
-        <span class="layanan-card-cta">Kunjungi platform →</span>
+        <div class="plus-card-desc">Platform 8 AI tools untuk ASN se-Indonesia — generator Renja OPD, RKPD, LKjIP, KAK/TOR, Nota Dinas, dan lainnya.</div>
+        <span class="layanan-card-cta">Lihat produk →</span>
       </a>
+      <div class="layanan-card placeholder reveal reveal-d1">
+        <div class="plus-card-icon-box icon-orange">🧩</div>
+        <div class="plus-card-title">Produk Digital Berikutnya</div>
+        <div class="plus-card-desc">Kami terus mengembangkan produk digital baru untuk mendukung transformasi digital pemerintah &amp; bisnis.</div>
+        <span class="layanan-card-badge">Segera Hadir</span>
+      </div>
     </div>
   </div>
 </section>
