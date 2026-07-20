@@ -26,6 +26,10 @@ const RATE_LIMIT_WINDOW = 60; // seconds
 // Endpoint /admin/* jauh lebih jarang dipakai pemilik & lebih sensitif (brute-force
 // password) -> batas lebih ketat, namespace KV terpisah dari rate limit publik.
 const ADMIN_RATE_LIMIT_REQUESTS = 20;
+// Endpoint /verify dipakai untuk mengecek kode akses saat login. Batas ketat
+// mencegah upaya menebak kode akses secara massal (enumerasi), namun tetap
+// longgar untuk pemakaian normal (login sesekali). Namespace KV terpisah.
+const VERIFY_RATE_LIMIT_REQUESTS = 10;
 
 export function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -243,7 +247,15 @@ export async function handleGenerate(body, env, clientIp) {
   return json({ text: truncateDemo(text), isDemo: true, engine, credits: creditsOf(record) });
 }
 
-export async function handleVerify(body, env) {
+export async function handleVerify(body, env, clientIp) {
+  // Rate limit per IP untuk mencegah upaya menebak kode akses secara massal.
+  // Pesan sengaja ramah & tidak membocorkan detail teknis.
+  if (!await checkRateLimit(env, `verify:${clientIp}`, VERIFY_RATE_LIMIT_REQUESTS)) {
+    return json({
+      valid: false,
+      message: 'Terlalu banyak percobaan. Mohon tunggu sekitar satu menit, lalu coba lagi.',
+    }, 429);
+  }
   const record = await checkCode(env, body.code);
   if (!record) return json({ valid: false });
   // valid:true selama kode dikenal (meski 0 kredit), supaya pengguna bisa
