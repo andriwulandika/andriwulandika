@@ -12,10 +12,10 @@ PR #52.
 
 | Kode | Item | Status |
 |------|------|--------|
-| P0-1 | Halaman Kebijakan Privasi (kedua situs) | SELESAI (menunggu review) |
-| P1-6 | Rate-limit endpoint `/verify` | SELESAI (menunggu review) |
-| P0-2 | Content-Security-Policy dasar (site & tools) | SELESAI (menunggu review) |
-| P1-6 | Panduan mengganti `ADMIN_PASSWORD` | SELESAI (menunggu review) |
+| P0-1 | Halaman Kebijakan Privasi (kedua situs) | ✅ SELESAI (terverifikasi audit 20 Jul 2026) |
+| P1-6 | Rate-limit endpoint `/verify` | ✅ SELESAI (terverifikasi audit 20 Jul 2026) |
+| P0-2 | Content-Security-Policy dasar (site & tools) | ✅ SELESAI (terverifikasi audit 20 Jul 2026) |
+| P1-6 | Panduan mengganti `ADMIN_PASSWORD` | ⚠️ Dokumen & kode siap — nilai aktual di Cloudflare **perlu konfirmasi manual Andri** |
 
 ### Ringkasan yang dikerjakan
 
@@ -59,6 +59,23 @@ PR #52.
   error di console) **perlu dilakukan di preview** — lingkungan agen tidak bisa
   menjalankan browser dan egress ke cdnjs diblokir.
 
+**Audit status 20 Juli 2026 (cek langsung ke kode, tanpa build/browser):**
+- `kebijakan-privasi.html` ada di `src/site/` dan `src/tools/`, ditautkan di
+  footer semua halaman konten kedua situs (lewat include `footer-article.html`
+  / `footer-panduan.html`). Halaman tanpa tautan (`404.html`, file verifikasi
+  Google, `jasa.html` yang kini redirect) memang tidak butuh footer.
+- `handleVerify` di `tools/functions/_lib.js` memanggil
+  `checkRateLimit(env, 'verify:${clientIp}', VERIFY_RATE_LIMIT_REQUESTS)` dengan
+  `VERIFY_RATE_LIMIT_REQUESTS = 10` dan window 60 detik — sesuai deskripsi.
+- CSP `Content-Security-Policy` ada di blok `/*` pada `src/site/_headers` dan
+  `src/tools/_headers`, plus `Cross-Origin-Opener-Policy` &
+  `Cross-Origin-Resource-Policy` (dari Sprint 2).
+- `ADMIN_PASSWORD`: kode (`_lib.js`) sudah memakai `env.ADMIN_PASSWORD` +
+  `timingSafeEqual`, dan `docs/panduan/ganti-admin-password.md` ada. **Tidak
+  bisa diverifikasi dari kode/agen apakah nilai password di dashboard
+  Cloudflare Pages benar-benar sudah diganti dari default** — perlu Andri
+  konfirmasi manual di Cloudflare.
+
 ---
 
 ## Sprint 2 — Legal Lanjutan, Rapikan & Keamanan Header — SELESAI (menunggu review)
@@ -68,10 +85,10 @@ belum deploy produksi — hanya preview Cloudflare Pages.
 
 | Item | Status |
 |------|--------|
-| Rapikan sisa Sprint 1 (sitemap halaman legal) | SELESAI (menunggu review) |
-| Halaman Syarat & Ketentuan (kedua situs) | SELESAI (menunggu review) |
-| Banner persetujuan cookie/analitik (GA4 opt-in) | SELESAI (menunggu review) |
-| Security header tambahan (COOP/CORP) | SELESAI (menunggu review) |
+| Rapikan sisa Sprint 1 (sitemap halaman legal) | ✅ SELESAI (terverifikasi audit 20 Jul 2026) |
+| Halaman Syarat & Ketentuan (kedua situs) | ✅ SELESAI (terverifikasi audit 20 Jul 2026) |
+| Banner persetujuan cookie/analitik (GA4 opt-in) | ✅ SELESAI (terverifikasi audit 20 Jul 2026) |
+| Security header tambahan (COOP/CORP) | ✅ SELESAI (terverifikasi audit 20 Jul 2026) |
 | Pengetatan CSP penuh | DIRENCANAKAN → Sprint 4 (lihat di bawah) |
 
 ### Ringkasan yang dikerjakan
@@ -105,6 +122,32 @@ belum deploy produksi — hanya preview Cloudflare Pages.
   buka halaman **Syarat & Ketentuan** kedua situs, dan pastikan **tidak ada error
   CSP/CORP di console** termasuk ekspor PDF. (Perlu browser — tidak bisa dari
   lingkungan agen.)
+
+### Audit status 20 Juli 2026
+
+- `syarat-ketentuan.html` ada di `src/site/` dan `src/tools/`.
+- `sitemap.xml` kedua situs sudah mencantumkan `kebijakan-privasi.html` dan
+  `syarat-ketentuan.html`.
+- `shared/js/analytics.js` berisi logic consent (`aw_analytics_consent` di
+  `localStorage`) + banner "Terima/Tolak"; file identik dengan
+  `src/site/assets/js/analytics.js` dan `src/tools/assets/js/analytics.js`
+  (sudah di-sync), dan dirujuk di semua halaman konten kedua situs.
+- `Cross-Origin-Opener-Policy: same-origin` dan
+  `Cross-Origin-Resource-Policy: same-site` ada di blok `/*` kedua `_headers`.
+
+---
+
+## Item tambahan ditemukan saat audit (belum tercatat sebagai sprint resmi)
+
+Ketiga item ini disebut dalam permintaan audit 20 Juli 2026 tapi **belum ada di
+sprint manapun di atas** — dicatat di sini supaya masuk perencanaan sprint
+berikutnya.
+
+| Item | Status | Bukti |
+|------|--------|-------|
+| Hapus penyebutan "TAPD" | ❌ Belum | `grep -ril "TAPD" src/` → `src/tools/index.html`, `src/site/tentang.html` (juga masih ada di build output `tools/index.html`, `site/tentang.html`) |
+| Pisahkan jabatan Bappeda dari konteks jasa berbayar | ❌ Belum | `src/site/tentang.html` — posisi "Perencana Ahli Pertama Bappeda" digabung langsung dengan penawaran jasa berbayar tanpa disclaimer independensi (mis. baris ~448 "Misi saya... menghadirkan website profesional... bagi instansi pemerintah (OPD, Bappeda, Pemda) dan bisnis", dan baris ~583 di bagian "Value"). Tidak ditemukan kalimat pemisah seperti "pandangan/jasa pribadi, tidak mewakili institusi". |
+| Ganti hero lama "Punya Usaha, Harus Punya Website" | ✅ Selesai | `grep -ril "Punya Usaha, Harus Punya Website" src/` → tidak ada hasil. Hero saat ini di `src/site/index.html`: `"Transformasi digital untuk pemerintah & bisnis"` |
 
 ---
 
