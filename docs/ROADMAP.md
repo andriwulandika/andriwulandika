@@ -141,12 +141,12 @@ belum deploy produksi — hanya preview Cloudflare Pages.
 
 Ketiga item ini disebut dalam permintaan audit 20 Juli 2026 tapi **belum ada di
 sprint manapun di atas** — dicatat di sini supaya masuk perencanaan sprint
-berikutnya. Item 2.1 dan 2.2 dikerjakan pada sesi 20 Juli 2026 (lanjutan PR #55).
+berikutnya. Item 2.1 dan 2.2 diselesaikan pada sesi 20 Juli 2026 (lanjutan PR #55).
 
 | Item | Status | Bukti |
 |------|--------|-------|
-| 2.1 — Hapus penyebutan "TAPD" | ✅ Selesai | `grep -ril "TAPD" src/` → tidak ada hasil (dicek ulang di seluruh repo, hanya tersisa di catatan audit ini). Diganti dengan frasa netral yang tetap merujuk pengalaman koordinasi 51 OPD, tanpa menyebut keanggotaan TAPD, di `src/tools/index.html` dan `src/site/tentang.html`. `site/tentang.html` dan `tools/index.html` (build output) sudah di-regenerate via `scripts/build-pages.sh`. |
-| 2.2 — Pisahkan jabatan Bappeda dari konteks jasa berbayar | ✅ Selesai (kalimat disclaimer masih DRAFT — menunggu review Andri) | `src/site/tentang.html` — ditambahkan section disclaimer terpisah antara "Why Work With Me" dan CTA berbayar, plus reword ringan pada value-card 01 agar tidak membingkai jabatan ASN sebagai alasan langsung membeli jasa. **Kalimat disclaimer saat ini adalah draft dari Claude, BELUM final** — Andri perlu review/edit kalimat persisnya sebelum PR #55 di-approve/merge. |
+| 2.1 — Hapus penyebutan "TAPD" | ✅ Selesai (final) | `grep -ril "TAPD" src/` → tidak ada hasil (dicek ulang di seluruh repo, hanya tersisa di catatan audit ini). Diganti dengan frasa netral yang tetap merujuk pengalaman koordinasi 51 OPD, tanpa menyebut keanggotaan TAPD, di `src/tools/index.html` dan `src/site/tentang.html`. `site/tentang.html` dan `tools/index.html` (build output) sudah di-regenerate via `scripts/build-pages.sh`. |
+| 2.2 — Pisahkan jabatan Bappeda dari konteks jasa berbayar | ✅ Selesai (final) | `src/site/tentang.html` — ditambahkan section disclaimer terpisah antara "Why Work With Me" dan CTA berbayar, plus reword ringan pada value-card 01 agar tidak membingkai jabatan ASN sebagai alasan langsung membeli jasa. Kalimat disclaimer sudah **final & disetujui Andri** (versi asli, bukan draft). |
 | Ganti hero lama "Punya Usaha, Harus Punya Website" | ✅ Selesai | `grep -ril "Punya Usaha, Harus Punya Website" src/` → tidak ada hasil. Hero saat ini di `src/site/index.html`: `"Transformasi digital untuk pemerintah & bisnis"` |
 
 ---
