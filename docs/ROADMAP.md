@@ -141,12 +141,12 @@ belum deploy produksi — hanya preview Cloudflare Pages.
 
 Ketiga item ini disebut dalam permintaan audit 20 Juli 2026 tapi **belum ada di
 sprint manapun di atas** — dicatat di sini supaya masuk perencanaan sprint
-berikutnya.
+berikutnya. Item 2.1 dan 2.2 dikerjakan pada sesi 20 Juli 2026 (lanjutan PR #55).
 
 | Item | Status | Bukti |
 |------|--------|-------|
-| Hapus penyebutan "TAPD" | ❌ Belum | `grep -ril "TAPD" src/` → `src/tools/index.html`, `src/site/tentang.html` (juga masih ada di build output `tools/index.html`, `site/tentang.html`) |
-| Pisahkan jabatan Bappeda dari konteks jasa berbayar | ❌ Belum | `src/site/tentang.html` — posisi "Perencana Ahli Pertama Bappeda" digabung langsung dengan penawaran jasa berbayar tanpa disclaimer independensi (mis. baris ~448 "Misi saya... menghadirkan website profesional... bagi instansi pemerintah (OPD, Bappeda, Pemda) dan bisnis", dan baris ~583 di bagian "Value"). Tidak ditemukan kalimat pemisah seperti "pandangan/jasa pribadi, tidak mewakili institusi". |
+| 2.1 — Hapus penyebutan "TAPD" | ✅ Selesai | `grep -ril "TAPD" src/` → tidak ada hasil (dicek ulang di seluruh repo, hanya tersisa di catatan audit ini). Diganti dengan frasa netral yang tetap merujuk pengalaman koordinasi 51 OPD, tanpa menyebut keanggotaan TAPD, di `src/tools/index.html` dan `src/site/tentang.html`. `site/tentang.html` dan `tools/index.html` (build output) sudah di-regenerate via `scripts/build-pages.sh`. |
+| 2.2 — Pisahkan jabatan Bappeda dari konteks jasa berbayar | ✅ Selesai (kalimat disclaimer masih DRAFT — menunggu review Andri) | `src/site/tentang.html` — ditambahkan section disclaimer terpisah antara "Why Work With Me" dan CTA berbayar, plus reword ringan pada value-card 01 agar tidak membingkai jabatan ASN sebagai alasan langsung membeli jasa. **Kalimat disclaimer saat ini adalah draft dari Claude, BELUM final** — Andri perlu review/edit kalimat persisnya sebelum PR #55 di-approve/merge. |
 | Ganti hero lama "Punya Usaha, Harus Punya Website" | ✅ Selesai | `grep -ril "Punya Usaha, Harus Punya Website" src/` → tidak ada hasil. Hero saat ini di `src/site/index.html`: `"Transformasi digital untuk pemerintah & bisnis"` |
 
 ---
