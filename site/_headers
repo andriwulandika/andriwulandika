@@ -46,12 +46,18 @@
   Content-Type: text/plain
 
 # Security headers
+# CATATAN CSP (site): script-src memakai daftar hash sha256 untuk mengizinkan
+# skrip inline TANPA 'unsafe-inline'. Jika Anda MENGUBAH isi <script> inline di
+# halaman mana pun, hash-nya berubah dan skrip akan diblokir. Hitung ulang hash
+# lalu perbarui daftar di bawah:
+#   node -e "const c=require('crypto');const s=`ISI_SCRIPT_TANPA_TAG`;console.log('sha256-'+c.createHash('sha256').update(s).digest('base64'))"
+# (style-src masih 'unsafe-inline' — pengetatan style ditunda, lihat docs/ROADMAP.md.)
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self' data:; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'sha256-kORA3pP3CjPRXLa0qFBNNltySl6rhl+63hWzEtbGzZA=' 'sha256-BhtGkeK4uMROLCkHgeaXf1LDg7n6/g1W30bNTKAywzY=' 'sha256-1nr+Yn2+zc4bOu1dzW6hvMBDJSlWS/qyjtTAHeJdmAA=' 'sha256-mCKl8KCc25zneDZIFeMK3dREfqoQyd/8cGo2nZTZmLk=' 'sha256-M6VHvlKhcOrNFjZnGKkGlHdRnt6j7TmvcOea20Ph4nc=' 'sha256-TnWxWW72A1HjQLgOMUAT2m+EtGwfOWuA8SqsCOHPP3s=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self' data:; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-site

@@ -108,31 +108,45 @@ belum deploy produksi — hanya preview Cloudflare Pages.
 
 ---
 
-## Sprint 4 — Pengetatan CSP penuh (RENCANA)
+## Sprint 4 — Pengetatan CSP
 
-**Tujuan:** menghapus `'unsafe-inline'` dan `'unsafe-eval'` dari CSP agar proteksi
-XSS benar-benar kuat. Ini **refactor besar lintas ~40 halaman** dan sengaja
-dipisah dari Sprint 2 karena berisiko memecah tampilan/fungsi bila terburu-buru.
+**Tujuan:** menghapus `'unsafe-inline'`/`'unsafe-eval'` dari `script-src` agar
+proteksi XSS benar-benar kuat.
 
-**Kendala teknis:** situs disajikan sebagai file statis di Cloudflare Pages tanpa
-build saat deploy, jadi **nonce per-request tidak tersedia** (butuh middleware
-yang menulis ulang HTML tiap request). Pengetatan harus lewat refactor + hash.
+**Kendala teknis:** situs disajikan sebagai file statis tanpa build saat deploy,
+jadi **nonce per-request tidak tersedia**. Pengetatan lewat refactor + hash.
 
-**Langkah yang direncanakan (bertahap, per batch, verifikasi tiap batch):**
+### 4a — Situs utama (andriwulandika.uk) — SELESAI (menunggu review)
 
-1. **Hapus `unsafe-eval`:** verifikasi apakah html2pdf/jsPDF benar-benar butuh
-   `eval`/`new Function` di preview. Bila tidak, langsung hapus `'unsafe-eval'`
-   dari `script-src` tools (kemungkinan besar aman untuk jsPDF 2.x + html2canvas).
-2. **Inline event handler → `addEventListener`:** ganti seluruh atribut `onclick`,
-   `onchange`, `onkeydown`, `oninput` (banyak di 8 AI Tools & halaman wizard)
-   menjadi listener di skrip. Ini prasyarat utama menghapus `'unsafe-inline'`
-   pada `script-src`.
-3. **Eksternalkan/hash skrip inline:** pindahkan blok `<script>` inline (nav
-   burger, reveal, progress bar, TOC, FAQ) ke file `assets/js/*` bersama, atau
-   hitung `sha256` tiap blok dan daftarkan di `script-src`.
-4. **Eksternalkan style inline bila memungkinkan:** pindahkan `<style>` besar ke
-   file CSS; untuk atribut `style=""` yang tersisa, pertimbangkan `'unsafe-hashes'`
-   atau refactor ke kelas — lalu hapus `'unsafe-inline'` dari `style-src`.
-5. **Uji menyeluruh** tiap halaman + 8 AI Tools + ekspor PDF sebelum mengencangkan
-   header. Pertimbangkan fase `Content-Security-Policy-Report-Only` lebih dulu
-   bila ingin memantau pelanggaran tanpa risiko.
+Dikerjakan di branch `claude/sprint-4-csp-tightening`.
+
+- Situs utama **tidak punya satu pun event handler inline** (`onclick` dll) dan
+  hanya memuat **6 blok `<script>` inline unik** (toggle menu, animasi reveal,
+  progress bar). Karena itu bisa dikencangkan dengan aman **tanpa refactor**:
+  `script-src` kini memakai **daftar hash `sha256`** untuk tiap skrip inline dan
+  **`'unsafe-inline'`/`'unsafe-eval'` sudah DIHAPUS** dari `script-src` situs.
+- Diverifikasi statis: seluruh 6 skrip inline pada output cocok persis dengan 6
+  hash di CSP (tidak ada yang tertinggal / basi).
+- `style-src` masih `'unsafe-inline'` (atribut `style=""` & blok `<style>` masih
+  pervasif; pengetatan style ditunda — risiko rendah).
+- **Maintenance:** bila isi `<script>` inline situs diubah, hash-nya WAJIB
+  dihitung ulang (lihat catatan di `src/site/_headers`), jika tidak skrip diblokir.
+
+### 4b — AI Tools (ai.andriwulandika.uk) — BELUM (butuh pengujian browser)
+
+Tidak dikerjakan bersama 4a karena **berisiko tinggi**: platform tools memuat
+**±250 event handler inline** (`onclick`/`onchange`/`onkeydown`/`oninput`) yang
+tersebar di 8 AI Tools & halaman wizard (93 di `sigendok.html` saja), plus 28
+blok `<script>` inline. Menghapus `'unsafe-inline'` di sini menuntut:
+
+1. **Hapus `'unsafe-eval'`:** verifikasi di browser apakah html2pdf/jsPDF benar
+   butuh `eval`. Bila tidak, hapus dari `script-src` tools.
+2. **Inline handler → `addEventListener`:** ubah ±250 handler menjadi listener
+   (sebagian dibuat dinamis lewat template string → butuh event delegation).
+3. **Eksternalkan/hash skrip inline** (28 blok).
+4. **Uji tiap tool + ekspor PDF di browser** sebelum mengencangkan header.
+
+**Rekomendasi:** kerjakan **per-tool**, tiap tool diuji di preview (butuh browser
+— tidak bisa dari lingkungan agen) sebelum lanjut, agar produk berbayar tidak
+berisiko rusak diam-diam. Sampai 4b selesai, CSP tools tetap seperti Sprint 2
+(`'unsafe-inline'`/`'unsafe-eval'` masih ada) — tetap bermakna (allowlist host).
