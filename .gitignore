@@ -1,5 +1,6 @@
-# Claude Code internal
-.claude/
+# Claude Code internal (skills sengaja di-commit; sisanya lokal)
+.claude/*
+!.claude/skills/
 
 # OG image dev files
 og-jasa-preview.html
