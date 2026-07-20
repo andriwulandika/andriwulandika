@@ -1,19 +1,45 @@
 #!/usr/bin/env bash
-# sync-assets.sh — Copy shared/ (single source of truth) into site/ and tools/,
-# the two Cloudflare Pages project roots, so both stay in sync without
-# hand-editing duplicate files.
-#
-# Run manually after touching anything under shared/, or wire it into each
-# Cloudflare Pages project's Build command (see README note in shared/).
+# sync-assets.sh — Copy shared/ into site/ and tools/ with error handling
 set -euo pipefail
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")"/.. 
+
+echo "🔄 Syncing shared/ assets..."
 
 for root in site tools; do
-  mkdir -p "$root/assets/brand" "$root/assets/js"
-  cp shared/brand/*.png shared/brand/*.svg "$root/assets/brand/"
-  cp shared/brand/apple-touch-icon.png "$root/apple-touch-icon.png"
-  cp shared/brand/favicon.ico "$root/favicon.ico"
-  cp shared/js/*.js "$root/assets/js/"
+  echo "  → Syncing to $root/..."
+  
+  # Create directories
+  mkdir -p "$root/assets/brand" "$root/assets/js" || {
+    echo "❌ Failed to create directories in $root/"
+    exit 1
+  }
+  
+  # Copy brand assets
+  if [ -d "shared/brand" ]; then
+    cp shared/brand/*.png "$root/assets/brand/" 2>/dev/null || true
+    cp shared/brand/*.svg "$root/assets/brand/" 2>/dev/null || true
+    echo "     ✓ Brand assets copied"
+  else
+    echo "     ⚠️  shared/brand/ not found"
+  fi
+  
+  # Copy JS assets
+  if [ -d "shared/js" ]; then
+    cp shared/js/*.js "$root/assets/js/" 2>/dev/null || true
+    echo "     ✓ JS assets copied"
+  else
+    echo "     ⚠️  shared/js/ not found"
+  fi
+  
+  # Copy favicon + touch icons to root
+  if [ -f "shared/brand/apple-touch-icon.png" ]; then
+    cp shared/brand/apple-touch-icon.png "$root/"
+    echo "     ✓ Apple touch icon copied"
+  fi
+  if [ -f "shared/brand/favicon.ico" ]; then
+    cp shared/brand/favicon.ico "$root/"
+    echo "     ✓ Favicon copied"
+  fi
 done
 
-echo "Synced shared/brand/ and shared/js/ into site/ and tools/."
+echo "✅ Sync complete!"

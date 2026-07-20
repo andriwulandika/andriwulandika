@@ -14,9 +14,13 @@ node_modules/
 .env*
 !.env.example
 
-# Python cache dari scripts/*.py
+# Python cache
 __pycache__/
 *.pyc
 
-# Output transien 11ty (scripts/build-pages.sh menyalinnya ke site/ & tools/, tidak perlu di-commit)
+# 11ty artifacts
 dist/
+.eleventy-cache/
+
+# Build artifacts
+*.log
