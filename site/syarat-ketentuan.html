@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js" defer></script>
+  <script src="/assets/js/ui-enhance.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syarat &amp; Ketentuan — Andri Wulandika</title>
+  <meta name="description" content="Syarat & Ketentuan penggunaan layanan Andri Wulandika (andriwulandika.uk & ai.andriwulandika.uk): aturan pemakaian, sistem kredit, tanggung jawab pengguna, dan batasan tanggung jawab."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://andriwulandika.uk/syarat-ketentuan.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Syarat &amp; Ketentuan — Andri Wulandika"/>
+  <meta property="og:description" content="Aturan pemakaian, sistem kredit, tanggung jawab pengguna, dan batasan tanggung jawab layanan Andri Wulandika."/>
+  <meta property="og:url" content="https://andriwulandika.uk/syarat-ketentuan.html"/>
+  <meta property="og:site_name" content="Andri Wulandika"/>
+  <meta property="og:locale" content="id_ID"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff;
+      --bg2: #f5f5f7;
+      --text: #1d1d1f;
+      --text2: #6e6e73;
+      --accent: #0071e3;
+      --border: #d2d2d7;
+      --radius: 18px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      height: 52px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 480px) { .nav-title { display: none; } }
+
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text, #1d1d1f); transition: transform .25s ease, opacity .2s ease; }
+    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: none; position: fixed; top: 52px; left: 0; right: 0;
+        flex-direction: column; gap: 0; list-style: none;
+        background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        padding: 6px 16px 14px; max-height: calc(100vh - 52px); overflow-y: auto;
+      }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+      .nav-links li:last-child > a { border-bottom: 0; }
+    }
+
+    /* CONTENT */
+    .wrap { max-width: 760px; margin: 0 auto; padding: 100px 24px 72px; }
+    .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+    h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.9rem; }
+    .lead { font-size: 1.02rem; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; }
+    .effective { display: inline-block; font-size: 0.8rem; color: var(--text2); background: var(--bg2); border-radius: 980px; padding: 6px 14px; margin-bottom: 2.4rem; }
+    .body { font-size: 1rem; line-height: 1.8; color: var(--text); }
+    .body h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin: 2.6rem 0 0.9rem; scroll-margin-top: 70px; }
+    .body p { margin-bottom: 1.2rem; }
+    .body ul { padding-left: 1.4rem; margin-bottom: 1.2rem; }
+    .body li { margin-bottom: 0.5rem; }
+    .body a { color: var(--accent); text-decoration: none; }
+    .body a:hover { text-decoration: underline; }
+    .body strong { font-weight: 600; }
+    .note { background: var(--bg2); border-left: 3px solid var(--accent); border-radius: 0 14px 14px 0; padding: 1.1rem 1.3rem; margin: 1.6rem 0; font-size: 0.95rem; color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .footer-left { font-size: 0.78rem; color: var(--text2); }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">← Beranda</a>
+  <span class="nav-title">Syarat &amp; Ketentuan</span>
+  <ul class="nav-links">
+    <li><a href="layanan-pemerintah.html">Layanan Pemerintah</a></li>
+    <li><a href="layanan-bisnis.html">Layanan Bisnis</a></li>
+    <li><a href="produk.html">Produk</a></li>
+    <li><a href="tentang.html">Tentang</a></li>
+  </ul>
+  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<script>
+(function(){
+  var nav=document.querySelector('nav');if(!nav)return;
+  var btn=nav.querySelector('.nav-burger');if(!btn)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.addEventListener('click',function(e){
+    var t=e.target;
+    while(t&&t!==nav){
+      if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}
+      t=t.parentNode;
+    }
+  });
+})();
+</script>
+
+<div class="wrap">
+  <div class="eyebrow">Ketentuan Layanan</div>
+  <h1>Syarat &amp; Ketentuan</h1>
+  <p class="lead">Dengan mengakses dan menggunakan layanan Andri Wulandika — situs <strong>andriwulandika.uk</strong> (jasa pembuatan website) dan platform AI Tools <strong>ai.andriwulandika.uk</strong> — Anda dianggap menyetujui syarat dan ketentuan berikut. Mohon dibaca sebelum menggunakan layanan.</p>
+  <span class="effective">Berlaku sejak: 20 Juli 2026</span>
+
+  <div class="body">
+
+    <h2 id="layanan">1. Tentang layanan</h2>
+    <p>Kami menyediakan dua layanan utama: (1) jasa pembuatan website untuk bisnis, instansi/OPD, dan landing page; serta (2) AI Tools untuk membantu menyusun dokumen perencanaan daerah. Layanan dapat berkembang, ditambah, atau disesuaikan sewaktu-waktu.</p>
+
+    <h2 id="pemakaian">2. Penggunaan yang diperbolehkan</h2>
+    <p>Anda setuju untuk memakai layanan ini secara wajar dan sah, khususnya untuk keperluan kerja/dinas dan bisnis. Anda tidak diperkenankan menyalahgunakan layanan, mencoba menembus keamanan sistem, membebani server secara tidak wajar, atau memasukkan konten yang melanggar hukum.</p>
+
+    <h2 id="kredit">3. Sistem kredit &amp; pembayaran</h2>
+    <p>AI Tools tersedia dalam mode <strong>demo (gratis, hasil dipotong)</strong> dan mode <strong>berbayar (kredit)</strong>. Ketentuan kredit:</p>
+    <ul>
+      <li>Kredit dibeli manual melalui konfirmasi WhatsApp; kode akses dikirim setelah pembayaran dikonfirmasi.</li>
+      <li>1 kredit terpotong untuk 1 dokumen yang berhasil dibuat. Kredit tidak terpotong bila proses gagal.</li>
+      <li>Kredit tidak memiliki masa kedaluwarsa.</li>
+      <li>Karena kredit adalah produk digital yang langsung dapat dipakai, pembelian yang sudah diaktifkan pada prinsipnya tidak dapat dikembalikan (non-refundable). Silakan coba mode demo lebih dulu sebelum membeli.</li>
+    </ul>
+
+    <h2 id="tanggung-jawab-pengguna">4. Tanggung jawab atas dokumen hasil AI</h2>
+    <p>Dokumen yang dihasilkan AI adalah <strong>alat bantu penyusunan</strong>, bukan dokumen final yang otomatis benar. Anda bertanggung jawab untuk <strong>memeriksa, menyunting, dan memverifikasi</strong> setiap hasil terhadap data faktual dan regulasi resmi yang berlaku sebelum digunakan secara resmi. Anda juga bertanggung jawab atas data yang Anda masukkan ke dalam tool.</p>
+    <div class="note">Hasil AI dapat mengandung kekeliruan atau rujukan yang perlu dimutakhirkan. Jangan menjadikannya sebagai satu-satunya dasar tanpa pemeriksaan manusia. Layanan ini bukan nasihat hukum.</div>
+
+    <h2 id="kekayaan-intelektual">5. Kepemilikan &amp; hak</h2>
+    <p>Dokumen hasil akhir yang Anda buat menjadi milik Anda untuk keperluan Anda. Sementara itu, merek, tampilan, dan kode platform tetap milik Andri Wulandika dan tidak boleh disalin atau dijual kembali tanpa izin.</p>
+
+    <h2 id="batasan">6. Batasan tanggung jawab</h2>
+    <p>Layanan disediakan "sebagaimana adanya". Sejauh diizinkan hukum, kami tidak bertanggung jawab atas kerugian yang timbul dari penggunaan hasil layanan yang tidak diperiksa terlebih dahulu, gangguan layanan pihak ketiga (mesin AI, hosting), atau keputusan yang Anda ambil berdasarkan keluaran layanan.</p>
+
+    <h2 id="privasi">7. Privasi</h2>
+    <p>Pengelolaan data pribadi diatur dalam <a href="kebijakan-privasi.html">Kebijakan Privasi</a> kami, yang merupakan bagian tak terpisahkan dari ketentuan ini.</p>
+
+    <h2 id="hukum">8. Hukum yang berlaku &amp; kontak</h2>
+    <p>Ketentuan ini tunduk pada hukum Republik Indonesia. Ketentuan dapat kami perbarui sewaktu-waktu; versi terbaru selalu tersedia di halaman ini. Untuk pertanyaan, hubungi:</p>
+    <ul>
+      <li>Email: <a href="mailto:wulandikaandri@gmail.com">wulandikaandri@gmail.com</a></li>
+      <li>WhatsApp: <a href="https://wa.me/62811660568" target="_blank" rel="noopener">+62 811-660-568</a></li>
+    </ul>
+
+  </div>
+</div>
+
+<footer>
+  <p class="footer-left">&copy; 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</p>
+  <div class="footer-links">
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+    <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</footer>
+
+</body>
+</html>

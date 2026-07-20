@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js" defer></script>
+  <script src="/assets/js/ui-enhance.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syarat &amp; Ketentuan — AI Tools Perencanaan Daerah | Andri Wulandika</title>
+  <meta name="description" content="Syarat & Ketentuan penggunaan platform AI Tools perencanaan daerah (ai.andriwulandika.uk): aturan pemakaian, sistem kredit, tanggung jawab atas dokumen hasil AI, dan batasan tanggung jawab."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://ai.andriwulandika.uk/syarat-ketentuan.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Syarat &amp; Ketentuan — AI Tools Perencanaan Daerah"/>
+  <meta property="og:description" content="Aturan pemakaian, sistem kredit, tanggung jawab atas dokumen hasil AI, dan batasan tanggung jawab."/>
+  <meta property="og:url" content="https://ai.andriwulandika.uk/syarat-ketentuan.html"/>
+  <meta property="og:site_name" content="Andri Wulandika"/>
+  <meta property="og:image" content="https://andriwulandika.uk/og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff; --bg2: #f5f5f7; --text: #1d1d1f; --text2: #6e6e73;
+      --accent: #0071e3; --border: #d2d2d7; --radius: 14px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 52px;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 480px) { .nav-title { display: none; } }
+
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text, #1d1d1f); transition: transform .25s ease, opacity .2s ease; }
+    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: none; position: fixed; top: 52px; left: 0; right: 0;
+        flex-direction: column; gap: 0; list-style: none;
+        background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0,0,0,0.08); box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        padding: 6px 16px 14px; max-height: calc(100vh - 52px); overflow-y: auto;
+      }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+      .nav-links li:last-child > a { border-bottom: 0; }
+    }
+
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 88px 24px 64px; }
+    .breadcrumb { font-size: 0.75rem; color: var(--text2); margin-bottom: 1.8rem; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .breadcrumb span { color: var(--border); }
+
+    .article-category { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: rgba(0,113,227,0.08); padding: 4px 10px; border-radius: 980px; margin-bottom: 1.2rem; }
+    .article-title { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1rem; }
+    .article-subtitle { font-size: 1.05rem; color: var(--text2); line-height: 1.65; margin-bottom: 1rem; }
+    .effective { display: inline-block; font-size: 0.8rem; color: var(--text2); background: var(--bg2); border-radius: 980px; padding: 6px 14px; margin-bottom: 2.4rem; }
+
+    .article-body { font-size: 1.02rem; line-height: 1.78; color: var(--text); }
+    .article-body h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 2.6rem 0 1rem; scroll-margin-top: 70px; }
+    .article-body p { margin-bottom: 1.3rem; }
+    .article-body ul { padding-left: 1.5rem; margin-bottom: 1.3rem; }
+    .article-body li { margin-bottom: 0.55rem; }
+    .article-body strong { font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    .callout { background: var(--bg2); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.1rem 1.3rem; margin: 1.6rem 0; font-size: 0.95rem; }
+    .callout.warn { border-left-color: #FF3B30; background: #FFF5F5; }
+    .callout-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .callout.warn .callout-label { color: #FF3B30; }
+
+    footer { background: #f5f5f7; border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.78rem; color: var(--text2); margin-top: 60px; }
+    footer a { color: var(--text2); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Beranda</a>
+  <span class="nav-title">Syarat &amp; Ketentuan</span>
+  <ul class="nav-links">
+    <li><a href="harga.html">Harga</a></li>
+    <li><a href="panduan-kredit.html">Panduan</a></li>
+    <li><a href="aktifkan-pro.html">Masuk</a></li>
+  </ul>
+  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<script>
+(function(){
+  var nav=document.querySelector('nav');if(!nav)return;
+  var btn=nav.querySelector('.nav-burger');if(!btn)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.addEventListener('click',function(e){
+    var t=e.target;
+    while(t&&t!==nav){
+      if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}
+      t=t.parentNode;
+    }
+  });
+})();
+</script>
+
+<div class="page-wrap">
+  <main>
+
+    <div class="breadcrumb">
+      <a href="index.html">Beranda</a>
+      <span>›</span>
+      <span>Syarat &amp; Ketentuan</span>
+    </div>
+
+    <header>
+      <div class="article-category">Ketentuan Layanan</div>
+      <h1 class="article-title">Syarat &amp; Ketentuan</h1>
+      <p class="article-subtitle">Dengan mengakses dan menggunakan platform AI Tools perencanaan daerah (ai.andriwulandika.uk) dan situs andriwulandika.uk, Anda dianggap menyetujui syarat dan ketentuan berikut. Mohon dibaca sebelum menggunakan layanan.</p>
+      <span class="effective">Berlaku sejak: 20 Juli 2026</span>
+    </header>
+
+    <div class="article-body">
+
+      <h2 id="layanan">1. Tentang layanan</h2>
+      <p>Platform ini menyediakan AI Tools (SiRENJA, SiRKPD, SiKTOR, SiLKjIP, SiPerda, SiGenDok, SiBACARA, SiTelaah) beserta template dan referensi regulasi untuk membantu penyusunan dokumen perencanaan pemerintah daerah. Layanan dapat berkembang, ditambah, atau disesuaikan sewaktu-waktu.</p>
+
+      <h2 id="pemakaian">2. Penggunaan yang diperbolehkan</h2>
+      <p>Anda setuju memakai layanan ini secara wajar dan sah, khususnya untuk keperluan kerja/dinas. Anda tidak diperkenankan menyalahgunakan layanan, mencoba menembus keamanan sistem, membebani server secara tidak wajar, atau memasukkan konten yang melanggar hukum.</p>
+
+      <h2 id="kredit">3. Sistem kredit &amp; pembayaran</h2>
+      <p>AI Tools tersedia dalam mode <strong>demo (gratis, hasil dipotong)</strong> dan mode <strong>berbayar (kredit)</strong>. Ketentuan kredit:</p>
+      <ul>
+        <li>Kredit dibeli manual melalui konfirmasi WhatsApp; kode akses dikirim setelah pembayaran dikonfirmasi.</li>
+        <li>1 kredit terpotong untuk 1 dokumen yang berhasil dibuat. Kredit tidak terpotong bila proses gagal.</li>
+        <li>Kredit tidak memiliki masa kedaluwarsa.</li>
+        <li>Karena kredit adalah produk digital yang langsung dapat dipakai, pembelian yang sudah diaktifkan pada prinsipnya tidak dapat dikembalikan (non-refundable). Silakan coba mode demo lebih dulu sebelum membeli. Detail selengkapnya di <a href="panduan-kredit.html">Panduan Kredit</a>.</li>
+      </ul>
+
+      <h2 id="tanggung-jawab-pengguna">4. Tanggung jawab atas dokumen hasil AI</h2>
+      <p>Dokumen yang dihasilkan AI adalah <strong>alat bantu penyusunan</strong>, bukan dokumen final yang otomatis benar. Anda bertanggung jawab untuk <strong>memeriksa, menyunting, dan memverifikasi</strong> setiap hasil terhadap data faktual dan regulasi resmi yang berlaku sebelum digunakan secara resmi. Anda juga bertanggung jawab atas data yang Anda masukkan ke dalam tool.</p>
+      <div class="callout warn">
+        <div class="callout-label">Penting</div>
+        Hasil AI dapat mengandung kekeliruan atau rujukan yang perlu dimutakhirkan. Jangan menjadikannya satu-satunya dasar tanpa pemeriksaan manusia. Layanan ini bukan nasihat hukum.
+      </div>
+
+      <h2 id="kekayaan-intelektual">5. Kepemilikan &amp; hak</h2>
+      <p>Dokumen hasil akhir yang Anda buat menjadi milik Anda untuk keperluan Anda. Sementara itu, merek, tampilan, dan kode platform tetap milik Andri Wulandika dan tidak boleh disalin atau dijual kembali tanpa izin.</p>
+
+      <h2 id="batasan">6. Batasan tanggung jawab</h2>
+      <p>Layanan disediakan "sebagaimana adanya". Sejauh diizinkan hukum, kami tidak bertanggung jawab atas kerugian yang timbul dari penggunaan hasil layanan yang tidak diperiksa terlebih dahulu, gangguan layanan pihak ketiga (mesin AI, hosting), atau keputusan yang Anda ambil berdasarkan keluaran layanan.</p>
+
+      <h2 id="privasi">7. Privasi</h2>
+      <p>Pengelolaan data pribadi diatur dalam <a href="kebijakan-privasi.html">Kebijakan Privasi</a> kami, yang merupakan bagian tak terpisahkan dari ketentuan ini.</p>
+
+      <h2 id="hukum">8. Hukum yang berlaku &amp; kontak</h2>
+      <p>Ketentuan ini tunduk pada hukum Republik Indonesia. Ketentuan dapat kami perbarui sewaktu-waktu; versi terbaru selalu tersedia di halaman ini. Untuk pertanyaan, hubungi:</p>
+      <ul>
+        <li>Email: <a href="mailto:wulandikaandri@gmail.com">wulandikaandri@gmail.com</a></li>
+        <li>WhatsApp: <a href="https://wa.me/62811660568" target="_blank" rel="noopener">+62 811-660-568</a></li>
+      </ul>
+
+    </div><!-- /article-body -->
+
+  </main>
+</div>
+
+<footer>
+  <div style="max-width:860px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <span>&copy; 2026 Andri Wulandika. Dibuat untuk ASN Indonesia.</span>
+    <div style="display:flex;gap:1.6rem;flex-wrap:wrap;">
+      <a href="index.html">Beranda</a>
+      <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+      <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
+      <a href="https://andriwulandika.uk/tentang.html">Tentang</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
