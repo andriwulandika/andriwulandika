@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script src="assets/js/analytics.js" defer></script>
+  <script src="/assets/js/ui-enhance.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kebijakan Privasi — Andri Wulandika</title>
+  <meta name="description" content="Kebijakan Privasi layanan Andri Wulandika (andriwulandika.uk & ai.andriwulandika.uk): data apa yang dikumpulkan, tujuannya, pihak ketiga pemroses, dan hak Anda sebagai pengguna. Mengacu UU PDP No. 27 Tahun 2022."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://andriwulandika.uk/kebijakan-privasi.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Kebijakan Privasi — Andri Wulandika"/>
+  <meta property="og:description" content="Data apa yang dikumpulkan, tujuannya, pihak ketiga pemroses, dan hak Anda sebagai pengguna. Mengacu UU PDP No. 27 Tahun 2022."/>
+  <meta property="og:url" content="https://andriwulandika.uk/kebijakan-privasi.html"/>
+  <meta property="og:site_name" content="Andri Wulandika"/>
+  <meta property="og:locale" content="id_ID"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #ffffff;
+      --bg2: #f5f5f7;
+      --text: #1d1d1f;
+      --text2: #6e6e73;
+      --accent: #0071e3;
+      --border: #d2d2d7;
+      --radius: 18px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      height: 52px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 480px) { .nav-title { display: none; } }
+
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text, #1d1d1f); transition: transform .25s ease, opacity .2s ease; }
+    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: none; position: fixed; top: 52px; left: 0; right: 0;
+        flex-direction: column; gap: 0; list-style: none;
+        background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        padding: 6px 16px 14px; max-height: calc(100vh - 52px); overflow-y: auto;
+      }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+      .nav-links li:last-child > a { border-bottom: 0; }
+    }
+
+    /* CONTENT */
+    .wrap { max-width: 760px; margin: 0 auto; padding: 100px 24px 72px; }
+    .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+    h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.9rem; }
+    .lead { font-size: 1.02rem; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; }
+    .effective { display: inline-block; font-size: 0.8rem; color: var(--text2); background: var(--bg2); border-radius: 980px; padding: 6px 14px; margin-bottom: 2.4rem; }
+    .body { font-size: 1rem; line-height: 1.8; color: var(--text); }
+    .body h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin: 2.6rem 0 0.9rem; scroll-margin-top: 70px; }
+    .body h3 { font-size: 1.08rem; font-weight: 700; margin: 1.6rem 0 0.5rem; }
+    .body p { margin-bottom: 1.2rem; }
+    .body ul { padding-left: 1.4rem; margin-bottom: 1.2rem; }
+    .body li { margin-bottom: 0.5rem; }
+    .body a { color: var(--accent); text-decoration: none; }
+    .body a:hover { text-decoration: underline; }
+    .body strong { font-weight: 600; }
+    .note { background: var(--bg2); border-left: 3px solid var(--accent); border-radius: 0 14px 14px 0; padding: 1.1rem 1.3rem; margin: 1.6rem 0; font-size: 0.95rem; color: var(--text); }
+    table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: 0.9rem; }
+    th { text-align: left; background: var(--bg2); padding: 10px 12px; font-weight: 600; border-bottom: 2px solid var(--border); }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--bg2); vertical-align: top; }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .footer-left { font-size: 0.78rem; color: var(--text2); }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">← Beranda</a>
+  <span class="nav-title">Kebijakan Privasi</span>
+  <ul class="nav-links">
+    <li><a href="layanan-pemerintah.html">Layanan Pemerintah</a></li>
+    <li><a href="layanan-bisnis.html">Layanan Bisnis</a></li>
+    <li><a href="produk.html">Produk</a></li>
+    <li><a href="tentang.html">Tentang</a></li>
+  </ul>
+  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<script>
+(function(){
+  var nav=document.querySelector('nav');if(!nav)return;
+  var btn=nav.querySelector('.nav-burger');if(!btn)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.addEventListener('click',function(e){
+    var t=e.target;
+    while(t&&t!==nav){
+      if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}
+      t=t.parentNode;
+    }
+  });
+})();
+</script>
+
+<div class="wrap">
+  <div class="eyebrow">Privasi &amp; Data</div>
+  <h1>Kebijakan Privasi</h1>
+  <p class="lead">Kebijakan ini menjelaskan dengan bahasa sederhana data apa saja yang kami kumpulkan saat Anda menggunakan layanan Andri Wulandika — situs <strong>andriwulandika.uk</strong> dan platform AI Tools <strong>ai.andriwulandika.uk</strong> — untuk apa data itu dipakai, siapa saja pihak yang membantu memprosesnya, serta hak Anda atas data tersebut.</p>
+  <span class="effective">Berlaku sejak: 20 Juli 2026</span>
+
+  <div class="body">
+
+    <h2 id="data">1. Data yang kami kumpulkan</h2>
+    <p>Kami berusaha mengumpulkan sesedikit mungkin. Berikut jenis data yang mungkin kami terima:</p>
+    <ul>
+      <li><strong>Isian formulir AI Tools.</strong> Saat Anda memakai AI Tools di ai.andriwulandika.uk (seperti SiRENJA, SiRKPD, SiKTOR, dan lainnya), Anda mengisi data untuk menghasilkan dokumen — misalnya nama OPD, nama/jabatan pejabat, tahun anggaran, program dan kegiatan. Data ini Anda masukkan sendiri secara sukarela.</li>
+      <li><strong>Data kontak saat konsultasi.</strong> Jika Anda menghubungi kami lewat WhatsApp, kami menerima nomor WhatsApp Anda beserta isi pesan dan informasi yang Anda sampaikan (misalnya nama, instansi, dan kebutuhan Anda).</li>
+      <li><strong>Data analitik penggunaan.</strong> Kami memakai Google Analytics 4 untuk melihat statistik kunjungan secara umum — halaman yang dibuka, perkiraan lokasi (tingkat kota/negara), jenis perangkat, dan sumber kunjungan. Data ini bersifat agregat dan tidak kami gunakan untuk mengidentifikasi Anda secara pribadi.</li>
+    </ul>
+
+    <h2 id="tujuan">2. Untuk apa data dipakai</h2>
+    <ul>
+      <li>Menghasilkan dokumen yang Anda minta melalui AI Tools.</li>
+      <li>Menjawab pertanyaan, memberi konsultasi, dan memproses pembelian kredit saat Anda menghubungi kami via WhatsApp.</li>
+      <li>Memahami cara pengunjung memakai situs agar kami bisa memperbaiki tampilan, kecepatan, dan isi layanan.</li>
+    </ul>
+    <p>Kami <strong>tidak menjual</strong> data Anda kepada siapa pun, dan tidak memakainya untuk tujuan di luar yang disebutkan di atas.</p>
+
+    <h2 id="pihak-ketiga">3. Pihak ketiga yang membantu memproses</h2>
+    <p>Untuk menjalankan layanan, kami dibantu penyedia teknologi berikut. Data yang relevan diteruskan ke mereka hanya sebatas untuk menjalankan fungsinya:</p>
+    <table>
+      <thead>
+        <tr><th>Pihak</th><th>Peran</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Google</strong></td><td>Google Analytics 4 (statistik kunjungan) dan Google Gemini (mesin AI untuk mode demo gratis).</td></tr>
+        <tr><td><strong>Anthropic</strong></td><td>Claude (mesin AI untuk mode berbayar) yang menyusun narasi dokumen.</td></tr>
+        <tr><td><strong>Cloudflare</strong></td><td>Hosting dan pengiriman situs (termasuk keamanan dasar dan penyimpanan kode akses/kredit).</td></tr>
+      </tbody>
+    </table>
+    <p>Masing-masing penyedia memiliki kebijakan privasi sendiri dalam mengelola data yang mereka terima.</p>
+
+    <h2 id="penyimpanan">4. Isian AI Tools tidak kami simpan di server</h2>
+    <p>Data yang Anda ketik ke dalam AI Tools <strong>tidak kami simpan di server kami</strong>. Saat Anda menekan tombol "Generate", isian tersebut hanya <strong>diteruskan sekali</strong> ke penyedia mesin AI (Google Gemini untuk demo, atau Anthropic Claude untuk berbayar) agar dokumen bisa dihasilkan, lalu hasilnya dikirim kembali ke layar Anda. Kami tidak menuliskan isian atau hasil dokumen tersebut ke basis data kami.</p>
+    <div class="note">Yang kami simpan di server hanyalah hal teknis yang diperlukan untuk sistem kredit — yaitu <strong>kode akses dan sisa saldo kredit</strong> Anda, serta penghitung sementara untuk membatasi penyalahgunaan. Isi dokumen dan data yang Anda ketik tidak termasuk di dalamnya. Karena itu, harap simpan sendiri dokumen hasil generate Anda, karena kami tidak menyimpan salinannya.</div>
+    <p>Perlu dicatat: meski kami tidak menyimpannya, isian tetap dikirim ke penyedia AI di atas untuk diproses. Karena itu sebaiknya hindari memasukkan data yang sangat rahasia atau yang tidak perlu.</p>
+
+    <h2 id="hak">5. Hak Anda &amp; cara menghubungi kami</h2>
+    <p>Sejalan dengan semangat Undang-Undang No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP), Anda berhak untuk menanyakan data apa yang kami miliki tentang Anda, meminta perbaikan bila ada yang keliru, serta meminta penghapusan data kontak Anda dari catatan kami. Karena isian AI Tools tidak kami simpan, permintaan biasanya berkaitan dengan data kontak konsultasi Anda.</p>
+    <p>Untuk pertanyaan atau permintaan terkait data pribadi, hubungi kami melalui:</p>
+    <ul>
+      <li>Email: <a href="mailto:wulandikaandri@gmail.com">wulandikaandri@gmail.com</a></li>
+      <li>WhatsApp: <a href="https://wa.me/62811660568" target="_blank" rel="noopener">+62 811-660-568</a></li>
+    </ul>
+
+    <h2 id="perubahan">6. Perubahan kebijakan</h2>
+    <p>Kebijakan ini dapat kami perbarui bila layanan berkembang atau ada penyesuaian aturan. Versi terbaru selalu tersedia di halaman ini, dengan tanggal berlaku yang diperbarui di bagian atas.</p>
+
+  </div>
+</div>
+
+<footer>
+  <p class="footer-left">&copy; 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</p>
+  <div class="footer-links">
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -272,7 +272,7 @@
   </div>
 
   <footer>
-    <p>© 2026 Andri Wulandika &nbsp;·&nbsp; <a href="index.html">Beranda</a> &nbsp;·&nbsp; <a href="harga.html">Harga</a> &nbsp;·&nbsp; <a href="bayar.html">Pembayaran</a> &nbsp;·&nbsp; <a href="https://wa.me/62811660568" target="_blank">WhatsApp</a></p>
+    <p>© 2026 Andri Wulandika &nbsp;·&nbsp; <a href="index.html">Beranda</a> &nbsp;·&nbsp; <a href="harga.html">Harga</a> &nbsp;·&nbsp; <a href="bayar.html">Pembayaran</a> &nbsp;·&nbsp; <a href="kebijakan-privasi.html">Kebijakan Privasi</a> &nbsp;·&nbsp; <a href="https://wa.me/62811660568" target="_blank">WhatsApp</a></p>
   </footer>
 </div>
 
@@ -316,7 +316,7 @@
       const data = await verifyAccessCode(raw);
       if (!data.valid) {
         inp.classList.add('error');
-        errEl.textContent = 'Kode tidak dikenali. Periksa kembali atau hubungi WhatsApp.';
+        errEl.textContent = data.message || 'Kode tidak dikenali. Periksa kembali atau hubungi WhatsApp.';
         errEl.classList.add('show');
         btn.disabled = false;
         btn.textContent = 'Masuk';
