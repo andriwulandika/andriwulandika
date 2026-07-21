@@ -1,6 +1,6 @@
 # KNOWLEDGE BASE — andriwulandika.uk
 
-**Versi:** 1.3
+**Versi:** 1.4
 **Tanggal:** 21 Juli 2026
 **Status:** Rujukan internal.
 
@@ -20,6 +20,7 @@
 | ≤ 1.1 | — | Master di luar repo (belum di-commit). |
 | 1.2 | 21 Jul 2026 | Harga jasa website ditetapkan berdasarkan riset pasar (lihat §6). Versi pertama yang di-commit ke repo. |
 | 1.3 | 21 Jul 2026 | Ditambahkan harga transisi Fase 0 (live) terpisah dari harga target; harga website live diselaraskan ke harga transisi; paket Pengelolaan Media Sosial ditetapkan sebagai lini resmi (aktif). |
+| 1.4 | 21 Jul 2026 | Ditambahkan §6c — DRAFT opsi paket kredit AI Tools berbasis biaya API per dokumen (status: diriset, belum final; menunggu keputusan Andri). Tidak ada perubahan kode/harga live. |
 
 ---
 
@@ -70,3 +71,60 @@ tampil di `layanan-bisnis.html` (section `#medsos`).
 
 Status: **aktif** (bukan lagi "diriset"). Berlangganan bulanan, bisa berhenti
 kapan saja.
+
+### 6c. Paket Kredit AI Tools — DRAFT (status: diriset, BELUM final)
+
+> **PENTING:** seluruh angka di bawah adalah **DRAFT untuk keputusan Andri**,
+> bukan harga final. Tidak ada perubahan kode atau harga live pada sesi ini.
+> Sistem kredit sudah berjalan di kode (`1 kredit = 1 dokumen berhasil`), tapi
+> **harga paket top-up belum ditetapkan**. Draft ini menurunkan angka dari
+> biaya API nyata agar Andri punya titik awal, bukan menebak.
+
+**Cara kerja (dari kode `tools/functions/_lib.js`):**
+- 1 kredit dipotong per **dokumen yang berhasil** dibuat (pay-as-you-go); jika
+  generate gagal, kredit tidak terpotong.
+- Pengguna berkredit/langganan memakai **Claude Sonnet 4.6** (fallback **Haiku
+  4.5** saat rate-limit). Mode demo (tanpa kredit) memakai Gemini — biaya demo
+  terpisah & minim, tidak dihitung di sini.
+
+**Biaya API (per 1 juta token, Juli 2026):** Sonnet 4.6 = $3 input / $15 output;
+Haiku 4.5 = $1 / $5.
+
+**Asumsi perhitungan (WAJIB diverifikasi sebelum finalisasi):**
+- Input prompt ~1.500 token (batas isian 5.000 karakter).
+- Output ~4.096 token (nilai default; pengguna bisa set s/d 8.000).
+- Kurs ~Rp 16.300 / USD (fluktuatif — cek saat memutuskan).
+- **Rata-rata token output nyata belum diukur** — pakai default sebagai asumsi;
+  ukur dari log pemakaian nyata sebelum mengunci harga.
+
+**Estimasi biaya (COGS) per dokumen:**
+
+| Skenario | Hitungan | ≈ USD | ≈ Rupiah |
+|---|---|---|---|
+| Sonnet, output 4.096 (tipikal) | (1.500×$3 + 4.096×$15)/1jt | $0,066 | ~Rp 1.100 |
+| Sonnet, output 8.000 (maksimum) | (1.500×$3 + 8.000×$15)/1jt | $0,125 | ~Rp 2.030 |
+| Haiku (fallback), output 4.096 | (1.500×$1 + 4.096×$5)/1jt | $0,022 | ~Rp 360 |
+
+**COGS acuan konservatif: ~Rp 1.500 / dokumen** (mayoritas Sonnet, output tipikal).
+
+**DRAFT opsi paket (ilustratif — Andri tetapkan angka final):**
+
+| Paket | Kredit | Harga draft | Per kredit | Margin kotor* |
+|---|---|---|---|---|
+| Starter | 10 | Rp 50.000 | Rp 5.000 | ~70% |
+| Hemat | 50 | Rp 200.000 | Rp 4.000 | ~63% |
+| Pro | 150 | Rp 450.000 | Rp 3.000 | ~50% |
+
+*Margin kotor = (harga per kredit − COGS acuan Rp 1.500) ÷ harga per kredit.
+Struktur sengaja memberi diskon per-kredit makin besar untuk paket besar, tanpa
+menyentuh margin negatif bahkan pada skenario output maksimum (COGS ~Rp 2.030 <
+harga per kredit terendah Rp 3.000).
+
+**Belum diperhitungkan (untuk finalisasi):**
+- Biaya payment gateway/payment link (mis. ~2–3% + biaya tetap per transaksi).
+- Biaya infra kecil (Cloudflare KV, dll) — relatif minim.
+- Kebijakan kredit: **non-refundable & tidak kedaluwarsa** (sudah tertera di
+  Syarat & Ketentuan) — konfirmasi tetap berlaku untuk paket top-up.
+
+**Status: DRAFT / diriset — menunggu keputusan Andri.** Menetapkan angka final
+= perubahan pricing (butuh persetujuan eksplisit Andri per matriks kewenangan).
