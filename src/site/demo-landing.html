@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>KelasCuan — Contoh Landing Page | andriwulandika.uk</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --p1:#6366f1; --p2:#8b5cf6; --pink:#ec4899; --bg:#0b0b16; --card:#15152a; --ink:#f5f5fb; --muted:#a5a5c4; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; }
+  .demo-ribbon { position:fixed; top:0; left:0; right:0; z-index:50; background:#000; color:#fff; font-size:0.72rem; text-align:center; padding:6px 12px; }
+  .demo-ribbon a { color:#c4b5fd; }
+  .wrap { max-width:820px; margin:0 auto; padding:0 24px; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:18px 24px; max-width:1000px; margin:28px auto 0; }
+  .brand { font-weight:800; font-size:1.1rem; }
+  .brand span { background:linear-gradient(90deg,var(--p2),var(--pink)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .btn { display:inline-block; background:linear-gradient(135deg,var(--p1),var(--p2)); color:#fff; font-weight:700; padding:14px 30px; border-radius:980px; text-decoration:none; box-shadow:0 12px 30px rgba(99,102,241,0.4); }
+  .btn-sm { padding:10px 22px; font-size:0.9rem; }
+  .hero { text-align:center; padding:70px 0 50px; position:relative; overflow:hidden; }
+  .glow { position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(139,92,246,0.35),transparent 70%); top:-180px; left:50%; transform:translateX(-50%); z-index:0; }
+  .hero > * { position:relative; z-index:1; }
+  .pill { display:inline-block; background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.4); color:#c4b5fd; font-size:0.78rem; font-weight:600; padding:6px 16px; border-radius:980px; margin-bottom:20px; }
+  .hero h1 { font-size:clamp(2rem,6vw,3.4rem); line-height:1.1; letter-spacing:-0.02em; margin-bottom:18px; }
+  .hero h1 span { background:linear-gradient(90deg,var(--p2),var(--pink)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero p { color:var(--muted); font-size:1.1rem; max-width:520px; margin:0 auto 30px; }
+  .countdown { display:flex; gap:12px; justify-content:center; margin-top:34px; }
+  .cd { background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px 18px; min-width:64px; }
+  .cd b { font-size:1.6rem; display:block; }
+  .cd span { font-size:0.68rem; color:var(--muted); text-transform:uppercase; }
+  section { padding:56px 0; }
+  .sec-h { text-align:center; font-size:1.8rem; font-weight:800; margin-bottom:36px; }
+  .benefits { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:720px){ .benefits{grid-template-columns:1fr;} .countdown{flex-wrap:wrap;} }
+  .benefit { background:var(--card); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:24px; }
+  .benefit .ico { font-size:1.8rem; }
+  .benefit h3 { font-size:1.05rem; margin:10px 0 6px; }
+  .benefit p { font-size:0.88rem; color:var(--muted); }
+  .price-card { background:linear-gradient(160deg,var(--card),#1c1c38); border:1px solid rgba(139,92,246,0.4); border-radius:20px; padding:40px; text-align:center; max-width:440px; margin:0 auto; }
+  .price-old { color:var(--muted); text-decoration:line-through; }
+  .price-now { font-size:2.8rem; font-weight:800; margin:6px 0; }
+  .price-card ul { list-style:none; text-align:left; margin:22px 0; }
+  .price-card li { padding:8px 0; color:var(--muted); }
+  .price-card li::before { content:'✓ '; color:#8b5cf6; font-weight:800; }
+  .testi { background:var(--card); border-radius:16px; padding:28px; max-width:600px; margin:0 auto; text-align:center; border:1px solid rgba(255,255,255,0.07); }
+  .testi p { font-size:1.05rem; font-style:italic; }
+  .testi .who { margin-top:14px; font-size:0.85rem; color:var(--muted); font-style:normal; }
+  footer { text-align:center; padding:40px 0; color:var(--muted); font-size:0.85rem; border-top:1px solid rgba(255,255,255,0.06); }
+</style>
+</head>
+<body>
+<div class="demo-ribbon">CONTOH DESAIN · Produk &amp; data fiktif · <a href="/#template">← Kembali ke andriwulandika.uk</a></div>
+<nav>
+  <div class="brand"><span>Kelas</span>Cuan</div>
+  <a href="#daftar" class="btn btn-sm">Daftar</a>
+</nav>
+
+<div class="hero">
+  <div class="glow"></div>
+  <div class="wrap">
+    <span class="pill">🔥 Batch terbatas · Kuota 50 peserta</span>
+    <h1>Bangun Bisnis Online<br/>dari <span>Nol sampai Cuan</span></h1>
+    <p>Webinar intensif 3 hari: strategi jualan, konten yang menjual, dan otomatisasi — langsung praktik, bukan teori.</p>
+    <a href="#daftar" class="btn">Amankan Kursi — Rp 99.000</a>
+    <div class="countdown">
+      <div class="cd"><b>02</b><span>Hari</span></div>
+      <div class="cd"><b>14</b><span>Jam</span></div>
+      <div class="cd"><b>37</b><span>Menit</span></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-h">Yang Kamu Dapatkan</h2>
+    <div class="benefits">
+      <div class="benefit"><div class="ico">🚀</div><h3>Strategi Praktis</h3><p>Langkah nyata memulai jualan online tanpa modal besar.</p></div>
+      <div class="benefit"><div class="ico">🎨</div><h3>Template Konten</h3><p>Puluhan template siap pakai untuk sosial media dan iklan.</p></div>
+      <div class="benefit"><div class="ico">🤝</div><h3>Komunitas</h3><p>Grup eksklusif alumni untuk saling dukung dan kolaborasi.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="testi">
+      <p>"Materinya langsung bisa dipraktikin. Minggu pertama toko online saya sudah dapat orderan pertama!"</p>
+      <div class="who">— Rina, peserta batch sebelumnya (testimoni contoh)</div>
+    </div>
+  </div>
+</section>
+
+<section id="daftar" style="padding-top:0;">
+  <div class="wrap">
+    <div class="price-card">
+      <div class="price-old">Rp 299.000</div>
+      <div class="price-now">Rp 99.000</div>
+      <div style="color:var(--muted);font-size:0.85rem;">Harga khusus batch ini saja</div>
+      <ul><li>Akses webinar 3 hari (live)</li><li>Rekaman & materi selamanya</li><li>Template konten & bonus</li><li>Sertifikat kelulusan</li></ul>
+      <a href="#" class="btn" style="width:100%;">Daftar Sekarang via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 KelasCuan (contoh). Landing page contoh oleh andriwulandika.uk — data fiktif.</footer>
+</body>
+</html>

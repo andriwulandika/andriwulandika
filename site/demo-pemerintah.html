@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Dinas Kominfo Contoh — Contoh Website Instansi/OPD | andriwulandika.uk</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --navy:#1e3a8a; --navy2:#1e40af; --blue:#2563eb; --gold:#f59e0b; --bg:#f4f7fb; --ink:#0f1e3d; --muted:#5b6b86; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; }
+  .demo-ribbon { position:fixed; top:0; left:0; right:0; z-index:50; background:#111; color:#fff; font-size:0.72rem; text-align:center; padding:6px 12px; }
+  .demo-ribbon a { color:#93c5fd; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  .utility { background:var(--navy); color:#cbd9f5; font-size:0.76rem; margin-top:28px; }
+  .utility .wrap { display:flex; justify-content:space-between; padding:6px 24px; }
+  header .wrap { display:flex; align-items:center; gap:16px; padding:16px 24px; }
+  .seal { width:52px; height:52px; border-radius:50%; background:var(--navy2); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.6rem; flex-shrink:0; }
+  .org h1 { font-size:1.2rem; color:var(--navy); line-height:1.2; }
+  .org p { font-size:0.82rem; color:var(--muted); }
+  nav { background:var(--navy2); }
+  nav .wrap { display:flex; flex-wrap:wrap; padding:0 24px; }
+  nav a { color:#fff; text-decoration:none; font-size:0.86rem; font-weight:600; padding:13px 18px; }
+  nav a:hover, nav a.active { background:var(--blue); }
+  .hero { background:linear-gradient(120deg,var(--navy),var(--navy2)); color:#fff; padding:54px 0; }
+  .hero .badge { display:inline-block; background:rgba(255,255,255,0.14); font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; border-radius:980px; margin-bottom:14px; }
+  .hero h2 { font-size:clamp(1.6rem,4vw,2.4rem); margin-bottom:10px; max-width:680px; }
+  .hero p { max-width:600px; opacity:0.9; }
+  section { padding:48px 0; }
+  .quick { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:-40px; position:relative; z-index:2; }
+  @media (max-width:820px){ .quick{grid-template-columns:repeat(2,1fr);} nav .wrap{overflow-x:auto;} }
+  .quick a { background:#fff; border:1px solid #dbe4f2; border-radius:12px; padding:20px 16px; text-align:center; text-decoration:none; color:var(--ink); box-shadow:0 8px 24px rgba(30,58,138,0.08); }
+  .quick .ico { font-size:1.8rem; }
+  .quick p { font-size:0.85rem; font-weight:600; margin-top:8px; }
+  .cols { display:grid; grid-template-columns:2fr 1fr; gap:32px; }
+  @media (max-width:820px){ .cols{grid-template-columns:1fr;} }
+  .sec-title { font-size:1.3rem; font-weight:800; color:var(--navy); margin-bottom:16px; }
+  .news-item { padding:14px 0; border-bottom:1px solid #dbe4f2; display:flex; gap:14px; }
+  .news-date { flex-shrink:0; width:56px; text-align:center; background:var(--navy2); color:#fff; border-radius:8px; padding:6px 0; }
+  .news-date b { display:block; font-size:1.3rem; line-height:1; }
+  .news-date span { font-size:0.68rem; }
+  .news-item h3 { font-size:1rem; }
+  .news-item p { font-size:0.84rem; color:var(--muted); }
+  .panel { background:#fff; border:1px solid #dbe4f2; border-radius:12px; padding:18px; margin-bottom:18px; }
+  .panel h4 { font-size:0.95rem; color:var(--navy); margin-bottom:12px; }
+  .link-list a { display:block; font-size:0.88rem; color:var(--blue); text-decoration:none; padding:7px 0; border-bottom:1px dashed #dbe4f2; }
+  .doc a { display:flex; justify-content:space-between; font-size:0.86rem; padding:8px 0; border-bottom:1px dashed #dbe4f2; color:var(--ink); text-decoration:none; }
+  .doc .tag { font-size:0.68rem; background:#eef3fb; color:var(--navy2); padding:2px 8px; border-radius:6px; }
+  footer { background:var(--navy); color:#b9caee; padding:44px 0; font-size:0.85rem; }
+  footer b { color:#fff; }
+</style>
+</head>
+<body>
+<div class="demo-ribbon">CONTOH DESAIN · Bukan situs pemerintah resmi · Instansi &amp; data fiktif · <a href="/#template">← Kembali ke andriwulandika.uk</a></div>
+<div class="utility"><div class="wrap"><span>Beranda / Profil / Layanan Publik</span><span>A- A A+ · 🔍 Cari</span></div></div>
+<header>
+  <div class="wrap">
+    <div class="seal">🏛️</div>
+    <div class="org"><h1>Dinas Komunikasi &amp; Informatika</h1><p>Pemerintah Kabupaten Contoh</p></div>
+  </div>
+</header>
+<nav><div class="wrap"><a href="#" class="active">Beranda</a><a href="#profil">Profil</a><a href="#layanan">Layanan Publik</a><a href="#berita">Berita</a><a href="#dokumen">Dokumen &amp; Regulasi</a><a href="#ppid">PPID</a><a href="#kontak">Kontak</a></div></nav>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">Website Resmi (contoh)</span>
+    <h2>Pelayanan publik yang transparan dan mudah diakses.</h2>
+    <p>Informasi program, dokumen publik, dan kanal pengaduan masyarakat dalam satu portal yang sesuai kaidah website instansi pemerintah.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="quick">
+    <a href="#"><div class="ico">📢</div><p>Pengumuman</p></a>
+    <a href="#"><div class="ico">📂</div><p>Dokumen Publik</p></a>
+    <a href="#"><div class="ico">📝</div><p>Pengaduan</p></a>
+    <a href="#"><div class="ico">ℹ️</div><p>PPID / Info Publik</p></a>
+  </div>
+</div>
+
+<section id="berita">
+  <div class="wrap cols">
+    <div>
+      <div class="sec-title">Berita &amp; Kegiatan</div>
+      <div class="news-item"><div class="news-date"><b>20</b><span>JUL</span></div><div><h3>Sosialisasi Layanan Digital untuk Kecamatan</h3><p>Peningkatan kapasitas aparatur dalam pemanfaatan sistem informasi daerah.</p></div></div>
+      <div class="news-item"><div class="news-date"><b>15</b><span>JUL</span></div><div><h3>Rapat Koordinasi Perencanaan Lintas OPD</h3><p>Penyelarasan program prioritas menjelang penyusunan RKPD.</p></div></div>
+      <div class="news-item"><div class="news-date"><b>9</b><span>JUL</span></div><div><h3>Pembukaan Kanal Pengaduan Online</h3><p>Masyarakat kini dapat menyampaikan aspirasi melalui portal resmi.</p></div></div>
+    </div>
+    <div>
+      <div class="panel">
+        <h4>Tautan Cepat</h4>
+        <div class="link-list"><a href="#">Struktur Organisasi</a><a href="#">Visi &amp; Misi</a><a href="#">Standar Pelayanan</a><a href="#" style="border:none;">Laporan Kinerja</a></div>
+      </div>
+      <div class="panel" id="dokumen">
+        <h4>Dokumen Terbaru</h4>
+        <div class="doc"><a href="#"><span>Renstra 2025–2029</span><span class="tag">PDF</span></a><a href="#"><span>LKjIP Tahun 2025</span><span class="tag">PDF</span></a><a href="#" style="border:none;"><span>Perbup Pelayanan Publik</span><span class="tag">PDF</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>Dinas Kominfo Kabupaten Contoh</b> (contoh) · Jl. Pemerintahan No. 1<br/>
+    © 2026 · Website contoh oleh andriwulandika.uk — instansi &amp; data bersifat fiktif untuk peraga desain.
+  </div>
+</footer>
+</body>
+</html>

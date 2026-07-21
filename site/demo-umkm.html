@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Kopi Senja — Contoh Website UMKM | andriwulandika.uk</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --amber:#d97706; --amber2:#b45309; --cream:#fdf6ec; --ink:#2b1d12; --muted:#7c6a58; }
+  body { font-family:'Georgia','Times New Roman',serif; background:var(--cream); color:var(--ink); line-height:1.6; }
+  .demo-ribbon { position:fixed; top:0; left:0; right:0; z-index:50; background:#111; color:#fff; font-family:-apple-system,sans-serif; font-size:0.72rem; text-align:center; padding:6px 12px; letter-spacing:0.03em; }
+  .demo-ribbon a { color:#fbbf24; }
+  header { position:sticky; top:28px; background:rgba(253,246,236,0.95); backdrop-filter:blur(8px); border-bottom:1px solid #ecdcc6; }
+  .wrap { max-width:1000px; margin:0 auto; padding:0 24px; }
+  nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1000px; margin:0 auto; }
+  .brand { font-size:1.3rem; font-weight:700; color:var(--amber2); letter-spacing:0.02em; }
+  .nav-links { display:flex; gap:24px; font-family:-apple-system,sans-serif; font-size:0.9rem; }
+  .nav-links a { color:var(--ink); text-decoration:none; }
+  .btn { display:inline-block; background:var(--amber); color:#fff; font-family:-apple-system,sans-serif; font-weight:600; font-size:0.9rem; padding:11px 24px; border-radius:980px; text-decoration:none; }
+  .hero { padding:90px 0 70px; text-align:center; margin-top:28px; background:linear-gradient(160deg,#fdf6ec,#f6e7cf); }
+  .hero h1 { font-size:clamp(2rem,5vw,3.2rem); line-height:1.15; margin-bottom:18px; }
+  .hero p { font-family:-apple-system,sans-serif; color:var(--muted); font-size:1.05rem; max-width:520px; margin:0 auto 28px; }
+  .eyebrow { font-family:-apple-system,sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; }
+  section { padding:64px 0; }
+  .sec-title { font-size:2rem; text-align:center; margin-bottom:8px; }
+  .sec-sub { font-family:-apple-system,sans-serif; text-align:center; color:var(--muted); margin-bottom:40px; }
+  .menu-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media (max-width:760px){ .menu-grid{grid-template-columns:1fr;} .nav-links{display:none;} }
+  .card { background:#fff; border:1px solid #ecdcc6; border-radius:14px; overflow:hidden; }
+  .card-img { height:150px; background:linear-gradient(135deg,var(--amber),var(--amber2)); }
+  .card:nth-child(2) .card-img { background:linear-gradient(135deg,#a16207,#78350f); }
+  .card:nth-child(3) .card-img { background:linear-gradient(135deg,#ca8a04,#92400e); }
+  .card-body { padding:18px; }
+  .card-body h3 { font-size:1.15rem; margin-bottom:6px; }
+  .card-body .price { font-family:-apple-system,sans-serif; color:var(--amber2); font-weight:700; }
+  .card-body p { font-family:-apple-system,sans-serif; font-size:0.88rem; color:var(--muted); margin-top:6px; }
+  .about { background:#f6e7cf; }
+  .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  @media (max-width:760px){ .about-inner{grid-template-columns:1fr;} }
+  .about-visual { height:260px; border-radius:16px; background:linear-gradient(135deg,#b45309,#78350f); }
+  .about p { font-family:-apple-system,sans-serif; color:var(--muted); margin-top:14px; }
+  footer { background:var(--ink); color:#e7d9c6; font-family:-apple-system,sans-serif; padding:48px 0; text-align:center; }
+  footer .brand { color:#fbbf24; margin-bottom:10px; }
+  footer p { font-size:0.85rem; opacity:0.8; }
+  .cta-band { background:var(--amber2); color:#fff; text-align:center; padding:56px 0; }
+  .cta-band h2 { font-size:1.8rem; margin-bottom:10px; }
+  .cta-band .btn { background:#fff; color:var(--amber2); margin-top:16px; }
+</style>
+</head>
+<body>
+<div class="demo-ribbon">CONTOH DESAIN · Data & merek fiktif · <a href="/#template">← Kembali ke andriwulandika.uk</a></div>
+<header>
+  <nav>
+    <div class="brand">☕ Kopi Senja</div>
+    <div class="nav-links"><a href="#menu">Menu</a><a href="#tentang">Tentang</a><a href="#kontak">Kontak</a></div>
+    <a href="#kontak" class="btn">Pesan Sekarang</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Coffee &amp; Space</p>
+    <h1>Kopi yang menemani<br/>setiap cerita.</h1>
+    <p>Biji pilihan, diseduh dengan hati. Tempat nyaman untuk bekerja, berbincang, atau sekadar rehat sejenak.</p>
+    <a href="#menu" class="btn">Lihat Menu</a>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="wrap">
+    <h2 class="sec-title">Menu Favorit</h2>
+    <p class="sec-sub">Racikan yang paling dicari pelanggan kami.</p>
+    <div class="menu-grid">
+      <div class="card"><div class="card-img"></div><div class="card-body"><h3>Kopi Susu Senja</h3><span class="price">Rp 22.000</span><p>Espresso lembut dengan susu segar dan gula aren asli.</p></div></div>
+      <div class="card"><div class="card-img"></div><div class="card-body"><h3>Americano Dingin</h3><span class="price">Rp 20.000</span><p>Kopi hitam menyegarkan, cocok untuk siang yang terik.</p></div></div>
+      <div class="card"><div class="card-img"></div><div class="card-body"><h3>Cokelat Klasik</h3><span class="price">Rp 25.000</span><p>Cokelat pekat hangat untuk yang bukan penikmat kopi.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="tentang" class="about">
+  <div class="wrap about-inner">
+    <div class="about-visual"></div>
+    <div>
+      <p class="eyebrow">Tentang Kami</p>
+      <h2 class="sec-title" style="text-align:left;">Dari kedai kecil,<br/>untuk kota.</h2>
+      <p>Kopi Senja berawal dari kecintaan pada kopi lokal. Kami memanggang sendiri biji dari petani Nusantara, dan menyajikannya di ruang yang hangat serta ramah untuk semua kalangan.</p>
+      <p>Terbuka setiap hari, 08.00 – 22.00.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band" id="kontak">
+  <div class="wrap">
+    <h2>Mampir hari ini?</h2>
+    <p style="font-family:-apple-system,sans-serif;opacity:0.9;">Jl. Contoh Raya No. 12, Kota Anda · 0812-0000-0000</p>
+    <a href="#" class="btn">Pesan via WhatsApp</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:1.2rem;font-weight:700;">☕ Kopi Senja</div>
+    <p>© 2026 Kopi Senja (contoh). Website contoh oleh andriwulandika.uk.</p>
+  </div>
+</footer>
+</body>
+</html>
