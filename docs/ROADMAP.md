@@ -189,7 +189,7 @@ berbayar pertama selesai (lihat `docs/KNOWLEDGE-BASE.md` §6a).
 | Item | Status | Bukti |
 |------|--------|-------|
 | 3.1 — Tetapkan harga paket Pengelolaan Media Sosial | ✅ Selesai (21 Jul 2026) | Harga final: UMKM Rp 600rb/bln, Bertumbuh Rp 1,5 juta/bln. Tercatat di `docs/KNOWLEDGE-BASE.md` §6b (status: aktif). |
-| 3.2 — Bangun section paket di situs | ✅ Selesai (21 Jul 2026) | Section `#medsos` (2 kartu paket + CTA WhatsApp pra-isi) di `src/site/layanan-bisnis.html`; kartu ringkas lini layanan di `src/site/index.html` (link ke `layanan-bisnis.html#medsos`). |
+| 3.2 — Bangun section paket di situs | ✅ Selesai (21 Jul 2026) | Section `#medsos` (2 kartu paket + CTA WhatsApp pra-isi) di `src/site/layanan-bisnis.html`; kartu ringkas lini layanan di `src/site/index.html` (link ke `layanan-bisnis.html#medsos`); blok "Paket Media Sosial" + CTA WhatsApp di `src/site/promo.html`. |
 
 ---
 
