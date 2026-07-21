@@ -160,26 +160,40 @@ Harga jasa website **sudah ditetapkan** berdasarkan riset pasar (bukan lagi
 **`docs/KNOWLEDGE-BASE.md` §6 (Model Bisnis)**. Paket kredit AI Tools belum
 diubah pada sesi ini.
 
-### Temuan: harga live ≠ harga baru (perlu review Andri — BUKAN auto-sync)
+### Temuan: harga live ≠ harga target — ✅ SELESAI: diselaraskan ke harga transisi (21 Jul 2026)
 
-Halaman live di `src/site/` memakai angka lama yang **berbeda** dari tabel harga
-baru. Tidak diubah di sesi ini (sesuai instruksi: konten publik menunggu
-keputusan Andri). Ringkasan selisih:
+**Status: Selesai — diselaraskan ke harga transisi Fase 0 (21 Jul 2026).**
+Andri memutuskan memakai harga transisi (lebih rendah dari harga target) untuk
+mempercepat 2 klien berbayar pertama. Harga live sudah diubah:
 
-| Paket | Live sekarang (`src/site`) | Tabel baru (KNOWLEDGE-BASE §6) |
-|---|---|---|
-| Landing Page | Rp 750rb | Rp 1.200.000 – 2.000.000 |
-| Company Profile / Website Profil | Rp 2 juta | Rp 3.500.000 – 6.000.000 |
-| Pemerintah (OPD) / Website Desa | Rp 3,5 juta | Rp 2.000.000 – 3.500.000 |
-| Toko Online Sederhana | *(belum ada di situs)* | Rp 2.800.000 – 4.500.000 |
-| Web Application / SI Custom | *(belum ada di situs)* | Mulai Rp 15.000.000 |
+| Paket | Sebelum (live lama) | Sesudah (harga transisi live) | Harga target (KB §6a) |
+|---|---|---|---|
+| Landing Page | Rp 750rb | **Rp 1,2 juta** | Rp 1.200.000 – 2.000.000 |
+| Company Profile / Website Profil | Rp 2 juta | **Rp 3 juta** | Rp 3.500.000 – 6.000.000 |
+| Instansi / OPD / Website Desa | Rp 3,5 juta | **mulai Rp 2,5 juta** | Rp 2.000.000 – 3.500.000 |
 
-Lokasi angka lama yang perlu ditinjau bila Andri memutuskan menyelaraskan:
-`src/site/index.html`, `src/site/layanan-bisnis.html`,
-`src/site/layanan-pemerintah.html`, `src/site/promo.html` (termasuk teks
-meta-description "Mulai dari Rp 750rb"). **Belum disentuh sesi ini.**
+File yang diubah: `src/site/index.html`, `src/site/layanan-bisnis.html`,
+`src/site/layanan-pemerintah.html`, `src/site/promo.html` (termasuk
+meta-description + teks WA link). Pemicu naik ke harga target: setelah 2 klien
+berbayar pertama selesai (lihat `docs/KNOWLEDGE-BASE.md` §6a).
+
+> Catatan interpretasi: paket pemerintah di situs berlabel **"Instansi / OPD"**
+> (mencakup desa). Harga "mulai Rp 2,5 juta" diterapkan ke paket itu; label
+> paket tidak diubah. Kalau Andri ingin paket "Website Desa" terpisah dari
+> "Instansi/OPD", itu perubahan struktur paket tersendiri (belum dikerjakan).
 
 ---
+
+## Sprint 3 — Pengelolaan Media Sosial (lini layanan baru)
+
+| Item | Status | Bukti |
+|------|--------|-------|
+| 3.1 — Tetapkan harga paket Pengelolaan Media Sosial | ✅ Selesai (21 Jul 2026) | Harga final: UMKM Rp 600rb/bln, Bertumbuh Rp 1,5 juta/bln. Tercatat di `docs/KNOWLEDGE-BASE.md` §6b (status: aktif). |
+| 3.2 — Bangun section paket di situs | ✅ Selesai (21 Jul 2026) | Section `#medsos` (2 kartu paket + CTA WhatsApp pra-isi) di `src/site/layanan-bisnis.html`; kartu ringkas lini layanan di `src/site/index.html` (link ke `layanan-bisnis.html#medsos`). |
+
+---
+
+## Sprint 4 — Pengetatan CSP penuh (RENCANA)
 
 ## Sprint 4 — Pengetatan CSP penuh (RENCANA)
 
