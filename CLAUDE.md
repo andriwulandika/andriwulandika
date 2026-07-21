@@ -17,7 +17,7 @@ Ringkasan operasional. Dokumen lengkap ada di `/docs` — baca sesuai kebutuhan 
 Push ke branch = boleh (preview). **Merge ke `main` HANYA setelah Andri approve preview.**
 
 ## Aturan Brand — Wajib Dicek Sebelum Sentuh Konten Publik
-1. Tagline aktif di hero: **"Punya Usaha, Harus Punya Website"** (bukan "Dari Dokumen ke Dampak" — sudah dipensiunkan).
+1. Tagline aktif di hero: **"Transformasi digital untuk pemerintah & bisnis"** (tagline lama seperti "Dari Dokumen ke Dampak" sudah dipensiunkan — jangan dipakai lagi di konten publik).
 2. **DILARANG** menyebut: "Anggota aktif TAPD", sub-brand Birokrat/DesaDigital/VillageStock (di luar roadmap).
 3. Jabatan resmi "Perencana Ahli Pertama · Bappeda Aceh Tenggara" **tidak boleh** bersanding langsung dengan CTA/penawaran berbayar. Boleh muncul di konteks pengalaman netral (mis. halaman Tentang).
 4. Layanan **Pengelolaan Media Sosial** adalah lini resmi (paket & harga ada di ROADMAP.md Sprint 3).

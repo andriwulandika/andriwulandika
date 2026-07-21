@@ -18,7 +18,7 @@ grep -ril "Dari Dokumen ke Dampak" src/
 ```
 
 - Hasil ditemukan di file yang sedang dikerjakan → **hapus/ganti**, jangan biarkan meski di luar scope task saat ini (kecuali task eksplisit "audit saja").
-- Tagline pengganti yang benar: **"Punya Usaha, Harus Punya Website"**.
+- Tagline resmi yang berlaku: **"Transformasi digital untuk pemerintah & bisnis"**.
 
 ## 2. Cek Penempatan Jabatan Resmi
 
