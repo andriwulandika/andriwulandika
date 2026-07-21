@@ -153,6 +153,34 @@ berikutnya. Item 2.1 dan 2.2 diselesaikan pada sesi 20 Juli 2026 (lanjutan PR #5
 
 ---
 
+## Harga Jasa Website (ditetapkan 21 Jul 2026)
+
+Harga jasa website **sudah ditetapkan** berdasarkan riset pasar (bukan lagi
+"dipertahankan tanpa angka"). Angka lengkap per paket + sumber riset ada di
+**`docs/KNOWLEDGE-BASE.md` §6 (Model Bisnis)**. Paket kredit AI Tools belum
+diubah pada sesi ini.
+
+### Temuan: harga live ≠ harga baru (perlu review Andri — BUKAN auto-sync)
+
+Halaman live di `src/site/` memakai angka lama yang **berbeda** dari tabel harga
+baru. Tidak diubah di sesi ini (sesuai instruksi: konten publik menunggu
+keputusan Andri). Ringkasan selisih:
+
+| Paket | Live sekarang (`src/site`) | Tabel baru (KNOWLEDGE-BASE §6) |
+|---|---|---|
+| Landing Page | Rp 750rb | Rp 1.200.000 – 2.000.000 |
+| Company Profile / Website Profil | Rp 2 juta | Rp 3.500.000 – 6.000.000 |
+| Pemerintah (OPD) / Website Desa | Rp 3,5 juta | Rp 2.000.000 – 3.500.000 |
+| Toko Online Sederhana | *(belum ada di situs)* | Rp 2.800.000 – 4.500.000 |
+| Web Application / SI Custom | *(belum ada di situs)* | Mulai Rp 15.000.000 |
+
+Lokasi angka lama yang perlu ditinjau bila Andri memutuskan menyelaraskan:
+`src/site/index.html`, `src/site/layanan-bisnis.html`,
+`src/site/layanan-pemerintah.html`, `src/site/promo.html` (termasuk teks
+meta-description "Mulai dari Rp 750rb"). **Belum disentuh sesi ini.**
+
+---
+
 ## Sprint 4 — Pengetatan CSP penuh (RENCANA)
 
 **Tujuan:** menghapus `'unsafe-inline'` dan `'unsafe-eval'` dari CSP agar proteksi
