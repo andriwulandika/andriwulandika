@@ -1,9 +1,10 @@
 # ADR 0001 — Payment Link untuk Jasa Website & Paket Media Sosial
 
-**Status:** DRAF — **BELUM DIPUTUSKAN**, menunggu approval Andri.
-**Tanggal draf:** 21 Juli 2026.
+**Status:** DITERIMA (Andri, 21 Juli 2026) — pilih **(a) manual WA** sekarang;
+**pindah ke (b) Mayar.id saat sudah ada pelanggan**.
+**Tanggal draf:** 21 Juli 2026. **Tanggal keputusan:** 21 Juli 2026.
 **Kategori kewenangan:** payment = wajib persetujuan eksplisit Andri
-(`AI-GOVERNANCE.md` §1). ADR ini hanya menyajikan opsi; **tidak memilih sendiri**.
+(`AI-GOVERNANCE.md` §1) — keputusan ini disetujui Andri.
 
 ---
 
@@ -71,14 +72,28 @@ checkout), bukan integrasi server-side yang kompleks.
 
 ## Keputusan
 
-**BELUM DIPUTUSKAN — menunggu approval Andri, lihat opsi di atas.**
+**Pilih opsi (a) — tetap manual via WhatsApp untuk sekarang.** Disetujui Andri
+(21 Jul 2026).
 
-Pemilihan provider pembayaran & struktur fee menyentuh biaya dan positioning →
-wajib persetujuan Andri (`AI-GOVERNANCE.md` §1). ADR ini sengaja tidak memilih.
+**Pemicu pindah ke opsi (b) Mayar.id:** begitu **sudah ada pelanggan**
+(terutama pelanggan **langganan medsos** pertama, atau saat volume transaksi
+manual mulai merepotkan). Saat pemicu tercapai, buat ADR lanjutan / update ADR
+ini, verifikasi ulang tarif Mayar, lalu integrasikan payment link.
+
+Alasan: pada Fase 0 dengan volume klien masih sangat kecil, manual WA = nol
+biaya & nol setup, dan belum ada beban penagihan bulanan yang nyata. Mayar
+disiapkan sebagai langkah berikutnya karena mendukung recurring untuk paket
+medsos dan fee-nya paling rendah di antara opsi berbayar.
 
 ## Konsekuensi
 
-*(Placeholder — diisi setelah keputusan dibuat.)* Setelah Andri memilih opsi,
-bagian ini mencatat: dampak biaya ke margin (terutama paket medsos bulanan),
-langkah integrasi tombol bayar di situs, siapa menanggung fee (bisnis vs
-pelanggan), dan apakah harga paket perlu disesuaikan untuk menyerap fee.
+- **Sekarang:** pembayaran tetap manual via WA (kirim nominal + konfirmasi
+  transfer). Nol biaya transaksi, nol integrasi. Harga paket tidak perlu
+  disesuaikan untuk menyerap fee.
+- **Beban operasional:** penagihan langganan medsos dilakukan manual tiap bulan
+  — perlu pengingat manual agar tidak terlewat begitu ada pelanggan langganan.
+- **Saat pindah ke Mayar (nanti):** cek ulang tarif (~1% + channel), tentukan
+  siapa menanggung fee (bisnis vs pelanggan), pertimbangkan apakah harga paket
+  perlu naik tipis untuk menyerap fee, lalu tempel/redirect tombol bayar dari
+  situs statis (tanpa backend). Catat di ADR saat itu.
+- **Tidak ada** perubahan kode/harga live akibat keputusan ini.
