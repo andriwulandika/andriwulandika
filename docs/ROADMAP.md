@@ -149,6 +149,8 @@ berikutnya. Item 2.1 dan 2.2 diselesaikan pada sesi 20 Juli 2026 (lanjutan PR #5
 | 2.2 — Pisahkan jabatan Bappeda dari konteks jasa berbayar | ✅ Selesai (final) | `src/site/tentang.html` — ditambahkan section disclaimer terpisah antara "Why Work With Me" dan CTA berbayar, plus reword ringan pada value-card 01 agar tidak membingkai jabatan ASN sebagai alasan langsung membeli jasa. Kalimat disclaimer sudah **final & disetujui Andri** (versi asli, bukan draft). |
 | Ganti hero lama "Punya Usaha, Harus Punya Website" | ✅ Selesai | `grep -ril "Punya Usaha, Harus Punya Website" src/` → tidak ada hasil. Hero saat ini di `src/site/index.html`: `"Transformasi digital untuk pemerintah & bisnis"` |
 
+> Koreksi kecil (21 Jul 2026): `CLAUDE.md` & `.claude/skills/brand-governance-check/SKILL.md` disinkronkan agar mengacu ke tagline hero live `"Transformasi digital untuk pemerintah & bisnis"` — bukan perubahan positioning, hanya sinkronisasi dokumen (referensi tagline lama sebelumnya salah).
+
 ---
 
 ## Sprint 4 — Pengetatan CSP penuh (RENCANA)
