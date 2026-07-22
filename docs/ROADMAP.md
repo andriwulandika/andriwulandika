@@ -169,6 +169,7 @@ stack mahal-dibalik; ditolak tanpa ADR + persetujuan, sesuai `CLAUDE.md`).
 | R.5 — Enhancement "Awwwards-feel" (tanpa ganti framework) | ✅ Selesai | Lenis smooth-scroll self-hosted (`assets/js/lenis.min.js`, via `npm pack`, CSP-safe), scroll-reveal (IntersectionObserver), parallax gambar portofolio, tombol magnetik, hover-zoom, canvas 3D subtil di hero. Semua hormati `prefers-reduced-motion`. |
 | R.6 — Terapkan logo/favicon ke SELURUH halaman | ⏳ Belum | Halaman lain (`tentang`, `layanan-*`, `produk`, `demo-*`, dll) masih favicon lama. Rollout terpisah. |
 | R.7 — Ganti placeholder TikTok | ⏳ Menunggu Andri | Footer `index.html` masih `href="#"` (TODO) — butuh URL TikTok resmi. |
+| R.8 — Refinement visual terinspirasi studiomodular.be (homepage) | ✅ Selesai (22 Jul 2026), menunggu review preview Andri | Fluid type scale (`clamp()` lebih besar di hero), blob gradient lembut di hero (SVG statis + canvas warna diselaraskan ke `--accent`/`--accent2`), tombol CTA dengan aksen lingkaran+panah, sudut kartu lebih membulat (18–24px), spacing antar-section lebih lapang. Warna brand terracotta (`--accent:#c2510c`, `--accent2:#e76e44` — dulu `--brand`) **dipertahankan**, tidak diganti. Copy/tagline/harga tidak disentuh. Belum diterapkan ke halaman lain (`jasa`, `layanan-*`, `tentang`, `produk`, dll) — menunggu approve Andri atas preview dulu. |
 
 ---
 
