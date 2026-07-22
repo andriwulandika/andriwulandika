@@ -123,6 +123,16 @@
     a{ color:inherit; text-decoration:none; }
     img{ max-width:100%; display:block; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 20px; }
+
+    /* Custom cursor (fine-pointer only) */
+    html.has-cursor, html.has-cursor a, html.has-cursor button{ cursor:none; }
+    .cursor-dot, .cursor-ring{ position:fixed; top:0; left:0; z-index:300; pointer-events:none; border-radius:50%; transform:translate(-50%,-50%); will-change:transform; }
+    .cursor-dot{ width:8px; height:8px; background:var(--ink); transition:opacity .2s, background .2s; }
+    .cursor-ring{ width:40px; height:40px; border:1.5px solid var(--ink); transition:width .25s cubic-bezier(.2,.7,.2,1), height .25s cubic-bezier(.2,.7,.2,1), opacity .2s, border-color .2s, background .25s; }
+    html.cursor-dark .cursor-dot{ background:#fff; }
+    html.cursor-dark .cursor-ring{ border-color:#fff; }
+    .cursor-ring.hover{ width:72px; height:72px; background:var(--accent); border-color:var(--accent); }
+    .cursor-dot.hover{ opacity:0; }
     .eyebrow{ font-size:0.74rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); }
     h1,h2,h3{ font-family:var(--sans); font-weight:700; line-height:0.98; letter-spacing:-0.02em; text-transform:uppercase; }
     .btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:50px; padding:13px 28px; border-radius:2px; font-family:var(--sans); font-weight:700; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.04em; transition:transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease; will-change:transform; }
@@ -295,10 +305,15 @@
       .rw, .reveal{ opacity:1 !important; transform:none !important; }
       .nav-overlay-links a{ opacity:1 !important; transform:none !important; }
       .hero-canvas{ display:none; }
+      .cursor-dot, .cursor-ring{ display:none !important; }
+      html.has-cursor, html.has-cursor a, html.has-cursor button{ cursor:auto; }
     }
   </style>
 </head>
 <body>
+
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
 <header class="site-header">
   <div class="wrap nav">
@@ -687,6 +702,36 @@
       });
       el.addEventListener('mouseleave', function(){ el.style.transform=''; });
     });
+  }
+
+  /* ---- Custom cursor: ring trails with easing, dot tracks instantly, both invert on dark sections & scale on hoverables ---- */
+  if(finePointer && !reduce){
+    document.documentElement.classList.add('has-cursor');
+    var dot=document.getElementById('cursorDot'), ring=document.getElementById('cursorRing');
+    var tx=0, ty=0, rx=0, ry=0, started=false;
+    document.addEventListener('mousemove', function(e){
+      tx=e.clientX; ty=e.clientY;
+      if(!started){ rx=tx; ry=ty; started=true; }
+      dot.style.transform='translate('+tx+'px,'+ty+'px) translate(-50%,-50%)';
+    });
+    function raf(){
+      rx+=(tx-rx)*0.18; ry+=(ty-ry)*0.18;
+      ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    document.addEventListener('mousedown', function(){ ring.style.opacity='0.6'; });
+    document.addEventListener('mouseup', function(){ ring.style.opacity=''; });
+    document.querySelectorAll('a, button, .filter, .faq-q').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ ring.classList.add('hover'); dot.classList.add('hover'); });
+      el.addEventListener('mouseleave', function(){ ring.classList.remove('hover'); dot.classList.remove('hover'); });
+    });
+    document.querySelectorAll('.hero, .cta-section, footer, .nav-overlay').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ document.documentElement.classList.add('cursor-dark'); });
+      el.addEventListener('mouseleave', function(){ document.documentElement.classList.remove('cursor-dark'); });
+    });
+    document.addEventListener('mouseleave', function(){ dot.style.opacity='0'; ring.style.opacity='0'; });
+    document.addEventListener('mouseenter', function(){ dot.style.opacity=''; ring.style.opacity=''; });
   }
 
   /* ---- Subtle hero canvas: drifting soft blobs reacting to pointer (screen-blend for dark hero) ---- */
