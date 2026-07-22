@@ -153,6 +153,25 @@ berikutnya. Item 2.1 dan 2.2 diselesaikan pada sesi 20 Juli 2026 (lanjutan PR #5
 
 ---
 
+## Redesign Homepage — Editorial Premium (Arah A) (22 Jul 2026)
+
+Andri memilih arah desain **Editorial Premium (Arah A)** untuk tampilan situs
+(referensi kualitas: situs pemenang award / Awwwards). Diputuskan **upgrade di
+dalam stack statis yang ada** — BUKAN migrasi ke Next.js/Three.js (keputusan
+stack mahal-dibalik; ditolak tanpa ADR + persetujuan, sesuai `CLAUDE.md`).
+
+| Item | Status | Bukti |
+|------|--------|-------|
+| R.1 — Prototipe preview Editorial (Arah A) | ✅ Selesai & merge (#64) | Dulu `src/site/preview-editorial.html` (noindex). Kini dipromosikan jadi homepage, file preview dihapus. |
+| R.2 — Adopsi logo "a" terracotta + favicon | ✅ Selesai | `src/site/assets/brand/logo-a-mark.png` + `favicon-a-{32,180,512}.png`. Aksen brand: `--accent:#c2510c`, `--brand:#e76e44`. |
+| R.3 — Font self-hosted (CSP-safe) | ✅ Selesai | Playfair Display + Plus Jakarta Sans di `src/site/assets/fonts/*.woff2` (tanpa CDN font, patuh CSP `font-src 'self'`). |
+| R.4 — Promosikan Editorial jadi `index.html` resmi | ✅ Selesai (22 Jul 2026) | `src/site/index.html` diganti desain Editorial. **SEO dipertahankan**: 4 verifikasi Google, JSON-LD (WebSite/Person/Service + FAQPage), OG/Twitter, `robots:index`, `analytics.js`. Konten: hero, layanan, portofolio filter, proses, harga lengkap, FAQ, CTA, footer. |
+| R.5 — Enhancement "Awwwards-feel" (tanpa ganti framework) | ✅ Selesai | Lenis smooth-scroll self-hosted (`assets/js/lenis.min.js`, via `npm pack`, CSP-safe), scroll-reveal (IntersectionObserver), parallax gambar portofolio, tombol magnetik, hover-zoom, canvas 3D subtil di hero. Semua hormati `prefers-reduced-motion`. |
+| R.6 — Terapkan logo/favicon ke SELURUH halaman | ⏳ Belum | Halaman lain (`tentang`, `layanan-*`, `produk`, `demo-*`, dll) masih favicon lama. Rollout terpisah. |
+| R.7 — Ganti placeholder TikTok | ⏳ Menunggu Andri | Footer `index.html` masih `href="#"` (TODO) — butuh URL TikTok resmi. |
+
+---
+
 ## Harga Jasa Website (ditetapkan 21 Jul 2026)
 
 Harga jasa website **sudah ditetapkan** berdasarkan riset pasar (bukan lagi
