@@ -220,6 +220,56 @@ pola R.6 di atas), dikerjakan halaman per halaman dengan verifikasi
 screenshot yang sama ketatnya, supaya tidak ada halaman yang tampil
 setengah jadi.
 
+### Koreksi (22 Jul 2026, sesi lanjutan) — data asli hobro.digital ditemukan
+
+Andri menegaskan ingin peniruan total termasuk animasi kursor. `hobro.digital`
+tetap tidak bisa di-fetch otomatis (dicoba 3 cara: curl langsung, WebFetch,
+dan Chromium headless lewat proxy — semua diblokir/direset oleh Cloudflare).
+Dua sumber data asli akhirnya didapat:
+
+1. **Wayback Machine** (snapshot Jun 2025) — versi WordPress **lama** situs:
+   tema gelap (`#151515`), font berbayar (PP Neue Montreal, Coanda, Kamerik),
+   dan `cursor.js` asli: trail partikel bintang-4 hijau neon (`#00FB96`)
+   dengan fisika gravitasi/drag/fade — kursor asli TIDAK disembunyikan
+   (`cursor:default`/`pointer` di CSS, bukan `cursor:none`).
+2. **Rekaman layar dari Andri** — versi **live saat ini**, ternyata sudah
+   di-redesign total dan sangat berbeda dari arsip: tema **terang** (putih/
+   hitam, bukan gelap), wordmark bold raksasa di atas foto/video hero,
+   nav "Projects/Services" (kiri) + "Agency" + "Contact" (kanan) dengan
+   underline hover, kartu notifikasi hitam melayang (bottom-right), heading
+   aksen serif-italic ("CORE VISION"), label/caption monospace ("spec sheet"
+   style), grafik radial/sunburst berputar di section filosofi, dan efek
+   teks "hollow outline overlap solid" pada heading tertentu. Tidak ada
+   efek kursor kustom yang jelas terlihat di rekaman tersebut pada versi
+   live ini (mungkin sudah dihapus saat redesign, atau terlalu halus untuk
+   tertangkap rekaman).
+
+**Tindakan:** desain `src/site/index.html` dirombak ulang (iterasi ke-3)
+mengikuti versi **live** (bukti paling kuat, dari Andri langsung): tema
+terang, font pengganti gratis (lihat di bawah), kartu notifikasi hero,
+section CTA hitam pekat + dekorasi radial, dan trail kursor sparkle
+(tetap dipertahankan dari temuan arsip karena Andri eksplisit minta —
+kursor asli tidak disembunyikan, jadi implementasi ikut tidak
+menyembunyikan kursor bawaan, cuma menambah lapisan partikel dekoratif).
+
+**Font — pengganti gratis, bukan aset asli:** Font asli (PP Neue Montreal,
+Coanda, Kamerik) berbayar/berlisensi milik Hobro Digital — tidak diunduh
+ulang/didistribusikan ulang karena itu pelanggaran hak cipta font
+komersial. Diganti font gratis (lisensi bebas komersial) dengan karakter
+visual serupa, di-self-host CSP-safe seperti pola font sebelumnya:
+- `General Sans` (Fontshare) — pengganti PP Neue Montreal, badan teks/UI.
+- `Clash Display` (Fontshare) — judul besar bold uppercase.
+- `Instrument Serif` italic (Google Fonts) — aksen heading serif-italic.
+- `Space Mono` (Google Fonts) — label/caption/index monospace.
+File: `src/site/assets/fonts/{generalsans,clashdisplay,instrumentserif,spacemono}-*.woff2`.
+
+**Verifikasi:** `npm run build:pages` sukses, output byte-identik. Dicek
+ulang dengan Chromium headless (desktop 1440px + mobile 390px): hero, nav
+overlay mobile, semua section (layanan/portofolio/proses/harga/FAQ/CTA/
+footer), tanpa error console. Bug ditemukan & diperbaiki: kartu notifikasi
+hero menimpa banner cookie consent di layar sempit — disembunyikan di
+mobile (CTA WhatsApp tetap ada di hero).
+
 ---
 
 ## Harga Jasa Website (ditetapkan 21 Jul 2026)
