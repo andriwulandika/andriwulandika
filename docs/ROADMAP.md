@@ -185,6 +185,7 @@ bukan soal isi.
 | B — Modern Tech/SaaS | `src/site/preview-modern-tech.html` | Terang, aksen gradasi indigo→cyan, kartu rounded, latar gradient mesh mengalir di hero. |
 | C — Corporate Government-Trust | `src/site/preview-corporate-trust.html` | Navy + emas, tipografi serif formal, grid simetris, latar garis geometris halus — untuk kesan resmi/instansi. |
 | D — Bold & Berani (Dark Mode) | `src/site/preview-bold-dark.html` | Latar gelap, aksen oranye-cyan vivid, tipografi besar uppercase, glow berdenyut di hero. |
+| B+ — Modern Tech dengan animasi 3D | `src/site/preview-modern-tech-3d.html` | Varian Arah B + mockup "device card" 3D (CSS transform, bukan WebGL/Three.js) dengan chip mengambang, tilt interaktif saat disentuh/di-hover. Dioptimalkan untuk HP: tanpa izin sensor gerak, tanpa animasi berat, terverifikasi tanpa overflow horizontal di viewport 390px. |
 
 Semua tetap memakai font self-hosted yang sudah ada (Jakarta/Playfair, CSP-safe),
 tagline resmi persis `"Transformasi digital untuk pemerintah & bisnis"`, dan
