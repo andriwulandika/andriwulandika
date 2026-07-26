@@ -172,6 +172,30 @@ stack mahal-dibalik; ditolak tanpa ADR + persetujuan, sesuai `CLAUDE.md`).
 
 ---
 
+## Eksplorasi Arah Desain Homepage Baru (26 Jul 2026) — ⏳ Menunggu pilihan Andri
+
+Tiga pratinjau arah desain baru (selain Editorial Premium/Arah A yang saat ini
+live) dibuat sebagai perbandingan, **tidak menyentuh `index.html` live**. Konten
+(tagline, copy layanan, harga) identik dengan homepage saat ini — hanya
+tampilan visual & struktur yang berbeda, supaya perbandingan murni soal gaya,
+bukan soal isi.
+
+| Arah | File preview (noindex) | Ciri visual |
+|---|---|---|
+| B — Modern Tech/SaaS | `src/site/preview-modern-tech.html` | Terang, aksen gradasi indigo→cyan, kartu rounded, latar gradient mesh mengalir di hero. |
+| C — Corporate Government-Trust | `src/site/preview-corporate-trust.html` | Navy + emas, tipografi serif formal, grid simetris, latar garis geometris halus — untuk kesan resmi/instansi. |
+| D — Bold & Berani (Dark Mode) | `src/site/preview-bold-dark.html` | Latar gelap, aksen oranye-cyan vivid, tipografi besar uppercase, glow berdenyut di hero. |
+
+Semua tetap memakai font self-hosted yang sudah ada (Jakarta/Playfair, CSP-safe),
+tagline resmi persis `"Transformasi digital untuk pemerintah & bisnis"`, dan
+harga sesuai `docs/KNOWLEDGE-BASE.md` §6 (tidak ada perubahan pricing).
+
+**Menunggu Andri memilih salah satu arah (atau tetap dengan Arah A) sebelum ada
+promosi ke `index.html`** — sesuai kewenangan di `CLAUDE.md` (perubahan
+positioning/tampilan utama butuh persetujuan pemilik sebelum merge ke `main`).
+
+---
+
 ## Harga Jasa Website (ditetapkan 21 Jul 2026)
 
 Harga jasa website **sudah ditetapkan** berdasarkan riset pasar (bukan lagi
