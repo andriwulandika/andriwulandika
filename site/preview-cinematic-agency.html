@@ -86,6 +86,13 @@
   .hero-trust b{ font-size:1.6rem; color:#fff; display:block; font-weight:700; text-transform:none; }
   .scroll-cue{ position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:1; width:1px; height:46px; background:linear-gradient(var(--amber),transparent); }
 
+  /* Spline 3D scene — desktop-only decorative layer behind the hero text.
+     Disabled entirely on mobile/reduced-motion/no-scene-set (see script at bottom). */
+  .spline-hero{ display:none; position:absolute; inset:0; z-index:0; opacity:0; transition:opacity .8s ease; pointer-events:none; }
+  .spline-hero.ready{ opacity:0.6; pointer-events:auto; }
+  .spline-hero spline-viewer{ width:100%; height:100%; display:block; }
+  @media(min-width:900px){ .spline-hero{ display:block; } }
+
   /* Kinetic "what we do" section */
   .wwd{ background:var(--ink); color:#fff; padding:80px 0 90px; }
   .wwd-head{ font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; font-size:clamp(2rem,6vw,3.6rem); line-height:1.05; }
@@ -220,6 +227,7 @@
 
 <section class="hero">
   <div class="hero-glow" aria-hidden="true"></div>
+  <div class="spline-hero" id="splineHero" aria-hidden="true"></div>
   <div class="wrap">
     <h1 class="hero-word">
       <span class="rev"><span>ANDRI</span></span><br/>
@@ -457,6 +465,43 @@
       entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold:0.4 });
     splitEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---- Spline 3D scene (desktop-only, lazy, self-hosted — see assets/js/spline/) ----
+     TODO(Andri): tempel URL scene Spline Anda di sini untuk mengaktifkan.
+     Cara dapat URL: buka spline.design -> buat/buka scene -> tombol "Export" ->
+     pilih "Public URL" atau "Code Export" -> salin URL yang berakhiran .splinecode
+     (mis. https://prod.spline.design/xxxxxxxx/scene.splinecode).
+     Selama kosong, bagian ini tidak melakukan apa pun — hero tetap gradient amber
+     seperti sekarang, tanpa biaya loading tambahan. */
+  var SPLINE_SCENE_URL = '';
+
+  var splineHost=document.getElementById('splineHero');
+  if(splineHost && SPLINE_SCENE_URL && !reduce && window.innerWidth>=900){
+    var saveData = navigator.connection && navigator.connection.saveData;
+    if(!saveData){
+      var loaded=false;
+      var io2=new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting && !loaded){
+            loaded=true;
+            var s=document.createElement('script');
+            s.type='module';
+            s.src='assets/js/spline/spline-viewer.js';
+            s.onload=function(){
+              var viewer=document.createElement('spline-viewer');
+              viewer.setAttribute('url', SPLINE_SCENE_URL);
+              viewer.setAttribute('loading-anim-type','none');
+              splineHost.appendChild(viewer);
+              requestAnimationFrame(function(){ splineHost.classList.add('ready'); });
+            };
+            document.body.appendChild(s);
+            io2.disconnect();
+          }
+        });
+      }, { threshold:0.1 });
+      io2.observe(splineHost);
+    }
   }
 
   /* ---- Drag-to-scroll portfolio strip (mouse only; touch keeps native swipe) ---- */

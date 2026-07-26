@@ -188,6 +188,29 @@ bukan soal isi.
 | B+ — Modern Tech dengan animasi 3D | `src/site/preview-modern-tech-3d.html` | Varian Arah B + mockup "device card" 3D (CSS transform, bukan WebGL/Three.js) dengan chip mengambang, tilt interaktif saat disentuh/di-hover. Dioptimalkan untuk HP: tanpa izin sensor gerak, tanpa animasi berat, terverifikasi tanpa overflow horizontal di viewport 390px. |
 | E — Cinematic Agency (terinspirasi hobro.digital) | `src/site/preview-cinematic-agency.html` | Latar gelap hangat (amber), wordmark besar kinetik, cursor custom dua-lapis (dot + ring, desktop saja), teks reveal per-kata saat scroll, efek mengetik siklus 4 layanan, strip portofolio drag-scroll. Semua vanilla CSS/JS (tanpa GSAP/library baru) — teknik ditiru dari hobro.digital, konten/harga/tagline tetap 100% milik Andri (tidak menyalin case study/tim/logo mereka). |
 
+### Tambahan Arah E — Scaffold animasi 3D Spline (⏳ butuh URL scene dari Andri)
+
+Atas permintaan Andri, `preview-cinematic-agency.html` sudah disiapkan untuk
+menampilkan **scene 3D Spline** sebagai latar hero (di belakang wordmark),
+tapi **belum aktif** karena butuh URL scene asli dari Andri (aset kreatif,
+tidak bisa ditebak/dibuat otomatis oleh agen).
+
+- **Package `@splinetool/viewer` di-vendor sepenuhnya (self-hosted)** di
+  `src/site/assets/js/spline/` — bukan lewat CDN unpkg/jsdelivr — supaya
+  tetap patuh CSP `script-src 'self'` yang berlaku di `_headers` (tidak
+  perlu mengubah CSP situs).
+- **Sengaja dibatasi (gating) demi performa HP**: hanya dimuat di layar
+  ≥900px (desktop/tablet), tidak saat `prefers-reduced-motion`, tidak saat
+  `navigator.connection.saveData` aktif, dan baru di-load (lazy) ketika hero
+  benar-benar terlihat di viewport (`IntersectionObserver`). Di HP, hero
+  tetap gradient amber ringan seperti sebelumnya — tidak ada biaya loading
+  tambahan sama sekali.
+- **Cara mengaktifkan**: isi `SPLINE_SCENE_URL` di `<script>` bagian bawah
+  file dengan URL scene (`https://prod.spline.design/xxxx/scene.splinecode`)
+  yang didapat dari spline.design → Export → Public URL/Code Export. Selama
+  kosong, kode ini adalah no-op penuh (diverifikasi: tidak ada error console,
+  tidak ada perubahan visual, tidak ada request jaringan tambahan).
+
 Semua tetap memakai font self-hosted yang sudah ada (Jakarta/Playfair, CSP-safe),
 tagline resmi persis `"Transformasi digital untuk pemerintah & bisnis"`, dan
 harga sesuai `docs/KNOWLEDGE-BASE.md` §6 (tidak ada perubahan pricing).
