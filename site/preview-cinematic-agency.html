@@ -87,10 +87,10 @@
   .scroll-cue{ position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:1; width:1px; height:46px; background:linear-gradient(var(--amber),transparent); }
 
   /* Spline 3D scene — desktop-only decorative layer behind the hero text.
-     Disabled entirely on mobile/reduced-motion/no-scene-set (see script at bottom). */
-  .spline-hero{ display:none; position:absolute; inset:0; z-index:0; opacity:0; transition:opacity .8s ease; pointer-events:none; }
-  .spline-hero.ready{ opacity:0.6; pointer-events:auto; }
-  .spline-hero spline-viewer{ width:100%; height:100%; display:block; }
+     Disabled entirely on mobile/reduced-motion (see script at bottom). */
+  .spline-hero{ display:none; position:absolute; inset:0; z-index:0; opacity:0; transition:opacity 1s ease; pointer-events:none; }
+  .spline-hero.ready{ opacity:0.7; pointer-events:auto; }
+  .spline-hero iframe{ width:100%; height:100%; display:block; border:0; }
   @media(min-width:900px){ .spline-hero{ display:block; } }
 
   /* Kinetic "what we do" section */
@@ -467,35 +467,28 @@
     splitEls.forEach(function(el){ io.observe(el); });
   }
 
-  /* ---- Spline 3D scene (desktop-only, lazy, self-hosted — see assets/js/spline/) ----
-     TODO(Andri): tempel URL scene Spline Anda di sini untuk mengaktifkan.
-     Cara dapat URL: buka spline.design -> buat/buka scene -> tombol "Export" ->
-     pilih "Public URL" atau "Code Export" -> salin URL yang berakhiran .splinecode
-     (mis. https://prod.spline.design/xxxxxxxx/scene.splinecode).
-     Selama kosong, bagian ini tidak melakukan apa pun — hero tetap gradient amber
-     seperti sekarang, tanpa biaya loading tambahan. */
-  var SPLINE_SCENE_URL = '';
-
+  /* ---- Spline 3D scene: "Zero gravity physics landing page" (community scene,
+     remixed by Andri, exported as a standalone static HTML file) ----
+     Fully self-hosted: assets/spline/zero-gravity-hero.html + assets/js/spline-runtime/
+     (vendored @splinetool/runtime, no unpkg/CDN calls) — same-origin iframe, so no
+     CSP changes needed. Desktop-only (>=900px), skipped on prefers-reduced-motion
+     and data-saver connections, and lazy-loaded only once the hero is in view. */
   var splineHost=document.getElementById('splineHero');
-  if(splineHost && SPLINE_SCENE_URL && !reduce && window.innerWidth>=900){
+  if(splineHost && !reduce && window.innerWidth>=900){
     var saveData = navigator.connection && navigator.connection.saveData;
     if(!saveData){
-      var loaded=false;
+      var splineLoaded=false;
       var io2=new IntersectionObserver(function(entries){
         entries.forEach(function(en){
-          if(en.isIntersecting && !loaded){
-            loaded=true;
-            var s=document.createElement('script');
-            s.type='module';
-            s.src='assets/js/spline/spline-viewer.js';
-            s.onload=function(){
-              var viewer=document.createElement('spline-viewer');
-              viewer.setAttribute('url', SPLINE_SCENE_URL);
-              viewer.setAttribute('loading-anim-type','none');
-              splineHost.appendChild(viewer);
-              requestAnimationFrame(function(){ splineHost.classList.add('ready'); });
-            };
-            document.body.appendChild(s);
+          if(en.isIntersecting && !splineLoaded){
+            splineLoaded=true;
+            var frame=document.createElement('iframe');
+            frame.src='assets/spline/zero-gravity-hero.html';
+            frame.loading='lazy';
+            frame.title='Elemen dekoratif 3D interaktif';
+            frame.setAttribute('aria-hidden','true');
+            frame.addEventListener('load', function(){ splineHost.classList.add('ready'); });
+            splineHost.appendChild(frame);
             io2.disconnect();
           }
         });
