@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Andri Wulandika — Transformasi digital untuk pemerintah &amp; bisnis (Pratinjau Cinematic Agency)</title>
+<meta name="description" content="Konsultan transformasi digital untuk instansi pemerintah &amp; bisnis — website modern, AI tools, dan pengelolaan media sosial."/>
+<link rel="canonical" href="https://andriwulandika.uk/"/>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-a-32.png"/>
+<link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
+
+<style>
+  @font-face { font-family:'Jakarta'; font-style:normal; font-weight:400; font-display:swap; src:url('assets/fonts/jakarta-400.woff2') format('woff2'); }
+  @font-face { font-family:'Jakarta'; font-style:normal; font-weight:600; font-display:swap; src:url('assets/fonts/jakarta-600.woff2') format('woff2'); }
+  @font-face { font-family:'Jakarta'; font-style:normal; font-weight:700; font-display:swap; src:url('assets/fonts/jakarta-700.woff2') format('woff2'); }
+
+  :root{
+    --ink:#0B0B0C; --paper:#F7F6F4; --white:#ffffff; --muted:#8b8b8d; --muted-d:#57534e;
+    --line:rgba(255,255,255,0.12); --line-l:rgba(11,11,12,0.1);
+    --amber:#E0793B; --amber2:#B94E1E;
+    --sans:'Jakarta', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --maxw:1180px;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:var(--sans); font-size:16px; line-height:1.6; color:var(--ink); background:var(--paper); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 20px; }
+  .eyebrow{ font-size:0.72rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:50px; padding:13px 28px; border-radius:999px; font-weight:700; font-size:0.95rem; transition:transform .15s ease; }
+  .btn-amber{ background:var(--amber); color:#1a0e06; }
+  .btn-amber:hover{ transform:translateY(-2px); }
+  .btn-outline-dark{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.35); }
+  .btn-outline-dark:hover{ border-color:#fff; }
+  .btn-outline-light{ background:transparent; color:var(--ink); border:1.5px solid var(--line-l); }
+  .btn-outline-light:hover{ border-color:var(--ink); }
+
+  .topnote{ background:var(--ink); color:#e7e5e4; font-size:0.74rem; text-align:center; padding:7px 16px; letter-spacing:0.02em; }
+  .topnote b{ color:var(--amber); }
+
+  /* Custom two-layer cursor (fine-pointer / desktop only) */
+  .cur-dot,.cur-ring{ position:fixed; top:0; left:0; z-index:9999; pointer-events:none; border-radius:50%; will-change:transform; }
+  .cur-dot{ width:7px; height:7px; background:var(--amber); transform:translate(-50%,-50%); }
+  .cur-ring{ width:34px; height:34px; border:1.5px solid rgba(224,121,59,0.6); transform:translate(-50%,-50%); transition:width .2s,height .2s,border-color .2s; }
+  html.has-fine-cursor, html.has-fine-cursor a, html.has-fine-cursor button{ cursor:none; }
+  .cur-ring.grow{ width:56px; height:56px; border-color:var(--amber); }
+
+  /* Header (overlays hero only — hero-shell is the positioning context, not the page top) */
+  .hero-shell{ position:relative; }
+  .site-header{ position:absolute; top:0; left:0; right:0; z-index:50; }
+  .nav{ display:flex; align-items:center; justify-content:space-between; height:80px; }
+  .brand{ font-weight:700; font-size:1.1rem; color:#fff; letter-spacing:-0.01em; }
+  .nav-links{ display:none; gap:8px; align-items:center; }
+  .nav-links a{ font-size:0.88rem; font-weight:600; color:rgba(255,255,255,0.75); padding:10px 16px; min-height:44px; display:inline-flex; align-items:center; text-transform:uppercase; letter-spacing:0.04em; }
+  .nav-links a:hover{ color:#fff; }
+  .nav-cta{ min-height:44px; padding:10px 20px; font-size:0.85rem; }
+  .burger{ display:inline-flex; flex-direction:column; gap:5px; width:44px; height:44px; align-items:center; justify-content:center; background:none; border:none; cursor:pointer; }
+  .burger span{ width:22px; height:2px; background:#fff; border-radius:2px; }
+  @media(min-width:900px){ .nav-links{ display:flex; } .burger{ display:none; } }
+  .mnav{ display:none; position:absolute; left:0; right:0; top:80px; background:var(--ink); border-top:1px solid var(--line); padding:8px 0 14px; }
+  .mnav.open{ display:block; }
+  .mnav a{ display:block; padding:13px 20px; font-weight:600; color:#fff; min-height:44px; }
+
+  /* Hero */
+  .hero{ position:relative; min-height:100svh; display:flex; align-items:center; overflow:hidden; background:var(--ink); }
+  .hero-glow{ position:absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(60% 55% at 25% 30%, rgba(224,121,59,0.35), transparent 60%),
+      radial-gradient(50% 50% at 80% 70%, rgba(185,78,30,0.28), transparent 65%),
+      radial-gradient(80% 80% at 50% 100%, rgba(20,12,8,0.9), var(--ink) 70%);
+  }
+  .hero .wrap{ position:relative; z-index:1; padding-top:120px; padding-bottom:64px; }
+  .hero-word{ font-weight:700; text-transform:uppercase; letter-spacing:-0.03em; line-height:0.92; color:#fff; font-size:clamp(3.2rem, 13vw, 8.5rem); }
+  .hero-word .rev{ display:inline-block; overflow:hidden; }
+  .hero-word .rev span{ display:inline-block; transform:translateY(110%); animation:riseWord .8s cubic-bezier(.2,.8,.2,1) forwards; }
+  .hero-word .rev:nth-child(2) span{ animation-delay:.12s; color:var(--amber); }
+  @keyframes riseWord{ to{ transform:translateY(0); } }
+  .hero-sub{ margin-top:28px; font-size:0.82rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.65); }
+  .hero-sub span{ display:block; margin-top:4px; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:12px; margin-top:44px; }
+  .hero-trust{ display:flex; flex-wrap:wrap; gap:28px; margin-top:56px; padding-top:26px; border-top:1px solid var(--line); }
+  .hero-trust div{ font-size:0.82rem; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.04em; }
+  .hero-trust b{ font-size:1.6rem; color:#fff; display:block; font-weight:700; text-transform:none; }
+  .scroll-cue{ position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:1; width:1px; height:46px; background:linear-gradient(var(--amber),transparent); }
+
+  /* Kinetic "what we do" section */
+  .wwd{ background:var(--ink); color:#fff; padding:80px 0 90px; }
+  .wwd-head{ font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; font-size:clamp(2rem,6vw,3.6rem); line-height:1.05; }
+  .typewriter{ margin-top:22px; font-size:clamp(1.1rem,3vw,1.6rem); color:var(--amber); font-weight:700; min-height:1.6em; }
+  .typewriter .cursorblink{ display:inline-block; width:2px; background:var(--amber); margin-left:2px; animation:blink 1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .wwd-grid{ display:grid; grid-template-columns:1fr; gap:28px; margin-top:56px; }
+  @media(min-width:760px){ .wwd-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(min-width:1080px){ .wwd-grid{ grid-template-columns:repeat(4,1fr); } }
+  .wwd-col .lbl{ font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; }
+  .wwd-col ul{ list-style:none; }
+  .wwd-col li{ padding:9px 0; border-bottom:1px solid var(--line); font-size:0.92rem; color:rgba(255,255,255,0.82); }
+
+  /* Split-text reveal (JS adds .word spans; IO adds .in on section) */
+  .split{ display:inline-block; }
+  .split .word{ display:inline-block; margin-right:0.26em; opacity:0; transform:translateY(0.6em); transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
+  .split.in .word{ opacity:1; transform:none; }
+
+  section{ padding:70px 0; }
+  .sec-head{ max-width:640px; margin-bottom:40px; }
+  .sec-head h2{ font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; font-size:clamp(1.8rem, 4.6vw, 2.7rem); margin:12px 0 12px; }
+  .sec-head p{ color:var(--muted-d); font-size:1.02rem; }
+
+  /* Services (light section) */
+  .svc-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+  @media(min-width:680px){ .svc-grid{ grid-template-columns:1fr 1fr; } }
+  @media(min-width:1000px){ .svc-grid{ grid-template-columns:repeat(4,1fr); } }
+  .svc{ background:var(--white); border:1px solid var(--line-l); border-radius:4px; padding:26px 22px; transition:transform .18s ease, box-shadow .18s ease; }
+  .svc:hover{ transform:translateY(-4px); box-shadow:0 20px 44px rgba(11,11,12,0.08); }
+  .svc-ico{ font-size:1.5rem; }
+  .svc h3{ font-size:1.05rem; margin:16px 0 8px; font-weight:700; }
+  .svc p{ font-size:0.9rem; color:var(--muted-d); }
+  .svc .price{ display:inline-block; margin-top:14px; font-weight:700; font-size:0.83rem; color:var(--amber2); }
+
+  /* Drag-scroll portfolio strip */
+  .drag-hint{ font-size:0.78rem; color:var(--muted-d); margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+  .drag-hint .arrows{ color:var(--amber2); }
+  .strip{ display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x proximity; padding-bottom:10px; cursor:grab; scrollbar-width:thin; -webkit-overflow-scrolling:touch; }
+  .strip.dragging{ cursor:grabbing; scroll-snap-type:none; user-select:none; }
+  .strip::-webkit-scrollbar{ height:6px; }
+  .strip::-webkit-scrollbar-thumb{ background:var(--line-l); border-radius:99px; }
+  .strip-card{ flex:0 0 78%; scroll-snap-align:start; background:var(--white); border:1px solid var(--line-l); border-radius:4px; overflow:hidden; }
+  @media(min-width:640px){ .strip-card{ flex-basis:44%; } }
+  @media(min-width:980px){ .strip-card{ flex-basis:29%; } }
+  .strip-thumb{ position:relative; aspect-ratio:16/10; overflow:hidden; background:#eee; }
+  .strip-thumb img{ width:100%; height:112%; object-fit:cover; object-position:top; pointer-events:none; }
+  .strip-body{ padding:16px 18px 20px; }
+  .strip-cat{ font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber2); }
+  .strip-body h3{ font-size:1.02rem; margin:6px 0 8px; font-weight:700; }
+  .strip-link{ font-weight:700; font-size:0.86rem; }
+  .strip-link:hover{ color:var(--amber2); }
+
+  /* Pricing */
+  .price-grid{ display:grid; grid-template-columns:1fr; gap:18px; align-items:start; }
+  @media(min-width:820px){ .price-grid{ grid-template-columns:repeat(3,1fr); } }
+  .pcard{ background:var(--white); border:1px solid var(--line-l); border-radius:4px; padding:30px 26px; }
+  .pcard.feat{ background:var(--ink); color:#fff; }
+  .pcard .tag{ display:inline-block; font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber2); margin-bottom:10px; }
+  .pcard.feat .tag{ color:var(--amber); }
+  .pcard h3{ font-size:1.15rem; font-weight:700; }
+  .pcard .amt{ font-weight:800; font-size:2rem; margin:12px 0 4px; }
+  .pcard .note{ font-size:0.8rem; color:var(--muted-d); margin-bottom:18px; }
+  .pcard.feat .note{ color:rgba(255,255,255,0.6); }
+  .pcard ul{ list-style:none; margin:16px 0 0; padding-top:16px; border-top:1px solid var(--line-l); }
+  .pcard.feat ul{ border-top-color:var(--line); }
+  .pcard li{ font-size:0.88rem; color:var(--muted-d); padding:5px 0 5px 22px; position:relative; }
+  .pcard.feat li{ color:rgba(255,255,255,0.82); }
+  .pcard li::before{ content:"→"; position:absolute; left:0; color:var(--amber2); font-weight:700; }
+  .pcard.feat li::before{ color:var(--amber); }
+  .pcard .btn{ width:100%; margin-top:20px; }
+  .addons{ margin-top:22px; background:var(--white); border:1px solid var(--line-l); border-radius:4px; padding:16px 20px; font-size:0.88rem; color:var(--muted-d); line-height:1.8; }
+  .addons b{ color:var(--ink); }
+
+  /* CTA with wobble star */
+  .cta{ background:var(--ink); color:#fff; border-radius:4px; padding:64px 28px; text-align:center; position:relative; overflow:hidden; }
+  .cta h2{ font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; font-size:clamp(1.8rem,4.6vw,2.8rem); }
+  .cta p{ color:rgba(255,255,255,0.65); max-width:520px; margin:14px auto 30px; }
+  .cta-btn-wrap{ position:relative; display:inline-block; }
+  .cta-star{ position:absolute; width:20px; height:20px; color:var(--amber); animation:wobble 2.6s ease-in-out infinite; }
+  .cta-star.s1{ top:-14px; left:-22px; animation-delay:0s; }
+  .cta-star.s2{ bottom:-16px; right:-24px; width:14px; height:14px; animation-delay:.4s; }
+  @keyframes wobble{ 0%,100%{ transform:rotate(-8deg) scale(1); } 50%{ transform:rotate(10deg) scale(1.15); } }
+
+  footer{ background:var(--ink); color:#a8a29e; padding:56px 0 40px; }
+  .foot-top{ display:flex; flex-wrap:wrap; gap:28px; justify-content:space-between; align-items:flex-start; padding-bottom:30px; border-bottom:1px solid var(--line); }
+  .foot-brand{ font-weight:700; font-size:1.3rem; color:#fff; }
+  .foot-brand p{ font-size:0.9rem; color:#a8a29e; margin-top:8px; max-width:280px; }
+  .foot-links{ display:flex; flex-wrap:wrap; gap:26px; }
+  .foot-col a{ display:block; font-size:0.9rem; color:#d6d3d1; padding:6px 0; min-height:34px; }
+  .foot-col a:hover{ color:#fff; }
+  .foot-col .lbl{ font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:#78716c; margin-bottom:8px; }
+  .foot-bottom{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; padding-top:24px; font-size:0.82rem; color:#a8a29e; }
+  .socials{ display:flex; gap:12px; }
+  .socials a{ width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid var(--line); color:#e7e5e4; }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{ animation-duration:.001ms !important; }
+    .hero-word .rev span{ transform:none; opacity:1; }
+    .split .word{ opacity:1; transform:none; }
+    .cur-dot,.cur-ring{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topnote">🔍 <b>Pratinjau desain — Arah E "Cinematic Agency"</b> (terinspirasi hobro.digital, konten &amp; harga tetap milik Anda) — bukan halaman live.</div>
+
+<div class="cur-dot" id="curDot" aria-hidden="true"></div>
+<div class="cur-ring" id="curRing" aria-hidden="true"></div>
+
+<div class="hero-shell">
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="/" class="brand">Andri Wulandika</a>
+    <nav class="nav-links">
+      <a href="#layanan" data-hover>Layanan</a>
+      <a href="#karya" data-hover>Portofolio</a>
+      <a href="#paket" data-hover>Paket</a>
+      <a href="tentang.html" data-hover>Tentang</a>
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-amber nav-cta" data-hover>Konsultasi</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mnav wrap" id="mnav">
+    <a href="#layanan">Layanan</a>
+    <a href="#karya">Portofolio</a>
+    <a href="#paket">Paket</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <h1 class="hero-word">
+      <span class="rev"><span>ANDRI</span></span><br/>
+      <span class="rev"><span>WULANDIKA</span></span>
+    </h1>
+    <div class="hero-sub">Konsultan Transformasi Digital<span>Untuk Pemerintah &amp; Bisnis</span></div>
+    <div class="hero-ctas">
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website." target="_blank" rel="noopener" class="btn btn-amber" data-hover>Konsultasi Gratis</a>
+      <a href="#paket" class="btn btn-outline-dark" data-hover>Lihat Paket Harga</a>
+    </div>
+    <div class="hero-trust">
+      <div><b>3–21</b>Hari Pengerjaan</div>
+      <div><b>Gratis</b>Hosting Selamanya</div>
+      <div><b>51+</b>OPD Pengalaman Koordinasi</div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</section>
+</div>
+
+<section class="wwd">
+  <div class="wrap">
+    <h2 class="wwd-head split" data-split>Transformasi digital yang benar-benar dipakai.</h2>
+    <div class="typewriter"><span id="twText"></span><span class="cursorblink">&nbsp;</span></div>
+    <div class="wwd-grid">
+      <div class="wwd-col"><div class="lbl">Website Pemerintah</div><ul><li>Website Instansi / OPD</li><li>Website Desa</li><li>Halaman Berita &amp; Dokumen Publik</li><li>Struktur Sesuai Regulasi</li></ul></div>
+      <div class="wwd-col"><div class="lbl">Website Bisnis</div><ul><li>Landing Page</li><li>Company Profile</li><li>SEO Dasar &amp; Lengkap</li><li>Integrasi WhatsApp</li></ul></div>
+      <div class="wwd-col"><div class="lbl">Media Sosial</div><ul><li>Konten &amp; Caption</li><li>Desain Feed</li><li>Laporan Bulanan</li><li>Jadwal Posting</li></ul></div>
+      <div class="wwd-col"><div class="lbl">AI Tools</div><ul><li>Perencanaan Daerah</li><li>Sistem Kredit Pay-as-you-go</li><li>Dokumen Otomatis</li><li>Untuk ASN Indonesia</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="layanan">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Layanan</span>
+      <h2 class="split" data-split>Empat lini layanan siap pakai.</h2>
+      <p>Dari website hingga konten media sosial — untuk kebutuhan pemerintah maupun bisnis.</p>
+    </div>
+    <div class="svc-grid">
+      <a href="layanan-pemerintah.html" class="svc"><div class="svc-ico">🏛️</div><h3>Website Pemerintah</h3><p>Website instansi/OPD/desa sesuai kaidah pemerintah — berita, dokumen publik, PPID.</p><span class="price">mulai Rp 2,5 juta →</span></a>
+      <a href="layanan-bisnis.html" class="svc"><div class="svc-ico">🌐</div><h3>Website Bisnis</h3><p>Landing page &amp; company profile — desain modern, SEO-ready, cepat selesai.</p><span class="price">mulai Rp 1,2 juta →</span></a>
+      <a href="layanan-bisnis.html#medsos" class="svc"><div class="svc-ico">📱</div><h3>Media Sosial</h3><p>Konten, caption, desain, dan laporan bulanan — akun bisnismu konsisten tanpa ribet.</p><span class="price">mulai Rp 600rb/bln →</span></a>
+      <a href="produk.html" class="svc"><div class="svc-ico">⚡</div><h3>AI Tools</h3><p>Platform AI untuk mempercepat pekerjaan perencanaan daerah — sistem kredit pay-as-you-go.</p><span class="price">Lihat produk →</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="karya" style="background:var(--white); border-top:1px solid var(--line-l); border-bottom:1px solid var(--line-l);">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Portofolio &amp; Template</span>
+      <h2 class="split" data-split>Contoh desain siap pakai.</h2>
+      <p>Empat contoh website (data &amp; merek fiktif) untuk memperlihatkan gaya desain per kebutuhan.</p>
+    </div>
+    <div class="drag-hint"><span class="arrows">↔</span> Geser untuk lihat semua (drag di desktop, swipe di HP)</div>
+    <div class="strip" id="strip">
+      <article class="strip-card">
+        <div class="strip-thumb"><img src="assets/img/template-umkm.webp" alt="Contoh UMKM Kopi Senja" loading="lazy" draggable="false"/></div>
+        <div class="strip-body"><div class="strip-cat">UMKM</div><h3>Kopi Senja</h3><a href="demo-umkm.html" target="_blank" rel="noopener" class="strip-link">Lihat Demo →</a></div>
+      </article>
+      <article class="strip-card">
+        <div class="strip-thumb"><img src="assets/img/template-desa.webp" alt="Contoh Website Desa" loading="lazy" draggable="false"/></div>
+        <div class="strip-body"><div class="strip-cat">Website Desa</div><h3>Desa Makmur Jaya</h3><a href="demo-desa.html" target="_blank" rel="noopener" class="strip-link">Lihat Demo →</a></div>
+      </article>
+      <article class="strip-card">
+        <div class="strip-thumb"><img src="assets/img/template-pemerintah.webp" alt="Contoh Website Instansi/OPD" loading="lazy" draggable="false"/></div>
+        <div class="strip-body"><div class="strip-cat">Instansi / OPD</div><h3>Dinas Kominfo Contoh</h3><a href="demo-pemerintah.html" target="_blank" rel="noopener" class="strip-link">Lihat Demo →</a></div>
+      </article>
+      <article class="strip-card">
+        <div class="strip-thumb"><img src="assets/img/template-landing.webp" alt="Contoh Landing Page" loading="lazy" draggable="false"/></div>
+        <div class="strip-body"><div class="strip-cat">Landing Page</div><h3>KelasCuan</h3><a href="demo-landing.html" target="_blank" rel="noopener" class="strip-link">Lihat Demo →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="paket">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Paket Harga</span>
+      <h2 class="split" data-split>Transparan, tanpa biaya tersembunyi.</h2>
+      <p>Semua paket sudah termasuk hosting gratis (Cloudflare Pages) dan panduan penggunaan dasar.</p>
+    </div>
+    <div class="price-grid">
+      <div class="pcard">
+        <span class="tag">Landing Page</span>
+        <div class="amt">Rp 1,2 jt</div>
+        <div class="note">Bayar sekali, milik Anda selamanya.</div>
+        <ul>
+          <li>1 halaman panjang (scroll)</li>
+          <li>Desain profesional &amp; responsif</li>
+          <li>Tombol WhatsApp / form kontak</li>
+          <li>SEO dasar (meta, schema, sitemap)</li>
+          <li>Hosting gratis + subdomain gratis</li>
+          <li>Selesai 3–5 hari kerja · 2× revisi</li>
+        </ul>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Landing%20Page%20Rp1%2C2juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-outline-light">Pilih Paket Ini</a>
+      </div>
+      <div class="pcard feat">
+        <span class="tag">Website Profil · Paling Populer</span>
+        <div class="amt">Rp 3 jt</div>
+        <div class="note">Domain .com/id opsional (+Rp 150rb/tahun).</div>
+        <ul>
+          <li>5–7 halaman (Beranda, Tentang, Layanan, Kontak, dll)</li>
+          <li>Desain custom sesuai identitas brand</li>
+          <li>SEO lengkap (meta, OG, schema, sitemap)</li>
+          <li>Formulir kontak + integrasi WhatsApp</li>
+          <li>Google Analytics terpasang</li>
+          <li>Selesai 7–14 hari · revisi sampai puas (maks 3)</li>
+          <li>Support WhatsApp 1 bulan</li>
+        </ul>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Website%20Profil%20Rp3juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-amber">Pilih Paket Ini</a>
+      </div>
+      <div class="pcard">
+        <span class="tag">Instansi / OPD / Desa</span>
+        <div class="amt">Rp 2,5 jt+</div>
+        <div class="note">Harga menyesuaikan scope kebutuhan.</div>
+        <ul>
+          <li>10+ halaman terstruktur</li>
+          <li>Halaman berita / publikasi (update mandiri)</li>
+          <li>Struktur sesuai regulasi website pemerintah</li>
+          <li>Halaman dokumen publik &amp; unduhan</li>
+          <li>Training penggunaan &amp; update konten</li>
+          <li>Selesai 14–21 hari · Support WhatsApp 3 bulan</li>
+        </ul>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20dari%20instansi%20dan%20tertarik%20Paket%20Website%20Instansi%2FOPD.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-outline-light">Konsultasi Dulu</a>
+      </div>
+    </div>
+    <div class="addons">
+      <b>Add-on opsional:</b> Domain .com (Rp 150rb/tahun) · Koneksi ke media sosial (Rp 150rb) · Blog / artikel rutin (Rp 50rb/artikel) · Setup Google Bisnisku (Rp 150rb) · Maintenance tahunan (mulai Rp 300rb/tahun)
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <div class="wrap">
+    <div class="cta">
+      <h2 class="split" data-split>Siap tampil lebih profesional?</h2>
+      <p>Ceritakan kebutuhanmu — konsultasi gratis, respons biasanya dalam 1–2 jam di hari kerja.</p>
+      <span class="cta-btn-wrap">
+        <svg class="cta-star s1" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0l1.8 7.2L19 9l-7.2 1.8L10 18l-1.8-7.2L1 9l7.2-1.8L10 0z"/></svg>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-amber" data-hover>Konsultasi Gratis via WhatsApp</a>
+        <svg class="cta-star s2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0l1.8 7.2L19 9l-7.2 1.8L10 18l-1.8-7.2L1 9l7.2-1.8L10 0z"/></svg>
+      </span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand"><span style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/favicon-a-512.png" alt="" width="34" height="34" style="height:34px;width:34px;border-radius:8px;display:block;"/>Andri Wulandika</span><p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p></div>
+      <div class="foot-links">
+        <div class="foot-col"><div class="lbl">Layanan</div><a href="layanan-pemerintah.html">Website Pemerintah</a><a href="layanan-bisnis.html">Website Bisnis</a><a href="layanan-bisnis.html#medsos">Media Sosial</a><a href="produk.html">AI Tools</a></div>
+        <div class="foot-col"><div class="lbl">Situs</div><a href="#karya">Portofolio</a><a href="#paket">Paket Harga</a><a href="tentang.html">Tentang</a></div>
+        <div class="foot-col"><div class="lbl">Legal</div><a href="kebijakan-privasi.html">Kebijakan Privasi</a><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.4c0-.86.28-1.4 1.5-1.4H17.6V.3C17.2.25 16.1.15 15 .15c-2.4 0-4 1.46-4 4.15V6H8.2v3H11v9h3V9z"/></svg></a>
+        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener" aria-label="YouTube"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia && window.matchMedia('(pointer:fine)').matches;
+
+  /* ---- Mobile nav ---- */
+  var burger=document.getElementById('burger'), mnav=document.getElementById('mnav');
+  if(burger){ burger.addEventListener('click', function(){ var open=mnav.classList.toggle('open'); burger.setAttribute('aria-expanded', open?'true':'false'); }); }
+  mnav && mnav.addEventListener('click', function(e){ if(e.target.tagName==='A'){ mnav.classList.remove('open'); burger&&burger.setAttribute('aria-expanded','false'); } });
+
+  /* ---- Custom trailing cursor (desktop / fine pointer only) ---- */
+  if(finePointer && !reduce){
+    document.documentElement.classList.add('has-fine-cursor');
+    var dot=document.getElementById('curDot'), ring=document.getElementById('curRing');
+    var mx=0,my=0, rx=0,ry=0;
+    window.addEventListener('mousemove', function(e){
+      mx=e.clientX; my=e.clientY;
+      dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
+    });
+    function ringLoop(){
+      rx+=(mx-rx)*0.16; ry+=(my-ry)*0.16;
+      ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';
+      requestAnimationFrame(ringLoop);
+    }
+    requestAnimationFrame(ringLoop);
+    document.querySelectorAll('[data-hover], a, button').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ ring.classList.add('grow'); });
+      el.addEventListener('mouseleave', function(){ ring.classList.remove('grow'); });
+    });
+  }
+
+  /* ---- Typewriter cycling through services ---- */
+  var phrases=['Website Pemerintah.','Website Bisnis.','AI Tools Perencanaan.','Pengelolaan Media Sosial.'];
+  var twEl=document.getElementById('twText');
+  if(twEl){
+    if(reduce){ twEl.textContent=phrases[0]; }
+    else{
+      var pi=0, ci=0, deleting=false;
+      function tick(){
+        var word=phrases[pi];
+        if(!deleting){
+          ci++; twEl.textContent=word.slice(0,ci);
+          if(ci===word.length){ deleting=true; setTimeout(tick,1400); return; }
+        } else {
+          ci--; twEl.textContent=word.slice(0,ci);
+          if(ci===0){ deleting=false; pi=(pi+1)%phrases.length; }
+        }
+        setTimeout(tick, deleting?35:65);
+      }
+      tick();
+    }
+  }
+
+  /* ---- Split-text word reveal on scroll ---- */
+  document.querySelectorAll('[data-split]').forEach(function(el){
+    var words=el.textContent.trim().split(/\s+/);
+    el.innerHTML=words.map(function(w,i){ return '<span class="word" style="transition-delay:'+(i*0.045)+'s">'+w+'</span>'; }).join('');
+  });
+  var splitEls=document.querySelectorAll('.split');
+  if(reduce || !('IntersectionObserver' in window)){
+    splitEls.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold:0.4 });
+    splitEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---- Drag-to-scroll portfolio strip (mouse only; touch keeps native swipe) ---- */
+  var strip=document.getElementById('strip');
+  if(strip && finePointer){
+    var isDown=false, startX=0, startScroll=0;
+    strip.addEventListener('pointerdown', function(e){
+      isDown=true; strip.classList.add('dragging');
+      startX=e.clientX; startScroll=strip.scrollLeft;
+      strip.setPointerCapture(e.pointerId);
+    });
+    strip.addEventListener('pointermove', function(e){
+      if(!isDown) return;
+      strip.scrollLeft = startScroll - (e.clientX - startX);
+    });
+    function endDrag(){ isDown=false; strip.classList.remove('dragging'); }
+    strip.addEventListener('pointerup', endDrag);
+    strip.addEventListener('pointerleave', endDrag);
+  }
+})();
+</script>
+</body>
+</html>
