@@ -170,6 +170,106 @@ stack mahal-dibalik; ditolak tanpa ADR + persetujuan, sesuai `CLAUDE.md`).
 | R.6 — Terapkan logo/favicon ke SELURUH halaman | ⏳ Belum | Halaman lain (`tentang`, `layanan-*`, `produk`, `demo-*`, dll) masih favicon lama. Rollout terpisah. |
 | R.7 — Ganti placeholder TikTok | ⏳ Menunggu Andri | Footer `index.html` masih `href="#"` (TODO) — butuh URL TikTok resmi. |
 
+> **Catatan (22 Jul 2026, sesi lanjutan):** Arah Editorial Premium (serif Playfair)
+> di atas **digantikan total** oleh arah baru "Agency Bold" di bawah, atas
+> permintaan eksplisit Andri (redesign ala hobro.digital) — bukan sekadar
+> cangkok elemen, tapi ganti total. R.1–R.5 di tabel di atas sudah tidak
+> berlaku untuk tampilan visual (font serif & tema editorial sudah tidak
+> dipakai); R.6 dan R.7 tetap relevan (lihat lanjutan di bawah).
+
+---
+
+## Redesign Homepage — Agency Bold (terinspirasi hobro.digital) (22 Jul 2026)
+
+Permintaan eksternal: redesign situs terinspirasi **hobro.digital** (agency
+design-first, tipografi tegas, kontras tinggi, layout bersih). `hobro.digital`
+diblokir di balik Cloudflare bot-challenge saat dicoba fetch langsung (403 +
+JS challenge), jadi implementasi mengikuti bahasa desain umum genre "agency
+bold" (bukan mencontoh CSS/kode hobro.digital secara literal): tipografi
+sans besar & tegas, kontras hitam-putih tinggi, layout tajam (bukan pill/rounded),
+dan navigasi overlay layar penuh.
+
+Andri diberi pilihan eksplisit karena homepage baru saja selesai di-redesign
+hari yang sama ke arah "Editorial Premium" (lihat section di atas) —
+Andri memilih **redesign ulang total**, bukan menambal arah lama.
+
+| Item | Status | Bukti |
+|------|--------|-------|
+| A.1 — Ganti sistem desain: serif editorial → sans agency-bold | ✅ Selesai | `src/site/index.html`: hapus `@font-face` Playfair + variabel `--serif`; semua judul pakai `Jakarta` (sudah self-hosted, CSP-safe) huruf besar (`uppercase`), `letter-spacing` negatif. |
+| A.2 — Hero & CTA jadi panel gelap kontras tinggi | ✅ Selesai | `.hero` dan `.cta-section` sekarang `background:var(--ink)` (bukan `--paper`), teks putih, aksen terracotta (`--brand:#e76e44`) dipertahankan sebagai satu-satunya warna aksen (aset logo tidak diganti). |
+| A.3 — Navigasi overlay layar penuh | ✅ Selesai | Nav horizontal lama diganti tombol "Menu" + panel overlay hitam full-screen (angka index, tautan besar, kontak WA/email) — pola khas situs agency premium. CTA "Konsultasi" tetap terlihat di header (disembunyikan di mobile sempit agar tidak wrap). |
+| A.4 — Komponen tajam (hilangkan pill/rounded) | ✅ Selesai | Tombol, kartu portofolio, kartu harga, filter jadi bersudut tajam (radius ~2px) dengan border tebal 1.5px; kartu harga unggulan kini terbalik (bg hitam) alih-alih border aksen. |
+| A.5 — Layanan jadi daftar bernomor (list-row), bukan kartu grid | ✅ Selesai | Section `#layanan` sekarang daftar baris bernomor (01–04) dengan hover invert warna — pola umum situs agency. |
+| A.6 — Verifikasi visual & fungsional | ✅ Selesai | `npm run build:pages` sukses, output byte-identik `src/site/index.html` ↔ `site/index.html`. Diverifikasi pakai Chromium (Playwright) headless: screenshot desktop (1440px) & mobile (390px), buka menu overlay, cek tiap section (layanan, portofolio, proses, harga, FAQ) via viewport-scroll — semua tampil benar, tanpa error console/JS. **Bug ditemukan & diperbaiki:** teks brand header wrap/tabrakan dengan tombol di layar sempit (<640px) — diperbaiki dengan menyembunyikan tombol "Konsultasi" di header mobile (WA CTA tetap ada di hero & overlay menu) dan mengecilkan ukuran teks brand. |
+| A.7 — Rollout ke halaman lain | ⏳ Belum — lihat catatan scope di bawah | `tentang.html`, `layanan-bisnis.html`, `layanan-pemerintah.html`, `produk.html`, `promo.html` masih pakai sistem desain lama masing-masing (mis. `tentang.html` masih tema "Apple-style" biru `#0071e3`, sama sekali beda dari sistem baru). |
+
+### Catatan scope — kenapa hanya homepage yang di-redesign penuh sesi ini
+
+Lima halaman lain (`tentang`, `layanan-bisnis`, `layanan-pemerintah`, `produk`,
+`promo` — total ±1.580 baris) masing-masing punya sistem desain sendiri yang
+sama sekali berbeda dari homepage baru (warna, font, struktur nav berbeda).
+Menambal header/footer baru ke atas isi halaman lama akan terlihat **tidak
+konsisten, bukan makin rapi** — dan `tentang.html` punya section disclaimer
+sensitif (pemisahan jabatan Bappeda dari CTA berbayar, sudah final &
+disetujui Andri) yang perlu penanganan hati-hati, bukan asal timpa. Halaman
+`demo-*.html` sengaja **tidak disentuh** — itu contoh template untuk calon
+klien (merek fiktif), bukan identitas brand Andri sendiri.
+
+**Rekomendasi:** jadikan rollout ke 5 halaman ini pekerjaan terpisah (seperti
+pola R.6 di atas), dikerjakan halaman per halaman dengan verifikasi
+screenshot yang sama ketatnya, supaya tidak ada halaman yang tampil
+setengah jadi.
+
+### Koreksi (22 Jul 2026, sesi lanjutan) — data asli hobro.digital ditemukan
+
+Andri menegaskan ingin peniruan total termasuk animasi kursor. `hobro.digital`
+tetap tidak bisa di-fetch otomatis (dicoba 3 cara: curl langsung, WebFetch,
+dan Chromium headless lewat proxy — semua diblokir/direset oleh Cloudflare).
+Dua sumber data asli akhirnya didapat:
+
+1. **Wayback Machine** (snapshot Jun 2025) — versi WordPress **lama** situs:
+   tema gelap (`#151515`), font berbayar (PP Neue Montreal, Coanda, Kamerik),
+   dan `cursor.js` asli: trail partikel bintang-4 hijau neon (`#00FB96`)
+   dengan fisika gravitasi/drag/fade — kursor asli TIDAK disembunyikan
+   (`cursor:default`/`pointer` di CSS, bukan `cursor:none`).
+2. **Rekaman layar dari Andri** — versi **live saat ini**, ternyata sudah
+   di-redesign total dan sangat berbeda dari arsip: tema **terang** (putih/
+   hitam, bukan gelap), wordmark bold raksasa di atas foto/video hero,
+   nav "Projects/Services" (kiri) + "Agency" + "Contact" (kanan) dengan
+   underline hover, kartu notifikasi hitam melayang (bottom-right), heading
+   aksen serif-italic ("CORE VISION"), label/caption monospace ("spec sheet"
+   style), grafik radial/sunburst berputar di section filosofi, dan efek
+   teks "hollow outline overlap solid" pada heading tertentu. Tidak ada
+   efek kursor kustom yang jelas terlihat di rekaman tersebut pada versi
+   live ini (mungkin sudah dihapus saat redesign, atau terlalu halus untuk
+   tertangkap rekaman).
+
+**Tindakan:** desain `src/site/index.html` dirombak ulang (iterasi ke-3)
+mengikuti versi **live** (bukti paling kuat, dari Andri langsung): tema
+terang, font pengganti gratis (lihat di bawah), kartu notifikasi hero,
+section CTA hitam pekat + dekorasi radial, dan trail kursor sparkle
+(tetap dipertahankan dari temuan arsip karena Andri eksplisit minta —
+kursor asli tidak disembunyikan, jadi implementasi ikut tidak
+menyembunyikan kursor bawaan, cuma menambah lapisan partikel dekoratif).
+
+**Font — pengganti gratis, bukan aset asli:** Font asli (PP Neue Montreal,
+Coanda, Kamerik) berbayar/berlisensi milik Hobro Digital — tidak diunduh
+ulang/didistribusikan ulang karena itu pelanggaran hak cipta font
+komersial. Diganti font gratis (lisensi bebas komersial) dengan karakter
+visual serupa, di-self-host CSP-safe seperti pola font sebelumnya:
+- `General Sans` (Fontshare) — pengganti PP Neue Montreal, badan teks/UI.
+- `Clash Display` (Fontshare) — judul besar bold uppercase.
+- `Instrument Serif` italic (Google Fonts) — aksen heading serif-italic.
+- `Space Mono` (Google Fonts) — label/caption/index monospace.
+File: `src/site/assets/fonts/{generalsans,clashdisplay,instrumentserif,spacemono}-*.woff2`.
+
+**Verifikasi:** `npm run build:pages` sukses, output byte-identik. Dicek
+ulang dengan Chromium headless (desktop 1440px + mobile 390px): hero, nav
+overlay mobile, semua section (layanan/portofolio/proses/harga/FAQ/CTA/
+footer), tanpa error console. Bug ditemukan & diperbaiki: kartu notifikasi
+hero menimpa banner cookie consent di layar sempit — disembunyikan di
+mobile (CTA WhatsApp tetap ada di hero).
+
 ---
 
 ## Eksplorasi Arah Desain Homepage Baru (26 Jul 2026) — ⏳ Menunggu pilihan Andri
