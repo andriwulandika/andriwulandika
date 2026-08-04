@@ -2,7 +2,6 @@
 <html lang="id">
 <head>
   <script src="assets/js/analytics.js" defer></script>
-  <script src="/assets/js/ui-enhance.js" defer></script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tentang Kami — Digital Transformation Consultant untuk Pemerintah &amp; Bisnis | Andri Wulandika</title>
@@ -15,9 +14,9 @@
   <meta property="og:url" content="https://andriwulandika.uk/tentang.html"/>
   <meta property="og:site_name" content="Andri Wulandika"/>
   <meta property="og:locale" content="id_ID"/>
-<meta property="og:image" content="https://andriwulandika.uk/og-image.png"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
+  <meta property="og:image" content="https://andriwulandika.uk/og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,612 +41,251 @@
     "inLanguage": "id"
   }
   </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-a-32.png"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
+  <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
+  <link rel="stylesheet" href="assets/css/editorial.css"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    :root {
-      --bg: #ffffff;
-      --bg2: #f5f5f7;
-      --bg3: #1d1d1f;
-      --text: #1d1d1f;
-      --text2: #6e6e73;
-      --accent: #0071e3;
-      --border: #d2d2d7;
-      --radius: 18px;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      background: var(--bg); color: var(--text);
-      -webkit-font-smoothing: antialiased;
-    }
+    .profile-card{ background:var(--white); border:1px solid var(--line); border-radius:20px; padding:28px; text-align:center; }
+    .avatar{ width:96px; height:96px; border-radius:50%; margin:0 auto 16px; object-fit:cover; border:2px solid var(--paper); box-shadow:0 0 0 1px var(--line); }
+    .card-name{ font-family:var(--serif); font-size:1.2rem; font-weight:700; margin-bottom:2px; }
+    .card-role{ font-size:0.82rem; color:var(--muted); line-height:1.5; margin-bottom:18px; }
+    .card-divider{ height:1px; background:var(--line); margin:16px 0; }
+    .card-info{ display:flex; flex-direction:column; gap:12px; text-align:left; }
+    .card-info-item{ display:flex; align-items:flex-start; gap:12px; }
+    .card-info-item svg{ width:18px; height:18px; color:var(--accent); flex-shrink:0; margin-top:2px; }
+    .info-text{ font-size:0.82rem; color:var(--muted); line-height:1.5; }
+    .info-text strong{ color:var(--ink); font-weight:700; display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:2px; }
+    .status-dot{ display:inline-flex; align-items:center; gap:6px; font-size:0.74rem; font-weight:700; color:#1a7a3e; background:#e8f8ee; padding:5px 12px; border-radius:999px; border:1px solid #a3d9b4; margin-top:14px; }
+    .status-dot::before{ content:''; width:6px; height:6px; border-radius:50%; background:#34c759; animation:pulse 2s ease infinite; }
+    @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-      height: 52px;
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px;
-    }
-    .nav-back { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
-    .nav-back:hover { opacity: 0.7; }
-    .nav-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
-    .nav-links a:hover { color: var(--text); }
+    .timeline{ position:relative; margin-top:8px; }
+    .timeline::before{ content:''; position:absolute; left:19px; top:6px; bottom:6px; width:1px; background:var(--line); }
+    .tl-item{ display:flex; gap:24px; margin-bottom:32px; position:relative; }
+    .tl-dot{ width:40px; height:40px; border-radius:50%; background:var(--white); border:1px solid var(--line); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-weight:800; color:var(--accent); font-size:0.95rem; z-index:1; }
+    .tl-dot.current{ background:var(--ink); color:#fff; border-color:var(--ink); }
+    .tl-title{ font-family:var(--serif); font-size:1.05rem; font-weight:700; margin:6px 0 6px; }
+    .tl-desc{ font-size:0.9rem; color:var(--muted); line-height:1.65; }
 
-    /* HERO */
-    .hero {
-      padding: 120px 24px 80px;
-      max-width: 860px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
-    }
-    .hero-left { }
-    .hero-eyebrow {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1rem;
-    }
-    .hero-name {
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 700; letter-spacing: -0.04em;
-      line-height: 1.05; color: var(--text);
-      margin-bottom: 1.2rem;
-    }
-    .hero-desc {
-      font-size: 1rem; color: var(--text2);
-      line-height: 1.7; margin-bottom: 2rem;
-    }
-    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-dark {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--text); color: #fff;
-      padding: 12px 22px; border-radius: 980px;
-      font-size: 0.85rem; font-weight: 500;
-      text-decoration: none; transition: background 0.2s;
-    }
-    .btn-dark:hover { background: #333; }
-    .btn-light {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--bg2); color: var(--text);
-      padding: 12px 22px; border-radius: 980px;
-      font-size: 0.85rem; font-weight: 500;
-      text-decoration: none; transition: background 0.2s;
-    }
-    .btn-light:hover { background: #e5e5ea; }
+    .skill-card{ background:var(--white); border:1px solid var(--line); border-radius:18px; padding:24px 22px; transition:transform .18s ease, box-shadow .18s ease; }
+    .skill-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(17,17,17,0.07); }
+    .skill-card svg{ width:26px; height:26px; color:var(--accent); margin-bottom:14px; }
+    .skill-title{ font-size:1rem; font-weight:700; margin-bottom:8px; }
+    .skill-desc{ font-size:0.86rem; color:var(--muted); line-height:1.6; }
+    .skill-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+    .skill-tag{ font-size:0.7rem; font-weight:600; padding:4px 11px; background:var(--paper); border:1px solid var(--line); border-radius:999px; color:var(--muted); }
 
-    /* PROFILE CARD */
-    .profile-card {
-      background: var(--bg2); border-radius: var(--radius);
-      padding: 32px; text-align: center;
-      border: 1px solid var(--border);
-    }
-    .avatar {
-      width: 96px; height: 96px; border-radius: 50%;
-      background: linear-gradient(135deg, #0071e3, #34aadc);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; font-weight: 700; color: #fff;
-      margin: 0 auto 16px; letter-spacing: -0.02em;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    .card-name { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-    .card-role { font-size: 0.8rem; color: var(--text2); margin-bottom: 20px; line-height: 1.5; }
-    .card-divider { height: 1px; background: var(--border); margin: 16px 0; }
-    .card-info { display: flex; flex-direction: column; gap: 10px; text-align: left; }
-    .card-info-item { display: flex; align-items: flex-start; gap: 10px; }
-    .info-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
-    .info-text { font-size: 0.8rem; color: var(--text2); line-height: 1.5; }
-    .info-text strong { color: var(--text); font-weight: 600; display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1px; }
-    .status-dot {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.72rem; font-weight: 500;
-      color: #1a7a3e; background: #e8f8ee;
-      padding: 4px 10px; border-radius: 980px;
-      border: 1px solid #a3d9b4; margin-top: 12px;
-    }
-    .status-dot::before {
-      content: ''; width: 6px; height: 6px;
-      border-radius: 50%; background: #34c759;
-      animation: pulse 2s ease infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
-    }
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 90px; }
-      .profile-card { order: -1; max-width: 320px; margin: 0 auto; }
-    }
-
-    /* SECTION */
-    .section { padding: 80px 24px; }
-    .section-inner { max-width: 860px; margin: 0 auto; }
-    .eyebrow {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text2); margin-bottom: 0.8rem;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 700; letter-spacing: -0.03em;
-      line-height: 1.1; color: var(--text); margin-bottom: 1.2rem;
-    }
-    .section-body {
-      font-size: 0.98rem; color: var(--text2); line-height: 1.75;
-    }
-
-    /* PERJALANAN KARIR */
-    .timeline { margin-top: 48px; position: relative; }
-    .timeline::before {
-      content: ''; position: absolute;
-      left: 15px; top: 0; bottom: 0;
-      width: 1px; background: var(--border);
-    }
-    .tl-item {
-      display: flex; gap: 28px; margin-bottom: 40px;
-      padding-left: 8px; position: relative;
-    }
-    .tl-dot {
-      width: 16px; height: 16px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0;
-      margin-top: 4px; position: relative; z-index: 1;
-      box-shadow: 0 0 0 4px #e8f1fb;
-    }
-    .tl-dot.current {
-      background: #34c759;
-      box-shadow: 0 0 0 4px #e8f8ee;
-      animation: pulse 2s ease infinite;
-    }
-    .tl-content { flex: 1; }
-    .tl-year {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 4px;
-    }
-    .tl-year.current { color: #34c759; }
-    .tl-title {
-      font-size: 1rem; font-weight: 700;
-      color: var(--text); margin-bottom: 4px;
-      letter-spacing: -0.01em;
-    }
-    .tl-org {
-      font-size: 0.85rem; color: var(--text2);
-      margin-bottom: 8px;
-    }
-    .tl-desc {
-      font-size: 0.85rem; color: var(--text2);
-      line-height: 1.65;
-    }
-
-    /* KEAHLIAN */
-    .skills-bg { background: var(--bg2); }
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px; margin-top: 40px;
-    }
-    .skill-card {
-      background: var(--bg); border-radius: 14px;
-      padding: 24px 20px; border: 1px solid var(--border);
-      transition: all 0.25s;
-    }
-    .skill-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,113,227,0.08);
-    }
-    .skill-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
-    .skill-title { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-    .skill-tag {
-      font-size: 0.68rem; padding: 3px 9px;
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 980px; color: var(--text2);
-    }
-    @media (max-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .skills-grid { grid-template-columns: 1fr; } }
-
-    /* NILAI & FILOSOFI */
-    .values-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2px; background: var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      margin-top: 40px;
-    }
-    .value-card {
-      background: var(--bg); padding: 32px 28px;
-    }
-    .value-num {
-      font-size: 2.5rem; font-weight: 700;
-      letter-spacing: -0.05em; color: var(--bg2);
-      margin-bottom: 10px; line-height: 1;
-    }
-    .value-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-    .value-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.65; }
-    @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr; } }
-
-    /* CTA */
-    .cta-section { padding: 80px 24px; text-align: center; background: var(--bg2); }
-    .cta-inner { max-width: 520px; margin: 0 auto; }
-    .cta-inner .section-title { margin-bottom: 1rem; }
-    .cta-inner .section-body { margin-bottom: 2rem; }
-    .cta-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-    .btn-blue {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--accent); color: #fff;
-      padding: 14px 26px; border-radius: 980px;
-      font-size: 0.88rem; font-weight: 500;
-      text-decoration: none; transition: background 0.2s;
-    }
-    .btn-blue:hover { background: #0077ed; }
-
-    /* FOOTER */
-    footer {
-      background: var(--bg2); border-top: 1px solid var(--border);
-      padding: 20px 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 10px;
-    }
-    .footer-left { font-size: 0.78rem; color: var(--text2); }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 0.78rem; color: var(--text2); text-decoration: none; }
-    .footer-links a:hover { color: var(--text); }
-
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.on { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: 0.1s; }
-    .reveal-d2 { transition-delay: 0.2s; }
-    .reveal-d3 { transition-delay: 0.3s; }
-  
-    /* MOBILE NAV (hamburger) */
-    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
-    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text, #1d1d1f); transition: transform .25s ease, opacity .2s ease; }
-    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
-    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    @media (max-width: 768px) {
-      .nav-burger { display: flex; }
-      .nav-links {
-        display: none; position: fixed; top: 52px; left: 0; right: 0;
-        flex-direction: column; gap: 0; list-style: none;
-        background: rgba(255,255,255,0.97);
-        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-        box-shadow: 0 16px 32px rgba(0,0,0,0.08);
-        padding: 6px 16px 14px; max-height: calc(100vh - 52px); overflow-y: auto;
-      }
-      nav.nav-open .nav-links { display: flex; }
-      .nav-links li { width: 100%; }
-      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
-      .nav-links li:last-child > a { border-bottom: 0; }
-    }
+    .value-card{ background:var(--white); border:1px solid var(--line); border-radius:18px; padding:28px 24px; }
+    .value-num{ font-family:var(--serif); font-size:2.1rem; font-weight:800; color:var(--accent); line-height:1; margin-bottom:10px; }
+    .value-title{ font-size:1.02rem; font-weight:700; margin-bottom:8px; }
+    .value-desc{ font-size:0.88rem; color:var(--muted); line-height:1.65; }
   </style>
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"/>
-  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2"/>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-back">← Beranda</a>
-  <span class="nav-title">Tentang Saya</span>
-  <ul class="nav-links">
-    <li><a href="layanan-pemerintah.html">Layanan Pemerintah</a></li>
-    <li><a href="layanan-bisnis.html">Layanan Bisnis</a></li>
-    <li><a href="produk.html">Produk</a></li>
-    <li><a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20mengenai%20transformasi%20digital%20untuk%20instansi%2Fbisnis%20saya." target="_blank" rel="noopener">Konsultasi</a></li>
-  </ul>
-  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
-</nav>
-<script>
-(function(){
-  var nav=document.querySelector('nav');if(!nav)return;
-  var btn=nav.querySelector('.nav-burger');if(!btn)return;
-  btn.addEventListener('click',function(){
-    var open=nav.classList.toggle('nav-open');
-    btn.setAttribute('aria-expanded',open?'true':'false');
-  });
-  nav.addEventListener('click',function(e){
-    var t=e.target;
-    while(t&&t!==nav){
-      if(t.tagName==='A'){nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false');break;}
-      t=t.parentNode;
-    }
-  });
-})();
-</script>
-
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand" style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/logo-a-mark.png" alt="" width="28" height="29" style="height:30px;width:auto;display:block;"/>Andri Wulandika</a>
+    <nav class="nav-links">
+      <a href="index.html#layanan">Layanan</a>
+      <a href="index.html#karya">Portofolio</a>
+      <a href="index.html#paket">Paket</a>
+      <a href="tentang.html" aria-current="page" class="current">Tentang</a>
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-ink nav-cta" data-magnetic>Konsultasi</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mnav wrap" id="mnav">
+    <a href="index.html#layanan">Layanan</a>
+    <a href="index.html#karya">Portofolio</a>
+    <a href="index.html#paket">Paket</a>
+    <a href="produk.html">Produk (AI Tools)</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
+  </div>
+</header>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Digital Transformation Consultant</p>
-    <h1 class="hero-name">Andri<br/>Wulandika</h1>
-    <p class="hero-desc">
-      Konsultan transformasi digital untuk pemerintah &amp; bisnis — menggabungkan pengalaman langsung sebagai praktisi perencanaan pembangunan daerah dengan solusi digital modern: website profesional, AI automation, dan optimasi SEO.
-    </p>
-    <div class="hero-actions">
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20mengenai%20transformasi%20digital%20untuk%20instansi%2Fbisnis%20saya." target="_blank" rel="noopener" class="btn-dark">💬 Hubungi Saya</a>
-      <a href="index.html#layanan" class="btn-light">Lihat Layanan</a>
+<section class="page-hero">
+  <div class="wrap two-col">
+    <div class="reveal">
+      <span class="eyebrow">Digital Transformation Consultant</span>
+      <h1>Andri Wulandika</h1>
+      <p>Konsultan transformasi digital untuk pemerintah &amp; bisnis — menggabungkan pengalaman langsung sebagai praktisi perencanaan pembangunan daerah dengan solusi digital modern: website profesional, AI automation, dan optimasi SEO.</p>
+      <div class="hero-ctas" style="margin-top:26px;">
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20mengenai%20transformasi%20digital%20untuk%20instansi%2Fbisnis%20saya." target="_blank" rel="noopener" class="btn btn-ink" data-magnetic>Hubungi Saya</a>
+        <a href="index.html#layanan" class="btn btn-outline">Lihat Layanan</a>
+      </div>
+    </div>
+    <div class="profile-card reveal d1">
+      <img class="avatar" src="assets/img/andri-avatar.jpg" alt="Foto Andri Wulandika" width="96" height="96"/>
+      <p class="card-name">Andri Wulandika, S.T.</p>
+      <p class="card-role">Perencana Ahli Pertama<br/>Bappeda Kabupaten Aceh Tenggara</p>
+      <div class="card-divider"></div>
+      <div class="card-info">
+        <div class="card-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6"/></svg><div class="info-text"><strong>Instansi</strong>Bappeda Kab. Aceh Tenggara</div></div>
+        <div class="card-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="info-text"><strong>Lokasi</strong>Kutacane, Aceh Tenggara</div></div>
+        <div class="card-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg><div class="info-text"><strong>Pendidikan</strong>S1 Teknik Sipil — Univ. Gunung Leuser Aceh</div></div>
+        <div class="card-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><div class="info-text"><strong>Mulai Bertugas</strong>2025 · P3K Fungsional Perencana</div></div>
+      </div>
+      <div style="text-align:center;"><span class="status-dot">Aktif Bertugas</span></div>
     </div>
   </div>
-  <div class="profile-card reveal reveal-d1">
-    <div class="avatar" style="padding:0;overflow:hidden;"><img src="data:image/jpeg;base64,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" alt="Andri Wulandika" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div>
-    <p class="card-name">Andri Wulandika, S.T.</p>
-    <p class="card-role">Perencana Ahli Pertama<br/>Bappeda Kabupaten Aceh Tenggara</p>
-    <div class="card-divider"></div>
-    <div class="card-info">
-      <div class="card-info-item">
-        <span class="info-icon">🏛️</span>
-        <div class="info-text">
-          <strong>Instansi</strong>
-          Bappeda Kab. Aceh Tenggara
-        </div>
-      </div>
-      <div class="card-info-item">
-        <span class="info-icon">📍</span>
-        <div class="info-text">
-          <strong>Lokasi</strong>
-          Kutacane, Aceh Tenggara
-        </div>
-      </div>
-      <div class="card-info-item">
-        <span class="info-icon">🎓</span>
-        <div class="info-text">
-          <strong>Pendidikan</strong>
-          S1 Teknik Sipil — Univ. Gunung Leuser Aceh
-        </div>
-      </div>
-      <div class="card-info-item">
-        <span class="info-icon">📅</span>
-        <div class="info-text">
-          <strong>Mulai Bertugas</strong>
-          2025 · P3K Fungsional Perencana
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:16px;">
-      <span class="status-dot">Aktif Bertugas</span>
-    </div>
-  </div>
-</div>
+</section>
 
-<!-- TENTANG ANDRI WULANDIKA -->
-<section class="section" style="background:var(--bg2);padding-top:0;">
-  <div class="section-inner reveal">
-    <p class="eyebrow">Tentang Andri Wulandika</p>
-    <h2 class="section-title">Praktisi Pemerintahan,<br/>Konsultan Transformasi Digital.</h2>
-    <p class="section-body">
-      Berawal dari latar belakang Teknik Sipil di Universitas Gunung Leuser Aceh, saya membangun pemahaman mendalam tentang infrastruktur dan pembangunan fisik — fondasi yang kemudian membawa saya ke jalur fungsional Perencana, dengan fokus pada bagaimana pembangunan daerah direncanakan, dianggarkan, dan dievaluasi secara sistematis.
-    </p>
-    <br/>
-    <p class="section-body">
-      Sejak Desember 2025, saya bertugas sebagai Perencana Ahli Pertama (P3K) di Bappeda Kabupaten Aceh Tenggara — terlibat langsung dalam penyusunan RKPK, koordinasi lintas 51 OPD, dan review teknis dokumen anggaran.
-    </p>
-    <br/>
-    <p class="section-body">
-      Dari pengalaman itu, saya melihat langsung kebutuhan nyata: instansi pemerintah dan pelaku bisnis di daerah butuh solusi digital yang praktis, bukan sekadar teori. Itulah yang mendorong saya mengembangkan <strong>SiRENJA</strong> dan <strong>SiRKPD</strong> — AI tools untuk ASN perencana — dan memperluas fokus konsultasi ke website profesional serta transformasi digital untuk instansi dan bisnis di luar Aceh Tenggara.
-    </p>
+<!-- TENTANG -->
+<section style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap content-block reveal">
+    <span class="eyebrow">Tentang Andri Wulandika</span>
+    <h2 style="margin-top:10px;">Praktisi Pemerintahan, Konsultan Transformasi Digital.</h2>
+    <p>Berawal dari latar belakang Teknik Sipil di Universitas Gunung Leuser Aceh, saya membangun pemahaman mendalam tentang infrastruktur dan pembangunan fisik — fondasi yang kemudian membawa saya ke jalur fungsional Perencana, dengan fokus pada bagaimana pembangunan daerah direncanakan, dianggarkan, dan dievaluasi secara sistematis.</p>
+    <p>Sejak Desember 2025, saya bertugas sebagai Perencana Ahli Pertama (P3K) di Bappeda Kabupaten Aceh Tenggara — terlibat langsung dalam penyusunan RKPK, koordinasi lintas 51 OPD, dan review teknis dokumen anggaran.</p>
+    <p>Dari pengalaman itu, saya melihat langsung kebutuhan nyata: instansi pemerintah dan pelaku bisnis di daerah butuh solusi digital yang praktis, bukan sekadar teori. Itulah yang mendorong saya mengembangkan <strong>SiRENJA</strong> dan <strong>SiRKPD</strong> — AI tools untuk ASN perencana — dan memperluas fokus konsultasi ke website profesional serta transformasi digital untuk instansi dan bisnis di luar Aceh Tenggara.</p>
   </div>
 </section>
 
 <!-- VISI -->
-<section class="section">
-  <div class="section-inner reveal">
-    <p class="eyebrow">Visi</p>
-    <h2 class="section-title">Transformasi Digital<br/>yang Aplikatif, Bukan Sekadar Tren.</h2>
-    <p class="section-body">
-      Banyak instansi pemerintah dan pelaku bisnis di daerah tertinggal secara digital bukan karena tidak ingin berubah, tapi karena solusi yang tersedia sering kali tidak relevan dengan kebutuhan nyata mereka — terlalu rumit, terlalu mahal, atau dirancang tanpa memahami cara kerja pemerintahan dan bisnis di lapangan.
-    </p>
-    <br/>
-    <p class="section-body">
-      Misi saya adalah menjembatani hal itu: menghadirkan website profesional, otomatisasi berbasis AI, dan solusi digital lain yang benar-benar dipakai — bukan sekadar dipajang — oleh instansi pemerintah (OPD, Bappeda, Pemda) dan bisnis yang ingin naik kelas secara digital. Setiap solusi yang saya kembangkan, termasuk SiRENJA dan SiRKPD, lahir dari kebutuhan yang saya alami sendiri sebagai ASN perencana, sehingga relevan dan langsung dapat diterapkan.
-    </p>
-    <br/>
-    <p class="section-body">
-      Dalam jangka panjang, saya ingin terus memperluas dampak ini: membantu lebih banyak instansi pemerintah dan bisnis di berbagai daerah bertransformasi secara digital dengan cara yang praktis, berbasis regulasi, dan terukur.
-    </p>
+<section>
+  <div class="wrap content-block reveal">
+    <span class="eyebrow">Visi</span>
+    <h2 style="margin-top:10px;">Transformasi Digital yang Aplikatif, Bukan Sekadar Tren.</h2>
+    <p>Banyak instansi pemerintah dan pelaku bisnis di daerah tertinggal secara digital bukan karena tidak ingin berubah, tapi karena solusi yang tersedia sering kali tidak relevan dengan kebutuhan nyata mereka — terlalu rumit, terlalu mahal, atau dirancang tanpa memahami cara kerja pemerintahan dan bisnis di lapangan.</p>
+    <p>Misi saya adalah menjembatani hal itu: menghadirkan website profesional, otomatisasi berbasis AI, dan solusi digital lain yang benar-benar dipakai — bukan sekadar dipajang — oleh instansi pemerintah (OPD, Bappeda, Pemda) dan bisnis yang ingin naik kelas secara digital. Setiap solusi yang saya kembangkan, termasuk SiRENJA dan SiRKPD, lahir dari kebutuhan yang saya alami sendiri sebagai ASN perencana, sehingga relevan dan langsung dapat diterapkan.</p>
+    <p>Dalam jangka panjang, saya ingin terus memperluas dampak ini: membantu lebih banyak instansi pemerintah dan bisnis di berbagai daerah bertransformasi secara digital dengan cara yang praktis, berbasis regulasi, dan terukur.</p>
   </div>
 </section>
 
 <!-- EXPERTISE -->
-<section class="section skills-bg">
-  <div class="section-inner">
-    <p class="eyebrow reveal">Expertise</p>
-    <h2 class="section-title reveal">Bidang yang<br/>Saya Kuasai.</h2>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <span class="skill-icon">🏛️</span>
-        <p class="skill-title">Government Digital Solutions</p>
-        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Website instansi/OPD dan solusi digital yang memahami alur kerja pemerintahan — dari SIPD-RI hingga koordinasi lintas OPD.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">Website OPD</span>
-          <span class="skill-tag">SIPD-RI</span>
+<section style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Expertise</span>
+      <h2>Bidang yang saya kuasai.</h2>
+    </div>
+    <div class="svc-grid" style="grid-template-columns:1fr;">
+      <div class="skills-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
+        <div class="skill-card reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6M6 10v3M12 10v3M18 10v3"/></svg>
+          <p class="skill-title">Government Digital Solutions</p>
+          <p class="skill-desc">Website instansi/OPD dan solusi digital yang memahami alur kerja pemerintahan — dari SIPD-RI hingga koordinasi lintas OPD.</p>
+          <div class="skill-tags"><span class="skill-tag">Website OPD</span><span class="skill-tag">SIPD-RI</span></div>
         </div>
-      </div>
-      <div class="skill-card reveal reveal-d1">
-        <span class="skill-icon">🏢</span>
-        <p class="skill-title">Business Digital Solutions</p>
-        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Landing page, website profil, dan kehadiran digital untuk bisnis yang ingin tumbuh dengan fondasi yang kuat.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">Landing Page</span>
-          <span class="skill-tag">Profil Bisnis</span>
+        <div class="skill-card reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="8" width="7" height="13"/><path d="M6 7h1M6 11h1M6 15h1M17 12h1M17 15h1"/></svg>
+          <p class="skill-title">Business Digital Solutions</p>
+          <p class="skill-desc">Landing page, website profil, dan kehadiran digital untuk bisnis yang ingin tumbuh dengan fondasi yang kuat.</p>
+          <div class="skill-tags"><span class="skill-tag">Landing Page</span><span class="skill-tag">Profil Bisnis</span></div>
         </div>
-      </div>
-      <div class="skill-card reveal reveal-d2">
-        <span class="skill-icon">💻</span>
-        <p class="skill-title">Professional Websites</p>
-        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Desain modern, cepat, dan responsif — dibangun di atas Cloudflare Pages dengan harga transparan.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">Desain Modern</span>
-          <span class="skill-tag">Responsif</span>
+        <div class="skill-card reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <p class="skill-title">Professional Websites</p>
+          <p class="skill-desc">Desain modern, cepat, dan responsif — dibangun di atas Cloudflare Pages dengan harga transparan.</p>
+          <div class="skill-tags"><span class="skill-tag">Desain Modern</span><span class="skill-tag">Responsif</span></div>
         </div>
-      </div>
-      <div class="skill-card reveal">
-        <span class="skill-icon">🛠️</span>
-        <p class="skill-title">Custom Software</p>
-        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Pengembangan tools digital yang dirancang khusus untuk kebutuhan spesifik — dibuktikan lewat SiRENJA & SiRKPD.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">SiRENJA</span>
-          <span class="skill-tag">SiRKPD</span>
+        <div class="skill-card reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.1-3.1a4 4 0 01-5.4 5.4L6 21l-3-3 10.4-9.4a4 4 0 015.4-5.4l-3.1 3.1z"/></svg>
+          <p class="skill-title">Custom Software</p>
+          <p class="skill-desc">Pengembangan tools digital yang dirancang khusus untuk kebutuhan spesifik — dibuktikan lewat SiRENJA &amp; SiRKPD.</p>
+          <div class="skill-tags"><span class="skill-tag">SiRENJA</span><span class="skill-tag">SiRKPD</span></div>
         </div>
-      </div>
-      <div class="skill-card reveal reveal-d1">
-        <span class="skill-icon">🤖</span>
-        <p class="skill-title">AI Automation</p>
-        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Pemanfaatan AI untuk mempercepat pekerjaan berulang — dari asisten perencanaan daerah hingga otomatisasi proses bisnis.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">AI Tools</span>
-          <span class="skill-tag">Otomatisasi</span>
+        <div class="skill-card reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+          <p class="skill-title">AI Automation</p>
+          <p class="skill-desc">Pemanfaatan AI untuk mempercepat pekerjaan berulang — dari asisten perencanaan daerah hingga otomatisasi proses bisnis.</p>
+          <div class="skill-tags"><span class="skill-tag">AI Tools</span><span class="skill-tag">Otomatisasi</span></div>
         </div>
-      </div>
-      <div class="skill-card reveal reveal-d2">
-        <span class="skill-icon">🔍</span>
-        <p class="skill-title">SEO & Digital Branding</p>
-        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">Fondasi SEO yang benar sejak hari pertama — meta tag lengkap, schema markup, dan konten yang terstruktur untuk ditemukan.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">SEO</span>
-          <span class="skill-tag">Schema Markup</span>
+        <div class="skill-card reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <p class="skill-title">SEO &amp; Digital Branding</p>
+          <p class="skill-desc">Fondasi SEO yang benar sejak hari pertama — meta tag lengkap, schema markup, dan konten yang terstruktur untuk ditemukan.</p>
+          <div class="skill-tags"><span class="skill-tag">SEO</span><span class="skill-tag">Schema Markup</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
 <!-- WORKING METHODOLOGY -->
-<section class="section" style="background:var(--bg);">
-  <div class="section-inner">
-    <p class="eyebrow reveal">Cara Kerja</p>
-    <h2 class="section-title reveal">Working<br/>Methodology.</h2>
-    <p class="section-body reveal">Kerangka kerja konsultasi yang saya terapkan pada setiap proyek — dari kebutuhan awal hingga hasil yang terus disempurnakan.</p>
-
-    <div class="timeline" style="margin-top:40px;">
-      <div class="tl-item reveal">
-        <div class="tl-dot current"></div>
-        <div class="tl-content">
-          <p class="tl-year current">01</p>
-          <p class="tl-title">Discovery</p>
-          <p class="tl-desc">Memahami kebutuhan, tujuan, dan konteks instansi atau bisnis Anda sebelum menentukan solusi.</p>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <p class="tl-year">02</p>
-          <p class="tl-title">Strategy</p>
-          <p class="tl-desc">Menyusun rencana solusi digital yang sesuai kebutuhan, anggaran, dan target — bukan solusi generik.</p>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <p class="tl-year">03</p>
-          <p class="tl-title">Development</p>
-          <p class="tl-desc">Membangun solusi — website, AI automation, atau software — dengan standar modern dan SEO-ready sejak awal.</p>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <p class="tl-year">04</p>
-          <p class="tl-title">Implementation</p>
-          <p class="tl-desc">Serah terima dan penerapan solusi ke lingkungan kerja Anda, dengan pendampingan hingga siap digunakan.</p>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <p class="tl-year">05</p>
-          <p class="tl-title">Continuous Improvement</p>
-          <p class="tl-desc">Pemantauan dan penyempurnaan berkelanjutan setelah solusi berjalan, mengikuti kebutuhan yang berkembang.</p>
-        </div>
-      </div>
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Cara Kerja</span>
+      <h2>Working Methodology.</h2>
+      <p>Kerangka kerja konsultasi yang saya terapkan pada setiap proyek — dari kebutuhan awal hingga hasil yang terus disempurnakan.</p>
+    </div>
+    <div class="timeline" style="max-width:640px;">
+      <div class="tl-item reveal"><div class="tl-dot current">01</div><div class="tl-content"><p class="tl-title">Discovery</p><p class="tl-desc">Memahami kebutuhan, tujuan, dan konteks instansi atau bisnis Anda sebelum menentukan solusi.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot">02</div><div class="tl-content"><p class="tl-title">Strategy</p><p class="tl-desc">Menyusun rencana solusi digital yang sesuai kebutuhan, anggaran, dan target — bukan solusi generik.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot">03</div><div class="tl-content"><p class="tl-title">Development</p><p class="tl-desc">Membangun solusi — website, AI automation, atau software — dengan standar modern dan SEO-ready sejak awal.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot">04</div><div class="tl-content"><p class="tl-title">Implementation</p><p class="tl-desc">Serah terima dan penerapan solusi ke lingkungan kerja Anda, dengan pendampingan hingga siap digunakan.</p></div></div>
+      <div class="tl-item reveal" style="margin-bottom:0;"><div class="tl-dot">05</div><div class="tl-content"><p class="tl-title">Continuous Improvement</p><p class="tl-desc">Pemantauan dan penyempurnaan berkelanjutan setelah solusi berjalan, mengikuti kebutuhan yang berkembang.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- WHY WORK WITH ME -->
-<section class="section">
-  <div class="section-inner">
-    <p class="eyebrow reveal">Kenapa Bekerja Sama</p>
-    <h2 class="section-title reveal">Why Work<br/>With Me.</h2>
-    <div class="values-grid">
-      <div class="value-card reveal">
-        <p class="value-num">01</p>
-        <p class="value-title">Pengalaman Langsung di Pemerintahan</p>
-        <p class="value-desc">Pengalaman saya sebagai Perencana Ahli Pertama di Bappeda memberi pemahaman langsung soal cara kerja pemerintahan — bukan konsultan luar yang hanya memahami pemerintahan dari teori.</p>
-      </div>
-      <div class="value-card reveal reveal-d1">
-        <p class="value-num">02</p>
-        <p class="value-title">Berbasis Regulasi</p>
-        <p class="value-desc">Setiap solusi yang saya kembangkan mempertimbangkan regulasi yang berlaku — Permendagri, PMK, dan peraturan teknis terkini.</p>
-      </div>
-      <div class="value-card reveal reveal-d2">
-        <p class="value-num">03</p>
-        <p class="value-title">Terbukti, Bukan Sekadar Teori</p>
-        <p class="value-desc">SiRENJA dan SiRKPD adalah bukti nyata — dibangun, dipakai, dan terus dikembangkan berdasarkan kebutuhan pengguna sesungguhnya.</p>
-      </div>
-      <div class="value-card reveal reveal-d3">
-        <p class="value-num">04</p>
-        <p class="value-title">Transparan & Kolaboratif</p>
-        <p class="value-desc">Harga jelas sejak awal, komunikasi terbuka di setiap tahap, dan pengerjaan yang mengutamakan kebutuhan Anda.</p>
-      </div>
+<section style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Kenapa Bekerja Sama</span>
+      <h2>Why Work With Me.</h2>
+    </div>
+    <div class="price-grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr));">
+      <div class="value-card reveal"><div class="value-num">01</div><p class="value-title">Pengalaman Langsung di Pemerintahan</p><p class="value-desc">Pengalaman saya sebagai Perencana Ahli Pertama di Bappeda memberi pemahaman langsung soal cara kerja pemerintahan — bukan konsultan luar yang hanya memahami pemerintahan dari teori.</p></div>
+      <div class="value-card reveal d1"><div class="value-num">02</div><p class="value-title">Berbasis Regulasi</p><p class="value-desc">Setiap solusi yang saya kembangkan mempertimbangkan regulasi yang berlaku — Permendagri, PMK, dan peraturan teknis terkini.</p></div>
+      <div class="value-card reveal d2"><div class="value-num">03</div><p class="value-title">Terbukti, Bukan Sekadar Teori</p><p class="value-desc">SiRENJA dan SiRKPD adalah bukti nyata — dibangun, dipakai, dan terus dikembangkan berdasarkan kebutuhan pengguna sesungguhnya.</p></div>
+      <div class="value-card reveal d3"><div class="value-num">04</div><p class="value-title">Transparan &amp; Kolaboratif</p><p class="value-desc">Harga jelas sejak awal, komunikasi terbuka di setiap tahap, dan pengerjaan yang mengutamakan kebutuhan Anda.</p></div>
     </div>
   </div>
 </section>
 
-<!-- DISCLAIMER: layanan berbayar independen dari jabatan ASN (kalimat final, disetujui Andri) -->
-<section class="section" style="padding-top:0;padding-bottom:0;">
-  <div class="section-inner reveal">
-    <p style="font-size:0.8rem;color:var(--text2);line-height:1.6;max-width:640px;margin:0 auto;text-align:center;">
+<!-- DISCLAIMER: layanan berbayar independen dari jabatan ASN (kalimat final, disetujui Andri — tidak diubah) -->
+<section style="padding-bottom:0;">
+  <div class="wrap reveal" style="max-width:760px;">
+    <div class="disclaimer">
       Catatan: Jasa konsultasi transformasi digital di halaman ini saya jalankan secara pribadi dan independen, di luar tugas dan kewenangan sebagai ASN — bukan atas nama, mewakili, maupun menggunakan fasilitas Bappeda Kabupaten Aceh Tenggara atau instansi pemerintah manapun.
-    </p>
+    </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
-  <div class="cta-inner reveal">
-    <p class="eyebrow">Mari Berkolaborasi</p>
-    <h2 class="section-title">Siap memulai transformasi<br/>digital instansi/bisnis Anda?</h2>
-    <p class="section-body">Diskusikan kebutuhan digital instansi pemerintah atau bisnis Anda secara gratis — tanpa komitmen.</p>
-    <div class="cta-buttons">
-      <a href="https://wa.me/62811660568" class="btn-blue">💬 Konsultasi via WhatsApp</a>
-      <a href="mailto:wulandikaandri@gmail.com" class="btn-light">✉ Email</a>
+<section>
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Siap memulai transformasi digital instansi/bisnis Anda?</h2>
+      <p>Diskusikan kebutuhan digital instansi pemerintah atau bisnis Anda secara gratis — tanpa komitmen.</p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <a href="https://wa.me/62811660568" target="_blank" rel="noopener" class="btn btn-ink" data-magnetic>Konsultasi via WhatsApp</a>
+        <a href="mailto:wulandikaandri@gmail.com" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4); color:#fff;">Email</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-left">&copy; 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</p>
-  <div class="footer-links">
-    <a href="index.html">Beranda</a>
-    <a href="layanan-pemerintah.html">Layanan Pemerintah</a>
-    <a href="layanan-bisnis.html">Layanan Bisnis</a>
-    <a href="produk.html">Produk</a>
-    <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
-    <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
-    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">WhatsApp</a>
-  </div>
-  <div style="display:flex;gap:14px;justify-content:center;align-items:center;padding:22px 0 2px;flex-wrap:wrap;">
-    <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener" aria-label="Instagram" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#94a3b8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-    <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener" aria-label="Facebook" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#94a3b8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.4c0-.86.28-1.4 1.5-1.4H17.6V.3C17.2.25 16.1.15 15 .15c-2.4 0-4 1.46-4 4.15V6H8.2v3H11v9h3V9z"/></svg></a>
-    <a href="#" aria-label="TikTok (tautan menyusul)" title="TikTok — tautan menyusul" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#94a3b8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-2.9v12.3a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.05V8.8a5.7 5.7 0 00-.7-.05A5.65 5.65 0 1017 14.3V8a7.1 7.1 0 004.1 1.3V6.4a4.1 4.1 0 01-4.1-4.1z"/></svg></a>
-    <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener" aria-label="YouTube" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#94a3b8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand"><span style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/favicon-a-512.png" alt="" width="34" height="34" style="height:34px;width:34px;border-radius:8px;display:block;"/>Andri Wulandika</span><p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p></div>
+      <div class="foot-links">
+        <div class="foot-col"><div class="lbl">Layanan</div><a href="layanan-pemerintah.html">Website Pemerintah</a><a href="layanan-bisnis.html">Website Bisnis</a><a href="layanan-bisnis.html#medsos">Media Sosial</a><a href="produk.html">AI Tools</a></div>
+        <div class="foot-col"><div class="lbl">Situs</div><a href="index.html#karya">Portofolio</a><a href="index.html#paket">Paket Harga</a><a href="index.html#faq">FAQ</a><a href="tentang.html">Tentang</a></div>
+        <div class="foot-col"><div class="lbl">Legal</div><a href="kebijakan-privasi.html">Kebijakan Privasi</a><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.4c0-.86.28-1.4 1.5-1.4H17.6V.3C17.2.25 16.1.15 15 .15c-2.4 0-4 1.46-4 4.15V6H8.2v3H11v9h3V9z"/></svg></a>
+        <a href="#" aria-label="TikTok (tautan menyusul)" title="TikTok — tautan menyusul"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-2.9v12.3a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.05V8.8a5.7 5.7 0 00-.7-.05A5.65 5.65 0 1017 14.3V8a7.1 7.1 0 004.1 1.3V6.4a4.1 4.1 0 01-4.1-4.1z"/></svg></a>
+        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener" aria-label="YouTube"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+<script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/editorial-ui.js"></script>
 </body>
 </html>

@@ -167,7 +167,7 @@ stack mahal-dibalik; ditolak tanpa ADR + persetujuan, sesuai `CLAUDE.md`).
 | R.3 — Font self-hosted (CSP-safe) | ✅ Selesai | Playfair Display + Plus Jakarta Sans di `src/site/assets/fonts/*.woff2` (tanpa CDN font, patuh CSP `font-src 'self'`). |
 | R.4 — Promosikan Editorial jadi `index.html` resmi | ✅ Selesai (22 Jul 2026) | `src/site/index.html` diganti desain Editorial. **SEO dipertahankan**: 4 verifikasi Google, JSON-LD (WebSite/Person/Service + FAQPage), OG/Twitter, `robots:index`, `analytics.js`. Konten: hero, layanan, portofolio filter, proses, harga lengkap, FAQ, CTA, footer. |
 | R.5 — Enhancement "Awwwards-feel" (tanpa ganti framework) | ✅ Selesai | Lenis smooth-scroll self-hosted (`assets/js/lenis.min.js`, via `npm pack`, CSP-safe), scroll-reveal (IntersectionObserver), parallax gambar portofolio, tombol magnetik, hover-zoom, canvas 3D subtil di hero. Semua hormati `prefers-reduced-motion`. |
-| R.6 — Terapkan logo/favicon ke SELURUH halaman | ⏳ Belum | Halaman lain (`tentang`, `layanan-*`, `produk`, `demo-*`, dll) masih favicon lama. Rollout terpisah. |
+| R.6 — Terapkan logo/favicon ke SELURUH halaman | ✅ Selesai (4 Agu 2026) | Lihat sprint "Redesign Editorial ke Seluruh Situs" di bawah — favicon "a"-mark diterapkan ke hampir semua halaman `site/` & `tools/` (kecuali `demo-*`, `preview-*`, `admin-kode.html`). |
 | R.7 — Ganti placeholder TikTok | ⏳ Menunggu Andri | Footer `index.html` masih `href="#"` (TODO) — butuh URL TikTok resmi. |
 
 ---
@@ -193,6 +193,52 @@ harga sesuai `docs/KNOWLEDGE-BASE.md` §6 (tidak ada perubahan pricing).
 **Menunggu Andri memilih salah satu arah (atau tetap dengan Arah A) sebelum ada
 promosi ke `index.html`** — sesuai kewenangan di `CLAUDE.md` (perubahan
 positioning/tampilan utama butuh persetujuan pemilik sebelum merge ke `main`).
+
+---
+
+## Redesign Editorial ke Seluruh Situs + Animasi Signature (4 Agu 2026) — SELESAI (menunggu review)
+
+Permintaan Andri: redesign tampilan situs pakai "teknologi terbaru", terlihat
+profesional, plus animasi ala Spline. Setelah audit: migrasi stack berat/Spline
+**ditolak** (konsisten dengan keputusan 22 Jul menolak Next.js/Three.js demi
+performa & CSP — Spline butuh runtime WebGL eksternal yang sama beratnya).
+Andri memilih opsi "animasi setara tapi ringan & self-hosted", dan menyerahkan
+pilihan arah desain ke rekomendasi — dipilih **memperluas Arah A (Editorial
+Premium)** ke seluruh situs (bukan pindah ke preview B/C/D) karena Arah A sudah
+dirancang khusus (bukan template generik) dan paling konsisten dengan brand
+yang sudah live di homepage.
+
+**Masalah yang ditemukan saat audit:** homepage sudah Editorial Premium, tapi
+47 file lain (hampir semua halaman `site/` selain index, dan seluruh `tools/`)
+masih pakai desain lama (font sistem, aksen biru Apple `#0071e3` — kloning
+gaya apple.com). Ini penyebab R.6 ("terapkan logo/favicon ke seluruh halaman")
+belum selesai. Redesign ini sekaligus menuntaskan R.6.
+
+| Item | Status | Bukti |
+|---|---|---|
+| Design system shared (CSS+JS) diekstrak dari homepage | ✅ Selesai | `src/site/assets/css/editorial.css`, `src/site/assets/js/editorial-ui.js` — `index.html` sekarang me-link file ini alih-alih inline `<style>/<script>` raksasa (juga membantu Sprint 4 CSP: berkurang 1 halaman inline-style). |
+| Animasi signature "jaringan konektivitas" (pengganti Spline) | ✅ Selesai | Canvas native (titik + garis tipis, warna terracotta, interaktif pointer, hormati `prefers-reduced-motion`) di `editorial-ui.js` fungsi `initNetworkCanvas` — tanpa dependency eksternal, menggantikan animasi blob lama. |
+| Ikon SVG kustom pengganti emoji | ✅ Selesai | Service cards `index.html` — emoji 🏛️🌐📱⚡ diganti ikon line-art inline-SVG senada tipografi editorial. |
+| Redesign penuh Tingkat A (bespoke, ikut kualitas homepage) | ✅ Selesai | `src/site/{tentang,layanan-bisnis,layanan-pemerintah,produk,promo}.html` — konten/harga/copy **tidak berubah**, hanya visual & struktur markup. Foto Andri di `tentang.html` yang tadinya base64 inline (~26KB di HTML) diekstrak jadi file asli `assets/img/andri-avatar.jpg`. |
+| Font self-host untuk `tools/` (CSP-safe) | ✅ Selesai | `src/tools/assets/fonts/*.woff2` (copy dari `site/`), `src/tools/assets/css/brand-tokens.css` (hanya `@font-face`, tanpa selector lain — aman di-link ke halaman manapun tanpa risiko bentrok CSS). |
+| Token swap (Tingkat B) — 12 halaman panduan via `article.css` + includes | ✅ Selesai | `src/tools/assets/css/article.css`, `_includes/{nav-article,footer-article,nav-sitool-minimal,footer-panduan}.html` — 1 edit di `article.css` otomatis konsisten ke semua halaman yang meng-include-nya. |
+| Token swap (Tingkat B) — halaman fungsional & landing | ✅ Selesai | `dashboard.html`, `bayar.html`, `aktifkan-pro.html`, `regulasi.html`, `harga.html`, `template.html`, `tools/index.html` — aksen `#0071e3`→`#c2510c` (var `--accent` tunggal saja), font Jakarta, favicon baru. |
+| Token swap (Tingkat B) — halaman legal (kedua situs) | ✅ Selesai | `kebijakan-privasi.html`, `syarat-ketentuan.html`, `404.html` di `site/` & `tools/` — **isi legal tidak diubah**, hanya warna/font/favicon. `editorial.css` sengaja **tidak** di-link ke `site/kebijakan-privasi.html` & `syarat-ketentuan.html` (ada class `.wrap`/`.eyebrow` yang collide dan akan merusak layout) — hanya token warna diganti langsung. |
+| 8 halaman AI tool inti (SiRENJA dst.) | ⚠️ Sengaja tidak direstyle | Tiap tool ternyata punya warna identitas sendiri (SiRENJA=biru, SiRKPD=teal, SiPerda=teal lain, SiGenDok=ungu, SiBACARA=indigo, dst) — bukan "desain lama" yang perlu diseragamkan, tapi diferensiasi produk yang disengaja. Menyeragamkan semua ke terracotta berisiko merusak identitas per-tool & berisiko regresi di halaman fungsional (form generator dengan kredit berbayar). Hanya favicon diganti; struktur/JS/warna fungsional **tidak disentuh**. |
+| `admin-kode.html` | ⏳ Tidak disentuh | Halaman admin internal, bukan halaman publik/konversi — di luar scope. |
+
+### Temuan lain (dicatat, belum ditindaklanjuti — di luar scope task ini)
+
+- **JSON-LD harga tidak sinkron dengan harga live** di `layanan-bisnis.html` (`offers` masih Rp750rb/Rp2jt, padahal harga live sudah Rp1,2jt/Rp3jt sejak 21 Jul) dan `layanan-pemerintah.html` (`offers` masih Rp3,5jt, harga live "mulai Rp2,5jt"). Ini bug data lama dari sebelum redesign ini — **tidak diubah** di sesi ini karena menyentuh angka harga butuh persetujuan eksplisit terpisah, meski secara teknis ini cuma menyamakan ke harga yang sudah disetujui, bukan perubahan harga baru. Perlu keputusan Andri di sprint berikutnya.
+- Footer `footer-panduan.html` (dipakai 2 halaman panduan) masih menyebut "Perencana Ahli Pertama Bappeda Aceh Tenggara" — dicek, **tidak** satu halaman dengan CTA berbayar (aman per aturan brand), tidak diubah.
+
+### Catatan verifikasi
+
+- `npm install` + `npm run build:pages` sukses, dijalankan 2× berturut-turut → `git status` stabil (reproducible build).
+- `node --check` lolos untuk `editorial-ui.js` (satu-satunya JS baru).
+- Audit ulang brand governance setelah semua edit: `grep -ril "TAPD\|Birokrat\|DesaDigital\|VillageStock\|Dari Dokumen ke Dampak" src/` → tidak ada hasil. Tagline hero & semua angka harga di halaman yang disentuh diverifikasi persis sama dengan sebelum redesign.
+- **Belum bisa diuji di browser** dari lingkungan agen (sama seperti sprint sebelumnya) — perlu Andri cek preview Cloudflare: semua halaman yang diubah, animasi hero, nav mobile (burger), form 8 AI Tools tetap berfungsi normal, tidak ada error CSP di console.
+- Push ke branch `claude/andriwulandika-website-redesign-8k8d8z` (preview). **Belum merge ke `main`** — menunggu Andri review preview sesuai kewenangan di `CLAUDE.md`.
 
 ---
 
