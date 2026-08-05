@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script>document.documentElement.className+=' js';</script>
   <script src="assets/js/analytics.js" defer></script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -29,109 +30,89 @@
   <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
   <link rel="stylesheet" href="assets/css/editorial.css"/>
   <style>
-    body{ max-width:480px; margin:0 auto; min-height:100vh; padding:40px 22px 56px; }
-    .brand-row{ display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom:34px; }
-    .brand-row img{ height:30px; width:auto; }
-    .brand-row span{ font-family:var(--serif); font-weight:800; font-size:1rem; }
-    .promo-eyebrow{ display:block; text-align:center; margin:0 auto 18px; max-width:fit-content; }
-    h1{ text-align:center; font-size:2.1rem; margin-bottom:14px; }
-    h1 .accentword{ font-style:italic; color:var(--accent); }
-    .sub{ text-align:center; color:var(--muted); font-size:1rem; margin-bottom:26px; }
-    .wa-btn{ display:flex; align-items:center; justify-content:center; gap:10px; background:#1a7a3e; color:#fff; padding:16px 20px; border-radius:999px; font-size:1rem; font-weight:700; min-height:48px; margin-bottom:10px; }
-    .wa-btn:hover{ background:#166534; }
-    .note{ text-align:center; font-size:0.78rem; color:var(--muted); margin-bottom:32px; }
-    .trust-row{ display:flex; gap:8px; margin-bottom:32px; }
-    .trust-item{ flex:1; background:var(--white); border:1px solid var(--line); border-radius:12px; padding:14px 8px; text-align:center; }
-    .trust-num{ font-family:var(--serif); font-size:1rem; font-weight:800; color:var(--accent); }
-    .trust-label{ font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; margin-top:2px; }
-    .sect-title{ font-family:var(--serif); font-size:1.1rem; font-weight:700; margin-bottom:14px; }
-    .price-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
-    .price-row{ display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
-    .price-row.pop{ border-color:var(--accent); background:#fdf3ec; }
-    .price-name{ font-size:0.92rem; font-weight:700; }
-    .price-badge{ display:block; font-size:0.62rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px; }
-    .price-amt{ font-family:var(--serif); font-size:1.15rem; font-weight:800; }
-    .plus-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
-    .plus-row{ display:flex; align-items:center; gap:12px; font-size:0.88rem; color:var(--muted); }
-    .plus-icon{ width:32px; height:32px; border-radius:9px; background:var(--white); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; color:var(--accent); flex-shrink:0; }
-    .plus-icon svg{ width:16px; height:16px; }
-    .promo-footer{ text-align:center; margin-top:28px; }
-    .footer-link{ display:inline-block; font-size:0.85rem; color:var(--accent); font-weight:600; margin-bottom:6px; }
-    .footer-note{ font-size:0.75rem; color:var(--muted); }
+    /* Halaman kampanye: satu kolom sempit, dibaca dari atas ke bawah seperti
+       selebaran. Tetap memakai perangkat visual yang sama dengan situs utama. */
+    .sheet{ max-width:520px; margin:0 auto; padding:36px var(--gutter) 64px; }
+    .sheet-head{ display:flex; align-items:center; justify-content:space-between; padding-bottom:18px; border-bottom:1px solid var(--ink); margin-bottom:34px; }
+    .sheet h1{ font-size:clamp(2.3rem,10vw,3.1rem); margin:18px 0 0; }
+    .sheet-lede{ color:var(--ink-70); margin-top:18px; font-size:1.02rem; }
+    .rowset{ border-top:1px solid var(--ink); margin-top:14px; }
+    .row{ display:flex; align-items:baseline; justify-content:space-between; gap:18px; padding:16px 0; border-bottom:1px solid var(--rule); }
+    .row.pick{ background:var(--paper-2); padding-left:14px; padding-right:14px; margin:0 -14px; box-shadow:inset 2px 0 0 var(--seal); }
+    .row-nm{ font-weight:700; font-size:.97rem; }
+    .row-fl{ display:block; font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--seal); margin-bottom:3px; }
+    .row-amt{ font-family:var(--mono); font-size:1.02rem; font-weight:500; white-space:nowrap; }
+    .why{ border-top:1px solid var(--ink); margin-top:14px; }
+    .why div{ display:grid; grid-template-columns:30px 1fr; gap:12px; padding:14px 0; border-bottom:1px solid var(--rule); font-size:.94rem; color:var(--ink-70); }
+    .why span{ font-family:var(--mono); font-size:.68rem; color:var(--seal); }
+    .sheet .btn{ width:100%; margin-top:8px; }
+    .sheet-foot{ margin-top:40px; padding-top:22px; border-top:1px solid var(--rule); text-align:center; }
+    .sheet-foot a{ font-family:var(--mono); font-size:.68rem; letter-spacing:.13em; text-transform:uppercase; color:var(--seal); display:inline-block; padding:6px 0; }
+    .sheet-foot p{ font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; color:var(--ink-45); margin:10px auto 0; }
+    .kicker{ font-family:var(--mono); font-size:.66rem; letter-spacing:.19em; text-transform:uppercase; color:var(--ink-45); margin:38px 0 4px; }
   </style>
 </head>
 <body>
 
-<div class="brand-row"><img src="assets/brand/logo-a-mark.png" alt=""/><span>Andri Wulandika</span></div>
+<div class="sheet">
 
-<span class="eyebrow promo-eyebrow">Jasa Pembuatan Website</span>
-<h1>Website yang bekerja keras untuk <span class="accentword">bisnis Anda</span></h1>
-<p class="sub">Desain modern, cepat selesai, SEO-ready. Mulai dari Rp 1,2 juta.</p>
+  <div class="sheet-head">
+    <span class="wordmark" style="font-size:1.05rem;"><img src="assets/brand/logo-a-mark.png" alt="" width="22" height="23" style="height:22px;"/>Andri Wulandika</span>
+    <span class="label">Kutacane, ID</span>
+  </div>
 
-<a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20" target="_blank" rel="noopener" class="wa-btn">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.531 5.851L.057 23.475a.75.75 0 00.916.93l5.815-1.524A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.91 0-3.705-.512-5.254-1.41l-.378-.223-3.447.904.92-3.36-.246-.388A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-  Konsultasi Gratis via WhatsApp
-</a>
-<p class="note">Biasanya respons dalam 1–2 jam di hari kerja</p>
+  <p class="label fade">Jasa Pembuatan Website</p>
+  <h1>
+    <span class="ln"><span>Website yang</span></span>
+    <span class="ln"><span>bekerja keras untuk</span></span>
+    <span class="ln"><span><em class="mark">bisnis Anda</em>.</span></span>
+  </h1>
+  <p class="sheet-lede fade f2">Desain modern, cepat selesai, SEO-ready. Mulai dari Rp 1,2 juta.</p>
 
-<div class="trust-row">
-  <div class="trust-item"><div class="trust-num">3–21 Hari</div><div class="trust-label">Selesai</div></div>
-  <div class="trust-item"><div class="trust-num">Gratis</div><div class="trust-label">Hosting</div></div>
-  <div class="trust-item"><div class="trust-num">Puas</div><div class="trust-label">Revisi</div></div>
+  <div class="fade f3" style="margin-top:28px;">
+    <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20" target="_blank" rel="noopener" class="btn btn-seal">Konsultasi Gratis via WhatsApp</a>
+    <p class="mono" style="text-align:center;font-size:.64rem;letter-spacing:.1em;color:var(--ink-45);margin-top:12px;">Biasanya respons dalam 1–2 jam di hari kerja</p>
+  </div>
+
+  <div class="datastrip" style="margin-top:36px;">
+    <div><b>3–21</b><span>Hari selesai</span></div>
+    <div><b>Gratis</b><span>Hosting</span></div>
+    <div><b>Puas</b><span>Revisi</span></div>
+  </div>
+
+  <p class="kicker">Paket Website</p>
+  <div class="rowset">
+    <div class="row up"><span class="row-nm">Landing Page</span><span class="row-amt">Rp 1,2jt</span></div>
+    <div class="row pick up up1"><span><span class="row-fl">Paling Populer</span><span class="row-nm">Website Profil</span></span><span class="row-amt">Rp 3jt</span></div>
+    <div class="row up up2"><span class="row-nm">Instansi / OPD</span><span class="row-amt">mulai Rp 2,5jt</span></div>
+  </div>
+
+  <p class="kicker">Paket Media Sosial</p>
+  <div class="rowset">
+    <div class="row up"><span class="row-nm">UMKM</span><span class="row-amt">Rp 600rb/bln</span></div>
+    <div class="row pick up up1"><span><span class="row-fl">Paling Lengkap</span><span class="row-nm">Bertumbuh</span></span><span class="row-amt">Rp 1,5jt/bln</span></div>
+  </div>
+  <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20paket%20Pengelolaan%20Media%20Sosial.%20Boleh%20info%3F" target="_blank" rel="noopener" class="link" style="margin-top:18px;">Tanya paket media sosial <span class="arw">→</span></a>
+
+  <p class="kicker">Kenapa Pilih Kami</p>
+  <div class="why">
+    <div class="up"><span>01</span>Desain modern, bukan template gratisan</div>
+    <div class="up up1"><span>02</span>Loading super cepat, di bawah 1 detik</div>
+    <div class="up up2"><span>03</span>SEO terstruktur sejak hari pertama</div>
+    <div class="up"><span>04</span>Hosting Cloudflare gratis selamanya</div>
+  </div>
+
+  <div style="margin-top:34px;">
+    <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20" target="_blank" rel="noopener" class="btn btn-solid">Chat WhatsApp Sekarang</a>
+  </div>
+
+  <div class="sheet-foot">
+    <a href="/">Lihat detail lengkap &amp; portofolio →</a>
+    <p>andriwulandika.uk &nbsp;·&nbsp; <a href="/kebijakan-privasi.html" style="letter-spacing:.1em;">Kebijakan Privasi</a> &nbsp;·&nbsp; <a href="/syarat-ketentuan.html" style="letter-spacing:.1em;">Syarat &amp; Ketentuan</a></p>
+  </div>
+
 </div>
 
-<div class="sect-title">Paket Harga</div>
-<div class="price-list">
-  <div class="price-row">
-    <div class="price-name">Landing Page</div>
-    <div class="price-amt">Rp 1,2jt</div>
-  </div>
-  <div class="price-row pop">
-    <div><span class="price-badge">Paling Populer</span><div class="price-name">Website Profil</div></div>
-    <div class="price-amt">Rp 3jt</div>
-  </div>
-  <div class="price-row">
-    <div class="price-name">Instansi / OPD</div>
-    <div class="price-amt">mulai Rp 2,5jt</div>
-  </div>
-</div>
-
-<div class="sect-title">Paket Media Sosial</div>
-<div class="price-list" style="margin-bottom:14px;">
-  <div class="price-row">
-    <div class="price-name">UMKM</div>
-    <div class="price-amt">Rp 600rb/bln</div>
-  </div>
-  <div class="price-row pop">
-    <div><span class="price-badge">Paling Lengkap</span><div class="price-name">Bertumbuh</div></div>
-    <div class="price-amt">Rp 1,5jt/bln</div>
-  </div>
-</div>
-<a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20paket%20Pengelolaan%20Media%20Sosial.%20Boleh%20info%3F" target="_blank" rel="noopener" class="footer-link" style="display:inline-block;font-weight:700;margin-bottom:36px;">Tanya paket media sosial via WhatsApp →</a>
-
-<div class="sect-title">Kenapa Pilih Kami</div>
-<div class="plus-list">
-  <div class="plus-row"><div class="plus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>Desain modern, bukan template gratisan</div>
-  <div class="plus-row"><div class="plus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>Loading super cepat, di bawah 1 detik</div>
-  <div class="plus-row"><div class="plus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>SEO terstruktur sejak hari pertama</div>
-  <div class="plus-row"><div class="plus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5z"/></svg></div>Hosting Cloudflare gratis selamanya</div>
-</div>
-
-<a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20" target="_blank" rel="noopener" class="wa-btn">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.531 5.851L.057 23.475a.75.75 0 00.916.93l5.815-1.524A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.91 0-3.705-.512-5.254-1.41l-.378-.223-3.447.904.92-3.36-.246-.388A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-  Chat WhatsApp Sekarang
-</a>
-
-<footer class="promo-footer">
-  <a href="/" class="footer-link">Lihat detail lengkap &amp; portofolio →</a><br/>
-  <span class="footer-note">andriwulandika.uk &nbsp;·&nbsp; <a href="/kebijakan-privasi.html" class="footer-link">Kebijakan Privasi</a> &nbsp;·&nbsp; <a href="/syarat-ketentuan.html" class="footer-link">Syarat &amp; Ketentuan</a></span>
-  <div style="display:flex;gap:14px;justify-content:center;align-items:center;padding:20px 0 2px;flex-wrap:wrap;">
-    <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener" aria-label="Instagram" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--white);border:1px solid var(--line);color:var(--muted);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-    <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener" aria-label="Facebook" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--white);border:1px solid var(--line);color:var(--muted);"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.4c0-.86.28-1.4 1.5-1.4H17.6V.3C17.2.25 16.1.15 15 .15c-2.4 0-4 1.46-4 4.15V6H8.2v3H11v9h3V9z"/></svg></a>
-    <a href="#" aria-label="TikTok (tautan menyusul)" title="TikTok — tautan menyusul" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--white);border:1px solid var(--line);color:var(--muted);"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-2.9v12.3a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.05V8.8a5.7 5.7 0 00-.7-.05A5.65 5.65 0 1017 14.3V8a7.1 7.1 0 004.1 1.3V6.4a4.1 4.1 0 01-4.1-4.1z"/></svg></a>
-    <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener" aria-label="YouTube" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--white);border:1px solid var(--line);color:var(--muted);"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
-  </div>
-</footer>
-
+<script src="assets/js/editorial-ui.js"></script>
 </body>
 </html>

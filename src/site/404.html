@@ -1,67 +1,36 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script>document.documentElement.className+=' js';</script>
   <script src="assets/js/analytics.js" defer></script>
-  <script src="/assets/js/ui-enhance.js" defer></script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>404 — Halaman Tidak Ditemukan</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #ffffff; --bg2: #f5f5f7; --text: #1d1d1f; --text2: #6e6e73;
-      --accent: #c2510c; --border: #d2d2d7;
-    }
-    body {
-      font-family: 'Jakarta', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      background: var(--bg); color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 40px 24px; text-align: center;
-    }
-    .code {
-      font-size: clamp(5rem, 15vw, 9rem); font-weight: 700;
-      letter-spacing: -0.06em; color: var(--bg2);
-      line-height: 1; margin-bottom: 0.5rem;
-    }
-    h1 {
-      font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700;
-      letter-spacing: -0.03em; color: var(--text);
-      margin-bottom: 0.8rem;
-    }
-    p {
-      font-size: 1rem; color: var(--text2);
-      max-width: 380px; line-height: 1.6; margin-bottom: 2.4rem;
-    }
-    .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-    .btn-dark {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--text); color: #fff;
-      padding: 13px 24px; border-radius: 980px;
-      font-size: 0.9rem; font-weight: 500;
-      text-decoration: none; transition: background 0.2s;
-    }
-    .btn-dark:hover { background: #333; }
-    .btn-light {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--bg2); color: var(--text);
-      padding: 13px 24px; border-radius: 980px;
-      font-size: 0.9rem; font-weight: 500;
-      text-decoration: none; transition: background 0.2s;
-    }
-    .btn-light:hover { background: #e5e5ea; }
-  </style>
+  <meta name="robots" content="noindex"/>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-a-32.png"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
+  <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
   <link rel="stylesheet" href="assets/css/editorial.css"/>
+  <style>
+    .err{ min-height:100vh; display:flex; flex-direction:column; justify-content:center; }
+    .err-code{ font-family:var(--mono); font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--seal); }
+    .err h1{ font-size:clamp(3rem,11vw,7rem); margin:20px 0 0; }
+    .err p{ margin-top:24px; color:var(--ink-70); max-width:44ch; padding-left:22px; border-left:1px solid var(--rule); }
+    .err .acts{ display:flex; flex-wrap:wrap; gap:14px; margin-top:38px; }
+  </style>
 </head>
 <body>
-  <div class="code">404</div>
-  <h1>Halaman Tidak Ditemukan</h1>
-  <p>Halaman yang Anda cari tidak ada atau sudah dipindahkan. Silakan kembali ke beranda.</p>
-  <div class="actions">
-    <a href="index.html" class="btn-dark">← Kembali ke Beranda</a>
-    <a href="https://ai.andriwulandika.uk/sirenja.html" class="btn-light">Coba SiRENJA</a>
+
+<div class="wrap err">
+  <span class="err-code">Galat 404 — Berkas Tidak Ditemukan</span>
+  <h1>Halaman ini<br/>tidak ada.</h1>
+  <p>Alamat yang Anda tuju tidak ditemukan atau sudah dipindahkan. Silakan kembali ke beranda.</p>
+  <div class="acts">
+    <a href="index.html" class="btn btn-solid">Kembali ke Beranda</a>
+    <a href="https://ai.andriwulandika.uk/" class="btn">Buka AI Tools</a>
   </div>
+</div>
+
+<script src="assets/js/editorial-ui.js"></script>
 </body>
 </html>

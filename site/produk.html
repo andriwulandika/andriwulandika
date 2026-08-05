@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script>document.documentElement.className+=' js';</script>
   <script src="assets/js/analytics.js" defer></script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -42,112 +43,141 @@
   <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
   <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
   <link rel="stylesheet" href="assets/css/editorial.css"/>
-  <style>
-    .prod-card{ background:var(--white); border:1px solid var(--line); border-radius:20px; padding:34px; margin-top:20px; }
-    .prod-tags{ display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 24px; }
-    .prod-tag{ font-size:0.78rem; font-weight:600; color:var(--muted); background:var(--paper); border:1px solid var(--line); padding:5px 13px; border-radius:999px; }
-    .placeholder-card{ background:var(--paper); border:1px dashed var(--line); border-radius:20px; padding:34px; margin-top:20px; }
-    .placeholder-badge{ display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); background:var(--white); border:1px solid var(--line); padding:4px 12px; border-radius:999px; margin-top:12px; }
-    .btn-wa{ display:inline-flex; align-items:center; gap:10px; background:#1a7a3e; color:#fff; padding:15px 30px; border-radius:999px; font-size:0.98rem; font-weight:700; min-height:48px; }
-    .btn-wa:hover{ background:#166534; }
-  </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap nav">
-    <a href="index.html" class="brand" style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/logo-a-mark.png" alt="" width="28" height="29" style="height:30px;width:auto;display:block;"/>Andri Wulandika</a>
-    <nav class="nav-links">
-      <a href="layanan-pemerintah.html">Layanan Pemerintah</a>
-      <a href="layanan-bisnis.html">Layanan Bisnis</a>
+<div class="spine" aria-hidden="true"><span class="spine-tick"></span><span class="spine-label">Produk</span></div>
+
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a href="index.html" class="wordmark"><img src="assets/brand/logo-a-mark.png" alt="" width="26" height="27"/>Andri Wulandika</a>
+    <nav class="mast-nav">
+      <a href="layanan-pemerintah.html">Pemerintah</a>
+      <a href="layanan-bisnis.html">Bisnis</a>
+      <a href="produk.html" class="here" aria-current="page">Produk</a>
       <a href="tentang.html">Tentang</a>
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20tanya%20soal%20produk%20digital." target="_blank" rel="noopener" class="btn btn-ink nav-cta" data-magnetic>Konsultasi</a>
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20tanya%20soal%20produk%20digital." target="_blank" rel="noopener" class="btn btn-solid mast-cta">Konsultasi</a>
     </nav>
-    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobnav"><span></span><span></span><span></span></button>
   </div>
-  <div class="mnav wrap" id="mnav">
-    <a href="layanan-pemerintah.html">Layanan Pemerintah</a>
-    <a href="layanan-bisnis.html">Layanan Bisnis</a>
-    <a href="tentang.html">Tentang</a>
-    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
+  <div class="mobnav" id="mobnav">
+    <a href="layanan-pemerintah.html"><span class="n">—</span>Layanan Pemerintah</a>
+    <a href="layanan-bisnis.html"><span class="n">—</span>Layanan Bisnis</a>
+    <a href="#ai-tools"><span class="n">01</span>AI Tools</a>
+    <a href="tentang.html"><span class="n">—</span>Tentang</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener"><span class="n">→</span>Konsultasi via WhatsApp</a>
   </div>
 </header>
 
-<section class="page-hero">
-  <div class="wrap" style="max-width:720px; text-align:center;">
-    <span class="eyebrow reveal">Digital Products</span>
-    <h1 class="reveal" style="margin:16px auto 18px;">Produk digital yang mempercepat transformasi Anda</h1>
-    <p class="reveal" style="margin:0 auto;">Selain layanan konsultasi website dan transformasi digital, kami juga mengembangkan produk digital siap pakai untuk pemerintah &amp; bisnis.</p>
-  </div>
-</section>
-
-<section id="ai-tools" style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-  <div class="wrap content-block reveal">
-    <span class="eyebrow">Produk 01</span>
-    <h2 style="margin-top:10px;">AI Tools Perencanaan Daerah.</h2>
-    <p>Platform AI tools untuk membantu ASN perencana daerah menyusun dokumen perencanaan lebih cepat — mulai dari Renja OPD hingga LKjIP, dengan mode demo gratis dan mode berbayar tanpa batas.</p>
-    <div class="prod-card">
-      <div class="prod-tags">
-        <span class="prod-tag">SiRENJA — Renja OPD</span>
-        <span class="prod-tag">SiRKPD — RKPD</span>
-        <span class="prod-tag">SiPerda — Perda</span>
-        <span class="prod-tag">SiGenDok — PK &amp; SKP</span>
-        <span class="prod-tag">SiLKjIP — LKjIP</span>
-        <span class="prod-tag">SiKTOR — KAK/TOR</span>
-        <span class="prod-tag">SiTelaah — Nota Dinas</span>
-        <span class="prod-tag">SiBACARA — Berita Acara</span>
-      </div>
-      <a href="https://ai.andriwulandika.uk/" target="_blank" rel="noopener" class="btn btn-ink" data-magnetic>Kunjungi Platform →</a>
-    </div>
-  </div>
-</section>
-
-<section id="produk-berikutnya">
-  <div class="wrap content-block reveal">
-    <span class="eyebrow">Produk Berikutnya</span>
-    <h2 style="margin-top:10px;">Produk Digital Berikutnya.</h2>
-    <p>Kami terus mengembangkan produk digital baru untuk mendukung transformasi digital pemerintah &amp; bisnis. Ingin jadi yang pertama tahu saat produk baru rilis? Hubungi kami via WhatsApp.</p>
-    <div class="placeholder-card">
-      <h3 style="font-size:1.1rem;">Segera Hadir</h3>
-      <p style="margin:8px 0 0; color:var(--muted); font-size:0.95rem;">Detail produk akan diumumkan di halaman ini begitu siap.</p>
-      <span class="placeholder-badge">Dalam Pengembangan</span>
-    </div>
-  </div>
-</section>
-
-<section id="kontak">
+<section class="hero" data-spine="Produk">
   <div class="wrap">
-    <div class="cta reveal">
-      <h2>Butuh solusi digital untuk instansi atau bisnis Anda?</h2>
-      <p>Konsultasi gratis — kami bantu tentukan apakah kebutuhan Anda lebih cocok dengan layanan konsultasi atau produk digital kami.</p>
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20tanya%20soal%20produk%20digital." target="_blank" rel="noopener" class="btn-wa" data-magnetic>Chat WhatsApp Sekarang</a>
+    <p class="label fade">Digital Products</p>
+    <h1 style="max-width:14ch;">
+      <span class="ln"><span>Produk digital</span></span>
+      <span class="ln"><span>yang <em class="mark">mempercepat</em></span></span>
+      <span class="ln"><span>transformasi Anda.</span></span>
+    </h1>
+    <p class="hero-lede fade f2">Selain layanan konsultasi website dan transformasi digital, kami juga mengembangkan produk digital siap pakai untuk pemerintah &amp; bisnis.</p>
+    <div class="hero-acts fade f3">
+      <a href="https://ai.andriwulandika.uk/" target="_blank" rel="noopener" class="btn btn-solid">Buka Platform AI Tools</a>
+      <a href="#ai-tools" class="btn">Lihat Daftar Alat</a>
     </div>
   </div>
 </section>
 
-<footer>
+<section class="sect band-ink" id="ai-tools" data-spine="01 — AI Tools">
   <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand"><span style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/favicon-a-512.png" alt="" width="34" height="34" style="height:34px;width:34px;border-radius:8px;display:block;"/>Andri Wulandika</span><p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p></div>
-      <div class="foot-links">
-        <div class="foot-col"><div class="lbl">Layanan</div><a href="layanan-pemerintah.html">Website Pemerintah</a><a href="layanan-bisnis.html">Website Bisnis</a><a href="layanan-bisnis.html#medsos">Media Sosial</a><a href="produk.html">AI Tools</a></div>
-        <div class="foot-col"><div class="lbl">Situs</div><a href="index.html#karya">Portofolio</a><a href="index.html#paket">Paket Harga</a><a href="tentang.html">Tentang</a></div>
-        <div class="foot-col"><div class="lbl">Legal</div><a href="kebijakan-privasi.html">Kebijakan Privasi</a><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></div>
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">Produk 01 — AI Tools Perencanaan Daerah</span>
+        <span class="label">Delapan alat</span>
+      </div>
+      <h2 class="rv">Satu platform, delapan generator dokumen.</h2>
+      <p class="note rv rv1">Platform AI tools untuk membantu ASN perencana daerah menyusun dokumen perencanaan lebih cepat — mulai dari Renja OPD hingga LKjIP, dengan mode demo gratis dan mode berbayar tanpa batas.</p>
+    </div>
+    <div class="tool-grid">
+      <div class="tool up"><span class="tn">01</span><h4>SiRENJA</h4><p>Renja OPD</p></div>
+      <div class="tool up"><span class="tn">02</span><h4>SiRKPD</h4><p>RKPD</p></div>
+      <div class="tool up up1"><span class="tn">03</span><h4>SiPerda</h4><p>Perda</p></div>
+      <div class="tool up up1"><span class="tn">04</span><h4>SiGenDok</h4><p>PK &amp; SKP</p></div>
+      <div class="tool up"><span class="tn">05</span><h4>SiLKjIP</h4><p>LKjIP</p></div>
+      <div class="tool up"><span class="tn">06</span><h4>SiKTOR</h4><p>KAK / TOR</p></div>
+      <div class="tool up up1"><span class="tn">07</span><h4>SiTelaah</h4><p>Nota Dinas</p></div>
+      <div class="tool up up1"><span class="tn">08</span><h4>SiBACARA</h4><p>Berita Acara</p></div>
+    </div>
+    <div class="hero-acts" style="margin-top:44px;">
+      <a href="https://ai.andriwulandika.uk/" target="_blank" rel="noopener" class="btn btn-seal">Kunjungi Platform →</a>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="produk-berikutnya" data-spine="02 — Berikutnya">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">Produk 02 — Dalam Pengembangan</span>
+        <span class="label">Segera hadir</span>
+      </div>
+      <h2 class="rv">Produk digital berikutnya.</h2>
+      <p class="note rv rv1">Kami terus mengembangkan produk digital baru untuk mendukung transformasi digital pemerintah &amp; bisnis. Ingin jadi yang pertama tahu saat produk baru rilis? Hubungi kami via WhatsApp.</p>
+    </div>
+    <div class="notice up" style="max-width:640px;">
+      <strong style="display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--seal);margin-bottom:10px;">Status — Dalam Pengembangan</strong>
+      Detail produk akan diumumkan di halaman ini begitu siap.
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="kontak" data-spine="Kontak">
+  <div class="wrap">
+    <span class="sect-num">Kontak</span>
+    <h2 class="rv" style="margin-top:24px;">Butuh solusi digital untuk instansi atau bisnis Anda?</h2>
+    <p class="sub rv rv1">Konsultasi gratis — kami bantu tentukan apakah kebutuhan Anda lebih cocok dengan layanan konsultasi atau produk digital kami.</p>
+    <div class="closing-acts up">
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20tanya%20soal%20produk%20digital." target="_blank" rel="noopener" class="btn btn-seal">Chat WhatsApp Sekarang</a>
+      <a href="mailto:wulandikaandri@gmail.com" class="btn">Kirim Email</a>
+    </div>
+  </div>
+</section>
+
+<footer class="colophon">
+  <div class="wrap">
+    <div class="col-grid">
+      <div class="col-brand">
+        <span class="wordmark"><img src="assets/brand/favicon-a-512.png" alt="" width="26" height="26"/>Andri Wulandika</span>
+        <p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p>
+      </div>
+      <div>
+        <div class="col-h">Layanan</div>
+        <a href="layanan-pemerintah.html">Website Pemerintah</a>
+        <a href="layanan-bisnis.html">Website Bisnis</a>
+        <a href="layanan-bisnis.html#medsos">Media Sosial</a>
+        <a href="produk.html">AI Tools</a>
+      </div>
+      <div>
+        <div class="col-h">Situs</div>
+        <a href="index.html#karya">Karya</a>
+        <a href="index.html#paket">Paket Harga</a>
+        <a href="tentang.html">Tentang</a>
+      </div>
+      <div>
+        <div class="col-h">Legal</div>
+        <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+        <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</span>
-      <div class="socials">
-        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.4c0-.86.28-1.4 1.5-1.4H17.6V.3C17.2.25 16.1.15 15 .15c-2.4 0-4 1.46-4 4.15V6H8.2v3H11v9h3V9z"/></svg></a>
-        <a href="#" aria-label="TikTok (tautan menyusul)" title="TikTok — tautan menyusul"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-2.9v12.3a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.05V8.8a5.7 5.7 0 00-.7-.05A5.65 5.65 0 1017 14.3V8a7.1 7.1 0 004.1 1.3V6.4a4.1 4.1 0 01-4.1-4.1z"/></svg></a>
-        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener" aria-label="YouTube"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+    <div class="col-foot">
+      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business</span>
+      <div class="col-social">
+        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" title="TikTok — tautan menyusul">TikTok</a>
+        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script src="assets/js/lenis.min.js"></script>
 <script src="assets/js/editorial-ui.js"></script>
 </body>
 </html>

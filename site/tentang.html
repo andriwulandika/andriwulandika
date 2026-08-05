@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script>document.documentElement.className+=' js';</script>
   <script src="assets/js/analytics.js" defer></script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -45,247 +46,252 @@
   <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
   <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
   <link rel="stylesheet" href="assets/css/editorial.css"/>
-  <style>
-    .profile-card{ background:var(--white); border:1px solid var(--line); border-radius:20px; padding:28px; text-align:center; }
-    .avatar{ width:96px; height:96px; border-radius:50%; margin:0 auto 16px; object-fit:cover; border:2px solid var(--paper); box-shadow:0 0 0 1px var(--line); }
-    .card-name{ font-family:var(--serif); font-size:1.2rem; font-weight:700; margin-bottom:2px; }
-    .card-role{ font-size:0.82rem; color:var(--muted); line-height:1.5; margin-bottom:18px; }
-    .card-divider{ height:1px; background:var(--line); margin:16px 0; }
-    .card-info{ display:flex; flex-direction:column; gap:12px; text-align:left; }
-    .card-info-item{ display:flex; align-items:flex-start; gap:12px; }
-    .card-info-item svg{ width:18px; height:18px; color:var(--accent); flex-shrink:0; margin-top:2px; }
-    .info-text{ font-size:0.82rem; color:var(--muted); line-height:1.5; }
-    .info-text strong{ color:var(--ink); font-weight:700; display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:2px; }
-    .status-dot{ display:inline-flex; align-items:center; gap:6px; font-size:0.74rem; font-weight:700; color:#1a7a3e; background:#e8f8ee; padding:5px 12px; border-radius:999px; border:1px solid #a3d9b4; margin-top:14px; }
-    .status-dot::before{ content:''; width:6px; height:6px; border-radius:50%; background:#34c759; animation:pulse 2s ease infinite; }
-    @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
-
-    .timeline{ position:relative; margin-top:8px; }
-    .timeline::before{ content:''; position:absolute; left:19px; top:6px; bottom:6px; width:1px; background:var(--line); }
-    .tl-item{ display:flex; gap:24px; margin-bottom:32px; position:relative; }
-    .tl-dot{ width:40px; height:40px; border-radius:50%; background:var(--white); border:1px solid var(--line); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-weight:800; color:var(--accent); font-size:0.95rem; z-index:1; }
-    .tl-dot.current{ background:var(--ink); color:#fff; border-color:var(--ink); }
-    .tl-title{ font-family:var(--serif); font-size:1.05rem; font-weight:700; margin:6px 0 6px; }
-    .tl-desc{ font-size:0.9rem; color:var(--muted); line-height:1.65; }
-
-    .skill-card{ background:var(--white); border:1px solid var(--line); border-radius:18px; padding:24px 22px; transition:transform .18s ease, box-shadow .18s ease; }
-    .skill-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(17,17,17,0.07); }
-    .skill-card svg{ width:26px; height:26px; color:var(--accent); margin-bottom:14px; }
-    .skill-title{ font-size:1rem; font-weight:700; margin-bottom:8px; }
-    .skill-desc{ font-size:0.86rem; color:var(--muted); line-height:1.6; }
-    .skill-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
-    .skill-tag{ font-size:0.7rem; font-weight:600; padding:4px 11px; background:var(--paper); border:1px solid var(--line); border-radius:999px; color:var(--muted); }
-
-    .value-card{ background:var(--white); border:1px solid var(--line); border-radius:18px; padding:28px 24px; }
-    .value-num{ font-family:var(--serif); font-size:2.1rem; font-weight:800; color:var(--accent); line-height:1; margin-bottom:10px; }
-    .value-title{ font-size:1.02rem; font-weight:700; margin-bottom:8px; }
-    .value-desc{ font-size:0.88rem; color:var(--muted); line-height:1.65; }
-  </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap nav">
-    <a href="index.html" class="brand" style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/logo-a-mark.png" alt="" width="28" height="29" style="height:30px;width:auto;display:block;"/>Andri Wulandika</a>
-    <nav class="nav-links">
+<div class="spine" aria-hidden="true"><span class="spine-tick"></span><span class="spine-label">Tentang</span></div>
+
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a href="index.html" class="wordmark"><img src="assets/brand/logo-a-mark.png" alt="" width="26" height="27"/>Andri Wulandika</a>
+    <nav class="mast-nav">
       <a href="index.html#layanan">Layanan</a>
-      <a href="index.html#karya">Portofolio</a>
+      <a href="index.html#karya">Karya</a>
       <a href="index.html#paket">Paket</a>
-      <a href="tentang.html" aria-current="page" class="current">Tentang</a>
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-ink nav-cta" data-magnetic>Konsultasi</a>
+      <a href="tentang.html" class="here" aria-current="page">Tentang</a>
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-solid mast-cta">Konsultasi</a>
     </nav>
-    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobnav"><span></span><span></span><span></span></button>
   </div>
-  <div class="mnav wrap" id="mnav">
-    <a href="index.html#layanan">Layanan</a>
-    <a href="index.html#karya">Portofolio</a>
-    <a href="index.html#paket">Paket</a>
-    <a href="produk.html">Produk (AI Tools)</a>
-    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
+  <div class="mobnav" id="mobnav">
+    <a href="index.html#layanan"><span class="n">01</span>Layanan</a>
+    <a href="index.html#karya"><span class="n">02</span>Karya</a>
+    <a href="index.html#paket"><span class="n">04</span>Paket</a>
+    <a href="produk.html"><span class="n">—</span>AI Tools</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener"><span class="n">→</span>Konsultasi via WhatsApp</a>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="page-hero">
-  <div class="wrap two-col">
-    <div class="reveal">
-      <span class="eyebrow">Digital Transformation Consultant</span>
-      <h1>Andri Wulandika</h1>
-      <p>Konsultan transformasi digital untuk pemerintah &amp; bisnis — menggabungkan pengalaman langsung sebagai praktisi perencanaan pembangunan daerah dengan solusi digital modern: website profesional, AI automation, dan optimasi SEO.</p>
-      <div class="hero-ctas" style="margin-top:26px;">
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20mengenai%20transformasi%20digital%20untuk%20instansi%2Fbisnis%20saya." target="_blank" rel="noopener" class="btn btn-ink" data-magnetic>Hubungi Saya</a>
-        <a href="index.html#layanan" class="btn btn-outline">Lihat Layanan</a>
+<section class="hero" data-spine="Profil">
+  <div class="wrap split">
+    <div>
+      <p class="label fade">Profil · Digital Transformation Consultant</p>
+      <h1 style="font-size:clamp(2.6rem,6.5vw,4.6rem);">
+        <span class="ln"><span>Andri</span></span>
+        <span class="ln"><span>Wulandika</span></span>
+      </h1>
+      <p class="hero-lede fade f2">Konsultan transformasi digital untuk pemerintah &amp; bisnis — menggabungkan pengalaman langsung sebagai praktisi perencanaan pembangunan daerah dengan solusi digital modern: website profesional, AI automation, dan optimasi SEO.</p>
+      <div class="hero-acts fade f3">
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20mengenai%20transformasi%20digital%20untuk%20instansi%2Fbisnis%20saya." target="_blank" rel="noopener" class="btn btn-solid">Hubungi Saya</a>
+        <a href="index.html#layanan" class="btn">Lihat Layanan</a>
       </div>
     </div>
-    <div class="profile-card reveal d1">
-      <img class="avatar" src="assets/img/andri-avatar.jpg" alt="Foto Andri Wulandika" width="96" height="96"/>
-      <p class="card-name">Andri Wulandika, S.T.</p>
-      <p class="card-role">Perencana Ahli Pertama<br/>Bappeda Kabupaten Aceh Tenggara</p>
-      <div class="card-divider"></div>
-      <div class="card-info">
-        <div class="card-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6"/></svg><div class="info-text"><strong>Instansi</strong>Bappeda Kab. Aceh Tenggara</div></div>
-        <div class="card-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="info-text"><strong>Lokasi</strong>Kutacane, Aceh Tenggara</div></div>
-        <div class="card-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg><div class="info-text"><strong>Pendidikan</strong>S1 Teknik Sipil — Univ. Gunung Leuser Aceh</div></div>
-        <div class="card-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><div class="info-text"><strong>Mulai Bertugas</strong>2025 · P3K Fungsional Perencana</div></div>
+
+    <div class="idcard fade f2">
+      <div class="idcard-top">
+        <img src="assets/img/andri-avatar.jpg" alt="Foto Andri Wulandika" width="62" height="62"/>
+        <div>
+          <div class="idcard-nm">Andri Wulandika, S.T.</div>
+          <div class="idcard-rl">Perencana Ahli Pertama<br/>Bappeda Kab. Aceh Tenggara</div>
+        </div>
       </div>
-      <div style="text-align:center;"><span class="status-dot">Aktif Bertugas</span></div>
+      <dl>
+        <div class="idrow"><dt>Instansi</dt><dd>Bappeda Kab. Aceh Tenggara</dd></div>
+        <div class="idrow"><dt>Lokasi</dt><dd>Kutacane, Aceh Tenggara</dd></div>
+        <div class="idrow"><dt>Pendidikan</dt><dd>S1 Teknik Sipil — Univ. Gunung Leuser Aceh</dd></div>
+        <div class="idrow"><dt>Bertugas</dt><dd>2025 · P3K Fungsional Perencana</dd></div>
+      </dl>
     </div>
   </div>
 </section>
 
-<!-- TENTANG -->
-<section style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-  <div class="wrap content-block reveal">
-    <span class="eyebrow">Tentang Andri Wulandika</span>
-    <h2 style="margin-top:10px;">Praktisi Pemerintahan, Konsultan Transformasi Digital.</h2>
-    <p>Berawal dari latar belakang Teknik Sipil di Universitas Gunung Leuser Aceh, saya membangun pemahaman mendalam tentang infrastruktur dan pembangunan fisik — fondasi yang kemudian membawa saya ke jalur fungsional Perencana, dengan fokus pada bagaimana pembangunan daerah direncanakan, dianggarkan, dan dievaluasi secara sistematis.</p>
-    <p>Sejak Desember 2025, saya bertugas sebagai Perencana Ahli Pertama (P3K) di Bappeda Kabupaten Aceh Tenggara — terlibat langsung dalam penyusunan RKPK, koordinasi lintas 51 OPD, dan review teknis dokumen anggaran.</p>
-    <p>Dari pengalaman itu, saya melihat langsung kebutuhan nyata: instansi pemerintah dan pelaku bisnis di daerah butuh solusi digital yang praktis, bukan sekadar teori. Itulah yang mendorong saya mengembangkan <strong>SiRENJA</strong> dan <strong>SiRKPD</strong> — AI tools untuk ASN perencana — dan memperluas fokus konsultasi ke website profesional serta transformasi digital untuk instansi dan bisnis di luar Aceh Tenggara.</p>
-  </div>
-</section>
-
-<!-- VISI -->
-<section>
-  <div class="wrap content-block reveal">
-    <span class="eyebrow">Visi</span>
-    <h2 style="margin-top:10px;">Transformasi Digital yang Aplikatif, Bukan Sekadar Tren.</h2>
-    <p>Banyak instansi pemerintah dan pelaku bisnis di daerah tertinggal secara digital bukan karena tidak ingin berubah, tapi karena solusi yang tersedia sering kali tidak relevan dengan kebutuhan nyata mereka — terlalu rumit, terlalu mahal, atau dirancang tanpa memahami cara kerja pemerintahan dan bisnis di lapangan.</p>
-    <p>Misi saya adalah menjembatani hal itu: menghadirkan website profesional, otomatisasi berbasis AI, dan solusi digital lain yang benar-benar dipakai — bukan sekadar dipajang — oleh instansi pemerintah (OPD, Bappeda, Pemda) dan bisnis yang ingin naik kelas secara digital. Setiap solusi yang saya kembangkan, termasuk SiRENJA dan SiRKPD, lahir dari kebutuhan yang saya alami sendiri sebagai ASN perencana, sehingga relevan dan langsung dapat diterapkan.</p>
-    <p>Dalam jangka panjang, saya ingin terus memperluas dampak ini: membantu lebih banyak instansi pemerintah dan bisnis di berbagai daerah bertransformasi secara digital dengan cara yang praktis, berbasis regulasi, dan terukur.</p>
-  </div>
-</section>
-
-<!-- EXPERTISE -->
-<section style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<section class="sect" data-spine="01 — Latar">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Expertise</span>
-      <h2>Bidang yang saya kuasai.</h2>
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">01 — Latar</span>
+        <span class="label">Riwayat</span>
+      </div>
+      <h2 class="rv">Praktisi pemerintahan, konsultan transformasi digital.</h2>
     </div>
-    <div class="svc-grid" style="grid-template-columns:1fr;">
-      <div class="skills-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
-        <div class="skill-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6M6 10v3M12 10v3M18 10v3"/></svg>
-          <p class="skill-title">Government Digital Solutions</p>
-          <p class="skill-desc">Website instansi/OPD dan solusi digital yang memahami alur kerja pemerintahan — dari SIPD-RI hingga koordinasi lintas OPD.</p>
-          <div class="skill-tags"><span class="skill-tag">Website OPD</span><span class="skill-tag">SIPD-RI</span></div>
-        </div>
-        <div class="skill-card reveal d1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="8" width="7" height="13"/><path d="M6 7h1M6 11h1M6 15h1M17 12h1M17 15h1"/></svg>
-          <p class="skill-title">Business Digital Solutions</p>
-          <p class="skill-desc">Landing page, website profil, dan kehadiran digital untuk bisnis yang ingin tumbuh dengan fondasi yang kuat.</p>
-          <div class="skill-tags"><span class="skill-tag">Landing Page</span><span class="skill-tag">Profil Bisnis</span></div>
-        </div>
-        <div class="skill-card reveal d2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          <p class="skill-title">Professional Websites</p>
-          <p class="skill-desc">Desain modern, cepat, dan responsif — dibangun di atas Cloudflare Pages dengan harga transparan.</p>
-          <div class="skill-tags"><span class="skill-tag">Desain Modern</span><span class="skill-tag">Responsif</span></div>
-        </div>
-        <div class="skill-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.1-3.1a4 4 0 01-5.4 5.4L6 21l-3-3 10.4-9.4a4 4 0 015.4-5.4l-3.1 3.1z"/></svg>
-          <p class="skill-title">Custom Software</p>
-          <p class="skill-desc">Pengembangan tools digital yang dirancang khusus untuk kebutuhan spesifik — dibuktikan lewat SiRENJA &amp; SiRKPD.</p>
-          <div class="skill-tags"><span class="skill-tag">SiRENJA</span><span class="skill-tag">SiRKPD</span></div>
-        </div>
-        <div class="skill-card reveal d1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
-          <p class="skill-title">AI Automation</p>
-          <p class="skill-desc">Pemanfaatan AI untuk mempercepat pekerjaan berulang — dari asisten perencanaan daerah hingga otomatisasi proses bisnis.</p>
-          <div class="skill-tags"><span class="skill-tag">AI Tools</span><span class="skill-tag">Otomatisasi</span></div>
-        </div>
-        <div class="skill-card reveal d2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-          <p class="skill-title">SEO &amp; Digital Branding</p>
-          <p class="skill-desc">Fondasi SEO yang benar sejak hari pertama — meta tag lengkap, schema markup, dan konten yang terstruktur untuk ditemukan.</p>
-          <div class="skill-tags"><span class="skill-tag">SEO</span><span class="skill-tag">Schema Markup</span></div>
-        </div>
+    <div class="split">
+      <div class="prose up">
+        <p>Berawal dari latar belakang Teknik Sipil di Universitas Gunung Leuser Aceh, saya membangun pemahaman mendalam tentang infrastruktur dan pembangunan fisik — fondasi yang kemudian membawa saya ke jalur fungsional Perencana, dengan fokus pada bagaimana pembangunan daerah direncanakan, dianggarkan, dan dievaluasi secara sistematis.</p>
+        <p>Sejak Desember 2025, saya bertugas sebagai Perencana Ahli Pertama (P3K) di Bappeda Kabupaten Aceh Tenggara — terlibat langsung dalam penyusunan RKPK, koordinasi lintas 51 OPD, dan review teknis dokumen anggaran.</p>
+        <p>Dari pengalaman itu, saya melihat langsung kebutuhan nyata: instansi pemerintah dan pelaku bisnis di daerah butuh solusi digital yang praktis, bukan sekadar teori. Itulah yang mendorong saya mengembangkan <strong>SiRENJA</strong> dan <strong>SiRKPD</strong> — AI tools untuk ASN perencana — dan memperluas fokus konsultasi ke website profesional serta transformasi digital untuk instansi dan bisnis di luar Aceh Tenggara.</p>
+      </div>
+      <p class="marginal up up1">Catatan — Pengalaman di dalam sistem perencanaan inilah yang membedakan pendekatan saya: struktur dokumen, alur persetujuan, dan istilah teknis bukan sesuatu yang perlu dijelaskan lebih dulu.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sect band-ink" data-spine="02 — Visi">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">02 — Visi</span>
+        <span class="label">Arah kerja</span>
+      </div>
+      <h2 class="rv">Transformasi digital yang aplikatif, bukan sekadar tren.</h2>
+    </div>
+    <div class="split">
+      <div class="prose up">
+        <p>Banyak instansi pemerintah dan pelaku bisnis di daerah tertinggal secara digital bukan karena tidak ingin berubah, tapi karena solusi yang tersedia sering kali tidak relevan dengan kebutuhan nyata mereka — terlalu rumit, terlalu mahal, atau dirancang tanpa memahami cara kerja pemerintahan dan bisnis di lapangan.</p>
+        <p>Misi saya adalah menjembatani hal itu: menghadirkan website profesional, otomatisasi berbasis AI, dan solusi digital lain yang benar-benar dipakai — bukan sekadar dipajang — oleh instansi pemerintah (OPD, Bappeda, Pemda) dan bisnis yang ingin naik kelas secara digital. Setiap solusi yang saya kembangkan, termasuk SiRENJA dan SiRKPD, lahir dari kebutuhan yang saya alami sendiri sebagai ASN perencana, sehingga relevan dan langsung dapat diterapkan.</p>
+        <p>Dalam jangka panjang, saya ingin terus memperluas dampak ini: membantu lebih banyak instansi pemerintah dan bisnis di berbagai daerah bertransformasi secara digital dengan cara yang praktis, berbasis regulasi, dan terukur.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WORKING METHODOLOGY -->
-<section>
+<section class="sect" data-spine="03 — Keahlian">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Cara Kerja</span>
-      <h2>Working Methodology.</h2>
-      <p>Kerangka kerja konsultasi yang saya terapkan pada setiap proyek — dari kebutuhan awal hingga hasil yang terus disempurnakan.</p>
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">03 — Keahlian</span>
+        <span class="label">Enam bidang</span>
+      </div>
+      <h2 class="rv">Bidang yang saya kuasai.</h2>
     </div>
-    <div class="timeline" style="max-width:640px;">
-      <div class="tl-item reveal"><div class="tl-dot current">01</div><div class="tl-content"><p class="tl-title">Discovery</p><p class="tl-desc">Memahami kebutuhan, tujuan, dan konteks instansi atau bisnis Anda sebelum menentukan solusi.</p></div></div>
-      <div class="tl-item reveal"><div class="tl-dot">02</div><div class="tl-content"><p class="tl-title">Strategy</p><p class="tl-desc">Menyusun rencana solusi digital yang sesuai kebutuhan, anggaran, dan target — bukan solusi generik.</p></div></div>
-      <div class="tl-item reveal"><div class="tl-dot">03</div><div class="tl-content"><p class="tl-title">Development</p><p class="tl-desc">Membangun solusi — website, AI automation, atau software — dengan standar modern dan SEO-ready sejak awal.</p></div></div>
-      <div class="tl-item reveal"><div class="tl-dot">04</div><div class="tl-content"><p class="tl-title">Implementation</p><p class="tl-desc">Serah terima dan penerapan solusi ke lingkungan kerja Anda, dengan pendampingan hingga siap digunakan.</p></div></div>
-      <div class="tl-item reveal" style="margin-bottom:0;"><div class="tl-dot">05</div><div class="tl-content"><p class="tl-title">Continuous Improvement</p><p class="tl-desc">Pemantauan dan penyempurnaan berkelanjutan setelah solusi berjalan, mengikuti kebutuhan yang berkembang.</p></div></div>
+    <div class="grid-3">
+      <div class="cell up">
+        <span class="cell-n">01</span>
+        <h3>Government Digital Solutions</h3>
+        <p>Website instansi/OPD dan solusi digital yang memahami alur kerja pemerintahan — dari SIPD-RI hingga koordinasi lintas OPD.</p>
+        <div class="tags"><span class="tag">Website OPD</span><span class="tag">SIPD-RI</span></div>
+      </div>
+      <div class="cell up up1">
+        <span class="cell-n">02</span>
+        <h3>Business Digital Solutions</h3>
+        <p>Landing page, website profil, dan kehadiran digital untuk bisnis yang ingin tumbuh dengan fondasi yang kuat.</p>
+        <div class="tags"><span class="tag">Landing Page</span><span class="tag">Profil Bisnis</span></div>
+      </div>
+      <div class="cell up up2">
+        <span class="cell-n">03</span>
+        <h3>Professional Websites</h3>
+        <p>Desain modern, cepat, dan responsif — dibangun di atas Cloudflare Pages dengan harga transparan.</p>
+        <div class="tags"><span class="tag">Desain Modern</span><span class="tag">Responsif</span></div>
+      </div>
+      <div class="cell up">
+        <span class="cell-n">04</span>
+        <h3>Custom Software</h3>
+        <p>Pengembangan tools digital yang dirancang khusus untuk kebutuhan spesifik — dibuktikan lewat SiRENJA &amp; SiRKPD.</p>
+        <div class="tags"><span class="tag">SiRENJA</span><span class="tag">SiRKPD</span></div>
+      </div>
+      <div class="cell up up1">
+        <span class="cell-n">05</span>
+        <h3>AI Automation</h3>
+        <p>Pemanfaatan AI untuk mempercepat pekerjaan berulang — dari asisten perencanaan daerah hingga otomatisasi proses bisnis.</p>
+        <div class="tags"><span class="tag">AI Tools</span><span class="tag">Otomatisasi</span></div>
+      </div>
+      <div class="cell up up2">
+        <span class="cell-n">06</span>
+        <h3>SEO &amp; Digital Branding</h3>
+        <p>Fondasi SEO yang benar sejak hari pertama — meta tag lengkap, schema markup, dan konten yang terstruktur untuk ditemukan.</p>
+        <div class="tags"><span class="tag">SEO</span><span class="tag">Schema Markup</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHY WORK WITH ME -->
-<section style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<section class="sect" data-spine="04 — Metode">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Kenapa Bekerja Sama</span>
-      <h2>Why Work With Me.</h2>
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">04 — Cara Kerja</span>
+        <span class="label">Lima tahap</span>
+      </div>
+      <h2 class="rv">Working methodology.</h2>
+      <p class="note rv rv1">Kerangka kerja konsultasi yang saya terapkan pada setiap proyek — dari kebutuhan awal hingga hasil yang terus disempurnakan.</p>
     </div>
-    <div class="price-grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr));">
-      <div class="value-card reveal"><div class="value-num">01</div><p class="value-title">Pengalaman Langsung di Pemerintahan</p><p class="value-desc">Pengalaman saya sebagai Perencana Ahli Pertama di Bappeda memberi pemahaman langsung soal cara kerja pemerintahan — bukan konsultan luar yang hanya memahami pemerintahan dari teori.</p></div>
-      <div class="value-card reveal d1"><div class="value-num">02</div><p class="value-title">Berbasis Regulasi</p><p class="value-desc">Setiap solusi yang saya kembangkan mempertimbangkan regulasi yang berlaku — Permendagri, PMK, dan peraturan teknis terkini.</p></div>
-      <div class="value-card reveal d2"><div class="value-num">03</div><p class="value-title">Terbukti, Bukan Sekadar Teori</p><p class="value-desc">SiRENJA dan SiRKPD adalah bukti nyata — dibangun, dipakai, dan terus dikembangkan berdasarkan kebutuhan pengguna sesungguhnya.</p></div>
-      <div class="value-card reveal d3"><div class="value-num">04</div><p class="value-title">Transparan &amp; Kolaboratif</p><p class="value-desc">Harga jelas sejak awal, komunikasi terbuka di setiap tahap, dan pengerjaan yang mengutamakan kebutuhan Anda.</p></div>
+    <div class="steps">
+      <div class="step up"><span class="step-n">I</span><div><h3>Discovery</h3><p>Memahami kebutuhan, tujuan, dan konteks instansi atau bisnis Anda sebelum menentukan solusi.</p></div></div>
+      <div class="step up up1"><span class="step-n">II</span><div><h3>Strategy</h3><p>Menyusun rencana solusi digital yang sesuai kebutuhan, anggaran, dan target — bukan solusi generik.</p></div></div>
+      <div class="step up up2"><span class="step-n">III</span><div><h3>Development</h3><p>Membangun solusi — website, AI automation, atau software — dengan standar modern dan SEO-ready sejak awal.</p></div></div>
+      <div class="step up"><span class="step-n">IV</span><div><h3>Implementation</h3><p>Serah terima dan penerapan solusi ke lingkungan kerja Anda, dengan pendampingan hingga siap digunakan.</p></div></div>
+      <div class="step up up1"><span class="step-n">V</span><div><h3>Continuous Improvement</h3><p>Pemantauan dan penyempurnaan berkelanjutan setelah solusi berjalan, mengikuti kebutuhan yang berkembang.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sect" data-spine="05 — Alasan">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">05 — Kenapa Bekerja Sama</span>
+        <span class="label">Empat alasan</span>
+      </div>
+      <h2 class="rv">Why work with me.</h2>
+    </div>
+    <div class="steps">
+      <div class="step up"><span class="step-n">01</span><div><h3>Pengalaman Langsung di Pemerintahan</h3><p>Pengalaman saya sebagai Perencana Ahli Pertama di Bappeda memberi pemahaman langsung soal cara kerja pemerintahan — bukan konsultan luar yang hanya memahami pemerintahan dari teori.</p></div></div>
+      <div class="step up up1"><span class="step-n">02</span><div><h3>Berbasis Regulasi</h3><p>Setiap solusi yang saya kembangkan mempertimbangkan regulasi yang berlaku — Permendagri, PMK, dan peraturan teknis terkini.</p></div></div>
+      <div class="step up up2"><span class="step-n">03</span><div><h3>Terbukti, Bukan Sekadar Teori</h3><p>SiRENJA dan SiRKPD adalah bukti nyata — dibangun, dipakai, dan terus dikembangkan berdasarkan kebutuhan pengguna sesungguhnya.</p></div></div>
+      <div class="step up"><span class="step-n">04</span><div><h3>Transparan &amp; Kolaboratif</h3><p>Harga jelas sejak awal, komunikasi terbuka di setiap tahap, dan pengerjaan yang mengutamakan kebutuhan Anda.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- DISCLAIMER: layanan berbayar independen dari jabatan ASN (kalimat final, disetujui Andri — tidak diubah) -->
-<section style="padding-bottom:0;">
-  <div class="wrap reveal" style="max-width:760px;">
-    <div class="disclaimer">
+<section class="sect-tight">
+  <div class="wrap">
+    <div class="notice up" style="max-width:760px;">
       Catatan: Jasa konsultasi transformasi digital di halaman ini saya jalankan secara pribadi dan independen, di luar tugas dan kewenangan sebagai ASN — bukan atas nama, mewakili, maupun menggunakan fasilitas Bappeda Kabupaten Aceh Tenggara atau instansi pemerintah manapun.
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section>
+<section class="closing" data-spine="Kontak">
   <div class="wrap">
-    <div class="cta reveal">
-      <h2>Siap memulai transformasi digital instansi/bisnis Anda?</h2>
-      <p>Diskusikan kebutuhan digital instansi pemerintah atau bisnis Anda secara gratis — tanpa komitmen.</p>
-      <div class="hero-ctas" style="justify-content:center;">
-        <a href="https://wa.me/62811660568" target="_blank" rel="noopener" class="btn btn-ink" data-magnetic>Konsultasi via WhatsApp</a>
-        <a href="mailto:wulandikaandri@gmail.com" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4); color:#fff;">Email</a>
-      </div>
+    <span class="sect-num">Kontak</span>
+    <h2 class="rv" style="margin-top:24px;">Siap memulai transformasi digital instansi atau bisnis Anda?</h2>
+    <p class="sub rv rv1">Diskusikan kebutuhan digital instansi pemerintah atau bisnis Anda secara gratis — tanpa komitmen.</p>
+    <div class="closing-acts up">
+      <a href="https://wa.me/62811660568" target="_blank" rel="noopener" class="btn btn-seal">Konsultasi via WhatsApp</a>
+      <a href="mailto:wulandikaandri@gmail.com" class="btn">Kirim Email</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
+<footer class="colophon">
   <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand"><span style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/favicon-a-512.png" alt="" width="34" height="34" style="height:34px;width:34px;border-radius:8px;display:block;"/>Andri Wulandika</span><p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p></div>
-      <div class="foot-links">
-        <div class="foot-col"><div class="lbl">Layanan</div><a href="layanan-pemerintah.html">Website Pemerintah</a><a href="layanan-bisnis.html">Website Bisnis</a><a href="layanan-bisnis.html#medsos">Media Sosial</a><a href="produk.html">AI Tools</a></div>
-        <div class="foot-col"><div class="lbl">Situs</div><a href="index.html#karya">Portofolio</a><a href="index.html#paket">Paket Harga</a><a href="index.html#faq">FAQ</a><a href="tentang.html">Tentang</a></div>
-        <div class="foot-col"><div class="lbl">Legal</div><a href="kebijakan-privasi.html">Kebijakan Privasi</a><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></div>
+    <div class="col-grid">
+      <div class="col-brand">
+        <span class="wordmark"><img src="assets/brand/favicon-a-512.png" alt="" width="26" height="26"/>Andri Wulandika</span>
+        <p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p>
+      </div>
+      <div>
+        <div class="col-h">Layanan</div>
+        <a href="layanan-pemerintah.html">Website Pemerintah</a>
+        <a href="layanan-bisnis.html">Website Bisnis</a>
+        <a href="layanan-bisnis.html#medsos">Media Sosial</a>
+        <a href="produk.html">AI Tools</a>
+      </div>
+      <div>
+        <div class="col-h">Situs</div>
+        <a href="index.html#karya">Karya</a>
+        <a href="index.html#paket">Paket Harga</a>
+        <a href="index.html#tanya">Pertanyaan</a>
+        <a href="tentang.html">Tentang</a>
+      </div>
+      <div>
+        <div class="col-h">Legal</div>
+        <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+        <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</span>
-      <div class="socials">
-        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.4c0-.86.28-1.4 1.5-1.4H17.6V.3C17.2.25 16.1.15 15 .15c-2.4 0-4 1.46-4 4.15V6H8.2v3H11v9h3V9z"/></svg></a>
-        <a href="#" aria-label="TikTok (tautan menyusul)" title="TikTok — tautan menyusul"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-2.9v12.3a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.05V8.8a5.7 5.7 0 00-.7-.05A5.65 5.65 0 1017 14.3V8a7.1 7.1 0 004.1 1.3V6.4a4.1 4.1 0 01-4.1-4.1z"/></svg></a>
-        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener" aria-label="YouTube"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+    <div class="col-foot">
+      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business</span>
+      <div class="col-social">
+        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" title="TikTok — tautan menyusul">TikTok</a>
+        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script src="assets/js/lenis.min.js"></script>
 <script src="assets/js/editorial-ui.js"></script>
 </body>
 </html>
