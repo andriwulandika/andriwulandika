@@ -267,3 +267,11 @@ yang menulis ulang HTML tiap request). Pengetatan harus lewat refactor + hash.
 5. **Uji menyeluruh** tiap halaman + 8 AI Tools + ekspor PDF sebelum mengencangkan
    header. Pertimbangkan fase `Content-Security-Policy-Report-Only` lebih dulu
    bila ingin memantau pelanggaran tanpa risiko.
+
+---
+
+## Perbaikan teknis mandiri — 11 Agustus 2026
+
+| Item | Status | Bukti |
+|------|--------|-------|
+| Redirect pages.dev → ai.andriwulandika.uk di `tools/_redirects` | ✅ Selesai (11 Agustus 2026) | TODO lama di `src/tools/_redirects` diganti baris redirect: `https://andriwulandika-tools.pages.dev/*  https://ai.andriwulandika.uk/:splat  301`. Nama project dikonfirmasi dari `docs/panduan/ganti-admin-password.md` (tercatat sebagai `andriwulandika-tools`). Build output `tools/_redirects` di-regenerate via `npm run build:pages`. Mengikuti pola yang sama dengan `site/_redirects`. |
