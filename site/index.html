@@ -9,6 +9,7 @@
   <meta name="google-site-verification" content="googlea044b9a8efd52fe7"/>
   <meta name="google-site-verification" content="SjZrtwDmaFFG-PiT7JJFSDvDp7JhQRc1QaY7reS3x_I"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#000000"/>
 
   <!-- SEO Primary -->
   <title>Digital Transformation untuk Pemerintah &amp; Bisnis — Website &amp; AI Tools | Andri Wulandika</title>
@@ -86,16 +87,6 @@
         {"@type":"Offer","name":"Website Profil","price":"3000000","priceCurrency":"IDR"},
         {"@type":"Offer","name":"Website Instansi/OPD","price":"2500000","priceCurrency":"IDR"}
       ]
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {"@type":"Question","name":"Apakah saya perlu tahu coding untuk mengelola website?","acceptedAnswer":{"@type":"Answer","text":"Tidak sama sekali. Setelah serah terima, kami berikan panduan lengkap cara update teks, ganti gambar, dan tambah konten dasar tanpa menyentuh kode apapun."}},
-        {"@type":"Question","name":"Berapa biaya hosting per bulan?","acceptedAnswer":{"@type":"Answer","text":"Nol rupiah. Website di-hosting di Cloudflare Pages yang gratis tanpa batas bandwidth. Satu-satunya biaya tahunan yang mungkin ada adalah domain (opsional)."}},
-        {"@type":"Question","name":"Berapa lama proses pengerjaannya?","acceptedAnswer":{"@type":"Answer","text":"Landing Page 3–5 hari kerja, Website Profil 7–14 hari kerja, Paket Instansi 14–21 hari kerja, bergantung kelengkapan konten yang Anda sediakan."}},
-        {"@type":"Question","name":"Apakah ada garansi muncul di halaman 1 Google?","acceptedAnswer":{"@type":"Answer","text":"Tidak ada yang bisa menjamin posisi Google. Yang kami lakukan adalah membangun fondasi SEO yang benar dari awal untuk memaksimalkan peluang ditemukan."}}
-      ]
     }
   ]
   </script>
@@ -103,183 +94,67 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-a-32.png"/>
   <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
   <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/instrument-serif-400.woff2" crossorigin/>
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jakarta-400.woff2" crossorigin/>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin/>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-500.woff2" crossorigin/>
   <link rel="stylesheet" href="assets/css/editorial.css"/>
 </head>
 <body>
 
-<!-- Punggung dokumen: penanda posisi baca, hanya pada layar sangat lebar -->
-<div class="spine" aria-hidden="true"><span class="spine-tick"></span><span class="spine-label">Beranda</span></div>
-
-<header class="masthead">
-  <div class="wrap masthead-in">
-    <a href="/" class="wordmark"><img src="assets/brand/logo-a-mark.png" alt="" width="26" height="27"/>Andri Wulandika</a>
-    <nav class="mast-nav">
-      <a href="#layanan">Layanan</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="/" class="brand"><img src="assets/brand/logo-a-white.png" alt="" width="24" height="25"/>Andri Wulandika</a>
+    <nav class="nav-links">
       <a href="#karya">Karya</a>
-      <a href="#paket">Paket</a>
-      <a href="#tanya">Tanya</a>
+      <a href="#layanan">Layanan</a>
+      <a href="harga.html">Harga</a>
       <a href="tentang.html">Tentang</a>
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-solid mast-cta">Konsultasi</a>
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-primary nav-cta">Konsultasi</a>
     </nav>
-    <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobnav"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
   </div>
-  <div class="mobnav" id="mobnav">
-    <a href="#layanan"><span class="n">01</span>Layanan</a>
-    <a href="#karya"><span class="n">02</span>Karya</a>
-    <a href="#proses"><span class="n">03</span>Proses</a>
-    <a href="#paket"><span class="n">04</span>Paket</a>
-    <a href="#tanya"><span class="n">05</span>Tanya</a>
-    <a href="tentang.html"><span class="n">—</span>Tentang</a>
-    <a href="produk.html"><span class="n">—</span>AI Tools</a>
-    <a href="https://wa.me/62811660568" target="_blank" rel="noopener"><span class="n">→</span>Konsultasi via WhatsApp</a>
+  <div class="mnav" id="mnav">
+    <a href="#karya">Karya</a>
+    <a href="#layanan">Layanan</a>
+    <a href="harga.html">Harga</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="produk.html">AI Tools</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
   </div>
 </header>
 
 <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
-<section class="hero" data-spine="Beranda">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="label fade">Konsultan Transformasi Digital</p>
-      <h1>
-        <span class="ln"><span>Transformasi</span></span>
-        <span class="ln"><span>digital untuk</span></span>
-        <span class="ln"><span><em class="mark">pemerintah</em> &amp; <em class="mark">bisnis</em>.</span></span>
-      </h1>
-      <p class="hero-lede fade f2">Membantu instansi pemerintah dan bisnis tampil profesional serta bekerja lebih cepat — lewat website modern yang mudah ditemukan di Google, AI tools, dan pengelolaan media sosial.</p>
-      <div class="hero-acts fade f3">
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website." target="_blank" rel="noopener" class="btn btn-solid">Konsultasi Gratis</a>
-        <a href="#paket" class="btn">Lihat Paket Harga</a>
-      </div>
-    </div>
-
-    <!-- Skema kaskade: hierarki perencanaan yang mengendap jadi baris dokumen.
-         Digambar stroke demi stroke seperti plotter. -->
-    <div class="hero-figure fade f2" aria-hidden="true">
-      <svg class="schematic" viewBox="0 0 360 470" role="presentation" focusable="false">
-        <text class="s-cap" x="60" y="26">Kaskade</text>
-        <rect class="s-node pop" x="175" y="37" width="10" height="10" style="animation-delay:.15s"/>
-        <path class="s-line draw" d="M180 47 V100"/>
-        <path class="s-line draw" d="M60 100 H300"/>
-        <path class="s-line draw" d="M60 100 V146"/>
-        <path class="s-line draw" d="M180 100 V146"/>
-        <path class="s-line draw" d="M300 100 V146"/>
-        <rect class="s-node pop" x="55.5" y="146" width="9" height="9" style="animation-delay:.75s"/>
-        <rect class="s-node pop" x="175.5" y="146" width="9" height="9" style="animation-delay:.8s"/>
-        <rect class="s-node pop" x="295.5" y="146" width="9" height="9" style="animation-delay:.85s"/>
-        <path class="s-line draw" d="M60 155 V186"/>
-        <path class="s-line draw" d="M180 155 V186"/>
-        <path class="s-line draw" d="M300 155 V186"/>
-        <path class="s-line draw" d="M32 186 H88"/>
-        <path class="s-line draw" d="M152 186 H208"/>
-        <path class="s-line draw" d="M272 186 H328"/>
-        <path class="s-line draw" d="M32 186 V218"/>
-        <path class="s-line draw" d="M88 186 V218"/>
-        <path class="s-line draw" d="M152 186 V218"/>
-        <path class="s-line draw" d="M208 186 V218"/>
-        <path class="s-line draw" d="M272 186 V218"/>
-        <path class="s-line draw" d="M328 186 V218"/>
-        <circle class="s-node pop" cx="32" cy="221" r="3.2" style="animation-delay:1.15s"/>
-        <circle class="s-node pop" cx="88" cy="221" r="3.2" style="animation-delay:1.2s"/>
-        <circle class="s-node pop" cx="152" cy="221" r="3.2" style="animation-delay:1.25s"/>
-        <circle class="s-node pop" cx="208" cy="221" r="3.2" style="animation-delay:1.3s"/>
-        <circle class="s-node pop" cx="272" cy="221" r="3.2" style="animation-delay:1.35s"/>
-        <circle class="s-node pop" cx="328" cy="221" r="3.2" style="animation-delay:1.4s"/>
-        <path class="s-line draw" d="M32 224 V254"/>
-        <path class="s-line draw" d="M88 224 V254"/>
-        <path class="s-line draw" d="M152 224 V254"/>
-        <path class="s-line draw" d="M208 224 V254"/>
-        <path class="s-line draw" d="M272 224 V254"/>
-        <path class="s-line draw" d="M328 224 V254"/>
-        <path class="s-line draw" d="M32 254 H328"/>
-        <path class="s-line draw" d="M180 254 V284"/>
-
-        <text class="s-cap" x="48" y="302">Dokumen</text>
-        <path class="s-row draw" d="M48 314 H312"/>
-        <path class="s-row draw" d="M48 330 H262"/>
-        <path class="s-row draw" d="M48 346 H312"/>
-        <path class="s-row draw" d="M48 362 H226"/>
-        <path class="s-row draw" d="M48 378 H296"/>
-        <path class="s-row draw" d="M48 394 H188"/>
-
-        <circle class="s-seal-fill pop" cx="286" cy="424" r="30" style="animation-delay:1.9s"/>
-        <circle class="s-seal pop" cx="286" cy="424" r="30" style="animation-delay:1.9s"/>
-        <circle class="s-seal pop" cx="286" cy="424" r="24" style="animation-delay:2s"/>
-      </svg>
-    </div>
-  </div>
-
+<section class="hero">
   <div class="wrap">
-    <div class="datastrip">
-      <div><b>3–21</b><span>Hari pengerjaan</span></div>
-      <div><b>Gratis</b><span>Hosting selamanya</span></div>
-      <div><b><span data-count="51" data-suffix="+">51+</span></b><span>OPD pengalaman koordinasi</span></div>
+    <span class="eyebrow rise">Konsultan Transformasi Digital</span>
+    <h1 class="rise d1" style="margin-top:26px;">Transformasi digital untuk <span class="accent">pemerintah</span> &amp; <span class="accent">bisnis</span>.</h1>
+    <p class="hero-sub rise d2">Membantu instansi pemerintah dan bisnis tampil profesional serta bekerja lebih cepat — lewat website modern yang mudah ditemukan di Google, AI tools, dan pengelolaan media sosial.</p>
+    <div class="hero-cta rise d3">
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website." target="_blank" rel="noopener" class="btn btn-primary">Konsultasi Gratis</a>
+      <a href="#karya" class="btn btn-ghost">Lihat Karya</a>
+    </div>
+
+    <div class="stats rise d4">
+      <div class="stat"><b>3–21</b><span>Hari pengerjaan</span></div>
+      <div class="stat"><b>Gratis</b><span>Hosting selamanya</span></div>
+      <div class="stat"><b>51+</b><span>OPD pengalaman koordinasi</span></div>
     </div>
   </div>
 </section>
 
-<!-- ── TICKER ───────────────────────────────────────────────────────────── -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track" id="ticker">
-    <span>Website Pemerintah</span><i>◆</i><span>Website Bisnis</span><i>◆</i><span>AI Tools Perencanaan</span><i>◆</i><span>Pengelolaan Media Sosial</span><i>◆</i><span>SEO</span><i>◆</i><span>Landing Page</span><i>◆</i>
-  </div>
-</div>
-
-<!-- ── 01 LAYANAN ───────────────────────────────────────────────────────── -->
-<section class="sect" id="layanan" data-spine="01 — Layanan">
+<!-- ── KARYA ────────────────────────────────────────────────────────────── -->
+<section class="sect" id="karya">
   <div class="wrap">
     <div class="sect-head">
-      <div class="sect-head-top">
-        <span class="sect-num">01 — Layanan</span>
-        <span class="label">Empat lini</span>
+      <div class="sect-head-row">
+        <div>
+          <span class="eyebrow rise">Karya &amp; Template</span>
+          <h2 class="rise d1">Contoh desain siap pakai.</h2>
+        </div>
       </div>
-      <h2 class="rv">Solusi digital yang benar-benar dipakai.</h2>
-      <p class="note rv rv1">Empat lini layanan untuk kebutuhan pemerintah maupun bisnis — dari website hingga konten media sosial.</p>
+      <p class="rise d2">Empat contoh website (data &amp; merek fiktif) untuk memperlihatkan gaya desain per kebutuhan.</p>
     </div>
 
-    <div class="svc-list">
-      <a href="layanan-pemerintah.html" class="svc up">
-        <span class="svc-n">01</span>
-        <h3>Website Pemerintah</h3>
-        <p>Website instansi/OPD/desa sesuai kaidah pemerintah — berita, dokumen publik, PPID.</p>
-        <span class="svc-price">mulai Rp 2,5 juta →</span>
-      </a>
-      <a href="layanan-bisnis.html" class="svc up up1">
-        <span class="svc-n">02</span>
-        <h3>Website Bisnis</h3>
-        <p>Landing page &amp; company profile — desain modern, SEO-ready, cepat selesai.</p>
-        <span class="svc-price">mulai Rp 1,2 juta →</span>
-      </a>
-      <a href="layanan-bisnis.html#medsos" class="svc up up2">
-        <span class="svc-n">03</span>
-        <h3>Media Sosial</h3>
-        <p>Konten, caption, desain, dan laporan bulanan — akun bisnismu konsisten tanpa ribet.</p>
-        <span class="svc-price">mulai Rp 600rb/bln →</span>
-      </a>
-      <a href="produk.html" class="svc up up3">
-        <span class="svc-n">04</span>
-        <h3>AI Tools</h3>
-        <p>Platform AI untuk mempercepat pekerjaan perencanaan daerah — sistem kredit pay-as-you-go.</p>
-        <span class="svc-price">Lihat produk →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ── 02 KARYA ─────────────────────────────────────────────────────────── -->
-<section class="sect" id="karya" data-spine="02 — Karya">
-  <div class="wrap">
-    <div class="sect-head">
-      <div class="sect-head-top">
-        <span class="sect-num">02 — Karya &amp; Template</span>
-        <span class="label">Empat contoh</span>
-      </div>
-      <h2 class="rv">Contoh desain siap pakai.</h2>
-      <p class="note rv rv1">Empat contoh website (data &amp; merek fiktif) untuk memperlihatkan gaya desain per kebutuhan. Saring berdasarkan kategori.</p>
-    </div>
-
-    <div class="filters">
+    <div class="filters rise">
       <button class="filt on" type="button" data-filter="all">Semua</button>
       <button class="filt" type="button" data-filter="umkm">UMKM</button>
       <button class="filt" type="button" data-filter="desa">Desa</button>
@@ -287,241 +162,108 @@
       <button class="filt" type="button" data-filter="landing">Landing Page</button>
     </div>
 
-    <div class="plates">
-      <article class="plate up" data-cat="umkm">
-        <a href="demo-umkm.html" target="_blank" rel="noopener">
-          <figure>
-            <div class="plate-img"><img src="assets/img/template-umkm.webp" alt="Contoh website UMKM Kopi Senja" loading="lazy" width="760" height="380"/></div>
-            <figcaption>
-              <div><span class="plate-t">Kopi Senja</span><span class="plate-m">Gbr. 01 — UMKM</span></div>
-              <span class="link">Lihat <span class="arw">→</span></span>
-            </figcaption>
-          </figure>
-        </a>
-      </article>
-      <article class="plate up up1" data-cat="desa">
-        <a href="demo-desa.html" target="_blank" rel="noopener">
-          <figure>
-            <div class="plate-img"><img src="assets/img/template-desa.webp" alt="Contoh website Desa Makmur Jaya" loading="lazy" width="760" height="380"/></div>
-            <figcaption>
-              <div><span class="plate-t">Desa Makmur Jaya</span><span class="plate-m">Gbr. 02 — Website Desa</span></div>
-              <span class="link">Lihat <span class="arw">→</span></span>
-            </figcaption>
-          </figure>
-        </a>
-      </article>
-      <article class="plate up" data-cat="pemerintah">
-        <a href="demo-pemerintah.html" target="_blank" rel="noopener">
-          <figure>
-            <div class="plate-img"><img src="assets/img/template-pemerintah.webp" alt="Contoh website Dinas Kominfo" loading="lazy" width="760" height="380"/></div>
-            <figcaption>
-              <div><span class="plate-t">Dinas Kominfo Contoh</span><span class="plate-m">Gbr. 03 — Instansi / OPD</span></div>
-              <span class="link">Lihat <span class="arw">→</span></span>
-            </figcaption>
-          </figure>
-        </a>
-      </article>
-      <article class="plate up up1" data-cat="landing">
-        <a href="demo-landing.html" target="_blank" rel="noopener">
-          <figure>
-            <div class="plate-img"><img src="assets/img/template-landing.webp" alt="Contoh landing page KelasCuan" loading="lazy" width="760" height="380"/></div>
-            <figcaption>
-              <div><span class="plate-t">KelasCuan</span><span class="plate-m">Gbr. 04 — Landing Page</span></div>
-              <span class="link">Lihat <span class="arw">→</span></span>
-            </figcaption>
-          </figure>
-        </a>
-      </article>
+    <div class="work">
+      <a href="demo-umkm.html" target="_blank" rel="noopener" class="card rise" data-cat="umkm">
+        <div class="card-img"><span class="card-tag">Contoh</span><img src="assets/img/template-umkm.webp" alt="Contoh website UMKM Kopi Senja" loading="lazy" width="760" height="380"/></div>
+        <div class="card-body"><div><h3>Kopi Senja</h3><span class="meta">UMKM · Kedai Kopi</span></div><span class="go">→</span></div>
+      </a>
+      <a href="demo-desa.html" target="_blank" rel="noopener" class="card rise d1" data-cat="desa">
+        <div class="card-img"><span class="card-tag">Contoh</span><img src="assets/img/template-desa.webp" alt="Contoh website Desa Makmur Jaya" loading="lazy" width="760" height="380"/></div>
+        <div class="card-body"><div><h3>Desa Makmur Jaya</h3><span class="meta">Website Desa</span></div><span class="go">→</span></div>
+      </a>
+      <a href="demo-pemerintah.html" target="_blank" rel="noopener" class="card rise" data-cat="pemerintah">
+        <div class="card-img"><span class="card-tag">Contoh</span><img src="assets/img/template-pemerintah.webp" alt="Contoh website Dinas Kominfo" loading="lazy" width="760" height="380"/></div>
+        <div class="card-body"><div><h3>Dinas Kominfo Contoh</h3><span class="meta">Instansi / OPD</span></div><span class="go">→</span></div>
+      </a>
+      <a href="demo-landing.html" target="_blank" rel="noopener" class="card rise d1" data-cat="landing">
+        <div class="card-img"><span class="card-tag">Contoh</span><img src="assets/img/template-landing.webp" alt="Contoh landing page KelasCuan" loading="lazy" width="760" height="380"/></div>
+        <div class="card-body"><div><h3>KelasCuan</h3><span class="meta">Landing Page</span></div><span class="go">→</span></div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ── 03 PROSES ────────────────────────────────────────────────────────── -->
-<section class="sect" id="proses" data-spine="03 — Proses">
+<!-- ── LAYANAN ──────────────────────────────────────────────────────────── -->
+<section class="sect" id="layanan">
   <div class="wrap">
     <div class="sect-head">
-      <div class="sect-head-top">
-        <span class="sect-num">03 — Cara Kerja</span>
-        <span class="label">Empat tahap</span>
-      </div>
-      <h2 class="rv">Dari konsultasi ke website siap pakai.</h2>
-      <p class="note rv rv1">Empat langkah sederhana — tanpa perlu paham teknis apa pun.</p>
+      <span class="eyebrow rise">Layanan</span>
+      <h2 class="rise d1">Solusi digital yang benar-benar dipakai.</h2>
+      <p class="rise d2">Empat lini layanan untuk kebutuhan pemerintah maupun bisnis — dari website hingga konten media sosial.</p>
     </div>
 
-    <div class="proc">
-      <div class="proc-row up">
-        <span class="proc-rn">I</span>
-        <h3>Konsultasi Gratis</h3>
-        <p>Ceritakan kebutuhan via WhatsApp — jenis usaha, target, dan fitur yang diinginkan.</p>
-        <span class="proc-dur">Hari ke-1</span>
-      </div>
-      <div class="proc-row up up1">
-        <span class="proc-rn">II</span>
-        <h3>Brief &amp; Desain Awal</h3>
-        <p>Kami kirim mockup &amp; struktur halaman untuk disetujui sebelum pengerjaan dimulai.</p>
-        <span class="proc-dur">Hari ke-2–4</span>
-      </div>
-      <div class="proc-row up up2">
-        <span class="proc-rn">III</span>
-        <h3>Pengerjaan &amp; Revisi</h3>
-        <p>Website dibangun sesuai brief. Anda pantau progres dan beri masukan tiap tahap.</p>
-        <span class="proc-dur">Hari ke-3–14</span>
-      </div>
-      <div class="proc-row up up3">
-        <span class="proc-rn">IV</span>
-        <h3>Launch &amp; Serah Terima</h3>
-        <p>Website live, plus file, akses penuh, dan panduan update konten mandiri.</p>
-        <span class="proc-dur">Sesuai paket</span>
-      </div>
+    <div class="svc-list">
+      <a href="layanan-pemerintah.html" class="svc rise">
+        <span class="svc-n">01</span>
+        <h3>Website Pemerintah</h3>
+        <p>Website instansi/OPD/desa sesuai kaidah pemerintah — berita, dokumen publik, PPID.</p>
+        <span class="price">mulai Rp 2,5 juta →</span>
+      </a>
+      <a href="layanan-bisnis.html" class="svc rise">
+        <span class="svc-n">02</span>
+        <h3>Website Bisnis</h3>
+        <p>Landing page &amp; company profile — desain modern, SEO-ready, cepat selesai.</p>
+        <span class="price">mulai Rp 1,2 juta →</span>
+      </a>
+      <a href="layanan-bisnis.html#medsos" class="svc rise">
+        <span class="svc-n">03</span>
+        <h3>Media Sosial</h3>
+        <p>Konten, caption, desain, dan laporan bulanan — akun bisnismu konsisten tanpa ribet.</p>
+        <span class="price">mulai Rp 600rb/bln →</span>
+      </a>
+      <a href="produk.html" class="svc rise">
+        <span class="svc-n">04</span>
+        <h3>AI Tools</h3>
+        <p>Platform AI untuk mempercepat pekerjaan perencanaan daerah — sistem kredit pay-as-you-go.</p>
+        <span class="price">Lihat produk →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ── BLOK TINTA: AI TOOLS ─────────────────────────────────────────────── -->
-<section class="sect band-ink" id="ai-tools" data-spine="AI Tools">
+<!-- ── PROSES ───────────────────────────────────────────────────────────── -->
+<section class="sect" id="proses">
   <div class="wrap">
     <div class="sect-head">
-      <div class="sect-head-top">
-        <span class="sect-num">Produk</span>
-        <span class="label">ai.andriwulandika.uk</span>
-      </div>
-      <h2 class="rv">Delapan alat yang sudah dipakai ASN se-Indonesia.</h2>
-      <p class="note rv rv1">Platform AI untuk menyusun dokumen perencanaan daerah — dibangun dari kebutuhan yang saya alami sendiri sebagai perencana, bukan dari asumsi.</p>
+      <span class="eyebrow rise">Cara Kerja</span>
+      <h2 class="rise d1">Dari konsultasi ke website siap pakai.</h2>
+      <p class="rise d2">Empat langkah sederhana — tanpa perlu paham teknis apa pun.</p>
     </div>
-
-    <div class="tool-grid">
-      <div class="tool up"><span class="tn">01</span><h4>SiRENJA</h4><p>Renja OPD</p></div>
-      <div class="tool up"><span class="tn">02</span><h4>SiRKPD</h4><p>RKPD</p></div>
-      <div class="tool up up1"><span class="tn">03</span><h4>SiPerda</h4><p>Perda</p></div>
-      <div class="tool up up1"><span class="tn">04</span><h4>SiGenDok</h4><p>PK &amp; SKP</p></div>
-      <div class="tool up"><span class="tn">05</span><h4>SiLKjIP</h4><p>LKjIP</p></div>
-      <div class="tool up"><span class="tn">06</span><h4>SiKTOR</h4><p>KAK / TOR</p></div>
-      <div class="tool up up1"><span class="tn">07</span><h4>SiTelaah</h4><p>Nota Dinas</p></div>
-      <div class="tool up up1"><span class="tn">08</span><h4>SiBACARA</h4><p>Berita Acara</p></div>
-    </div>
-
-    <div class="hero-acts" style="margin-top:44px;">
-      <a href="https://ai.andriwulandika.uk/" target="_blank" rel="noopener" class="btn btn-seal">Buka Platform AI Tools</a>
-      <a href="produk.html" class="btn">Pelajari Produk</a>
+    <div class="steps rise">
+      <div class="step"><span class="n">01</span><h3>Konsultasi Gratis</h3><p>Ceritakan kebutuhan via WhatsApp — jenis usaha, target, dan fitur yang diinginkan.</p><span class="dur">Hari ke-1</span></div>
+      <div class="step"><span class="n">02</span><h3>Brief &amp; Desain Awal</h3><p>Kami kirim mockup &amp; struktur halaman untuk disetujui sebelum pengerjaan dimulai.</p><span class="dur">Hari ke-2–4</span></div>
+      <div class="step"><span class="n">03</span><h3>Pengerjaan &amp; Revisi</h3><p>Website dibangun sesuai brief. Anda pantau progres dan beri masukan tiap tahap.</p><span class="dur">Hari ke-3–14</span></div>
+      <div class="step"><span class="n">04</span><h3>Launch &amp; Serah Terima</h3><p>Website live, plus file, akses penuh, dan panduan update konten mandiri.</p><span class="dur">Sesuai paket</span></div>
     </div>
   </div>
 </section>
 
-<!-- ── 04 PAKET ─────────────────────────────────────────────────────────── -->
-<section class="sect" id="paket" data-spine="04 — Paket">
+<!-- ── PITA HARGA (detail lengkap di halaman harga.html) ─────────────────── -->
+<section class="sect" id="harga">
   <div class="wrap">
-    <div class="sect-head">
-      <div class="sect-head-top">
-        <span class="sect-num">04 — Paket Harga</span>
-        <span class="label">Termasuk hosting</span>
+    <div class="price-band rise">
+      <div>
+        <span class="from">Paket website mulai dari</span>
+        <span class="amt">Rp 1,2 juta</span>
+        <p class="note">Bayar sekali, milik Anda selamanya. Semua paket sudah termasuk hosting gratis dan panduan penggunaan dasar.</p>
       </div>
-      <h2 class="rv">Transparan, tanpa biaya tersembunyi.</h2>
-      <p class="note rv rv1">Semua paket sudah termasuk hosting gratis (Cloudflare Pages) dan panduan penggunaan dasar.</p>
-    </div>
-
-    <div class="packs">
-      <div class="pack up">
-        <span class="pack-flag"></span>
-        <span class="pack-nm">Landing Page</span>
-        <span class="pack-amt">Rp 1,2 jt</span>
-        <span class="pack-note">Bayar sekali, milik Anda selamanya</span>
-        <ul>
-          <li>1 halaman panjang (scroll)</li>
-          <li>Desain profesional &amp; responsif</li>
-          <li>Tombol WhatsApp / form kontak</li>
-          <li>SEO dasar (meta, schema, sitemap)</li>
-          <li>Hosting gratis + subdomain gratis</li>
-          <li>Selesai 3–5 hari kerja · 2× revisi</li>
-        </ul>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Landing%20Page%20Rp1%2C2juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn">Pilih Paket Ini</a>
-      </div>
-
-      <div class="pack pick up up1">
-        <span class="pack-flag">Paling Populer</span>
-        <span class="pack-nm">Website Profil</span>
-        <span class="pack-amt">Rp 3 jt</span>
-        <span class="pack-note">Domain .com/id opsional (+Rp 150rb/tahun)</span>
-        <ul>
-          <li>5–7 halaman (Beranda, Tentang, Layanan, Kontak, dll)</li>
-          <li>Desain custom sesuai identitas brand</li>
-          <li>SEO lengkap (meta, OG, schema, sitemap)</li>
-          <li>Formulir kontak + integrasi WhatsApp</li>
-          <li>Google Analytics terpasang</li>
-          <li>Selesai 7–14 hari · revisi sampai puas (maks 3)</li>
-          <li>Support WhatsApp 1 bulan</li>
-        </ul>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Website%20Profil%20Rp3juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-solid">Pilih Paket Ini</a>
-      </div>
-
-      <div class="pack up up2">
-        <span class="pack-flag">Instansi / OPD / Desa</span>
-        <span class="pack-nm">Website Instansi</span>
-        <span class="pack-amt">Rp 2,5 jt+</span>
-        <span class="pack-note">Harga menyesuaikan scope kebutuhan</span>
-        <ul>
-          <li>10+ halaman terstruktur</li>
-          <li>Halaman berita / publikasi (update mandiri)</li>
-          <li>Struktur sesuai regulasi website pemerintah</li>
-          <li>Halaman dokumen publik &amp; unduhan</li>
-          <li>Training penggunaan &amp; update konten</li>
-          <li>Selesai 14–21 hari · Support WhatsApp 3 bulan</li>
-        </ul>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20dari%20instansi%20dan%20tertarik%20Paket%20Website%20Instansi%2FOPD.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn">Konsultasi Dulu</a>
-      </div>
-    </div>
-
-    <p class="addendum up"><b>Lampiran — Add-on opsional</b>Domain .com (Rp 150rb/tahun) · Koneksi ke media sosial (Rp 150rb) · Blog / artikel rutin (Rp 50rb/artikel) · Setup Google Bisnisku (Rp 150rb) · Maintenance tahunan (mulai Rp 300rb/tahun)</p>
-  </div>
-</section>
-
-<!-- ── 05 TANYA ─────────────────────────────────────────────────────────── -->
-<section class="sect" id="tanya" data-spine="05 — Tanya">
-  <div class="wrap">
-    <div class="sect-head">
-      <div class="sect-head-top">
-        <span class="sect-num">05 — Pertanyaan</span>
-        <span class="label">Lima hal</span>
-      </div>
-      <h2 class="rv">Yang paling sering ditanyakan.</h2>
-    </div>
-
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-q" type="button"><span class="qn">01</span><span>Apakah saya perlu tahu coding untuk mengelola website?</span><span class="qx">+</span></button>
-        <div class="faq-a"><div>Tidak sama sekali. Setelah serah terima, kami berikan panduan lengkap cara update teks, ganti gambar, dan tambah konten dasar — semuanya tanpa menyentuh kode. Untuk perubahan desain kompleks, Anda bisa menghubungi kami kembali.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button"><span class="qn">02</span><span>Berapa biaya hosting per bulan?</span><span class="qx">+</span></button>
-        <div class="faq-a"><div>Nol rupiah. Website di-hosting di Cloudflare Pages — platform global gratis tanpa batas bandwidth dan tanpa biaya bulanan. Satu-satunya biaya tahunan yang mungkin ada adalah domain (mis. .com ~Rp 150rb/tahun), dan itu pun opsional.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button"><span class="qn">03</span><span>Bisakah ditambah fitur belanja online (e-commerce)?</span><span class="qx">+</span></button>
-        <div class="faq-a"><div>Untuk toko online dengan manajemen produk dan keranjang penuh, sebaiknya diskusi dulu karena butuh backend berbeda. Namun integrasi WhatsApp order atau redirect ke Tokopedia/Shopee bisa kami akomodasi di semua paket.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button"><span class="qn">04</span><span>Berapa lama proses pengerjaannya?</span><span class="qx">+</span></button>
-        <div class="faq-a"><div>Landing Page 3–5 hari kerja, Website Profil 7–14 hari kerja, Paket Instansi 14–21 hari kerja. Durasi bergantung kelengkapan konten (teks &amp; foto) yang Anda sediakan.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button"><span class="qn">05</span><span>Apakah ada garansi muncul di halaman 1 Google?</span><span class="qx">+</span></button>
-        <div class="faq-a"><div>Tidak ada yang bisa menjamin posisi Google — siapa pun yang menjanjikannya patut dicurigai. Yang kami lakukan adalah membangun fondasi SEO yang benar dari awal: struktur HTML sesuai, meta tag lengkap, schema, konten berkualitas, dan kecepatan optimal — untuk memaksimalkan peluang ditemukan.</div></div>
-      </div>
+      <a href="harga.html" class="btn btn-light">Lihat Semua Harga</a>
     </div>
   </div>
 </section>
 
-<!-- ── PENUTUP ──────────────────────────────────────────────────────────── -->
-<section class="closing" id="kontak" data-spine="Kontak">
+<!-- ── AJAKAN PENUTUP ───────────────────────────────────────────────────── -->
+<section class="cta" id="kontak">
   <div class="wrap">
-    <span class="sect-num">Kontak</span>
-    <h2 class="rv" style="margin-top:24px;">Siap tampil lebih profesional?</h2>
-    <p class="sub rv rv1">Ceritakan kebutuhanmu — konsultasi gratis, respons biasanya dalam 1–2 jam di hari kerja.</p>
-    <div class="closing-acts up">
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-seal">Konsultasi via WhatsApp</a>
-      <a href="mailto:wulandikaandri@gmail.com" class="btn">Kirim Email</a>
+    <span class="eyebrow rise">Kontak</span>
+    <h2 class="rise d1" style="margin-top:24px;">Siap tampil lebih <span class="accent">profesional</span>?</h2>
+    <p class="rise d2">Ceritakan kebutuhanmu — konsultasi gratis, respons biasanya dalam 1–2 jam di hari kerja.</p>
+    <div class="cta-row rise d3">
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-primary">Konsultasi via WhatsApp</a>
+      <a href="mailto:wulandikaandri@gmail.com" class="btn btn-ghost">Kirim Email</a>
     </div>
 
-    <div class="contact-lines up up1">
+    <div class="contact-grid rise d4">
       <a href="https://wa.me/62811660568" target="_blank" rel="noopener"><span class="k">WhatsApp</span><span class="v">+62 811 660 568</span></a>
       <a href="mailto:wulandikaandri@gmail.com"><span class="k">Surel</span><span class="v">wulandikaandri@gmail.com</span></a>
       <div><span class="k">Wilayah Layanan</span><span class="v">Seluruh Indonesia</span></div>
@@ -529,37 +271,36 @@
   </div>
 </section>
 
-<!-- ── KOLOFON ──────────────────────────────────────────────────────────── -->
-<footer class="colophon">
+<!-- ── FOOTER ───────────────────────────────────────────────────────────── -->
+<footer class="foot">
   <div class="wrap">
-    <div class="col-grid">
-      <div class="col-brand">
-        <span class="wordmark"><img src="assets/brand/favicon-a-512.png" alt="" width="26" height="26"/>Andri Wulandika</span>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand"><img src="assets/brand/logo-a-white.png" alt="" width="24" height="25"/>Andri Wulandika</span>
         <p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p>
       </div>
       <div>
-        <div class="col-h">Layanan</div>
+        <h4>Layanan</h4>
         <a href="layanan-pemerintah.html">Website Pemerintah</a>
         <a href="layanan-bisnis.html">Website Bisnis</a>
         <a href="layanan-bisnis.html#medsos">Media Sosial</a>
         <a href="produk.html">AI Tools</a>
       </div>
       <div>
-        <div class="col-h">Situs</div>
+        <h4>Situs</h4>
         <a href="#karya">Karya</a>
-        <a href="#paket">Paket Harga</a>
-        <a href="#tanya">Pertanyaan</a>
+        <a href="harga.html">Harga</a>
         <a href="tentang.html">Tentang</a>
       </div>
       <div>
-        <div class="col-h">Legal</div>
+        <h4>Legal</h4>
         <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
         <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
       </div>
     </div>
-    <div class="col-foot">
+    <div class="foot-btm">
       <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business</span>
-      <div class="col-social">
+      <div class="socials">
         <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener">Facebook</a>
         <!-- TODO(Andri): ganti href '#' dengan URL TikTok resmi -->
