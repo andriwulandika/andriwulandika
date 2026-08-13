@@ -1,0 +1,305 @@
+/* ============================================================================
+   editorial.css — Sistem desain gelap-minimalis untuk andriwulandika.uk
+   ----------------------------------------------------------------------------
+   Arah desain mengikuti referensi yang dipilih Andri: monod.framer.website
+   ("Mōno™"). Resep aslinya sederhana dan disiplin:
+
+       · latar hitam pekat, panel abu sangat gelap
+       · SATU jenis huruf saja (Inter) — tidak ada serif berkaki
+       · SATU warna aksen saja (biru terang #0099FF)
+       · ruang kosong sangat lega
+       · gerak pelan dan halus, bukan mencolok
+
+   Yang membuat referensi itu terlihat mahal bukan efek canggih, melainkan
+   PENGURANGAN. Karena itu berkas ini sengaja menahan diri: tanpa bayangan
+   berat, tanpa gradasi, tanpa warna kedua.
+
+   Beda dengan referensi (disengaja, keputusan Andri):
+   struktur jualan tetap dipertahankan — beranda dibuat ringkas, dan seluruh
+   harga dipindah ke halaman `harga.html` yang ditautkan jelas.
+   ========================================================================== */
+
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('../fonts/inter-400.woff2') format('woff2'); }
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:500; font-display:swap; src:url('../fonts/inter-500.woff2') format('woff2'); }
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:600; font-display:swap; src:url('../fonts/inter-600.woff2') format('woff2'); }
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap; src:url('../fonts/inter-700.woff2') format('woff2'); }
+
+:root{
+  --bg:#000000;          /* latar utama — hitam pekat, seperti referensi */
+  --surface:#0E0E11;     /* panel/kartu */
+  --surface-2:#16161A;   /* panel saat disentuh kursor */
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.20);
+  --text:#FFFFFF;
+  --text-2:#9A9A9E;      /* teks pendukung */
+  --text-3:#6B6B70;      /* teks paling redup */
+  --accent:#0099FF;      /* satu-satunya warna aksen */
+  --accent-soft:rgba(0,153,255,.12);
+
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --maxw:1200px;
+  --gutter:clamp(20px,5vw,56px);
+  --r:10px;              /* radius yang ditahan — tidak membulat berlebihan */
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; background:var(--bg); }
+[id]{ scroll-margin-top:90px; }
+body{
+  font-family:var(--font); font-size:16px; line-height:1.6;
+  color:var(--text); background:var(--bg);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+::selection{ background:var(--accent); color:#fff; }
+
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter); }
+
+/* ── Tipografi ────────────────────────────────────────────────────────────
+   Satu keluarga huruf, dibedakan hanya lewat ukuran & ketebalan. Jarak huruf
+   dirapatkan pada ukuran besar supaya tidak terlihat renggang. */
+h1,h2,h3,h4{ font-weight:500; line-height:1.06; letter-spacing:-0.032em; }
+h1{ font-size:clamp(2.6rem,7.2vw,5.4rem); }
+h2{ font-size:clamp(2rem,4.6vw,3.4rem); }
+h3{ font-size:clamp(1.15rem,1.8vw,1.4rem); letter-spacing:-0.02em; line-height:1.25; }
+p{ max-width:64ch; }
+.dim{ color:var(--text-2); }
+
+/* Label kecil huruf kapital — penanda bagian */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:9px;
+  font-size:.7rem; font-weight:500; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--text-3);
+}
+.eyebrow::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+
+/* ── Tombol ───────────────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  min-height:50px; padding:14px 28px; border-radius:999px;
+  font-size:.92rem; font-weight:500; letter-spacing:-0.01em;
+  border:1px solid transparent; cursor:pointer;
+  transition:background .3s ease, border-color .3s ease, color .3s ease, transform .3s ease;
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn-primary{ background:var(--accent); color:#fff; }
+.btn-primary:hover{ background:#33AEFF; }
+.btn-ghost{ background:transparent; color:var(--text); border-color:var(--line-strong); }
+.btn-ghost:hover{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.35); }
+.btn-light{ background:#fff; color:#000; }
+.btn-light:hover{ background:#E6E6E6; }
+
+/* Tautan panah — gerakan halus, bukan meloncat */
+.arrow-link{ display:inline-flex; align-items:center; gap:8px; font-size:.93rem; font-weight:500; color:var(--text); }
+.arrow-link .a{ transition:transform .35s cubic-bezier(.2,.7,.2,1); color:var(--accent); }
+.arrow-link:hover .a{ transform:translateX(5px); }
+
+/* ── Kepala halaman ───────────────────────────────────────────────────────── */
+.nav{
+  position:sticky; top:0; z-index:80;
+  background:rgba(0,0,0,.72); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{ display:flex; align-items:center; justify-content:space-between; gap:24px; height:74px; }
+.brand{ display:inline-flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:500; letter-spacing:-0.02em; }
+.brand img{ height:24px; width:auto; }
+.nav-links{ display:none; align-items:center; gap:2px; }
+.nav-links a{
+  padding:10px 15px; min-height:44px; display:inline-flex; align-items:center;
+  font-size:.9rem; color:var(--text-2); border-radius:999px;
+  transition:color .25s ease, background .25s ease;
+}
+.nav-links a:hover{ color:var(--text); background:rgba(255,255,255,.05); }
+.nav-links a.on{ color:var(--text); }
+.nav-cta{ min-height:42px; padding:11px 22px; font-size:.88rem; }
+.burger{ display:inline-flex; flex-direction:column; justify-content:center; gap:5px; width:44px; height:44px; align-items:flex-end; background:none; border:none; cursor:pointer; }
+.burger span{ display:block; width:20px; height:1.5px; background:var(--text); transition:transform .3s ease, opacity .2s ease; }
+.burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+@media(min-width:900px){ .nav-links{ display:flex; } .burger{ display:none; } }
+.mnav{ display:none; border-top:1px solid var(--line); padding:8px 0 18px; }
+.mnav.open{ display:block; }
+.mnav a{ display:block; padding:15px var(--gutter); min-height:52px; font-size:1rem; color:var(--text-2); border-bottom:1px solid var(--line); }
+.mnav a:last-child{ border-bottom:none; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.hero{ padding:clamp(80px,14vw,180px) 0 clamp(60px,8vw,100px); }
+.hero h1{ max-width:16ch; }
+.hero h1 .accent{ color:var(--accent); }
+.hero-sub{ margin-top:32px; font-size:clamp(1.02rem,1.5vw,1.18rem); color:var(--text-2); max-width:52ch; }
+.hero-cta{ display:flex; flex-wrap:wrap; gap:12px; margin-top:44px; }
+
+/* Baris statistik — garis tipis, tanpa kotak */
+.stats{ display:grid; grid-template-columns:1fr; gap:0; margin-top:clamp(64px,9vw,110px); border-top:1px solid var(--line); }
+@media(min-width:700px){ .stats{ grid-template-columns:repeat(3,1fr); } }
+.stat{ padding:28px 0; border-bottom:1px solid var(--line); }
+@media(min-width:700px){ .stat{ padding:32px 28px; border-bottom:none; border-left:1px solid var(--line); } .stat:first-child{ padding-left:0; border-left:none; } }
+.stat b{ display:block; font-size:clamp(2rem,3.2vw,2.6rem); font-weight:500; letter-spacing:-0.03em; line-height:1; }
+.stat span{ display:block; margin-top:10px; font-size:.86rem; color:var(--text-3); }
+
+/* ── Bagian ───────────────────────────────────────────────────────────────── */
+.sect{ padding:clamp(72px,11vw,150px) 0; }
+.sect-head{ margin-bottom:clamp(40px,6vw,72px); }
+.sect-head h2{ margin-top:22px; max-width:19ch; }
+.sect-head p{ margin-top:20px; color:var(--text-2); font-size:1.04rem; }
+.sect-head-row{ display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between; align-items:flex-end; }
+
+/* ── Karya — bagian utama, gaya galeri seperti referensi ─────────────────── */
+.work{ display:grid; grid-template-columns:1fr; gap:clamp(20px,3vw,32px); }
+@media(min-width:760px){ .work{ grid-template-columns:1fr 1fr; } }
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  overflow:hidden; transition:background .4s ease, border-color .4s ease, transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.card:hover{ background:var(--surface-2); border-color:var(--line-strong); transform:translateY(-3px); }
+/* rasio 2:1 — sama persis dengan gambar sumber (760×380), supaya tangkapan
+   layar demo tidak terpotong di sisi kiri/kanan */
+.card-img{ position:relative; aspect-ratio:2/1; overflow:hidden; background:#141418; }
+.card-img img{ width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .9s cubic-bezier(.2,.7,.2,1); }
+.card:hover .card-img img{ transform:scale(1.04); }
+.card-tag{
+  position:absolute; top:14px; left:14px; z-index:2;
+  font-size:.68rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text); background:rgba(0,0,0,.6); backdrop-filter:blur(8px);
+  border:1px solid var(--line); padding:6px 12px; border-radius:999px;
+}
+.card-body{ padding:22px 24px 26px; display:flex; justify-content:space-between; align-items:baseline; gap:18px; }
+.card-body h3{ font-weight:500; }
+.card-body .meta{ display:block; margin-top:7px; font-size:.84rem; color:var(--text-3); }
+.card-body .go{ color:var(--accent); font-size:1.05rem; transition:transform .35s cubic-bezier(.2,.7,.2,1); }
+.card:hover .card-body .go{ transform:translateX(4px); }
+.card.hide{ display:none; }
+
+/* Saringan sebagai teks polos */
+.filters{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px; }
+.filt{
+  background:transparent; border:1px solid var(--line); border-radius:999px; cursor:pointer;
+  padding:9px 18px; min-height:42px; font-family:var(--font); font-size:.85rem; color:var(--text-2);
+  transition:color .25s ease, border-color .25s ease, background .25s ease;
+}
+.filt:hover{ color:var(--text); border-color:var(--line-strong); }
+.filt.on{ color:#fff; background:var(--accent); border-color:var(--accent); }
+
+/* ── Layanan — daftar bergaris, ringkas ──────────────────────────────────── */
+.svc-list{ border-top:1px solid var(--line); }
+.svc{
+  display:grid; grid-template-columns:1fr; gap:10px; align-items:baseline;
+  padding:30px 0; border-bottom:1px solid var(--line);
+  transition:padding-left .45s cubic-bezier(.2,.7,.2,1);
+}
+@media(min-width:860px){
+  .svc{ grid-template-columns:46px minmax(0,.95fr) minmax(0,1.25fr) auto; gap:0 36px; padding:34px 0; }
+  .svc:hover{ padding-left:16px; }
+}
+.svc-n{ font-size:.8rem; color:var(--text-3); font-variant-numeric:tabular-nums; }
+.svc h3{ font-weight:500; }
+.svc p{ color:var(--text-2); font-size:.95rem; }
+.svc .price{ font-size:.9rem; color:var(--accent); white-space:nowrap; }
+@media(min-width:860px){ .svc .price{ text-align:right; } }
+
+/* ── Proses ──────────────────────────────────────────────────────────────── */
+.steps{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; }
+@media(min-width:720px){ .steps{ grid-template-columns:repeat(2,1fr); } }
+@media(min-width:1040px){ .steps{ grid-template-columns:repeat(4,1fr); } }
+.step{ background:var(--bg); padding:32px 26px 36px; transition:background .35s ease; }
+.step:hover{ background:var(--surface); }
+.step .n{ font-size:.78rem; color:var(--accent); font-variant-numeric:tabular-nums; }
+.step h3{ font-weight:500; margin:16px 0 10px; }
+.step p{ color:var(--text-2); font-size:.92rem; }
+.step .dur{ display:block; margin-top:14px; font-size:.8rem; color:var(--text-3); }
+
+/* ── Pita harga ringkas di beranda (harga lengkap ada di halaman sendiri) ── */
+.price-band{
+  border:1px solid var(--line); border-radius:var(--r); background:var(--surface);
+  padding:clamp(32px,5vw,52px);
+  display:flex; flex-wrap:wrap; gap:28px; align-items:center; justify-content:space-between;
+}
+.price-band .from{ font-size:.85rem; color:var(--text-3); }
+.price-band .amt{ display:block; margin-top:8px; font-size:clamp(2rem,3.6vw,2.8rem); font-weight:500; letter-spacing:-0.03em; }
+.price-band .note{ margin-top:12px; color:var(--text-2); font-size:.95rem; max-width:44ch; }
+
+/* ── Halaman harga: kartu paket ──────────────────────────────────────────── */
+.plans{ display:grid; grid-template-columns:1fr; gap:20px; align-items:start; }
+@media(min-width:900px){ .plans{ grid-template-columns:repeat(3,1fr); } }
+@media(min-width:760px) and (max-width:899px){ .plans.two{ grid-template-columns:repeat(2,1fr); } }
+.plan{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  padding:34px 30px 36px; display:flex; flex-direction:column; height:100%;
+  transition:border-color .4s ease, background .4s ease;
+}
+.plan:hover{ border-color:var(--line-strong); }
+.plan.featured{ border-color:var(--accent); background:linear-gradient(180deg, rgba(0,153,255,.07), transparent 62%), var(--surface); }
+.plan-flag{ display:block; min-height:1.2em; font-size:.7rem; font-weight:500; letter-spacing:.11em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+.plan h3{ font-weight:500; }
+.plan .amt{ display:block; margin:18px 0 8px; font-size:clamp(1.9rem,3vw,2.4rem); font-weight:500; letter-spacing:-0.03em; }
+.plan .amt small{ font-size:.42em; font-weight:400; color:var(--text-3); letter-spacing:0; }
+.plan .note{ font-size:.86rem; color:var(--text-3); }
+.plan ul{ list-style:none; margin:26px 0 0; padding-top:24px; border-top:1px solid var(--line); flex:1 1 auto; }
+.plan li{ position:relative; padding:8px 0 8px 26px; font-size:.93rem; color:var(--text-2); line-height:1.55; }
+.plan li::before{ content:''; position:absolute; left:0; top:15px; width:7px; height:7px; border-radius:50%; background:var(--accent); }
+.plan .btn{ margin-top:28px; width:100%; }
+.addons{ margin-top:26px; padding:24px 26px; border:1px solid var(--line); border-radius:var(--r); background:var(--surface); color:var(--text-2); font-size:.93rem; line-height:1.85; }
+.addons b{ display:block; margin-bottom:10px; color:var(--text); font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; font-weight:500; }
+
+/* ── FAQ ──────────────────────────────────────────────────────────────────── */
+.faq{ border-top:1px solid var(--line); }
+.faq-item{ border-bottom:1px solid var(--line); }
+.faq-q{
+  width:100%; background:none; border:none; cursor:pointer; text-align:left;
+  display:flex; justify-content:space-between; align-items:center; gap:20px;
+  padding:26px 0; min-height:58px;
+  font-family:var(--font); font-size:1.02rem; font-weight:500; color:var(--text); letter-spacing:-0.012em;
+}
+.faq-q .x{ color:var(--accent); font-size:1.3rem; line-height:1; flex-shrink:0; transition:transform .4s cubic-bezier(.2,.7,.2,1); }
+.faq-item.open .x{ transform:rotate(45deg); }
+.faq-a{ overflow:hidden; max-height:0; transition:max-height .45s cubic-bezier(.2,.7,.2,1); }
+.faq-a > div{ padding:0 40px 30px 0; color:var(--text-2); font-size:.97rem; line-height:1.8; }
+.faq-item.open .faq-a{ max-height:520px; }
+
+/* ── Ajakan penutup ──────────────────────────────────────────────────────── */
+.cta{ padding:clamp(84px,13vw,170px) 0; border-top:1px solid var(--line); }
+.cta h2{ max-width:15ch; }
+.cta h2 .accent{ color:var(--accent); }
+.cta p{ margin-top:24px; color:var(--text-2); font-size:1.06rem; max-width:46ch; }
+.cta-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:42px; }
+.contact-grid{ display:grid; grid-template-columns:1fr; margin-top:clamp(56px,7vw,84px); border-top:1px solid var(--line); }
+@media(min-width:700px){ .contact-grid{ grid-template-columns:repeat(3,1fr); } }
+.contact-grid > *{ padding:24px 0; border-bottom:1px solid var(--line); }
+@media(min-width:700px){ .contact-grid > *{ padding:26px 28px; border-left:1px solid var(--line); border-bottom:none; } .contact-grid > *:first-child{ padding-left:0; border-left:none; } }
+.contact-grid .k{ display:block; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-3); margin-bottom:10px; }
+.contact-grid .v{ font-size:1rem; font-weight:500; }
+
+/* ── Prosa (halaman panjang) ─────────────────────────────────────────────── */
+.prose{ max-width:64ch; }
+.prose p{ color:var(--text-2); font-size:1.04rem; line-height:1.85; margin-bottom:22px; }
+.prose p strong{ color:var(--text); font-weight:500; }
+.notice{ padding:24px 26px; border:1px solid var(--line); border-left:2px solid var(--accent); border-radius:var(--r); background:var(--surface); color:var(--text-2); font-size:.95rem; line-height:1.8; }
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.foot{ border-top:1px solid var(--line); padding:clamp(56px,7vw,84px) 0 40px; }
+.foot-grid{ display:grid; grid-template-columns:1fr; gap:36px; padding-bottom:40px; border-bottom:1px solid var(--line); }
+@media(min-width:780px){ .foot-grid{ grid-template-columns:minmax(0,1.7fr) repeat(3,minmax(0,1fr)); gap:28px; } }
+.foot-brand p{ margin-top:14px; color:var(--text-3); font-size:.92rem; max-width:30ch; }
+.foot h4{ font-size:.72rem; font-weight:500; letter-spacing:.13em; text-transform:uppercase; color:var(--text-3); margin-bottom:16px; }
+.foot a:not(.brand){ display:block; padding:7px 0; font-size:.93rem; color:var(--text-2); transition:color .25s ease; }
+.foot a:not(.brand):hover{ color:var(--text); }
+.foot-btm{ display:flex; flex-wrap:wrap; gap:18px; justify-content:space-between; align-items:center; padding-top:28px; }
+.foot-btm span{ font-size:.84rem; color:var(--text-3); }
+.socials{ display:flex; gap:24px; }
+.socials a{ font-size:.84rem; color:var(--text-2); padding:8px 0; }
+.socials a:hover{ color:var(--accent); }
+
+/* ── Gerak: pelan & halus, sesuai deskripsi referensi ────────────────────── */
+/* Semua keadaan tersembunyi dikunci di balik .js supaya halaman tetap utuh
+   kalau skrip gagal dimuat (penting untuk mesin pencari). */
+.js .rise{ opacity:0; transform:translateY(22px); transition:opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
+.js .rise.in{ opacity:1; transform:none; }
+.js .d1{ transition-delay:.09s; } .js .d2{ transition-delay:.18s; } .js .d3{ transition-delay:.27s; } .js .d4{ transition-delay:.36s; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  .js .rise{ opacity:1 !important; transform:none !important; }
+}

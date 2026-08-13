@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script>document.documentElement.className+=' js';</script>
   <script src="assets/js/analytics.js" defer></script>
-  <script src="/assets/js/ui-enhance.js" defer></script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Layanan Digital untuk Bisnis — Website Profil &amp; Landing Page | Andri Wulandika</title>
@@ -38,257 +38,210 @@
     ]
   }
   </script>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"/>
-  <link rel="alternate icon" href="favicon.ico?v=2"/>
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #ffffff; --bg2: #f5f5f7; --bg3: #1d1d1f;
-      --text: #1d1d1f; --text2: #6e6e73;
-      --accent: #0071e3; --accent-soft: #eaf3fd;
-      --border: #d2d2d7; --radius: 18px;
-    }
-    html { scroll-behavior: smooth; }
-    [id] { scroll-margin-top: 70px; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 52px;
-      background: rgba(255,255,255,0.88); backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
-    }
-    .nav-back { font-size: 0.82rem; color: var(--accent); }
-    .nav-back:hover { opacity: 0.7; }
-    .nav-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
-    .nav-links { display: flex; gap: 1.5rem; }
-    .nav-links a { font-size: 0.78rem; color: var(--text2); }
-    .nav-links a:hover { color: var(--text); }
-    .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 0; width: 34px; height: 34px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; }
-    .nav-burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text); transition: transform .25s ease, opacity .2s ease; }
-    nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
-    nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    @media (max-width: 768px) {
-      .nav-burger { display: flex; }
-      .nav-links { display: none; position: absolute; top: 52px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 8px 24px; border-bottom: 1px solid rgba(0,0,0,0.08); }
-      nav.nav-open .nav-links { display: flex; }
-      .nav-links li { width: 100%; }
-      .nav-links a { display: block; padding: 13px 6px; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
-      .nav-links li:last-child > a { border-bottom: 0; }
-    }
-
-    .hero { padding: 140px 24px 64px; text-align: center; background: linear-gradient(180deg, var(--accent-soft), #fff 70%); }
-    .hero-inner { max-width: 720px; margin: 0 auto; }
-    .eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
-    h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; }
-    .hero-sub { font-size: 1.05rem; color: var(--text2); max-width: 60ch; margin: 0 auto 28px; }
-    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-    .btn-blue { background: var(--accent); color: #fff; padding: 13px 26px; border-radius: 980px; font-size: 0.95rem; font-weight: 600; display: inline-block; }
-    .btn-blue:hover { background: #0077ed; }
-    .btn-outline { border: 1px solid var(--border); color: var(--text); padding: 13px 26px; border-radius: 980px; font-size: 0.95rem; font-weight: 600; display: inline-block; }
-    .btn-outline:hover { background: var(--bg2); }
-
-    .section { padding: 64px 24px; }
-    .section-inner { max-width: 780px; margin: 0 auto; }
-    .section-eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
-    .section-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 14px; }
-    .section-body { font-size: 0.98rem; color: var(--text2); line-height: 1.75; margin-bottom: 8px; }
-
-    .pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
-    @media (max-width: 700px) { .pkg-grid { grid-template-columns: 1fr; } }
-    .pkg-card { background: var(--bg2); border-radius: var(--radius); padding: 32px; position: relative; }
-    .pkg-card.featured { background: var(--accent-soft); border: 1px solid var(--accent); }
-    .pkg-badge { position: absolute; top: -12px; left: 24px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 980px; }
-    .pkg-name { font-size: 1.1rem; font-weight: 700; }
-    .pkg-desc { color: var(--text2); font-size: 0.92rem; margin: 6px 0 18px; }
-    .pkg-price { font-size: 2rem; font-weight: 800; }
-    .pkg-note { color: var(--text2); font-size: 0.85rem; margin-bottom: 20px; }
-    .pkg-features { margin: 20px 0 24px; display: grid; gap: 10px; }
-    .feat { font-size: 0.92rem; color: var(--text); display: flex; gap: 8px; }
-    .feat-check { color: var(--accent); font-weight: 700; }
-
-    .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
-    .why-item { font-size: 0.9rem; color: var(--text2); }
-    .why-item strong { display: block; color: var(--text); font-size: 0.95rem; margin-bottom: 4px; }
-    @media (max-width: 600px) { .why-grid { grid-template-columns: 1fr; } }
-
-    .cta-section { padding: 80px 24px; text-align: center; background: var(--bg2); }
-    .cta-inner { max-width: 520px; margin: 0 auto; }
-    .cta-inner .section-title { margin-bottom: 1rem; }
-    .cta-inner .section-body { margin-bottom: 2rem; }
-
-    footer { padding: 40px 24px; text-align: center; border-top: 1px solid var(--border); }
-    .footer-left { font-size: 0.8rem; color: var(--text2); margin-bottom: 12px; }
-    .footer-links { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; font-size: 0.82rem; }
-    .footer-links a { color: var(--text2); }
-    .footer-links a:hover { color: var(--text); }
-  </style>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-a-32.png"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
+  <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
+  <link rel="stylesheet" href="assets/css/editorial.css"/>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-back">← Beranda</a>
-  <span class="nav-title">Layanan Bisnis</span>
-  <ul class="nav-links">
-    <li><a href="layanan-pemerintah.html">Layanan Pemerintah</a></li>
-    <li><a href="produk.html">Produk</a></li>
-    <li><a href="tentang.html">Tentang</a></li>
-    <li><a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20bisnis%20saya." target="_blank" rel="noopener">Konsultasi</a></li>
-  </ul>
-  <button class="nav-burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
-</nav>
+<div class="spine" aria-hidden="true"><span class="spine-tick"></span><span class="spine-label">Bisnis</span></div>
 
-<section class="hero">
-  <div class="hero-inner">
-    <p class="eyebrow">Digital Transformation for Business</p>
-    <h1>Website yang bekerja keras untuk bisnis Anda</h1>
-    <p class="hero-sub">Landing page dan website profil yang desainnya modern, cepat selesai, dan SEO-ready — agar bisnis Anda tampil profesional dan mudah ditemukan calon pelanggan di Google.</p>
-    <div class="hero-ctas">
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20bisnis%20saya." target="_blank" rel="noopener" class="btn-blue">Konsultasi Gratis</a>
-      <a href="#paket" class="btn-outline">Lihat Paket Harga</a>
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a href="index.html" class="wordmark"><img src="assets/brand/logo-a-mark.png" alt="" width="26" height="27"/>Andri Wulandika</a>
+    <nav class="mast-nav">
+      <a href="layanan-pemerintah.html">Pemerintah</a>
+      <a href="layanan-bisnis.html" class="here" aria-current="page">Bisnis</a>
+      <a href="produk.html">Produk</a>
+      <a href="tentang.html">Tentang</a>
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20bisnis%20saya." target="_blank" rel="noopener" class="btn btn-solid mast-cta">Konsultasi</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobnav"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobnav" id="mobnav">
+    <a href="layanan-pemerintah.html"><span class="n">—</span>Layanan Pemerintah</a>
+    <a href="#paket"><span class="n">01</span>Paket Website</a>
+    <a href="#medsos"><span class="n">02</span>Media Sosial</a>
+    <a href="produk.html"><span class="n">—</span>AI Tools</a>
+    <a href="tentang.html"><span class="n">—</span>Tentang</a>
+    <a href="https://wa.me/62811660568" target="_blank" rel="noopener"><span class="n">→</span>Konsultasi via WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero" data-spine="Bisnis">
+  <div class="wrap">
+    <p class="label fade">Digital Transformation for Business</p>
+    <h1 style="max-width:15ch;">
+      <span class="ln"><span>Website yang</span></span>
+      <span class="ln"><span>bekerja keras untuk</span></span>
+      <span class="ln"><span><em class="mark">bisnis Anda</em>.</span></span>
+    </h1>
+    <p class="hero-lede fade f2">Landing page dan website profil yang desainnya modern, cepat selesai, dan SEO-ready — agar bisnis Anda tampil profesional dan mudah ditemukan calon pelanggan di Google.</p>
+    <div class="hero-acts fade f3">
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20bisnis%20saya." target="_blank" rel="noopener" class="btn btn-solid">Konsultasi Gratis</a>
+      <a href="#paket" class="btn">Lihat Paket Harga</a>
     </div>
   </div>
 </section>
 
-<section class="section" id="paket">
-  <div class="section-inner">
-    <p class="section-eyebrow">Paket Layanan</p>
-    <h2 class="section-title">Pilih paket sesuai kebutuhan bisnis Anda</h2>
-    <p class="section-body">Semua paket sudah termasuk hosting gratis (Cloudflare Pages) dan panduan penggunaan dasar.</p>
-
-    <div class="pkg-grid">
-      <div class="pkg-card">
-        <div class="pkg-name">Landing Page</div>
-        <div class="pkg-desc">Cocok untuk promosi produk, jasa, atau acara. Satu halaman yang langsung mengkonversi pengunjung.</div>
-        <div class="pkg-price">Rp 1,2 juta</div>
-        <div class="pkg-note">Bayar sekali, milik Anda selamanya</div>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Landing%20Page%20Rp1%2C2juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn-outline">Pilih Paket Ini</a>
-        <div class="pkg-features">
-          <div class="feat"><span class="feat-check">✓</span>1 halaman panjang (scroll)</div>
-          <div class="feat"><span class="feat-check">✓</span>Desain profesional &amp; responsif</div>
-          <div class="feat"><span class="feat-check">✓</span>Tombol WhatsApp / form kontak</div>
-          <div class="feat"><span class="feat-check">✓</span>SEO dasar (meta, schema, sitemap)</div>
-          <div class="feat"><span class="feat-check">✓</span>Selesai 3–5 hari kerja</div>
-          <div class="feat"><span class="feat-check">✓</span>2× revisi konten</div>
-        </div>
+<section class="sect" id="paket" data-spine="01 — Paket Website">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">01 — Paket Website</span>
+        <span class="label">Termasuk hosting</span>
       </div>
-
-      <div class="pkg-card featured">
-        <span class="pkg-badge">Paling Populer</span>
-        <div class="pkg-name">Website Profil</div>
-        <div class="pkg-desc">Untuk bisnis, komunitas, atau personal branding yang butuh kehadiran online lengkap dan profesional.</div>
-        <div class="pkg-price">Rp 3 juta</div>
-        <div class="pkg-note">Domain .com/id opsional (+Rp 150rb/tahun)</div>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Website%20Profil%20Rp3juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn-blue">Pilih Paket Ini</a>
-        <div class="pkg-features">
-          <div class="feat"><span class="feat-check">✓</span>5–7 halaman (Beranda, Tentang, Layanan, Kontak, dll)</div>
-          <div class="feat"><span class="feat-check">✓</span>Desain custom sesuai identitas brand</div>
-          <div class="feat"><span class="feat-check">✓</span>SEO lengkap (meta, OG, schema, sitemap)</div>
-          <div class="feat"><span class="feat-check">✓</span>Formulir kontak + integrasi WhatsApp</div>
-          <div class="feat"><span class="feat-check">✓</span>Google Analytics terpasang</div>
-          <div class="feat"><span class="feat-check">✓</span>Selesai 7–14 hari kerja</div>
-          <div class="feat"><span class="feat-check">✓</span>Revisi sampai puas (maks 3 putaran)</div>
-        </div>
-      </div>
+      <h2 class="rv">Pilih paket sesuai kebutuhan bisnis Anda.</h2>
+      <p class="note rv rv1">Semua paket sudah termasuk hosting gratis (Cloudflare Pages) dan panduan penggunaan dasar.</p>
     </div>
-  </div>
-</section>
-
-<section class="section" id="medsos">
-  <div class="section-inner">
-    <p class="section-eyebrow">Layanan Baru</p>
-    <h2 class="section-title">Pengelolaan Media Sosial</h2>
-    <p class="section-body">Biar akun media sosial bisnis Anda tetap aktif dan konsisten tanpa harus pusing memikirkan konten tiap hari. Kami bantu rencanakan, buat, dan kelola — Anda tinggal fokus jualan.</p>
-
-    <div class="pkg-grid">
-      <div class="pkg-card">
-        <div class="pkg-name">Paket UMKM</div>
-        <div class="pkg-desc">Untuk usaha yang ingin hadir rutin di media sosial dengan konten rapi dan terjadwal.</div>
-        <div class="pkg-price">Rp 600rb <span style="font-size:0.9rem;font-weight:500;color:var(--muted);">/ bulan</span></div>
-        <div class="pkg-note">Berlangganan bulanan, bisa berhenti kapan saja</div>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Pengelolaan%20Media%20Sosial%20UMKM%20(Rp%20600rb%2Fbulan).%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn-outline">Pilih Paket Ini</a>
-        <div class="pkg-features">
-          <div class="feat"><span class="feat-check">✓</span>8–10 konten per bulan</div>
-          <div class="feat"><span class="feat-check">✓</span>Caption siap posting</div>
-          <div class="feat"><span class="feat-check">✓</span>Desain visual konten</div>
-          <div class="feat"><span class="feat-check">✓</span>Laporan bulanan</div>
-        </div>
+    <div class="packs two">
+      <div class="pack up">
+        <span class="pack-flag"></span>
+        <span class="pack-nm">Landing Page</span>
+        <span class="pack-amt">Rp 1,2 jt</span>
+        <span class="pack-note">Bayar sekali, milik Anda selamanya</span>
+        <ul>
+          <li>1 halaman panjang (scroll)</li>
+          <li>Desain profesional &amp; responsif</li>
+          <li>Tombol WhatsApp / form kontak</li>
+          <li>SEO dasar (meta, schema, sitemap)</li>
+          <li>Selesai 3–5 hari kerja</li>
+          <li>2× revisi konten</li>
+        </ul>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Landing%20Page%20Rp1%2C2juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn">Pilih Paket Ini</a>
       </div>
-
-      <div class="pkg-card featured">
-        <span class="pkg-badge">Paling Lengkap</span>
-        <div class="pkg-name">Paket Bertumbuh</div>
-        <div class="pkg-desc">Untuk bisnis yang serius menumbuhkan audiens dan interaksi di media sosial.</div>
-        <div class="pkg-price">Rp 1,5 juta <span style="font-size:0.9rem;font-weight:500;color:var(--muted);">/ bulan</span></div>
-        <div class="pkg-note">Berlangganan bulanan, bisa berhenti kapan saja</div>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Pengelolaan%20Media%20Sosial%20Bertumbuh%20(Rp%201%2C5%20juta%2Fbulan).%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn-blue">Pilih Paket Ini</a>
-        <div class="pkg-features">
-          <div class="feat"><span class="feat-check">✓</span>15–20 konten per bulan</div>
-          <div class="feat"><span class="feat-check">✓</span>Termasuk konten reels</div>
-          <div class="feat"><span class="feat-check">✓</span>Balas komentar &amp; interaksi audiens</div>
-          <div class="feat"><span class="feat-check">✓</span>Kalender konten terjadwal</div>
-          <div class="feat"><span class="feat-check">✓</span>Caption &amp; desain visual</div>
-          <div class="feat"><span class="feat-check">✓</span>Laporan bulanan</div>
-        </div>
+      <div class="pack pick up up1">
+        <span class="pack-flag">Paling Populer</span>
+        <span class="pack-nm">Website Profil</span>
+        <span class="pack-amt">Rp 3 jt</span>
+        <span class="pack-note">Domain .com/id opsional (+Rp 150rb/tahun)</span>
+        <ul>
+          <li>5–7 halaman (Beranda, Tentang, Layanan, Kontak, dll)</li>
+          <li>Desain custom sesuai identitas brand</li>
+          <li>SEO lengkap (meta, OG, schema, sitemap)</li>
+          <li>Formulir kontak + integrasi WhatsApp</li>
+          <li>Google Analytics terpasang</li>
+          <li>Selesai 7–14 hari kerja</li>
+          <li>Revisi sampai puas (maks 3 putaran)</li>
+        </ul>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Website%20Profil%20Rp3juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-solid">Pilih Paket Ini</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="section-inner">
-    <p class="section-eyebrow">Mengapa Memilih Kami</p>
-    <h2 class="section-title">Bukan sekadar tampan — tapi juga ditemukan Google</h2>
-    <div class="why-grid">
-      <div class="why-item"><strong>Desain Modern &amp; Bersih</strong>Tampilan minimalis, elegan, dan profesional — bukan template gratisan.</div>
-      <div class="why-item"><strong>Loading Super Cepat</strong>Dibangun dengan teknologi statis modern — loading di bawah 1 detik.</div>
-      <div class="why-item"><strong>SEO Terstruktur</strong>Meta tag, schema markup, sitemap, dan struktur heading yang benar sejak hari pertama.</div>
-      <div class="why-item"><strong>Hosting Gratis Selamanya</strong>Menggunakan Cloudflare Pages — hosting global, gratis, tanpa batas bandwidth.</div>
+<section class="sect band-ink" id="medsos" data-spine="02 — Media Sosial">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">02 — Pengelolaan Media Sosial</span>
+        <span class="label">Layanan baru</span>
+      </div>
+      <h2 class="rv">Akun aktif dan konsisten, tanpa Anda pusing tiap hari.</h2>
+      <p class="note rv rv1">Biar akun media sosial bisnis Anda tetap aktif dan konsisten tanpa harus pusing memikirkan konten tiap hari. Kami bantu rencanakan, buat, dan kelola — Anda tinggal fokus jualan.</p>
+    </div>
+    <div class="packs two">
+      <div class="pack up">
+        <span class="pack-flag"></span>
+        <span class="pack-nm">Paket UMKM</span>
+        <span class="pack-amt">Rp 600rb <span style="font-size:.5em;letter-spacing:.1em;">/ bulan</span></span>
+        <span class="pack-note">Berlangganan bulanan, bisa berhenti kapan saja</span>
+        <ul>
+          <li>8–10 konten per bulan</li>
+          <li>Caption siap posting</li>
+          <li>Desain visual konten</li>
+          <li>Laporan bulanan</li>
+        </ul>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Pengelolaan%20Media%20Sosial%20UMKM%20(Rp%20600rb%2Fbulan).%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn">Pilih Paket Ini</a>
+      </div>
+      <div class="pack pick up up1">
+        <span class="pack-flag">Paling Lengkap</span>
+        <span class="pack-nm">Paket Bertumbuh</span>
+        <span class="pack-amt">Rp 1,5 jt <span style="font-size:.5em;letter-spacing:.1em;">/ bulan</span></span>
+        <span class="pack-note">Berlangganan bulanan, bisa berhenti kapan saja</span>
+        <ul>
+          <li>15–20 konten per bulan</li>
+          <li>Termasuk konten reels</li>
+          <li>Balas komentar &amp; interaksi audiens</li>
+          <li>Kalender konten terjadwal</li>
+          <li>Caption &amp; desain visual</li>
+          <li>Laporan bulanan</li>
+        </ul>
+        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Pengelolaan%20Media%20Sosial%20Bertumbuh%20(Rp%201%2C5%20juta%2Fbulan).%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-seal">Pilih Paket Ini</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="cta-section" id="kontak">
-  <div class="cta-inner">
-    <h2 class="section-title">Siap membawa bisnis Anda maju secara digital?</h2>
-    <p class="section-body">Konsultasi gratis, tanpa komitmen. Ceritakan kebutuhan Anda dan kami bantu tentukan paket yang paling pas.</p>
-    <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20bisnis%20saya." target="_blank" rel="noopener" class="btn-blue">Chat WhatsApp Sekarang</a>
+<section class="sect" data-spine="03 — Alasan">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-head-top">
+        <span class="sect-num">03 — Mengapa Memilih Kami</span>
+        <span class="label">Empat alasan</span>
+      </div>
+      <h2 class="rv">Bukan sekadar tampan — tapi juga ditemukan Google.</h2>
+    </div>
+    <div class="steps">
+      <div class="step up"><span class="step-n">01</span><div><h3>Desain Modern &amp; Bersih</h3><p>Tampilan minimalis, elegan, dan profesional — bukan template gratisan.</p></div></div>
+      <div class="step up up1"><span class="step-n">02</span><div><h3>Loading Super Cepat</h3><p>Dibangun dengan teknologi statis modern — loading di bawah 1 detik.</p></div></div>
+      <div class="step up up2"><span class="step-n">03</span><div><h3>SEO Terstruktur</h3><p>Meta tag, schema markup, sitemap, dan struktur heading yang benar sejak hari pertama.</p></div></div>
+      <div class="step up"><span class="step-n">04</span><div><h3>Hosting Gratis Selamanya</h3><p>Menggunakan Cloudflare Pages — hosting global, gratis, tanpa batas bandwidth.</p></div></div>
+    </div>
   </div>
 </section>
 
-<footer>
-  <p class="footer-left">&copy; 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</p>
-  <div class="footer-links">
-    <a href="index.html">Beranda</a>
-    <a href="layanan-pemerintah.html">Layanan Pemerintah</a>
-    <a href="produk.html">Produk</a>
-    <a href="tentang.html">Tentang</a>
-    <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
-    <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
-    <a href="https://wa.me/62811660568" target="_blank" rel="noopener">WhatsApp</a>
+<section class="closing" id="kontak" data-spine="Kontak">
+  <div class="wrap">
+    <span class="sect-num">Kontak</span>
+    <h2 class="rv" style="margin-top:24px;">Siap membawa bisnis Anda maju secara digital?</h2>
+    <p class="sub rv rv1">Konsultasi gratis, tanpa komitmen. Ceritakan kebutuhan Anda dan kami bantu tentukan paket yang paling pas.</p>
+    <div class="closing-acts up">
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20bisnis%20saya." target="_blank" rel="noopener" class="btn btn-seal">Chat WhatsApp Sekarang</a>
+      <a href="index.html#karya" class="btn">Lihat Contoh Karya</a>
+    </div>
   </div>
-  <div style="display:flex;gap:14px;justify-content:center;align-items:center;padding:22px 0 2px;flex-wrap:wrap;">
-    <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener" aria-label="Instagram" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#94a3b8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-    <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener" aria-label="Facebook" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#94a3b8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.4c0-.86.28-1.4 1.5-1.4H17.6V.3C17.2.25 16.1.15 15 .15c-2.4 0-4 1.46-4 4.15V6H8.2v3H11v9h3V9z"/></svg></a>
-    <a href="#" aria-label="TikTok (tautan menyusul)" title="TikTok — tautan menyusul" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#94a3b8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-2.9v12.3a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.05V8.8a5.7 5.7 0 00-.7-.05A5.65 5.65 0 1017 14.3V8a7.1 7.1 0 004.1 1.3V6.4a4.1 4.1 0 01-4.1-4.1z"/></svg></a>
-    <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener" aria-label="YouTube" style="width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#94a3b8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+</section>
+
+<footer class="colophon">
+  <div class="wrap">
+    <div class="col-grid">
+      <div class="col-brand">
+        <span class="wordmark"><img src="assets/brand/favicon-a-512.png" alt="" width="26" height="26"/>Andri Wulandika</span>
+        <p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p>
+      </div>
+      <div>
+        <div class="col-h">Layanan</div>
+        <a href="layanan-pemerintah.html">Website Pemerintah</a>
+        <a href="layanan-bisnis.html">Website Bisnis</a>
+        <a href="layanan-bisnis.html#medsos">Media Sosial</a>
+        <a href="produk.html">AI Tools</a>
+      </div>
+      <div>
+        <div class="col-h">Situs</div>
+        <a href="index.html#karya">Karya</a>
+        <a href="index.html#paket">Paket Harga</a>
+        <a href="tentang.html">Tentang</a>
+      </div>
+      <div>
+        <div class="col-h">Legal</div>
+        <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+        <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
+      </div>
+    </div>
+    <div class="col-foot">
+      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business</span>
+      <div class="col-social">
+        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" title="TikTok — tautan menyusul">TikTok</a>
+        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<script>
-(function(){
-  var nav=document.querySelector('nav');if(!nav)return;
-  var btn=nav.querySelector('.nav-burger');if(!btn)return;
-  btn.addEventListener('click',function(){
-    var open=nav.classList.toggle('nav-open');
-    btn.setAttribute('aria-expanded',open?'true':'false');
-  });
-})();
-</script>
+<script src="assets/js/editorial-ui.js"></script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+/* brand-tokens.css — font self-host untuk ai.andriwulandika.uk, dipakai bersama
+   dengan token warna terracotta (--accent:#C0341D) yang sudah diselaraskan
+   langsung di tiap halaman. Font-face terpisah di sini supaya tidak
+   diduplikasi per halaman. */
+@font-face { font-family:'Jakarta'; font-style:normal; font-weight:400; font-display:swap; src:url('../fonts/jakarta-400.woff2') format('woff2'); }
+@font-face { font-family:'Jakarta'; font-style:normal; font-weight:600; font-display:swap; src:url('../fonts/jakarta-600.woff2') format('woff2'); }
+@font-face { font-family:'Jakarta'; font-style:normal; font-weight:700; font-display:swap; src:url('../fonts/jakarta-700.woff2') format('woff2'); }
+@font-face { font-family:'Playfair Display'; font-style:normal; font-weight:700; font-display:swap; src:url('../fonts/playfair-700.woff2') format('woff2'); }
+@font-face { font-family:'Playfair Display'; font-style:normal; font-weight:800; font-display:swap; src:url('../fonts/playfair-800.woff2') format('woff2'); }
+@font-face { font-family:'Plex Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('../fonts/plex-mono-400.woff2') format('woff2'); }
+@font-face { font-family:'Plex Mono'; font-style:normal; font-weight:500; font-display:swap; src:url('../fonts/plex-mono-500.woff2') format('woff2'); }

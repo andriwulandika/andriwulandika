@@ -5,7 +5,7 @@
       --bg2: #f5f5f7;
       --text: #1d1d1f;
       --text2: #6e6e73;
-      --accent: #0071e3;
+      --accent: #C0341D;
       --border: #d2d2d7;
       --radius: 14px;
     }
@@ -57,7 +57,7 @@
       font-size: 0.7rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--accent);
-      background: rgba(0,113,227,0.08);
+      background: rgba(192,52,29,0.08);
       padding: 4px 10px; border-radius: 980px;
       margin-bottom: 1.2rem;
     }
@@ -196,7 +196,7 @@
       opacity: 0.75;
     }
     .c-national  { background: #E8F0FB; } .c-national .cascade-box-label  { color: #1a4b8c; }
-    .c-rpjmd     { background: #EBF5FF; } .c-rpjmd .cascade-box-label     { color: #0071e3; }
+    .c-rpjmd     { background: #EBF5FF; } .c-rpjmd .cascade-box-label     { color: #C0341D; }
     .c-renstra   { background: #F0F9FF; } .c-renstra .cascade-box-label   { color: #32ADE6; }
     .c-renja     { background: #F5FBFF; } .c-renja .cascade-box-label     { color: #5AC8FA; }
     .c-subkeg    { background: #F0FFF7; } .c-subkeg .cascade-box-label    { color: #28CD41; }

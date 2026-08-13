@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script>document.documentElement.className+=' js';</script>
   <script src="assets/js/analytics.js" defer></script>
   <meta charset="UTF-8"/>
   <meta name="google-site-verification" content="qcwE8QfAm63sFMi3eIhRo92YkvTM2_DGpcFF5M05OWk"/>
@@ -8,6 +9,7 @@
   <meta name="google-site-verification" content="googlea044b9a8efd52fe7"/>
   <meta name="google-site-verification" content="SjZrtwDmaFFG-PiT7JJFSDvDp7JhQRc1QaY7reS3x_I"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#000000"/>
 
   <!-- SEO Primary -->
   <title>Digital Transformation untuk Pemerintah &amp; Bisnis — Website &amp; AI Tools | Andri Wulandika</title>
@@ -85,16 +87,6 @@
         {"@type":"Offer","name":"Website Profil","price":"3000000","priceCurrency":"IDR"},
         {"@type":"Offer","name":"Website Instansi/OPD","price":"2500000","priceCurrency":"IDR"}
       ]
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {"@type":"Question","name":"Apakah saya perlu tahu coding untuk mengelola website?","acceptedAnswer":{"@type":"Answer","text":"Tidak sama sekali. Setelah serah terima, kami berikan panduan lengkap cara update teks, ganti gambar, dan tambah konten dasar tanpa menyentuh kode apapun."}},
-        {"@type":"Question","name":"Berapa biaya hosting per bulan?","acceptedAnswer":{"@type":"Answer","text":"Nol rupiah. Website di-hosting di Cloudflare Pages yang gratis tanpa batas bandwidth. Satu-satunya biaya tahunan yang mungkin ada adalah domain (opsional)."}},
-        {"@type":"Question","name":"Berapa lama proses pengerjaannya?","acceptedAnswer":{"@type":"Answer","text":"Landing Page 3–5 hari kerja, Website Profil 7–14 hari kerja, Paket Instansi 14–21 hari kerja, bergantung kelengkapan konten yang Anda sediakan."}},
-        {"@type":"Question","name":"Apakah ada garansi muncul di halaman 1 Google?","acceptedAnswer":{"@type":"Answer","text":"Tidak ada yang bisa menjamin posisi Google. Yang kami lakukan adalah membangun fondasi SEO yang benar dari awal untuk memaksimalkan peluang ditemukan."}}
-      ]
     }
   ]
   </script>
@@ -102,587 +94,223 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-a-32.png"/>
   <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
   <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
-
-  <style>
-    @font-face { font-family:'Playfair Display'; font-style:normal; font-weight:700; font-display:swap; src:url('assets/fonts/playfair-700.woff2') format('woff2'); }
-    @font-face { font-family:'Playfair Display'; font-style:normal; font-weight:800; font-display:swap; src:url('assets/fonts/playfair-800.woff2') format('woff2'); }
-    @font-face { font-family:'Jakarta'; font-style:normal; font-weight:400; font-display:swap; src:url('assets/fonts/jakarta-400.woff2') format('woff2'); }
-    @font-face { font-family:'Jakarta'; font-style:normal; font-weight:600; font-display:swap; src:url('assets/fonts/jakarta-600.woff2') format('woff2'); }
-    @font-face { font-family:'Jakarta'; font-style:normal; font-weight:700; font-display:swap; src:url('assets/fonts/jakarta-700.woff2') format('woff2'); }
-
-    :root{
-      --paper:#F9F8F6; --white:#ffffff; --ink:#111111; --muted:#57534e;
-      --line:rgba(214,211,209,0.7); --accent:#c2510c; --brand:#e76e44;
-      --serif:'Playfair Display', Georgia, 'Times New Roman', serif;
-      --sans:'Jakarta', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --maxw:1180px;
-    }
-    *{ margin:0; padding:0; box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    [id]{ scroll-margin-top:88px; }
-    body{ font-family:var(--sans); font-size:16px; line-height:1.6; color:var(--ink); background:var(--paper); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-    a{ color:inherit; text-decoration:none; }
-    img{ max-width:100%; display:block; }
-    .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 20px; }
-    .eyebrow{ font-size:0.72rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); }
-    h1,h2,h3{ font-family:var(--serif); font-weight:700; line-height:1.08; letter-spacing:-0.01em; }
-    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:12px 26px; border-radius:999px; font-family:var(--sans); font-weight:700; font-size:0.95rem; transition:transform .15s ease, background .2s ease, color .2s; will-change:transform; }
-    .btn-ink{ background:var(--ink); color:#fff; }
-    .btn-ink:hover{ transform:translateY(-2px); }
-    .btn-outline{ background:transparent; color:var(--ink); border:1px solid var(--ink); }
-    .btn-outline:hover{ background:var(--ink); color:#fff; }
-
-    /* Sticky glass header */
-    .site-header{ position:sticky; top:0; z-index:50; background:rgba(249,248,246,0.72); backdrop-filter:blur(14px) saturate(1.3); -webkit-backdrop-filter:blur(14px) saturate(1.3); border-bottom:1px solid var(--line); }
-    .nav{ display:flex; align-items:center; justify-content:space-between; height:66px; }
-    .brand{ font-family:var(--serif); font-weight:800; font-size:1.25rem; letter-spacing:-0.02em; }
-    .nav-links{ display:none; gap:6px; align-items:center; }
-    .nav-links a{ font-size:0.92rem; font-weight:600; color:var(--muted); padding:10px 14px; min-height:44px; display:inline-flex; align-items:center; border-radius:10px; }
-    .nav-links a:hover{ color:var(--ink); background:rgba(0,0,0,0.04); }
-    .nav-cta{ min-height:44px; padding:10px 20px; font-size:0.9rem; }
-    .burger{ display:inline-flex; flex-direction:column; gap:5px; width:44px; height:44px; align-items:center; justify-content:center; background:none; border:none; cursor:pointer; }
-    .burger span{ width:22px; height:2px; background:var(--ink); border-radius:2px; }
-    @media(min-width:860px){ .nav-links{ display:flex; } .burger{ display:none; } }
-    .mnav{ display:none; border-top:1px solid var(--line); padding:8px 0 14px; }
-    .mnav.open{ display:block; }
-    .mnav a{ display:block; padding:13px 20px; font-weight:600; color:var(--ink); min-height:44px; }
-    .mnav a:hover{ background:rgba(0,0,0,0.04); }
-
-    /* Hero */
-    .hero{ position:relative; padding:64px 0 48px; overflow:hidden; }
-    .hero-canvas{ position:absolute; inset:0; z-index:0; pointer-events:none; }
-    .hero .wrap{ position:relative; z-index:1; }
-    .hero-eyebrow{ margin-bottom:22px; }
-    .hero h1{ font-size:clamp(2.6rem, 8vw, 5rem); font-weight:800; }
-    .hero h1 .accentword{ font-style:italic; font-weight:700; color:var(--accent); }
-    .rw{ display:inline-block; opacity:0; transform:translateY(0.5em); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
-    @keyframes rise{ to{ opacity:1; transform:none; } }
-    .hero-sub{ font-size:1.12rem; color:var(--muted); max-width:560px; margin:26px 0 30px; }
-    .hero-ctas{ display:flex; flex-wrap:wrap; gap:12px; }
-    .hero-trust{ display:flex; flex-wrap:wrap; gap:24px; margin-top:40px; padding-top:28px; border-top:1px solid var(--line); }
-    .hero-trust div{ font-size:0.9rem; color:var(--muted); }
-    .hero-trust b{ font-family:var(--serif); font-size:1.5rem; color:var(--ink); display:block; font-weight:700; }
-
-    /* Marquee */
-    .marquee{ overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--white); padding:16px 0; }
-    .mtrack{ display:inline-flex; align-items:center; white-space:nowrap; animation:scroll 28s linear infinite; }
-    .mtrack span{ font-family:var(--serif); font-size:1.35rem; color:var(--ink); margin:0 26px; opacity:0.85; }
-    .mtrack .dot{ color:var(--accent); font-size:0.8rem; }
-    @keyframes scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
-
-    section{ padding:64px 0; }
-    .sec-head{ max-width:640px; margin-bottom:40px; }
-    .sec-head h2{ font-size:clamp(1.9rem, 5vw, 2.9rem); margin:10px 0 14px; }
-    .sec-head p{ color:var(--muted); font-size:1.05rem; }
-
-    /* Scroll reveal */
-    .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
-    .reveal.in{ opacity:1; transform:none; }
-    .reveal.d1{ transition-delay:.08s; } .reveal.d2{ transition-delay:.16s; } .reveal.d3{ transition-delay:.24s; }
-
-    /* Services grid */
-    .svc-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
-    @media(min-width:680px){ .svc-grid{ grid-template-columns:1fr 1fr; } }
-    @media(min-width:1000px){ .svc-grid{ grid-template-columns:repeat(4,1fr); } }
-    .svc{ background:var(--white); border:1px solid var(--line); border-radius:18px; padding:26px 22px; min-height:44px; transition:transform .18s ease, box-shadow .18s ease; }
-    .svc:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(17,17,17,0.07); }
-    .svc-ico{ font-size:1.6rem; }
-    .svc h3{ font-size:1.2rem; margin:14px 0 8px; }
-    .svc p{ font-size:0.92rem; color:var(--muted); }
-    .svc .price{ display:inline-block; margin-top:14px; font-weight:700; font-size:0.85rem; color:var(--accent); }
-    .svc-link{ display:block; }
-
-    /* Filterable project grid */
-    .filters{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px; }
-    .filter{ min-height:44px; padding:9px 18px; border-radius:999px; border:1px solid var(--line); background:var(--white); font-family:var(--sans); font-weight:600; font-size:0.88rem; color:var(--muted); cursor:pointer; transition:all .18s; }
-    .filter.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
-    .proj-grid{ display:grid; grid-template-columns:1fr; gap:20px; }
-    @media(min-width:640px){ .proj-grid{ grid-template-columns:1fr 1fr; } }
-    @media(min-width:1000px){ .proj-grid{ grid-template-columns:repeat(4,1fr); } }
-    .proj{ background:var(--white); border:1px solid var(--line); border-radius:18px; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease; }
-    .proj:hover{ transform:translateY(-6px); box-shadow:0 22px 50px rgba(17,17,17,0.10); }
-    .proj-thumb{ position:relative; aspect-ratio:16/10; overflow:hidden; background:#eee; }
-    .proj-thumb img{ width:100%; height:112%; object-fit:cover; object-position:top; transition:transform .5s cubic-bezier(.2,.7,.2,1); will-change:transform; }
-    .proj:hover .proj-thumb img{ transform:scale(1.05); }
-    .proj-badge{ position:absolute; top:10px; left:10px; background:rgba(255,255,255,0.92); color:var(--ink); font-size:0.68rem; font-weight:700; padding:4px 10px; border-radius:999px; }
-    .proj-body{ padding:18px 18px 20px; }
-    .proj-cat{ font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); }
-    .proj-body h3{ font-size:1.15rem; margin:6px 0 10px; }
-    .proj-link{ font-weight:700; font-size:0.9rem; color:var(--ink); min-height:44px; display:inline-flex; align-items:center; }
-    .proj-link:hover{ color:var(--accent); }
-    .proj.hide{ display:none; }
-
-    /* Process */
-    .proc-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
-    @media(min-width:760px){ .proc-grid{ grid-template-columns:repeat(4,1fr); } }
-    .proc{ position:relative; padding:26px 22px; border:1px solid var(--line); border-radius:18px; background:var(--white); }
-    .proc .num{ font-family:var(--serif); font-weight:800; font-size:2rem; color:var(--accent); line-height:1; }
-    .proc h3{ font-size:1.05rem; margin:12px 0 8px; }
-    .proc p{ font-size:0.9rem; color:var(--muted); }
-    .proc .dur{ display:inline-block; margin-top:10px; font-size:0.74rem; font-weight:700; color:var(--muted); }
-
-    /* Pricing detail */
-    .price-grid{ display:grid; grid-template-columns:1fr; gap:18px; align-items:start; }
-    @media(min-width:820px){ .price-grid{ grid-template-columns:repeat(3,1fr); } }
-    .pcard{ background:var(--white); border:1px solid var(--line); border-radius:20px; padding:30px 26px; }
-    .pcard.feat{ border-color:var(--ink); box-shadow:0 18px 50px rgba(17,17,17,0.08); }
-    .pcard .tag{ display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
-    .pcard h3{ font-size:1.25rem; }
-    .pcard .amt{ font-family:var(--serif); font-weight:800; font-size:2rem; margin:12px 0 4px; }
-    .pcard .note{ font-size:0.8rem; color:var(--muted); margin-bottom:18px; }
-    .pcard ul{ list-style:none; margin:16px 0 0; padding-top:16px; border-top:1px solid var(--line); }
-    .pcard li{ font-size:0.88rem; color:var(--muted); padding:5px 0 5px 22px; position:relative; }
-    .pcard li::before{ content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:700; }
-    .pcard .btn{ width:100%; margin-top:20px; }
-    .addons{ margin-top:22px; background:var(--white); border:1px solid var(--line); border-radius:14px; padding:16px 20px; font-size:0.88rem; color:var(--muted); line-height:1.8; }
-    .addons b{ color:var(--ink); }
-
-    /* FAQ */
-    .faq{ max-width:760px; }
-    .faq-item{ border-bottom:1px solid var(--line); }
-    .faq-q{ width:100%; background:none; border:none; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:20px 0; cursor:pointer; font-family:var(--sans); font-size:1rem; font-weight:700; color:var(--ink); text-align:left; min-height:44px; }
-    .faq-q .arw{ font-family:var(--serif); font-size:1.5rem; color:var(--accent); transition:transform .3s; flex-shrink:0; }
-    .faq-item.open .faq-q .arw{ transform:rotate(45deg); }
-    .faq-a{ font-size:0.92rem; color:var(--muted); line-height:1.75; max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s; }
-    .faq-item.open .faq-a{ max-height:420px; padding-bottom:20px; }
-
-    /* CTA band */
-    .cta{ background:var(--ink); color:#fff; border-radius:24px; padding:56px 28px; text-align:center; }
-    .cta h2{ font-size:clamp(1.9rem,5vw,3rem); color:#fff; }
-    .cta p{ color:#d6d3d1; max-width:520px; margin:14px auto 26px; }
-    .cta .btn-ink{ background:#fff; color:var(--ink); }
-
-    /* Footer */
-    footer{ background:var(--ink); color:#d6d3d1; padding:56px 0 40px; margin-top:20px; }
-    .foot-top{ display:flex; flex-wrap:wrap; gap:28px; justify-content:space-between; align-items:flex-start; padding-bottom:30px; border-bottom:1px solid rgba(255,255,255,0.12); }
-    .foot-brand{ font-family:var(--serif); font-weight:800; font-size:1.5rem; color:#fff; }
-    .foot-brand p{ font-family:var(--sans); font-size:0.9rem; color:#a8a29e; margin-top:8px; max-width:280px; }
-    .foot-links{ display:flex; flex-wrap:wrap; gap:26px; }
-    .foot-col a{ display:block; font-size:0.9rem; color:#d6d3d1; padding:6px 0; min-height:34px; }
-    .foot-col a:hover{ color:#fff; }
-    .foot-col .lbl{ font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:#78716c; margin-bottom:8px; }
-    .foot-bottom{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; padding-top:24px; font-size:0.82rem; color:#a8a29e; }
-    .socials{ display:flex; gap:12px; }
-    .socials a{ width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); color:#e7e5e4; transition:all .2s; }
-    .socials a:hover{ background:#fff; color:var(--ink); }
-
-    @media (prefers-reduced-motion: reduce){
-      *, *::before, *::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
-      .rw, .reveal{ opacity:1 !important; transform:none !important; }
-      .hero-canvas{ display:none; }
-    }
-  </style>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin/>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-500.woff2" crossorigin/>
+  <link rel="stylesheet" href="assets/css/editorial.css"/>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap nav">
-    <a href="/" class="brand" style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/logo-a-mark.png" alt="" width="28" height="29" style="height:30px;width:auto;display:block;"/>Andri Wulandika</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="/" class="brand"><img src="assets/brand/logo-a-white.png" alt="" width="24" height="25"/>Andri Wulandika</a>
     <nav class="nav-links">
+      <a href="#karya">Karya</a>
       <a href="#layanan">Layanan</a>
-      <a href="#karya">Portofolio</a>
-      <a href="#paket">Paket</a>
-      <a href="#faq">FAQ</a>
+      <a href="harga.html">Harga</a>
       <a href="tentang.html">Tentang</a>
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-ink nav-cta" data-magnetic>Konsultasi</a>
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-primary nav-cta">Konsultasi</a>
     </nav>
-    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
   </div>
-  <div class="mnav wrap" id="mnav">
+  <div class="mnav" id="mnav">
+    <a href="#karya">Karya</a>
     <a href="#layanan">Layanan</a>
-    <a href="#karya">Portofolio</a>
-    <a href="#paket">Paket</a>
-    <a href="#faq">FAQ</a>
+    <a href="harga.html">Harga</a>
     <a href="tentang.html">Tentang</a>
-    <a href="produk.html">Produk (AI Tools)</a>
+    <a href="produk.html">AI Tools</a>
     <a href="https://wa.me/62811660568" target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
 <section class="hero">
-  <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div class="hero-eyebrow eyebrow rw" style="animation-delay:.05s;">Konsultan Transformasi Digital</div>
-    <h1>
-      <span class="rw" style="animation-delay:.10s;">Transformasi</span>
-      <span class="rw" style="animation-delay:.18s;">digital</span>
-      <span class="rw" style="animation-delay:.26s;">untuk</span><br/>
-      <span class="rw accentword" style="animation-delay:.34s;">pemerintah</span>
-      <span class="rw" style="animation-delay:.42s;">&amp;</span>
-      <span class="rw accentword" style="animation-delay:.50s;">bisnis.</span>
-    </h1>
-    <p class="hero-sub rw" style="animation-delay:.6s;">Membantu instansi pemerintah dan bisnis tampil profesional serta bekerja lebih cepat — lewat website modern yang mudah ditemukan di Google, AI tools, dan pengelolaan media sosial.</p>
-    <div class="hero-ctas rw" style="animation-delay:.68s;">
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website." target="_blank" rel="noopener" class="btn btn-ink" data-magnetic>Konsultasi Gratis</a>
-      <a href="#paket" class="btn btn-outline">Lihat Paket Harga</a>
+    <span class="eyebrow rise">Konsultan Transformasi Digital</span>
+    <h1 class="rise d1" style="margin-top:26px;">Transformasi digital untuk <span class="accent">pemerintah</span> &amp; <span class="accent">bisnis</span>.</h1>
+    <p class="hero-sub rise d2">Membantu instansi pemerintah dan bisnis tampil profesional serta bekerja lebih cepat — lewat website modern yang mudah ditemukan di Google, AI tools, dan pengelolaan media sosial.</p>
+    <div class="hero-cta rise d3">
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi%20pembuatan%20website." target="_blank" rel="noopener" class="btn btn-primary">Konsultasi Gratis</a>
+      <a href="#karya" class="btn btn-ghost">Lihat Karya</a>
     </div>
-    <div class="hero-trust rw" style="animation-delay:.76s;">
-      <div><b>3–21</b> hari pengerjaan</div>
-      <div><b>Gratis</b> hosting selamanya</div>
-      <div><b>51+</b> OPD pengalaman koordinasi</div>
+
+    <div class="stats rise d4">
+      <div class="stat"><b>3–21</b><span>Hari pengerjaan</span></div>
+      <div class="stat"><b>Gratis</b><span>Hosting selamanya</span></div>
+      <div class="stat"><b>51+</b><span>OPD pengalaman koordinasi</span></div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="mtrack" id="mtrack">
-    <span>Website Pemerintah</span><span class="dot">✦</span><span>Website Bisnis</span><span class="dot">✦</span><span>AI Tools Perencanaan</span><span class="dot">✦</span><span>Pengelolaan Media Sosial</span><span class="dot">✦</span><span>SEO</span><span class="dot">✦</span><span>Landing Page</span><span class="dot">✦</span>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section id="layanan">
+<!-- ── KARYA ────────────────────────────────────────────────────────────── -->
+<section class="sect" id="karya">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Layanan</span>
-      <h2>Solusi digital yang benar-benar dipakai.</h2>
-      <p>Empat lini layanan untuk kebutuhan pemerintah maupun bisnis — dari website hingga konten media sosial.</p>
+    <div class="sect-head">
+      <div class="sect-head-row">
+        <div>
+          <span class="eyebrow rise">Karya &amp; Template</span>
+          <h2 class="rise d1">Contoh desain siap pakai.</h2>
+        </div>
+      </div>
+      <p class="rise d2">Empat contoh website (data &amp; merek fiktif) untuk memperlihatkan gaya desain per kebutuhan.</p>
     </div>
-    <div class="svc-grid">
-      <a href="layanan-pemerintah.html" class="svc svc-link reveal"><div class="svc-ico">🏛️</div><h3>Website Pemerintah</h3><p>Website instansi/OPD/desa sesuai kaidah pemerintah — berita, dokumen publik, PPID.</p><span class="price">mulai Rp 2,5 juta →</span></a>
-      <a href="layanan-bisnis.html" class="svc svc-link reveal d1"><div class="svc-ico">🌐</div><h3>Website Bisnis</h3><p>Landing page &amp; company profile — desain modern, SEO-ready, cepat selesai.</p><span class="price">mulai Rp 1,2 juta →</span></a>
-      <a href="layanan-bisnis.html#medsos" class="svc svc-link reveal d2"><div class="svc-ico">📱</div><h3>Media Sosial</h3><p>Konten, caption, desain, dan laporan bulanan — akun bisnismu konsisten tanpa ribet.</p><span class="price">mulai Rp 600rb/bln →</span></a>
-      <a href="produk.html" class="svc svc-link reveal d3"><div class="svc-ico">⚡</div><h3>AI Tools</h3><p>Platform AI untuk mempercepat pekerjaan perencanaan daerah — sistem kredit pay-as-you-go.</p><span class="price">Lihat produk →</span></a>
-    </div>
-  </div>
-</section>
 
-<!-- FILTERABLE PROJECTS -->
-<section id="karya" style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Portofolio &amp; Template</span>
-      <h2>Contoh desain siap pakai.</h2>
-      <p>Empat contoh website (data &amp; merek fiktif) untuk memperlihatkan gaya desain per kebutuhan. Saring berdasarkan kategori.</p>
+    <div class="filters rise">
+      <button class="filt on" type="button" data-filter="all">Semua</button>
+      <button class="filt" type="button" data-filter="umkm">UMKM</button>
+      <button class="filt" type="button" data-filter="desa">Desa</button>
+      <button class="filt" type="button" data-filter="pemerintah">Pemerintahan</button>
+      <button class="filt" type="button" data-filter="landing">Landing Page</button>
     </div>
-    <div class="filters reveal" id="filters">
-      <button class="filter active" data-filter="all">Semua</button>
-      <button class="filter" data-filter="umkm">UMKM</button>
-      <button class="filter" data-filter="desa">Desa</button>
-      <button class="filter" data-filter="pemerintah">Pemerintahan</button>
-      <button class="filter" data-filter="landing">Landing Page</button>
-    </div>
-    <div class="proj-grid" id="projgrid">
-      <article class="proj reveal" data-cat="umkm">
-        <div class="proj-thumb"><img src="assets/img/template-umkm.webp" alt="Contoh UMKM Kopi Senja" loading="lazy" data-parallax/><span class="proj-badge">Contoh</span></div>
-        <div class="proj-body"><div class="proj-cat">UMKM</div><h3>Kopi Senja</h3><a href="demo-umkm.html" target="_blank" rel="noopener" class="proj-link">Lihat Demo →</a></div>
-      </article>
-      <article class="proj reveal d1" data-cat="desa">
-        <div class="proj-thumb"><img src="assets/img/template-desa.webp" alt="Contoh Website Desa" loading="lazy" data-parallax/><span class="proj-badge">Contoh</span></div>
-        <div class="proj-body"><div class="proj-cat">Website Desa</div><h3>Desa Makmur Jaya</h3><a href="demo-desa.html" target="_blank" rel="noopener" class="proj-link">Lihat Demo →</a></div>
-      </article>
-      <article class="proj reveal d2" data-cat="pemerintah">
-        <div class="proj-thumb"><img src="assets/img/template-pemerintah.webp" alt="Contoh Website Instansi/OPD" loading="lazy" data-parallax/><span class="proj-badge">Contoh</span></div>
-        <div class="proj-body"><div class="proj-cat">Instansi / OPD</div><h3>Dinas Kominfo Contoh</h3><a href="demo-pemerintah.html" target="_blank" rel="noopener" class="proj-link">Lihat Demo →</a></div>
-      </article>
-      <article class="proj reveal d3" data-cat="landing">
-        <div class="proj-thumb"><img src="assets/img/template-landing.webp" alt="Contoh Landing Page" loading="lazy" data-parallax/><span class="proj-badge">Contoh</span></div>
-        <div class="proj-body"><div class="proj-cat">Landing Page</div><h3>KelasCuan</h3><a href="demo-landing.html" target="_blank" rel="noopener" class="proj-link">Lihat Demo →</a></div>
-      </article>
+
+    <div class="work">
+      <a href="demo-umkm.html" target="_blank" rel="noopener" class="card rise" data-cat="umkm">
+        <div class="card-img"><span class="card-tag">Contoh</span><img src="assets/img/template-umkm.webp" alt="Contoh website UMKM Kopi Senja" loading="lazy" width="760" height="380"/></div>
+        <div class="card-body"><div><h3>Kopi Senja</h3><span class="meta">UMKM · Kedai Kopi</span></div><span class="go">→</span></div>
+      </a>
+      <a href="demo-desa.html" target="_blank" rel="noopener" class="card rise d1" data-cat="desa">
+        <div class="card-img"><span class="card-tag">Contoh</span><img src="assets/img/template-desa.webp" alt="Contoh website Desa Makmur Jaya" loading="lazy" width="760" height="380"/></div>
+        <div class="card-body"><div><h3>Desa Makmur Jaya</h3><span class="meta">Website Desa</span></div><span class="go">→</span></div>
+      </a>
+      <a href="demo-pemerintah.html" target="_blank" rel="noopener" class="card rise" data-cat="pemerintah">
+        <div class="card-img"><span class="card-tag">Contoh</span><img src="assets/img/template-pemerintah.webp" alt="Contoh website Dinas Kominfo" loading="lazy" width="760" height="380"/></div>
+        <div class="card-body"><div><h3>Dinas Kominfo Contoh</h3><span class="meta">Instansi / OPD</span></div><span class="go">→</span></div>
+      </a>
+      <a href="demo-landing.html" target="_blank" rel="noopener" class="card rise d1" data-cat="landing">
+        <div class="card-img"><span class="card-tag">Contoh</span><img src="assets/img/template-landing.webp" alt="Contoh landing page KelasCuan" loading="lazy" width="760" height="380"/></div>
+        <div class="card-body"><div><h3>KelasCuan</h3><span class="meta">Landing Page</span></div><span class="go">→</span></div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- PROSES -->
-<section id="proses">
+<!-- ── LAYANAN ──────────────────────────────────────────────────────────── -->
+<section class="sect" id="layanan">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Cara Kerja</span>
-      <h2>Dari konsultasi ke website siap pakai.</h2>
-      <p>Empat langkah sederhana — tanpa perlu paham teknis apa pun.</p>
+    <div class="sect-head">
+      <span class="eyebrow rise">Layanan</span>
+      <h2 class="rise d1">Solusi digital yang benar-benar dipakai.</h2>
+      <p class="rise d2">Empat lini layanan untuk kebutuhan pemerintah maupun bisnis — dari website hingga konten media sosial.</p>
     </div>
-    <div class="proc-grid">
-      <div class="proc reveal"><div class="num">1</div><h3>Konsultasi Gratis</h3><p>Ceritakan kebutuhan via WhatsApp — jenis usaha, target, dan fitur yang diinginkan.</p><span class="dur">Hari ke-1</span></div>
-      <div class="proc reveal d1"><div class="num">2</div><h3>Brief &amp; Desain Awal</h3><p>Kami kirim mockup &amp; struktur halaman untuk disetujui sebelum pengerjaan dimulai.</p><span class="dur">Hari ke-2–4</span></div>
-      <div class="proc reveal d2"><div class="num">3</div><h3>Pengerjaan &amp; Revisi</h3><p>Website dibangun sesuai brief. Anda pantau progres dan beri masukan tiap tahap.</p><span class="dur">Hari ke-3–14</span></div>
-      <div class="proc reveal d3"><div class="num">4</div><h3>Launch &amp; Serah Terima</h3><p>Website live, plus file, akses penuh, dan panduan update konten mandiri.</p><span class="dur">Sesuai paket</span></div>
+
+    <div class="svc-list">
+      <a href="layanan-pemerintah.html" class="svc rise">
+        <span class="svc-n">01</span>
+        <h3>Website Pemerintah</h3>
+        <p>Website instansi/OPD/desa sesuai kaidah pemerintah — berita, dokumen publik, PPID.</p>
+        <span class="price">mulai Rp 2,5 juta →</span>
+      </a>
+      <a href="layanan-bisnis.html" class="svc rise">
+        <span class="svc-n">02</span>
+        <h3>Website Bisnis</h3>
+        <p>Landing page &amp; company profile — desain modern, SEO-ready, cepat selesai.</p>
+        <span class="price">mulai Rp 1,2 juta →</span>
+      </a>
+      <a href="layanan-bisnis.html#medsos" class="svc rise">
+        <span class="svc-n">03</span>
+        <h3>Media Sosial</h3>
+        <p>Konten, caption, desain, dan laporan bulanan — akun bisnismu konsisten tanpa ribet.</p>
+        <span class="price">mulai Rp 600rb/bln →</span>
+      </a>
+      <a href="produk.html" class="svc rise">
+        <span class="svc-n">04</span>
+        <h3>AI Tools</h3>
+        <p>Platform AI untuk mempercepat pekerjaan perencanaan daerah — sistem kredit pay-as-you-go.</p>
+        <span class="price">Lihat produk →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="paket" style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<!-- ── PROSES ───────────────────────────────────────────────────────────── -->
+<section class="sect" id="proses">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Paket Harga</span>
-      <h2>Transparan, tanpa biaya tersembunyi.</h2>
-      <p>Semua paket sudah termasuk hosting gratis (Cloudflare Pages) dan panduan penggunaan dasar.</p>
+    <div class="sect-head">
+      <span class="eyebrow rise">Cara Kerja</span>
+      <h2 class="rise d1">Dari konsultasi ke website siap pakai.</h2>
+      <p class="rise d2">Empat langkah sederhana — tanpa perlu paham teknis apa pun.</p>
     </div>
-    <div class="price-grid">
-      <div class="pcard reveal">
-        <span class="tag">Landing Page</span>
-        <h3>Rp 1,2 juta</h3>
-        <div class="amt">Rp 1,2 jt</div>
-        <div class="note">Bayar sekali, milik Anda selamanya.</div>
-        <ul>
-          <li>1 halaman panjang (scroll)</li>
-          <li>Desain profesional &amp; responsif</li>
-          <li>Tombol WhatsApp / form kontak</li>
-          <li>SEO dasar (meta, schema, sitemap)</li>
-          <li>Hosting gratis + subdomain gratis</li>
-          <li>Selesai 3–5 hari kerja · 2× revisi</li>
-        </ul>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Landing%20Page%20Rp1%2C2juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-outline">Pilih Paket Ini</a>
-      </div>
-      <div class="pcard feat reveal d1">
-        <span class="tag">Website Profil · Paling Populer</span>
-        <h3>Rp 3 juta</h3>
-        <div class="amt">Rp 3 jt</div>
-        <div class="note">Domain .com/id opsional (+Rp 150rb/tahun).</div>
-        <ul>
-          <li>5–7 halaman (Beranda, Tentang, Layanan, Kontak, dll)</li>
-          <li>Desain custom sesuai identitas brand</li>
-          <li>SEO lengkap (meta, OG, schema, sitemap)</li>
-          <li>Formulir kontak + integrasi WhatsApp</li>
-          <li>Google Analytics terpasang</li>
-          <li>Selesai 7–14 hari · revisi sampai puas (maks 3)</li>
-          <li>Support WhatsApp 1 bulan</li>
-        </ul>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20tertarik%20Paket%20Website%20Profil%20Rp3juta.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-ink" data-magnetic>Pilih Paket Ini</a>
-      </div>
-      <div class="pcard reveal d2">
-        <span class="tag">Instansi / OPD / Desa</span>
-        <h3>mulai Rp 2,5 juta</h3>
-        <div class="amt">Rp 2,5 jt+</div>
-        <div class="note">Harga menyesuaikan scope kebutuhan.</div>
-        <ul>
-          <li>10+ halaman terstruktur</li>
-          <li>Halaman berita / publikasi (update mandiri)</li>
-          <li>Struktur sesuai regulasi website pemerintah</li>
-          <li>Halaman dokumen publik &amp; unduhan</li>
-          <li>Training penggunaan &amp; update konten</li>
-          <li>Selesai 14–21 hari · Support WhatsApp 3 bulan</li>
-        </ul>
-        <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20dari%20instansi%20dan%20tertarik%20Paket%20Website%20Instansi%2FOPD.%20Boleh%20konsultasi%3F" target="_blank" rel="noopener" class="btn btn-outline">Konsultasi Dulu</a>
-      </div>
-    </div>
-    <div class="addons reveal">
-      <b>Add-on opsional:</b> Domain .com (Rp 150rb/tahun) · Koneksi ke media sosial (Rp 150rb) · Blog / artikel rutin (Rp 50rb/artikel) · Setup Google Bisnisku (Rp 150rb) · Maintenance tahunan (mulai Rp 300rb/tahun)
+    <div class="steps rise">
+      <div class="step"><span class="n">01</span><h3>Konsultasi Gratis</h3><p>Ceritakan kebutuhan via WhatsApp — jenis usaha, target, dan fitur yang diinginkan.</p><span class="dur">Hari ke-1</span></div>
+      <div class="step"><span class="n">02</span><h3>Brief &amp; Desain Awal</h3><p>Kami kirim mockup &amp; struktur halaman untuk disetujui sebelum pengerjaan dimulai.</p><span class="dur">Hari ke-2–4</span></div>
+      <div class="step"><span class="n">03</span><h3>Pengerjaan &amp; Revisi</h3><p>Website dibangun sesuai brief. Anda pantau progres dan beri masukan tiap tahap.</p><span class="dur">Hari ke-3–14</span></div>
+      <div class="step"><span class="n">04</span><h3>Launch &amp; Serah Terima</h3><p>Website live, plus file, akses penuh, dan panduan update konten mandiri.</p><span class="dur">Sesuai paket</span></div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq">
+<!-- ── PITA HARGA (detail lengkap di halaman harga.html) ─────────────────── -->
+<section class="sect" id="harga">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">FAQ</span>
-      <h2>Pertanyaan yang sering ditanyakan.</h2>
-    </div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-q" type="button">Apakah saya perlu tahu coding untuk mengelola website?<span class="arw">+</span></button>
-        <div class="faq-a">Tidak sama sekali. Setelah serah terima, kami berikan panduan lengkap cara update teks, ganti gambar, dan tambah konten dasar — semuanya tanpa menyentuh kode. Untuk perubahan desain kompleks, Anda bisa menghubungi kami kembali.</div>
+    <div class="price-band rise">
+      <div>
+        <span class="from">Paket website mulai dari</span>
+        <span class="amt">Rp 1,2 juta</span>
+        <p class="note">Bayar sekali, milik Anda selamanya. Semua paket sudah termasuk hosting gratis dan panduan penggunaan dasar.</p>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button">Berapa biaya hosting per bulan?<span class="arw">+</span></button>
-        <div class="faq-a">Nol rupiah. Website di-hosting di Cloudflare Pages — platform global gratis tanpa batas bandwidth dan tanpa biaya bulanan. Satu-satunya biaya tahunan yang mungkin ada adalah domain (mis. .com ~Rp 150rb/tahun), dan itu pun opsional.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button">Bisakah ditambah fitur belanja online (e-commerce)?<span class="arw">+</span></button>
-        <div class="faq-a">Untuk toko online dengan manajemen produk dan keranjang penuh, sebaiknya diskusi dulu karena butuh backend berbeda. Namun integrasi WhatsApp order atau redirect ke Tokopedia/Shopee bisa kami akomodasi di semua paket.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button">Berapa lama proses pengerjaannya?<span class="arw">+</span></button>
-        <div class="faq-a">Landing Page 3–5 hari kerja, Website Profil 7–14 hari kerja, Paket Instansi 14–21 hari kerja. Durasi bergantung kelengkapan konten (teks &amp; foto) yang Anda sediakan.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button">Apakah ada garansi muncul di halaman 1 Google?<span class="arw">+</span></button>
-        <div class="faq-a">Tidak ada yang bisa menjamin posisi Google — siapa pun yang menjanjikannya patut dicurigai. Yang kami lakukan adalah membangun fondasi SEO yang benar dari awal: struktur HTML sesuai, meta tag lengkap, schema, konten berkualitas, dan kecepatan optimal — untuk memaksimalkan peluang ditemukan.</div>
-      </div>
+      <a href="harga.html" class="btn btn-light">Lihat Semua Harga</a>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section id="kontak">
+<!-- ── AJAKAN PENUTUP ───────────────────────────────────────────────────── -->
+<section class="cta" id="kontak">
   <div class="wrap">
-    <div class="cta reveal">
-      <h2>Siap tampil lebih profesional?</h2>
-      <p>Ceritakan kebutuhanmu — konsultasi gratis, respons biasanya dalam 1–2 jam di hari kerja.</p>
-      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-ink" data-magnetic>Konsultasi Gratis via WhatsApp</a>
+    <span class="eyebrow rise">Kontak</span>
+    <h2 class="rise d1" style="margin-top:24px;">Siap tampil lebih <span class="accent">profesional</span>?</h2>
+    <p class="rise d2">Ceritakan kebutuhanmu — konsultasi gratis, respons biasanya dalam 1–2 jam di hari kerja.</p>
+    <div class="cta-row rise d3">
+      <a href="https://wa.me/62811660568?text=Halo%20Andri%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" class="btn btn-primary">Konsultasi via WhatsApp</a>
+      <a href="mailto:wulandikaandri@gmail.com" class="btn btn-ghost">Kirim Email</a>
+    </div>
+
+    <div class="contact-grid rise d4">
+      <a href="https://wa.me/62811660568" target="_blank" rel="noopener"><span class="k">WhatsApp</span><span class="v">+62 811 660 568</span></a>
+      <a href="mailto:wulandikaandri@gmail.com"><span class="k">Surel</span><span class="v">wulandikaandri@gmail.com</span></a>
+      <div><span class="k">Wilayah Layanan</span><span class="v">Seluruh Indonesia</span></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
+<!-- ── FOOTER ───────────────────────────────────────────────────────────── -->
+<footer class="foot">
   <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand"><span style="display:inline-flex;align-items:center;gap:10px;"><img src="assets/brand/favicon-a-512.png" alt="" width="34" height="34" style="height:34px;width:34px;border-radius:8px;display:block;"/>Andri Wulandika</span><p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p></div>
-      <div class="foot-links">
-        <div class="foot-col"><div class="lbl">Layanan</div><a href="layanan-pemerintah.html">Website Pemerintah</a><a href="layanan-bisnis.html">Website Bisnis</a><a href="layanan-bisnis.html#medsos">Media Sosial</a><a href="produk.html">AI Tools</a></div>
-        <div class="foot-col"><div class="lbl">Situs</div><a href="#karya">Portofolio</a><a href="#paket">Paket Harga</a><a href="#faq">FAQ</a><a href="tentang.html">Tentang</a></div>
-        <div class="foot-col"><div class="lbl">Legal</div><a href="kebijakan-privasi.html">Kebijakan Privasi</a><a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a></div>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand"><img src="assets/brand/logo-a-white.png" alt="" width="24" height="25"/>Andri Wulandika</span>
+        <p>Digital Transformation Consultant untuk pemerintah &amp; bisnis.</p>
+      </div>
+      <div>
+        <h4>Layanan</h4>
+        <a href="layanan-pemerintah.html">Website Pemerintah</a>
+        <a href="layanan-bisnis.html">Website Bisnis</a>
+        <a href="layanan-bisnis.html#medsos">Media Sosial</a>
+        <a href="produk.html">AI Tools</a>
+      </div>
+      <div>
+        <h4>Situs</h4>
+        <a href="#karya">Karya</a>
+        <a href="harga.html">Harga</a>
+        <a href="tentang.html">Tentang</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+        <a href="syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business.</span>
+    <div class="foot-btm">
+      <span>© 2026 Andri Wulandika — Digital Transformation for Government &amp; Business</span>
       <div class="socials">
-        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.4c0-.86.28-1.4 1.5-1.4H17.6V.3C17.2.25 16.1.15 15 .15c-2.4 0-4 1.46-4 4.15V6H8.2v3H11v9h3V9z"/></svg></a>
+        <a href="https://www.instagram.com/andri_wulandika" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/share/14iNJ1DPhtV/" target="_blank" rel="noopener">Facebook</a>
         <!-- TODO(Andri): ganti href '#' dengan URL TikTok resmi -->
-        <a href="#" aria-label="TikTok (tautan menyusul)" title="TikTok — tautan menyusul"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-2.9v12.3a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.05V8.8a5.7 5.7 0 00-.7-.05A5.65 5.65 0 1017 14.3V8a7.1 7.1 0 004.1 1.3V6.4a4.1 4.1 0 01-4.1-4.1z"/></svg></a>
-        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener" aria-label="YouTube"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+        <a href="#" title="TikTok — tautan menyusul">TikTok</a>
+        <a href="https://youtube.com/@andriwulandika8408" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script src="assets/js/lenis.min.js"></script>
-<script>
-(function(){
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var finePointer = window.matchMedia && window.matchMedia('(pointer:fine)').matches;
-
-  /* ---- Mobile nav ---- */
-  var burger=document.getElementById('burger'), mnav=document.getElementById('mnav');
-  if(burger){ burger.addEventListener('click', function(){ var open=mnav.classList.toggle('open'); burger.setAttribute('aria-expanded', open?'true':'false'); }); }
-  mnav && mnav.addEventListener('click', function(e){ if(e.target.tagName==='A'){ mnav.classList.remove('open'); burger&&burger.setAttribute('aria-expanded','false'); } });
-
-  /* ---- Marquee: duplicate for seamless loop ---- */
-  var t=document.getElementById('mtrack'); if(t){ t.innerHTML=t.innerHTML+t.innerHTML; }
-
-  /* ---- Portfolio filter ---- */
-  var filters=document.querySelectorAll('.filter'), projs=document.querySelectorAll('.proj');
-  filters.forEach(function(f){ f.addEventListener('click', function(){
-    filters.forEach(function(x){ x.classList.remove('active'); }); f.classList.add('active');
-    var cat=f.getAttribute('data-filter');
-    projs.forEach(function(p){ p.classList.toggle('hide', cat!=='all' && p.getAttribute('data-cat')!==cat); });
-  }); });
-
-  /* ---- FAQ accordion ---- */
-  var faqItems=document.querySelectorAll('.faq-item');
-  faqItems.forEach(function(item){
-    var btn=item.querySelector('.faq-q'); if(!btn) return;
-    btn.addEventListener('click', function(){
-      var was=item.classList.contains('open');
-      faqItems.forEach(function(i){ i.classList.remove('open'); });
-      if(!was) item.classList.add('open');
-    });
-  });
-
-  /* ---- Scroll reveal ---- */
-  var reveals=document.querySelectorAll('.reveal');
-  if(reduce || !('IntersectionObserver' in window)){
-    reveals.forEach(function(el){ el.classList.add('in'); });
-  } else {
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
-    reveals.forEach(function(el){ io.observe(el); });
-  }
-
-  /* ---- Lenis smooth scroll ---- */
-  var lenis=null;
-  if(!reduce && window.Lenis){
-    lenis=new Lenis({ duration:1.1, smoothWheel:true, easing:function(x){ return Math.min(1,1.001-Math.pow(2,-10*x)); } });
-    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-  }
-  /* Anchor links -> smooth scroll to target (works with or without Lenis) */
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    var id=a.getAttribute('href');
-    if(id==='#' || id.length<2) return;
-    a.addEventListener('click', function(e){
-      var target=document.querySelector(id);
-      if(!target) return;
-      e.preventDefault();
-      if(lenis){ lenis.scrollTo(target, { offset:-80 }); }
-      else { var y=target.getBoundingClientRect().top + window.pageYOffset - 80; window.scrollTo({ top:y, behavior:reduce?'auto':'smooth' }); }
-    });
-  });
-
-  /* ---- Parallax on project images ---- */
-  var pElems=Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
-  if(!reduce && pElems.length){
-    var ticking=false;
-    function updateParallax(){
-      var vh=window.innerHeight;
-      pElems.forEach(function(img){
-        var r=img.getBoundingClientRect();
-        if(r.bottom<0 || r.top>vh) return;
-        var progress=(r.top + r.height/2 - vh/2) / vh;
-        var shift=Math.max(-18, Math.min(18, -progress*22));
-        img.style.transform='translateY('+shift.toFixed(1)+'px)';
-      });
-      ticking=false;
-    }
-    function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(updateParallax); } }
-    if(lenis){ lenis.on('scroll', onScroll); } else { window.addEventListener('scroll', onScroll, { passive:true }); }
-    window.addEventListener('resize', onScroll); updateParallax();
-  }
-
-  /* ---- Magnetic buttons ---- */
-  if(finePointer && !reduce){
-    document.querySelectorAll('[data-magnetic]').forEach(function(el){
-      el.addEventListener('mousemove', function(e){
-        var r=el.getBoundingClientRect();
-        var mx=e.clientX-(r.left+r.width/2), my=e.clientY-(r.top+r.height/2);
-        el.style.transform='translate('+(mx*0.22).toFixed(1)+'px,'+(my*0.30).toFixed(1)+'px)';
-      });
-      el.addEventListener('mouseleave', function(){ el.style.transform=''; });
-    });
-  }
-
-  /* ---- Subtle hero canvas: drifting soft blobs reacting to pointer ---- */
-  var cv=document.getElementById('heroCanvas');
-  if(cv && !reduce){
-    var ctx=cv.getContext('2d'), W=0, H=0, dpr=Math.min(window.devicePixelRatio||1,2);
-    var host=cv.parentElement;
-    var palette=['#e76e44','#c2510c','#d8b48a','#8a9a8f'];
-    var blobs=[];
-    function makeBlobs(){
-      blobs=[];
-      var n=W<640?4:6;
-      for(var i=0;i<n;i++){
-        blobs.push({
-          x:Math.random()*W, y:Math.random()*H,
-          r:(W<640?90:150)+Math.random()*120,
-          dx:(Math.random()-0.5)*0.15, dy:(Math.random()-0.5)*0.15,
-          c:palette[i%palette.length]
-        });
-      }
-    }
-    function resize(){
-      W=host.clientWidth; H=host.clientHeight;
-      if(!W||!H) return;
-      cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px';
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      makeBlobs();
-    }
-    var mx=0.5, my=0.5;
-    host.addEventListener('mousemove', function(e){ var r=host.getBoundingClientRect(); mx=(e.clientX-r.left)/r.width; my=(e.clientY-r.top)/r.height; });
-    function hexA(hex,a){
-      var n=parseInt(hex.slice(1),16), r=(n>>16)&255, g=(n>>8)&255, bl=n&255;
-      return 'rgba('+r+','+g+','+bl+','+a+')';
-    }
-    function draw(){
-      if(W&&H){
-        ctx.clearRect(0,0,W,H);
-        ctx.globalCompositeOperation='multiply';
-        for(var i=0;i<blobs.length;i++){
-          var b=blobs[i];
-          b.x+=b.dx; b.y+=b.dy;
-          if(b.x<-b.r) b.x=W+b.r; if(b.x>W+b.r) b.x=-b.r;
-          if(b.y<-b.r) b.y=H+b.r; if(b.y>H+b.r) b.y=-b.r;
-          var px=b.x+(mx-0.5)*40*((i%2)?1:-1);
-          var py=b.y+(my-0.5)*40*((i%3)?1:-1);
-          var g=ctx.createRadialGradient(px,py,0,px,py,b.r);
-          g.addColorStop(0, hexA(b.c,0.14));
-          g.addColorStop(1, hexA(b.c,0));
-          ctx.fillStyle=g;
-          ctx.beginPath(); ctx.arc(px,py,b.r,0,Math.PI*2); ctx.fill();
-        }
-        ctx.globalCompositeOperation='source-over';
-      }
-      requestAnimationFrame(draw);
-    }
-    resize(); window.addEventListener('resize', resize); requestAnimationFrame(draw);
-  }
-})();
-</script>
+<script src="assets/js/editorial-ui.js"></script>
 </body>
 </html>

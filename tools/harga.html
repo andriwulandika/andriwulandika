@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-a-32.png"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-a-512.png"/>
+  <link rel="apple-touch-icon" href="assets/brand/favicon-a-180.png"/>
   <script src="assets/js/analytics.js" defer></script>
   <script src="/assets/js/ui-enhance.js" defer></script>
   <meta charset="UTF-8"/>
@@ -77,13 +80,13 @@
       --bg2: #f5f5f7;
       --text: #1d1d1f;
       --text2: #6e6e73;
-      --accent: #0071e3;
+      --accent: #C0341D;
       --border: #d2d2d7;
       --radius: 18px;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Jakarta', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
@@ -209,11 +212,11 @@
 
     /* Pro card — dark blue */
     .price-card.pro {
-      background: linear-gradient(160deg, #0071e3 0%, #0055b3 100%);
+      background: linear-gradient(160deg, #C0341D 0%, #0055b3 100%);
       border-color: transparent;
       color: #fff;
     }
-    .price-card.pro:hover { box-shadow: 0 16px 48px rgba(0,113,227,0.35); }
+    .price-card.pro:hover { box-shadow: 0 16px 48px rgba(192,52,29,0.35); }
 
     .card-badge-wrap { min-height: 28px; margin-bottom: 12px; }
     .card-badge {
@@ -273,7 +276,7 @@
     }
     .cta-light:hover { background: #e5e5ea; transform: scale(1.02); }
     .cta-white {
-      background: #fff; color: #0071e3;
+      background: #fff; color: #C0341D;
     }
     .cta-white:hover { background: #f0f7ff; transform: scale(1.02); }
     .cta-dark {
@@ -337,7 +340,7 @@
       font-weight: 600; text-align: center;
     }
     .compare-table thead th:first-child { text-align: left; }
-    .col-pro { background: #0071e3; color: #fff; border-radius: 12px 12px 0 0; }
+    .col-pro { background: #C0341D; color: #fff; border-radius: 12px 12px 0 0; }
     .compare-table tbody tr { border-bottom: 1px solid var(--border); }
     .compare-table tbody tr:last-child { border-bottom: none; }
     .compare-table tbody td {
@@ -348,11 +351,11 @@
       text-align: left; color: var(--text);
       font-weight: 500;
     }
-    .compare-table tbody td.highlight { background: rgba(0,113,227,0.05); }
+    .compare-table tbody td.highlight { background: rgba(192,52,29,0.05); }
     .compare-table tfoot td {
       padding: 18px; text-align: center;
     }
-    .compare-table tfoot td.highlight { background: rgba(0,113,227,0.05); }
+    .compare-table tfoot td.highlight { background: rgba(192,52,29,0.05); }
     .check { color: #34c759; font-weight: 700; font-size: 1rem; }
     .cross { color: var(--border); font-size: 1rem; }
     .cat-row td { background: var(--bg2) !important; font-size: 0.72rem !important; font-weight: 600 !important; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2) !important; padding: 18px 18px 8px !important; }
@@ -408,7 +411,7 @@
       font-size: 0.9rem; font-weight: 500;
       text-decoration: none; transition: background 0.2s, transform 0.2s;
     }
-    .btn-blue:hover { background: #0077ed; transform: scale(1.02); }
+    .btn-blue:hover { background: #8E2413; transform: scale(1.02); }
     .btn-ghost {
       display: inline-flex; align-items: center; gap: 7px;
       background: transparent; color: var(--text);
@@ -461,6 +464,7 @@
       .nav-links li:last-child > a { border-bottom: 0; }
     }
   </style>
+  <link rel="stylesheet" href="assets/css/brand-tokens.css"/>
 </head>
 <body>
 
@@ -636,7 +640,7 @@
           <tr>
             <td></td>
             <td><a href="index.html" style="font-size:0.82rem;color:var(--accent);font-weight:500;text-decoration:none;">Mulai Gratis →</a></td>
-            <td class="highlight"><a href="bayar.html" style="font-size:0.82rem;color:#0071e3;font-weight:600;text-decoration:none;">Pilih Berbayar →</a></td>
+            <td class="highlight"><a href="bayar.html" style="font-size:0.82rem;color:#C0341D;font-weight:600;text-decoration:none;">Pilih Berbayar →</a></td>
           </tr>
         </tfoot>
       </table>
