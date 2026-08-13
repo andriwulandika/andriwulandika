@@ -185,6 +185,39 @@ bukan soal isi.
 | B — Modern Tech/SaaS | `src/site/preview-modern-tech.html` | Terang, aksen gradasi indigo→cyan, kartu rounded, latar gradient mesh mengalir di hero. |
 | C — Corporate Government-Trust | `src/site/preview-corporate-trust.html` | Navy + emas, tipografi serif formal, grid simetris, latar garis geometris halus — untuk kesan resmi/instansi. |
 | D — Bold & Berani (Dark Mode) | `src/site/preview-bold-dark.html` | Latar gelap, aksen oranye-cyan vivid, tipografi besar uppercase, glow berdenyut di hero. |
+| B+ — Modern Tech dengan animasi 3D | `src/site/preview-modern-tech-3d.html` | Varian Arah B + mockup "device card" 3D (CSS transform, bukan WebGL/Three.js) dengan chip mengambang, tilt interaktif saat disentuh/di-hover. Dioptimalkan untuk HP: tanpa izin sensor gerak, tanpa animasi berat, terverifikasi tanpa overflow horizontal di viewport 390px. |
+| E — Cinematic Agency (terinspirasi hobro.digital) | `src/site/preview-cinematic-agency.html` | Latar gelap hangat (amber), wordmark besar kinetik, cursor custom dua-lapis (dot + ring, desktop saja), teks reveal per-kata saat scroll, efek mengetik siklus 4 layanan, strip portofolio drag-scroll. Semua vanilla CSS/JS (tanpa GSAP/library baru) — teknik ditiru dari hobro.digital, konten/harga/tagline tetap 100% milik Andri (tidak menyalin case study/tim/logo mereka). Font: **Space Grotesk** (self-hosted, `assets/fonts/space-grotesk-*.woff2`), bukan font asli hobro.digital (Kamerik205/PP Neue Montreal — font berbayar berlisensi, tidak boleh disalin/di-vendor tanpa lisensi); Space Grotesk dipilih sebagai alternatif gratis (OFL) dengan karakter geometric-grotesk tebal yang serupa. Wordmark "ANDRI WULANDIKA" dibuat bold maksimal (700) + tracking rapat (-0.045em) untuk kesan logotype seperti "HOBRO DIGITAL" — bukan menyalin huruf SVG kustom mereka. |
+| F — Scene Hero (teknik terinspirasi growon.kr) | `src/site/preview-scene-hero.html` | Hero gelap (`#050506`) dengan scene ambient partikel emas mengambang, bereaksi ke kursor (vanilla canvas, ringan — bukan WebGL/Three.js). Nav sticky yang menyusut & jadi solid (backdrop-blur) saat scroll. Headline kinetik reveal per-baris. Smooth-scroll via Lenis (self-hosted, sudah ada dari R.5). Font **Urbanist** (self-hosted, `assets/fonts/urbanist-*.woff2`, OFL gratis — bukan font berbayar growon.kr). **Sengaja hanya meniru kategori teknik (dark ambient hero, nav-shrink, kinetic type, smooth-scroll), BUKAN menyalin layout/komposisi/animasi persis growon.kr** — konten, copy, dan struktur 100% orisinal milik Andri. Baru mencakup Hero + Smooth Scroll (sesuai permintaan); section lain di bawahnya masih stub ringkas. Andri sudah memilih tetap di stack statis (menolak opsi migrasi Next.js/Three.js). Terverifikasi: tanpa overflow di 390px/1440px, tanpa error console, menu mobile berfungsi. |
+
+### Tambahan Arah E — Animasi 3D Spline aktif ("Zero gravity physics")
+
+Atas permintaan Andri, `preview-cinematic-agency.html` menampilkan **scene 3D
+Spline interaktif** ("Zero gravity physics landing page" — objek melayang yang
+bereaksi didorong kursor) sebagai latar hero, di belakang wordmark.
+
+- **Scene**: hasil remix Andri dari komunitas Spline
+  (`spline.design/community/file/3b3310ba-...`), lalu di-export sebagai HTML
+  statis mandiri via `my.spline.design/zerogravityphysicslandingpage-...`.
+  Watermark "Built with Spline" dipertahankan (wajib untuk pemakaian gratis).
+- **Sepenuhnya self-hosted, tanpa perubahan CSP**: file export disimpan di
+  `src/site/assets/spline/zero-gravity-hero.html`, dengan satu-satunya
+  dependency-nya (`@splinetool/runtime@1.12.98`, sebelumnya dimuat dari
+  unpkg.com) di-vendor ke `src/site/assets/js/spline-runtime/`. Dipasang lewat
+  `<iframe>` **same-origin** — bukan lewat CDN eksternal — jadi CSP
+  `script-src 'self'` situs tidak perlu diubah sama sekali.
+- **Sengaja dibatasi (gating) demi performa HP**: hanya dimuat di layar
+  ≥900px (desktop/tablet), tidak saat `prefers-reduced-motion`, tidak saat
+  `navigator.connection.saveData` aktif, dan baru di-load (lazy) via iframe
+  ketika hero benar-benar terlihat di viewport (`IntersectionObserver`). Di
+  HP, hero tetap gradient amber ringan — nol biaya loading tambahan,
+  diverifikasi tanpa request jaringan sama sekali ke arah Spline saat viewport
+  <900px.
+- **Verifikasi**: dites headless (Playwright) — file HTML & runtime termuat
+  200 OK, tidak ada error console, tidak ada request gagal, konteks WebGL2
+  berhasil dibuat, chunk scene (physics/opentype) berhasil diminta. **Render
+  visual 3D-nya sendiri tidak bisa dipastikan dari lingkungan agen** (GPU
+  software/headless, bukan GPU asli) — Andri perlu cek langsung di preview
+  Cloudflare pakai browser sendiri untuk konfirmasi visual final.
 
 Semua tetap memakai font self-hosted yang sudah ada (Jakarta/Playfair, CSP-safe),
 tagline resmi persis `"Transformasi digital untuk pemerintah & bisnis"`, dan
