@@ -1,40 +1,99 @@
 # CLAUDE.md — andriwulandika.uk
 
-Ringkasan operasional. Dokumen lengkap ada di `/docs` — baca sesuai kebutuhan lane (lihat AI-ORGANIZATION.md §2). Dokumen ini HANYA ringkasan; jika ada konflik, `/docs` yang menang.
+Ringkasan operasional untuk pekerjaan repo. Fokus saat ini: **website personal Andri Wulandika** dan integrasinya dengan **AI Workspace** di `ai.andriwulandika.uk`.
 
 ## Konteks Proyek
-- **Pemilik:** Andri Wulandika — bukan developer. Instruksi teknis ke Andri harus langkah-demi-langkah.
-- **Fase saat ini:** Fase 0 — validasi & pendapatan tercepat. Uji tiap pekerjaan: *apakah ini mempercepat pendapatan, atau hanya kelihatan bagus?*
-- **Repo:** `andriwulandika/andriwulandika` (folder `site/` & `tools/`, build 11ty dari `src/`). Hosting: Cloudflare Pages + Functions + KV.
-- **Edit selalu di `src/`, TIDAK PERNAH langsung di `site/`/`tools/`.**
-- **Dasar kerja:** `docs/ROADMAP.md` (sprint aktif) — kerjakan sesuai urutan sprint, jangan lompat kecuali diminta eksplisit.
+- **Pemilik:** Andri Wulandika — instruksi teknis harus praktis dan langkah-demi-langkah.
+- **Website utama:** personal digital headquarters; bukan landing page jasa.
+- **AI Workspace:** tujuan terpisah di `ai.andriwulandika.uk`.
+- **Repo:** `andriwulandika/andriwulandika`.
+- **Stack:** Eleventy 3 + Cloudflare Pages/Functions/KV.
+- **Source:** `src/`; `site/` dan `tools/` adalah output/deploy tree yang sengaja dikomit.
+- **Edit:** utamakan `src/`, lalu sinkronkan output `site/` bila perubahan memengaruhi deploy.
+- **Branch kerja:** gunakan branch/PR; **merge ke `main` hanya setelah Andri menyetujui preview**.
 
-## Kewenangan (ringkas — detail di AI-GOVERNANCE.md §1)
-| Otonom | Butuh persetujuan Andri | Perintah eksplisit wajib |
-|---|---|---|
-| Refactor, struktur folder, library minor, copy draft | Stack/hosting/domain, skema DB, pricing, positioning | Deploy production, publikasi atas nama Andri, hapus data, pengeluaran biaya |
+## Identitas & Arah Brand Aktif
+Website utama harus terasa seperti **website personal**, bukan katalog layanan.
 
-Push ke branch = boleh (preview). **Merge ke `main` HANYA setelah Andri approve preview.**
+Hero aktif:
+> **Saya bekerja di antara planning, teknologi, dan AI.**
 
-## Aturan Brand — Wajib Dicek Sebelum Sentuh Konten Publik
-1. Tagline aktif di hero: **"Transformasi digital untuk pemerintah & bisnis"** (tagline lama seperti "Dari Dokumen ke Dampak" sudah dipensiunkan — jangan dipakai lagi di konten publik).
-2. **DILARANG** menyebut: "Anggota aktif TAPD", sub-brand Birokrat/DesaDigital/VillageStock (di luar roadmap).
-3. Jabatan resmi "Perencana Ahli Pertama · Bappeda Aceh Tenggara" **tidak boleh** bersanding langsung dengan CTA/penawaran berbayar. Boleh muncul di konteks pengalaman netral (mis. halaman Tentang).
-4. Layanan **Pengelolaan Media Sosial** adalah lini resmi (paket & harga ada di ROADMAP.md Sprint 3).
-5. AI = teknologi pendukung, bukan identitas brand. Jangan tonjolkan "dibuat oleh AI" di konten publik.
+Positioning:
+- Perencana pembangunan daerah.
+- Builder sistem digital.
+- AI practitioner / pengguna AI untuk knowledge work.
+- Pembelajar dan penguji ide digital.
 
-Kalau task menyentuh salah satu poin di atas → jalankan skill `brand-governance-check` dulu sebelum implementasi.
+Jangan mengembalikan positioning lama:
+- “Transformasi digital untuk pemerintah & bisnis”
+- katalog paket jasa website
+- harga jasa
+- promosi media sosial
+- demo UMKM/desa/pemerintah sebagai isi utama homepage.
+
+Tulaku adalah brand terpisah dan tidak boleh dicampur ke identitas utama kecuali diminta eksplisit.
+
+## Struktur Homepage V3
+Urutan utama:
+1. Hero / identitas
+2. Tentang
+3. Karya
+4. Sekarang
+5. AI Workspace
+6. Prinsip
+7. Contact
+
+Gaya:
+- editorial/minimal
+- warm paper
+- tipografi besar dengan aksen serif italic
+- aksen oranye
+- tanpa 3D berat
+- motion sederhana dan menghormati `prefers-reduced-motion`
+- mobile-first dan ringan.
+
+## Aturan Konten
+- Bahasa Indonesia untuk konten publik dan dokumen internal.
+- Hindari klaim jabatan/instansi sebagai promosi komersial.
+- Jangan mengarang proyek, klien, pencapaian, atau testimoni.
+- AI diposisikan sebagai alat kerja/praktik, bukan klaim sensasional.
+- Link ke AI Workspace harus jelas tetapi tidak mengambil alih identitas homepage.
+
+## Retired / Jangan Dihidupkan Kembali
+Halaman jasa/demo lama telah dipensiunkan:
+- `jasa.html`
+- `layanan-pemerintah.html`
+- `layanan-bisnis.html`
+- `produk.html`
+- `promo.html`
+- `tentang.html`
+- `demo-*.html`
+- preview desain lama.
+
+URL lama yang masih berpotensi diakses diarahkan dengan 301 ke homepage atau tujuan yang relevan. Jangan membuat ulang halaman tersebut tanpa persetujuan Andri.
+
+## Yang Tetap Dipertahankan
+- halaman legal: `kebijakan-privasi.html`, `syarat-ketentuan.html`
+- `src/tools/` dan fungsi AI Workspace yang masih digunakan
+- assets/shared code yang benar-benar direferensikan
+- file verifikasi/SEO yang masih diperlukan
+- security headers, redirects, dan konfigurasi Cloudflare yang aktif.
 
 ## Standar Kualitas
-- Kode production-ready, ada error handling, langsung bisa dijalankan.
-- Secrets hanya via env var, tidak pernah di kode/commit.
-- Keputusan mahal-dibalik (stack, auth, payment) → wajib ADR di `/docs/adr/`.
-- Commit message jelas + centang item selesai di `docs/ROADMAP.md` di akhir sesi. Sesi tanpa update ROADMAP dianggap belum selesai.
+- Production-ready.
+- Tidak ada secret di kode.
+- Jangan menghapus fungsi AI/tools hanya karena tidak terlihat dari homepage.
+- Sebelum menghapus file, cek referensi dan fungsi URL-nya.
+- Setelah perubahan struktural: build, audit broken links/references, lalu commit.
+- Jangan merge ke `main` tanpa approval Andri.
 
-## Model per Jenis Kerja
-- **Sonnet 4.6** — default untuk implementasi rutin dengan spesifikasi jelas (Sprint 1, 2, 4).
-- **Fable 5 / Opus 4.8** — hanya untuk keputusan arsitektur mahal-dibalik atau ADR kompleks (mis. payment link Sprint 3.4).
+## Prioritas Kerja Saat Ini
+1. Pastikan PR redesign V3 bersih dan preview benar-benar menampilkan homepage baru.
+2. Bersihkan sisa artefak/asset/dokumen lama yang tidak lagi memiliki fungsi.
+3. Audit responsive/mobile dan link homepage.
+4. Audit SEO dasar, sitemap, redirects, dan legal.
+5. Setelah V3 disetujui, baru pekerjaan pengembangan berikutnya.
 
 ## Bahasa
-- Dokumen internal & konten situs: Bahasa Indonesia.
+- Dokumen & konten: Bahasa Indonesia.
 - Kode, komentar kode, commit message: Bahasa Inggris.
