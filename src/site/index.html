@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f2eee7">
+  <meta name="theme-color" content="#f4f3ef">
   <title>Andri Wulandika — Planner, Builder, AI Practitioner</title>
   <meta name="description" content="Andri Wulandika — perencana pembangunan daerah, builder sistem digital, dan AI practitioner.">
   <meta name="author" content="Andri Wulandika">
@@ -11,33 +11,152 @@
   <link rel="canonical" href="https://andriwulandika.uk/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Andri Wulandika — Planner, Builder, AI Practitioner">
-  <meta property="og:description" content="Personal digital headquarters Andri Wulandika. Planning, AI, data, digital systems, dan eksperimen.">
+  <meta property="og:description" content="Planning, technology, AI, data, and digital systems.">
   <meta property="og:url" content="https://andriwulandika.uk/">
   <meta property="og:site_name" content="Andri Wulandika">
   <meta property="og:locale" content="id_ID">
   <meta name="twitter:card" content="summary">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
-    :root{--paper:#f2eee7;--paper2:#e9e3da;--ink:#171715;--muted:#706c65;--line:#d5cec3;--card:#fffdf9;--accent:#d85b2a;--dark:#181817;--max:1240px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}.wrap{width:min(calc(100% - 48px),var(--max));margin:auto}.serif{font-family:"DM Serif Display",Georgia,serif;font-style:italic;font-weight:400}
-    .skip{position:fixed;left:16px;top:-60px;background:var(--ink);color:#fff;padding:10px 14px;border-radius:8px;z-index:99}.skip:focus{top:16px}
-    header{position:sticky;top:0;z-index:50;background:rgba(242,238,231,.86);backdrop-filter:blur(16px);border-bottom:1px solid rgba(23,23,21,.08)}
-    .nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.02em}.mark{width:34px;height:34px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:11px}.links{display:flex;gap:30px;align-items:center;font-size:13px;font-weight:600}.links a{opacity:.68;transition:opacity .2s}.links a:hover,.links a:focus-visible{opacity:1}.nav-cta{border:1px solid var(--ink);padding:9px 14px;border-radius:999px;opacity:1!important}
-    .menu{display:none;background:none;border:0;font:inherit;font-size:13px;font-weight:700;padding:10px}
-    .hero{min-height:calc(100vh - 72px);display:flex;align-items:flex-end;padding:90px 0 72px}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;width:100%;align-items:end}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:28px}.hero h1{font-size:clamp(58px,8.1vw,118px);line-height:.91;letter-spacing:-.065em;margin:0;max-width:900px;font-weight:600}.hero h1 em{color:var(--accent)}.hero-side{padding-bottom:10px;max-width:430px}.hero-side p{font-size:18px;line-height:1.65;margin:0 0 30px;color:#3f3c37}.arrow{display:inline-flex;width:48px;height:48px;border:1px solid var(--ink);border-radius:50%;align-items:center;justify-content:center;font-size:20px;transition:.25s}.arrow:hover{background:var(--ink);color:var(--paper);transform:translateY(3px)}
-    .ticker{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);overflow:hidden;white-space:nowrap}.ticker-inner{display:flex;width:max-content;animation:slide 28s linear infinite}.ticker span{padding:17px 28px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}.ticker b{color:var(--accent)}@keyframes slide{to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){.ticker-inner{animation:none}}
-    section{padding:120px 0}.section-head{display:grid;grid-template-columns:180px 1fr;gap:40px;border-top:1px solid var(--line);padding-top:18px;margin-bottom:62px}.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}.section-head h2{font-size:clamp(42px,6vw,76px);line-height:.98;letter-spacing:-.055em;margin:0;max-width:850px;font-weight:600}.section-head h2 em{font-family:"DM Serif Display",Georgia,serif;font-style:italic;font-weight:400}
-    .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:80px}.about-lead{font-size:clamp(26px,3vw,42px);line-height:1.18;letter-spacing:-.035em;margin:0}.about-copy{color:var(--muted);font-size:15px;line-height:1.8}.facts{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:45px;border-top:1px solid var(--line)}.fact{padding:18px 0;border-bottom:1px solid var(--line)}.fact small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}.fact strong{font-size:14px}
-    .works{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.work{background:var(--card);border:1px solid #ddd5ca;min-height:390px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}.work:hover{transform:translateY(-5px);box-shadow:0 18px 45px rgba(45,38,30,.08)}.work:nth-child(1){background:var(--dark);color:#f8f4ed}.work:nth-child(2){background:#e4d6c7}.work:nth-child(3){background:#d7e0dc}.work:nth-child(4){background:#e8e1d3}.work-num{font-size:11px;letter-spacing:.12em;opacity:.55}.work h3{font-size:clamp(30px,4vw,54px);line-height:.95;letter-spacing:-.045em;margin:0 0 14px;max-width:500px}.work p{margin:0;max-width:440px;font-size:14px;opacity:.72}.work-link{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-top:25px}
-    .now{background:var(--dark);color:#f6f1e9;padding:120px 0}.now .section-head{border-color:#3a3936}.now .kicker{color:#99948c}.now .section-head h2{max-width:760px}.now-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #3a3936}.now-item{padding:27px 0;border-bottom:1px solid #3a3936;display:grid;grid-template-columns:55px 1fr;gap:20px}.now-item .n{font-size:12px;color:#817d76}.now-item h3{font-size:20px;margin:0 0 6px;letter-spacing:-.02em}.now-item p{margin:0;color:#9d9890;font-size:14px;max-width:470px}
-    .ai{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:start}.ai-intro p{color:var(--muted);line-height:1.8;max-width:390px}.ai-board{border:1px solid var(--ink);background:var(--card)}.ai-top{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:.1em}.status{display:inline-flex;gap:7px;align-items:center}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}.ai-grid{display:grid;grid-template-columns:repeat(3,1fr)}.ai-cell{min-height:125px;padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.ai-cell:nth-child(3n){border-right:0}.ai-cell:nth-last-child(-n+3){border-bottom:0}.ai-cell strong{display:block;font-size:15px;margin-bottom:8px}.ai-cell span{font-size:12px;color:var(--muted)}
-    .principles{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}.principle{padding:38px 25px 45px;border-right:1px solid var(--ink)}.principle:last-child{border-right:0}.principle .big{font-size:clamp(45px,5vw,68px);letter-spacing:-.06em;line-height:1}.principle h3{font-size:18px;margin:35px 0 10px}.principle p{font-size:14px;color:var(--muted);max-width:280px}
-    .contact{padding:145px 0 110px;background:var(--accent);color:#17110d}.contact .kicker{color:#5f2916}.contact h2{font-size:clamp(58px,9vw,126px);line-height:.88;letter-spacing:-.07em;margin:25px 0 50px;max-width:1000px}.contact h2 em{font-family:"DM Serif Display",Georgia,serif;font-style:italic;font-weight:400}.contact-row{display:flex;justify-content:space-between;gap:30px;align-items:end;border-top:1px solid rgba(23,17,13,.3);padding-top:18px}.contact-links{display:flex;gap:25px;flex-wrap:wrap;font-size:13px;font-weight:700}.contact-links a{border-bottom:1px solid rgba(23,17,13,.4)}.email{font-size:13px}
-    footer{background:var(--accent);padding:0 0 30px;color:#17110d}.footer-row{border-top:1px solid rgba(23,17,13,.3);padding-top:18px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.reveal.in{opacity:1;transform:none}
-    @media(max-width:800px){.wrap{width:min(calc(100% - 32px),var(--max))}.links{display:none}.menu{display:block}.mobile.open{display:flex}.hero{min-height:auto;padding:78px 0 62px}.hero-grid,.about-grid,.ai{grid-template-columns:1fr;gap:42px}.hero h1{font-size:clamp(54px,16vw,90px)}.hero-side p{font-size:16px}.section-head{grid-template-columns:1fr;gap:15px;margin-bottom:40px}.section-head h2{font-size:clamp(42px,12vw,65px)}section{padding:85px 0}.works{grid-template-columns:1fr}.work{min-height:330px}.now{padding:85px 0}.now-grid{grid-template-columns:1fr}.ai-grid{grid-template-columns:1fr 1fr}.ai-cell:nth-child(3n){border-right:1px solid var(--line)}.ai-cell:nth-child(2n){border-right:0}.ai-cell:nth-last-child(-n+3){border-bottom:1px solid var(--line)}.ai-cell:nth-last-child(-n+2){border-bottom:0}.principles{grid-template-columns:1fr}.principle{border-right:0;border-bottom:1px solid var(--ink)}.principle:last-child{border-bottom:0}.contact{padding:100px 0 70px}.contact h2{font-size:clamp(58px,17vw,100px)}.contact-row,.footer-row{flex-direction:column;align-items:flex-start}.mobile{display:none;position:absolute;top:72px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 16px 18px;flex-direction:column}.mobile a{padding:13px 0;border-bottom:1px solid var(--line);font-size:14px;font-weight:600}.mobile .nav-cta{border:0;border-radius:0;padding:13px 0}.email{margin-top:8px}}
-    @media(min-width:801px){.mobile{display:none!important}}
+    :root{
+      --bg:#f4f3ef;--paper:#fbfaf7;--ink:#11110f;--muted:#686761;
+      --line:#c9c8c1;--yellow:#f3d51b;--max:1320px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 48px),var(--max));margin:auto}
+    .skip{position:fixed;left:16px;top:-60px;z-index:100;background:var(--ink);color:#fff;padding:10px 14px}
+    .skip:focus{top:16px}
+    header{position:sticky;top:0;z-index:50;background:rgba(244,243,239,.94);border-bottom:1px solid var(--ink)}
+    .nav{height:68px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+    .brand{font-size:13px;font-weight:700;letter-spacing:-.02em}
+    .nav-center{display:flex;gap:28px;font-size:12px}
+    .nav-center a{color:var(--muted);transition:color .2s}
+    .nav-center a:hover,.nav-center a:focus-visible{color:var(--ink)}
+    .nav-right{text-align:right;font-size:12px}
+    .availability{display:inline-flex;align-items:center;gap:7px}
+    .dot{width:6px;height:6px;border-radius:50%;background:#39a84a}
+    .menu{display:none;border:0;background:none;padding:8px 0;cursor:pointer}
+    .mobile-nav{display:none;border-top:1px solid var(--line);padding:8px 24px 18px;background:var(--bg)}
+    .mobile-nav.open{display:grid}
+    .mobile-nav a{padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+    
+    .hero{padding:76px 0 54px;border-bottom:1px solid var(--ink)}
+    .meta{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:92px}
+    .meta span:nth-child(1){grid-column:1/4}.meta span:nth-child(2){grid-column:10/13;text-align:right}
+    .hero h1{font-size:clamp(72px,12.2vw,176px);line-height:.82;letter-spacing:-.075em;font-weight:700;margin:0;max-width:1250px}
+    .hero h1 .line{display:block}
+    .hero h1 .accent{font-weight:400}
+    .hero-bottom{display:grid;grid-template-columns:4fr 5fr 3fr;gap:18px;margin-top:100px;align-items:end}
+    .hero-intro{grid-column:5/10;font-size:18px;line-height:1.4;max-width:520px}
+    .hero-intro p{margin:0}
+    .hero-arrow{justify-self:end;width:54px;height:54px;border:1px solid var(--ink);display:grid;place-items:center;font-size:22px;transition:.25s}
+    .hero-arrow:hover{background:var(--ink);color:var(--bg);transform:translateY(3px)}
+    
+    .strip{border-bottom:1px solid var(--ink);display:grid;grid-template-columns:repeat(4,1fr)}
+    .strip div{padding:14px 16px;border-right:1px solid var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+    .strip div:last-child{border-right:0}
+    
+    section{padding:112px 0}
+    .section-label{display:grid;grid-template-columns:3fr 9fr;gap:18px;border-top:1px solid var(--ink);padding-top:12px;margin-bottom:60px}
+    .section-label small{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+    .section-label h2{font-size:clamp(48px,7vw,94px);line-height:.88;letter-spacing:-.065em;margin:0;font-weight:700;max-width:950px}
+    .section-label h2 em{font-weight:400}
+    
+    .about-grid{display:grid;grid-template-columns:3fr 6fr 3fr;gap:18px}
+    .about-lead{grid-column:4/10;font-size:clamp(27px,3.2vw,47px);line-height:1.02;letter-spacing:-.045em;margin:0}
+    .about-side{grid-column:10/13;color:var(--muted);font-size:13px;line-height:1.65}
+    .facts{grid-column:1/4;grid-row:1;color:var(--muted);font-size:11px}
+    .fact{padding:11px 0;border-top:1px solid var(--line)}
+    .fact:last-child{border-bottom:1px solid var(--line)}
+    .fact b{display:block;color:var(--ink);font-size:12px;margin-top:3px}
+    
+    .work-list{border-top:1px solid var(--ink)}
+    .work{display:grid;grid-template-columns:1fr 4fr 3fr 1fr;gap:18px;align-items:center;min-height:125px;border-bottom:1px solid var(--ink);transition:background .25s,color .25s;padding:0 16px}
+    .work:hover{background:var(--ink);color:var(--bg)}
+    .work-num,.work-year{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+    .work:hover .work-num,.work:hover .work-year{color:#aaa}
+    .work-title{font-size:clamp(28px,3.3vw,50px);font-weight:600;letter-spacing:-.055em}
+    .work-desc{font-size:12px;color:var(--muted);max-width:350px}
+    .work:hover .work-desc{color:#aaa}
+    .work-arrow{justify-self:end;font-size:22px}
+    
+    .dark{background:var(--ink);color:var(--bg)}
+    .dark .section-label{border-color:var(--bg)}
+    .dark .section-label small{color:#999}
+    .now-list{border-top:1px solid #555}
+    .now-item{display:grid;grid-template-columns:1fr 5fr 6fr;gap:18px;padding:27px 0;border-bottom:1px solid #555}
+    .now-item .n{font-size:11px;color:#888}
+    .now-item h3{font-size:clamp(24px,3vw,42px);line-height:.95;letter-spacing:-.045em;margin:0}
+    .now-item p{font-size:13px;color:#999;max-width:520px;margin:0}
+    
+    .ai-layout{display:grid;grid-template-columns:4fr 8fr;gap:18px}
+    .ai-copy{font-size:18px;max-width:420px;line-height:1.45}
+    .ai-copy p{margin:0 0 32px}
+    .ai-link{display:inline-block;border-bottom:1px solid var(--ink);font-size:12px;text-transform:uppercase;letter-spacing:.08em;padding-bottom:4px}
+    .ai-board{border:1px solid var(--ink);background:var(--paper)}
+    .ai-head{display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding:12px 14px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+    .ai-cells{display:grid;grid-template-columns:repeat(3,1fr)}
+    .ai-cell{min-height:145px;padding:20px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between}
+    .ai-cell:nth-child(3n){border-right:0}
+    .ai-cell:nth-last-child(-n+3){border-bottom:0}
+    .ai-cell b{font-size:19px;letter-spacing:-.03em}
+    .ai-cell span{font-size:11px;color:var(--muted)}
+    
+    .principles{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+    .principle{min-height:330px;padding:22px 20px 30px;border-right:1px solid var(--ink);display:flex;flex-direction:column}
+    .principle:last-child{border-right:0}
+    .principle .num{font-size:10px;color:var(--muted)}
+    .principle h3{font-size:clamp(30px,3.4vw,52px);line-height:.9;letter-spacing:-.06em;margin:auto 0 20px}
+    .principle p{font-size:12px;color:var(--muted);max-width:300px;margin:0}
+    
+    .contact{background:var(--yellow);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:92px 0 42px}
+    .contact h2{font-size:clamp(64px,11vw,155px);line-height:.78;letter-spacing:-.08em;margin:0 0 90px;max-width:1200px}
+    .contact-bottom{display:grid;grid-template-columns:3fr 6fr 3fr;gap:18px;border-top:1px solid var(--ink);padding-top:14px}
+    .contact-bottom small{font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+    .contact-links{display:flex;gap:24px;flex-wrap:wrap;font-size:12px}
+    .contact-links a{border-bottom:1px solid var(--ink)}
+    .contact-email{font-size:12px;text-align:right}
+    footer{padding:15px 0 28px;background:var(--yellow)}
+    .footer-row{display:flex;justify-content:space-between;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+    
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+    
+    @media(max-width:800px){
+      .wrap{width:min(calc(100% - 32px),var(--max))}
+      .nav{height:62px;display:flex;justify-content:space-between}
+      .nav-center,.nav-right{display:none}.menu{display:block}
+      .hero{padding:55px 0 40px}
+      .meta{margin-bottom:65px;display:flex;justify-content:space-between}.meta span:nth-child(2){text-align:right}
+      .hero h1{font-size:clamp(62px,17vw,100px)}
+      .hero-bottom{display:grid;grid-template-columns:1fr 54px;margin-top:60px}
+      .hero-intro{grid-column:1;font-size:16px}
+      .hero-arrow{grid-column:2;grid-row:1}
+      .strip{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border-right:0}.strip div:nth-child(3),.strip div:nth-child(4){border-top:1px solid var(--ink)}
+      section{padding:78px 0}
+      .section-label{grid-template-columns:1fr;gap:12px;margin-bottom:42px}
+      .section-label h2{font-size:clamp(48px,14vw,72px)}
+      .about-grid{display:grid;grid-template-columns:1fr;gap:32px}
+      .about-lead,.about-side,.facts{grid-column:auto;grid-row:auto}
+      .about-lead{font-size:30px}
+      .facts{order:3}
+      .work{grid-template-columns:38px 1fr 28px;gap:10px;min-height:110px;padding:0}
+      .work-desc,.work-year{display:none}
+      .work-title{font-size:30px}
+      .now-item{grid-template-columns:32px 1fr;gap:14px}.now-item p{grid-column:2;margin-top:4px}
+      .ai-layout{grid-template-columns:1fr;gap:35px}
+      .ai-cells{grid-template-columns:1fr 1fr}
+      .ai-cell{min-height:125px}.ai-cell:nth-child(3n){border-right:1px solid var(--ink)}.ai-cell:nth-child(2n){border-right:0}
+      .ai-cell:nth-last-child(-n+3){border-bottom:1px solid var(--ink)}.ai-cell:nth-last-child(-n+2){border-bottom:0}
+      .principles{grid-template-columns:1fr}.principle{min-height:240px;border-right:0;border-bottom:1px solid var(--ink)}.principle:last-child{border-bottom:0}
+      .contact{padding:75px 0 30px}.contact h2{font-size:clamp(62px,17vw,105px);margin-bottom:70px}
+      .contact-bottom{grid-template-columns:1fr;gap:24px}.contact-email{text-align:left}
+      .footer-row{flex-direction:column;gap:8px}
+    }
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Andri Wulandika","jobTitle":"Perencana Ahli Pertama","url":"https://andriwulandika.uk/","sameAs":["https://www.instagram.com/andri_wulandika","https://youtube.com/@andriwulandika8408"]}</script>
 </head>
@@ -45,106 +164,89 @@
 <a class="skip" href="#main">Lewati ke konten</a>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="/" aria-label="Andri Wulandika, beranda"><span class="mark">AW</span><span>Andri Wulandika</span></a>
-    <nav class="links" aria-label="Navigasi utama">
-      <a href="#about">Tentang</a><a href="#work">Karya</a><a href="#now">Sekarang</a><a href="#ai">AI</a><a href="#contact" class="nav-cta">Kontak</a>
+    <a class="brand" href="/" aria-label="Andri Wulandika, beranda">ANDRI WULANDIKA</a>
+    <nav class="nav-center" aria-label="Navigasi utama">
+      <a href="#about">About</a><a href="#work">Work</a><a href="#now">Now</a><a href="#ai">AI</a><a href="#contact">Contact</a>
     </nav>
-    <button class="menu" id="menu" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile">Menu</button>
+    <div class="nav-right"><span class="availability"><i class="dot"></i> Building</span></div>
+    <button class="menu" id="menu" aria-label="Buka menu" aria-expanded="false">Menu</button>
   </div>
-  <nav class="mobile" id="mobile" aria-label="Navigasi mobile">
-    <a href="#about">Tentang</a><a href="#work">Karya</a><a href="#now">Sekarang</a><a href="#ai">AI</a><a href="#contact" class="nav-cta">Kontak</a>
+  <nav class="mobile-nav" id="mobile" aria-label="Navigasi mobile">
+    <a href="#about">About</a><a href="#work">Work</a><a href="#now">Now</a><a href="#ai">AI Workspace</a><a href="#contact">Contact</a>
   </nav>
 </header>
 
 <main id="main">
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="reveal">
-        <div class="eyebrow">Personal Digital Headquarters · 2026</div>
-        <h1>Saya bekerja di antara <em>planning</em>, teknologi, dan AI.</h1>
-      </div>
-      <div class="hero-side reveal">
-        <p>Perencana pembangunan daerah di siang hari. Builder, pembelajar, dan penguji ide digital di sela-selanya. Saya tertarik pada satu hal: membuat pekerjaan yang rumit menjadi lebih jelas dan berguna.</p>
-        <a class="arrow" href="#about" aria-label="Lihat tentang saya">↓</a>
+    <div class="wrap">
+      <div class="meta"><span>Planner / Builder / AI Practitioner</span><span>Indonesia · 2026</span></div>
+      <h1 class="reveal"><span class="line">Planning.</span><span class="line">Technology.</span><span class="line accent">AI.</span></h1>
+      <div class="hero-bottom reveal">
+        <div></div>
+        <div class="hero-intro"><p>Saya bekerja di antara perencanaan pembangunan, teknologi, dan AI — mengubah pekerjaan yang kompleks menjadi sistem yang lebih jelas, praktis, dan berguna.</p></div>
+        <a class="hero-arrow" href="#work" aria-label="Lihat karya">↓</a>
       </div>
     </div>
   </section>
 
-  <div class="ticker" aria-label="Bidang yang saya kerjakan">
-    <div class="ticker-inner"><span>Planning <b>•</b></span><span>AI <b>•</b></span><span>Digital Systems <b>•</b></span><span>Data <b>•</b></span><span>Government <b>•</b></span><span>Web <b>•</b></span><span>Planning <b>•</b></span><span>AI <b>•</b></span><span>Digital Systems <b>•</b></span><span>Data <b>•</b></span><span>Government <b>•</b></span><span>Web <b>•</b></span></div>
+  <div class="strip">
+    <div>01 / Planning</div><div>02 / Data</div><div>03 / Digital Systems</div><div>04 / AI</div>
   </div>
 
   <section id="about">
     <div class="wrap">
-      <div class="section-head reveal"><div class="kicker">01 / Tentang</div><h2>Bukan cuma <em>planner.</em></h2></div>
+      <div class="section-label reveal"><small>01 / About</small><h2>Bukan cuma <em>planner.</em></h2></div>
       <div class="about-grid">
-        <p class="about-lead reveal">Saya menyukai ruang di antara dunia yang biasanya dipisahkan: kebijakan dan teknologi, data dan keputusan, pekerjaan birokrasi dan cara kerja yang lebih sederhana.</p>
-        <div class="reveal">
-          <p class="about-copy">Saya bekerja di bidang perencanaan pembangunan daerah dan banyak berhadapan dengan dokumen, data, regulasi, sistem pemerintahan, serta proses yang kompleks. Di luar pekerjaan utama, saya membangun website, mengeksplorasi AI, dan menguji ide-ide produk digital.</p>
-          <div class="facts">
-            <div class="fact"><small>Fokus</small><strong>Planning · Data · AI</strong></div>
-            <div class="fact"><small>Base</small><strong>Aceh Tenggara, Indonesia</strong></div>
-            <div class="fact"><small>Peran</small><strong>Planner · Builder</strong></div>
-            <div class="fact"><small>Mode</small><strong>Learn by building</strong></div>
-          </div>
+        <div class="facts reveal">
+          <div class="fact">Role <b>Planner · Builder</b></div>
+          <div class="fact">Focus <b>Planning · Data · AI</b></div>
+          <div class="fact">Base <b>Aceh Tenggara, Indonesia</b></div>
+          <div class="fact">Approach <b>Learn by building</b></div>
         </div>
+        <p class="about-lead reveal">Saya menyukai ruang di antara dunia yang biasanya dipisahkan: kebijakan dan teknologi, data dan keputusan, pekerjaan birokrasi dan cara kerja yang lebih sederhana.</p>
+        <div class="about-side reveal">Perencana pembangunan daerah yang sehari-hari berhadapan dengan dokumen, data, regulasi, sistem pemerintahan, dan proses yang kompleks. Di luar pekerjaan utama, saya membangun website, mengeksplorasi AI, dan menguji ide produk digital.</div>
       </div>
     </div>
   </section>
 
   <section id="work">
     <div class="wrap">
-      <div class="section-head reveal"><div class="kicker">02 / Karya</div><h2>Hal-hal yang saya <em>bangun.</em></h2></div>
-      <div class="works">
-        <a class="work reveal" href="https://ai.andriwulandika.uk/">
-          <div class="work-num">01 — AI WORKSPACE</div>
-          <div><h3>AI Workspace</h3><p>Ruang kerja digital untuk research, writing, documents, data, dan eksperimen AI.</p><div class="work-link">Buka workspace ↗</div></div>
-        </a>
-        <a class="work reveal" href="#ai">
-          <div class="work-num">02 — DIGITAL HEADQUARTERS</div>
-          <div><h3>Digital Headquarters</h3><p>Tempat menyatukan pekerjaan, pengetahuan, tools, dan proyek digital dalam satu sistem personal.</p><div class="work-link">Lihat sistem ↓</div></div>
-        </a>
-        <a class="work reveal" href="#now">
-          <div class="work-num">03 — PLANNING SYSTEMS</div>
-          <div><h3>Planning & Data</h3><p>Eksplorasi sistem perencanaan, satu data, evaluasi, dan cara mengubah dokumen menjadi keputusan yang lebih terstruktur.</p><div class="work-link">Yang sedang dikerjakan ↓</div></div>
-        </a>
-        <a class="work reveal" href="https://www.instagram.com/andri_wulandika">
-          <div class="work-num">04 — EXPERIMENTS</div>
-          <div><h3>Tulaku & eksperimen lain</h3><p>Produk kecil, website, branding, automation, dan ide bisnis yang dibangun untuk belajar dari dunia nyata.</p><div class="work-link">Lihat eksperimen ↗</div></div>
-        </a>
+      <div class="section-label reveal"><small>02 / Selected Work</small><h2>Hal-hal yang saya <em>bangun.</em></h2></div>
+      <div class="work-list">
+        <a class="work reveal" href="https://ai.andriwulandika.uk/"><span class="work-num">01</span><span class="work-title">AI Workspace</span><span class="work-desc">Ruang kerja digital untuk research, writing, documents, data, dan eksperimen AI.</span><span class="work-arrow">↗</span></a>
+        <a class="work reveal" href="#now"><span class="work-num">02</span><span class="work-title">Planning & Data</span><span class="work-desc">Eksplorasi sistem perencanaan, satu data, evaluasi, dan struktur informasi pemerintahan.</span><span class="work-arrow">↘</span></a>
+        <a class="work reveal" href="#ai"><span class="work-num">03</span><span class="work-title">Digital Headquarters</span><span class="work-desc">Sistem personal untuk menyatukan pekerjaan, pengetahuan, tools, dan proyek digital.</span><span class="work-arrow">↘</span></a>
+        <a class="work reveal" href="https://www.instagram.com/andri_wulandika"><span class="work-num">04</span><span class="work-title">Tulaku & Experiments</span><span class="work-desc">Website, branding, automation, dan produk kecil yang dibangun untuk belajar dari dunia nyata.</span><span class="work-arrow">↗</span></a>
       </div>
     </div>
   </section>
 
-  <section class="now" id="now">
+  <section class="dark" id="now">
     <div class="wrap">
-      <div class="section-head reveal"><div class="kicker">03 / Sekarang</div><h2>Apa yang sedang <em>dikerjakan.</em></h2></div>
-      <div class="now-grid">
-        <div class="now-item reveal"><div class="n">01</div><div><h3>Perencanaan pembangunan daerah</h3><p>Mengolah target, indikator, dokumen, dan evaluasi menjadi bahan perencanaan yang bisa digunakan.</p></div></div>
-        <div class="now-item reveal"><div class="n">02</div><div><h3>Satu Data & sistem pemerintahan</h3><p>Merapikan data, proses, regulasi, dan struktur kerja agar sistem pemerintahan lebih konsisten.</p></div></div>
-        <div class="now-item reveal"><div class="n">03</div><div><h3>AI untuk knowledge work</h3><p>Mencari cara praktis memakai AI untuk research, analisis dokumen, writing, dan pekerjaan berulang.</p></div></div>
-        <div class="now-item reveal"><div class="n">04</div><div><h3>Membangun produk kecil</h3><p>Belajar lewat proyek nyata: website, digital service, automation, dan eksperimen bisnis.</p></div></div>
+      <div class="section-label reveal"><small>03 / Now</small><h2>Apa yang sedang <em>dikerjakan.</em></h2></div>
+      <div class="now-list">
+        <div class="now-item reveal"><span class="n">01</span><h3>Perencanaan pembangunan daerah</h3><p>Mengolah target, indikator, dokumen, dan evaluasi menjadi bahan perencanaan yang bisa digunakan.</p></div>
+        <div class="now-item reveal"><span class="n">02</span><h3>Satu Data & sistem pemerintahan</h3><p>Merapikan data, proses, regulasi, dan struktur kerja agar sistem pemerintahan lebih konsisten.</p></div>
+        <div class="now-item reveal"><span class="n">03</span><h3>AI untuk knowledge work</h3><p>Mencari cara praktis memakai AI untuk research, analisis dokumen, writing, dan pekerjaan berulang.</p></div>
+        <div class="now-item reveal"><span class="n">04</span><h3>Membangun produk kecil</h3><p>Belajar lewat proyek nyata: website, digital service, automation, dan eksperimen bisnis.</p></div>
       </div>
     </div>
   </section>
 
   <section id="ai">
     <div class="wrap">
-      <div class="section-head reveal"><div class="kicker">04 / AI Workspace</div><h2>AI yang dipakai, bukan cuma <em>dibicarakan.</em></h2></div>
-      <div class="ai">
-        <div class="ai-intro reveal">
-          <p>Saya melihat AI sebagai alat kerja. Bukan pengganti cara berpikir, tetapi lapisan baru untuk mempercepat research, menyusun informasi, membuat draft, menguji ide, dan mengotomasi pekerjaan yang berulang.</p>
-          <a class="work-link" href="https://ai.andriwulandika.uk/">Masuk ke AI Workspace ↗</a>
-        </div>
-        <div class="ai-board reveal" aria-label="Area kerja AI">
-          <div class="ai-top"><span>AW / AI WORKSPACE</span><span class="status"><i class="dot"></i> Active</span></div>
-          <div class="ai-grid">
-            <div class="ai-cell"><strong>Planning</strong><span>Framework · RKPD · Evaluasi</span></div>
-            <div class="ai-cell"><strong>Documents</strong><span>Read · Extract · Synthesize</span></div>
-            <div class="ai-cell"><strong>Data</strong><span>Structure · QC · Insight</span></div>
-            <div class="ai-cell"><strong>Writing</strong><span>Draft · Edit · Publish</span></div>
-            <div class="ai-cell"><strong>Automation</strong><span>Repeatable workflows</span></div>
-            <div class="ai-cell"><strong>Research</strong><span>Search · Compare · Verify</span></div>
+      <div class="section-label reveal"><small>04 / AI Workspace</small><h2>AI yang dipakai, bukan cuma <em>dibicarakan.</em></h2></div>
+      <div class="ai-layout">
+        <div class="ai-copy reveal"><p>Saya melihat AI sebagai alat kerja: lapisan baru untuk mempercepat research, analisis dokumen, writing, pengujian ide, dan pekerjaan yang berulang.</p><a class="ai-link" href="https://ai.andriwulandika.uk/">Open AI Workspace ↗</a></div>
+        <div class="ai-board reveal">
+          <div class="ai-head"><span>AW / AI WORKSPACE</span><span>Active system</span></div>
+          <div class="ai-cells">
+            <div class="ai-cell"><b>Planning</b><span>Framework · RKPD · Evaluasi</span></div>
+            <div class="ai-cell"><b>Documents</b><span>Read · Extract · Synthesize</span></div>
+            <div class="ai-cell"><b>Data</b><span>Structure · QC · Insight</span></div>
+            <div class="ai-cell"><b>Writing</b><span>Draft · Edit · Publish</span></div>
+            <div class="ai-cell"><b>Automation</b><span>Repeatable workflows</span></div>
+            <div class="ai-cell"><b>Research</b><span>Search · Compare · Verify</span></div>
           </div>
         </div>
       </div>
@@ -153,33 +255,34 @@
 
   <section>
     <div class="wrap">
-      <div class="section-head reveal"><div class="kicker">05 / Prinsip</div><h2>Cara saya <em>membangun.</em></h2></div>
+      <div class="section-label reveal"><small>05 / Principles</small><h2>Cara saya <em>membangun.</em></h2></div>
       <div class="principles">
-        <article class="principle reveal"><div class="big">01</div><h3>Mulai dari masalah.</h3><p>Teknologi bukan tujuan. Saya mulai dari pekerjaan yang ingin dibuat lebih jelas, cepat, atau berguna.</p></article>
-        <article class="principle reveal"><div class="big">02</div><h3>Sederhanakan.</h3><p>Jika sistem membutuhkan penjelasan panjang untuk dipakai, biasanya masih ada yang perlu dirapikan.</p></article>
-        <article class="principle reveal"><div class="big">03</div><h3>Bangun untuk belajar.</h3><p>Proyek kecil yang benar-benar digunakan sering memberi pelajaran lebih besar daripada teori yang tidak pernah diuji.</p></article>
+        <article class="principle reveal"><span class="num">01</span><h3>Mulai dari masalah.</h3><p>Teknologi bukan tujuan. Saya mulai dari pekerjaan yang ingin dibuat lebih jelas, cepat, atau berguna.</p></article>
+        <article class="principle reveal"><span class="num">02</span><h3>Sederhanakan.</h3><p>Jika sistem membutuhkan penjelasan panjang untuk dipakai, biasanya masih ada yang perlu dirapikan.</p></article>
+        <article class="principle reveal"><span class="num">03</span><h3>Bangun untuk belajar.</h3><p>Proyek kecil yang benar-benar digunakan sering memberi pelajaran lebih besar daripada teori yang tidak pernah diuji.</p></article>
       </div>
     </div>
   </section>
 
   <section class="contact" id="contact">
     <div class="wrap">
-      <div class="kicker reveal">06 / Kontak</div>
       <h2 class="reveal">Mari membuat sesuatu yang <em>berguna.</em></h2>
-      <div class="contact-row reveal">
+      <div class="contact-bottom reveal">
+        <small>06 / Contact</small>
         <div class="contact-links"><a href="mailto:wulandikaandri@gmail.com">Email</a><a href="https://www.instagram.com/andri_wulandika">Instagram</a><a href="https://youtube.com/@andriwulandika8408">YouTube</a></div>
-        <div class="email">wulandikaandri@gmail.com</div>
+        <div class="contact-email">wulandikaandri@gmail.com</div>
       </div>
     </div>
   </section>
 </main>
+
 <footer><div class="wrap footer-row"><span>© 2026 Andri Wulandika</span><span>Planning · Technology · AI</span></div></footer>
 
 <script>
 (function(){
-  const menu=document.getElementById('menu'), mobile=document.getElementById('mobile');
-  menu?.addEventListener('click',()=>{const open=mobile.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Tutup':'Menu';});
-  mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobile.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu';}));
+  const menu=document.getElementById('menu'),mobile=document.getElementById('mobile');
+  menu?.addEventListener('click',()=>{const open=mobile.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Close':'Menu'});
+  mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobile.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu'}));
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const els=document.querySelectorAll('.reveal');
   if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
