@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "bash scripts/sync-assets.sh",
+    "build": "bash scripts/sync-assets.sh && bash scripts/build-pages.sh",
     "build:pages": "bash scripts/build-pages.sh"
   },
   "devDependencies": {
